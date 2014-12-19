@@ -10,6 +10,19 @@ layout: post_page
 
 ###Reshape
 
+This is a place where the `reshape` package and the `cast()` function comes in handy.   An example of that might look like:
+
+```{r cast_longform_examp}
+#Some long from data
+long_df<-data.frame(id=c(rep(1,3),rep(2,3),rep(3,3)),
+                    variable=rep(c("a","b","c"),3),
+                    value=runif(9,1,10))
+#cast
+reshape::cast(long_df)
+```
+
+I will admit that I don't use the `reshape` package a lot, and `melt()` and `cast()` often feel like magic, but they are useful!
+
 ###Modify
 
 ##Pipes

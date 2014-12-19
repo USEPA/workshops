@@ -91,3 +91,24 @@ rbind_df_merge_allx<-merge(rbind_df,rbind_df_merge_me,by="a",all.x=TRUE)
 rbind_df_merge_allx
 
 
+## ----transpose_example---------------------------------------------------
+#Look at are contrived example again
+rbind_df_merge_match
+#And the transpose of this
+t(rbind_df_merge_match)
+
+
+## ----apply_examp---------------------------------------------------------
+temp_df<-data.frame(id=1:100,week1=runif(100,20,25), week2=runif(100,19,24), 
+                    week3=runif(100,18,26), week4=runif(100,17,23))
+head(temp_df)
+temp_df$month_mean_temp <- apply(temp_df,1,mean)
+head(temp_df)
+
+
+## ----tapply_examp--------------------------------------------------------
+
+
+## ----aggregate_examp-----------------------------------------------------
+
+
