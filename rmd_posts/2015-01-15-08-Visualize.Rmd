@@ -1,0 +1,7 @@
+---
+title: "08 - Visualize"
+author: Jeffrey W. Hollister
+layout: post_page
+---
+
+##`ggplot2`

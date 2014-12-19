@@ -1,0 +1,11 @@
+---
+title: "09 - Advanced Topics"
+author: Jeffrey W. Hollister
+layout: post_page
+---
+
+##Show and Tell: R as GIS
+
+##Reproducible Research with Rstudio
+
+##Requests
