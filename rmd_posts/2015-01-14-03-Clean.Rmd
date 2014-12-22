@@ -217,9 +217,3 @@ This exercise will let you practice at using some of the reshaping commands, in 
 2. Add some lines to your script to calculate the mean by `LAKE_ORIGIN`, for `TURB`, `NTL`, `PTL`,`CHLA`, and `SECMEAN` (hint: columns 4 through 8). Save to a data frame named `origin_mean_wq`.
 3. Repeat the same analysis but for the `WSA_ECO9` ecoregions.  Save this to a data frame named `ecoregion_mean_wq`.
 4. It might be interesting to compare the grouped means to the means of each value for the entire dataset.  Using `apply()`, calculate the mean wq for all lakes.  Save this as `nla_mean_wq`.
-
-
-
-
-
-
