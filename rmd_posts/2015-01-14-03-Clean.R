@@ -102,13 +102,27 @@ t(rbind_df_merge_match)
 temp_df<-data.frame(id=1:100,week1=runif(100,20,25), week2=runif(100,19,24), 
                     week3=runif(100,18,26), week4=runif(100,17,23))
 head(temp_df)
+apply(temp_df,1,mean)
 temp_df$month_mean_temp <- apply(temp_df,1,mean)
 head(temp_df)
 
 
 ## ----tapply_examp--------------------------------------------------------
+sepal_len<-iris$Sepal.Length
+tapply(sepal_len,iris$Species,mean)
+#What if we need to use function arguments?
+sepal_len[10]<-NA
+mean(sepal_len)
+mean(sepal_len, na.rm=TRUE)
+tapply(sepal_len,iris$Species,mean)
+tapply(sepal_len,iris$Species,function(x) mean(x, na.rm=T))
 
 
 ## ----aggregate_examp-----------------------------------------------------
+aggregate(iris,iris$Species,mean)
+aggregate(iris,list(iris$Species),mean)
+aggregate(iris[,-5],list(iris$Species),mean)
+species_means<-aggregate(iris[,-5],list(iris$Species),mean)
+species_means
 
 
