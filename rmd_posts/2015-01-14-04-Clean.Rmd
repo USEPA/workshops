@@ -20,7 +20,51 @@ In the last lesson we focused on some basic cleaning operations (subsetting, mer
 
 ##What is `dplyr`? 
 
-##Subset
+The package `dplyr` is fairly new (2014) package that tries to provide easy tools for the most common data manipulation tasks.  It is built to work directly with data frames.  The thinking behind it was largely inspired by the package `plyr` which has been in use for some time but suffered from being slow in some cases.  `dplyr` address this by porting much of the computation to C++.  An additional feature is the ability to work with data stored directly in an external database.  The benefits of doing this is that the data can be managed natively in a relational database, queries conducted on that database, and only the results of the query returned.  This addresses a common problem with R in that all operations are conducted in memory and thus the amount of data you can work with is limited by available memory.  The database connections essentially remove that limitation in that you can have a database of many 100s GB, conduct queries on it directly and pull back just what you need for analysis in R.  There is a lot of great info on `dplyr`.  If you have an interest, i'd encourage you to look more.  The vignettes are particulary good.
+
+- [`dplyr` GitHub repo](https://github.com/hadley/dplyr)
+- [CRAN page: vignettes here](http://cran.rstudio.com/web/packages/dplyr/)
+
+##Subsetting in `dplyr`
+In base R we used a combination of indexing, indexing with vectors and `subset()` to select out columns and rows.  In `dplyr` that is all done with two functions, `select()` and `filter()`.  Before we start we need to make sure we've got everything installed and loaded.
+
+```{r setup_dplyr_reshape, eval=FALSE}
+install.packages("reshape")
+install.packages("dplyr")
+library("rehsape")
+library("dplyr")
+```
+
+Let's repeat what we did in the previous exercise with base R, but now with `dplyr`.  I think you will find it to be a bit more intuitive.
+
+```{r more_data_frame_index}
+#First, select some columns
+dplyr_sel<-select(iris,Sepal.Length,Petal.Length,Species)
+#That's it.  Select one or many columns
+#Now select some, like before
+dplyr_big_iris<-filter(iris, Petal.Length>=6)
+head(dplyr_big_iris)
+#Or maybe we want just the sepal widths of the virginica species
+virginica_iris<-filter(iris,Species=="virginica")
+head(virginica_iris)
+```
+
+But what if I wanted to select and filter?  There are three ways to do this: use intermediate steps, nest functions, or pipes.  With the intermediate steps, you essentially create a temporary data frame and use that as input to the next function.  You can also nest functions (i.e. one function inside of another).  This is handy, but can be difficult to read if too many functions are nested.  The last option, pipes, are a fairly recent addition to R.  Pipes in the unix/linux world are not new and allow you to chain commands together where the output of one command is the input to the next.  This provides a more natural way to read the commands in that they are executed in the way you conceptualize it and make the interpretation of the code a bit easier.  Pipes in `dplyr` look like `%>%`.  Let's try all three with the same analysis.  Select out a subset of columns but for only a single species.
+
+```{r combine_commands}
+#Intermediate data frames
+#Select First: note the order of the output, neat too!
+dplyr_big_iris_tmp1<-select(iris,Species,Sepal.Length,Petal.Length)
+dplyr_big_iris_tmp<-filter(iris_tmp1,Petal.Length>=6)
+head(dplyr_big_iris_tmp)
+#Nested function
+dplyr_big_iris_nest<-filter(select(iris,Species,Sepal.Length,Petal.Length),Species=="virginica")
+head(dplyr_big_iris_nest)
+#Pipes
+dplyr_big_iris_pipe<-select(iris,Species,Sepal.Length,Petal.Length) %>%
+  filter(Species=="virginica")
+head(dplyr_big_iris_pipe)
+```
 
 ##Exercise 1
 
@@ -45,6 +89,4 @@ I will admit that I don't use the `reshape` package a lot, and `melt()` and `cas
 
 ##Exercise 3
 
-##Pipes
 
-##Exercise 4
