@@ -28,7 +28,7 @@ In the last lesson we focused on some basic cleaning operations (subsetting, mer
 
 ##Exercise 2
 
-##Reshape and Modify
+##Reshape and Summarize
 
 This is a place where the `reshape` package and the `cast()` function comes in handy.   An example of that might look like:
 
