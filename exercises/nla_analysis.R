@@ -39,3 +39,9 @@ nla_data<-merge(nla_wq_subset,nla_sites_subset,by="SITE_ID",all.x=TRUE)
 #Lesson 3: Exercise 3
 #Reshape and Modify data
 ###############################################################################
+origin_mean_wq<-aggregate(nla_data[,4:8],list(nla_data$LAKE_ORIGIN),function(x)
+  mean(x,na.rm=TRUE))
+ecoregion_mean_wq<-aggregate(nla_data[,4:8],list(nla_data$WSA_ECO9),function(x)
+  mean(x,na.rm=TRUE))
+nla_mean_wq<-apply(nla_data[,4:8],2,function(x)
+  mean(x,na.rm=TRUE))

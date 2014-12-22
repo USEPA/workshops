@@ -3,9 +3,7 @@ title: "03 - Clean"
 author: Jeffrey W. Hollister
 layout: post_page
 ---
-In this third lesson we are going to start working maninpulating and cleaning up our data frames.  We are spending some significant time on this because, in my experience, most data analysis and statistics classes seem to assume that 95% of the time spent working with data is on the analysis and interpretation of that analysis and little time is spent getting data ready to analyze.  However, in reality, I'd argue, the time spent is flipped with most time spent on cleaning up data and significantly less time on the analysis.    
-
-Cleaning data (or data munging, data jujitsu, data wrangling) often happens at two points.  The first stage is getting raw data files ready to be read in by the computer.  This can be quite the challenge.  For the purposes of this workshop we are not going to focus on that side too much.  The data files we are using are in a clean enough format to be read in directly.  If you want to learn more about some best practices in maintaining good clean data files, I'd point you to two places.  First is some materials from [Data Carpentry on working with spreadsheets](https://github.com/datacarpentry/datacarpentry/blob/master/lessons/excel/ecology_spreadsheets.md) and second is [Hadley Wickham's Tidy Data paper](http://www.jstatsoft.org/v59/i10/paper).
+In this third lesson we are going to start working on maninpulating and cleaning up our data frames.  We are spending some significant time on this because, in my experience, most data analysis and statistics classes seem to assume that 95% of the time spent working with data is on the analysis and interpretation of that analysis and little time is spent getting data ready to analyze.  However, in reality, I'd argue, the time spent is flipped with most time spent on cleaning up data and significantly less time on the analysis.  Before we jump into the lesson, quick links and lesson goals are:
 
 ##Quick Links to Exercises and R code
 - [Lesson 3 R Code](/gedr/rmd_posts/2015-01-14-03-Clean.R): All the code from this post in an R Script.
@@ -14,15 +12,15 @@ Cleaning data (or data munging, data jujitsu, data wrangling) often happens at t
 - [Exercise 3](#exercise-3): Reshaping and modifying to get NLA summary stats
 
 ##Lesson Goals
-- Understand and use various subsetting methods (indexing, vectors, and `subset()`).
+- Understand and use various subsetting methods (indexing and `subset()`).
 - Be able to merge data frames by simply combining rows and columns
 - Use `merge()` to combine data frames by a common key.
 - Do some basic reshaping and modifying data frames.
 
 ##Subset
-But first, lets start exploring indexing to subset both observations (the rows) and variables (the columns).  
+Cleaning data (or data munging, data jujitsu, data wrangling) often happens at two points.  The first stage is getting raw data files ready to be read in by the computer.  This can be quite the challenge.  For the purposes of this workshop we are not going to focus on that side too much.  The data files we are using are in a clean enough format to be read in directly.  If you want to learn more about some best practices in maintaining good clean data files, I'd point you to two places.  First is some materials from [Data Carpentry on working with spreadsheets](https://github.com/datacarpentry/datacarpentry/blob/master/lessons/excel/ecology_spreadsheets.md) and second is [Hadley Wickham's Tidy Data paper](http://www.jstatsoft.org/v59/i10/paper).
 
-Some of the commands we know already, like `head()` and `tail()` kind of do this, but we need more control than that.  We get that with indexing.  In short indexing allows you to specify individual (or ranges) of rows and columns.  We can index data frames and vectors (and lists and matrices, but we aren't going to go into that).  Let's start with a vector example and build from there.
+The second point where you need to clean data is to get it ready for specific analysis and that is what this lesson will focus on.  Lets start exploring this with using indexing to subset both observations (the rows) and variables (the columns).  Some of the commands we know already, like `head()` and `tail()` kind of do this, but we need more control than that.  We get that with indexing.  In short indexing allows you to specify individual (or ranges) of rows and columns.  We can index data frames and vectors (and lists and matrices, but we aren't going to go into that).  Let's start with a vector example and build from there.
 
 ```{r indexing_examp}
 #Create a vector
@@ -159,10 +157,9 @@ So we now have a data frame that is set up pretty well to facilitate some future
 - [`rehsape` pakcage](http://had.co.nz/reshape/)
 - [JSS paper](http://www.jstatsoft.org/v21/i12/paper)
 
-We will explore another one of Hadley's packages, `dplyr` soon, but right now let's look at some basic reshaping in base R.  We will show how to transpose and aggregate.  We already know how to do basic subsetting.  These techniques will add to our toolbox.
+We will look at a couple of Hadley's packages, `dplyr` and `reshape`, soon, but right now let's look at some basic reshaping in base R.  We will show how to transpose and aggregate.  We already know how to do basic subsetting.  These techniques will add to our toolbox.
 
 To transpose a data frame all we need is the `t()` function. 
-
 
 ```{r transpose_example}
 #Look at are contrived example again
@@ -171,11 +168,9 @@ rbind_df_merge_match
 t(rbind_df_merge_match)
 ```
 
-I find that I don't use transpose a lot, but when I do it is usually in combination with other summary and aggregation methods.  It can also be useful with data in a long form where each row does not represent a single observation and the observation id is duplicated.  Getting that to work with base R takes some work.  We will talk a bit more about that in the next lesson.
+I find that I don't use transpose a lot, but when I do it is usually in combination with other summary and aggregation methods.  It can also be useful with data in a long form where each row does not represent a single observation and the observation id is duplicated.  Getting that to work with base R takes some work. The `reshape()` function can be used for that, but to be honest, I have never used it.  Our next lesson should provide some better tools for doing this.
 
-Let's now look at some aggregation commands.  We will focus on the wrapper functions `aggregate()` and `by()`.  These provide a more convenient way to access the `apply` family of functions.  I will introduce those, but not go into too much detail.  
-
-There are many apply functions and they include: `apply()`, `lapply()`, `sapply()`, `mapply()`, `tapply()`,  and `eapply()` (I think that is all of them...).  There are also two convenience function `aggregate()`, and `by()` that are good to know.  
+Let's now look at some aggregation commands.  We will focus on the wrapper functions `aggregate()` and `by()`.  These provide a more convenient way to access the `apply` family of functions.  I will introduce those, but not go into too much detail.  There are many apply functions and they include: `apply()`, `lapply()`, `sapply()`, `mapply()`, `tapply()`,  and `eapply()` (I think that is all of them...).  There are also two convenience function `aggregate()`, and `by()` that are good to know.  
 
 I have never found the apply functions or their helper to be very intuitive and each seems to have it's quirks with the data structures the like as input or return as output.  Often we simply want to input a data frame, summarize or split based on a column in that data frame and get a data frame returned.  This is what `dplyr` does and what we will focus on in the next lesson.  That being said, some of the base R function do work well.  We will look specifically at `apply()`, `tapply()`, and `aggregate()`
 
@@ -216,5 +211,15 @@ species_means
 ```
 
 ##Exercise 3
+This exercise will let you practice at using some of the reshaping commands, in particular the summary commands. 
+
+1. We have an interest in man-made vs natural lakes and how they might have differing water quality.  At this point we have a single data frame `nla_data` that should make answering that question fairly straightforward. Set up a final section in your script to look at this.
+2. Add some lines to your script to calculate the mean by `LAKE_ORIGIN`, for `TURB`, `NTL`, `PTL`,`CHLA`, and `SECMEAN` (hint: columns 4 through 8). Save to a data frame named `origin_mean_wq`.
+3. Repeat the same analysis but for the `WSA_ECO9` ecoregions.  Save this to a data frame named `ecoregion_mean_wq`.
+4. It might be interesting to compare the grouped means to the means of each value for the entire dataset.  Using `apply()`, calculate the mean wq for all lakes.  Save this as `nla_mean_wq`.
+
+
+
+
 
 
