@@ -16,9 +16,35 @@ Our next three lessons (Explolre, Analyze, and Visualize) don't actually split n
 - Create a variety of simple exploratory plots
 
 ##Summary Statistics
+There are a number of ways to get at the basic summaries of a data frame in R.  The easiest is going to be to use `summary()` which for data frames will return a summary of each column.  For numeric columns it gives quantiles, median, etc. and for factor a frequency of the terms.  Let's go back to iris and take a look.
 
+```{r summary_data_example}
+summary(iris)
+```
 
+If you want to look at the range, use `range()`, but it is looking for a vector as input.
 
+```{r range_examp}
+range(iris$Petal.Length)
+```
+
+The interquatile range can be easily grabbed with `IQR()`, again a vector is the input.
+
+```{r iqr_examp}
+IQR(iris$Sepal.Width)
+```
+
+Lastly, quantiles, at specific points, can be returned with, well, `quantile()`.
+
+```{r quantile_example}
+quantile(iris$Sepal.Length)
+```
+
+I use quantile quite a bit, primarily becuase it provides a bit more flexibility becuase you can specify the probabilities you want to return.
+
+```{r quantile_probs_examp}
+quantile(iris$Sepal.Length, probs=(c(0.025,0.975)))
+```
 ##Exercise 1
 
 ##Basic Visualization
