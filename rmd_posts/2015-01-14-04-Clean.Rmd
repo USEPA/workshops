@@ -34,7 +34,7 @@ This addresses a common problem with R in that all operations are conducted in m
 ##Subsetting in `dplyr`
 In base R we used a combination of indexing, indexing with vectors and `subset()` to select out columns and rows.  In `dplyr` this can be done with two functions, `select()` and `filter()`.  Before we start we need to make sure we've got everything installed and loaded.
 
-```{r real_setup,echo=FALSE,include=FALSE}
+```{r real_setup, echo=FALSE, include=FALSE, purl=FALSE}
 if(!require("dplyr")){
   install.packages("dplyr")
 }

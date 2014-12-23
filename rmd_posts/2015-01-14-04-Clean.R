@@ -3,11 +3,6 @@
 options(repos="http://cran.rstudio.com/")
 
 
-## ----real_setup,echo=FALSE,include=FALSE---------------------------------
-if(!require("dplyr")){
-  install.packages("dplyr")
-}
-library("dplyr")
 
 
 ## ----setup_dplyr,eval=FALSE----------------------------------------------
