@@ -3,9 +3,16 @@
 options(repos="http://cran.rstudio.com/")
 
 
-## ----setup_dplyr---------------------------------------------------------
-install.packages("dplyr")
+## ----real_setup,echo=FALSE,include=FALSE---------------------------------
+if(!require("dplyr")){
+  install.packages("dplyr")
+}
 library("dplyr")
+
+
+## ----setup_dplyr,eval=FALSE----------------------------------------------
+## install.packages("dplyr")
+## library("dplyr")
 
 
 ## ----more_data_frame_index-----------------------------------------------
@@ -48,5 +55,24 @@ group_by(iris,Species)%>%
             mean(Sepal.Width),
             mean(Petal.Length),
             mean(Petal.Width))
+
+
+## ----arrange_example-----------------------------------------------------
+head(mtcars)
+#ascending order is default
+head(arrange(mtcars,mpg))
+#descending
+head(arrange(mtcars,desc(mpg)))
+#multiple columns: most cyl with best mpg at top
+head(arrange(mtcars,desc(cyl),desc(mpg)))
+
+
+## ----slice_example-------------------------------------------------------
+#grab rows 3 through 10
+slice(mtcars,3:10)
+
+
+## ----mutate_example------------------------------------------------------
+head(mutate(mtcars_dplyr,kml=mpg*0.425))
 
 

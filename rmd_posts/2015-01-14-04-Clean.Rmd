@@ -34,7 +34,14 @@ This addresses a common problem with R in that all operations are conducted in m
 ##Subsetting in `dplyr`
 In base R we used a combination of indexing, indexing with vectors and `subset()` to select out columns and rows.  In `dplyr` this can be done with two functions, `select()` and `filter()`.  Before we start we need to make sure we've got everything installed and loaded.
 
-```{r setup_dplyr}
+```{r real_setup,echo=FALSE,include=FALSE}
+if(!require("dplyr")){
+  install.packages("dplyr")
+}
+library("dplyr")
+```
+
+```{r setup_dplyr,eval=FALSE}
 install.packages("dplyr")
 library("dplyr")
 ```
@@ -100,8 +107,42 @@ group_by(iris,Species)%>%
 
 It is certainly true that we can do it with less code using `aggregate()`, but what we buy with the extra code is a ton of flexibility.  
 
-There are many other functions in `dplyr` that are useful.  Much of what they do, can certainly be accomplished with base R, but not in as quite an intuitive fashion.  Let's run through some examples with `aggregate()`, `slice()`, `mutate()`, and `arrange()`.
+There are many other functions in `dplyr` that are useful.  Much of what they do, can certainly be accomplished with base R, but not quite as intuitively.  Let's run through some examples with `arrange()`, `slice()`,  and `mutate()`.
+
+First `arrange()` will re-order a data frame based on the values of a columns.  It will take multiple columns and can be in descending or ascending order. I think `iris` is getting a bit tired, let's try a different stock data frame this time:  `mtcars`.  If you are interested you can try `data()` to see what is available.
+
+```{r arrange_example}
+head(mtcars)
+#ascending order is default
+head(arrange(mtcars,mpg))
+#descending
+head(arrange(mtcars,desc(mpg)))
+#multiple columns: most cyl with best mpg at top
+head(arrange(mtcars,desc(cyl),desc(mpg)))
+```
+
+Now `slice()` which accomplishes what we did with the numeric indices before.  Remembering back to that, we'd could grab rows of data frame with something like `x[1:3,]`.  
+
+```{r slice_example}
+#grab rows 3 through 10
+slice(mtcars,3:10)
+```
+
+Lastly, `mutate()` allows us to add new columns based on expressions applied to existing columns
+
+```{r mutate_example}
+head(mutate(mtcars_dplyr,kml=mpg*0.425))
+```
+
+We now have quite a few tools that we can use to clean and manipulate in R.  We have barely touched what both base R and `dplyr` are capable of accomplishing, but hopefully you now have some basics to build on.  I personally think the database connection in `dplyr` are going to prove very useful.
+
+Let's practice some of these last functions with our NLA data.
 
 ##Exercise 2
+Lastly, lets add a new section to our script to recalculate the nla water quality means but using `dplyr`. 
 
+1. Use `nla_data` that we created in the previous lesson.
+2. Add some lines to your script to calculate the mean by LAKE_ORIGIN, for TURB, NTL, PTL,CHLA, and SECMEAN (hint: columns 4 through 8). Save to a data frame named origin_mean_wq_dplyr.
+3. Repeat the same analysis but for the `WSA_ECO9` ecoregions.  Save this to a data frame named `ecoregion_mean_wq_dplyr`.
+4. It might be interesting to compare the grouped means to the means of each value for the entire dataset.  Using `summarize()`, calculate the mean wq for all lakes (hint: no groups!).  Save this as `nla_mean_wq_dplyr`.
 

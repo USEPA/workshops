@@ -45,3 +45,33 @@ ecoregion_mean_wq<-aggregate(nla_data[,4:8],list(nla_data$WSA_ECO9),function(x)
   mean(x,na.rm=TRUE))
 nla_mean_wq<-apply(nla_data[,4:8],2,function(x)
   mean(x,na.rm=TRUE))
+
+###############################################################################
+#Lesson 4: Exercise 1
+#Subset with dplyr
+###############################################################################
+nla_sites_subset_dplyr <- select(nla_sites, SITE_ID, LON_DD, LAT_DD, STATE_NAME, 
+                                 WSA_ECO9, NUT_REG, NUTREG_NAME, LAKE_ORIGIN, 
+                                 RT_NLA)
+
+nla_wq_subset_dplyr <- select(nla_wq, SITE_ID, VISIT_NO, SITE_TYPE, TURB, NTL, 
+                              PTL, CHLA, SECMEAN) %>%
+                        filter(VISIT_NO==1 & SITE_TYPE == "REF_Lake")
+
+
+###############################################################################
+#Lesson 3: Exercise 2
+#Summarize data with dplyr
+###############################################################################
+
+origin_mean_wq_dplyr <- group_by(nla_data, LAKE_ORIGIN) %>%
+                          summarize(mean(TURB), mean(NTL), mean(PTL), mean(CHLA), 
+                                    mean(SECMEAN, na.rm=TRUE))
+
+ecoregion_mean_wq_dplyr <- group_by(nla_data, WSA_ECO9) %>%
+                          summarize(mean(TURB), mean(NTL), mean(PTL), mean(CHLA), 
+                                    mean(SECMEAN, na.rm=TRUE))
+
+nla_mean_wq_dplyr <- summarize(nla_data, mean(TURB), mean(NTL), mean(PTL), mean(CHLA), 
+                               mean(SECMEAN, na.rm=TRUE))
+
