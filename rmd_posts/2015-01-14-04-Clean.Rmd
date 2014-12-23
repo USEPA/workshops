@@ -3,6 +3,11 @@ title: "04 - Clean: dplyr"
 author: Jeffrey W. Hollister
 layout: post_page
 ---
+
+```{r setup, echo=FALSE, warning=FALSE}
+options(repos="http://cran.rstudio.com/")
+```
+
 In the last lesson we focused on some basic cleaning operations (subsetting, merging, modifying, and sumarizing) using base R.  I actually find myself still using these quite a bit.  That being said, I am slowly trying to make the switch to some of the packages that facilitate working with data frames, namely Hadley Wickham's `dplyr`. 
 
 ##Quick Links to Exercises and R code

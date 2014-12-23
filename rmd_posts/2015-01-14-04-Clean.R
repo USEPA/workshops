@@ -1,4 +1,8 @@
 
+## ----setup, echo=FALSE, warning=FALSE------------------------------------
+options(repos="http://cran.rstudio.com/")
+
+
 ## ----setup_dplyr---------------------------------------------------------
 install.packages("dplyr")
 library("dplyr")
