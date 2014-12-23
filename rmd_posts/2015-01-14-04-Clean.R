@@ -1,8 +1,6 @@
 
-## ----setup_dplyr_reshape-------------------------------------------------
-install.packages("reshape")
+## ----setup_dplyr---------------------------------------------------------
 install.packages("dplyr")
-library("rehsape")
 library("dplyr")
 
 
@@ -33,12 +31,18 @@ dplyr_big_iris_pipe<-select(iris,Species,Sepal.Length,Petal.Length) %>%
 head(dplyr_big_iris_pipe)
 
 
-## ----cast_longform_examp-------------------------------------------------
-#Some long from data
-long_df<-data.frame(id=c(rep(1,3),rep(2,3),rep(3,3)),
-                    variable=rep(c("a","b","c"),3),
-                    value=runif(9,1,10))
-#cast
-reshape::cast(long_df)
+## ----aggregate_examp-----------------------------------------------------
+#Intermediate data frame
+iris_grp<-group_by(iris,Species)
+summarize(iris_grp,mean(Sepal.Length),
+          mean(Sepal.Width),
+          mean(Petal.Length),
+          mean(Petal.Width))
+#Chained with Pipes
+group_by(iris,Species)%>%
+  summarize(mean(Sepal.Length),
+            mean(Sepal.Width),
+            mean(Petal.Length),
+            mean(Petal.Width))
 
 

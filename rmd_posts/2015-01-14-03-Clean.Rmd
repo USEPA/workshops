@@ -1,9 +1,9 @@
 ---
-title: "03 - Clean"
+title: "03 - Clean: Base R"
 author: Jeffrey W. Hollister
 layout: post_page
 ---
-In this third lesson we are going to start working on maninpulating and cleaning up our data frames.  We are spending some significant time on this because, in my experience, most data analysis and statistics classes seem to assume that 95% of the time spent working with data is on the analysis and interpretation of that analysis and little time is spent getting data ready to analyze.  However, in reality, I'd argue, the time spent is flipped with most time spent on cleaning up data and significantly less time on the analysis.  Before we jump into the lesson, quick links and lesson goals are:
+In this third lesson we are going to start working on maninpulating and cleaning up our data frames.  We are spending some time on this because, in my experience, most data analysis and statistics classes seem to assume that 95% of the time spent working with data is on the analysis and interpretation of that analysis and little time is spent getting data ready to analyze.  However, in reality, I'd argue, the time spent is flipped with most time spent on cleaning up data and significantly less time on the analysis. We will just be scratching the surface of the many ways you can work with data in base R and with `dplyr` ([Next Lesson](introR/2015/01/14/04-Clean/)). Before we jump into the lesson, quick links and lesson goals are:
 
 ##Quick Links to Exercises and R code
 - [Lesson 3 R Code](/gedr/rmd_posts/2015-01-14-03-Clean.R): All the code from this post in an R Script.
@@ -151,13 +151,11 @@ In this exercise we are going to practice merging our NLA data.  You will rememb
 1. This is the only task we have for this exercise.  Add to your script a line (or more if you need it) to create a new data frame, `nla_data`, that is a merge of `nla_site_subset` and `nla_wq_subset`, but with all lines in `nla_wq_subset` preserved in the output.
 2. If that goes quickly, feel free to explore `rbind()` some.
 
-##Reshape and Summarize
-So we now have a data frame that is set up pretty well to facilitate some future analysis.  That being said, different analyses and visualizations are probably going to require some additional monekying around with our data.  This requires us to reshape, modify, aggregate, or split up our dataset.  There are many ways to do this and a lot depends on the format of the original data.  We will focus on a couple: transposing and aggregation.  There is a lot more you can do.  Again, the best source for packages and examples on this is Hadley Wickham.  In particular I would look at the `reshape` package and the associated links:
+##Modify and Summarize
+So we now have a data frame that is set up pretty well to facilitate some future analysis.  That being said, different analyses and visualizations are probably going to require some additional monekying around with our data.  This requires us to modify, aggregate, or split up our dataset.  There are many ways to do this and a lot depends on the format of the original data.  We will focus on a couple: transposing and aggregation.  There is a lot more you can do.  Again, the best source for packages and examples on this is Hadley Wickham.  In particular I would look at the `reshape` package and the associated links:
 
 - [`rehsape` pakcage](http://had.co.nz/reshape/)
 - [JSS paper](http://www.jstatsoft.org/v21/i12/paper)
-
-We will look at a couple of Hadley's packages, `dplyr` and `reshape`, soon, but right now let's look at some basic reshaping in base R.  We will show how to transpose and aggregate.  We already know how to do basic subsetting.  These techniques will add to our toolbox.
 
 To transpose a data frame all we need is the `t()` function. 
 
@@ -168,7 +166,7 @@ rbind_df_merge_match
 t(rbind_df_merge_match)
 ```
 
-I find that I don't use transpose a lot, but when I do it is usually in combination with other summary and aggregation methods.  It can also be useful with data in a long form where each row does not represent a single observation and the observation id is duplicated.  Getting that to work with base R takes some work. The `reshape()` function can be used for that, but to be honest, I have never used it.  Our next lesson should provide some better tools for doing this.
+I find that I don't use transpose a lot, but when I do it is usually in combination with other summary and aggregation methods.  It can also be useful with data in a long form where each row does not represent a single observation and the observation id is duplicated.  Getting that to work with base R takes some work. The `reshape()` function can be used for that, but to be honest, I have never used it.  Also the `reshape` package can be very powerful for dealing with these types of transformations.
 
 Let's now look at some aggregation commands.  We will focus on the wrapper functions `aggregate()` and `by()`.  These provide a more convenient way to access the `apply` family of functions.  I will introduce those, but not go into too much detail.  There are many apply functions and they include: `apply()`, `lapply()`, `sapply()`, `mapply()`, `tapply()`,  and `eapply()` (I think that is all of them...).  There are also two convenience function `aggregate()`, and `by()` that are good to know.  
 
