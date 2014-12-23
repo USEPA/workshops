@@ -3,7 +3,24 @@ title: "05 - Explore"
 author: Jeffrey W. Hollister
 layout: post_page
 ---
+Our next three lessons (Explolre, Analyze, and Visualize) don't actually split neatly into groups.  That being said, I will try my best, but there will be overlap.  For this lesson we are going to focus on some of the first things you do when you start to explore a dataset including basic summary statistics and simple visualizations with base R.
 
-##Exploratory data analysis
+##Quick Links to Exercises and R code
+- [Lesson 3 R Code](/gedr/rmd_posts/2015-01-14-05-Explore.R): All the code from this post in an R Script.
+- [Exercise 1](#exercise-1): Exploring data with basic summary statistics
+- [Exercise 2](#exercise-2): Using base R graphics for exploratory data analysis 
+
+##Lesson Goals
+- Be able to calculate a variety of summary statistics
+- Continue building familiarity with `dplyr` and base R for summarizing groups
+- Create a variety of simple exploratory plots
 
 ##Summary Statistics
+
+
+
+##Exercise 1
+
+##Basic Visualization
+
+##Exercise 2
