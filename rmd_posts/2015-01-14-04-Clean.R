@@ -1,9 +1,9 @@
 
-## ----setup_dplyr_reshape, eval=FALSE-------------------------------------
-## install.packages("reshape")
-## install.packages("dplyr")
-## library("rehsape")
-## library("dplyr")
+## ----setup_dplyr_reshape-------------------------------------------------
+install.packages("reshape")
+install.packages("dplyr")
+library("rehsape")
+library("dplyr")
 
 
 ## ----more_data_frame_index-----------------------------------------------
