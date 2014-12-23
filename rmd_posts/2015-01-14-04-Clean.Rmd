@@ -48,7 +48,7 @@ dplyr_sel<-select(iris,Sepal.Length,Petal.Length,Species)
 #Now select some, like before
 dplyr_big_iris<-filter(iris, Petal.Length>=6)
 head(dplyr_big_iris)
-#Or maybe we want just the sepal widths of the virginica species
+#Or maybe we want just the virginica species
 virginica_iris<-filter(iris,Species=="virginica")
 head(virginica_iris)
 ```
