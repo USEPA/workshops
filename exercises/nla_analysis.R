@@ -50,6 +50,7 @@ nla_mean_wq<-apply(nla_data[,4:8],2,function(x)
 #Lesson 4: Exercise 1
 #Subset with dplyr
 ###############################################################################
+library(dplyr)
 nla_sites_subset_dplyr <- select(nla_sites, SITE_ID, LON_DD, LAT_DD, STATE_NAME, 
                                  WSA_ECO9, NUT_REG, NUTREG_NAME, LAKE_ORIGIN, 
                                  RT_NLA)
@@ -60,7 +61,7 @@ nla_wq_subset_dplyr <- select(nla_wq, SITE_ID, VISIT_NO, SITE_TYPE, TURB, NTL,
 
 
 ###############################################################################
-#Lesson 3: Exercise 2
+#Lesson 4: Exercise 2
 #Summarize data with dplyr
 ###############################################################################
 
@@ -75,3 +76,26 @@ ecoregion_mean_wq_dplyr <- group_by(nla_data, WSA_ECO9) %>%
 nla_mean_wq_dplyr <- summarize(nla_data, mean(TURB), mean(NTL), mean(PTL), mean(CHLA), 
                                mean(SECMEAN, na.rm=TRUE))
 
+###############################################################################
+#Lesson 5: Exercise 1
+#Summary stats
+#Not elegant, but perhaps more clear.  Lots of repeat. 
+###############################################################################
+turb_summ<-c(quantile(nla_data$TURB,na.rm=T),mean=mean(nla_data$TURB,na.rm=T),
+             iqr=IQR(nla_data$TURB,na.rm=T))
+ntl_summ<-c(quantile(nla_data$NTL,na.rm=T),mean=mean(nla_data$NTL,na.rm=T),
+            iqr=IQR(nla_data$NTL,na.rm=T))
+ptl_summ<-c(quantile(nla_data$PTL,na.rm=T),mean=mean(nla_data$PTL,na.rm=T),
+            iqr=IQR(nla_data$PTL,na.rm=T))
+chla_summ<-c(quantile(nla_data$CHLA,na.rm=T),mean=mean(nla_data$CHLA,na.rm=T),
+             iqr=IQR(nla_data$CHLA,na.rm=T))
+secmean_summ<-c(quantile(nla_data$SECMEAN,na.rm=T),mean=mean(nla_data$SECMEAN,na.rm=T),
+                iqr=IQR(nla_data$SECMEAN,na.rm=T))
+nla_wq_summary_base<-data.frame(TURB=turb_summ,NTL=ntl_summ,PTL=ptl_summ,
+                                CHLA=chla_summ,SECMEAN=secmean_summ)
+
+
+###############################################################################
+#Lesson 5: Exercise 2
+#Basic Visualization
+###############################################################################
