@@ -99,3 +99,9 @@ nla_wq_summary_base<-data.frame(TURB=turb_summ,NTL=ntl_summ,PTL=ptl_summ,
 #Lesson 5: Exercise 2
 #Basic Visualization
 ###############################################################################
+#Pipes are not just for dplyr anymore!
+select(nla_data,TURB,NTL,PTL,CHLA,SECMEAN)%>%
+  plot()
+#More fanciness
+with(nla_data,boxplot(CHLA~RT_NLA))
+with(nla_data,boxplot(log10(CHLA)~RT_NLA))

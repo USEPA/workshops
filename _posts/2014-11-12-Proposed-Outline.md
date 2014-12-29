@@ -1,5 +1,5 @@
 ---
-title: "00 - GED R Workshop Outline"
+title: "00 - Intro R Workshop Outline"
 author: Jeffrey W. Hollister
 layout: post_page
 ---
@@ -47,6 +47,7 @@ For each of the lessons there is a blog post that describes what we are doing, p
 ### 05 - Explore (2:45 pm - 4:30 pm)
 - Exploratory data analysis
 - Summary Statistics
+- Exploratory plots with base R
 
 ## Thursday, January 15, 2015
 
