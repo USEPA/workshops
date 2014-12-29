@@ -105,3 +105,5 @@ select(nla_data,TURB,NTL,PTL,CHLA,SECMEAN)%>%
 #More fanciness
 with(nla_data,boxplot(CHLA~RT_NLA))
 with(nla_data,boxplot(log10(CHLA)~RT_NLA))
+
+
