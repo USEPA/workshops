@@ -51,14 +51,22 @@ iris_scatter_lm<-iris_scatter +
 iris_scatter_lm
 
 
+## ----iris_lm_groups------------------------------------------------------
+iris_scatter_lm_group<-iris_scatter+
+                        geom_smooth(method="lm", 
+                                    aes(colour=Species,shape=Species))
+iris_scatter_lm_group
+
+
+
 ## ----eval=FALSE----------------------------------------------------------
-## ggplot(df,aes(factor(xf),x)) +
+## ggplot(iris,aes(x=Species,y=Sepal.Width)) +
 ##   geom_boxplot()
 
 
 ## ----eval=FALSE----------------------------------------------------------
-## ggplot(df,aes(x=x))+
-##   geom_histogram(aes(fill=xf))
+## ggplot(iris,aes(x=Sepal.Width))+
+##   geom_histogram(binwidth=0.25)
 
 
 ## ----eval=FALSE----------------------------------------------------------

@@ -101,21 +101,36 @@ iris_scatter_lm<-iris_scatter +
 iris_scatter_lm
 ```
 
+And if we are interest in the regressions by group we could do it this way.
 
-So a few other types of plots can be easily built with the same ggplot object.
+```{r iris_lm_groups}
+iris_scatter_lm_group<-iris_scatter+
+                        geom_smooth(method="lm", 
+                                    aes(colour=Species,shape=Species))
+iris_scatter_lm_group
 
-boxplots
+```
+
+You'll notice that I had to specify the aes again.  Since we only specified the x and y in to origin ggplot object, if want to do something different in the subsequent functions we need to overwrite it for the function in which we want a different mapping (i.e. groups ).
+
+In short, while some of the intial setup for ggplot is a bit more verbose that base R, but when we want to do some more complex plots it is much easier in `ggplot2`.  
+
+Before we get into another exercise, lets look at some of the other geometries.  In particular, boxplots, historgrams, and bar charts.  If you want to see all that you can do, take a look at the list of `ggplot2` [geom functions](http://docs.ggplot2.org/0.9.3.1/index.html).
+
+
+###Boxplots
+Boxplots will require us to specify only a single variable to plot.  A simple example would look like 
 
 ```{r eval=FALSE}
-ggplot(df,aes(factor(xf),x)) +
+ggplot(iris,aes(x=Species,y=Sepal.Width)) +
   geom_boxplot()
 ```
 
-Histogram
+###Histograms
 
 ```{r eval=FALSE}
-ggplot(df,aes(x=x))+
-  geom_histogram(aes(fill=xf))
+ggplot(iris,aes(x=Sepal.Width))+
+  geom_histogram(binwidth=0.25)
 ```
 
 Barplots (FIX ME)
