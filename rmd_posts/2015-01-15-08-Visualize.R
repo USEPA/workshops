@@ -46,6 +46,9 @@ iris_scatter_loess
 
 
 ## ----iris_lm-------------------------------------------------------------
+iris_scatter_lm<-iris_scatter +
+                  geom_smooth(method="lm")
+iris_scatter_lm
 
 
 ## ----eval=FALSE----------------------------------------------------------
