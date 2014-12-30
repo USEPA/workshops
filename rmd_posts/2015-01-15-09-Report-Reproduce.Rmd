@@ -4,7 +4,7 @@ author: Jeffrey W. Hollister
 layout: post_page
 ---
 
-In theory, you know have a basic understanding of how to conduct a typical data analysis workflow in R.  All that is left is to be able to write it up in such a way that others can not only understand what we did, but repeat it exactly on their own machines. 
+In theory, you now have a basic understanding of how to conduct a typical data analysis workflow in R.  All that is left is to be able to write it up in such a way that others can not only understand what we did, but repeat it exactly on their own machines. 
 
 
 
