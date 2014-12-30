@@ -4,7 +4,7 @@ author: Jeffrey W. Hollister
 layout: post_page
 ---
 
-```{r setup, echo=FALSE, warning=FALSE, purl=FALSE}
+```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
 options(repos="http://cran.rstudio.com/")
 if(!require("ggplot2")){
   install.packages("ggplot2")
