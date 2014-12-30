@@ -27,7 +27,7 @@ nla_sites_subset<-subset(nla_sites,select=c(SITE_ID, LON_DD, LAT_DD, STATE_NAME,
 nla_wq_subset<-subset(nla_wq,select=c(SITE_ID, VISIT_NO, SITE_TYPE, TURB, NTL, 
 																			PTL, CHLA, SECMEAN))
 nla_wq_subset<-subset(subset(nla_wq_subset,subset=VISIT_NO==1),
-											subset=SITE_TYPE=="REF_Lake")
+											subset=SITE_TYPE=="PROB_Lake")
 
 ###############################################################################
 #Lesson 3: Exercise 2
@@ -57,7 +57,7 @@ nla_sites_subset_dplyr <- select(nla_sites, SITE_ID, LON_DD, LAT_DD, STATE_NAME,
 
 nla_wq_subset_dplyr <- select(nla_wq, SITE_ID, VISIT_NO, SITE_TYPE, TURB, NTL, 
                               PTL, CHLA, SECMEAN) %>%
-                        filter(VISIT_NO==1 & SITE_TYPE == "REF_Lake")
+                        filter(VISIT_NO==1 & SITE_TYPE == "PROB_Lake")
 
 
 ###############################################################################
@@ -125,4 +125,13 @@ secmean_ttest
 chla_lm<-lm(log10(CHLA)~log10(NTL)+log10(PTL),data=nla_data)
 summary(chla_lm)
 
-
+###############################################################################
+#Lesson 7: Exercise 1
+#Random Forest
+###############################################################################
+#clean up dataframe
+nla_data_rf<-select(nla_data,RT_NLA,TURB,NTL,PTL,CHLA,SECMEAN)
+nla_ref_rf<-randomForest(RT_NLA~.,data=nla_data_rf,na.action=na.omit)
+nla_ref_rf
+plot(nla_ref_rf)
+varImpPlot(nla_ref_rf)

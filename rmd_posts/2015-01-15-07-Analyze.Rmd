@@ -68,6 +68,8 @@ plot(iris_rf2)
 varImpPlot(iris_rf2)
 ```
 
+The default plot shows error for the total model and and each of the classes as a function of the number of trees. Variable importance is plotting the decrease in Gini as each variable is added to the model.  
+
 For the basics, that is it!  Let's try it now on the NLA data.
 
 ##Exercise 1
