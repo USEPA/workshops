@@ -1,5 +1,5 @@
 ---
-title: "00 - Intro R Workshop Outline"
+title: "Intro R Workshop Outline"
 author: Jeffrey W. Hollister
 layout: post_page
 ---
