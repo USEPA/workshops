@@ -10,32 +10,42 @@
 ## # aes() are the "aesthetics" info.  When you simply add the x and y
 ## # that can seem a bit of a confusing term.  You also use aes() to
 ## # change color, shape, size etc. of some items
-## ggDf<-ggplot(df,aes(x=x,y=z))
+## iris_gg<-ggplot(iris,aes(x=Petal.Length,y=Petal.Width))
 
 
-## ----eval=FALSE----------------------------------------------------------
-## # Different syntax than you are used to
-## ggDf +
-##   geom_point()
+## ----points_examp--------------------------------------------------------
+#Different syntax than you are used to
+iris_gg + 
+  geom_point()
+
+#This too can be saved to an object
+iris_scatter<-iris_gg +
+                geom_point()
+
+#Call it to create the plot
+iris_scatter
 
 
-## ----eval=FALSE----------------------------------------------------------
-## ggDf +
-##   labs(title="My First ggplot2 Figure",x="My Random X", y="My Random Y") +
-##   geom_point()
+## ----iris_labels---------------------------------------------------------
+iris_scatter<-iris_scatter +
+                labs(title="Iris Petal Morphology Relationship",
+                     x="Petal Length", y="Petal Width")
+iris_scatter
 
 
-## ----eval=FALSE----------------------------------------------------------
-## ggDf +
-##   labs(title="My First ggplot2 Figure",x="My Random X", y="My Random Y") +
-##   geom_point(aes(color=xf, shape=xf),size=5)
+## ----iris_colors---------------------------------------------------------
+iris_scatter<- iris_scatter +
+                geom_point(aes(color=Species, shape=Species),size=5)
+iris_scatter
 
 
-## ----eval=FALSE----------------------------------------------------------
-## ggDf +
-##   labs(title="My First ggplot2 Figure",x="My Random X", y="My Random Y") +
-##   geom_point(aes(color=xf, shape=xf),size=5)+
-##   geom_smooth()
+## ----iris_loess----------------------------------------------------------
+iris_scatter_loess<-iris_scatter +
+                geom_smooth()
+iris_scatter_loess
+
+
+## ----iris_lm-------------------------------------------------------------
 
 
 ## ----eval=FALSE----------------------------------------------------------
