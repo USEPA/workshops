@@ -1,5 +1,5 @@
 ---
-title: "06 - Analyze"
+title: "06 - Analyze: Base"
 author: Jeffrey W. Hollister
 layout: post_page
 ---
