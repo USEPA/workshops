@@ -12,7 +12,7 @@ The second section will run through a quick example of using a package, `randomF
 
 ##Quick Links to Exercises and R code
 - [Lesson 7 R Code](/gedr/rmd_posts/2015-01-14-07-Analyze.R): All the code from this post in an R Script.
-- [Exercise 1](#exercise-1): Use random forests to predict NLA condition class. 
+- [Exercise 1](#exercise-1): Use random forests to predict NLA reference class. 
 
 ##Lesson Goals
 - Understand how to add statistical functionality to R via packages
@@ -70,7 +70,7 @@ varImpPlot(iris_rf2)
 
 For the basics, that is it!  Let's try it now on the NLA data.
 
-#Exercise 1
+##Exercise 1
 For this exercise we are going to implement random forest and try to predict the NLA reference class from the water quality measurements.
 
 1. Add a new secion to the script
