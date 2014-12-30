@@ -97,7 +97,7 @@ nla_wq_summary_base<-data.frame(TURB=turb_summ,NTL=ntl_summ,PTL=ptl_summ,
 
 ###############################################################################
 #Lesson 5: Exercise 2
-#Basic Visualization
+#Basic Exploratory Visualization
 ###############################################################################
 #Pipes are not just for dplyr anymore!
 select(nla_data,TURB,NTL,PTL,CHLA,SECMEAN)%>%
@@ -105,5 +105,24 @@ select(nla_data,TURB,NTL,PTL,CHLA,SECMEAN)%>%
 #More fanciness
 with(nla_data,boxplot(CHLA~RT_NLA))
 with(nla_data,boxplot(log10(CHLA)~RT_NLA))
+
+###############################################################################
+#Lesson 6: Exercise 1
+#Basic Stats
+###############################################################################
+#T-tests - mean difference of man-made vs natural lakes
+turb_ttest <- with(nla_data,t.test(TURB~LAKE_ORIGIN))
+ntl_ttest <- with(nla_data,t.test(NTL~LAKE_ORIGIN))
+ptl_ttest <- with(nla_data,t.test(PTL~LAKE_ORIGIN))
+chla_ttest <- with(nla_data,t.test(CHLA~LAKE_ORIGIN))
+secmean_ttest <- with(nla_data,t.test(SECMEAN~LAKE_ORIGIN))
+turb_ttest
+ntl_ttest
+ptl_ttest
+chla_ttest
+secmean_ttest
+#Predict Chlorophyll a with lm - based on classic models
+chla_lm<-lm(log10(CHLA)~log10(NTL)+log10(PTL),data=nla_data)
+summary(chla_lm)
 
 

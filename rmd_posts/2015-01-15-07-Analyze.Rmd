@@ -1,0 +1,23 @@
+---
+title: "06 - Analyze: Base"
+author: Jeffrey W. Hollister
+layout: post_page
+---
+The second section will run through a quick example of using a package, `randomForest` for some analysis.  I've included this section just to show how (relatively) trivial it is to add an advanced capability to R via packages.
+
+#Quick Links to Exercises and R code
+- [Lesson 7 R Code](/gedr/rmd_posts/2015-01-14-07-Analyze.R): All the code from this post in an R Script.
+- [Exercise 1](#exercise-1): Use random forests to predict NLA condition class. 
+
+##Lesson Goals
+- Understand how to add statistical functionality to R via packages
+
+##Contributed Packages - Example with `randomForest`
+
+Describe Random Forests
+
+Great way to build robust predictive models that are not subject to the assumptions of classic statistics.  Tend to produce more reliable results.
+
+#Exercise 1
+1. Get Random Forest set up
+2. Can we predict ref, so-so, and trash?
