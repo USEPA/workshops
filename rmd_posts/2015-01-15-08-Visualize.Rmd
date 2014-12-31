@@ -157,11 +157,11 @@ ggsave(plot=myBarChart,
        file="myBarChart.jpg")
 ```
 
-#Sources of Help on `ggplot2`
+##Sources of Help on `ggplot2`
 - [Winston Chang's Cookbook](http://www.cookbook-r.com/Graphs/): Many great step-by-step examples.  Good starting point for you own plots
 - [Offical `ggplot2` documentation](http://docs.ggplot2.org/current/): The authoritative source.  Also many great examples.
 
-# R Data Viz Examples
+##R Data Viz Examples
 
 - Base examples: [R Gallery]()
 - ggplot examples: [Google Image Search](http://goo.gl/P0q2Lx)
