@@ -59,31 +59,22 @@ iris_scatter_lm_group
 
 
 
-## ----eval=FALSE----------------------------------------------------------
-## ggplot(iris,aes(x=Species,y=Sepal.Width)) +
-##   geom_boxplot()
+## ----box_examp-----------------------------------------------------------
+ggplot(iris,aes(x=Species,y=Sepal.Width)) +
+  geom_boxplot()
 
 
-## ----eval=FALSE----------------------------------------------------------
-## ggplot(iris,aes(x=Sepal.Width))+
-##   geom_histogram(binwidth=0.25)
+## ----hist_examp----------------------------------------------------------
+ggplot(iris,aes(x=Sepal.Width))+
+  geom_histogram(binwidth=0.25)
 
 
-## ----eval=FALSE----------------------------------------------------------
-## # I am not up-to-speed on reshape2 or plyr.  So for the time-being, melt is magic
-## library(reshape2)
-## library(plyr)
-## mdf<-ddply(melt(df),.(variable),summarise,
-##            meanVal = mean(value),
-##            low = mean(value) - sd(value)/sqrt(length(value)),
-##            high = mean(value) + sd(value)/sqrt(length(value)))
-## myBarChart<-ggplot(mdf,aes(x=factor(variable),y=meanVal,fill=variable))+
-##   geom_bar(stat="identity")+
-##   geom_errorbar(aes(ymin=low,ymax=high,width=0.3))+
-##   labs(title="Bar Plot with SE error bars", x="Treatment",
-##        y="Mean Response")
-## 
-## myBarChart
+## ----bar_examp2----------------------------------------------------------
+iris_species_mean<-group_by(iris,Species) %>%
+                    summarize(mean_pl=mean(Petal.Length))
+iris_meanpl_bar<-ggplot(iris_species_mean,aes(x=Species,y=mean_pl))+
+  geom_bar(stat="identity")
+iris_meanpl_bar
 
 
 ## ----eval=FALSE----------------------------------------------------------

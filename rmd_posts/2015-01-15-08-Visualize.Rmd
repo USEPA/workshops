@@ -10,6 +10,7 @@ if(!require("ggplot2")){
   install.packages("ggplot2")
 }
 library("ggplot2")
+library("dplyr")
 ```
 
 One of the frequently touted strong points of R is data visualization.  We saw some of that with our use of base graphics, but those plots were, frankly, a bit pedestrian.  More and more though, users are moving away from base graphics and using the`ggplot2` package.  I would even go as far to say that it is almost become the default plotting mechanism in R.  This whole lesson we will focus on creating, modifying, and save plots with `ggplot2`.
@@ -111,7 +112,7 @@ iris_scatter_lm_group
 
 ```
 
-You'll notice that I had to specify the aes again.  Since we only specified the x and y in to origin ggplot object, if want to do something different in the subsequent functions we need to overwrite it for the function in which we want a different mapping (i.e. groups ).
+You'll notice that I had to specify the aes again, but for `geom_smooth()`.  Since we only specified the x and y in to origin ggplot object, if want to do something different in the subsequent functions we need to overwrite it for the function in which we want a different mapping (i.e. groups ).
 
 In short, while some of the intial setup for ggplot is a bit more verbose that base R, but when we want to do some more complex plots it is much easier in `ggplot2`.  
 
@@ -121,38 +122,31 @@ Before we get into another exercise, lets look at some of the other geometries. 
 ###Boxplots
 Boxplots will require us to specify only a single variable to plot.  A simple example would look like 
 
-```{r eval=FALSE}
+```{r box_examp}
 ggplot(iris,aes(x=Species,y=Sepal.Width)) +
   geom_boxplot()
 ```
 
 ###Histograms
 
-```{r eval=FALSE}
+```{r hist_examp}
 ggplot(iris,aes(x=Sepal.Width))+
   geom_histogram(binwidth=0.25)
 ```
 
-Barplots (FIX ME)
+###Barplots
+Barplots can be done easily but often you want to plot a summary statistic (e.g. mean value) for different groups.  This requires setting up the data in the correct format first.  We can do that with `dplyr` first, then pass the result to `ggplot()`.
 
-```{r eval=FALSE}
-# I am not up-to-speed on reshape2 or plyr.  So for the time-being, melt is magic
-library(reshape2)
-library(plyr)
-mdf<-ddply(melt(df),.(variable),summarise,
-           meanVal = mean(value),
-           low = mean(value) - sd(value)/sqrt(length(value)),
-           high = mean(value) + sd(value)/sqrt(length(value)))
-myBarChart<-ggplot(mdf,aes(x=factor(variable),y=meanVal,fill=variable))+
-  geom_bar(stat="identity")+
-  geom_errorbar(aes(ymin=low,ymax=high,width=0.3))+
-  labs(title="Bar Plot with SE error bars", x="Treatment",
-       y="Mean Response")
-
-myBarChart
+```{r bar_examp2}
+iris_species_mean<-group_by(iris,Species) %>%
+                    summarize(mean_pl=mean(Petal.Length))
+iris_meanpl_bar<-ggplot(iris_species_mean,aes(x=Species,y=mean_pl))+
+  geom_bar(stat="identity")
+iris_meanpl_bar
 ```
 
 ##Exercise 1
+
 
 So, none of these are spectacular yet, but with a bit more dithering, the plots would be publication ready.  Let's dig into this a bit more and talk about themes.
 
