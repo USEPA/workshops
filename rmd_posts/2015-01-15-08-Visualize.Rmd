@@ -13,7 +13,7 @@ library("ggplot2")
 library("dplyr")
 ```
 
-One of the frequently touted strong points of R is data visualization.  We saw some of that with our use of base graphics, but those plots were, frankly, a bit pedestrian.  More and more though, users are moving away from base graphics and using the`ggplot2` package.  I would even go as far to say that it is almost become the default plotting mechanism in R.  This whole lesson we will focus on creating, modifying, and save plots with `ggplot2`.
+One of the frequently touted strong points of R is data visualization.  We saw some of that with our use of base graphics, but those plots were, frankly, a bit pedestrian.  More and more though, users are moving away from base graphics and using the`ggplot2` package.  I would even go as far to say that it is almost become the default plotting mechanism in R.  This whole lesson we will focus on creating, modifying, and save plots with `ggplot2`. And full disclosure here, I am relatively new to `ggplot2` and have been using it to create plots for about a year, thus I likely don't have all the answers!  I will fake it as best I can.
 
 ##Quick Links to Exercises and R code
 - [Lesson 8 R Code](/gedr/rmd_posts/2015-01-14-08-Visualize.R): All the code from this post in an R Script.
@@ -148,7 +148,7 @@ iris_meanpl_bar
 ##Exercise 1
 
 
-So, none of these are spectacular yet, but with a bit more dithering, the plots would be publication ready.  Let's dig into this a bit more and talk about themes.
+So, none of these are spectacular yet, but with a bit more dithering, the plots would be publication ready.  Let's dig into this a bit more and talk about modifying the overall look of the plots
 
 
 
