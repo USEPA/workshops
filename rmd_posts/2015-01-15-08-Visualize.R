@@ -6,11 +6,11 @@
 ## library("ggplot2")
 
 
-## ----eval=FALSE----------------------------------------------------------
-## # aes() are the "aesthetics" info.  When you simply add the x and y
-## # that can seem a bit of a confusing term.  You also use aes() to
-## # change color, shape, size etc. of some items
-## iris_gg<-ggplot(iris,aes(x=Petal.Length,y=Petal.Width))
+## ----ggplot_examp--------------------------------------------------------
+# aes() are the "aesthetics" info.  When you simply add the x and y
+# that can seem a bit of a confusing term.  You also use aes() to 
+# change color, shape, size etc. of some items 
+iris_gg<-ggplot(iris,aes(x=Petal.Length,y=Petal.Width))
 
 
 ## ----points_examp--------------------------------------------------------
