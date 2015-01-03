@@ -35,7 +35,7 @@ install.packages("ggplot2")
 library("ggplot2")
 ```
 
-First thing we needt to do is to create our ggplot object.  Everything we do will build off of this object.  The bare minimum for this is the data (handily, `ggplot()` is expecting a data frame) and `aes()`, or the aesthetics layers.  Oddly (at least to me), this is the main place you specify your x and y data values.
+First thing we need to do is to create our ggplot object.  Everything we do will build off of this object.  The bare minimum for this is the data (handily, `ggplot()` is expecting a data frame) and `aes()`, or the aesthetics layers.  Oddly (at least to me), this is the main place you specify your x and y data values.
 
 ```{r ggplot_examp}
 # aes() are the "aesthetics" info.  When you simply add the x and y
