@@ -77,8 +77,71 @@ iris_meanpl_bar<-ggplot(iris_species_mean,aes(x=Species,y=mean_pl))+
 iris_meanpl_bar
 
 
-## ----eval=FALSE----------------------------------------------------------
-## ggsave(plot=myBarChart,
-##        file="myBarChart.jpg")
+## ----themes_examp--------------------------------------------------------
+scatter_p<-ggplot(iris,aes(x=Petal.Width,y=Petal.Length)) +
+              geom_point(aes(colour=Species, shape=Species))
+scatter_p
+
+
+## ----themes_examp_custom-------------------------------------------------
+scatter_p_base<-scatter_p + 
+  theme(panel.background = element_blank(), 
+        panel.grid = element_blank(),
+        panel.border = element_rect(fill = NA),
+        text=element_text(family="Times",colour="red",size=24))
+scatter_p_base
+
+
+## ----themes_examp_stock--------------------------------------------------
+scatter_p + theme_bw()
+scatter_p + theme_classic()
+
+
+## ----themes_examp_polished-----------------------------------------------
+#Now Let's start over, with some new colors and regression lines
+scatter_polished <- ggplot(iris,aes(x=Petal.Width,y=Petal.Length)) +
+              geom_point(aes(colour=Species, shape=Species)) +
+              stat_smooth(method="lm", aes(colour=Species)) +
+              scale_colour_manual(breaks = iris$Species,
+                                  values= c("steelblue1",
+                                            "sienna",
+                                            "springgreen3")) + 
+              theme_classic(18,"Times") +
+              theme(text=element_text(colour="slategray")) +
+              labs(title="Iris Petal Morphology Relationship",
+                     x="Petal Length", y="Petal Width")
+              
+
+scatter_polished 
+
+
+## ----ggsave_examp--------------------------------------------------------
+#Save as jpg, with 600dpi, and set width and height
+#Many other options in the help
+ggsave(plot=scatter_polished,
+       file="Fig1.jpg",dpi=600,width=8, heigh=5)
+ggsave(plot=scatter_polished,
+       file="Fig1.pdf")
+
+
+## ----facet_grid_example--------------------------------------------------
+#From the examples in H. Wickham. ggplot2: elegant graphics for data analysis. 
+#Springer New York, 2009. 
+#In particular the facet_grid help.
+p <- ggplot(mtcars, aes(mpg, wt)) + geom_point()
+# With one variable
+p + facet_grid(cyl ~ .)
+# With two variables
+p + facet_grid(vs ~ am)
+
+
+## ----facet_grid_nla------------------------------------------------------
+tp_chla <- ggplot(nla_data,aes(x=log10(PTL),y=log10(CHLA))) + geom_point()
+
+tp_chla + facet_grid(RT_NLA ~ .)
+
+tp_chla +
+  stat_smooth() +
+  facet_grid(RT_NLA ~ LAKE_ORIGIN)
 
 

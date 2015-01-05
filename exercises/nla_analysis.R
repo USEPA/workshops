@@ -137,7 +137,7 @@ plot(nla_ref_rf)
 varImpPlot(nla_ref_rf)
 
 ###############################################################################
-#Lesson 8: Exercise 2
+#Lesson 8: Exercise 1
 #ggplot2
 ###############################################################################
 #scatterplot
@@ -154,3 +154,26 @@ ggplot(mn_chla_data,aes(x=WSA_ECO9,y=mn_chla))+geom_bar(stat="identity")
 ggplot(nla_data,aes(x=log10(PTL),y=log10(CHLA))) + 
   geom_point(aes(colour=LAKE_ORIGIN)) + 
   stat_smooth(method="lm",aes(colour=LAKE_ORIGIN))
+
+
+###############################################################################
+#Lesson 8: Exercise 2
+#ggplot2 Themes
+###############################################################################
+#install.packages("wesanderson")
+library("wesanderson")
+
+nla_ptl_chla<-ggplot(nla_data,aes(x=log10(PTL),y=log10(CHLA))) + 
+  geom_point(aes(colour=LAKE_ORIGIN), size=5) + 
+  stat_smooth(method="lm",aes(colour=LAKE_ORIGIN)) + 
+  theme_bw(20,"Arial") +
+  labs(title="Total Phosphorus and Chlorophyll a",
+      x="Log Total Phosphorus",
+      y=expression(paste('Log Chlorophyll ', italic("a")))) +
+  theme(text=element_text(colour="slategray")) +
+  scale_colour_manual(breaks = nla_data$LAKE_ORIGIN,
+                      values= wes.palette(2,"Moonrise1"))
+nla_ptl_chla
+ggsave(plot = nla_ptl_chla,
+       file = "Fig_tp_chla.jpg", dpi=300, width=8, height=5)
+
