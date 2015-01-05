@@ -135,3 +135,22 @@ nla_ref_rf<-randomForest(RT_NLA~.,data=nla_data_rf,na.action=na.omit)
 nla_ref_rf
 plot(nla_ref_rf)
 varImpPlot(nla_ref_rf)
+
+###############################################################################
+#Lesson 8: Exercise 2
+#ggplot2
+###############################################################################
+#scatterplot
+ggplot(nla_data,aes(x=log10(PTL),y=log10(NTL)))+geom_point()
+#boxplot
+ggplot(nla_data,aes(x=RT_NLA,y=log10(CHLA)))+geom_boxplot()
+#histogram
+ggplot(nla_data,aes(x=log10(NTL)))+geom_histogram()
+#barplot
+mn_chla_data<-group_by(nla_data,WSA_ECO9)%>%
+  summarize(mn_chla=mean(CHLA,na.rm=TRUE))
+ggplot(mn_chla_data,aes(x=WSA_ECO9,y=mn_chla))+geom_bar(stat="identity")
+#tp-chla scatter
+ggplot(nla_data,aes(x=log10(PTL),y=log10(CHLA))) + 
+  geom_point(aes(colour=LAKE_ORIGIN)) + 
+  stat_smooth(method="lm",aes(colour=LAKE_ORIGIN))
