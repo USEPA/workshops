@@ -135,6 +135,8 @@ p + facet_grid(cyl ~ .)
 p + facet_grid(vs ~ am)
 
 
+
+
 ## ----facet_grid_nla------------------------------------------------------
 tp_chla <- ggplot(nla_data,aes(x=log10(PTL),y=log10(CHLA))) + geom_point()
 
