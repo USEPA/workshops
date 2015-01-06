@@ -320,7 +320,7 @@ system.time(sum(large_vec))
 
 {% highlight text %}
 ##    user  system elapsed 
-##   0.006   0.000   0.006
+##   0.005   0.000   0.005
 {% endhighlight %}
 
 
@@ -339,7 +339,7 @@ system.time(sum_vec(large_vec))
 
 {% highlight text %}
 ##    user  system elapsed 
-##   1.599   0.000   1.601
+##   1.606   0.000   1.608
 {% endhighlight %}
 
 Here we can see the difference.  In this case the `sum()` is several hundred times faster! 
@@ -401,7 +401,7 @@ plot_nla<-function(x,y,out=NULL){
 
 
 ##Markdown
-Markdown is a tool that allows you to write simply formated text that is converted to HTML/XHTML.  Primary goal of markdown is readibility of the raw file.  Over the last couple of years, Markdown has emerged as a key way to write up reproducible documents, create websites (this whole website was written in Mardown), and make presentations.  For the basics of markdown and general information look at [Daring Fireball](http://daringfireball.net/projects/markdown/basics).
+Markdown isn't R, but it has become an important tool in the R ecosystem as it can be used to creat package vingettes, can be used on [GitHub](http://github.com), and forms the basis for several reproducible research tools in RStudio.  Markdown is a tool that allows you to write simply formated text that is converted to HTML/XHTML.  Primary goal of markdown is readibility of the raw file.  Over the last couple of years, Markdown has emerged as a key way to write up reproducible documents, create websites (this whole website was written in Mardown), and make presentations.  For the basics of markdown and general information look at [Daring Fireball](http://daringfireball.net/projects/markdown/basics).
 
 *note: this text borrowed liberally from another class [SciComp2014](http://scicomp2014.edc.uri.edu)*
 
@@ -438,28 +438,6 @@ Lists can be done many ways in markdown. An unordered list is simply done with a
 - markdown
 ```
 Notice the space after the `-`.  With most markdown interpertters, you can nest lists.  
-
-So to produce this:
-- level one
-- level one
- - level two
- - level two
-- level one
- - level two
-  - level three
-  
-You do:
- 
- ```
- - level one
-- level one
- - level two
- - level two
-- level one
- - level two
-  - level three
-```
-
 These are not currently getting parsed correctly on the course website.  Not sure why...
 
 To create an ordered list, simple use numbers.  So to produce:
@@ -475,9 +453,6 @@ To create an ordered list, simple use numbers.  So to produce:
 3. the following
 4. markdown.
 ```
-
-Note that the actual numbers you use to create the ordered list do not matter.  When you start a list with a number of a letter, the HTML that gets created sees it as an ordered lists and will order and label to item appropriately.
-
 ### Links and Images
 
 Last type of formatting that you will likely want to accomplish with R markdown is including links and images.  While these two might seem dissimilar, I am including them together as their syntax is nearly identical.
@@ -494,12 +469,20 @@ The text you want linked goes in the `[]` and the link itself goes in the `()`. 
 ![CI Logo](http://www.edc.uri.edu/nrs/classes/nrs592/CI.jpg?s=150)
 ```
 
-The only difference is the use of the `!` at the beginning.  When parsed, the image itself will be included, and not just linked text.  As these will be on the web, the images need to also be available via the web.  You can link to local files, but will need to use a relative path and you will need to make sure the image gets moved to the class Github repoitory.  If you want to do that, talk to [Jeff](mailto:hollister.jeff@epa.gov).  It's easy, but beyond the scope of this tutorial.
-
-
-
+The only difference is the use of the `!` at the beginning.  When parsed, the image itself will be included, and not just linked text.  As these will be on the web, the images need to also be available via the web.  You can link to local files, but will need to use a path relative to the root of the document you are working on.  Let's not worry about that. It's easy, but beyond the scope of this tutorial.
 
 ##Reproducible Documents and Presentations
+By itself Markdown is pretty cool, but doesn't really provide any value added to the way most of us already work.  However, when you add in a few other things, it, in my opinion, changes things dramatically.  Two tools in particular that, along with Markdown, have moved reproducible research forward (especially as it relates to R) are, the `knitr` package and a tool called pandoc.  We are not going to cover the details of these, but we will use them via RStudio.  
 
-##Exercise 2
+In short, these three tools allow us to write up documents, embed code via "code chunks", run that code and render the final document with nicely formatted text, results, figures etc into a final format of our choosing.  We can create `.html`, `.docx`, `.pdf`, ...  The benefit of doing this is that all of our data and code are a part of the document.  I share me source document, then anyone can reproduce all of our calculations.  For instance, I can make a manuscript that looks like this:
+
+[![Rendered Manuscript](/introR/figure/rendered.jpg)](/introR/figure/manuscript.pdf)
+
+from a source markdown document that looks like:
+
+[![Raw RMarkdown](/introR/figure/source.jpg)](/introR/figure/manuscript.Rmd)
+
+While we can't get to this level of detail with just the stock RStudio tools, we can still do some pretty cools stuff.  We are not going to do an exercise on this one, but we will walk through an example to create a simple reproducible research document and a presentation using RStudio.
+
+
 
