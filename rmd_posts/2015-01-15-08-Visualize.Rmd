@@ -122,14 +122,14 @@ Before we get into another exercise, lets look at some of the other geometries. 
 ###Boxplots
 Boxplots will require us to specify only a single variable to plot.  A simple example would look like 
 
-```{r box_examp}
+```{r gg_box_examp}
 ggplot(iris,aes(x=Species,y=Sepal.Width)) +
   geom_boxplot()
 ```
 
 ###Histograms
 
-```{r hist_examp}
+```{r gg_hist_examp}
 ggplot(iris,aes(x=Sepal.Width))+
   geom_histogram(binwidth=0.25)
 ```
@@ -137,7 +137,7 @@ ggplot(iris,aes(x=Sepal.Width))+
 ###Barplots
 Barplots can be done easily but often you want to plot a summary statistic (e.g. mean value) for different groups.  This requires setting up the data in the correct format first.  We can do that with `dplyr` first, then pass the result to `ggplot()`.
 
-```{r bar_examp2}
+```{r gg_bar_examp2}
 iris_species_mean<-group_by(iris,Species) %>%
                     summarize(mean_pl=mean(Petal.Length))
 iris_meanpl_bar<-ggplot(iris_species_mean,aes(x=Species,y=mean_pl))+

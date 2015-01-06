@@ -55,7 +55,7 @@ boxplot(iris$Petal.Length, main="Boxplot of Petal Length",ylab="Length(cm)")
 boxplot(iris$Petal.Length~iris$Species, main="Boxplot of Petal Length by Species",ylab="Length(cm)")
 
 
-## ----hist_examp----------------------------------------------------------
+## ----base_hist_examp-----------------------------------------------------
 hist(iris$Sepal.Length)
 hist(airquality$Temp,breaks=10)
 

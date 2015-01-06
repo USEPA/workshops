@@ -116,7 +116,7 @@ boxplot(iris$Petal.Length~iris$Species, main="Boxplot of Petal Length by Species
 
 Lastly, let's look at two other ways to plot our distrubutions.  First, histograms.
 
-```{r hist_examp}
+```{r base_hist_examp}
 hist(iris$Sepal.Length)
 hist(airquality$Temp,breaks=10)
 ```

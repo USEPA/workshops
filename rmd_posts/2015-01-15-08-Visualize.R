@@ -59,17 +59,17 @@ iris_scatter_lm_group
 
 
 
-## ----box_examp-----------------------------------------------------------
+## ----gg_box_examp--------------------------------------------------------
 ggplot(iris,aes(x=Species,y=Sepal.Width)) +
   geom_boxplot()
 
 
-## ----hist_examp----------------------------------------------------------
+## ----gg_hist_examp-------------------------------------------------------
 ggplot(iris,aes(x=Sepal.Width))+
   geom_histogram(binwidth=0.25)
 
 
-## ----bar_examp2----------------------------------------------------------
+## ----gg_bar_examp2-------------------------------------------------------
 iris_species_mean<-group_by(iris,Species) %>%
                     summarize(mean_pl=mean(Petal.Length))
 iris_meanpl_bar<-ggplot(iris_species_mean,aes(x=Species,y=mean_pl))+
