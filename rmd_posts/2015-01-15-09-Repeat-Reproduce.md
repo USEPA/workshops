@@ -339,7 +339,7 @@ system.time(sum_vec(large_vec))
 
 {% highlight text %}
 ##    user  system elapsed 
-##   1.594   0.000   1.597
+##   1.610   0.000   1.611
 {% endhighlight %}
 
 Here we can see the difference.  In this case the `sum()` is several hundred times faster! 
@@ -401,6 +401,86 @@ plot_nla<-function(x,y,out=NULL){
 
 
 ##Markdown
+*note: this text borrowed liberally from another class [SciComp2014](http://scicomp2014.edc.uri.edu)*
+
+Markdown is a tool that allows you to write simply formated text that is converted to HTML/XHTML.  Primary goal of markdown is readibility of the raw file.  For the basics of markdown look at [Daring Fireball](http://daringfireball.net/projects/markdown/basics).  To try it out [Dingus](http://daringfireball.net/projects/markdown/dingus) works well.  And for another view, the RStudio crew has some great information specifically on [R Markdown](http://www.rstudio.com/ide/docs/authoring/using_markdown).
+
+To get you started, here is some of that same information on the most common markdown you will use in your posts: Text, Headers, Lists, Links, and Images.
+
+### Text
+
+So, for basic text... Just type it!
+
+### Headers
+
+In pure markdown, there are two ways to do headers; however in R Markdown with `knitr` those two get parsed a bit differently.  The first way looks like:
+
+```
+Header1
+=======
+```
+In the ouput HTML created by Knitting your `.Rmd`, this creates both an H1 header as well as a title tag.  This is useful when creating R Presentations, but less so with blog posts with Jekyll.  For the blog posts, you will use the following for headers:
+
+```
+# Header 1
+## Header 2
+...
+###### Header 6
+```
+
+### List
+
+Lists can be done many ways in markdown.  For this tutorial we will focus on unordered and ordered lists. An unordered list is simply done with a `-`.  For example
+
+- this list
+- is produced with
+- the following 
+- markdown.
+
+```
+- this list
+- is produced with
+- the following 
+- code
+```
+Notice the space after the `-`.  With most markdown interpertters, you can nest lists.  These are not currently getting parsed correctly on the course website.  Not sure why...
+
+To create an ordered list, simple use numbers.  So to produce:
+
+1. this list
+2. is produced with
+3. the following
+4. markdown.
+
+```
+1. this list
+2. is produced with
+3. the following
+4. markdown.
+```
+
+Note that the actual numbers you use to create the ordered list do not matter.  When you start a list with a number of a letter, the HTML that gets created sees it as an ordered lists and will order and label to item appropriately.
+
+### Links and Images
+
+Last type of formatting that you will likely want to accomplish with R markdown is including links and images.  While these two might seem dissimilar, I am including them together as their syntax is nearly identical.
+
+So, to create a link you would use the following:
+
+```
+[Course Website](http://scicomp2014.edc.uri.edu)
+```
+
+The text you want linked goes in the `[]` and the link itself goes in the `()`.  That's it! Now to show an image, you simply do this:
+
+```
+![CI Logo](http://www.edc.uri.edu/nrs/classes/nrs592/CI.jpg?s=150)
+```
+
+The only difference is the use of the `!` at the beginning.  When parsed, the image itself will be included, and not just linked text.  As these will be on the web, the images need to also be available via the web.  You can link to local files, but will need to use a relative path and you will need to make sure the image gets moved to the class Github repoitory.  If you want to do that, talk to [Jeff](mailto:hollister.jeff@epa.gov).  It's easy, but beyond the scope of this tutorial.
+
+
+
 
 ##Reproducible Documents and Presentations
 
