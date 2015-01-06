@@ -339,7 +339,7 @@ system.time(sum_vec(large_vec))
 
 {% highlight text %}
 ##    user  system elapsed 
-##   1.627   0.000   1.627
+##   1.587   0.000   1.591
 {% endhighlight %}
 
 Here we can see the difference.  In this case the `sum()` is several hundred times faster! 
@@ -484,7 +484,69 @@ from a source markdown document that looks like:
 
 While we can't get to this level of detail with just the stock RStudio tools, we can still do some pretty cool stuff.  We are not going to do an exercise on this one, but we will walk through an example to create a simple reproducible research document and a presentation using the RStudio interface.  This may seem a departure for me, but anything to increase the adoption of reproducible research is a win!
 
+First, lets talk a bit about "code chunks."  
+
+###Code Chunks
+Since we are talking about markdown and R, our documents will all be R Markdown documents (i.e. .Rmd).  To include R Code in your .Rmd you would do something like:
+
+    ```{r}
+    x<-rnorm(100)
+    x
+    ```
+This identifies what is known as a code chunk.  When written like it is above, it will echo the code to your final document, evalute the code with R and echo the results to the final document.  There are some cases where you might not want all of this to happen.  You may want just the code returned and not have it evalutated by R.  This is accomplished with:
+
+    ```{r eval=FALSE}
+    x<-rnorm(100)
+    ```
+
+Alternatively, you might just want the output returned, as would be the case when using R Markdown to produce a figure in a presenation or paper:
 
 
+    ```{r echo=FALSE}
+    x<-rnorm(100)
+    y<-jitter(x,1000)
+    plot(x,y)
+    ```
+Lastly, each of your code chunks can have a label.  That would be accomplished with something like:
+ 
+    ```{r myFigure, echo=FALSE}
+    x<-rnorm(100)
+    y<-jitter(x,1000)
+    plot(x,y)
+    ```
+Now, lets get started and actually create a reproducible document
 
+###Create a Document
+To create your document, go to File: New File : R Markdown.  You should get a window that looks something like:
 
+![New RMarkdown](/introR/figure/newrmarkdown.jpg)
+
+Add title and author, select "HTML" as the output and click "OK".  RStudio will open a new tab in the editor and in it will be your new document, with some very useful examples.
+
+In this document we can see a couple of things.  First at the top we see:
+
+```
+---
+title: "My First Reproducible Document"
+author: "Jeff W. Hollister"
+date: "1/6/2015"
+output: pdf_document
+---
+```
+
+This is the YAML(YAML Ain't Markup Language) header or front-matter.  It is metadata about the document that can be very useful.  For our purposes we don't need to know anything more about this.  Below that you see text, code chunks, and if it were included some markdown.  At its core this is all we need for a reproducible document.  We can now take this document, pass it through `knitr::knit()` (remember this syntax from the first lesson?) and pandoc and get our output.  We can do this from the console and/or shell, or we can use RStudio.  
+
+If you look near the top of the editor window you will see:
+
+![knit it](/introR/figure/knit.jpg)
+
+Click this and behold the magic!
+
+Spend some time playing around with this document.  Add in some other markdown, text and a code chunk then `knit()` it to see the outcome.  It should be easy to see how this could be used to write the text describing and anlysis, embed the analysis and figure creation directly in the document, and render a final document.  You share the source and rendered document and the anyone has access to your full record of that research!
+
+###Create a Presentation
+Creating a presentation is not much different.  We just need a way to specify different slides.
+
+Repeat the steps from above, but this time instead of selecting "Document", select "Presentation".  Only thing we need to know is that a second level header (i.e. `##`) is what specifies the title of the next slide.  Any thing you put after that goes on that slide.  Similar to before, play around with this add a slide with some new text, new code and knit it.  There you have it, a reproducible presentation.  
+
+I know you will probably wonder can you change the look and feel of this presentation, and the answer is yes.  I have done that, but using a different method for creaing slides by using the `slidify` package.  An example of that presentation is in a talk I gave on [Social Media and Blogging](http://jwhollister.com/epablogpresent).  It does take a bit more work to set this up.  I am also not familar with where RStudio is getting the styling for the presentation. In short, yes but requires a bit of work.
