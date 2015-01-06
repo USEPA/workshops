@@ -218,9 +218,9 @@ plot_nla<-function(x,y,out=NULL){
 
 
 ##Markdown
-*note: this text borrowed liberally from another class [SciComp2014](http://scicomp2014.edc.uri.edu)*
+Markdown is a tool that allows you to write simply formated text that is converted to HTML/XHTML.  Primary goal of markdown is readibility of the raw file.  Over the last couple of years, Markdown has emerged as a key way to write up reproducible documents, create websites (this whole website was written in Mardown), and make presentations.  For the basics of markdown and general information look at [Daring Fireball](http://daringfireball.net/projects/markdown/basics).
 
-Markdown is a tool that allows you to write simply formated text that is converted to HTML/XHTML.  Primary goal of markdown is readibility of the raw file.  For the basics of markdown look at [Daring Fireball](http://daringfireball.net/projects/markdown/basics).  To try it out [Dingus](http://daringfireball.net/projects/markdown/dingus) works well.  And for another view, the RStudio crew has some great information specifically on [R Markdown](http://www.rstudio.com/ide/docs/authoring/using_markdown).
+*note: this text borrowed liberally from another class [SciComp2014](http://scicomp2014.edc.uri.edu)*
 
 To get you started, here is some of that same information on the most common markdown you will use in your posts: Text, Headers, Lists, Links, and Images.
 
@@ -230,13 +230,7 @@ So, for basic text... Just type it!
 
 ### Headers
 
-In pure markdown, there are two ways to do headers; however in R Markdown with `knitr` those two get parsed a bit differently.  The first way looks like:
-
-```
-Header1
-=======
-```
-In the ouput HTML created by Knitting your `.Rmd`, this creates both an H1 header as well as a title tag.  This is useful when creating R Presentations, but less so with blog posts with Jekyll.  For the blog posts, you will use the following for headers:
+In pure markdown, there are two ways to do headers but for most of what you need, you can use the following for headers:
 
 ```
 # Header 1
@@ -247,7 +241,7 @@ In the ouput HTML created by Knitting your `.Rmd`, this creates both an H1 heade
 
 ### List
 
-Lists can be done many ways in markdown.  For this tutorial we will focus on unordered and ordered lists. An unordered list is simply done with a `-`.  For example
+Lists can be done many ways in markdown. An unordered list is simply done with a `-`, `+`, or `*`.  For example
 
 - this list
 - is produced with
@@ -258,9 +252,32 @@ Lists can be done many ways in markdown.  For this tutorial we will focus on uno
 - this list
 - is produced with
 - the following 
-- code
+- markdown
 ```
-Notice the space after the `-`.  With most markdown interpertters, you can nest lists.  These are not currently getting parsed correctly on the course website.  Not sure why...
+Notice the space after the `-`.  With most markdown interpertters, you can nest lists.  
+
+So to produce this:
+- level one
+- level one
+ - level two
+ - level two
+- level one
+ - level two
+  - level three
+  
+You do:
+ 
+ ```
+ - level one
+- level one
+ - level two
+ - level two
+- level one
+ - level two
+  - level three
+```
+
+These are not currently getting parsed correctly on the course website.  Not sure why...
 
 To create an ordered list, simple use numbers.  So to produce:
 
