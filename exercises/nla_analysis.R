@@ -177,3 +177,34 @@ nla_ptl_chla
 ggsave(plot = nla_ptl_chla,
        file = "Fig_tp_chla.jpg", dpi=300, width=8, height=5)
 
+###############################################################################
+#Lesson 9: Exercise 1
+#Functions and control structures
+###############################################################################
+#1
+mean_sd<-function(vec,type=c("mean","sd"),...){
+  type<-match.arg(type)
+  if(type=="mean"){
+    return(mean(vec, ...))
+  } 
+  if(type=="sd"){
+    return(sd(vec,...))
+  }
+}
+
+mean_sd(1:10)
+mean_sd(rnorm(10),"sd")
+mean_sd(c(5,6,7,5,6,7,5,6,7),"mean")
+mean_sd(1,"bob")
+
+#2
+plot_nla<-function(x,y,grp,out=NULL){
+  my_p<-ggplot(data.frame(x,y,grp),aes(x=x,y=y)) +
+    geom_point(aes(color=grp, shape=grp),size=5) +
+    geom_smooth(method="lm",aes(colour=grp))+
+    labs(x=substitute(x),y=substitute(y))
+  if(!is.null(out){
+    ggsave(my_p,file=file)
+  }
+  return(my_p)
+}

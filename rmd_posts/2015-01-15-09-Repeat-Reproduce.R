@@ -62,3 +62,73 @@ plus_minus(-44)
 plus_minus(37*0)
 
 
+## ----for_examp-----------------------------------------------------------
+sum_vec<-function(vec){
+  j<-0
+  for(i in vec){
+    j<-i+j
+    print(j)
+  }
+}
+
+sum_vec(1:2)
+sum_vec(1:10)
+
+
+## ----for_examp_print-----------------------------------------------------
+sum_vec<-function(vec){
+  j<-0
+  for(i in vec){
+    j<-i+j
+  }
+  print(j)
+}
+
+sum_vec(1:10)
+
+
+## ----for_vector_time-----------------------------------------------------
+large_vec<-as.numeric(1:5000000)
+#Same Answer...
+sum(large_vec)
+sum_vec(large_vec)
+#Different speed
+system.time(sum(large_vec))
+system.time(sum_vec(large_vec))
+
+
+## ----odd_even_return-----------------------------------------------------
+odd_even<-function(num){
+  if(num %% 2 == 0){
+    return("EVEN")
+  } 
+  return("ODD")
+}
+
+
+## ----sum_vec_return------------------------------------------------------
+sum_vec<-function(vec){
+  j<-0
+  for(i in vec){
+    j<-i+j
+  }
+  return(j)
+}
+
+
+## ----ggplot_starter function, eval=FALSE---------------------------------
+## plot_nla<-function(x,y,out=NULL){
+##   #ggplot2 code
+##   #Note: ggplot requires a data frame as input.  How would you deal with that?
+## 
+##   #ggsave here
+##   #look into the is.null() function
+##   if(put condition here){
+##     ggsave()
+##   }
+## 
+##   #Need to return something ...
+##   return()
+## }
+
+

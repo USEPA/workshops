@@ -209,11 +209,196 @@ plus_minus(37*0)
 {% endhighlight %}
 
 ###for
-A `for` loop allows you to repeat code.  You specify a variable and a range of values and the `for` loop runs the code for each value in your range.  
+A `for` loop allows you to repeat code.  You specify a variable and a range of values and the `for` loop runs the code for each value in your range.  The basic structure looks like:
+
+```
+for(a_name in a_range){
+ code you want to run
+ may or may not use a_name
+}
+```
+
+And and example in a function.
+
+
+{% highlight r %}
+sum_vec<-function(vec){
+  j<-0
+  for(i in vec){
+    j<-i+j
+    print(j)
+  }
+}
+
+sum_vec(1:2)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## [1] 1
+## [1] 3
+{% endhighlight %}
+
+
+
+{% highlight r %}
+sum_vec(1:10)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## [1] 1
+## [1] 3
+## [1] 6
+## [1] 10
+## [1] 15
+## [1] 21
+## [1] 28
+## [1] 36
+## [1] 45
+## [1] 55
+{% endhighlight %}
+
+Again a bit of a silly example since all it is doing is looping through a list of values and summing it.  In reality you would just use `sum()`.  This also highlights the fact that loops in R are slow compared to vector operations and/or base operations.  We can see what the problem is if we look at a large vector and the time it takes to get the sum.  First let's ammend the function so that it only prints the answer.  Printing on each iteration of the loop was just to show it looping...
+
+
+{% highlight r %}
+sum_vec<-function(vec){
+  j<-0
+  for(i in vec){
+    j<-i+j
+  }
+  print(j)
+}
+
+sum_vec(1:10)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## [1] 55
+{% endhighlight %}
+
+Now that we have two functions that work the same, lets check the timing.
+
+
+{% highlight r %}
+large_vec<-as.numeric(1:5000000)
+#Same Answer...
+sum(large_vec)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## [1] 1.25e+13
+{% endhighlight %}
+
+
+
+{% highlight r %}
+sum_vec(large_vec)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## [1] 1.25e+13
+{% endhighlight %}
+
+
+
+{% highlight r %}
+#Different speed
+system.time(sum(large_vec))
+{% endhighlight %}
+
+
+
+{% highlight text %}
+##    user  system elapsed 
+##   0.006   0.000   0.006
+{% endhighlight %}
+
+
+
+{% highlight r %}
+system.time(sum_vec(large_vec))
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## [1] 1.25e+13
+{% endhighlight %}
+
+
+
+{% highlight text %}
+##    user  system elapsed 
+##   1.594   0.000   1.597
+{% endhighlight %}
+
+Here we can see the difference.  In this case the `sum()` is several hundred times faster! 
+
+In short, if there is an obvious vectorized/base solution (in this case the sum()), use that.  If you need to use a loop, use that.  There are plenty of examples where a vectorized solution exists for a loop, but it may be difficult to code and understand.  I believe it is possible to go too far down the vectorized path.  Do it when it makes sense, otherwise take advantage of the for loop!
 
 ###return
+The last control structure we are going to talk about is `return()`.  All `return()` does is provides a result from a function and terminates the function.  You may be asking yourself, didn't we get terminate and get a value from the functions we just created?  We did and `return()` is not mandatory for R functions as they will return the last calculation.  However, I do think that including a `return()` is good practice and allows us to be clear and more specific about what you get out of your functions.  Let's take a look at the `sum_vec()` function (even though, I just explained why this is not the best function), the `odd_even()` function  and make simple changes to take advantage of `return()`.
+
+First, `odd_even()`
+
+
+{% highlight r %}
+odd_even<-function(num){
+  if(num %% 2 == 0){
+    return("EVEN")
+  } 
+  return("ODD")
+}
+{% endhighlight %}
+
+Now, `sum_vec()`
+
+
+{% highlight r %}
+sum_vec<-function(vec){
+  j<-0
+  for(i in vec){
+    j<-i+j
+  }
+  return(j)
+}
+{% endhighlight %}
+
+Pretty straightforward!
 
 ##Exercise 1
+For this exercise we are going to practice with functions and some of the control structures.
+
+1.) Our first task is to create a simple function.  This one is a bit contrived, but wanted let you try it first before we work on our NLA data.  Create a function that allows you to calculate the mean or standard deviation (hint: sd()) of an input vector.
+2.) Our second task is going to be to take your last `ggplot2` plot, and turn that into a function.  The function should take an x and y as input, and have an optional argument for a file name to save it as an image.  Depending on how complex your plot was you may need to add in some additional arguments.  To help things along, I have provided some starter code:
+
+
+{% highlight r %}
+plot_nla<-function(x,y,out=NULL){
+  #ggplot2 code
+  #Note: ggplot requires a data frame as input.  How would you deal with that?
+  
+  #ggsave here
+  #look into the is.null() function
+  if(put condition here){
+    ggsave()
+  }
+  
+  #Need to return something ...
+  return()
+}
+{% endhighlight %}
+
 
 ##Markdown
 
