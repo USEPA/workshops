@@ -320,7 +320,7 @@ system.time(sum(large_vec))
 
 {% highlight text %}
 ##    user  system elapsed 
-##   0.005   0.000   0.005
+##   0.006   0.000   0.006
 {% endhighlight %}
 
 
@@ -339,7 +339,7 @@ system.time(sum_vec(large_vec))
 
 {% highlight text %}
 ##    user  system elapsed 
-##   1.606   0.000   1.608
+##   1.627   0.000   1.627
 {% endhighlight %}
 
 Here we can see the difference.  In this case the `sum()` is several hundred times faster! 
@@ -482,7 +482,9 @@ from a source markdown document that looks like:
 
 [![Raw RMarkdown](/introR/figure/source.jpg)](/introR/figure/manuscript.Rmd)
 
-While we can't get to this level of detail with just the stock RStudio tools, we can still do some pretty cools stuff.  We are not going to do an exercise on this one, but we will walk through an example to create a simple reproducible research document and a presentation using RStudio.
+While we can't get to this level of detail with just the stock RStudio tools, we can still do some pretty cool stuff.  We are not going to do an exercise on this one, but we will walk through an example to create a simple reproducible research document and a presentation using the RStudio interface.  This may seem a departure for me, but anything to increase the adoption of reproducible research is a win!
+
+
 
 
 

@@ -299,7 +299,9 @@ from a source markdown document that looks like:
 
 [![Raw RMarkdown](/introR/figure/source.jpg)](/introR/figure/manuscript.Rmd)
 
-While we can't get to this level of detail with just the stock RStudio tools, we can still do some pretty cools stuff.  We are not going to do an exercise on this one, but we will walk through an example to create a simple reproducible research document and a presentation using RStudio.
+While we can't get to this level of detail with just the stock RStudio tools, we can still do some pretty cool stuff.  We are not going to do an exercise on this one, but we will walk through an example to create a simple reproducible research document and a presentation using the RStudio interface.  This may seem a departure for me, but anything to increase the adoption of reproducible research is a win!
+
+
 
 
 
