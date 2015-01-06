@@ -19,7 +19,15 @@ In theory, you now have a basic understanding of how to conduct a typical data a
 - Create a simple, reproducible document and presentation
 
 ##Functions and Programming with R
-At this point we should be pretty well versed at using functions.  They have a name, some arguments, and they do something.  Some return a value, some don't.  In short they form the basic structure of R.  One of the cool thing about R (and programming in general), is that we are not stuck with the functions provided to us.  We can (and should!) develop our own as we often want to do things repeatedly, and in slightly different contexts.  Creating a function to deal with this fact helps us a great deal becuase we do not have to repeat ourselves, we can just use what we have already written.  Creating a function is really easy.  We use the `function()` function.
+At this point we should be pretty well versed at using functions.  They have a name, some arguments, and they do something.  Some return a value, some don't.  In short they form the basic structure of R.  One of the cool thing about R (and programming in general), is that we are not stuck with the functions provided to us.  We can (and should!) develop our own as we often want to do things repeatedly, and in slightly different contexts.  Creating a function to deal with this fact helps us a great deal becuase we do not have to repeat ourselves, we can just use what we have already written.  Creating a function is really easy.  We use the `function()` function.  It has the basic structure of 
+
+```
+function_name<-function(arguments){
+  code goes here
+  use arguments as needed
+}
+```
+So a real example, without arguments might look like:
 
 
 {% highlight r %}
@@ -98,10 +106,10 @@ myplot(iris$Petal.Length,iris$Petal.Width,iris$Species,"petal_petal.jpg")
 
 
 {% highlight text %}
-## Error in myplot(iris$Petal.Length, iris$Petal.Width, iris$Species, "petal_petal.jpg"): could not find function "ggplot"
+## Saving 7 x 7 in image
 {% endhighlight %}
 
-
+![plot of chunk plot_function_examp]({{ site.url }}/figure/plot_function_examp-1.png) 
 
 {% highlight r %}
 myplot(iris$Sepal.Length,iris$Sepal.Width,iris$Species,"sepal_l_petal_w.jpg")
@@ -110,18 +118,106 @@ myplot(iris$Sepal.Length,iris$Sepal.Width,iris$Species,"sepal_l_petal_w.jpg")
 
 
 {% highlight text %}
-## Error in myplot(iris$Sepal.Length, iris$Sepal.Width, iris$Species, "sepal_l_petal_w.jpg"): could not find function "ggplot"
+## Saving 7 x 7 in image
 {% endhighlight %}
 
-Cool, a function, that does something useful.  It still is just a collection of functions at this point though.  What if we wanted to repeat something or have the function make some decisions and do one thing given a set of criteria and something else for a different set?  Well we need to look more at some of the classic programming structures in R.  For this introduction, I am going to look just a `for()` loops (some in the R world think this to be bad since R is optimized for working on vectors, but I think the concept useful, so there!) and `if-else`.
+![plot of chunk plot_function_examp]({{ site.url }}/figure/plot_function_examp-2.png) 
 
-###A word on Packages
+Cool, a function, that does something useful.  It still is just a collection of functions at this point though.  What if we wanted to repeat something or have the function make some decisions and do one thing given a set of criteria and something else for a different set?  Well we need to look more at some of the classic programming structures in R.  For this introduction, I am going to look just at `if-else` statements, `for` loops (some in the R world think this to be bad since R is optimized for working on vectors, but I think the concept useful and I M writing this, so there!),  and `return()`.  
+
+###if-else
+If you have done any programing in any language, then `if-else` statements are not new to you.  All they do is allow us to tell the function how to make some decisions.  
+
+I will show the examples in the context of a function as that is how they are most commonly used. So, we can implement them in R like:
 
 
+{% highlight r %}
+odd_even<-function(num){
+  if(num %% 2 == 0){
+    print("EVEN")
+  } else {
+    print("ODD")
+  }
+}
+
+odd_even(27)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## [1] "ODD"
+{% endhighlight %}
+
+
+
+{% highlight r %}
+odd_even(34)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## [1] "EVEN"
+{% endhighlight %}
+
+And you can you use multiple `if` statements
+
+
+{% highlight r %}
+plus_minus<-function(num){
+  if(num>0){
+    print("plus")
+  } else if (num < 0) {
+    print("minus")
+  } else {
+    print("zero")
+  }
+}
+ 
+plus_minus(198)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## [1] "plus"
+{% endhighlight %}
+
+
+
+{% highlight r %}
+plus_minus(-44)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## [1] "minus"
+{% endhighlight %}
+
+
+
+{% highlight r %}
+plus_minus(37*0)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## [1] "zero"
+{% endhighlight %}
+
+###for
+A `for` loop allows you to repeat code.  You specify a variable and a range of values and the `for` loop runs the code for each value in your range.  
+
+###return
+
+##Exercise 1
 
 ##Markdown
 
 ##Reproducible Documents and Presentations
 
-
+##Exercise 2
 
