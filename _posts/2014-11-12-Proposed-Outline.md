@@ -67,6 +67,6 @@ For each of the lessons there is a blog post that describes what we are doing, p
 #### Break (2:30 pm - 2:45 pm)
 
 ### 09 - Repeat (2:45 pm - 4:30 pm)
-- Programing with R
+- Programming with R
 - functions
-- Reproducible Research with Rstudio 
+- Reproducible Research with RStudio 

@@ -3,7 +3,7 @@ title: "03 - Clean: Base R"
 author: Jeffrey W. Hollister
 layout: post_page
 ---
-In this third lesson we are going to start working on maninpulating and cleaning up our data frames.  We are spending some time on this because, in my experience, most data analysis and statistics classes seem to assume that 95% of the time spent working with data is on the analysis and interpretation of that analysis and little time is spent getting data ready to analyze.  However, in reality, I'd argue, the time spent is flipped with most time spent on cleaning up data and significantly less time on the analysis. We will just be scratching the surface of the many ways you can work with data in base R and with `dplyr` ([Next Lesson](introR/2015/01/14/04-Clean/)). Before we jump into the lesson, quick links and lesson goals are:
+In this third lesson we are going to start working on manipulating and cleaning up our data frames.  We are spending some time on this because, in my experience, most data analysis and statistics classes seem to assume that 95% of the time spent working with data is on the analysis and interpretation of that analysis and little time is spent getting data ready to analyze.  However, in reality, I'd argue, the time spent is flipped with most time spent on cleaning up data and significantly less time on the analysis. We will just be scratching the surface of the many ways you can work with data in base R and with `dplyr` ([Next Lesson](introR/2015/01/14/04-Clean/)). Before we jump into the lesson, quick links and lesson goals are:
 
 ##Quick Links to Exercises and R code
 - [Lesson 3 R Code](/gedr/rmd_posts/2015-01-14-03-Clean.R): All the code from this post in an R Script.
@@ -78,7 +78,7 @@ virginica_iris<-iris$Sepal.Width[iris$Species=="virginica"]
 head(virginica_iris)
 ```
 
-Got it?!  Probably sort of!?  I will admit that the syntax for subsetting data this way is a bit obtuse.  I did want to make sure you all saw it though becuase it comes up often in other peoples code and helps you get a better understanding, I think, of what you are doing.  That being said there are other options.  In base, `subset()` and also in `dplyr` which will be the next lesson.
+Got it?!  Probably sort of!?  I will admit that the syntax for subsetting data this way is a bit obtuse.  I did want to make sure you all saw it though because it comes up often in other peoples code and helps you get a better understanding, I think, of what you are doing.  That being said there are other options.  In base, `subset()` and also in `dplyr` which will be the next lesson.
 
 ```{r subset_examp}
 #And redo what we did above
@@ -101,7 +101,7 @@ This exercise is going to focus on using what we just covered on indexing and su
 6. Last thing we are going to need to do is get a subset of the observations from `nla_wq_subset`.  We need only the lakes that with VISIT_NO equal to 1 and SITE_TYPE equal to "REF_Lake".  Keep the same name, `nla_wq_subset`, for this data frame.
 
 ##Merging Data
-Another very common clean-up/data managment task is to be able to merge data into a single data frame.  We are going to talk about several different ways to do this.  First, is adding a new column or existing vector to a data frame with `cbind()`,`data.frame()`,or`$`. 
+Another very common clean-up/data management task is to be able to merge data into a single data frame.  We are going to talk about several different ways to do this.  First, is adding a new column or existing vector to a data frame with `cbind()`,`data.frame()`,or`$`. 
 
 ```{r cbind_examp}
 #Create a new vector to add to the iris data frame
@@ -152,7 +152,7 @@ In this exercise we are going to practice merging our NLA data.  You will rememb
 2. If that goes quickly, feel free to explore `rbind()` some.
 
 ##Modify and Summarize
-So we now have a data frame that is set up pretty well to facilitate some future analysis.  That being said, different analyses and visualizations are probably going to require some additional monekying around with our data.  This requires us to modify, aggregate, or split up our dataset.  There are many ways to do this and a lot depends on the format of the original data.  We will focus on a couple: transposing and aggregation.  There is a lot more you can do.  Again, the best source for packages and examples on this is Hadley Wickham.  In particular I would look at the `reshape` package and the associated links:
+So we now have a data frame that is set up pretty well to facilitate some future analysis.  That being said, different analyses and visualizations are probably going to require some additional monkeying around with our data.  This requires us to modify, aggregate, or split up our dataset.  There are many ways to do this and a lot depends on the format of the original data.  We will focus on a couple: transposing and aggregation.  There is a lot more you can do.  Again, the best source for packages and examples on this is Hadley Wickham.  In particular I would look at the `reshape` package and the associated links:
 
 - [`rehsape` pakcage](http://had.co.nz/reshape/)
 - [JSS paper](http://www.jstatsoft.org/v21/i12/paper)

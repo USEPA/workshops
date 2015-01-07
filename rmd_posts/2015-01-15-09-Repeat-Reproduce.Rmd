@@ -25,7 +25,7 @@ In theory, you now have a basic understanding of how to conduct a typical data a
 - Create a simple, reproducible document and presentation
 
 ##Functions and Programming with R
-At this point we should be pretty well versed at using functions.  They have a name, some arguments, and they do something.  Some return a value, some don't.  In short they form the basic structure of R.  One of the cool thing about R (and programming in general), is that we are not stuck with the functions provided to us.  We can (and should!) develop our own as we often want to do things repeatedly, and in slightly different contexts.  Creating a function to deal with this fact helps us a great deal becuase we do not have to repeat ourselves, we can just use what we have already written.  Creating a function is really easy.  We use the `function()` function.  It has the basic structure of 
+At this point we should be pretty well versed at using functions.  They have a name, some arguments, and they do something.  Some return a value, some don't.  In short they form the basic structure of R.  One of the cool thing about R (and programming in general), is that we are not stuck with the functions provided to us.  We can (and should!) develop our own as we often want to do things repeatedly, and in slightly different contexts.  Creating a function to deal with this fact helps us a great deal because we do not have to repeat ourselves, we can just use what we have already written.  Creating a function is really easy.  We use the `function()` function.  It has the basic structure of 
 
 ```
 function_name<-function(arguments){
@@ -45,7 +45,7 @@ hw()
 
 Well that's nice...  Not really useful, but shows the main components, `function()`, and the `{}` which are really the only new things.
 
-It would be a bit better if it were more flexible.  We can do that becuase we can specify our own arguments to use within the body of the function.  For example,
+It would be a bit better if it were more flexible.  We can do that because we can specify our own arguments to use within the body of the function.  For example,
 
 ```{r function2_create}
 p<-function(my_text){
@@ -76,7 +76,7 @@ myplot(iris$Sepal.Length,iris$Sepal.Width,iris$Species,"sepal_l_petal_w.jpg")
 Cool, a function, that does something useful.  It still is just a collection of functions at this point though.  What if we wanted to repeat something or have the function make some decisions and do one thing given a set of criteria and something else for a different set?  Well we need to look more at some of the classic programming structures in R.  For this introduction, I am going to look just at `if-else` statements, `for` loops (some in the R world think this to be bad since R is optimized for working on vectors, but I think the concept useful and I M writing this, so there!),  and `return()`.  
 
 ###if-else
-If you have done any programing in any language, then `if-else` statements are not new to you.  All they do is allow us to tell the function how to make some decisions.  
+If you have done any programming in any language, then `if-else` statements are not new to you.  All they do is allow us to tell the function how to make some decisions.  
 
 I will show the examples in the context of a function as that is how they are most commonly used. So, we can implement them in R like:
 
@@ -136,7 +136,7 @@ sum_vec(1:2)
 sum_vec(1:10)
 ```
 
-Again a bit of a silly example since all it is doing is looping through a list of values and summing it.  In reality you would just use `sum()`.  This also highlights the fact that loops in R are slow compared to vector operations and/or base operations.  We can see what the problem is if we look at a large vector and the time it takes to get the sum.  First let's ammend the function so that it only prints the answer.  Printing on each iteration of the loop was just to show it looping...
+Again a bit of a silly example since all it is doing is looping through a list of values and summing it.  In reality you would just use `sum()`.  This also highlights the fact that loops in R are slow compared to vector operations and/or base operations.  We can see what the problem is if we look at a large vector and the time it takes to get the sum.  First let's amend the function so that it only prints the answer.  Printing on each iteration of the loop was just to show it looping...
 
 ```{r for_examp_print}
 sum_vec<-function(vec){
@@ -218,7 +218,7 @@ plot_nla<-function(x,y,out=NULL){
 
 
 ##Markdown
-Markdown isn't R, but it has become an important tool in the R ecosystem as it can be used to creat package vingettes, can be used on [GitHub](http://github.com), and forms the basis for several reproducible research tools in RStudio.  Markdown is a tool that allows you to write simply formated text that is converted to HTML/XHTML.  Primary goal of markdown is readibility of the raw file.  Over the last couple of years, Markdown has emerged as a key way to write up reproducible documents, create websites (this whole website was written in Mardown), and make presentations.  For the basics of markdown and general information look at [Daring Fireball](http://daringfireball.net/projects/markdown/basics).
+Markdown isn't R, but it has become an important tool in the R ecosystem as it can be used to create package vignettes, can be used on [GitHub](http://github.com), and forms the basis for several reproducible research tools in RStudio.  Markdown is a tool that allows you to write simply formatted text that is converted to HTML/XHTML.  Primary goal of markdown is readability of the raw file.  Over the last couple of years, Markdown has emerged as a key way to write up reproducible documents, create websites (this whole website was written in Markdown), and make presentations.  For the basics of markdown and general information look at [Daring Fireball](http://daringfireball.net/projects/markdown/basics).
 
 *note: this text borrowed liberally from another class [SciComp2014](http://scicomp2014.edc.uri.edu)*
 
@@ -314,14 +314,14 @@ Since we are talking about markdown and R, our documents will all be R Markdown 
     x
     ```
 
-This identifies what is known as a code chunk.  When written like it is above, it will echo the code to your final document, evalute the code with R and echo the results to the final document.  There are some cases where you might not want all of this to happen.  You may want just the code returned and not have it evalutated by R.  This is accomplished with:
+This identifies what is known as a code chunk.  When written like it is above, it will echo the code to your final document, evaluate the code with R and echo the results to the final document.  There are some cases where you might not want all of this to happen.  You may want just the code returned and not have it evaluated by R.  This is accomplished with:
 
 
     ```{r eval=FALSE}`r ''`
     x<-rnorm(100)
     ```
 
-Alternatively, you might just want the output returned, as would be the case when using R Markdown to produce a figure in a presenation or paper:
+Alternatively, you might just want the output returned, as would be the case when using R Markdown to produce a figure in a presentation or paper:
 
 
     ```{r echo=FALSE}`r ''`
@@ -367,11 +367,11 @@ If you look near the top of the editor window you will see:
 
 Click this and behold the magic!
 
-Spend some time playing around with this document.  Add in some other markdown, text and a code chunk then `knit()` it to see the outcome.  It should be easy to see how this could be used to write the text describing and anlysis, embed the analysis and figure creation directly in the document, and render a final document.  You share the source and rendered document and the anyone has access to your full record of that research!
+Spend some time playing around with this document.  Add in some other markdown, text and a code chunk then `knit()` it to see the outcome.  It should be easy to see how this could be used to write the text describing and analysis, embed the analysis and figure creation directly in the document, and render a final document.  You share the source and rendered document and the anyone has access to your full record of that research!
 
 ###Create a Presentation
 Creating a presentation is not much different.  We just need a way to specify different slides.
 
 Repeat the steps from above, but this time instead of selecting "Document", select "Presentation".  Only thing we need to know is that a second level header (i.e. `##`) is what specifies the title of the next slide.  Any thing you put after that goes on that slide.  Similar to before, play around with this add a slide with some new text, new code and knit it.  There you have it, a reproducible presentation.  
 
-I know you will probably wonder can you change the look and feel of this presentation, and the answer is yes.  I have done that, but using a different method for creaing slides by using the `slidify` package.  An example of that presentation is in a talk I gave on [Social Media and Blogging](http://jwhollister.com/epablogpresent).  It does take a bit more work to set this up.  I am also not familar with where RStudio is getting the styling for the presentation. In short, yes but requires a bit of work.
+I know you will probably wonder can you change the look and feel of this presentation, and the answer is yes.  I have done that, but using a different method for creating slides by using the `slidify` package.  An example of that presentation is in a talk I gave on [Social Media and Blogging](http://jwhollister.com/epablogpresent).  It does take a bit more work to set this up.  I am also not familiar with where RStudio is getting the styling for the presentation. In short, yes but requires a bit of work.

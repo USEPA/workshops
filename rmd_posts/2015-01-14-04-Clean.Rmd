@@ -8,7 +8,7 @@ layout: post_page
 options(repos="http://cran.rstudio.com/")
 ```
 
-In the last lesson we focused on some basic cleaning operations (subsetting, merging, modifying, and sumarizing) using base R.  I actually find myself still using these quite a bit.  That being said, I am slowly trying to make the switch to some of the packages that facilitate working with data frames, namely Hadley Wickham's `dplyr`. 
+In the last lesson we focused on some basic cleaning operations (subsetting, merging, modifying, and summarizing) using base R.  I actually find myself still using these quite a bit.  That being said, I am slowly trying to make the switch to some of the packages that facilitate working with data frames, namely Hadley Wickham's `dplyr`. 
 
 ##Quick Links to Exercises and R code
 - [Lesson 4 R Code](/gedr/rmd_posts/2015-01-14-04-Clean.R): All the code from this post in an R Script.
@@ -26,7 +26,7 @@ In the last lesson we focused on some basic cleaning operations (subsetting, mer
 
 The package `dplyr` is a fairly new (2014) package that tries to provide easy tools for the most common data manipulation tasks.  It is built to work directly with data frames.  The thinking behind it was largely inspired by the package `plyr` which has been in use for some time but suffered from being slow in some cases.  `dplyr` address this by porting much of the computation to C++.  An additional feature is the ability to work with data stored directly in an external database.  The benefits of doing this are that the data can be managed natively in a relational database, queries can be conducted on that database, and only the results of the query returned.  
 
-This addresses a common problem with R in that all operations are conducted in memory and thus the amount of data you can work with is limited by available memory.  The database connections essentially remove that limitation in that you can have a database of many 100s GB, conduct queries on it directly and pull back just what you need for analysis in R.  There is a lot of great info on `dplyr`.  If you have an interest, i'd encourage you to look more.  The vignettes are particulary good.
+This addresses a common problem with R in that all operations are conducted in memory and thus the amount of data you can work with is limited by available memory.  The database connections essentially remove that limitation in that you can have a database of many 100s GB, conduct queries on it directly and pull back just what you need for analysis in R.  There is a lot of great info on `dplyr`.  If you have an interest, I'd encourage you to look more.  The vignettes are particularly good.
 
 - [`dplyr` GitHub repo](https://github.com/hadley/dplyr)
 - [CRAN page: vignettes here](http://cran.rstudio.com/web/packages/dplyr/)
@@ -85,7 +85,7 @@ We are simply going to re-do the same problem we did for the last lesson, but us
 subset and filter the water quality data from `nla_wq`.  The columns we want for this are: SITE_ID, VISIT_NO, SITE_TYPE, TURB, NTL, PTL, CHLA, and SECMEAN. Call this `nla_wq_subset_dplyr`.  We need only the lakes with VISIT_NO equal to 1 and SITE_TYPE equal to "REF_Lake".   Name this, `nla_wq_subset_dplyr`.
 
 ##Merging Data
-Joining data in `dplyr` is accomplished via the various `x_join()` commands (e.g., `inner_join`, `left_join`, `anti_join`, etc).  These are very SQL-esque so if you speak SQL (I am far from fluent!) then these will be pretty easy for you.  If not then they aren't immediately intutive.  For our purposes, `merge()` is more than adequate.  
+Joining data in `dplyr` is accomplished via the various `x_join()` commands (e.g., `inner_join`, `left_join`, `anti_join`, etc).  These are very SQL-esque so if you speak SQL (I am far from fluent!) then these will be pretty easy for you.  If not then they aren't immediately intuitive.  For our purposes, `merge()` is more than adequate.  
 
 ##Modify and Summarize
 One area where this package really shines is in modifying and summarizing.   We will do more here than we did with base, but first lets walk through one of the examples we did previously, aggregating.  We can do this with `group_by()` and `summarize()`.
