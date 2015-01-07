@@ -98,7 +98,7 @@ This exercise is going to focus on using what we just covered on indexing and su
 3. Our goal for this is to create two new data frames that represent a subset of the observations as well as a subset of the data. 
 4. First, from the  `nla_sites` data frame we want a new data frame that has only the following columns: SITE_ID, LON_DD, LAT_DD, STATE_NAME, WSA_ECO9, NUT_REG, NUTREG_NAME, LAKE_ORIGIN, and RT_NLA.  Name the new data frame `nla_sites_subset`.
 5. Next, lets subset the water quality data from `nla_wq`.  The columns we want for this are: SITE_ID, VISIT_NO, SITE_TYPE, TURB, NTL, PTL, CHLA, and SECMEAN. Call this `nla_wq_subset`.
-6. Last thing we are going to need to do is get a subset of the observations from `nla_wq_subset`.  We need only the lakes that with VISIT_NO equal to 1 and SITE_TYPE equal to "REF_Lake".  Keep the same name, `nla_wq_subset`, for this data frame.
+6. Last thing we are going to need to do is get a subset of the observations from `nla_wq_subset`.  We need only the lakes that with VISIT_NO equal to 1 and SITE_TYPE equal to "PROB_Lake".  Keep the same name, `nla_wq_subset`, for this data frame.
 
 ##Merging Data
 Another very common clean-up/data management task is to be able to merge data into a single data frame.  We are going to talk about several different ways to do this.  First, is adding a new column or existing vector to a data frame with `cbind()`,`data.frame()`,or`$`. 
