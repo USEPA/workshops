@@ -339,7 +339,7 @@ system.time(sum_vec(large_vec))
 
 {% highlight text %}
 ##    user  system elapsed 
-##   2.424   0.000   2.424
+##   2.432   0.000   2.431
 {% endhighlight %}
 
 Here we can see the difference.  In this case the `sum()` is several hundred times faster! 
@@ -424,12 +424,20 @@ In pure markdown, there are two ways to do headers but for most of what you need
 
 ### List
 
-Lists can be done many ways in markdown. An unordered list is simply done with a `-`, `+`, or `*`.  For example
+Lists can be done many ways in markdown. An unordered list is simply done with a `-`, `+`, or `*`.  For example:
 
-- this list
-- is produced with
-- the following 
-- markdown.
+    * Bulleted list
+    * Item 2
+        * Nested bullets need a 4-space indent.
+        * Item 2b
+
+
+
+
+  - this list
+  - is produced with
+  - the following 
+  - markdown.
 
 
   - this list
@@ -438,8 +446,7 @@ Lists can be done many ways in markdown. An unordered list is simply done with a
   - markdown
 
 
-Notice the space after the `-`.  With most markdown interpertters, you can nest lists.  
-These are not currently getting parsed correctly on the course website.  Not sure why...
+Notice the space after the `-`.  
 
 To create an ordered list, simple use numbers.  So to produce:
 
@@ -448,10 +455,11 @@ To create an ordered list, simple use numbers.  So to produce:
 3. the following
 4. markdown.
 
+
   1. this list
-  2. is produced with
-  3. the following
-  4. markdown.
+  1. is produced with
+  1. the following
+  1. markdown.
 
 ### Links and Images
 
