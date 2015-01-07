@@ -320,7 +320,7 @@ system.time(sum(large_vec))
 
 {% highlight text %}
 ##    user  system elapsed 
-##   0.006   0.000   0.006
+##   0.008   0.000   0.008
 {% endhighlight %}
 
 
@@ -339,7 +339,7 @@ system.time(sum_vec(large_vec))
 
 {% highlight text %}
 ##    user  system elapsed 
-##   1.587   0.000   1.591
+##   2.428   0.000   2.429
 {% endhighlight %}
 
 Here we can see the difference.  In this case the `sum()` is several hundred times faster! 
@@ -507,13 +507,16 @@ Alternatively, you might just want the output returned, as would be the case whe
     y<-jitter(x,1000)
     plot(x,y)
     ```
+
 Lastly, each of your code chunks can have a label.  That would be accomplished with something like:
- 
+
+
     ```{r myFigure, echo=FALSE}
     x<-rnorm(100)
     y<-jitter(x,1000)
     plot(x,y)
     ```
+
 Now, lets get started and actually create a reproducible document
 
 ###Create a Document
@@ -525,14 +528,16 @@ Add title and author, select "HTML" as the output and click "OK".  RStudio will 
 
 In this document we can see a couple of things.  First at the top we see:
 
-```
----
-title: "My First Reproducible Document"
-author: "Jeff W. Hollister"
-date: "1/6/2015"
-output: pdf_document
----
-```
+
+    ```
+    ---
+    title: "My First Reproducible Document"
+    author: "Jeff W. Hollister"
+    date: "1/6/2015"
+    output: pdf_document
+    ---
+    ```
+
 
 This is the YAML(YAML Ain't Markup Language) header or front-matter.  It is metadata about the document that can be very useful.  For our purposes we don't need to know anything more about this.  Below that you see text, code chunks, and if it were included some markdown.  At its core this is all we need for a reproducible document.  We can now take this document, pass it through `knitr::knit()` (remember this syntax from the first lesson?) and pandoc and get our output.  We can do this from the console and/or shell, or we can use RStudio.  
 
