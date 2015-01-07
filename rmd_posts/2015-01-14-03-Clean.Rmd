@@ -6,7 +6,7 @@ layout: post_page
 In this third lesson we are going to start working on manipulating and cleaning up our data frames.  We are spending some time on this because, in my experience, most data analysis and statistics classes seem to assume that 95% of the time spent working with data is on the analysis and interpretation of that analysis and little time is spent getting data ready to analyze.  However, in reality, I'd argue, the time spent is flipped with most time spent on cleaning up data and significantly less time on the analysis. We will just be scratching the surface of the many ways you can work with data in base R and with `dplyr` ([Next Lesson](introR/2015/01/14/04-Clean/)). Before we jump into the lesson, quick links and lesson goals are:
 
 ##Quick Links to Exercises and R code
-- [Lesson 3 R Code](/gedr/rmd_posts/2015-01-14-03-Clean.R): All the code from this post in an R Script.
+- [Lesson 3 R Code](/introR/rmd_posts/2015-01-14-03-Clean.R): All the code from this post in an R Script.
 - [Exercise 1](#exercise-1): Subsetting the NLA data
 - [Exercise 2](#exercise-2): Merge two NLA data files together
 - [Exercise 3](#exercise-3): Reshaping and modifying to get NLA summary stats
