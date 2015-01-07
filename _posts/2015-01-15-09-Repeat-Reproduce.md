@@ -320,7 +320,7 @@ system.time(sum(large_vec))
 
 {% highlight text %}
 ##    user  system elapsed 
-##   0.008   0.000   0.007
+##   0.008   0.000   0.008
 {% endhighlight %}
 
 
@@ -339,7 +339,7 @@ system.time(sum_vec(large_vec))
 
 {% highlight text %}
 ##    user  system elapsed 
-##   2.428   0.000   2.428
+##   2.400   0.004   2.405
 {% endhighlight %}
 
 Here we can see the difference.  In this case the `sum()` is several hundred times faster! 
@@ -430,13 +430,6 @@ Lists can be done many ways in markdown. An unordered list is simply done with a
     * Item 2
         * Nested bullets need a 4-space indent.
         * Item 2b
-
-
-
-- this list
-- is produced with
- - the following 
- - markdown.
 
 
     - this list

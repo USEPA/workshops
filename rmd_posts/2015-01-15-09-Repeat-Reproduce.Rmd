@@ -249,13 +249,6 @@ Lists can be done many ways in markdown. An unordered list is simply done with a
         * Item 2b
 
 
-
-- this list
-- is produced with
- - the following 
- - markdown.
-
-
     - this list
     - is produced with
       - the following 
