@@ -339,7 +339,7 @@ system.time(sum_vec(large_vec))
 
 {% highlight text %}
 ##    user  system elapsed 
-##   2.428   0.000   2.429
+##   2.420   0.008   2.430
 {% endhighlight %}
 
 Here we can see the difference.  In this case the `sum()` is several hundred times faster! 
@@ -489,11 +489,14 @@ First, lets talk a bit about "code chunks."
 ###Code Chunks
 Since we are talking about markdown and R, our documents will all be R Markdown documents (i.e. .Rmd).  To include R Code in your .Rmd you would do something like:
 
+
     ```{r}
     x<-rnorm(100)
     x
     ```
+
 This identifies what is known as a code chunk.  When written like it is above, it will echo the code to your final document, evalute the code with R and echo the results to the final document.  There are some cases where you might not want all of this to happen.  You may want just the code returned and not have it evalutated by R.  This is accomplished with:
+
 
     ```{r eval=FALSE}
     x<-rnorm(100)
@@ -529,14 +532,14 @@ Add title and author, select "HTML" as the output and click "OK".  RStudio will 
 In this document we can see a couple of things.  First at the top we see:
 
 
-    ```
-    ---
-    title: "My First Reproducible Document"
-    author: "Jeff W. Hollister"
-    date: "1/6/2015"
-    output: pdf_document
-    ---
-    ```
+  ```
+  ---
+  title: "My First Reproducible Document"
+  author: "Jeff W. Hollister"
+  date: "1/6/2015"
+  output: pdf_document
+  ---
+  ```
 
 
 This is the YAML(YAML Ain't Markup Language) header or front-matter.  It is metadata about the document that can be very useful.  For our purposes we don't need to know anything more about this.  Below that you see text, code chunks, and if it were included some markdown.  At its core this is all we need for a reproducible document.  We can now take this document, pass it through `knitr::knit()` (remember this syntax from the first lesson?) and pandoc and get our output.  We can do this from the console and/or shell, or we can use RStudio.  
