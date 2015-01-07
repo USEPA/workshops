@@ -10,7 +10,7 @@ In theory, you now have a basic understanding of how to conduct a typical data a
 ##Quick Links to Exercises and R code
 - [Lesson 9 R Code](/gedr/rmd_posts/2015-01-14-09-Repeat-Reproduce.R): All the code from this post in an R Script.
 - [Exercise 1](#exercise-1): Create your own function
-- [Exercise 2](#exercise-2): Use Rstudio and markdown for reproducible documents
+
 
 ##Lesson Goals
 - Understand how to create your own functions
@@ -339,7 +339,7 @@ system.time(sum_vec(large_vec))
 
 {% highlight text %}
 ##    user  system elapsed 
-##   2.400   0.004   2.405
+##   2.404   0.008   2.414
 {% endhighlight %}
 
 Here we can see the difference.  In this case the `sum()` is several hundred times faster! 
@@ -424,18 +424,18 @@ In pure markdown, there are two ways to do headers but for most of what you need
 
 ### List
 
-Lists can be done many ways in markdown. An unordered list is simply done with a `-`, `+`, or `*`.  For example:
-
-    * Bulleted list
-    * Item 2
-        * Nested bullets need a 4-space indent.
-        * Item 2b
-
+Lists can be done many ways in markdown. An unordered list is simply done with a `-`, `+`, or `*`.  For example use:
 
     - this list
     - is produced with
-      - the following 
-      - markdown
+        - the following 
+        - markdown
+
+To produce this:
+- this list
+- is produced with
+    - the following 
+    - markdown
 
 
 Notice the space after the `-`.  
@@ -447,11 +447,12 @@ To create an ordered list, simple use numbers.  So to produce:
 3. the following
 4. markdown.
 
+You can use:
 
-  1. this list
-  1. is produced with
-  1. the following
-  1. markdown.
+    1. this list
+    1. is produced with
+    1. the following
+    1. markdown.
 
 ### Links and Images
 
