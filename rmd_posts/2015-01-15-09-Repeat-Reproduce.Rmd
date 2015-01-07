@@ -250,17 +250,16 @@ Lists can be done many ways in markdown. An unordered list is simply done with a
 
 
 
+- this list
+- is produced with
+ - the following 
+ - markdown.
 
-  - this list
-  - is produced with
-  - the following 
-  - markdown.
 
-
-  - this list
-  - is produced with
-  - the following 
-  - markdown
+    - this list
+    - is produced with
+      - the following 
+      - markdown
 
 
 Notice the space after the `-`.  
