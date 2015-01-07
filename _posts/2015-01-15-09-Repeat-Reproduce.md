@@ -339,7 +339,7 @@ system.time(sum_vec(large_vec))
 
 {% highlight text %}
 ##    user  system elapsed 
-##   2.436   0.004   2.443
+##   2.424   0.004   2.428
 {% endhighlight %}
 
 Here we can see the difference.  In this case the `sum()` is several hundred times faster! 
@@ -431,11 +431,14 @@ Lists can be done many ways in markdown. An unordered list is simply done with a
 - the following 
 - markdown.
 
-  
-    - this list
-    - is produced with
-    - the following 
-    - markdown
+```
+
+- this list
+- is produced with
+- the following 
+- markdown
+
+```
 
 Notice the space after the `-`.  With most markdown interpertters, you can nest lists.  
 These are not currently getting parsed correctly on the course website.  Not sure why...

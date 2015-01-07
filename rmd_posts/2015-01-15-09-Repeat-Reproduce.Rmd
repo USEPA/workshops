@@ -248,11 +248,14 @@ Lists can be done many ways in markdown. An unordered list is simply done with a
 - the following 
 - markdown.
 
-  
-    - this list
-    - is produced with
-    - the following 
-    - markdown
+```
+
+- this list
+- is produced with
+- the following 
+- markdown
+
+```
 
 Notice the space after the `-`.  With most markdown interpertters, you can nest lists.  
 These are not currently getting parsed correctly on the course website.  Not sure why...
