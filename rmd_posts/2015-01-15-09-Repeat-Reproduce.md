@@ -339,7 +339,7 @@ system.time(sum_vec(large_vec))
 
 {% highlight text %}
 ##    user  system elapsed 
-##   2.416   0.000   2.417
+##   2.444   0.000   2.447
 {% endhighlight %}
 
 Here we can see the difference.  In this case the `sum()` is several hundred times faster! 
@@ -415,12 +415,12 @@ So, for basic text... Just type it!
 
 In pure markdown, there are two ways to do headers but for most of what you need, you can use the following for headers:
 
-```
-# Header 1
-## Header 2
-...
-###### Header 6
-```
+  ```
+  # Header 1
+  ## Header 2
+  ...
+  ###### Header 6
+  ```
 
 ### List
 
@@ -431,12 +431,12 @@ Lists can be done many ways in markdown. An unordered list is simply done with a
 - the following 
 - markdown.
 
-```
-- this list
-- is produced with
-- the following 
-- markdown
-```
+  ```
+  - this list
+  - is produced with
+  - the following 
+  - markdown
+  ```
 Notice the space after the `-`.  With most markdown interpertters, you can nest lists.  
 These are not currently getting parsed correctly on the course website.  Not sure why...
 
@@ -447,12 +447,12 @@ To create an ordered list, simple use numbers.  So to produce:
 3. the following
 4. markdown.
 
-```
-1. this list
-2. is produced with
-3. the following
-4. markdown.
-```
+  ```
+  1. this list
+  2. is produced with
+  3. the following
+  4. markdown.
+  ```
 ### Links and Images
 
 Last type of formatting that you will likely want to accomplish with R markdown is including links and images.  While these two might seem dissimilar, I am including them together as their syntax is nearly identical.
