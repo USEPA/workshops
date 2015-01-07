@@ -339,7 +339,7 @@ system.time(sum_vec(large_vec))
 
 {% highlight text %}
 ##    user  system elapsed 
-##   2.420   0.008   2.430
+##   2.416   0.000   2.417
 {% endhighlight %}
 
 Here we can see the difference.  In this case the `sum()` is several hundred times faster! 
@@ -532,14 +532,12 @@ Add title and author, select "HTML" as the output and click "OK".  RStudio will 
 In this document we can see a couple of things.  First at the top we see:
 
 
-  ```
-  ---
-  title: "My First Reproducible Document"
-  author: "Jeff W. Hollister"
-  date: "1/6/2015"
-  output: pdf_document
-  ---
-  ```
+    ---
+    title: "My First Reproducible Document"
+    author: "Jeff W. Hollister"
+    date: "1/6/2015"
+    output: pdf_document
+    ---
 
 
 This is the YAML(YAML Ain't Markup Language) header or front-matter.  It is metadata about the document that can be very useful.  For our purposes we don't need to know anything more about this.  Below that you see text, code chunks, and if it were included some markdown.  At its core this is all we need for a reproducible document.  We can now take this document, pass it through `knitr::knit()` (remember this syntax from the first lesson?) and pandoc and get our output.  We can do this from the console and/or shell, or we can use RStudio.  
