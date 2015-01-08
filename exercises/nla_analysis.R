@@ -41,10 +41,26 @@ nla_data<-merge(nla_wq_subset,nla_sites_subset,by="SITE_ID",all.x=TRUE)
 ###############################################################################
 origin_mean_wq<-aggregate(nla_data[,4:8],list(nla_data$LAKE_ORIGIN),function(x)
   mean(x,na.rm=TRUE))
+origin_mean_wq
 ecoregion_mean_wq<-aggregate(nla_data[,4:8],list(nla_data$WSA_ECO9),function(x)
   mean(x,na.rm=TRUE))
+ecoregion_mean_wq
 nla_mean_wq<-apply(nla_data[,4:8],2,function(x)
   mean(x,na.rm=TRUE))
+nla_mean_wq
+
+group_by(iris,Species) %>%
+  summarize(mean(Sepal.Length),
+            mean(Sepal.Width),
+            mean(Petal.Length),
+            mean(Petal.Width))
+
+group_by(nla_data,LAKE_ORIGIN) %>%
+  summarize(mean(NTL),
+            mean(PTL),
+            mean(CHLA,na.rm=TRUE),
+            mean(SECMEAN,na.rm=TRUE),
+            mean(TURB))
 
 ###############################################################################
 #Lesson 4: Exercise 1
@@ -105,7 +121,8 @@ select(nla_data,TURB,NTL,PTL,CHLA,SECMEAN)%>%
 #More fanciness
 with(nla_data,boxplot(CHLA~RT_NLA))
 with(nla_data,boxplot(log10(CHLA)~RT_NLA))
-
+boxplot(nla_data$CHLA~nla_data$RT_NLA)
+boxplot(log10(nla_data$CHLA)~nla_data$RT_NLA)
 ###############################################################################
 #Lesson 6: Exercise 1
 #Basic Stats
