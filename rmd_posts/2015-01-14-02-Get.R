@@ -16,6 +16,7 @@ options(repos="http://cran.rstudio.com/")
 5<=5 #Less than or equal
 8>=2 #Greater than or equal
 2==2 #Equality: notice that it is TWO equal signs!
+5!=7 #Not Equals
 
 
 ## ----assignment_operator-------------------------------------------------
@@ -31,6 +32,8 @@ a<-"Bob"
 a
 b<-"Sue"
 b
+a2<-"Larry"
+a2
 
 
 ## ----useful_functions_workspace------------------------------------------
@@ -52,22 +55,20 @@ save(a,y,file="lesson2_ay.RData")
 #See the current directory
 getwd()
 
-#Create a directory
-dir.create("temp")
-
 #Change the directory
 setwd("temp")
 
 #List files and directories
 list.files()
-list.files("..")
-list.dirs("..")
 
 
-## ----data_type_functions, eval=FALSE-------------------------------------
-## typeof()  # what is it?
-## length()  # how long is it? What about two dimensional objects?
-## attributes()  # does it have any metadata?
+## ----Exercise1, echo=FALSE-----------------------------------------------
+
+
+## ----na_examples, eval=FALSE---------------------------------------------
+## na.omit()#na.omit - removes them
+## na.exclude()#similar to omit, but has different behavior with some functions.
+## is.na()#Will tell you if a value is NA
 
 
 ## ------------------------------------------------------------------------
@@ -119,10 +120,10 @@ laugh
 
 
 ## ----create_data_frame---------------------------------------------------
-numbers <- 1:26
-letters <- letters #this is a special object available from base R
-logical <- c(rep(TRUE,13),rep(FALSE,13))
-examp_df <- data.frame(numbers,letters,logical)
+numbers <- c(1:26,NA)
+letters <- c(NA,letters) #letters is a special object available from base R
+logical <- c(rep(TRUE,13),NA,rep(FALSE,13))
+examp_df <- data.frame(letters,numbers,logical)
 
 
 ## ----examine_data_frame--------------------------------------------------
@@ -142,6 +143,8 @@ nrow(examp_df)
 ncol(examp_df)
 #Get summary info
 summary(examp_df)
+#remove NA
+na.omit(examp_df)
 
 
 ## ----factor_examples-----------------------------------------------------
@@ -179,5 +182,8 @@ second_sheet<-read.xls("example.xlsx",sheet=2)
 #Did it work?
 first_sheet
 second_sheet
+
+
+## ----Exercise2, echo=FALSE-----------------------------------------------
 
 

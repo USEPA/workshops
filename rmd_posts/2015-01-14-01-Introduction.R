@@ -3,6 +3,9 @@
 options(repos="http://cran.rstudio.com/")
 
 
+## ----Exercise1, echo=FALSE-----------------------------------------------
+
+
 ## ----function_examples, cache=TRUE---------------------------------------
 #Print
 print("hello world!")
@@ -54,5 +57,8 @@ randomForest::randomForest
 ## apropos("print") #Returns all available functions with "print" in the name
 ## ??print #Shortcut, but also searches demos and vignettes in a formatted page
 ## 
+
+
+## ----Exercise2, echo=FALSE-----------------------------------------------
 
 

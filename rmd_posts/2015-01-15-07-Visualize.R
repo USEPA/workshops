@@ -77,6 +77,9 @@ iris_meanpl_bar<-ggplot(iris_species_mean,aes(x=Species,y=mean_pl))+
 iris_meanpl_bar
 
 
+## ----Exercise1, echo=FALSE-----------------------------------------------
+
+
 ## ----themes_examp--------------------------------------------------------
 scatter_p<-ggplot(iris,aes(x=Petal.Width,y=Petal.Length)) +
               geom_point(aes(colour=Species, shape=Species))
@@ -122,6 +125,9 @@ ggsave(plot=scatter_polished,
        file="Fig1.jpg",dpi=600,width=8, heigh=5)
 ggsave(plot=scatter_polished,
        file="Fig1.pdf")
+
+
+## ----Exercise2, echo=FALSE-----------------------------------------------
 
 
 ## ----facet_grid_example--------------------------------------------------

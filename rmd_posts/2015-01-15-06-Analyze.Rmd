@@ -1,79 +1,85 @@
 ---
-title: "06 - Analyze: Base"
+title: "07 - Analyze: Packages"
 author: Jeffrey W. Hollister
 layout: post_page
 ---
-The focus of this workshop hasn't really been statistics, its been more about R, the language.  But, it is pretty much impossible to talk a lot about R without getting into stats, as that is what draws most people to R in the first place.  So, we will spend a little bit of time on it.  In this lesson we will touch on some very simple stats that we can do with base R as well as provide a quick (i.e. top of my head as I write this) list of what can be done in base R.  
+
+```{r setup, echo=FALSE, warning=FALSE, purl=FALSE}
+options(repos="http://cran.rstudio.com/")
+```
+
+The second section will run through a quick example of using a package, `randomForest` for some analysis.  I've included this section just to show how (relatively) trivial it is to add an advanced capability to R via packages.
 
 ##Quick Links to Exercises and R code
-- [Lesson 6 R Code](/introR/rmd_posts/2015-01-15-06-Analyze.R): All the code from this post in an R Script.
-- [Exercise 1](#exercise-1): Run some basic statistical test and build a simple model with the NLA data
+- [Lesson 6 R Code](/gedr/rmd_posts/2015-01-14-06-Analyze.R): All the code from this post in an R Script.
+- [Exercise 1](#exercise-1): Use random forests to predict NLA reference class. 
 
 ##Lesson Goals
-- Conduct basic statistical analyses with base R
-- Get a taste of wide array of analyses in base R
+- Understand how to add statistical functionality to R via packages
+- See some of the best ways to learn a new package
 
-##Base statistics
-The capabilities that come out of the box with R and actually quite good and used to cost you quite a bit to get access to.  Now it all comes for free!  Some of the things you can do with R without any additional packages include, logistic regression (and all manner of generalized linear models), correlation, principle components analysis, chi-squared tests, clustering, loess, ANOVA, MANOVA, ...  In short, we can do a lot without moving of out base r and `stats`.
+Random forests were developed by Leo Breiman at UC-Berkely ([Breiman 2001](http://dx.doi.org/10.1023/A:1010933404324)).  At their simplest, a random forest is a collection (or ensemble) of classification (or regression) trees.  Each tree is developed based on a resampling of both the data and variables.  They have been shown to have superior predictive perfomance as well as to be robust to violation of the standard suite of assumptions that often plauge other approaches.  In my opinion, if you want to learn one machine learning approach, this is it.  If you want to read more, a few good references are:
 
-We will talk about a few analyses just to show the tip of the iceberg of what is available.
+- [Cutler et. al. (2007):Random forests for classification in ecology](http://dx.doi.org/10.1890/07-0539.1)
+- [Fern´andez-Delgado et al. 2014: Do we Need Hundreds of Classifiers to Solve Real World Classification Problems?](http://jmlr.org/papers/volume15/delgado14a/delgado14a.pdf) (HT:[Simply Statistics](http://simplystatistics.org/2014/12/17/a-non-comprehensive-list-of-awesome-things-other-people-did-in-2014/))
 
-### t-tests
-A t-test is done simply with `t.test()` and you control the specifics (paired, two-sided, etc.) with options.  For the simple case of comparing the difference of two means we can use all of the defaults:
 
-```{r ttest_examp }
-x<-rnorm(30,mean=3,sd=2)
-y<-rnorm(30,mean=10,sd=5)
-xy_tt<-t.test(x,y)
-xy_tt
+The implementation in R is accessed through the `randomForest` package.  Let's install this, load it up and start to look around.
+
+```{r rf_actual_install, echo=FALSE, include=FALSE, purl=FALSE}
+if(!require("randomForest")){
+  install.packages("randomForest")
+}
+library("randomForest")
 ```
 
-`t.test()` can also take a formula specification as input. I mentioned this briefly in the previous lesson.  At it's simplest a formula takes the form of `y ~ x`.  The tilde is used in place of the equals sign.  For a t-test that is all we need to know.  
-
-```{r ttest_formula_examp}
-#Lets pick another dataset, ToothGrowth.
-#Looking at diff in tooth lenth by groups specified in supp
-rbind(head(ToothGrowth),tail(ToothGrowth))
-t.test(ToothGrowth$len~ToothGrowth$supp)
-```
-There's a lot more you can do with `t.test()`, but you'll have to rely on `?t.test` for more info.
-
-### Correlation
-Next lets take a look at correlations.  Little inspiration is striking, so `iris` it is.
-
-```{r corr_examp}
-#A simple correlation
-cor(iris$Petal.Width,iris$Petal.Length)
-#And a test of that correlation
-cor.test(iris$Petal.Width,iris$Petal.Length)
-#A data frame returns a correlation matrix
-cor.test(iris)
-#Oops, non-numeric data.  Lets use dplyr to get what we want and pipe to cor
-library(dplyr)
-select(iris,Sepal.Width,Sepal.Length,Petal.Width,Petal.Length) %>% 
-  cor()
+```{r rf_install, eval=FALSE}
+install.packages("randomForest")
+library("randomForest")
+help(package="randomForest")
 ```
 
-If you look at the help for `cor()`, you'll two main optional arguments.  First is the `use` argument which allows you to use the entire dataset or select complete cases which is useful when you have `NA` values.  There are several options.  Also, the default correlation method is for Pearson's.  If you would like to non-parametric correlations (e.g. rank), you specify that here.
+There are quite a few function included with this package, but the one we are most interested in is the workhorse `randomForest()` function.  For our examples we will look at classification trees.  The bare minimum we need for this to work are just our independent (x) and dependent variables (y).  Let's see if we can predict iris species from the morphology measurements...
 
-### Linear Regression
-Next let's take a look at linear regression.  One of the common ways of accessing linear regressions is with `lm()`.  We have already seen the formula object so there isn't too much that is new here.  Some of the options though are new and useful.  Let's take a look:
-
-```{r lm_examp}
-lm(Ozone~Temp,data=airquality)
-#Not much info, so save to object and use summary
-lm_aq1<-lm(Ozone~Temp,data=airquality)
-summary(lm_aq1)
-#And now a multiple linear regression
-lm_aq2<-lm(Ozone~Temp+Wind+Solar.R,data=airquality)
-summary(lm_aq2)
+```{r rf_example}
+rf_x<-select(iris,Petal.Width, Petal.Length, Sepal.Width, Sepal.Length)
+rf_y<-select(iris,Species)
+rf_y<-rf_y$Species
+iris_rf<-randomForest(x=rf_x,y=rf_y)
+iris_rf
 ```
 
-All of your standard modelling approaches (and then some) are available in R including typical variable selection techniques (e.g. stepwise with AIC), logistic regression. which is implemented with the rest of the generalized linear models in `glm()`.  More involved or newer approaches will be implemented (most likely) with additional packages.
+Can we predict species, well, I'd say so!  
 
-##Excercise 1
-For this exercise, let's start to look at some of the statistical tests and relationships in the NLA data.
+We can also call `randomForest()` using a formula a data frame like,
 
-1. First, lets take a look at the man made and natural lakes.  Add a section to your script that tests for a difference in the mean value of TURB, NTL, PTL, CHLA, and SECMEAN between man made and natural lakes.  For this we will have the script save each test to a new object and print the results to the screen.
+```{r rf_form_examp}
+iris_rf2<-randomForest(Species~.,data=iris)
+iris_rf2
+```
 
-2. Next, lets build some linear models that build a linear model to be used to predict CHLA.  Again save your model to an object and print the summary of that model to the screen
+The only thing we haven't seen before here is the ".".  That indicates all the other variables in the data frame.  It is just a shortcut and you could explicitly name the variables to use.
+
+Lastly, we can look at a couple of plots that tell us a little bit more about the model with some of the plotting functions that come with randomForest.
+
+```{r rf_plots}
+#Error vs num of trees
+plot(iris_rf2)
+#Variable Importance
+varImpPlot(iris_rf2)
+```
+
+The default plot shows error for the total model and and each of the classes as a function of the number of trees. Variable importance is plotting the decrease in Gini as each variable is added to the model.  
+
+For the basics, that is it!  Let's try it now on the NLA data.
+
+```{r Exercise1, echo=FALSE}
+```
+
+##Exercise 1
+For this exercise we are going to implement random forest and try to predict the NLA reference class from the water quality measurements.
+
+1. Add a new secion to the script
+2. Build your model to predict RT_NLA.  You may specify the model however makes the most sense
+3. Print to the screen your result, plot the error and variable importance. When finished put a green sticky up and we will come around to check.
+

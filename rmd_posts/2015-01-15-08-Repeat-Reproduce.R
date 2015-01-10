@@ -116,6 +116,9 @@ sum_vec<-function(vec){
 }
 
 
+## ----Exercise1, echo=FALSE-----------------------------------------------
+
+
 ## ----ggplot_starter function, eval=FALSE---------------------------------
 ## plot_nla<-function(x,y,out=NULL){
 ##   #ggplot2 code

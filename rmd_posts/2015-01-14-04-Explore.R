@@ -19,6 +19,9 @@ quantile(iris$Sepal.Length)
 quantile(iris$Sepal.Length, probs=(c(0.025,0.975)))
 
 
+## ----Exercise1, echo=FALSE-----------------------------------------------
+
+
 ## ----plot_examp----------------------------------------------------------
 plot(mtcars$hp,mtcars$qsec)
 
@@ -63,5 +66,8 @@ hist(airquality$Temp,breaks=10)
 ## ----cdf_examp-----------------------------------------------------------
 aq_temp_ecdf<-ecdf(airquality$Temp)
 plot(aq_temp_ecdf)
+
+
+## ----Exercise1, echo=FALSE-----------------------------------------------
 
 

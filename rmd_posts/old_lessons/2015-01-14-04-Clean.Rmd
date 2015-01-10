@@ -14,7 +14,7 @@ Before we jump into the lesson, quick links and lesson goals are:
 
 
 ##Quick Links to Exercises and R code
-- [Lesson 3 R Code](/gedr/rmd_posts/2015-01-14-03-Clean.R): All the code from this post in an R Script.
+- [Lesson 4 R Code](/gedr/rmd_posts/2015-01-14-04-Clean.R): All the code from this post in an R Script.
 - [Exercise 1](#exercise-1): Subsetting the NLA data with `dplyr`
 - [Exercise 2](#exercise-2): Merge two NLA data files together.
 - [Exercise 2](#exercise-2): Using `dplyr` to modify and summarize the NLA.
@@ -112,7 +112,7 @@ library("dplyr")
 I am going to repeat some of what I showed above on data frames but now with `dplyr`.  This is what we will be using in the exercises.
 
 
-```{r more_data_frame_dplyr}
+```{r more_data_frame_index}
 #First, select some columns
 dplyr_sel<-select(iris,Sepal.Length,Petal.Length,Species)
 #That's it.  Select one or many columns
@@ -130,7 +130,7 @@ But what if I wanted to select and filter?  There are three ways to do this: use
 #Intermediate data frames
 #Select First: note the order of the output, neat too!
 dplyr_big_iris_tmp1<-select(iris,Species,Sepal.Length,Petal.Length)
-dplyr_big_iris_tmp<-filter(dplyr_big_iris_tmp1,Petal.Length>=6)
+dplyr_big_iris_tmp<-filter(iris_tmp1,Petal.Length>=6)
 head(dplyr_big_iris_tmp)
 
 #Nested function
@@ -191,16 +191,20 @@ rbind_df_merge_allx
 ##Exercise 2
 In this exercise we are going to practice merging our NLA data.  You will remember that we have two datasets, one on water quality and one on site information.  We selected some info out of the water quality data that we didn't select out of the site info so we have two data frames, with differing numbers of rows and unknown order.  Use your stickies!
 
-1. This is the only task we have for this exercise.  Add to your script a line (or more if you need it) to create a new data frame, `nla_data`, that is a merge of `nla_sites_subset` and `nla_wq_subset`, but with all lines in `nla_wq_subset` preserved in the output.  The column to merge on is "SITE_ID"
+1. This is the only task we have for this exercise.  Add to your script a line (or more if you need it) to create a new data frame, `nla_data`, that is a merge of `nla_sites_subset` and `nla_wq_subset`, but with all lines in `nla_wq_subset` preserved in the output.
 2. This data frame will have some `NA` values.  For the purposes of these lessons, it is going to better to remove these.  Add another line to your code and create a data frame that replaces `nla_data` that has had all of the `NA` values removed.
 2. If that goes quickly, feel free to explore `rbind()` some.
 
 ##Modify and Summarize
-Now back to `dplyr`.  One area where it really shines is in modifying and summarizing.   We will do more here than we did with base, but first lets walk through one of the examples we did previously, aggregating.  We can do this with `group_by()` and  `summarize()`.
-
-First, we'll look at an example of grouping a data frame and summarizing the data within those groups.
+Now back to `dplyr`.  One area where it really shines is in modifying and summarizing.   We will do more here than we did with base, but first lets walk through one of the examples we did previously, aggregating.  We can do this with `group_by()` and `summarize()`.
 
 ```{r aggregate_examp}
+#Intermediate data frame
+iris_grp<-group_by(iris,Species)
+summarize(iris_grp,mean(Sepal.Length),
+          mean(Sepal.Width),
+          mean(Petal.Length),
+          mean(Petal.Width))
 #Chained with Pipes
 group_by(iris,Species)%>%
   summarize(mean(Sepal.Length),
@@ -208,6 +212,8 @@ group_by(iris,Species)%>%
             mean(Petal.Length),
             mean(Petal.Width))
 ```
+
+It is certainly true that we can do it with less code using `aggregate()`, but what we buy with the extra code is a ton of flexibility.  
 
 There are many other functions in `dplyr` that are useful.  Much of what they do, can certainly be accomplished with base R, but not quite as intuitively.  Let's run through some examples with `arrange()`, `slice()`,  and `mutate()`.
 
@@ -230,27 +236,13 @@ Now `slice()` which accomplishes what we did with the numeric indices before.  R
 slice(mtcars,3:10)
 ```
 
-`mutate()` allows us to add new columns based on expressions applied to existing columns
+Lastly, `mutate()` allows us to add new columns based on expressions applied to existing columns
 
 ```{r mutate_example}
 head(mutate(mtcars_dplyr,kml=mpg*0.425))
 ```
 
-Lastly, one more function, `rowwise()` allows us run rowwise, operations.  Let's use a bit of a contrived example for this.
-
-```{r rowwise_examp}
-#First a dataset of temperatures, recorded weekly at 100 sites.
-temp_df<-data.frame(id=1:100,week1=runif(100,20,25), week2=runif(100,19,24), 
-                    week3=runif(100,18,26), week4=runif(100,17,23))
-head(temp_df)
-#To add row means to the dataset, without the ID
-temp_df2<-temp_df %>% 
-  rowwise() %>% 
-  mutate(site_mean = mean(c(week1,week2,week3,week4)))
-head(temp_df2)
-```
-
-We now have quite a few tools that we can use to clean and manipulate data in R.  We have barely touched what both base R and `dplyr` are capable of accomplishing, but hopefully you now have some basics to build on.  I personally think the database connection in `dplyr` are going to prove very useful.
+We now have quite a few tools that we can use to clean and manipulate in R.  We have barely touched what both base R and `dplyr` are capable of accomplishing, but hopefully you now have some basics to build on.  I personally think the database connection in `dplyr` are going to prove very useful.
 
 Let's practice some of these last functions with our NLA data.
 
@@ -258,11 +250,10 @@ Let's practice some of these last functions with our NLA data.
 ```
 
 ##Exercise 3
-Add a new section to our script to calculate the nla water quality means. 
+Lastly, lets add a new section to our script to calculate the nla water quality means. 
 
 1. Use `nla_data` that we created in the previous exercise.
 2. Add some lines to your script to calculate the mean by LAKE_ORIGIN, for TURB, NTL, PTL,CHLA, and SECMEAN. Save to a data frame named nla_wq_means_orig.
 3. Repeat the same analysis but for the `WSA_ECO9` ecoregions.  Save this to a data frame named `nla_wq_means_eco`.
 4. It might be interesting to compare the grouped means to the means of each value for the entire dataset.  Using `summarize()`, calculate the mean wq for all lakes (hint: no groups!).  Save this as `nla_wq_means`.
-
 

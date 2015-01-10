@@ -1,4 +1,6 @@
 
+
+
 ## ----indexing_examp------------------------------------------------------
 #Create a vector
 x<-c(10:19)
@@ -49,26 +51,43 @@ virginica_iris<-iris$Sepal.Width[iris$Species=="virginica"]
 head(virginica_iris)
 
 
-## ----subset_examp--------------------------------------------------------
-#And redo what we did above
-big_iris_subset<-subset(iris,subset=Petal.Length>=6)
-head(big_iris_subset)
-virginica_iris_subset<-subset(iris,subset=Species=="virginica",select=Sepal.Width)
-head(virginica_iris_subset)
 
 
-## ----cbind_examp---------------------------------------------------------
-#Create a new vector to add to the iris data frame
-categories<-sample(1:3,nrow(iris),replace=T)
-iris_cbind<-cbind(iris,categories)
-head(iris_cbind)
-#Can also use data.frame again for this
-iris_cbind_df<-data.frame
-head(iris_cbind_df)
-#Direct assignment
-iris_cbind_dollar<-iris
-iris_cbind_dollar$categories<-sample(1:3,nrow(iris),replace=T)
-head(iris_cbind_dollar)
+## ----setup_dplyr,eval=FALSE----------------------------------------------
+## install.packages("dplyr")
+## library("dplyr")
+
+
+## ----more_data_frame_dplyr-----------------------------------------------
+#First, select some columns
+dplyr_sel<-select(iris,Sepal.Length,Petal.Length,Species)
+#That's it.  Select one or many columns
+#Now select some, like before
+dplyr_big_iris<-filter(iris, Petal.Length>=6)
+head(dplyr_big_iris)
+#Or maybe we want just the virginica species
+virginica_iris<-filter(iris,Species=="virginica")
+head(virginica_iris)
+
+
+## ----combine_commands----------------------------------------------------
+#Intermediate data frames
+#Select First: note the order of the output, neat too!
+dplyr_big_iris_tmp1<-select(iris,Species,Sepal.Length,Petal.Length)
+dplyr_big_iris_tmp<-filter(dplyr_big_iris_tmp1,Petal.Length>=6)
+head(dplyr_big_iris_tmp)
+
+#Nested function
+dplyr_big_iris_nest<-filter(select(iris,Species,Sepal.Length,Petal.Length),Species=="virginica")
+head(dplyr_big_iris_nest)
+
+#Pipes
+dplyr_big_iris_pipe<-select(iris,Species,Sepal.Length,Petal.Length) %>%
+  filter(Species=="virginica")
+head(dplyr_big_iris_pipe)
+
+
+## ----Exercise1, echo=FALSE-----------------------------------------------
 
 
 ## ----rbind_examp---------------------------------------------------------
@@ -91,38 +110,49 @@ rbind_df_merge_allx<-merge(rbind_df,rbind_df_merge_me,by="a",all.x=TRUE)
 rbind_df_merge_allx
 
 
-## ----transpose_example---------------------------------------------------
-#Look at are contrived example again
-rbind_df_merge_match
-#And the transpose of this
-t(rbind_df_merge_match)
-
-
-## ----apply_examp---------------------------------------------------------
-temp_df<-data.frame(id=1:100,week1=runif(100,20,25), week2=runif(100,19,24), 
-                    week3=runif(100,18,26), week4=runif(100,17,23))
-head(temp_df)
-apply(temp_df,1,mean)
-temp_df$month_mean_temp <- apply(temp_df,1,mean)
-head(temp_df)
-
-
-## ----tapply_examp--------------------------------------------------------
-sepal_len<-iris$Sepal.Length
-tapply(sepal_len,iris$Species,mean)
-#What if we need to use function arguments?
-sepal_len[10]<-NA
-mean(sepal_len)
-mean(sepal_len, na.rm=TRUE)
-tapply(sepal_len,iris$Species,mean)
-tapply(sepal_len,iris$Species,function(x) mean(x, na.rm=T))
+## ----Exercise2, echo=FALSE-----------------------------------------------
 
 
 ## ----aggregate_examp-----------------------------------------------------
-aggregate(iris,iris$Species,mean)
-aggregate(iris,list(iris$Species),mean)
-aggregate(iris[,-5],list(iris$Species),mean)
-species_means<-aggregate(iris[,-5],list(iris$Species),mean)
-species_means
+#Chained with Pipes
+group_by(iris,Species)%>%
+  summarize(mean(Sepal.Length),
+            mean(Sepal.Width),
+            mean(Petal.Length),
+            mean(Petal.Width))
+
+
+## ----arrange_example-----------------------------------------------------
+head(mtcars)
+#ascending order is default
+head(arrange(mtcars,mpg))
+#descending
+head(arrange(mtcars,desc(mpg)))
+#multiple columns: most cyl with best mpg at top
+head(arrange(mtcars,desc(cyl),desc(mpg)))
+
+
+## ----slice_example-------------------------------------------------------
+#grab rows 3 through 10
+slice(mtcars,3:10)
+
+
+## ----mutate_example------------------------------------------------------
+head(mutate(mtcars_dplyr,kml=mpg*0.425))
+
+
+## ----rowwise_examp-------------------------------------------------------
+#First a dataset of temperatures, recorded weekly at 100 sites.
+temp_df<-data.frame(id=1:100,week1=runif(100,20,25), week2=runif(100,19,24), 
+                    week3=runif(100,18,26), week4=runif(100,17,23))
+head(temp_df)
+#To add row means to the dataset, without the ID
+temp_df2<-temp_df %>% 
+  rowwise() %>% 
+  mutate(site_mean = mean(c(week1,week2,week3,week4)))
+head(temp_df2)
+
+
+## ----Exercise3, echo=FALSE-----------------------------------------------
 
 

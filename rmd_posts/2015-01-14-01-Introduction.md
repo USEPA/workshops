@@ -40,6 +40,8 @@ If read this article you certainly get the sense that R is one of the top langua
 ##Getting R and RStudio going
 Over the last several years, RStudio has become a very popular IDE (integrated development environment) for R.  In addition to interacting with the R Console, RStudio has many extras built in including version control integration, package building, reproducible research, de-bugging, and built-in text editor with smart highlighting and code completion.  This is the environment we will be using for the two days and should set you up for continued learning with R.
 
+
+
 ##Exercise 1
 This exercise will make sure R and RStudio are working and that you can get around the basics in RStudio.  Use the green stickies when you have completed, and red stickies if you are running into problems.
 
@@ -123,7 +125,7 @@ mean(rnorm(100))
 ## [1] 0.05279571
 {% endhighlight %}
 
-As an aside, the `#` indicates a comment.  You can put whatever else you'd like on the line after this.  R will not evaluate it.  When commenting your code, err on the side of too much!
+A few side notes.  The `#` indicates a comment.  You can put whatever else you'd like on the line after this.  R will not evaluate it.  When commenting your code, err on the side of too much!  Also, you will see `()`, `[]`, and `{}` used in R code.  The `()` indicate a function (almost always), the `[]` indicate indexing (grabbing values by the location), and the `{}` group code that is meant to be run together, and is usually used when programming functions in R.
 
 ##Using packages
 The base install of R is quite powerful, but you will soon have a need or desire to go beyond this.  Packages provide this ability.  They are a standardized method for extending R with new methods, techniques, and programming functionality.  There is a lot to say about packages regarding finding them, using them, etc., but for now let's focus just on the basics.  
@@ -305,6 +307,7 @@ As I mention earlier, there are TOO many resources to mention and everyone has t
 - [Advanced R](http://adv-r.had.co.nz/): Web home of Hadley Wickham's new book.  Gets into more advanced topics, but also covers the basics in a great way.
 - [Why R is Hard To Learn](http://r4stats.com/articles/why-r-is-hard-to-learn/): Long and detailed blog post discussing some of the challenges people often face when learning R.
 - [Other Resources](http://scicomp2014.edc.uri.edu/resources.html): A list I helped compile for a URI Class.
+
 
 
 ##Exercise 2

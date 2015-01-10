@@ -3,12 +3,18 @@ title: "09 - Repeat and Reproduce"
 author: Jeffrey W. Hollister
 layout: post_page
 ---
-
+```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
+options(repos="http://cran.rstudio.com/")
+if(!require("ggplot2")){
+  install.packages("ggplot2")
+}
+library("ggplot2")
+```
 
 In theory, you now have a basic understanding of how to conduct a typical data analysis workflow in R.  All that is left is to be able to write it up in such a way that others can not only understand what we did, but repeat it exactly on their own machines. To do this effectively we need to understand how to create reusable R code and create reproducible reports.  This will be a very high level introduction to both concepts, but should hopefully give you a jumping off place for more learning.
 
 ##Quick Links to Exercises and R code
-- [Lesson 9 R Code](/introR/rmd_posts/2015-01-15-09-Repeat-Reproduce.R): All the code from this post in an R Script.
+- [Lesson 8 R Code](/gedr/rmd_posts/2015-01-14-08-Repeat-Reproduce.R): All the code from this post in an R Script.
 - [Exercise 1](#exercise-1): Create your own function
 
 
@@ -19,7 +25,7 @@ In theory, you now have a basic understanding of how to conduct a typical data a
 - Create a simple, reproducible document and presentation
 
 ##Functions and Programming with R
-At this point we should be pretty well versed at using functions.  They have a name, some arguments, and they do something.  Some return a value, some don't.  In short they form the basic structure of R.  One of the cool thing about R (and programming in general), is that we are not stuck with the functions provided to us.  We can (and should!) develop our own as we often want to do things repeatedly, and in slightly different contexts.  Creating a function to deal with this fact helps us a great deal because we do not have to repeat ourselves, we can just use what we have already written.  Creating a function is really easy.  We use the `function()` function.  It has the basic structure of 
+At this point we should be pretty well versed at using functions.  They have a name, some arguments, and they do something.  Some return a value, some don't.  In short they form the basic structure of R.  One of the cool thing about R (and programming in general), is that we are not stuck with the functions provided to us.  We can (and should!) develop our own as we often want to do things repeatedly, and in slightly different contexts.  Creating a function to deal with this fact helps us a great deal becuase we do not have to repeat ourselves, we can just use what we have already written.  Creating a function is really easy.  We use the `function()` function.  It has the basic structure of 
 
 ```
 function_name<-function(arguments){
@@ -29,68 +35,31 @@ function_name<-function(arguments){
 ```
 So a real example, without arguments might look like:
 
-
-{% highlight r %}
+```{r function_create}
 hw<-function(){
   print("Hello, World")
 }
 
 hw()
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [1] "Hello, World"
-{% endhighlight %}
+```
 
 Well that's nice...  Not really useful, but shows the main components, `function()`, and the `{}` which are really the only new things.
 
-It would be a bit better if it were more flexible.  We can do that because we can specify our own arguments to use within the body of the function.  For example,
+It would be a bit better if it were more flexible.  We can do that becuase we can specify our own arguments to use within the body of the function.  For example,
 
-
-{% highlight r %}
+```{r function2_create}
 p<-function(my_text){
   print(my_text)
 }
 
 p("Hello, world")
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [1] "Hello, world"
-{% endhighlight %}
-
-
-
-{% highlight r %}
 p("Hola, mundo")
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [1] "Hola, mundo"
-{% endhighlight %}
-
-
-
-{% highlight r %}
 p("Howdy, Texas")
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [1] "Howdy, Texas"
-{% endhighlight %}
+```
 
 So, this is of course a silly example.  Functions are useful when we want to combine many other functions together that do something useful that we might want to repeat.  Since we have been working most recently with creating plots, I could imagine us wanting to create a plot with a similar layout, but with different source data and then save that plot to a file, all with a single function call.  That might look like:
 
-
-{% highlight r %}
+```{r plot_function_examp}
 myplot<-function(x,y,grp,file){
   my_p<-ggplot(data.frame(x,y,grp),aes(x=x,y=y)) +
             geom_point(aes(color=grp, shape=grp),size=5) +
@@ -101,37 +70,17 @@ myplot<-function(x,y,grp,file){
 }
 
 myplot(iris$Petal.Length,iris$Petal.Width,iris$Species,"petal_petal.jpg")
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Saving 7 x 7 in image
-{% endhighlight %}
-
-![plot of chunk plot_function_examp]({{ site.url }}/figure/plot_function_examp-1.png) 
-
-{% highlight r %}
 myplot(iris$Sepal.Length,iris$Sepal.Width,iris$Species,"sepal_l_petal_w.jpg")
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Saving 7 x 7 in image
-{% endhighlight %}
-
-![plot of chunk plot_function_examp]({{ site.url }}/figure/plot_function_examp-2.png) 
+```
 
 Cool, a function, that does something useful.  It still is just a collection of functions at this point though.  What if we wanted to repeat something or have the function make some decisions and do one thing given a set of criteria and something else for a different set?  Well we need to look more at some of the classic programming structures in R.  For this introduction, I am going to look just at `if-else` statements, `for` loops (some in the R world think this to be bad since R is optimized for working on vectors, but I think the concept useful and I M writing this, so there!),  and `return()`.  
 
 ###if-else
-If you have done any programming in any language, then `if-else` statements are not new to you.  All they do is allow us to tell the function how to make some decisions.  
+If you have done any programing in any language, then `if-else` statements are not new to you.  All they do is allow us to tell the function how to make some decisions.  
 
 I will show the examples in the context of a function as that is how they are most commonly used. So, we can implement them in R like:
 
-
-{% highlight r %}
+```{r if_else_examp}
 odd_even<-function(num){
   if(num %% 2 == 0){
     print("EVEN")
@@ -141,30 +90,12 @@ odd_even<-function(num){
 }
 
 odd_even(27)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [1] "ODD"
-{% endhighlight %}
-
-
-
-{% highlight r %}
 odd_even(34)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [1] "EVEN"
-{% endhighlight %}
+```
 
 And you can you use multiple `if` statements
 
-
-{% highlight r %}
+```{r if_else_examp2}
 plus_minus<-function(num){
   if(num>0){
     print("plus")
@@ -176,37 +107,9 @@ plus_minus<-function(num){
 }
  
 plus_minus(198)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [1] "plus"
-{% endhighlight %}
-
-
-
-{% highlight r %}
 plus_minus(-44)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [1] "minus"
-{% endhighlight %}
-
-
-
-{% highlight r %}
 plus_minus(37*0)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [1] "zero"
-{% endhighlight %}
+```
 
 ###for
 A `for` loop allows you to repeat code.  You specify a variable and a range of values and the `for` loop runs the code for each value in your range.  The basic structure looks like:
@@ -220,8 +123,7 @@ for(a_name in a_range){
 
 And and example in a function.
 
-
-{% highlight r %}
+```{r for_examp}
 sum_vec<-function(vec){
   j<-0
   for(i in vec){
@@ -231,40 +133,12 @@ sum_vec<-function(vec){
 }
 
 sum_vec(1:2)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [1] 1
-## [1] 3
-{% endhighlight %}
-
-
-
-{% highlight r %}
 sum_vec(1:10)
-{% endhighlight %}
+```
 
+Again a bit of a silly example since all it is doing is looping through a list of values and summing it.  In reality you would just use `sum()`.  This also highlights the fact that loops in R are slow compared to vector operations and/or base operations.  We can see what the problem is if we look at a large vector and the time it takes to get the sum.  First let's ammend the function so that it only prints the answer.  Printing on each iteration of the loop was just to show it looping...
 
-
-{% highlight text %}
-## [1] 1
-## [1] 3
-## [1] 6
-## [1] 10
-## [1] 15
-## [1] 21
-## [1] 28
-## [1] 36
-## [1] 45
-## [1] 55
-{% endhighlight %}
-
-Again a bit of a silly example since all it is doing is looping through a list of values and summing it.  In reality you would just use `sum()`.  This also highlights the fact that loops in R are slow compared to vector operations and/or base operations.  We can see what the problem is if we look at a large vector and the time it takes to get the sum.  First let's amend the function so that it only prints the answer.  Printing on each iteration of the loop was just to show it looping...
-
-
-{% highlight r %}
+```{r for_examp_print}
 sum_vec<-function(vec){
   j<-0
   for(i in vec){
@@ -274,73 +148,19 @@ sum_vec<-function(vec){
 }
 
 sum_vec(1:10)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [1] 55
-{% endhighlight %}
+```
 
 Now that we have two functions that work the same, lets check the timing.
 
-
-{% highlight r %}
+```{r for_vector_time}
 large_vec<-as.numeric(1:5000000)
 #Same Answer...
 sum(large_vec)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [1] 1.25e+13
-{% endhighlight %}
-
-
-
-{% highlight r %}
 sum_vec(large_vec)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [1] 1.25e+13
-{% endhighlight %}
-
-
-
-{% highlight r %}
 #Different speed
 system.time(sum(large_vec))
-{% endhighlight %}
-
-
-
-{% highlight text %}
-##    user  system elapsed 
-##   0.012   0.000   0.009
-{% endhighlight %}
-
-
-
-{% highlight r %}
 system.time(sum_vec(large_vec))
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [1] 1.25e+13
-{% endhighlight %}
-
-
-
-{% highlight text %}
-##    user  system elapsed 
-##   2.392   0.004   2.397
-{% endhighlight %}
+```
 
 Here we can see the difference.  In this case the `sum()` is several hundred times faster! 
 
@@ -351,20 +171,18 @@ The last control structure we are going to talk about is `return()`.  All `retur
 
 First, `odd_even()`
 
-
-{% highlight r %}
+```{r odd_even_return}
 odd_even<-function(num){
   if(num %% 2 == 0){
     return("EVEN")
   } 
   return("ODD")
 }
-{% endhighlight %}
+```
 
 Now, `sum_vec()`
 
-
-{% highlight r %}
+```{r sum_vec_return}
 sum_vec<-function(vec){
   j<-0
   for(i in vec){
@@ -372,9 +190,10 @@ sum_vec<-function(vec){
   }
   return(j)
 }
-{% endhighlight %}
+```
 
-Pretty straightforward!
+```{r Exercise1, echo=FALSE}
+```
 
 ##Exercise 1
 For this exercise we are going to practice with functions and some of the control structures.
@@ -382,8 +201,7 @@ For this exercise we are going to practice with functions and some of the contro
 1.) Our first task is to create a simple function.  This one is a bit contrived, but wanted let you try it first before we work on our NLA data.  Create a function that allows you to calculate the mean or standard deviation (hint: sd()) of an input vector.
 2.) Our second task is going to be to take your last `ggplot2` plot, and turn that into a function.  The function should take an x and y as input, and have an optional argument for a file name to save it as an image.  Depending on how complex your plot was you may need to add in some additional arguments.  To help things along, I have provided some starter code:
 
-
-{% highlight r %}
+```{r ggplot_starter function, eval=FALSE}
 plot_nla<-function(x,y,out=NULL){
   #ggplot2 code
   #Note: ggplot requires a data frame as input.  How would you deal with that?
@@ -397,11 +215,11 @@ plot_nla<-function(x,y,out=NULL){
   #Need to return something ...
   return()
 }
-{% endhighlight %}
+```
 
 
 ##Markdown
-Markdown isn't R, but it has become an important tool in the R ecosystem as it can be used to create package vignettes, can be used on [GitHub](http://github.com), and forms the basis for several reproducible research tools in RStudio.  Markdown is a tool that allows you to write simply formatted text that is converted to HTML/XHTML.  Primary goal of markdown is readability of the raw file.  Over the last couple of years, Markdown has emerged as a key way to write up reproducible documents, create websites (this whole website was written in Markdown), and make presentations.  For the basics of markdown and general information look at [Daring Fireball](http://daringfireball.net/projects/markdown/basics).
+Markdown isn't R, but it has become an important tool in the R ecosystem as it can be used to creat package vingettes, can be used on [GitHub](http://github.com), and forms the basis for several reproducible research tools in RStudio.  Markdown is a tool that allows you to write simply formated text that is converted to HTML/XHTML.  Primary goal of markdown is readibility of the raw file.  Over the last couple of years, Markdown has emerged as a key way to write up reproducible documents, create websites (this whole website was written in Mardown), and make presentations.  For the basics of markdown and general information look at [Daring Fireball](http://daringfireball.net/projects/markdown/basics).
 
 *note: this text borrowed liberally from another class [SciComp2014](http://scicomp2014.edc.uri.edu)*
 
@@ -415,31 +233,30 @@ So, for basic text... Just type it!
 
 In pure markdown, there are two ways to do headers but for most of what you need, you can use the following for headers:
 
-
-    # Header 1
-    ## Header 2
-    ...
-    ###### Header 6
-
+```
+# Header 1
+## Header 2
+...
+###### Header 6
+```
 
 ### List
 
-Lists can be done many ways in markdown. An unordered list is simply done with a `-`, `+`, or `*`.  For example use:
-
-    - this list
-    - is produced with
-        - the following 
-        - markdown
-
-To produce this:
+Lists can be done many ways in markdown. An unordered list is simply done with a `-`, `+`, or `*`.  For example
 
 - this list
 - is produced with
-    - the following 
-    - markdown
+- the following 
+- markdown.
 
-
-Notice the space after the `-`.  
+```
+- this list
+- is produced with
+- the following 
+- markdown
+```
+Notice the space after the `-`.  With most markdown interpertters, you can nest lists.  
+These are not currently getting parsed correctly on the course website.  Not sure why...
 
 To create an ordered list, simple use numbers.  So to produce:
 
@@ -448,13 +265,12 @@ To create an ordered list, simple use numbers.  So to produce:
 3. the following
 4. markdown.
 
-You can use:
-
-    1. this list
-    1. is produced with
-    1. the following
-    1. markdown.
-
+```
+1. this list
+2. is produced with
+3. the following
+4. markdown.
+```
 ### Links and Images
 
 Last type of formatting that you will likely want to accomplish with R markdown is including links and images.  While these two might seem dissimilar, I am including them together as their syntax is nearly identical.
@@ -491,37 +307,31 @@ First, lets talk a bit about "code chunks."
 ###Code Chunks
 Since we are talking about markdown and R, our documents will all be R Markdown documents (i.e. .Rmd).  To include R Code in your .Rmd you would do something like:
 
-
-    ```{r}
+    ```{r}`r ''`
     x<-rnorm(100)
     x
     ```
+This identifies what is known as a code chunk.  When written like it is above, it will echo the code to your final document, evalute the code with R and echo the results to the final document.  There are some cases where you might not want all of this to happen.  You may want just the code returned and not have it evalutated by R.  This is accomplished with:
 
-This identifies what is known as a code chunk.  When written like it is above, it will echo the code to your final document, evaluate the code with R and echo the results to the final document.  There are some cases where you might not want all of this to happen.  You may want just the code returned and not have it evaluated by R.  This is accomplished with:
-
-
-    ```{r eval=FALSE}
+    ```{r eval=FALSE}`r ''`
     x<-rnorm(100)
     ```
 
-Alternatively, you might just want the output returned, as would be the case when using R Markdown to produce a figure in a presentation or paper:
+Alternatively, you might just want the output returned, as would be the case when using R Markdown to produce a figure in a presenation or paper:
 
 
-    ```{r echo=FALSE}
+    ```{r echo=FALSE}`r ''`
     x<-rnorm(100)
     y<-jitter(x,1000)
     plot(x,y)
     ```
-
 Lastly, each of your code chunks can have a label.  That would be accomplished with something like:
-
-
-    ```{r myFigure, echo=FALSE}
+ 
+    ```{r myFigure, echo=FALSE}`r ''`
     x<-rnorm(100)
     y<-jitter(x,1000)
     plot(x,y)
     ```
-
 Now, lets get started and actually create a reproducible document
 
 ###Create a Document
@@ -533,14 +343,14 @@ Add title and author, select "HTML" as the output and click "OK".  RStudio will 
 
 In this document we can see a couple of things.  First at the top we see:
 
-
-    ---
-    title: "My First Reproducible Document"
-    author: "Jeff W. Hollister"
-    date: "1/6/2015"
-    output: pdf_document
-    ---
-
+```
+---
+title: "My First Reproducible Document"
+author: "Jeff W. Hollister"
+date: "1/6/2015"
+output: pdf_document
+---
+```
 
 This is the YAML(YAML Ain't Markup Language) header or front-matter.  It is metadata about the document that can be very useful.  For our purposes we don't need to know anything more about this.  Below that you see text, code chunks, and if it were included some markdown.  At its core this is all we need for a reproducible document.  We can now take this document, pass it through `knitr::knit()` (remember this syntax from the first lesson?) and pandoc and get our output.  We can do this from the console and/or shell, or we can use RStudio.  
 
@@ -550,11 +360,11 @@ If you look near the top of the editor window you will see:
 
 Click this and behold the magic!
 
-Spend some time playing around with this document.  Add in some other markdown, text and a code chunk then `knit()` it to see the outcome.  It should be easy to see how this could be used to write the text describing and analysis, embed the analysis and figure creation directly in the document, and render a final document.  You share the source and rendered document and the anyone has access to your full record of that research!
+Spend some time playing around with this document.  Add in some other markdown, text and a code chunk then `knit()` it to see the outcome.  It should be easy to see how this could be used to write the text describing and anlysis, embed the analysis and figure creation directly in the document, and render a final document.  You share the source and rendered document and the anyone has access to your full record of that research!
 
 ###Create a Presentation
 Creating a presentation is not much different.  We just need a way to specify different slides.
 
 Repeat the steps from above, but this time instead of selecting "Document", select "Presentation".  Only thing we need to know is that a second level header (i.e. `##`) is what specifies the title of the next slide.  Any thing you put after that goes on that slide.  Similar to before, play around with this add a slide with some new text, new code and knit it.  There you have it, a reproducible presentation.  
 
-I know you will probably wonder can you change the look and feel of this presentation, and the answer is yes.  I have done that, but using a different method for creating slides by using the `slidify` package.  An example of that presentation is in a talk I gave on [Social Media and Blogging](http://jwhollister.com/epablogpresent).  It does take a bit more work to set this up.  I am also not familiar with where RStudio is getting the styling for the presentation. In short, yes but requires a bit of work.
+I know you will probably wonder can you change the look and feel of this presentation, and the answer is yes.  I have done that, but using a different method for creaing slides by using the `slidify` package.  An example of that presentation is in a talk I gave on [Social Media and Blogging](http://jwhollister.com/epablogpresent).  It does take a bit more work to set this up.  I am also not familar with where RStudio is getting the styling for the presentation. In short, yes but requires a bit of work.

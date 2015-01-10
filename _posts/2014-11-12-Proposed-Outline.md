@@ -16,57 +16,57 @@ For each of the lessons there is a blog post that describes what we are doing, p
 
 ## Wed, January 14, 2015
 
-### 01 - Introduction (8:30 am - 9:15 am)
+### 01 - Introduction (8:30 am - 10:00 am)
 - Getting R and RStudio going
 - Using packages
 - Using functions
 - Help!
 
-### 02 - Get (9:15 am - 10:30 am)
+#### Break (10:00 am - 10:15 am)
+
+### 02 - Get (10:15 am - 12:00 pm)
 - Working in the console
 - Useful functions
 - Data types and structures in R
 - Reading data into R
 
-#### Break (10:30 am - 10:45 am)
-
-### 03 - Clean (10:45 am - 12:00 pm)
-- Using Base R to: 
- - Subset
- - Reshape
- - Modify
-
 #### Lunch (12:00 pm - 1:00 pm)
 
-### 04 - Clean (1:00 pm - 2:30 pm)
-- `dplyr`  
+### 03 - Clean (12:00 pm - 12:00 pm)
+- `dplyr` 
+- Subset
+- Reshape
+- Modify
 - Pipes
 
-#### Break (2:30 pm - 2:45 pm)
+#### Break (2:45 pm - 3:00 pm)
 
-### 05 - Explore (2:45 pm - 4:30 pm)
+### 04 - Explore (3:00 pm - 4:30 pm)
 - Exploratory data analysis
 - Summary Statistics
 - Exploratory plots with base R
 
 ## Thursday, January 15, 2015
 
-### 06 - Analyze: Base (8:30 am - 10:30 am)
+### 05 - Analyze: Base (8:30 am - 9:30 am)
 - Base statistics
 
-#### Break (10:30 am - 10:45 am)
-
-### 07 - Analyze: Contributed Package (10:45 am - 12:00 pm)
+### 06 - Analyze: Contributed Package (9:30 am - 10:30 am)
 - Contributed Packages - Example with Random Forest
+
+#### Break (10:45 am - 11:00 am)
+
+### 07 - Visualize: Part 1 (11:00 pm - 12:00 pm)
+- `ggplot2`
 
 #### Lunch (12:00 pm - 1:00 pm)
 
-### 08 - Visualize (1:00 pm - 2:30 pm)
+### 07 - Visualize: Part 2 (1:00 pm - 2:30 pm)
 - `ggplot2`
 
 #### Break (2:30 pm - 2:45 pm)
 
-### 09 - Repeat (2:45 pm - 4:30 pm)
-- Programming with R
-- functions
-- Reproducible Research with RStudio 
+### 08 - Repeat (2:45 pm - 4:30 pm)
+- Programing with R
+- Functions
+- Reproducible Research with Rstudio 
