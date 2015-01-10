@@ -1,5 +1,5 @@
 ---
-title: "08 - Visualize"
+title: "07 - Visualize"
 author: Jeffrey W. Hollister
 layout: post_page
 ---

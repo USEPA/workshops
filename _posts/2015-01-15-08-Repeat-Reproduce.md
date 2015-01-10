@@ -1,5 +1,5 @@
 ---
-title: "09 - Repeat and Reproduce"
+title: "08 - Repeat and Reproduce"
 author: Jeffrey W. Hollister
 layout: post_page
 ---
@@ -339,7 +339,7 @@ system.time(sum_vec(large_vec))
 
 {% highlight text %}
 ##    user  system elapsed 
-##   1.603   0.000   1.604
+##   1.636   0.000   1.637
 {% endhighlight %}
 
 Here we can see the difference.  In this case the `sum()` is several hundred times faster! 
