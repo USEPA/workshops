@@ -14,7 +14,7 @@ Before we jump into the lesson, quick links and lesson goals are:
 
 
 ##Quick Links to Exercises and R code
-- [Lesson 3 R Code](/gedr/rmd_posts/2015-01-14-03-Clean.R): All the code from this post in an R Script.
+- [Lesson 3 R Code](/introR/rmd_posts/2015-01-14-03-Clean.R): All the code from this post in an R Script.
 - [Exercise 1](#exercise-1): Subsetting the NLA data with `dplyr`
 - [Exercise 2](#exercise-2): Merge two NLA data files together.
 - [Exercise 2](#exercise-2): Using `dplyr` to modify and summarize the NLA.

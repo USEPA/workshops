@@ -6,7 +6,7 @@ layout: post_page
 The focus of this workshop hasn't really been statistics, its been more about R, the language.  But, it is pretty much impossible to talk a lot about R without getting into stats, as that is what draws most people to R in the first place.  So, we will spend a little bit of time on it.  In this lesson we will touch on some very simple stats that we can do with base R as well as provide a quick (i.e. top of my head as I write this) list of what can be done in base R.  
 
 ##Quick Links to Exercises and R code
-- [Lesson 5 R Code](/gedr/rmd_posts/2015-01-14-05-Analyze.R): All the code from this post in an R Script.
+- [Lesson 5 R Code](/introR/rmd_posts/2015-01-14-05-Analyze.R): All the code from this post in an R Script.
 - [Exercise 1](#exercise-1): Run some basic statistical test and build a simple model with the NLA data
 
 ##Lesson Goals
