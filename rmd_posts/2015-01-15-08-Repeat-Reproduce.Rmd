@@ -282,13 +282,13 @@ Lists can be done many ways in markdown. An unordered list is simply done with a
     - nested
 
 
-```    
+<pre    
     - this list
     - is produced with
     - the following 
     - markdown
         - nested
-```    
+</pre> 
     
     
 Notice the space after the `-`.  
@@ -302,13 +302,13 @@ To create an ordered list, simple use numbers.  So to produce:
     - nested
 
 
-```
+<pre>
     1. this list
     2. is produced with
     3. the following
     4. markdown.
         -nested
-```
+</pre>
 
 
 These are not currently getting parsed correctly on the course website.  Not sure why...
