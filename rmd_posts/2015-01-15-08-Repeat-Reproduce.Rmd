@@ -307,10 +307,6 @@ To create an ordered list, simple use numbers.  So to produce:
     - nested
 </pre>
 
-
-These are not currently getting parsed correctly on the course website.  Not sure why...
-
-
 ### Links and Images
 
 Last type of formatting that you will likely want to accomplish with R markdown is including links and images.  While these two might seem dissimilar, I am including them together as their syntax is nearly identical.

@@ -228,7 +228,7 @@ char_vector <- c(char_vector, "Jeff")
 char_vector
 ```
 
-Lastly, there are some ways to speed up entry of values.
+There are some ways to speed up entry of values.
 
 ```{r vector_shortcuts}
 #Create a series
@@ -241,6 +241,22 @@ fives<-rep(5,10)
 fives
 laugh<-rep("Ha", 100)
 laugh
+```
+
+Lastly, R can operate directly on vectors.  This means we can use use our arithmetic functions on vectors and also many functions can deal with vectors directly.
+
+```{r vectorized_examp}
+#A numeric example
+x<-1:10
+y<-10:1
+z<-x+y
+z
+
+#A character example with paste()
+first<-c("Buggs","Elmer","Pepe", "Foghorn")
+last<-c("Bunny", "Fudd","Le Pew", "Leghorn")
+first_last<-paste(first, last)
+first_last
 ```
 
 ### Data frames

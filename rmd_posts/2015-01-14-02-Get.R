@@ -119,6 +119,20 @@ laugh<-rep("Ha", 100)
 laugh
 
 
+## ----vectorized_examp----------------------------------------------------
+#A numeric example
+x<-1:10
+y<-10:1
+z<-x+y
+z
+
+#A character example with paste()
+first<-c("Buggs","Elmer","Pepe", "Foghorn")
+last<-c("Bunny", "Fudd","Le Pew", "Leghorn")
+first_last<-paste(first, last)
+first_last
+
+
 ## ----create_data_frame---------------------------------------------------
 numbers <- c(1:26,NA)
 letters <- c(NA,letters) #letters is a special object available from base R
