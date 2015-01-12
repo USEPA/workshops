@@ -332,7 +332,7 @@ vec_time
 
 {% highlight text %}
 ##    user  system elapsed 
-##   0.001   0.000   0.000
+##       0       0       0
 {% endhighlight %}
 
 
@@ -345,7 +345,7 @@ loop_time
 
 {% highlight text %}
 ##    user  system elapsed 
-##  22.135   0.001  22.179
+##  22.066   0.002  22.119
 {% endhighlight %}
 
 Wow, quite a difference in time! It is examples like this that lead to all the talk around why R is slow at looping.  In general I agree that  if there is an obvious vectorized/base solution (in this case the simply adding the two vectors, use that.  That being said, it isn't always obvious what the vectorized solution would be. In that case there are some easy things to do to speed this up.  With loops that write to object and that object is getting re-sized, but we also know the final size of that object we can do one simple thing to dramatically improve perfomance: pre-allocate your memory, like this:
@@ -369,7 +369,7 @@ system.time(add_vecs2(large_vec1,large_vec2))
 
 {% highlight text %}
 ##    user  system elapsed 
-##   0.202   0.000   0.202
+##   0.206   0.000   0.206
 {% endhighlight %}
 
 Now thats better.  In short, if an obvious vector or primitive solution exists, use that.  If those aren't clear and you need to use a loop, don't be afraid to use one.  There are plenty of examples where a vectorized solution exists for a loop, but it may be difficult to code and understand.  Personally, I think it is possible to go too far down the vectorized path.  Do it when it makes sense, otherwise take advantage of the for loop! You can always try and speed things up after you have got your code working the first time.
@@ -460,12 +460,10 @@ Lists can be done many ways in markdown. An unordered list is simply done with a
 - markdown.
 
     
-    ```
     - this list
     - is produced with
     - the following 
     - markdown
-    ```
     
     
 Notice the space after the `-`.  With most markdown interpertters, you can nest lists.  

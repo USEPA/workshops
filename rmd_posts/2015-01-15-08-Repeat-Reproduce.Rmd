@@ -281,12 +281,10 @@ Lists can be done many ways in markdown. An unordered list is simply done with a
 - markdown.
 
     
-    ```
     - this list
     - is produced with
     - the following 
     - markdown
-    ```
     
     
 Notice the space after the `-`.  With most markdown interpertters, you can nest lists.  
