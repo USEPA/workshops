@@ -21,79 +21,50 @@ str(nla_sites)
 #Lesson 3: Exercise 1
 #Subset the data
 ###############################################################################
-nla_sites_subset<-subset(nla_sites,select=c(SITE_ID, LON_DD, LAT_DD, STATE_NAME, 
-																						WSA_ECO9, NUT_REG, NUTREG_NAME, 
-																						LAKE_ORIGIN, RT_NLA))
-nla_wq_subset<-subset(nla_wq,select=c(SITE_ID, VISIT_NO, SITE_TYPE, TURB, NTL, 
-																			PTL, CHLA, SECMEAN))
-nla_wq_subset<-subset(subset(nla_wq_subset,subset=VISIT_NO==1),
-											subset=SITE_TYPE=="PROB_Lake")
+library(dplyr)
+nla_sites_subset_dplyr <- select(nla_sites, SITE_ID, VISIT_NO, SITE_TYPE, LON_DD, 
+                                 LAT_DD, STATE_NAME, WSA_ECO9, NUT_REG, 
+                                 NUTREG_NAME, LAKE_ORIGIN, RT_NLA) %>%
+  filter(VISIT_NO==1 & SITE_TYPE == "PROB_Lake")
+
+nla_wq_subset_dplyr <- select(nla_wq, SITE_ID, VISIT_NO, SITE_TYPE, TURB, NTL, 
+                              PTL, CHLA, SECMEAN) %>%
+  filter(VISIT_NO==1 & SITE_TYPE == "PROB_Lake")
 
 ###############################################################################
 #Lesson 3: Exercise 2
 #Merging data
 ###############################################################################
 nla_data<-merge(nla_wq_subset,nla_sites_subset,by="SITE_ID",all.x=TRUE)
+nla_data<-na.omit(nla_data)
 
 ###############################################################################
 #Lesson 3: Exercise 3
 #Reshape and Modify data
 ###############################################################################
-origin_mean_wq<-aggregate(nla_data[,4:8],list(nla_data$LAKE_ORIGIN),function(x)
-  mean(x,na.rm=TRUE))
-origin_mean_wq
-ecoregion_mean_wq<-aggregate(nla_data[,4:8],list(nla_data$WSA_ECO9),function(x)
-  mean(x,na.rm=TRUE))
-ecoregion_mean_wq
-nla_mean_wq<-apply(nla_data[,4:8],2,function(x)
-  mean(x,na.rm=TRUE))
-nla_mean_wq
-
-group_by(iris,Species) %>%
-  summarize(mean(Sepal.Length),
-            mean(Sepal.Width),
-            mean(Petal.Length),
-            mean(Petal.Width))
-
 group_by(nla_data,LAKE_ORIGIN) %>%
   summarize(mean(NTL),
             mean(PTL),
-            mean(CHLA,na.rm=TRUE),
-            mean(SECMEAN,na.rm=TRUE),
+            mean(CHLA),
+            mean(SECMEAN),
             mean(TURB))
+
+group_by(nla_data, WSA_ECO9) %>%
+  summarize(mean(TURB), 
+            mean(NTL), 
+            mean(PTL), 
+            mean(CHLA), 
+            mean(SECMEAN))
+
+summarize(nla_data, 
+           mean(TURB), 
+           mean(NTL), 
+           mean(PTL), 
+           mean(CHLA), 
+           mean(SECMEAN))
 
 ###############################################################################
 #Lesson 4: Exercise 1
-#Subset with dplyr
-###############################################################################
-library(dplyr)
-nla_sites_subset_dplyr <- select(nla_sites, SITE_ID, LON_DD, LAT_DD, STATE_NAME, 
-                                 WSA_ECO9, NUT_REG, NUTREG_NAME, LAKE_ORIGIN, 
-                                 RT_NLA)
-
-nla_wq_subset_dplyr <- select(nla_wq, SITE_ID, VISIT_NO, SITE_TYPE, TURB, NTL, 
-                              PTL, CHLA, SECMEAN) %>%
-                        filter(VISIT_NO==1 & SITE_TYPE == "PROB_Lake")
-
-
-###############################################################################
-#Lesson 4: Exercise 2
-#Summarize data with dplyr
-###############################################################################
-
-origin_mean_wq_dplyr <- group_by(nla_data, LAKE_ORIGIN) %>%
-                          summarize(mean(TURB), mean(NTL), mean(PTL), mean(CHLA), 
-                                    mean(SECMEAN, na.rm=TRUE))
-
-ecoregion_mean_wq_dplyr <- group_by(nla_data, WSA_ECO9) %>%
-                          summarize(mean(TURB), mean(NTL), mean(PTL), mean(CHLA), 
-                                    mean(SECMEAN, na.rm=TRUE))
-
-nla_mean_wq_dplyr <- summarize(nla_data, mean(TURB), mean(NTL), mean(PTL), mean(CHLA), 
-                               mean(SECMEAN, na.rm=TRUE))
-
-###############################################################################
-#Lesson 5: Exercise 1
 #Summary stats
 #Not elegant, but perhaps more clear.  Lots of repeat. 
 ###############################################################################
@@ -109,10 +80,55 @@ secmean_summ<-c(quantile(nla_data$SECMEAN,na.rm=T),mean=mean(nla_data$SECMEAN,na
                 iqr=IQR(nla_data$SECMEAN,na.rm=T))
 nla_wq_summary_base<-data.frame(TURB=turb_summ,NTL=ntl_summ,PTL=ptl_summ,
                                 CHLA=chla_summ,SECMEAN=secmean_summ)
+nla_wq_summary_base
 
+turb_dplyr_summ<-nla_data %>% 
+  summarize(min(TURB),
+            quantile(TURB,0.25),
+            mean(TURB),
+            median(TURB),
+            quantile(TURB,0.75),
+            max(TURB),
+            IQR(TURB))
+
+ntl_dplyr_summ<-nla_data %>% 
+  summarize(min(NTL),
+            quantile(NTL,0.25),
+            mean(NTL),
+            median(NTL),
+            quantile(NTL,0.75),
+            max(NTL),
+            IQR(NTL))
+
+ptl_dplyr_summ<-nla_data %>% 
+  summarize(min(PTL),
+            quantile(PTL,0.25),
+            mean(PTL),
+            median(PTL),
+            quantile(PTL,0.75),
+            max(PTL),
+            IQR(PTL))
+
+chla_dplyr_summ<-nla_data %>% 
+  summarize(min(CHLA),
+            quantile(CHLA,0.25),
+            mean(CHLA),
+            median(CHLA),
+            quantile(CHLA,0.75),
+            max(CHLA),
+            IQR(CHLA))
+
+secmean_dplyr_summ<-nla_data %>% 
+  summarize(min(SECMEAN),
+            quantile(SECMEAN,0.25),
+            mean(SECMEAN),
+            median(SECMEAN),
+            quantile(SECMEAN,0.75),
+            max(SECMEAN),
+            IQR(SECMEAN))
 
 ###############################################################################
-#Lesson 5: Exercise 2
+#Lesson 4: Exercise 2
 #Basic Exploratory Visualization
 ###############################################################################
 #Pipes are not just for dplyr anymore!
@@ -123,8 +139,9 @@ with(nla_data,boxplot(CHLA~RT_NLA))
 with(nla_data,boxplot(log10(CHLA)~RT_NLA))
 boxplot(nla_data$CHLA~nla_data$RT_NLA)
 boxplot(log10(nla_data$CHLA)~nla_data$RT_NLA)
+
 ###############################################################################
-#Lesson 6: Exercise 1
+#Lesson 5: Exercise 1
 #Basic Stats
 ###############################################################################
 #T-tests - mean difference of man-made vs natural lakes
@@ -143,7 +160,7 @@ chla_lm<-lm(log10(CHLA)~log10(NTL)+log10(PTL),data=nla_data)
 summary(chla_lm)
 
 ###############################################################################
-#Lesson 7: Exercise 1
+#Lesson 6: Exercise 1
 #Random Forest
 ###############################################################################
 #clean up dataframe
@@ -154,7 +171,7 @@ plot(nla_ref_rf)
 varImpPlot(nla_ref_rf)
 
 ###############################################################################
-#Lesson 8: Exercise 1
+#Lesson 7: Exercise 1
 #ggplot2
 ###############################################################################
 #scatterplot
@@ -174,7 +191,7 @@ ggplot(nla_data,aes(x=log10(PTL),y=log10(CHLA))) +
 
 
 ###############################################################################
-#Lesson 8: Exercise 2
+#Lesson 7: Exercise 2
 #ggplot2 Themes
 ###############################################################################
 #install.packages("wesanderson")
@@ -195,7 +212,7 @@ ggsave(plot = nla_ptl_chla,
        file = "Fig_tp_chla.jpg", dpi=300, width=8, height=5)
 
 ###############################################################################
-#Lesson 9: Exercise 1
+#Lesson 8: Exercise 1
 #Functions and control structures
 ###############################################################################
 #1
