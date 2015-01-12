@@ -19,7 +19,8 @@ In theory, you now have a basic understanding of how to conduct a typical data a
 - Create a simple, reproducible document and presentation
 
 ##Functions and Programming with R
-At this point we should be pretty well versed at using functions.  They have a name, some arguments, and they do something.  Some return a value, some don't.  In short they form the basic structure of R.  One of the cool thing about R (and programming in general), is that we are not stuck with the functions provided to us.  We can (and should!) develop our own as we often want to do things repeatedly, and in slightly different contexts.  Creating a function to deal with this fact helps us a great deal becuase we do not have to repeat ourselves, we can just use what we have already written.  Creating a function is really easy.  We use the `function()` function.  It has the basic structure of 
+At this point we should be pretty well versed at using functions.  They have a name, some arguments, and they do something.  Some return a value, some don't.  In short they form the basic structure of R.  One of the cool thing about R (and programming in general), is that we are not stuck with the functions provided to us.  We can (and should!) develop our own as we often want to do things repeatedly, and in slightly different contexts.  Creating a function to deal with this fact helps us a great deal becuase we do not have to repeat ourselves, we can just use what we have already written.  Creating a function is really easy.  We use the `function()` function.  It has the basic structure of: 
+
 
 ```
 function_name<-function(arguments){
@@ -27,6 +28,8 @@ function_name<-function(arguments){
   use arguments as needed
 }
 ```
+
+
 So a real example, without arguments might look like:
 
 
@@ -320,7 +323,7 @@ system.time(sum(large_vec))
 
 {% highlight text %}
 ##    user  system elapsed 
-##   0.006   0.000   0.006
+##   0.007   0.000   0.007
 {% endhighlight %}
 
 
@@ -339,7 +342,7 @@ system.time(sum_vec(large_vec))
 
 {% highlight text %}
 ##    user  system elapsed 
-##   1.608   0.000   1.608
+##   1.717   0.000   1.718
 {% endhighlight %}
 
 Here we can see the difference.  In this case the `sum()` is several hundred times faster! 
