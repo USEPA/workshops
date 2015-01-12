@@ -32,3 +32,7 @@ varImpPlot(iris_rf2)
 ## ----Exercise1, echo=FALSE-----------------------------------------------
 
 
+## ----vignette_examp,eval=FALSE-------------------------------------------
+## vignette(package="knitr")
+
+
