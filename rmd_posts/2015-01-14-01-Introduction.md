@@ -6,7 +6,7 @@ layout: post_page
 
 
 
-Over the course of the next two days we are going to walk through a typical data analysis workflow in R.  But, with this first lesson we are going to focus on making sure everything is working and get some basic orientation in R.  The real fun will start in the lessons to come.  
+Over the course of the next two days we are going to walk through a typical data analysis workflow in R.  But, with this first lesson we are going to focus on making sure everything is working and getting some basic orientation in R.  The real fun will start in the lessons to come.  
 
 ##Quick Links to Exercises and R code
 My goal is to have this workshop be as hands-on as possible.  As such, there are exercises through out.  For each lesson, I will provide a list of links near the top of the post so that you can skip all the prose and jump straight to the lessons.  So, here are the links for Lesson 1.
@@ -58,7 +58,7 @@ This exercise will make sure R and RStudio are working and that you can get arou
 ##Using functions
 R is built off of functions and most of everything you do will use a function.
 
-The basic syntax of function follows the form: `function_name(param1, param2, ...)`.  With the base install, you will gain access to many.  For instance:
+The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many.  For instance:
 
 
 {% highlight r %}
@@ -95,21 +95,21 @@ rnorm(100,mean=10,sd=2)
 
 
 {% highlight text %}
-##   [1]  9.428537 12.192949  3.941532  9.256546  8.696833 11.077342 13.930553
-##   [8]  9.787077 11.222469 12.922915  9.928866 13.594624  9.610475 11.991406
-##  [15]  6.464563  8.311447 10.173608  8.716995  8.708291  9.427993 13.049252
-##  [22] 10.679197  8.120219  5.591127  8.021306 11.680883 12.053075  8.451959
-##  [29]  6.445835 10.672541  9.835059  4.613852 10.481308  6.366834 12.027403
-##  [36] 11.031621 11.488733  9.102950  7.169140  9.506038 11.829922  9.952907
-##  [43] 10.643566 11.171273  9.835628 11.353844  8.896099 13.125384  8.282723
-##  [50]  7.141227 11.337495  9.467282  8.784670  9.245472  9.019832  8.865711
-##  [57] 10.999561  8.664285 11.577300 10.162121  7.017972 10.249797 10.683567
-##  [64]  9.003053 10.585503  8.415749  9.918933 11.361721 10.954545  8.939700
-##  [71]  6.270322 11.504973 12.699026 12.277663 12.673781  8.107007  9.215161
-##  [78]  8.700720  7.567847 11.720286 11.351083  8.039061  6.986090 11.690100
-##  [85] 11.080663  7.507857  9.326296  5.381702  8.840844 10.540916  9.438831
-##  [92]  9.745547  9.495756 11.787255  8.366543  9.184629 10.297360  9.343943
-##  [99] 11.388941 12.517871
+##   [1]  9.503635  9.658867 10.809119  7.196272  9.617089 14.427944 10.266405
+##   [8]  9.208680  8.069583 10.019208 10.845454  7.848427 12.232910  8.911676
+##  [15]  8.792205  9.565062 11.314472 11.329894 10.245768 10.469647  8.482466
+##  [22]  9.947160  8.560172  9.057813 10.105641 11.827359  8.469151  8.694326
+##  [29]  8.387490 13.065772 10.544873  9.759926  9.386290  5.294732 11.035148
+##  [36]  9.173042  9.405570  5.582514 11.072690  6.375319 10.498527  5.850321
+##  [43]  9.569044 12.589174  7.895866  8.705838  9.377995  9.322650  7.776636
+##  [50] 14.123041  9.462630 10.285608 15.246510  8.187882 12.804417  8.289699
+##  [57] 11.221295  9.954942  8.931465 10.665480 10.020029 10.748939 11.960836
+##  [64]  7.823979  8.681838 12.496001  7.579327  6.966075 11.052662  6.607227
+##  [71]  8.994145  8.793718  7.166819 10.868010 11.714470 15.024320 13.477942
+##  [78] 11.332838  7.609653 10.378092 12.934813  7.718621 12.834847 11.413512
+##  [85] 14.335480 11.204350  7.655815 14.749214  9.609365 13.402930 10.127457
+##  [92]  7.981437 12.065508 10.889148  9.852252 10.153049 13.411786  9.581553
+##  [99] 11.184177 13.668655
 {% endhighlight %}
 
 
@@ -122,16 +122,29 @@ mean(rnorm(100))
 
 
 {% highlight text %}
-## [1] 0.05279571
+## [1] -0.11899
 {% endhighlight %}
 
-A few side notes.  The `#` indicates a comment.  You can put whatever else you'd like on the line after this.  R will not evaluate it.  When commenting your code, err on the side of too much!  Also, you will see `()`, `[]`, and `{}` used in R code.  The `()` indicate a function (almost always), the `[]` indicate indexing (grabbing values by the location), and the `{}` group code that is meant to be run together, and is usually used when programming functions in R.
+
+
+{% highlight r %}
+#Sum
+sum(rnorm(100))
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## [1] -6.345912
+{% endhighlight %}
+
+A few side notes.  The `#` indicates a comment.  You can put whatever else you'd like after this, but on the same line as the `#`.  R will not evaluate it.  When commenting your code, err on the side of too much!  Also, you will see `()`, `[]`, and `{}` used in R code.  The `()` indicates a function (almost always), the `[]` indicates indexing (grabbing values by the location), and the `{}` groups code that is meant to be run together and is usually used when programming functions in R.
 
 ##Using packages
 The base install of R is quite powerful, but you will soon have a need or desire to go beyond this.  Packages provide this ability.  They are a standardized method for extending R with new methods, techniques, and programming functionality.  There is a lot to say about packages regarding finding them, using them, etc., but for now let's focus just on the basics.  
 
 ###CRAN
-One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware or it.
+One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.
 
 ###Installing packages
 When a packages gets installed, that means the source (or packaged binary for Windows) is downloaded and put into your library.  A default library location is set for you so no need to worry about that.  In fact on Windows most of this is pretty automatic.  Let's give it a shot.
@@ -252,7 +265,7 @@ randomForest::randomForest
 ## <environment: namespace:randomForest>
 {% endhighlight %}
 
-You will often see people use `require` to load a package. It is better form to not do this. For a more detailed explanation of why `library()` and not `require()` see [Yihui Xie's post on the subject](http://yihui.name/en/2014/07/library-vs-require/.)
+You will often see people use `require()` to load a package. It is better form to not do this. For a more detailed explanation of why `library()` and not `require()` see [Yihui Xie's post on the subject](http://yihui.name/en/2014/07/library-vs-require/.)
 
 ###Some other useful commands
 There are a lot of other commands that help you navigate packages
@@ -288,11 +301,11 @@ apropos("print") #Returns all available functions with "print" in the name
 {% endhighlight %}
 
 ###Official R Resources
-In addition to help from with R itself, CRAN and the R-Project have many resources available for support.  Two of the most notable are the mailing lists and the [task views](http://cran.r-project.org/web/views/).
+In addition to help from within R itself, CRAN and the R-Project have many resources available for support.  Two of the most notable are the mailing lists and the [task views](http://cran.r-project.org/web/views/).
 
-- [R Help Mailing List](https://stat.ethz.ch/mailman/listinfo/r-help): The main mailing list for R help.  Can be a bit daunting and some senior folks can be, um, curmudgeonly...
+- [R Help Mailing List](https://stat.ethz.ch/mailman/listinfo/r-help): The main mailing list for R help.  Can be a bit daunting and some (although not most) senior folks can be, um, curmudgeonly...
 - [R-sig-ecology](https://stat.ethz.ch/mailman/listinfo/r-sig-ecology): A special interest group for use of R in ecology.  Less daunting the the main help with participation form some big names in ecological modelling and statistics (e.g., Ben Bolker, Gavin Simpson, and Phil Dixon).  One of the moderators is great, the other is a bit of a jerk (it's me).
-- [Environmetrics Task View](http://cran.r-project.org/web/views/Environmetrics.html): Task views are great in that the provided an annotated list of packages relevant to a particular field.  This one is maintained by Gavin Simpson and has great info on packages relevant to much of the work at EPA.
+- [Environmetrics Task View](http://cran.r-project.org/web/views/Environmetrics.html): Task views are great in that they provide an annotated list of packages relevant to a particular field.  This one is maintained by Gavin Simpson and has great info on packages relevant to much of the work at EPA.
 - [Spatial Analysis Task View](http://cran.r-project.org/web/views/Spatial.html): One I use a lot that lists all the relevant packages for spatial analysis, GIS, and Remote Sensing in R. 
 
 ###Google and StackOverflow
@@ -313,13 +326,13 @@ As I mention earlier, there are TOO many resources to mention and everyone has t
 ##Exercise 2
 For this second exercise we are going to get used to using some basic functions, working with scripts and not just the console, and look through some task views and get used to basic navigation around packages.  Use the green stickies when you have completed, and red stickies if you are running into problems.
 
-1. If it is not already open, open the "lesson1.R" file you created in Exercise 1. Enter your commands into this script, save it, and run it.
+1. If it is not already open, open the "lesson1.R" file you created in Exercise 1. Enter your commands into this script.
 2. Use the `print` function to print something to the screen.
 3. Combine `mean` and `rnorm` to return the mean value of a set of random numbers.
 4. Open up a [task view](http://cran.r-project.org/web/views/) of your choosing.  Select a package and install it. 
 5. Load the library.
 6. Open the help for the package.
-7. Remember all of these functions should be saved inside your "lesson1.R" script.
+7. Save all these functions inside your "lesson1.R" script.  Run the script using the "Run" button at the top right of the editor.
 
 
 

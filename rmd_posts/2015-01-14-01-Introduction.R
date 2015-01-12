@@ -15,6 +15,8 @@ seq(1,10)
 rnorm(100,mean=10,sd=2)
 #Mean
 mean(rnorm(100))
+#Sum
+sum(rnorm(100))
 
 
 ## ----install_package, cache=TRUE-----------------------------------------

@@ -8,7 +8,7 @@ layout: post_page
 options(repos="http://cran.rstudio.com/")
 ```
 
-Over the course of the next two days we are going to walk through a typical data analysis workflow in R.  But, with this first lesson we are going to focus on making sure everything is working and get some basic orientation in R.  The real fun will start in the lessons to come.  
+Over the course of the next two days we are going to walk through a typical data analysis workflow in R.  But, with this first lesson we are going to focus on making sure everything is working and getting some basic orientation in R.  The real fun will start in the lessons to come.  
 
 ##Quick Links to Exercises and R code
 My goal is to have this workshop be as hands-on as possible.  As such, there are exercises through out.  For each lesson, I will provide a list of links near the top of the post so that you can skip all the prose and jump straight to the lessons.  So, here are the links for Lesson 1.
@@ -61,7 +61,7 @@ This exercise will make sure R and RStudio are working and that you can get arou
 ##Using functions
 R is built off of functions and most of everything you do will use a function.
 
-The basic syntax of function follows the form: `function_name(param1, param2, ...)`.  With the base install, you will gain access to many.  For instance:
+The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many.  For instance:
 
 ```{r function_examples, cache=TRUE}
 #Print
@@ -72,15 +72,17 @@ seq(1,10)
 rnorm(100,mean=10,sd=2)
 #Mean
 mean(rnorm(100))
+#Sum
+sum(rnorm(100))
 ```
 
-A few side notes.  The `#` indicates a comment.  You can put whatever else you'd like on the line after this.  R will not evaluate it.  When commenting your code, err on the side of too much!  Also, you will see `()`, `[]`, and `{}` used in R code.  The `()` indicate a function (almost always), the `[]` indicate indexing (grabbing values by the location), and the `{}` group code that is meant to be run together, and is usually used when programming functions in R.
+A few side notes.  The `#` indicates a comment.  You can put whatever else you'd like after this, but on the same line as the `#`.  R will not evaluate it.  When commenting your code, err on the side of too much!  Also, you will see `()`, `[]`, and `{}` used in R code.  The `()` indicates a function (almost always), the `[]` indicates indexing (grabbing values by the location), and the `{}` groups code that is meant to be run together and is usually used when programming functions in R.
 
 ##Using packages
 The base install of R is quite powerful, but you will soon have a need or desire to go beyond this.  Packages provide this ability.  They are a standardized method for extending R with new methods, techniques, and programming functionality.  There is a lot to say about packages regarding finding them, using them, etc., but for now let's focus just on the basics.  
 
 ###CRAN
-One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware or it.
+One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.
 
 ###Installing packages
 When a packages gets installed, that means the source (or packaged binary for Windows) is downloaded and put into your library.  A default library location is set for you so no need to worry about that.  In fact on Windows most of this is pretty automatic.  Let's give it a shot.
@@ -108,7 +110,7 @@ randomForest::randomForest
 
 ```
 
-You will often see people use `require` to load a package. It is better form to not do this. For a more detailed explanation of why `library()` and not `require()` see [Yihui Xie's post on the subject](http://yihui.name/en/2014/07/library-vs-require/.)
+You will often see people use `require()` to load a package. It is better form to not do this. For a more detailed explanation of why `library()` and not `require()` see [Yihui Xie's post on the subject](http://yihui.name/en/2014/07/library-vs-require/.)
 
 ###Some other useful commands
 There are a lot of other commands that help you navigate packages
@@ -143,11 +145,11 @@ apropos("print") #Returns all available functions with "print" in the name
 ```
 
 ###Official R Resources
-In addition to help from with R itself, CRAN and the R-Project have many resources available for support.  Two of the most notable are the mailing lists and the [task views](http://cran.r-project.org/web/views/).
+In addition to help from within R itself, CRAN and the R-Project have many resources available for support.  Two of the most notable are the mailing lists and the [task views](http://cran.r-project.org/web/views/).
 
-- [R Help Mailing List](https://stat.ethz.ch/mailman/listinfo/r-help): The main mailing list for R help.  Can be a bit daunting and some senior folks can be, um, curmudgeonly...
+- [R Help Mailing List](https://stat.ethz.ch/mailman/listinfo/r-help): The main mailing list for R help.  Can be a bit daunting and some (although not most) senior folks can be, um, curmudgeonly...
 - [R-sig-ecology](https://stat.ethz.ch/mailman/listinfo/r-sig-ecology): A special interest group for use of R in ecology.  Less daunting the the main help with participation form some big names in ecological modelling and statistics (e.g., Ben Bolker, Gavin Simpson, and Phil Dixon).  One of the moderators is great, the other is a bit of a jerk (it's me).
-- [Environmetrics Task View](http://cran.r-project.org/web/views/Environmetrics.html): Task views are great in that the provided an annotated list of packages relevant to a particular field.  This one is maintained by Gavin Simpson and has great info on packages relevant to much of the work at EPA.
+- [Environmetrics Task View](http://cran.r-project.org/web/views/Environmetrics.html): Task views are great in that they provide an annotated list of packages relevant to a particular field.  This one is maintained by Gavin Simpson and has great info on packages relevant to much of the work at EPA.
 - [Spatial Analysis Task View](http://cran.r-project.org/web/views/Spatial.html): One I use a lot that lists all the relevant packages for spatial analysis, GIS, and Remote Sensing in R. 
 
 ###Google and StackOverflow
@@ -169,13 +171,13 @@ As I mention earlier, there are TOO many resources to mention and everyone has t
 ##Exercise 2
 For this second exercise we are going to get used to using some basic functions, working with scripts and not just the console, and look through some task views and get used to basic navigation around packages.  Use the green stickies when you have completed, and red stickies if you are running into problems.
 
-1. If it is not already open, open the "lesson1.R" file you created in Exercise 1. Enter your commands into this script, save it, and run it.
+1. If it is not already open, open the "lesson1.R" file you created in Exercise 1. Enter your commands into this script.
 2. Use the `print` function to print something to the screen.
 3. Combine `mean` and `rnorm` to return the mean value of a set of random numbers.
 4. Open up a [task view](http://cran.r-project.org/web/views/) of your choosing.  Select a package and install it. 
 5. Load the library.
 6. Open the help for the package.
-7. Remember all of these functions should be saved inside your "lesson1.R" script.
+7. Save all these functions inside your "lesson1.R" script.  Run the script using the "Run" button at the top right of the editor.
 
 
 
