@@ -265,7 +265,7 @@ sum_vec(1:10)
 ## [1] 55
 {% endhighlight %}
 
-Again a bit of a silly example since all it is doing is looping through a list of values and summing it.  In reality you would just use `sum()`.  This also highlights the fact that loops in R can be slow compared to vector operations and/or primitive operations (see section of [Primitive functions](http://adv-r.had.co.nz/Functions.html#function-components)).  
+Again a bit of a silly example since all it is doing is looping through a list of values and summing it.  In reality you would just use `sum()`.  This also highlights the fact that loops in R can be slow compared to vector operations and/or primitive operations (see Hadley's section on [Primitive functions](http://adv-r.had.co.nz/Functions.html#function-components)).  
 
 Let's dig a bit more into this issue with another example (using the `sum()` example is a bit unfair since `sum()` is actually implemented in C).  This time, let's look at adding two vectors together.  We haven't touched on this yet, but R is really good at dealing with this kind of operation.  It is what people mean when the talk about "vectorized" operations.  For instance:
 
@@ -323,30 +323,32 @@ So, these do the same thing, big deal.  It is big though when you look at the ti
 large_vec1<-as.numeric(1:100000)
 large_vec2<-as.numeric(100000:1)
 #Different speed
-system.time(large_vec1+large_vec2)
+vec_time<-system.time(large_vec1+large_vec2)[1]
+loop_time<-system.time(add_vecs(large_vec1,large_vec2))[1]
+vec_time
 {% endhighlight %}
 
 
 
 {% highlight text %}
-##    user  system elapsed 
-##   0.000   0.000   0.001
+## user.self 
+##         0
 {% endhighlight %}
 
 
 
 {% highlight r %}
-system.time(add_vecs(large_vec1,large_vec2))
+loop_time
 {% endhighlight %}
 
 
 
 {% highlight text %}
-##    user  system elapsed 
-##  23.393   0.001  23.441
+## user.self 
+##    23.239
 {% endhighlight %}
 
-Wow, almost 7 orders of magnitude difference in time! It is examples like this that lead to all the talk around why R is slow at looping.  In general I agree that  if there is an obvious vectorized/base solution (in this case the simply adding the two vectors, use that.  That being said, it isn't always obvious what the vectorized solution would be. In that case there are some easy things to do to speed this up.  With loops that write to object and that object is getting re-sized, but we also know the final size of that object we can do one simple thing to dramatically improve perfomance: pre-allocate your memory, like this:
+Wow, quite a difference in time! It is examples like this that lead to all the talk around why R is slow at looping.  In general I agree that  if there is an obvious vectorized/base solution (in this case the simply adding the two vectors, use that.  That being said, it isn't always obvious what the vectorized solution would be. In that case there are some easy things to do to speed this up.  With loops that write to object and that object is getting re-sized, but we also know the final size of that object we can do one simple thing to dramatically improve perfomance: pre-allocate your memory, like this:
 
 
 
@@ -367,10 +369,10 @@ system.time(add_vecs2(large_vec1,large_vec2))
 
 {% highlight text %}
 ##    user  system elapsed 
-##   0.153   0.000   0.153
+##   0.217   0.000   0.217
 {% endhighlight %}
 
-Now only 2 orders of magnitude difference.  In short, if an obvious vector or primitive solution exists, use that.  If those aren't clear and you need to use a loop, don't be afraid to use one.  There are plenty of examples where a vectorized solution exists for a loop, but it may be difficult to code and understand.  Personally, I think it is possible to go too far down the vectorized path.  Do it when it makes sense, otherwise take advantage of the for loop! You can always try and speed things up after you have got your code working the first time.
+Now thats better.  In short, if an obvious vector or primitive solution exists, use that.  If those aren't clear and you need to use a loop, don't be afraid to use one.  There are plenty of examples where a vectorized solution exists for a loop, but it may be difficult to code and understand.  Personally, I think it is possible to go too far down the vectorized path.  Do it when it makes sense, otherwise take advantage of the for loop! You can always try and speed things up after you have got your code working the first time.
 
 ###return
 The last control structure we are going to talk about is `return()`.  All `return()` does is provides a result from a function and terminates the function.  You may be asking yourself, didn't we get terminate and get a value from the functions we just created?  We did and `return()` is not mandatory for R functions as they will return the last calculation.  However, I do think that including a `return()` is good practice and allows us to be clear and more specific about what you get out of your functions.  Let's take a look at the `sum_vec()` function (even though, I just explained why this is not the best function), the `odd_even()` function  and make simple changes to take advantage of `return()`.

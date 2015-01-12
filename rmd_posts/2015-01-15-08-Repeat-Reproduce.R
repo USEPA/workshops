@@ -99,8 +99,10 @@ add_vecs(x,y)
 large_vec1<-as.numeric(1:100000)
 large_vec2<-as.numeric(100000:1)
 #Different speed
-system.time(large_vec1+large_vec2)
-system.time(add_vecs(large_vec1,large_vec2))
+vec_time<-system.time(large_vec1+large_vec2)[1]
+loop_time<-system.time(add_vecs(large_vec1,large_vec2))[1]
+vec_time
+loop_time
 
 
 ## ----looping_vector_examp2-----------------------------------------------
