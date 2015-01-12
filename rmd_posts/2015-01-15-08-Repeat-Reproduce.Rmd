@@ -173,8 +173,8 @@ So, these do the same thing, big deal.  It is big though when you look at the ti
 large_vec1<-as.numeric(1:100000)
 large_vec2<-as.numeric(100000:1)
 #Different speed
-vec_time<-system.time(large_vec1+large_vec2)[1]
-loop_time<-system.time(add_vecs(large_vec1,large_vec2))[1]
+vec_time<-system.time(large_vec1+large_vec2)
+loop_time<-system.time(add_vecs(large_vec1,large_vec2))
 vec_time
 loop_time
 ```
@@ -264,12 +264,14 @@ So, for basic text... Just type it!
 
 In pure markdown, there are two ways to do headers but for most of what you need, you can use the following for headers:
 
-```
-# Header 1
-## Header 2
-...
-###### Header 6
-```
+
+    ```
+    # Header 1
+    ## Header 2
+    ...
+    ###### Header 6
+    ```
+
 
 ### List
 
@@ -280,12 +282,14 @@ Lists can be done many ways in markdown. An unordered list is simply done with a
 - the following 
 - markdown.
 
-```
-- this list
-- is produced with
-- the following 
-- markdown
-```
+
+    ```
+    - this list
+    - is produced with
+    - the following 
+    - markdown
+    ```
+
 Notice the space after the `-`.  With most markdown interpertters, you can nest lists.  
 These are not currently getting parsed correctly on the course website.  Not sure why...
 
@@ -296,12 +300,15 @@ To create an ordered list, simple use numbers.  So to produce:
 3. the following
 4. markdown.
 
-```
-1. this list
-2. is produced with
-3. the following
-4. markdown.
-```
+    
+    ```
+    1. this list
+    2. is produced with
+    3. the following
+    4. markdown.
+    ```
+
+
 ### Links and Images
 
 Last type of formatting that you will likely want to accomplish with R markdown is including links and images.  While these two might seem dissimilar, I am including them together as their syntax is nearly identical.
