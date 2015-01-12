@@ -281,15 +281,13 @@ Lists can be done many ways in markdown. An unordered list is simply done with a
 - markdown.
     - nested
 
-
 <pre>    
 - this list
 - is produced with
 - the following 
 - markdown
-- nested
+    - nested
 </pre> 
-    
     
 Notice the space after the `-`.  
 
@@ -301,13 +299,12 @@ To create an ordered list, simple use numbers.  So to produce:
 4. markdown.
     - nested
 
-
 <pre>
 1. this list
 2. is produced with
 3. the following
 4. markdown.
--nested
+    - nested
 </pre>
 
 
