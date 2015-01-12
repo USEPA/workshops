@@ -41,7 +41,7 @@ There's a lot more you can do with `t.test()`, but you'll have to rely on `?t.te
 ### Correlation
 Next lets take a look at correlations.  Little inspiration is striking, so `iris` it is.
 
-```{r corr_examp}
+```{r corr_examp,message=FALSE,warning=FALSE}
 #A simple correlation
 cor(iris$Petal.Width,iris$Petal.Length)
 #And a test of that correlation
@@ -50,7 +50,7 @@ cor.test(iris$Petal.Width,iris$Petal.Length)
 cor(iris)
 #Oops, non-numeric data.  Lets use dplyr to get what we want and pipe to cor
 library(dplyr)
-select(iris,Sepal.Width,Sepal.Length,Petal.Width,Petal.Length) %>% 
+select(iris,-Species) %>% 
   cor()
 ```
 

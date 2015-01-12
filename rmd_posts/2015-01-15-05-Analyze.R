@@ -13,7 +13,7 @@ rbind(head(ToothGrowth),tail(ToothGrowth))
 t.test(ToothGrowth$len~ToothGrowth$supp)
 
 
-## ----corr_examp----------------------------------------------------------
+## ----corr_examp,message=FALSE,warning=FALSE------------------------------
 #A simple correlation
 cor(iris$Petal.Width,iris$Petal.Length)
 #And a test of that correlation
@@ -22,7 +22,7 @@ cor.test(iris$Petal.Width,iris$Petal.Length)
 cor(iris)
 #Oops, non-numeric data.  Lets use dplyr to get what we want and pipe to cor
 library(dplyr)
-select(iris,Sepal.Width,Sepal.Length,Petal.Width,Petal.Length) %>% 
+select(iris,-Species) %>% 
   cor()
 
 
