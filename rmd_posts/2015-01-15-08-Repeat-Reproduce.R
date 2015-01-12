@@ -76,25 +76,44 @@ sum_vec(1:10)
 
 
 ## ----for_examp_print-----------------------------------------------------
-sum_vec<-function(vec){
-  j<-0
-  for(i in vec){
-    j<-i+j
-  }
-  print(j)
-}
+# A simple vectorize operation
+x<-1:100
+y<-100:1
+z<-x+y
+z
 
-sum_vec(1:10)
+
+## ----looping_vector_examp------------------------------------------------
+#We will assume vectors of the same length...
+add_vecs<-function(vec1,vec2){
+  out<-NULL
+  for(i in 1:length(vec1)){
+    out[i]<-vec1[i]+vec2[i]
+  }
+  out
+}
+add_vecs(x,y)
 
 
 ## ----for_vector_time-----------------------------------------------------
-large_vec<-as.numeric(1:5000000)
-#Same Answer...
-sum(large_vec)
-sum_vec(large_vec)
+large_vec1<-as.numeric(1:100000)
+large_vec2<-as.numeric(100000:1)
 #Different speed
-system.time(sum(large_vec))
-system.time(sum_vec(large_vec))
+system.time(large_vec1+large_vec2)
+system.time(add_vecs(large_vec1,large_vec2))
+
+
+## ----looping_vector_examp2-----------------------------------------------
+#We will assume vectors of the same length...
+add_vecs2<-function(vec1,vec2){
+  out<-vector("numeric",length(vec1))
+  for(i in 1:length(vec1)){
+    out[i]<-vec1[i]+vec2[i]
+  }
+  out
+}
+
+system.time(add_vecs2(large_vec1,large_vec2))
 
 
 ## ----odd_even_return-----------------------------------------------------

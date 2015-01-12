@@ -29,6 +29,7 @@ function_name<-function(arguments){
 }
 ```
 
+And each function comes with some basic information attached to it and have functions associated with them.  These are the `formals()`, the `body()`, and the `environment()`.  We aren't going to get into the details of these, but I did want you to at least be aware of them.
 
 So a real example, without arguments might look like:
 
@@ -264,90 +265,112 @@ sum_vec(1:10)
 ## [1] 55
 {% endhighlight %}
 
-Again a bit of a silly example since all it is doing is looping through a list of values and summing it.  In reality you would just use `sum()`.  This also highlights the fact that loops in R are slow compared to vector operations and/or base operations.  We can see what the problem is if we look at a large vector and the time it takes to get the sum.  First let's ammend the function so that it only prints the answer.  Printing on each iteration of the loop was just to show it looping...
+Again a bit of a silly example since all it is doing is looping through a list of values and summing it.  In reality you would just use `sum()`.  This also highlights the fact that loops in R can be slow compared to vector operations and/or primitive operations (see section of [Primitive functions](http://adv-r.had.co.nz/Functions.html#function-components)).  
+
+Let's dig a bit more into this issue with another example (using the `sum()` example is a bit unfair since `sum()` is actually implemented in C).  This time, let's look at adding two vectors together.  We haven't touched on this yet, but R is really good at dealing with this kind of operation.  It is what people mean when the talk about "vectorized" operations.  For instance:
+
 
 
 {% highlight r %}
-sum_vec<-function(vec){
-  j<-0
-  for(i in vec){
-    j<-i+j
+# A simple vectorize operation
+x<-1:100
+y<-100:1
+z<-x+y
+z
+{% endhighlight %}
+
+
+
+{% highlight text %}
+##   [1] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+##  [18] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+##  [35] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+##  [52] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+##  [69] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+##  [86] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+{% endhighlight %}
+
+Pretty cool.  This kind of thing doesn't come easily with many languages.  You would need to program it yourself using a loop.  For the sake of argument, let's try that with R.
+
+
+{% highlight r %}
+#We will assume vectors of the same length...
+add_vecs<-function(vec1,vec2){
+  out<-NULL
+  for(i in 1:length(vec1)){
+    out[i]<-vec1[i]+vec2[i]
   }
-  print(j)
+  out
+}
+add_vecs(x,y)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+##   [1] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+##  [18] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+##  [35] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+##  [52] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+##  [69] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+##  [86] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+{% endhighlight %}
+
+So, these do the same thing, big deal.  It is big though when you look at the timing of the two.  Let's create two large vectors and see what happens.
+
+
+{% highlight r %}
+large_vec1<-as.numeric(1:100000)
+large_vec2<-as.numeric(100000:1)
+#Different speed
+system.time(large_vec1+large_vec2)
+{% endhighlight %}
+
+
+
+{% highlight text %}
+##    user  system elapsed 
+##   0.000   0.000   0.001
+{% endhighlight %}
+
+
+
+{% highlight r %}
+system.time(add_vecs(large_vec1,large_vec2))
+{% endhighlight %}
+
+
+
+{% highlight text %}
+##    user  system elapsed 
+##  23.207   0.000  23.246
+{% endhighlight %}
+
+Wow, almost 7 orders of magnitude difference in time! It is examples like this that lead to all the talk around why R is slow at looping.  In general I agree that  if there is an obvious vectorized/base solution (in this case the simply adding the two vectors, use that.  That being said, it isn't always obvious what the vectorized solution would be. In that case there are some easy things to do to speed this up.  With loops that write to object and that object is getting re-sized, but we also know the final size of that object we can do one simple thing to dramatically improve perfomance: pre-allocate your memory, like this:
+
+
+
+{% highlight r %}
+#We will assume vectors of the same length...
+add_vecs2<-function(vec1,vec2){
+  out<-vector("numeric",length(vec1))
+  for(i in 1:length(vec1)){
+    out[i]<-vec1[i]+vec2[i]
+  }
+  out
 }
 
-sum_vec(1:10)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [1] 55
-{% endhighlight %}
-
-Now that we have two functions that work the same, lets check the timing.
-
-
-{% highlight r %}
-large_vec<-as.numeric(1:5000000)
-#Same Answer...
-sum(large_vec)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [1] 1.25e+13
-{% endhighlight %}
-
-
-
-{% highlight r %}
-sum_vec(large_vec)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [1] 1.25e+13
-{% endhighlight %}
-
-
-
-{% highlight r %}
-#Different speed
-system.time(sum(large_vec))
+system.time(add_vecs2(large_vec1,large_vec2))
 {% endhighlight %}
 
 
 
 {% highlight text %}
 ##    user  system elapsed 
-##   0.007   0.000   0.007
+##   0.164   0.000   0.166
 {% endhighlight %}
 
-
-
-{% highlight r %}
-system.time(sum_vec(large_vec))
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [1] 1.25e+13
-{% endhighlight %}
-
-
-
-{% highlight text %}
-##    user  system elapsed 
-##   1.717   0.000   1.718
-{% endhighlight %}
-
-Here we can see the difference.  In this case the `sum()` is several hundred times faster! 
-
-In short, if there is an obvious vectorized/base solution (in this case the sum()), use that.  If you need to use a loop, use that.  There are plenty of examples where a vectorized solution exists for a loop, but it may be difficult to code and understand.  I believe it is possible to go too far down the vectorized path.  Do it when it makes sense, otherwise take advantage of the for loop!
+Now only 2 orders of magnitude difference.  In short, if an obvious vector or primitive solution exists, use that.  If those aren't clear and you need to use a loop, use one.  There are plenty of examples where a vectorized solution exists for a loop, but it may be difficult to code and understand.  Personally, I think it is possible to go too far down the vectorized path.  Do it when it makes sense, otherwise take advantage of the for loop!
 
 ###return
 The last control structure we are going to talk about is `return()`.  All `return()` does is provides a result from a function and terminates the function.  You may be asking yourself, didn't we get terminate and get a value from the functions we just created?  We did and `return()` is not mandatory for R functions as they will return the last calculation.  However, I do think that including a `return()` is good practice and allows us to be clear and more specific about what you get out of your functions.  Let's take a look at the `sum_vec()` function (even though, I just explained why this is not the best function), the `odd_even()` function  and make simple changes to take advantage of `return()`.
