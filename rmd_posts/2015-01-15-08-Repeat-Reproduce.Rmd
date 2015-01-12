@@ -299,12 +299,12 @@ To create an ordered list, simple use numbers.  So to produce:
 3. the following
 4. markdown.
 
-    ```
+
     1. this list
     2. is produced with
     3. the following
     4. markdown.
-    ```
+
 
 ### Links and Images
 
