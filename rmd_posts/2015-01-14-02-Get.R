@@ -126,6 +126,13 @@ y<-10:1
 z<-x+y
 z
 
+#another one, with different lengths
+a<-1
+b<-1:10
+c<-a+b
+c
+
+
 #A character example with paste()
 first<-c("Buggs","Elmer","Pepe", "Foghorn")
 last<-c("Bunny", "Fudd","Le Pew", "Leghorn")
