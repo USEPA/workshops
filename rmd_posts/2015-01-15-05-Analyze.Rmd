@@ -3,6 +3,21 @@ title: "05 - Analyze: Base"
 author: Jeffrey W. Hollister
 layout: post_page
 ---
+```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
+options(repos="http://cran.rstudio.com/")
+if(!require("ggplot2")){
+  install.packages("ggplot2")
+}
+if(!require("dplyr")){
+  install.packages("dplyr")
+}
+if(!require("randomForest")){
+  install.packages("randomForest")
+}
+library("ggplot2")
+library("dplyr")
+```
+
 The focus of this workshop hasn't really been statistics, its been more about R, the language.  But, it is pretty much impossible to talk a lot about R without getting into stats, as that is what draws most people to R in the first place.  So, we will spend a little bit of time on it.  In this lesson we will touch on some very simple stats that we can do with base R as well as provide a quick (i.e. top of my head as I write this) list of what can be done in base R.  
 
 ##Quick Links to Exercises and R code
