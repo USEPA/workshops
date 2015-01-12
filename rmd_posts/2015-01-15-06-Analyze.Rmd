@@ -105,7 +105,7 @@ For this exercise we are going to implement random forest and try to predict the
 
 ##Learning a New Package
 
-As of `r format(Sys.Date(), "%b %d, %Y")`, there were `r nrow(readHTMLTable("http://cran.r-project.org/web/packages/available_packages_by_date.html")[[1]])` packages available on [CRAN](http://cran.r-project.org/web/packages/).  Since these packages are created and maintained by many different authors, the ways in which you can get help on a specific package and the quality of that assistance can vary greatly.  That being said, there are a few indicators of decent help within a given package.
+As of `r format(Sys.Date(), "%b %d, %Y")`, there were `r nrow(readHTMLTable("http://cran.r-project.org/web/packages/available_packages_by_date.html")[[1]])` packages available on [CRAN](http://cran.r-project.org/web/packages/).  Given this diversity and since these packages are created and maintained by many different authors, the ways in which you can get help on a specific package and the quality of that assistance can vary greatly.  That being said, there are a few indicators of decent help for a given package.
 
 First, if a package has a vignette that is usually a good first place to start.  To list the vignettes for a given package you can use the `vignette()` function.  For instance:
 
