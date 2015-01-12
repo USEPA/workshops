@@ -138,7 +138,7 @@ slice(mtcars,3:10)
 
 
 ## ----mutate_example------------------------------------------------------
-head(mutate(mtcars_dplyr,kml=mpg*0.425))
+head(mutate(mtcars,kml=mpg*0.425))
 
 
 ## ----rowwise_examp-------------------------------------------------------
