@@ -323,16 +323,16 @@ So, these do the same thing, big deal.  It is big though when you look at the ti
 large_vec1<-as.numeric(1:100000)
 large_vec2<-as.numeric(100000:1)
 #Different speed
-vec_time<-system.time(large_vec1+large_vec2)[1]
-loop_time<-system.time(add_vecs(large_vec1,large_vec2))[1]
+vec_time<-system.time(large_vec1+large_vec2)
+loop_time<-system.time(add_vecs(large_vec1,large_vec2))
 vec_time
 {% endhighlight %}
 
 
 
 {% highlight text %}
-## user.self 
-##         0
+##    user  system elapsed 
+##   0.000   0.000   0.001
 {% endhighlight %}
 
 
@@ -344,8 +344,8 @@ loop_time
 
 
 {% highlight text %}
-## user.self 
-##    23.843
+##    user  system elapsed 
+##  24.202   0.000  24.211
 {% endhighlight %}
 
 Wow, quite a difference in time! It is examples like this that lead to all the talk around why R is slow at looping.  In general I agree that  if there is an obvious vectorized/base solution (in this case the simply adding the two vectors, use that.  That being said, it isn't always obvious what the vectorized solution would be. In that case there are some easy things to do to speed this up.  With loops that write to object and that object is getting re-sized, but we also know the final size of that object we can do one simple thing to dramatically improve perfomance: pre-allocate your memory, like this:
@@ -369,7 +369,7 @@ system.time(add_vecs2(large_vec1,large_vec2))
 
 {% highlight text %}
 ##    user  system elapsed 
-##   0.180   0.000   0.179
+##   0.223   0.000   0.222
 {% endhighlight %}
 
 Now thats better.  In short, if an obvious vector or primitive solution exists, use that.  If those aren't clear and you need to use a loop, don't be afraid to use one.  There are plenty of examples where a vectorized solution exists for a loop, but it may be difficult to code and understand.  Personally, I think it is possible to go too far down the vectorized path.  Do it when it makes sense, otherwise take advantage of the for loop! You can always try and speed things up after you have got your code working the first time.
@@ -444,13 +444,11 @@ So, for basic text... Just type it!
 In pure markdown, there are two ways to do headers but for most of what you need, you can use the following for headers:
 
 
-    ```
     # Header 1
     ## Header 2
     ...
     ###### Header 6
-    ```
-
+  
 
 ### List
 
@@ -461,14 +459,11 @@ Lists can be done many ways in markdown. An unordered list is simply done with a
 - the following 
 - markdown.
 
-
-    ```
     - this list
     - is produced with
     - the following 
     - markdown
-    ```
-
+  
 Notice the space after the `-`.  With most markdown interpertters, you can nest lists.  
 These are not currently getting parsed correctly on the course website.  Not sure why...
 
@@ -479,13 +474,11 @@ To create an ordered list, simple use numbers.  So to produce:
 3. the following
 4. markdown.
 
-    
-    ```
+
     1. this list
     2. is produced with
     3. the following
     4. markdown.
-    ```
 
 
 ### Links and Images
@@ -560,14 +553,12 @@ Add title and author, select "HTML" as the output and click "OK".  RStudio will 
 
 In this document we can see a couple of things.  First at the top we see:
 
-```
----
-title: "My First Reproducible Document"
-author: "Jeff W. Hollister"
-date: "1/6/2015"
-output: pdf_document
----
-```
+    ---
+    title: "My First Reproducible Document"
+    author: "Jeff W. Hollister"
+    date: "1/6/2015"
+    output: pdf_document
+    ---
 
 This is the YAML(YAML Ain't Markup Language) header or front-matter.  It is metadata about the document that can be very useful.  For our purposes we don't need to know anything more about this.  Below that you see text, code chunks, and if it were included some markdown.  At its core this is all we need for a reproducible document.  We can now take this document, pass it through `knitr::knit()` (remember this syntax from the first lesson?) and pandoc and get our output.  We can do this from the console and/or shell, or we can use RStudio.  
 

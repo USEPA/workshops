@@ -265,13 +265,11 @@ So, for basic text... Just type it!
 In pure markdown, there are two ways to do headers but for most of what you need, you can use the following for headers:
 
 
-    ```
     # Header 1
     ## Header 2
     ...
     ###### Header 6
-    ```
-
+  
 
 ### List
 
@@ -282,14 +280,11 @@ Lists can be done many ways in markdown. An unordered list is simply done with a
 - the following 
 - markdown.
 
-
-    ```
     - this list
     - is produced with
     - the following 
     - markdown
-    ```
-
+  
 Notice the space after the `-`.  With most markdown interpertters, you can nest lists.  
 These are not currently getting parsed correctly on the course website.  Not sure why...
 
@@ -300,13 +295,11 @@ To create an ordered list, simple use numbers.  So to produce:
 3. the following
 4. markdown.
 
-    
-    ```
+
     1. this list
     2. is produced with
     3. the following
     4. markdown.
-    ```
 
 
 ### Links and Images
@@ -381,14 +374,12 @@ Add title and author, select "HTML" as the output and click "OK".  RStudio will 
 
 In this document we can see a couple of things.  First at the top we see:
 
-```
----
-title: "My First Reproducible Document"
-author: "Jeff W. Hollister"
-date: "1/6/2015"
-output: pdf_document
----
-```
+    ---
+    title: "My First Reproducible Document"
+    author: "Jeff W. Hollister"
+    date: "1/6/2015"
+    output: pdf_document
+    ---
 
 This is the YAML(YAML Ain't Markup Language) header or front-matter.  It is metadata about the document that can be very useful.  For our purposes we don't need to know anything more about this.  Below that you see text, code chunks, and if it were included some markdown.  At its core this is all we need for a reproducible document.  We can now take this document, pass it through `knitr::knit()` (remember this syntax from the first lesson?) and pandoc and get our output.  We can do this from the console and/or shell, or we can use RStudio.  
 
