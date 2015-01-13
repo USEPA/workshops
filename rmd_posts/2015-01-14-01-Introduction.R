@@ -28,7 +28,7 @@ install.packages("dplyr")
 install.packages(c("randomForest","formatR"))
 
 
-## ----load_package, cache=TRUE--------------------------------------------
+## ----load_package--------------------------------------------------------
 #Add libraries to your R Session
 library("ggplot2")
 library("dplyr")

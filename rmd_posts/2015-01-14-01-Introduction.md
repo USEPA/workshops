@@ -218,9 +218,121 @@ install.packages(c("randomForest","formatR"))
 One source of confusion that many have is when they cannot access a package that they just installed. This is because getting to this point requires an extra step, loading (or attaching) the package.   
 
 
+{% highlight r %}
+#Add libraries to your R Session
+library("ggplot2")
+{% endhighlight %}
 
 
 
+{% highlight text %}
+## Loading required package: methods
+{% endhighlight %}
+
+
+
+{% highlight r %}
+library("dplyr")
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## 
+## Attaching package: 'dplyr'
+## 
+## The following object is masked from 'package:stats':
+## 
+##     filter
+## 
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+{% endhighlight %}
+
+
+
+{% highlight r %}
+#You can also access functions without loading by using package::function
+randomForest::randomForest
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## function (x, ...) 
+## UseMethod("randomForest")
+## <environment: namespace:randomForest>
+{% endhighlight %}
+
+You will often see people use `require()` to load a package. It is better form to not do this. For a more detailed explanation of why `library()` and not `require()` see [Yihui Xie's post on the subject](http://yihui.name/en/2014/07/library-vs-require/.)
+
+###Some other useful commands
+There are a lot of other commands that help you navigate packages
+
+
+{% highlight r %}
+#See what is installed
+installed.packages()
+
+#What packages are available?
+available.packages()
+
+#Update, may take a while if you have many packages installed
+update.packages()
+{% endhighlight %}
+
+##Help!
+Being able to find help and interpret that help is probably one of the most important skills for learning a new language.  R is no different. Help on functions and packages can be accessed directly from R, can be found on CRAN and other official R resources, searched on Google, found on StackOverflow, or from any number of fantastic online resources. I will cover a few of these here. 
+
+###Help from the console
+Getting help from the console is straightforward and can be done numerous ways.
+
+
+{% highlight r %}
+#Using the help command/shortcut
+help("print") #Help on the print command
+?print #Help on the print command using the `?` shortcut
+help(package="dplyr") #Help on the package `dplyr`
+
+#Don't know the exact name or just part of it
+apropos("print") #Returns all available functions with "print" in the name
+??print #Shortcut, but also searches demos and vignettes in a formatted page
+{% endhighlight %}
+
+###Official R Resources
+In addition to help from within R itself, CRAN and the R-Project have many resources available for support.  Two of the most notable are the mailing lists and the [task views](http://cran.r-project.org/web/views/).
+
+- [R Help Mailing List](https://stat.ethz.ch/mailman/listinfo/r-help): The main mailing list for R help.  Can be a bit daunting and some (although not most) senior folks can be, um, curmudgeonly...
+- [R-sig-ecology](https://stat.ethz.ch/mailman/listinfo/r-sig-ecology): A special interest group for use of R in ecology.  Less daunting the the main help with participation from some big names in ecological modelling and statistics (e.g., Ben Bolker, Gavin Simpson, and Phil Dixon).  One of the moderators is great, the other is a bit of a jerk (it's me).
+- [Environmetrics Task View](http://cran.r-project.org/web/views/Environmetrics.html): Task views are great in that they provide an annotated list of packages relevant to a particular field.  This one is maintained by Gavin Simpson and has great info on packages relevant to much of the work at EPA.
+- [Spatial Analysis Task View](http://cran.r-project.org/web/views/Spatial.html): One I use a lot that lists all the relevant packages for spatial analysis, GIS, and Remote Sensing in R. 
+
+###Google and StackOverflow
+While the resources already mentioned are useful, often the quickest way is to just turn to Google.  However, a search for "R" is a bit challenging.  A few ways around this.  Google works great if you search for a given package.  You can search for mailing lists directly (i.e. "R-sig-geo").  An R specific search tool, [RSeek.org](http://www.rseek.org/), has been created to facilitate this.  
+
+One specific resource that I use quite a bit is [StackOverflow with the 'r' tag](http://stackoverflow.com/questions/tagged/r).  StackOverflow is a discussion forum for all things related to programming.  You can then use this tag and the search functions in StackOverflow and find answers to almost anything you can think of.
+
+###Other Resources
+As I mention earlier, there are TOO many resources to mention and everyone has their favorites.  Below are just a few that I like.
+
+- [R For Cats](http://rforcats.net/): Basic introduction site, meant to be a gentle and light-hearted introduction
+- [Advanced R](http://adv-r.had.co.nz/): Web home of Hadley Wickham's new book.  Gets into more advanced topics, but also covers the basics in a great way.
+- [Why R is Hard To Learn](http://r4stats.com/articles/why-r-is-hard-to-learn/): Long and detailed blog post discussing some of the challenges people often face when learning R.
+- [Other Resources](http://scicomp2014.edc.uri.edu/resources.html): A list I helped compile for a URI Class.
+
+
+
+##Exercise 2
+For this second exercise we are going to get used to using some basic functions, working with scripts and not just the console, and look through some task views and get used to basic navigation around packages.  Use the green stickies when you have completed, and red stickies if you are running into problems.
+
+1. If it is not already open, open the "lesson1.R" file you created in Exercise 1. Enter your commands into this script.
+2. Use the `print` function to print something to the screen.
+3. Combine `mean` and `rnorm` to return the mean value of a set of random numbers.
+4. Open up a [task view](http://cran.r-project.org/web/views/) of your choosing.  Select a package and install it. 
+5. Load the package into your library.
+6. Open the help for the package.
+7. Save all these functions inside your "lesson1.R" script.  Run the script using the "Run" button at the top right of the editor.
 
 
 
