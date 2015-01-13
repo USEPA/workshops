@@ -5,7 +5,7 @@
 #Create a vector
 x<-c(10:19)
 x
-#Postive indexing returns just the value in the ith place
+#Positive indexing returns just the value in the ith place
 x[7]
 #Negative indexing returns all values except the value in the ith place
 x[-3]
