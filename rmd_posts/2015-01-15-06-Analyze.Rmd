@@ -28,7 +28,7 @@ library("XML")
 library("RCurl")
 ```
 
-The second section will run through a quick example of using a package, `randomForest` for some analysis.  I've included this section just to show how (relatively) trivial it is to add an advanced capability to R via packages.
+The second section will run through a fairly quick example of using a package, `randomForest` for some analysis.  I've included this section just to show how (relatively) trivial it is to add an advanced capability to R via packages.
 
 ##Quick Links to Exercises and R code
 - [Lesson 6 R Code](/introR/rmd_posts/2015-01-15-06-Analyze.R): All the code from this post in an R Script.
