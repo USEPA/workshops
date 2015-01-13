@@ -123,6 +123,7 @@ scatter_polished
 #Many other options in the help
 ggsave(plot=scatter_polished,
        file="Fig1.jpg",dpi=600,width=8, heigh=5)
+#Save as PDF
 ggsave(plot=scatter_polished,
        file="Fig1.pdf")
 
