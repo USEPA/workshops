@@ -113,10 +113,19 @@ And if we are interested in the regressions by group we could do it this way.
 ```{r iris_lm_groups}
 iris_scatter_lm_group<-iris_scatter+
                         geom_smooth(method="lm", 
-                                    aes(colour=Species,shape=Species))
+                                    aes(group=Species))
 iris_scatter_lm_group
-
 ```
+
+Or, if we wanted our regression lines to match the color.
+
+```{r iris_lm_color}
+iris_scatter_lm_color<-iris_scatter+
+                        geom_smooth(method="lm", 
+                                    aes(color=Species))
+iris_scatter_lm_color
+```
+
 
 You'll notice that I had to specify the `aes()` again, but for `geom_smooth()`.  We only specified the x and y in the original `ggplot` object, so if want to do something different in the subsequent functions we need to overwrite it for the function in which we want a different mapping (i.e. groups).
 
@@ -293,7 +302,7 @@ tp_chla +
 - [Offical `ggplot2` documentation](http://docs.ggplot2.org/current/): The authoritative source.  Also many great examples.
 
 ###R Data Viz Examples
-- Base examples: [R Gallery]()
+- Cool rCharts examples: [rCharts Gallery](http://rcharts.io/gallery/)
 - ggplot examples: [Google Image Search](http://goo.gl/P0q2Lx)
 - R Data Viz, gone wrong:[Accidental aRt](http://accidental-art.tumblr.com) 
 

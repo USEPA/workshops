@@ -84,7 +84,7 @@ lm_aq2<-lm(Ozone~Temp+Wind+Solar.R,data=airquality)
 summary(lm_aq2)
 ```
 
-All of your standard modelling approaches (and then some) are available in R including typical variable selection techniques (e.g. stepwise with AIC) and logistic regression. which is implemented with the rest of the generalized linear models in `glm()`.  More involved or newer approaches will be implemented (most likely) with additional packages.
+All of your standard modelling approaches (and then some) are available in R including typical variable selection techniques (e.g. stepwise with AIC) and logistic regression, which is implemented with the rest of the generalized linear models in `glm()`.  Interaction terms can be specified directly in the model, but there are several ways to do so (x*y, x:y, x^y).  Lastly, if you are interested in more involved or newer approaches these will be implemented (most likely) with additional packages and will not be available in base R or `stats`.
 
 ```{r Exercise1, echo=FALSE}
 ```

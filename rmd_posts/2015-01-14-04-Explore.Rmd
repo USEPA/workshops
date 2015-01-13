@@ -92,6 +92,8 @@ plot(iris$Petal.Width,iris$Petal.Length, main="Petal Dimensions")
 abline(h=4)
 #a vertical line
 abline(v=1.5)
+#Line with a slope and intercept
+abline(0,1)
 ```
 
 This is useful if you have a known value that you want to compare to your data.  Next example is putting a regression line on the plot.  We haven't talked about regression in R yet, but this example is simple enough I think we can get away with introducing it.  

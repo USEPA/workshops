@@ -54,9 +54,15 @@ iris_scatter_lm
 ## ----iris_lm_groups------------------------------------------------------
 iris_scatter_lm_group<-iris_scatter+
                         geom_smooth(method="lm", 
-                                    aes(colour=Species,shape=Species))
+                                    aes(group=Species))
 iris_scatter_lm_group
 
+
+## ----iris_lm_color-------------------------------------------------------
+iris_scatter_lm_color<-iris_scatter+
+                        geom_smooth(method="lm", 
+                                    aes(color=Species))
+iris_scatter_lm_color
 
 
 ## ----gg_box_examp--------------------------------------------------------
