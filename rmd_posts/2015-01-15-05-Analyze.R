@@ -10,7 +10,7 @@ xy_tt
 
 ## ----ttest_formula_examp-------------------------------------------------
 #Lets pick another dataset, ToothGrowth.
-#Looking at diff in tooth lenth by groups specified in supp
+#Looking at diff in tooth length by groups specified in supp
 rbind(head(ToothGrowth),tail(ToothGrowth))
 t.test(ToothGrowth$len~ToothGrowth$supp)
 
@@ -20,7 +20,7 @@ t.test(ToothGrowth$len~ToothGrowth$supp)
 cor(iris$Petal.Width,iris$Petal.Length)
 #And a test of that correlation
 cor.test(iris$Petal.Width,iris$Petal.Length)
-#A data frame returns a correlation matrix
+#A data frame as input returns a correlation matrix
 cor(iris)
 #Oops, non-numeric data.  Lets use dplyr to get what we want and pipe to cor
 library(dplyr)
