@@ -169,12 +169,13 @@ na.omit(examp_df)
 
 
 ## ----factor_examples-----------------------------------------------------
-#An unorderd factor
+#An unordered factor
 yn <- factor(c("yes", "no", "no", "yes", "yes"))
 yn
 
 #An ordered factor
 lmh <- factor (c("high","high","low","medium","low","medium","high"),levels=c("low","medium","high"),ordered=TRUE )
+lmh
 
 
 ## ----list_examples-------------------------------------------------------
