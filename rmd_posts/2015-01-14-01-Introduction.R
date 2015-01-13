@@ -33,7 +33,7 @@ install.packages(c("randomForest","formatR"))
 library("ggplot2")
 library("dplyr")
 
-#You can also access functions in a library by using package::function
+#You can also access functions without loading by using package::function
 randomForest::randomForest
 
 
@@ -45,7 +45,7 @@ randomForest::randomForest
 ## #What packages are available?
 ## available.packages()
 ## 
-## #Update
+## #Update, may take a while if you have many packages installed
 ## update.packages()
 
 

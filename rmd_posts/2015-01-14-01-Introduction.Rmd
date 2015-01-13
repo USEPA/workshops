@@ -100,7 +100,7 @@ install.packages(c("randomForest","formatR"))
 ###Loading packages
 One source of confusion that many have is when they cannot access a package that they just installed. This is because getting to this point requires an extra step, loading (or attaching) the package.   
 
-```{r load_package, cache=TRUE}
+```{r load_package}
 #Add libraries to your R Session
 library("ggplot2")
 library("dplyr")
