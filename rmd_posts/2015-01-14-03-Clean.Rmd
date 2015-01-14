@@ -106,7 +106,7 @@ head(virginica_iris)
 
 
 ##Data Manipulation in `dplyr`
-So, base R can do what you need, but it is a bit complicated and the syntax is a bit dense.  In `dplyr` this can be done with two functions, `select()` and `filter()`.  The code can be a bit more verbose, but it allows you to write code that is much more readable.  Before we start we need to make sure we've got everything installed and loaded.  If you do not have R Version 3.0.2 or greater you will have some problems (i.e. no `dplyr` for you). 
+So, base R can do what you need, but it is a bit complicated and the syntax is a bit dense.  In `dplyr` this can be done with two functions, `select()` and `filter()`.  The code can be a bit more verbose, but it allows you to write code that is much more readable.  Before we start we need to make sure we've got everything installed and loaded.  If you do not have R Version 3.0.2 or greater you will have some problems (i.e. no `dplyr` for you).
 
 ```{r real_setup, echo=FALSE, include=FALSE, purl=FALSE}
 if(!require("dplyr")){
