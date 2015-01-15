@@ -22,12 +22,12 @@ str(nla_sites)
 #Subset the data
 ###############################################################################
 library(dplyr)
-nla_sites_subset_dplyr <- select(nla_sites, SITE_ID, VISIT_NO, SITE_TYPE, LON_DD, 
+nla_sites_subset <- select(nla_sites, SITE_ID, VISIT_NO, SITE_TYPE, LON_DD, 
                                  LAT_DD, STATE_NAME, WSA_ECO9, NUT_REG, 
                                  NUTREG_NAME, LAKE_ORIGIN, RT_NLA) %>%
   filter(VISIT_NO==1 & SITE_TYPE == "PROB_Lake")
 
-nla_wq_subset_dplyr <- select(nla_wq, SITE_ID, VISIT_NO, SITE_TYPE, TURB, NTL, 
+nla_wq_subset <- select(nla_wq, SITE_ID, VISIT_NO, SITE_TYPE, TURB, NTL, 
                               PTL, CHLA, SECMEAN) %>%
   filter(VISIT_NO==1 & SITE_TYPE == "PROB_Lake")
 
@@ -163,6 +163,7 @@ summary(chla_lm)
 #Lesson 6: Exercise 1
 #Random Forest
 ###############################################################################
+library(randomForest)
 #clean up dataframe
 nla_data_rf<-select(nla_data,RT_NLA,TURB,NTL,PTL,CHLA,SECMEAN)
 nla_ref_rf<-randomForest(RT_NLA~.,data=nla_data_rf,na.action=na.omit)
@@ -174,6 +175,7 @@ varImpPlot(nla_ref_rf)
 #Lesson 7: Exercise 1
 #ggplot2
 ###############################################################################
+library(ggplot2)
 #scatterplot
 ggplot(nla_data,aes(x=log10(PTL),y=log10(NTL)))+geom_point()
 #boxplot
@@ -194,7 +196,7 @@ ggplot(nla_data,aes(x=log10(PTL),y=log10(CHLA))) +
 #Lesson 7: Exercise 2
 #ggplot2 Themes
 ###############################################################################
-#install.packages("wesanderson")
+if(!require("wesanderson")) {install.packages("wesanderson")}
 library("wesanderson")
 
 nla_ptl_chla<-ggplot(nla_data,aes(x=log10(PTL),y=log10(CHLA))) + 
@@ -229,7 +231,7 @@ mean_sd<-function(vec,type=c("mean","sd"),...){
 mean_sd(1:10)
 mean_sd(rnorm(10),"sd")
 mean_sd(c(5,6,7,5,6,7,5,6,7),"mean")
-mean_sd(1,"bob")
+#mean_sd(1,"bob")
 
 #2
 plot_nla<-function(x,y,grp,out=NULL){
@@ -237,7 +239,7 @@ plot_nla<-function(x,y,grp,out=NULL){
     geom_point(aes(color=grp, shape=grp),size=5) +
     geom_smooth(method="lm",aes(colour=grp))+
     labs(x=substitute(x),y=substitute(y))
-  if(!is.null(out){
+  if(!is.null(out)){
     ggsave(my_p,file=file)
   }
   return(my_p)
