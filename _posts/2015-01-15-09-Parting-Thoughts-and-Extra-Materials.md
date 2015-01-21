@@ -1,5 +1,5 @@
 ---
-title: "09 - Parting Thoughts and Some Extra Materials"
+title: "09 - Parting Thoughts"
 author: Jeffrey W. Hollister
 layout: post_page
 ---
