@@ -366,9 +366,9 @@ install.packages("gdata")
 #Load up gdata
 library("gdata")
 #Get an example Excel file read into R
-download.file("http://jwhollister.com/public/files/example.xlsx", "example.xlsx")
-first_sheet<-read.xls("example.xlsx",sheet=1)
-second_sheet<-read.xls("example.xlsx",sheet=2)
+#There has been some wierdness on windows
+first_sheet<-read.xls("http://usepa.github.io/introR/figure/example.xlsx",sheet=1)
+second_sheet<-read.xls("http://usepa.github.io/introR/figure/example.xlsx",sheet=2)
 #Did it work?
 first_sheet
 second_sheet
