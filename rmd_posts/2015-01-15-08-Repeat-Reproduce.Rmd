@@ -330,11 +330,11 @@ By itself Markdown is pretty cool, but doesn't really provide any value added to
 
 In short, these three tools allow us to write up documents, embed code via "code chunks", run that code and render the final document with nicely formatted text, results, figures etc into a final format of our choosing.  We can create `.html`, `.docx`, `.pdf`, ...  The benefit of doing this is that all of our data and code are a part of the document.  I share my source document, then anyone can reproduce all of our calculations.  For instance, I can make a manuscript that looks like this:
 
-[![Rendered Manuscript](/introR/figure/rendered.jpg)](/introR/figure/manuscript.pdf)
+![Rendered Manuscript](/introR/figure/rendered.jpg)
 
 from a source markdown document that looks like:
 
-[![Raw RMarkdown](/introR/figure/source.jpg)](/introR/figure/manuscript.Rmd)
+![Raw RMarkdown](/introR/figure/source.jpg)
 
 While we can't get to this level of detail with just the stock RStudio tools, we can still do some pretty cool stuff.  We are not going to do an exercise on this one, but we will walk through an example to create a simple reproducible research document and a presentation using the RStudio interface.  This may seem a departure for me, but anything to increase the adoption of reproducible research is a win!
 

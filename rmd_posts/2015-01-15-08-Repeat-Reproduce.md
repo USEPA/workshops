@@ -332,7 +332,7 @@ vec_time
 
 {% highlight text %}
 ##    user  system elapsed 
-##       0       0       0
+##   0.000   0.000   0.001
 {% endhighlight %}
 
 
@@ -345,7 +345,7 @@ loop_time
 
 {% highlight text %}
 ##    user  system elapsed 
-##  21.598   0.000  21.617
+##  38.516  11.220  49.793
 {% endhighlight %}
 
 Wow, quite a difference in time! It is examples like this that lead to all the talk around why R is slow at looping.  In general I agree that if there is an obvious vectorized/base solution (in this case simply adding the two vectors) use that.  That being said, it isn't always obvious what the vectorized solution would be. In that case there are some easy things to do to speed this up.  With loops that write to an object and that object is getting re-sized, we may also know the final size of that object so we can do one simple thing to dramatically improve perfomance: pre-allocate your memory, like this:
@@ -369,7 +369,7 @@ system.time(add_vecs2(large_vec1,large_vec2))
 
 {% highlight text %}
 ##    user  system elapsed 
-##   0.151   0.000   0.151
+##   0.208   0.004   0.213
 {% endhighlight %}
 
 Now thats better.  In short, if an obvious vector or primitive solution exists, use that.  If those aren't clear and you need to use a loop, don't be afraid to use one.  There are plenty of examples where a vectorized solution exists for a loop, but it may be difficult to code and understand.  Personally, I think it is possible to go too far down the vectorized path.  Do it when it makes sense, otherwise take advantage of the for loop! You can always try and speed things up after you have got your code working the first time.
@@ -509,11 +509,11 @@ By itself Markdown is pretty cool, but doesn't really provide any value added to
 
 In short, these three tools allow us to write up documents, embed code via "code chunks", run that code and render the final document with nicely formatted text, results, figures etc into a final format of our choosing.  We can create `.html`, `.docx`, `.pdf`, ...  The benefit of doing this is that all of our data and code are a part of the document.  I share my source document, then anyone can reproduce all of our calculations.  For instance, I can make a manuscript that looks like this:
 
-[![Rendered Manuscript](/introR/figure/rendered.jpg)](/introR/figure/manuscript.pdf)
+![Rendered Manuscript](/introR/figure/rendered.jpg)
 
 from a source markdown document that looks like:
 
-[![Raw RMarkdown](/introR/figure/source.jpg)](/introR/figure/manuscript.Rmd)
+![Raw RMarkdown](/introR/figure/source.jpg)
 
 While we can't get to this level of detail with just the stock RStudio tools, we can still do some pretty cool stuff.  We are not going to do an exercise on this one, but we will walk through an example to create a simple reproducible research document and a presentation using the RStudio interface.  This may seem a departure for me, but anything to increase the adoption of reproducible research is a win!
 
