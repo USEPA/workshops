@@ -5,9 +5,13 @@ layout: post_page
 ---
 
 Prior to the start of the workshop everyone will need to have had the software 
-installed and tested.  Install of R, RStudio and Strawberry Perl does not require an open source software form.  EZ Tech has it set up so that they can simply push the install, remotely, to your machines.  The current installs via this method are a bit dated.  The process has been started to update these and hopefully the most recent versions of all the required software will be available from EZ Tech in a few weeks.
+installed and tested.  You will need to have the following installed (links assume Windows as this is the predominant OS within EPA):
 
-Once we have the attendees for the workshop finalized, we will collect names and make a single request for everyone to have R, RStudio and Strawberry Perl updated and/or installed.  As soon as we know this has happened, it would be great to make sure it works for everyone.  Follow the instructions below to test your installation.
+1.) **R:** Get the [latest download](http://cran.r-project.org/bin/windows/base/) and install using the default settings.
+2.) **RStudio:** Get the [latest download](http://www.rstudio.com/products/rstudio/download/) and install using the default settings.
+3.) **Perl:** We will be using [Strawberry Perl](http://strawberryperl.com/).  For most of the workshop this is not important it is only needed for reading directly from an Excel Spreadsheet which is a VERY small part of the workshop.
+
+Once everything is installed, follow the instructions below to test your installation.
 
 ## Open RStudio
 Once installed, RStudio should be accessible from the start menu.  Start up RStudio.  Once running it should look something like:
