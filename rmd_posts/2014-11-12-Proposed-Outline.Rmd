@@ -14,7 +14,7 @@ For each of the lessons there is a blog post that describes what we are doing, p
 
 ##Tentative Schedule
 
-## Wed, January 14, 2015
+## Day 1
 
 ### 01 - Introduction (8:30 am - 10:00 am)
 - Getting R and RStudio going
@@ -46,7 +46,7 @@ For each of the lessons there is a blog post that describes what we are doing, p
 - Summary Statistics
 - Exploratory plots with base R
 
-## Thursday, January 15, 2015
+## Day 2
 
 ### 05 - Analyze: Base (8:30 am - 9:30 am)
 - Base statistics

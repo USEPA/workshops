@@ -1,9 +1,0 @@
----
-title: "09- Some Extra Materials"
-author: Jeffrey W. Hollister
-layout: post_page
----
-
-I promised that I would put up my code for each of the exercises.  If we come across some other things that I would like to share, I am simply going to use this post as a catch all for those types of items.  Enjoy!
-
-- [Jeff's nla_anlaysi.R](/introR/exercises/nla_analysis.R)
