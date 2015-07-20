@@ -347,6 +347,7 @@ Since we are talking about markdown and R, our documents will all be R Markdown 
     x<-rnorm(100)
     x
     ```
+    
 This identifies what is known as a code chunk.  When written like it is above, it will echo the code to your final document, evalute the code with R and echo the results to the final document.  There are some cases where you might not want all of this to happen.  You may want just the code returned and not have it evalutated by R.  This is accomplished with:
 
     ```{r eval=FALSE}`r ''`
@@ -361,6 +362,7 @@ Alternatively, you might just want the output returned, as would be the case whe
     y<-jitter(x,1000)
     plot(x,y)
     ```
+    
 Lastly, each of your code chunks can have a label.  That would be accomplished with something like:
  
     ```{r myFigure, echo=FALSE}`r ''`
@@ -368,6 +370,7 @@ Lastly, each of your code chunks can have a label.  That would be accomplished w
     y<-jitter(x,1000)
     plot(x,y)
     ```
+    
 Now, lets get started and actually create a reproducible document
 
 ###Create a Document

@@ -332,7 +332,7 @@ vec_time
 
 {% highlight text %}
 ##    user  system elapsed 
-##   0.000   0.000   0.001
+##       0       0       0
 {% endhighlight %}
 
 
@@ -345,7 +345,7 @@ loop_time
 
 {% highlight text %}
 ##    user  system elapsed 
-##  38.516  11.220  49.793
+##  18.498   0.002  18.529
 {% endhighlight %}
 
 Wow, quite a difference in time! It is examples like this that lead to all the talk around why R is slow at looping.  In general I agree that if there is an obvious vectorized/base solution (in this case simply adding the two vectors) use that.  That being said, it isn't always obvious what the vectorized solution would be. In that case there are some easy things to do to speed this up.  With loops that write to an object and that object is getting re-sized, we may also know the final size of that object so we can do one simple thing to dramatically improve perfomance: pre-allocate your memory, like this:
@@ -369,7 +369,7 @@ system.time(add_vecs2(large_vec1,large_vec2))
 
 {% highlight text %}
 ##    user  system elapsed 
-##   0.208   0.004   0.213
+##   0.205   0.000   0.205
 {% endhighlight %}
 
 Now thats better.  In short, if an obvious vector or primitive solution exists, use that.  If those aren't clear and you need to use a loop, don't be afraid to use one.  There are plenty of examples where a vectorized solution exists for a loop, but it may be difficult to code and understand.  Personally, I think it is possible to go too far down the vectorized path.  Do it when it makes sense, otherwise take advantage of the for loop! You can always try and speed things up after you have got your code working the first time.
@@ -526,6 +526,7 @@ Since we are talking about markdown and R, our documents will all be R Markdown 
     x<-rnorm(100)
     x
     ```
+    
 This identifies what is known as a code chunk.  When written like it is above, it will echo the code to your final document, evalute the code with R and echo the results to the final document.  There are some cases where you might not want all of this to happen.  You may want just the code returned and not have it evalutated by R.  This is accomplished with:
 
     ```{r eval=FALSE}
@@ -540,6 +541,7 @@ Alternatively, you might just want the output returned, as would be the case whe
     y<-jitter(x,1000)
     plot(x,y)
     ```
+    
 Lastly, each of your code chunks can have a label.  That would be accomplished with something like:
  
     ```{r myFigure, echo=FALSE}
@@ -547,6 +549,7 @@ Lastly, each of your code chunks can have a label.  That would be accomplished w
     y<-jitter(x,1000)
     plot(x,y)
     ```
+    
 Now, lets get started and actually create a reproducible document
 
 ###Create a Document
