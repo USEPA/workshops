@@ -8,8 +8,6 @@ This 1/2 day workshop will provide attendees with an introduction to doing basic
 - use a variety of approaches for visualizing spatial data with R
 - know how and where to get help
 
-For more, visit the [GitHub repo](https://github.com/USEPA/intro_gis_with_r).
-
 ##Pre-requisites
 It is expected that you have some familiarity with R and RStudio, can install packages from CRAN, and understand basic R syntax.
 
