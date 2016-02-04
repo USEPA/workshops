@@ -27,3 +27,4 @@ March 2, 2016
 |2:45 PM - 3:00 PM | *BREAK*                                   |
 |3:00 PM - 4:00 PM | Visaulizing Spatial Data with R           |
 |4:00 PM - 5:00 PM | Basic GIS Anslysis with R                 |
+
