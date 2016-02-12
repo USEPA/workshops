@@ -19,13 +19,13 @@ The draft agenda is below:
 
 March 2, 2016
 
-| Time             | Topic                                     |
-|------------------|-------------------------------------------|
-|1:00 PM - 1:15 PM | Welcome, Introductions, Logistics         |
-|1:15 PM - 1:45 PM | Setting up R to do GIS                    |
-|1:45 PM - 2:15 PM | Reading/Writing Raster and Vector Data    |
-|2:15 PM - 2:45 PM | Visaulizing Spatial Data with R           |
-|2:45 PM - 3:00 PM | *BREAK*                                   |
-|3:00 PM - 3:45 PM | Visaulizing Spatial Data with R: Continued|
-|3:45 PM - 5:00 PM | Basic GIS Anslysis with R                 |
+| Time             | Topic                                                                 |
+|------------------|-----------------------------------------------------------------------|
+|1:00 PM - 1:15 PM | Welcome, Introductions, Logistics                                     |
+|1:15 PM - 1:45 PM | [Setting up R to do GIS](lessons/01_gis_r_setup.md)                   |
+|1:45 PM - 2:15 PM | [Reading/Writing Raster and Vector Data](02_read_in_gis_data.md)      |
+|2:15 PM - 2:45 PM | [Visaulizing Spatial Data with R](03_visualize_gis_data.md)           |
+|2:45 PM - 3:00 PM | *BREAK*                                                               |
+|3:00 PM - 3:45 PM | [Visaulizing Spatial Data with R: Continued](03_visualize_gis_data.md)|
+|3:45 PM - 5:00 PM | [Basic GIS Anslysis with R](04_analyze_gis_data.md)                   |
 
