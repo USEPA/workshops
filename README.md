@@ -22,9 +22,10 @@ March 2, 2016
 | Time             | Topic                                     |
 |------------------|-------------------------------------------|
 |1:00 PM - 1:15 PM | Welcome, Introductions, Logistics         |
-|1:15 PM - 2:00 PM | Setting up R to do GIS: Required Packages |
-|2:00 PM - 2:45 PM | Reading in Raster and Vector Data         |
+|1:15 PM - 1:45 PM | Setting up R to do GIS                    |
+|1:45 PM - 2:15 PM | Reading/Writing Raster and Vector Data    |
+|2:15 PM - 2:45 PM | Visaulizing Spatial Data with R           |
 |2:45 PM - 3:00 PM | *BREAK*                                   |
-|3:00 PM - 4:00 PM | Visaulizing Spatial Data with R           |
-|4:00 PM - 5:00 PM | Basic GIS Anslysis with R                 |
+|3:00 PM - 3:45 PM | Visaulizing Spatial Data with R: Continued|
+|3:45 PM - 5:00 PM | Basic GIS Anslysis with R                 |
 
