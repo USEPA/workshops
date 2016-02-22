@@ -9,6 +9,9 @@ Out of the box, R is not ready to do GIS analysis.  As such, we need to add a fe
 - [Visualization packages](#visualization-packages)
 - [Interacting with an external GIS](#interacting-with-an-external-gis)
 
+## Lesson Exercises
+- [Exercise 1.1](#exercise-11)
+
 ## Required packages
 Within in the last several years there has been a lot of effort spent on adding spatial data handling and analysis capability to R.  Thanks to the very significant effort of the package authors we now have the foundation for doing GIS entirely within R. ***Aside:*** *R may not always be the best choice for a given GIS task, but at least now it is a possible choice.  This is a discussion though, for another time*
 
@@ -78,12 +81,20 @@ Some of the other packages I have used for various tasks have been:
 - gdistance: 
 - geosphere:
 - SDMTools:
+- geojsonio:
 
 ## Visualization packages
-
-## Lesson Exercises
-- [Exercise 1.1](#exercise-11)
+- ggplot2
+- ggmap
+- leaflet
+- mapview
+- quickmapr
 
 ## Exercise 1.1
 
 ## Interacting with an external GIS
+RSAGA
+spgrass
+RPyGeo
+
+## Other
