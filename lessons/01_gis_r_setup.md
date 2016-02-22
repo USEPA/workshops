@@ -9,7 +9,7 @@ Out of the box, R is not ready to do GIS analysis.  As such, we need to add a fe
 - [Visualization packages](#visualization-packages)
 
 ## Required packages
-
+Within in the last several years there has been a lot of effort spent on adding spatial data handling and analysis capability to R.  Thanks to the very significant effort of the package authors we now have the foundation for doing GIS entirely within R. ***Aside:*** *R may not always be the best choice for a given GIS task, but at least now it is a possible choice.  This is a discussion though, for another time* 
 ## Advanced GIS analysis packages
 
 ## Visualization packages
