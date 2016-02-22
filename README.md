@@ -29,3 +29,9 @@ March 2, 2016
 |3:00 PM - 3:45 PM | [Visaulizing Spatial Data with R: Continued](lessons/03_visualize_gis_data.md)|
 |3:45 PM - 5:00 PM | [Basic GIS Anslysis with R](lessons/04_analyze_gis_data.md)                   |
 
+## Webinar
+While this workshop will be run with local attendees in mind, it will be broadcast and recorded for future playback.  
+
+[Link to Webinar Announcement](https://epawebconferencing-events.acms.com/content/connect/c1/7/en/events/event/shared/97377684/event_landing.html?sco-id=97453386)
+
+In addition, the materials in this GitHub repository will be left open to the public and should provide enough details to get set-up and started with using GIS in R.
