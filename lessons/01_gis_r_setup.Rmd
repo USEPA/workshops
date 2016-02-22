@@ -35,10 +35,31 @@ library("sp")
 ```
 
 ### rgdal
+The `rgdal` package provides tools for reading and writing multiple spatial data formats.  It is based on the [Geospatial Data Abstraction Library (GDAL)](http://www.gdal.org/) which is a project of the Open Source Geospatial Foundation (OSGeo).  The R package was authored by Roger Bivan, Tim Keitt, and Barry Rowlingson, with others contributing.  The primary use of `rgdal` is to read various spatial data formats into R and store them as `sp` objects.  In this workshop, we will be only using `rgdal` to read in shape files, but it has utility far beyond that.  
+
+As before, nothing special to get set up with `rgdal` on windows.  Simply:
+
+```{r add_rgdal, eval=FALSE}
+install.packages("rgdal")
+library("rgdal")
+```
+
+Getting set up on Linux or iOS requires more effort (i.e. need to have GDAL intalled).  As this is for a USEPA audience the windows installs will work for most.  Thus, discussion of this is mostly beyond the scope of this workshop.  
+
+If you have any questions about this, contact [Jeff](mailto::hollister.jeff@epa.gov).
 
 ### raster
+Although `sp` and `rgdal` provide raster data capabilities, they do require that the full raster dataset be read into memory.  This can have some performance implications as well as limits the size of datasets you can readily work with.  The `raster` package works around this by working with raster data on the disk.  That too has some performance implications, but for the most part, in my opinion anyway, `raster` makes it easier to work with raster data.  It also provides several additional functions for analysing raster data.
+
+Just do: 
+
+```{r add_raster, eval=FALSE}
+install.packages("raster")
+library("raster")
+```
 
 ### rgeos
+The last of the core packages for doing GIS in R is `rgeos`.
 
 ## Advanced GIS analysis packages
 
