@@ -5,8 +5,6 @@ Out of the box, R is not ready to do GIS analysis.  As such, we need to add a fe
 
 ## Lesson Outline
 - [Required packages](#required-packages)
-- [Additional GIS analysis packages](#additional-gis-analysis-packages)
-- [Visualization packages](#visualization-packages)
 - [Interacting with an external GIS](#interacting-with-an-external-gis)
 
 ## Lesson Exercises
@@ -72,23 +70,7 @@ install.packages("rgeos")
 library("rgeos")
 ```
 
-For Linux and iOS the GEOS library will also need to be available.  As with `rgdal` this is a bit beyond the scope of this workshop.  One item to note for US EPA Linux users.  The official Linux OS is Red Hat 6.  Their have been reports of problems with the version of GEOS available for Red Hat 6.  If this applies to you, contact contact [Jeff](mailto::hollister.jeff@epa.gov) for details on how to solve this.
-
-## Additional GIS analysis packages
-In this section, I'll introduce a few other packages that I have used or know about that provide some common analyses that may not be readily available via the base packages.  For a complete annotated listing though, the [CRAN Spatial Analysis Task View](https://cran.r-project.org/web/views/Spatial.html) should be your first stop.  The task view provides a full list of packages for working with spatial data, geostatistics, spatial regression, etc.  
-
-Some of the other packages I have used for various tasks have been:
-- gdistance: 
-- geosphere:
-- SDMTools:
-- geojsonio:
-
-## Visualization packages
-- ggplot2
-- ggmap
-- leaflet
-- mapview
-- quickmapr
+For Linux and iOS the GEOS library will also need to be available.  As with `rgdal` this is a bit beyond the scope of this workshop.  One item to note for US EPA Linux users.  The official Linux OS is Red Hat 6.  Their have been reports of problems with the version of GEOS available for Red Hat 6.  If this applies to you, contact [Jeff](mailto::hollister.jeff@epa.gov) for details on how to solve this.
 
 ## Exercise 1.1
 
@@ -97,4 +79,3 @@ RSAGA
 spgrass
 RPyGeo
 
-## Other
