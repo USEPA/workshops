@@ -46,9 +46,7 @@ install.packages("rgdal")
 library("rgdal")
 ```
 
-Getting set up on Linux or iOS requires more effort (i.e. need to have GDAL intalled).  As this is for a USEPA audience the windows installs will work for most.  Thus, discussion of this is mostly beyond the scope of this workshop.  
-
-If you have any questions about this, contact [Jeff](mailto::hollister.jeff@epa.gov).
+Getting set up on Linux or Mac requires more effort (i.e. need to have GDAL intalled).  As this is for a USEPA audience the windows installs will work for most.  Thus, discussion of this is mostly beyond the scope of this workshop.  
 
 ### raster
 Although `sp` and `rgdal` provide raster data capabilities, they do require that the full raster dataset be read into memory.  This can have some performance implications as well as limits the size of datasets you can readily work with.  The `raster` package works around this by working with raster data on the disk.  That too has some performance implications, but for the most part, in my opinion anyway, `raster` makes it easier to work with raster data.  It also provides several additional functions for analysing raster data.  THe `raster` package was authored by Robert Hijmans with a large number of contributors. 
@@ -70,12 +68,26 @@ install.packages("rgeos")
 library("rgeos")
 ```
 
-For Linux and iOS the GEOS library will also need to be available.  As with `rgdal` this is a bit beyond the scope of this workshop.  One item to note for US EPA Linux users.  The official Linux OS is Red Hat 6.  Their have been reports of problems with the version of GEOS available for Red Hat 6.  If this applies to you, contact [Jeff](mailto::hollister.jeff@epa.gov) for details on how to solve this.
+For Linux and Mac the GEOS library will also need to be available.  As with `rgdal` this is a bit beyond the scope of this workshop.  One item to note for US EPA Linux users.  The official Linux OS is Red Hat 6.  Their have been reports of problems with the version of GEOS available for Red Hat 6.  If this applies to you, contact [Jeff](mailto::hollister.jeff@epa.gov) for details on how to solve this.
 
 ## Exercise 1.1
+The first exercise won't be too thrilling, but we need to make sure everyone has the four packages installed. 
+
+1.) Install `sp` and load `sp` into your library.
+2.) Repeat, with `rgdal`, `raster`, and `rgeos`.
+
 
 ## Interacting with an external GIS
-RSAGA
-spgrass
-RPyGeo
+Although we won't be working with external GIS in this workshop, there are several packages that provide ways move back and forth from another GIS and R.  
+
+- [spgrass6](https://cran.r-project.org/web/packages/spgrass6/index.html): Provides an interface between R and [GRASS 6+](https://grass.osgeo.org/download/software/#g64x).  Allows for running R from within GRASS as well as running GRASS from within R.  
+- [rgrass7](https://cran.r-project.org/web/packages/rgrass7/index.html): Same as `spgrass6`, but for the latest version of GRASS, [GRASS 7](https://grass.osgeo.org/download/software/#g70x).
+- [RPyGeo](https://cran.r-project.org/web/packages/RPyGeo/index.html): A wrapper for accessing ArcGIS from R.  Utilizes intermediate python scripts to fire up ArcGIS.  Hasn't been updated in some time.
+- [RSAGA](https://cran.r-project.org/web/packages/RSAGA/index.html): R interface to the command line version of [SAGA GIS](http://www.saga-gis.org/en/index.html).
+
+
+
+
+
+
 
