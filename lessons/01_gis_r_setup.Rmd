@@ -1,7 +1,6 @@
 ```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
 options(repos="http://cran.rstudio.com/")
 library("sp")
-
 ```
 
 # Setting up R to do GIS
