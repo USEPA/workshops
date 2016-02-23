@@ -3,12 +3,12 @@
 # Reading and Writing Raster and Vector Data
 
 ## Lesson Outline
-- [Vector data: shapefiles](#vector-data:-shapefiles)
-- [Vector data: file geodatabase](#vector-data:-file-geodatabase])
-- [Vector data: geojson](#vector-data:-geojson)
-- [Raster data: esri Grids](#raster-data:-esri-grids)
-- [Raster data: ASCII](#raster-data:-ascii)
-- [Raster data: common image formats](#raster-data:-common-image-formats)
+- [Vector data: shapefiles](#vector-data-shapefiles)
+- [Vector data: file geodatabase](#vector-data-file-geodatabase])
+- [Vector data: geojson](#vector-data-geojson)
+- [Raster data: esri Grids](#raster-data-esri-grids)
+- [Raster data: ASCII](#raster-data-ascii)
+- [Raster data: common image formats](#raster-data-common-image-formats)
 - [Geospatial data packages](#geospatial data packages)
 
 ## Lesson Exercises
