@@ -5,7 +5,7 @@ lapply(pkgs, library, character.only = TRUE)
 ```
 
 # Reading and Writing Raster and Vector Data
-So, now that we have the base packages installed and loaded we can work on 
+So, now that we have the base packages installed and loaded we can work on getting our data into and out of R.  While it is possible to store spatial data as R objects (e.g. via .Rda/Rdata files) that is probably not the best approach.  It is better to store spatial data in widley used files (e.g. shapefiles,.tiff, or geojson) or in spatial databases (e.g. file geodatabse or PostGIS) and then read that data into R for analysis then writing the results back out to your file format of choice.  In this lesson we will explore several ways to read in multiple vector and raster data types.
 
 ## Lesson Outline
 - [Vector data: shapefiles](#vector-data-shapefiles)
@@ -21,6 +21,9 @@ So, now that we have the base packages installed and loaded we can work on
 - [Exercise 2.2](#exercise-22)
 
 ## Vector data: shapefiles
+For many, shapefiles are going to be the most common way to interact with spatial data.  In R, there are many ways to read in shapefiles.  We are going to focus using `rgdal` becuase it is flexible and provides a common interface to multiple file types.  But to be fair, I'll also quickly show a few other options from `maptools` and `shapefiles` at the end.
+
+For this workshop, I have collected several example datasets to use and have included them in this repository.  So, let's first grab the dataset.  It is stored as a zip file
 
 ## Vector data: file geodatabase
 
