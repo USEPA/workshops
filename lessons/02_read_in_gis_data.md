@@ -3,27 +3,35 @@
 # Reading and Writing Raster and Vector Data
 
 ## Lesson Outline
-- [rgdal]()
-- [raster]()
-- [gejsonio]()
-- [others]()
+- [Vector data: shapefiles](#vector-data:-shapefiles)
+- [Vector data: file geodatabase](#vector-data:-file-geodatabase])
+- [Vector data: geojson](#vector-data:-geojson)
+- [Raster data: esri Grids](#raster-data:-esri-grids)
+- [Raster data: ASCII](#raster-data:-ascii)
+- [Raster data: common image formats](#raster-data:-common-image-formats)
+- [Geospatial data packages](#geospatial data packages)
 
 ## Lesson Exercises
 - [Exercise 2.1](#exercise-21)
+- [Exercise 2.2](#exercise-22)
 
-## rgdal
-vector and raster
+## Vector data: shapefiles
 
-## raster
+## Vector data: file geodatabase
 
-## geojsonio
+## Vector data: geojson
 
-## Others
-maptools, etc.
+## Exercise 2.1
 
-## R ready geospatial data
+## Raster data: esri Grids
+
+## Raster data: ASCII
+
+## Raster data: common image formats
+
+## Exercise 2.2
+
+## Geospatial data packages
 - maps
 - USCensus
 
-
-## Exercise
