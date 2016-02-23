@@ -1,4 +1,25 @@
 
+```
+## [[1]]
+##  [1] "raster"    "rgeos"     "rgdal"     "sp"        "stats"    
+##  [6] "graphics"  "grDevices" "utils"     "datasets"  "methods"  
+## [11] "base"     
+## 
+## [[2]]
+##  [1] "raster"    "rgeos"     "rgdal"     "sp"        "stats"    
+##  [6] "graphics"  "grDevices" "utils"     "datasets"  "methods"  
+## [11] "base"     
+## 
+## [[3]]
+##  [1] "raster"    "rgeos"     "rgdal"     "sp"        "stats"    
+##  [6] "graphics"  "grDevices" "utils"     "datasets"  "methods"  
+## [11] "base"     
+## 
+## [[4]]
+##  [1] "raster"    "rgeos"     "rgdal"     "sp"        "stats"    
+##  [6] "graphics"  "grDevices" "utils"     "datasets"  "methods"  
+## [11] "base"
+```
 
 # Setting up R to do GIS
 Out of the box, R is not ready to do GIS analysis.  As such, we need to add a few packages that will provide most of the functionality you'd expect out of a GIS.  In this lesson we will introduce both the bare minimum packages for doing GIS as well as discuss additional packages that provide more advanced GIS analysis and visualization.

@@ -1,6 +1,28 @@
 
+```
+## [[1]]
+##  [1] "raster"    "rgeos"     "rgdal"     "sp"        "stats"    
+##  [6] "graphics"  "grDevices" "utils"     "datasets"  "methods"  
+## [11] "base"     
+## 
+## [[2]]
+##  [1] "raster"    "rgeos"     "rgdal"     "sp"        "stats"    
+##  [6] "graphics"  "grDevices" "utils"     "datasets"  "methods"  
+## [11] "base"     
+## 
+## [[3]]
+##  [1] "raster"    "rgeos"     "rgdal"     "sp"        "stats"    
+##  [6] "graphics"  "grDevices" "utils"     "datasets"  "methods"  
+## [11] "base"     
+## 
+## [[4]]
+##  [1] "raster"    "rgeos"     "rgdal"     "sp"        "stats"    
+##  [6] "graphics"  "grDevices" "utils"     "datasets"  "methods"  
+## [11] "base"
+```
 
 # Reading and Writing Raster and Vector Data
+So, now that we have the base packages installed and loaded we can work on 
 
 ## Lesson Outline
 - [Vector data: shapefiles](#vector-data-shapefiles)
