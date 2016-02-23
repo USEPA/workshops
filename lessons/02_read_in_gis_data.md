@@ -6,7 +6,7 @@
 - [Vector data: shapefiles](#vector-data-shapefiles)
 - [Vector data: file geodatabase](#vector-data-file-geodatabase])
 - [Vector data: geojson](#vector-data-geojson)
-- [Raster data: esri Grids](#raster-data-esri-grids)
+- [Raster data: esri grids](#raster-data-esri-grids)
 - [Raster data: ASCII](#raster-data-ascii)
 - [Raster data: common image formats](#raster-data-common-image-formats)
 - [Geospatial data packages](#geospatial data packages)
@@ -23,7 +23,7 @@
 
 ## Exercise 2.1
 
-## Raster data: esri Grids
+## Raster data: esri grids
 
 ## Raster data: ASCII
 
