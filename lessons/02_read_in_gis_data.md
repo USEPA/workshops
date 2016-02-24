@@ -36,7 +36,7 @@ unzip("data.zip",overwrite = TRUE)
 
 
 ## Vector data: shapefiles
-For many, shapefiles are going to be the most common way to interact with spatial data.  In R, there are many ways to read in shapefiles.  We are going to focus using `rgdal` becuase it is flexible and provides a common interface to multiple file types.  But to be fair, I'll also quickly show a few other options from `maptools` and `shapefiles`.
+For many, shapefiles are going to be the most common way to interact with spatial data.  In R, there are many ways to read in shapefiles.  We are going to focus using `rgdal` becuase it is flexible and provides a common interface to multiple file types.  But to be fair, I'll also quickly show a another option from `maptools`.
 
 ### Reading in Shapfiles
 To read in a shapefile using `rgdal`, we want to use the `readOGR` function.  This function is the primary way to interact with vector data using `rgdal`.  There are many arguments to this function, but the two you need are the "dsn" and "layer".  For a shapefile the "dsn" is the path (in our case probably "data") and the "layer" is the name of the shapefile without any extensions.  The function call to read the DC Metro shapefile from out example data looks like: 
@@ -128,25 +128,8 @@ summary(dc_metro_mt)
 ##  Max.   :8.00  
 ## 
 ```
-
-
-```r
-dc_metro_sf<-shapefiles::read.shapefile("data/Metro_Lines")
-```
-
-```
-## Error in as.environment(pos): no item called "package:shapefiles" on the search list
-```
-
-```r
-summary(dc_metro_sf)
-```
-
-```
-## Error in summary(dc_metro_sf): error in evaluating the argument 'object' in selecting a method for function 'summary': Error: object 'dc_metro_sf' not found
-```
-
-Couple of notes on these.  First the `maptools` ones require that you know your geomtery type, whereas, `readOGR` will get that from the data.  I did test to see if the the `maptools::readShapeLines` was any quicker than `rgdal::readOGR` and in my huge sample of one, it was. Second, `shapefiles::read.shapefile` pulls the shapefile in as a list and thus the defualt plotting, printing, summary etc. methods you get with an `sp` object are not available to you.  Further work would need to be done to get these into the appropriate `sp` object.  Lastly, each of these are one-trick ponies.  They read in shapefiles and that is it.  As we will see, readOGR works across a range of vector data types and thus, is what I would recomend for most spatial data I/O tasks.
+ 
+Couple of notes on this  First the `maptools` functions require that you know your geomtery type, whereas, `readOGR` will get that from the data.  I did test to see if the the `maptools::readShapeLines` was any quicker than `rgdal::readOGR` and in my huge sample of one, it was. Lastly, `readShapeLines` is a one-trick pony.  It reads in shapefiles and that is it.  As we will see, `readOGR` works across a range of vector data types and thus, is what I would recomend for most vector data I/O tasks.
 
 ### Writing shapefiles
 
@@ -155,12 +138,16 @@ Writing shapefiles is just as easy as reading them, assuming you have an `sp` ob
 Before we do this, we can prove that the shapefile doesn't exist.
 
 
+```
+## [1] TRUE TRUE TRUE TRUE
+```
+
 ```r
 list.files("data","dc_metro")
 ```
 
 ```
-## [1] "dc_metro.dbf" "dc_metro.prj" "dc_metro.shp" "dc_metro.shx"
+## character(0)
 ```
 
 Now to write the shapefile:
@@ -168,13 +155,7 @@ Now to write the shapefile:
 
 ```r
 writeOGR(dc_metro,"data","dc_metro",driver="ESRI Shapefile")
-```
 
-```
-## Error in writeOGR(dc_metro, "data", "dc_metro", driver = "ESRI Shapefile"): layer exists, use a new layer name
-```
-
-```r
 #Is it there?
 list.files("data","dc_metro")
 ```
