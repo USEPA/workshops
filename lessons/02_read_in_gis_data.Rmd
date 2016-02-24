@@ -88,10 +88,19 @@ list.files("data","dc_metro")
 So same "dsn" and "layer" arguments as before.  Only differnce is that the first argument is the `sp` object you want to write out to a shapefile.  
 
 ## Vector data: file geodatabase
-A recent addition to the GDAL world is the ability to read ESRI File Geodatabases.  This is easy to access on windows as the latest version of GDAL is wrapped up as part of the `rgdal` install and thus you get access to the appropriate drivers.  This is a bit more challenging on Linux (even more so on the antiquated RHEL 6 that is EPAs approved OS) as you need to have GDAL 1.11.x +.  In any event, if you use file geodatabases, you can read those directly into R with readOGR.
+A recent addition to the GDAL world is the ability to read ESRI File Geodatabases.  This is easy to access on windows as the latest version of GDAL is wrapped up as part of the `rgdal` install and thus you get access to the appropriate drivers.  This is a bit more challenging on Linux (even more so on the antiquated RHEL 6 that is EPAs approved OS) as you need to have GDAL 1.11.x +.  In any event, if you use file geodatabases, you can read those directly into R with readOGR. Difference here is the "dsn" is the name of the file geodatabase (with path info if needed), and the "layer" is the feature class
 
 ```{r read_fgdb}
+#List feature classes
+ogrListLayers("data/spx.gdb")
+examp_fgdb <- readOGR(dsn = "data/spx.gdb", layer="polygons5")
+```
 
+And to be sure it worked:
+
+```{r check_gdb}
+summary(examp_fgdb)
+plot(examp_fgdb)
 ```
 
 ## Vector data: geojson

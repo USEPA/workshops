@@ -164,9 +164,56 @@ list.files("data","dc_metro")
 So same "dsn" and "layer" arguments as before.  Only differnce is that the first argument is the `sp` object you want to write out to a shapefile.  
 
 ## Vector data: file geodatabase
-A recent addition to the GDAL world is the ability to read ESRI File Geodatabases.  This is easy to access on windows as the latest version of GDAL is wrapped up as part of the `rgdal` install and thus you get access to the appropriate drivers.  This is a bit more challenging on Linux (even more so on the antiquated RHEL 6 that is EPAs approved OS) as you need to have GDAL 1.11.x +.  In any event, if you use file geodatabases, you can read those directly into R with readOGR.
+A recent addition to the GDAL world is the ability to read ESRI File Geodatabases.  This is easy to access on windows as the latest version of GDAL is wrapped up as part of the `rgdal` install and thus you get access to the appropriate drivers.  This is a bit more challenging on Linux (even more so on the antiquated RHEL 6 that is EPAs approved OS) as you need to have GDAL 1.11.x +.  In any event, if you use file geodatabases, you can read those directly into R with readOGR. Difference here is the "dsn" is the name of the file geodatabase (with path info if needed), and the "layer" is the feature class
 
 
+```r
+#List feature classes
+ogrListLayers("data/spx.gdb")
+```
+
+```
+## Error in ogrListLayers("data/spx.gdb"): Cannot open data source
+```
+
+```r
+examp_fgdb <- readOGR(dsn = "data/spx.gdb", layer="polygons5")
+```
+
+```
+## Error in ogrInfo(dsn = dsn, layer = layer, encoding = encoding, use_iconv = use_iconv, : Cannot open data source
+```
+
+And to be sure it worked:
+
+
+```r
+summary(examp_fgdb)
+```
+
+```
+## Object of class SpatialPolygonsDataFrame
+## Coordinates:
+##      min   max
+## x -1e+06 1e+06
+## y -1e+06 1e+06
+## Is projected: NA 
+## proj4string : [NA]
+## Data attributes:
+##       FID       
+##  Min.   :  1.0  
+##  1st Qu.:150.8  
+##  Median :300.5  
+##  Mean   :300.5  
+##  3rd Qu.:450.2  
+##  Max.   :600.0
+```
+
+```r
+plot(examp_fgdb)
+```
+
+![plot of chunk check_gdb](figure/check_gdb-1.png)
 
 ## Vector data: geojson
 
