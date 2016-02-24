@@ -33,6 +33,11 @@ Oh and while we are being a bit #rstats crazy...  Let unzip it with R too!
 unzip("data.zip",overwrite = TRUE)
 ```
 
+```r
+if(!dir.exists("data")==FALSE){
+  unzip("../data.zip",overwrite = TRUE)
+}
+```
 
 
 ## Vector data: shapefiles
@@ -139,7 +144,7 @@ Before we do this, we can prove that the shapefile doesn't exist.
 
 
 ```
-## [1] TRUE TRUE TRUE TRUE
+## [1] TRUE
 ```
 
 ```r
@@ -167,7 +172,7 @@ list.files("data","dc_metro")
 So same "dsn" and "layer" arguments as before.  Only differnce is that the first argument is the `sp` object you want to write out to a shapefile.  
 
 ## Vector data: file geodatabase
-A recent addition to the GDAL world is the ability to read ESRI File Geodatabases.  This is easy to access on windows as the latest version of GDAL is wrapped up as part of the `rgdal` install and thus you get access to the appropriate drivers.  This is a bit more challenging on Linux (even more so on the antiquated RHEL 6 that is EPAs approved OS) as you need to have GDAL 1.11.x +.  In any event, if you use file geodatabases, you can read those directly into R with readOGR. Difference here is the "dsn" is the name of the file geodatabase (with path info if needed), and the "layer" is the feature class
+A recent addition to the GDAL world is the ability to read ESRI File Geodatabases.  This is easy to access on windows as the latest version of GDAL is wrapped up as part of the `rgdal` install and thus you get access to the appropriate drivers.  This is a bit more challenging on Linux (even more so on the antiquated RHEL 6 that is EPAs approved OS) as you need to have GDAL 1.11.x +.  In any event, if you use file geodatabases, you can read those directly into R with readOGR. Difference here is the "dsn" is the name of the file geodatabase (with path info if needed), and the "layer" is the feature class.
 
 
 ```r
@@ -226,11 +231,79 @@ plot(examp_fgdb)
 
 ![plot of chunk check_gdb](figure/check_gdb-1.png)
 
+Writing to a file geodatabase from R is not yet possible.
+
 ## Vector data: geojson
 
+Last vector example we will show is geojson.  For most desktop GIS users this will not be encountered too often, but as more and more GIS moves to the web, geojson will become increasingly common.  We will still rely on `readOGR` for the geojson.
+
+### Reading in geojson
+
+To read in with `rgdal` we use "dsn" and "layer" a bit differently.  The "dsn" is the name (and path) of the file, and "layer" is going to be set as "OGRGeoJSON". 
+
+
+```r
+dc_metro_sttn <- readOGR("data/dc_metrostations.geojson", "OGRGeoJSON")
+```
+
+```
+## Error in ogrInfo(dsn = dsn, layer = layer, encoding = encoding, use_iconv = use_iconv, : Cannot open data source
+```
+
+And to see that something is there...
+
+
+```r
+#Let's use the defualt print 
+dc_metro_sttn
+```
+
+```
+## class       : SpatialPointsDataFrame 
+## features    : 40 
+## extent      : -77.085, -76.93526, 38.84567, 38.97609  (xmin, xmax, ymin, ymax)
+## coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
+## variables   : 6
+## names       : OBJECTID,   GIS_ID,                          NAME,                                                WEB_URL,                 LINE,                    ADDRESS 
+## min values  :        1, mstn_001,                     Anacostia,  http://wmata.com/rail/station_detail.cfm?station_id=1, blue, orange, silver, 1001 CONNECTICUT AVENUE NW 
+## max values  :       40, mstn_040, Woodley Park-Zoo Adams Morgan, http://wmata.com/rail/station_detail.cfm?station_id=90,   red, green, yellow, 919 RHODE ISLAND AVENUE NE
+```
+
+```r
+#And add a few more things to our plot
+plot(dc_metro)
+```
+
+![plot of chunk check_geojson](figure/check_geojson-1.png)
+
+```r
+plot(dc_metro_sttn, col = "red")
+```
+
+![plot of chunk check_geojson](figure/check_geojson-2.png)
+
+### Writing geojson
+
+Just as with shapefiles, writing to a geojson file can be accomplished with `writeOGR`.
+
+
+```r
+writeOGR(dc_metro_sttn,"data/stations.geojson", "OGRGeoJSON", 
+         driver="GeoJSON")
+```
+
+Lastly, if you commonly work with geojson files, there is the `geojsonio` package from [rOpenSci](https://ropensci.org/) that provides a number of tools for reading, writing, and converting geojson files.  It is certainly worth exploring as it provides additiona functionality beyond the `rgdal` toolset.
+
 ## Exercise 2.1
+For this first exercise we will just focus on getting a shapefile read into R.  We will be using the sticky notes I handed out to let me know who needs help and who has finished the exercise.  Once everyone is done, we will move on.
+
+1.) Using `rgdal::readOGR` to read in the US Census Tiger Line Files of the state boundaries.  Assign it to an object called `us_states`.
+2.) Once it is read in use `summary` to look at some of the basics and the plot the data.
 
 ## Raster data: esri grids
+Our first raster data type that we will work with are ESRI grids
+
+NEED TO GET NED FOR DC
 
 ## Raster data: ASCII
 
