@@ -26,7 +26,7 @@ For this workshop, I have collected several example datasets to use and have inc
 ```{r download_zip,eval=FALSE}
 library(httr)
 url <- "https://github.com/USEPA/intro_gis_with_r/blob/master/data.zip?raw=true"
-GET(url,write_disk("data2.zip",overwrite = TRUE))
+GET(url,write_disk("data.zip",overwrite = TRUE))
 ```
 
 Oh and while we are being a bit #rstats crazy...  Let unzip it with R too!
