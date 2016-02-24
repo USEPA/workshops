@@ -33,17 +33,140 @@ Oh and while we are being a bit #rstats crazy...  Let unzip it with R too!
 unzip("data.zip",overwrite = TRUE)
 ```
 
-```
-## Warning in unzip("data.zip", overwrite = TRUE): error 1 in extracting from
-## zip file
-```
-
 ## Vector data: shapefiles
-For many, shapefiles are going to be the most common way to interact with spatial data.  In R, there are many ways to read in shapefiles.  We are going to focus using `rgdal` becuase it is flexible and provides a common interface to multiple file types.  But to be fair, I'll also quickly show a few other options from `maptools` and `shapefiles` at the end.
+For many, shapefiles are going to be the most common way to interact with spatial data.  In R, there are many ways to read in shapefiles.  We are going to focus using `rgdal` becuase it is flexible and provides a common interface to multiple file types.  But to be fair, I'll also quickly show a few other options from `maptools` and `shapefiles`.
+
+### Reading in Shapfiles
+To read in a shapefile using `rgdal`, we want to use the `readOGR` function.  This function is the primary way to interact with vector data using `rgdal`.  There are many arguments to this function, but the two you need are the "dsn" and "layer".  For a shapefile the "dsn" is the path (in our case probably "data") and the "layer" is the name of the shapefile without any extensions.  The function call to read the DC Metro shapefile from out example data looks like: 
 
 
+```r
+dc_metro <- readOGR("data","Metro_Lines")
+```
+
+```
+## Error in ogrInfo(dsn = dsn, layer = layer, encoding = encoding, use_iconv = use_iconv, : Cannot open data source
+```
+
+We will get more into working with `sp` object and visualizing spatail data later, but just to prove that this did something:
+
+
+```r
+summary(dc_metro)
+```
+
+```
+## Object of class SpatialLinesDataFrame
+## Coordinates:
+##         min       max
+## x -77.08576 -76.91327
+## y  38.83827  38.97984
+## Is projected: FALSE 
+## proj4string :
+## [+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0]
+## Data attributes:
+##        GIS_ID               NAME                                 WEB_URL 
+##  Metro_001:2   blue           :1   http://wmata.com/rail/maps/map.cfm:8  
+##  Metro_002:2   green          :1                                         
+##  Metro_003:1   orange         :1                                         
+##  Metro_004:1   orange - rush +:1                                         
+##  Metro_005:1   red            :1                                         
+##  Metro_006:1   silver         :1                                         
+##                (Other)        :2                                         
+##     OBJECTID   
+##  Min.   :1.00  
+##  1st Qu.:2.75  
+##  Median :4.50  
+##  Mean   :4.50  
+##  3rd Qu.:6.25  
+##  Max.   :8.00  
+## 
+```
+
+```r
+plot(dc_metro)
+```
+
+![plot of chunk metro_chk](figure/metro_chk-1.png)
+
+As I mentioned earlier, there are other ways to read in shapefiles.  Two common ways are with the `maptools` and `shapefiles` packages
+
+
+```r
+dc_metro_mt<-maptools::readShapeLines("data/Metro_Lines")
+```
+
+```
+## Error in getinfo.shape(filen): Error opening SHP file
+```
+
+```r
+summary(dc_metro_mt)
+```
+
+```
+## Error in summary(dc_metro_mt): error in evaluating the argument 'object' in selecting a method for function 'summary': Error: object 'dc_metro_mt' not found
+```
+
+
+```r
+dc_metro_sf<-shapefiles::read.shapefile("data/Metro_Lines")
+```
+
+```
+## Warning in file(shp.name, "rb"): cannot open file 'data/Metro_Lines.shp':
+## No such file or directory
+```
+
+```
+## Error in file(shp.name, "rb"): cannot open the connection
+```
+
+```r
+summary(dc_metro_sf)
+```
+
+```
+## Error in summary(dc_metro_sf): error in evaluating the argument 'object' in selecting a method for function 'summary': Error: object 'dc_metro_sf' not found
+```
+
+Couple of notes on these.  First the `maptools` ones require that you know your geomtery type, whereas, `readOGR` will get that from the data.  I did test to see if the the `maptools::readShapeLines` was any quicker than `rgdal::readOGR` and in my huge sample of one, it was. Second, `shapefiles::read.shapefile` pulls the shapefile in as a list and thus the defualt plotting, printing, summary etc. methods you get with an `sp` object are not available to you.  Further work would need to be done to get these into the appropriate `sp` object.  Lastly, each of these are one-trick ponies.  They read in shapefiles and that is it.  As we will see, readOGR works across a range of vector data types and thus, is what I would recomend for most spatial data I/O tasks.
+
+### Writing shapefiles
+
+Writing shapefiles is just as easy as reading them, assuming you have an `sp` object to work with.  We will just show this using `readOGR`.
+
+Before we do this, we can prove that the shapefile doesn't exist.
+
+
+```r
+list.files("data","dc_metro")
+```
+
+```
+## character(0)
+```
+
+Now to write the shapefile:
+
+
+```r
+writeOGR(dc_metro,"data","dc_metro",driver="ESRI Shapefile")
+
+#Is it there?
+list.files("data","dc_metro")
+```
+
+```
+## [1] "dc_metro.dbf" "dc_metro.prj" "dc_metro.shp" "dc_metro.shx"
+```
+
+So same "dsn" and "layer" arguments as before.  Only differnce is that the first argument is the `sp` object you want to write out to a shapefile.  
 
 ## Vector data: file geodatabase
+A recent addition to the GDAL world is the ability to read ESRI File Geodatabases.  This is easy to access on windows as the latest version of GDAL is wrapped up as part of the `rgdal` install and thus you get access to the appropriate drivers.  This is a bit more challenging on Linux (even more so on the antiquated RHEL 6 that is EPAs approved OS) as you need to have GDAL 1.11.x +.  In any event, if you use file geodatabases, you can read those directly into R with readOGR.
+
+
 
 ## Vector data: geojson
 
