@@ -34,6 +34,12 @@ Oh and while we are being a bit #rstats crazy...  Let unzip it with R too!
 ```{r unzip_it,eval=FALSE}
 unzip("data.zip",overwrite = TRUE)
 ```
+```{r unzip_it2,echo=FALSE}
+if(!dir.exists("data")==FALSE){
+  unzip("../data.zip",overwrite = TRUE)
+}
+```
+
 
 ## Vector data: shapefiles
 For many, shapefiles are going to be the most common way to interact with spatial data.  In R, there are many ways to read in shapefiles.  We are going to focus using `rgdal` becuase it is flexible and provides a common interface to multiple file types.  But to be fair, I'll also quickly show a few other options from `maptools` and `shapefiles`.

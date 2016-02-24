@@ -33,6 +33,8 @@ Oh and while we are being a bit #rstats crazy...  Let unzip it with R too!
 unzip("data.zip",overwrite = TRUE)
 ```
 
+
+
 ## Vector data: shapefiles
 For many, shapefiles are going to be the most common way to interact with spatial data.  In R, there are many ways to read in shapefiles.  We are going to focus using `rgdal` becuase it is flexible and provides a common interface to multiple file types.  But to be fair, I'll also quickly show a few other options from `maptools` and `shapefiles`.
 
@@ -45,7 +47,10 @@ dc_metro <- readOGR("data","Metro_Lines")
 ```
 
 ```
-## Error in ogrInfo(dsn = dsn, layer = layer, encoding = encoding, use_iconv = use_iconv, : Cannot open data source
+## OGR data source with driver: ESRI Shapefile 
+## Source: "data", layer: "Metro_Lines"
+## with 8 features
+## It has 4 fields
 ```
 
 We will get more into working with `sp` object and visualizing spatail data later, but just to prove that this did something:
@@ -94,18 +99,34 @@ As I mentioned earlier, there are other ways to read in shapefiles.  Two common 
 
 ```r
 dc_metro_mt<-maptools::readShapeLines("data/Metro_Lines")
-```
-
-```
-## Error in getinfo.shape(filen): Error opening SHP file
-```
-
-```r
 summary(dc_metro_mt)
 ```
 
 ```
-## Error in summary(dc_metro_mt): error in evaluating the argument 'object' in selecting a method for function 'summary': Error: object 'dc_metro_mt' not found
+## Object of class SpatialLinesDataFrame
+## Coordinates:
+##         min       max
+## x -77.08576 -76.91327
+## y  38.83827  38.97984
+## Is projected: NA 
+## proj4string : [NA]
+## Data attributes:
+##        GIS_ID               NAME                                 WEB_URL 
+##  Metro_001:2   blue           :1   http://wmata.com/rail/maps/map.cfm:8  
+##  Metro_002:2   green          :1                                         
+##  Metro_003:1   orange         :1                                         
+##  Metro_004:1   orange - rush +:1                                         
+##  Metro_005:1   red            :1                                         
+##  Metro_006:1   silver         :1                                         
+##                (Other)        :2                                         
+##     OBJECTID   
+##  Min.   :1.00  
+##  1st Qu.:2.75  
+##  Median :4.50  
+##  Mean   :4.50  
+##  3rd Qu.:6.25  
+##  Max.   :8.00  
+## 
 ```
 
 
@@ -114,12 +135,7 @@ dc_metro_sf<-shapefiles::read.shapefile("data/Metro_Lines")
 ```
 
 ```
-## Warning in file(shp.name, "rb"): cannot open file 'data/Metro_Lines.shp':
-## No such file or directory
-```
-
-```
-## Error in file(shp.name, "rb"): cannot open the connection
+## Error in as.environment(pos): no item called "package:shapefiles" on the search list
 ```
 
 ```r
@@ -144,7 +160,7 @@ list.files("data","dc_metro")
 ```
 
 ```
-## character(0)
+## [1] "dc_metro.dbf" "dc_metro.prj" "dc_metro.shp" "dc_metro.shx"
 ```
 
 Now to write the shapefile:
@@ -152,7 +168,13 @@ Now to write the shapefile:
 
 ```r
 writeOGR(dc_metro,"data","dc_metro",driver="ESRI Shapefile")
+```
 
+```
+## Error in writeOGR(dc_metro, "data", "dc_metro", driver = "ESRI Shapefile"): layer exists, use a new layer name
+```
+
+```r
 #Is it there?
 list.files("data","dc_metro")
 ```
@@ -173,7 +195,12 @@ ogrListLayers("data/spx.gdb")
 ```
 
 ```
-## Error in ogrListLayers("data/spx.gdb"): Cannot open data source
+## [1] "points"    "points2"   "points3"   "polygons"  "polygons2" "polygons3"
+## [7] "polygons4" "polygons5"
+## attr(,"driver")
+## [1] "OpenFileGDB"
+## attr(,"nlayers")
+## [1] 8
 ```
 
 ```r
@@ -181,7 +208,10 @@ examp_fgdb <- readOGR(dsn = "data/spx.gdb", layer="polygons5")
 ```
 
 ```
-## Error in ogrInfo(dsn = dsn, layer = layer, encoding = encoding, use_iconv = use_iconv, : Cannot open data source
+## OGR data source with driver: OpenFileGDB 
+## Source: "data/spx.gdb", layer: "polygons5"
+## with 600 features
+## It has 0 fields
 ```
 
 And to be sure it worked:
