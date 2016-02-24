@@ -1,23 +1,4 @@
 
-```
-## [[1]]
-##  [1] "httr"      "rgdal"     "sp"        "stats"     "graphics" 
-##  [6] "grDevices" "utils"     "datasets"  "methods"   "base"     
-## 
-## [[2]]
-##  [1] "httr"      "rgdal"     "sp"        "stats"     "graphics" 
-##  [6] "grDevices" "utils"     "datasets"  "methods"   "base"     
-## 
-## [[3]]
-##  [1] "rgeos"     "httr"      "rgdal"     "sp"        "stats"    
-##  [6] "graphics"  "grDevices" "utils"     "datasets"  "methods"  
-## [11] "base"     
-## 
-## [[4]]
-##  [1] "raster"    "rgeos"     "httr"      "rgdal"     "sp"       
-##  [6] "stats"     "graphics"  "grDevices" "utils"     "datasets" 
-## [11] "methods"   "base"
-```
 
 # Reading and Writing Raster and Vector Data
 So, now that we have the base packages installed and loaded we can work on getting our data into and out of R.  While it is possible to store spatial data as R objects (e.g. via .Rda/Rdata files) that is probably not the best approach.  It is better to store spatial data in widley used files (e.g. shapefiles,.tiff, or geojson) or in spatial databases (e.g. file geodatabse or PostGIS) and then read that data into R for analysis then writing the results back out to your file format of choice.  In this lesson we will explore several ways to read in multiple vector and raster data types.
