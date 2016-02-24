@@ -81,7 +81,7 @@ list.files("data","dc_metro")
 ```
 
 Now to write the shapefile:
- 
+
 ```{r write_shp}
 writeOGR(dc_metro,"data","dc_metro",driver="ESRI Shapefile")
 
