@@ -10,7 +10,7 @@ So, now that we have the base packages installed and loaded we can work on getti
 - [Raster data: GeoTIFF](#raster-data-geotiff)
 - [Raster data: ASCII](#raster-data-arcinfo-ascii)
 - [Writing rasters](#writing-rasters)
-- [Geospatial data packages](#geospatial data packages)
+- [Geospatial data packages](#geospatial-data-packages)
 
 ## Lesson Exercises
 - [Exercise 2.1](#exercise-21)
@@ -5367,7 +5367,7 @@ system.time(readGDAL("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##     0.1     0.0     0.1
+##    0.04    0.00    0.04
 ```
 
 ```r
@@ -5411,6 +5411,10 @@ To write out to a GeoTIFF:
 
 ```r
 writeRaster(dc_elev,"dc_elev_example.tif")
+```
+
+```
+## Error in .getGDALtransient(x, filename = filename, options = options, : filename exists; use overwrite=TRUE
 ```
 
 ## Exercise 2.2

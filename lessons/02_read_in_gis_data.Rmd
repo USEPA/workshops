@@ -14,7 +14,7 @@ So, now that we have the base packages installed and loaded we can work on getti
 - [Raster data: GeoTIFF](#raster-data-geotiff)
 - [Raster data: ASCII](#raster-data-arcinfo-ascii)
 - [Writing rasters](#writing-rasters)
-- [Geospatial data packages](#geospatial data packages)
+- [Geospatial data packages](#geospatial-data-packages)
 
 ## Lesson Exercises
 - [Exercise 2.1](#exercise-21)
