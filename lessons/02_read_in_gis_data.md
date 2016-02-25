@@ -7,8 +7,8 @@ So, now that we have the base packages installed and loaded we can work on getti
 - [Vector data: shapefiles](#vector-data-shapefiles)
 - [Vector data: file geodatabase](#vector-data-file-geodatabase])
 - [Vector data: geojson](#vector-data-geojson)
-- [Raster data: common image formats](#raster-data-common-image-formats)
-- [Raster data: ASCII](#raster-data-ascii)
+- [Raster data: GeoTIFF](#raster-data-geotiff)
+- [Raster data: ASCII](#raster-data-arcinfo-ascii)
 - [Geospatial data packages](#geospatial data packages)
 
 ## Lesson Exercises
@@ -143,7 +143,7 @@ Before we do this, we can prove that the shapefile doesn't exist.
 
 
 ```
-## [1] TRUE
+## [1] TRUE TRUE TRUE TRUE TRUE
 ```
 
 ```r
