@@ -7,9 +7,8 @@ So, now that we have the base packages installed and loaded we can work on getti
 - [Vector data: shapefiles](#vector-data-shapefiles)
 - [Vector data: file geodatabase](#vector-data-file-geodatabase])
 - [Vector data: geojson](#vector-data-geojson)
-- [Raster data: esri grids](#raster-data-esri-grids)
-- [Raster data: ASCII](#raster-data-ascii)
 - [Raster data: common image formats](#raster-data-common-image-formats)
+- [Raster data: ASCII](#raster-data-ascii)
 - [Geospatial data packages](#geospatial data packages)
 
 ## Lesson Exercises
@@ -34,7 +33,7 @@ unzip("data.zip",overwrite = TRUE)
 ```
 
 ```r
-if(!dir.exists("data")==FALSE){
+if(!dir.exists("data")==TRUE){
   unzip("../data.zip",overwrite = TRUE)
 }
 ```
@@ -247,7 +246,8 @@ dc_metro_sttn <- readOGR("data/dc_metrostations.geojson", "OGRGeoJSON")
 ```
 
 ```
-## Error in ogrInfo(dsn = dsn, layer = layer, encoding = encoding, use_iconv = use_iconv, : Cannot open data source
+## Error in ogrInfo(dsn = dsn, layer = layer, encoding = encoding, use_iconv = use_iconv, : 
+## 	GDAL Error 3: Cannot open file 'data/dc_metrostations.geojson'
 ```
 
 And to see that something is there...
@@ -259,14 +259,7 @@ dc_metro_sttn
 ```
 
 ```
-## class       : SpatialPointsDataFrame 
-## features    : 40 
-## extent      : -77.085, -76.93526, 38.84567, 38.97609  (xmin, xmax, ymin, ymax)
-## coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
-## variables   : 6
-## names       : OBJECTID,   GIS_ID,                          NAME,                                                WEB_URL,                 LINE,                    ADDRESS 
-## min values  :        1, mstn_001,                     Anacostia,  http://wmata.com/rail/station_detail.cfm?station_id=1, blue, orange, silver, 1001 CONNECTICUT AVENUE NW 
-## max values  :       40, mstn_040, Woodley Park-Zoo Adams Morgan, http://wmata.com/rail/station_detail.cfm?station_id=90,   red, green, yellow, 919 RHODE ISLAND AVENUE NE
+## Error in eval(expr, envir, enclos): object 'dc_metro_sttn' not found
 ```
 
 ```r
@@ -280,7 +273,9 @@ plot(dc_metro)
 plot(dc_metro_sttn, col = "red")
 ```
 
-![plot of chunk check_geojson](figure/check_geojson-2.png)
+```
+## Error in plot(dc_metro_sttn, col = "red"): error in evaluating the argument 'x' in selecting a method for function 'plot': Error: object 'dc_metro_sttn' not found
+```
 
 ### Writing geojson
 
@@ -292,6 +287,10 @@ writeOGR(dc_metro_sttn,"data/stations.geojson", "OGRGeoJSON",
          driver="GeoJSON")
 ```
 
+```
+## Error in inherits(obj, "Spatial"): object 'dc_metro_sttn' not found
+```
+
 Lastly, if you commonly work with geojson files, there is the `geojsonio` package from [rOpenSci](https://ropensci.org/) that provides a number of tools for reading, writing, and converting geojson files.  It is certainly worth exploring as it provides additiona functionality beyond the `rgdal` toolset.
 
 ## Exercise 2.1
@@ -300,14 +299,12 @@ For this first exercise we will just focus on getting a shapefile read into R.  
 1.) Using `rgdal::readOGR` to read in the US Census Tiger Line Files of the state boundaries.  Assign it to an object called `us_states`.
 2.) Once it is read in use `summary` to look at some of the basics and the plot the data.
 
-## Raster data: esri grids
-Our first raster data type that we will work with are ESRI grids
 
-NEED TO GET NED FOR DC
+## Raster data: GeoTIFF
+We will just show a couple of examples as reading in rasters is a bit more straightforward than vector.  Our first example will be GeoTIFFs.
 
-## Raster data: ASCII
 
-## Raster data: common image formats
+## Raster data: ArcInfo ASCII
 
 ## Exercise 2.2
 

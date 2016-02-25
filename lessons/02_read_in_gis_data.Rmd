@@ -11,9 +11,8 @@ So, now that we have the base packages installed and loaded we can work on getti
 - [Vector data: shapefiles](#vector-data-shapefiles)
 - [Vector data: file geodatabase](#vector-data-file-geodatabase])
 - [Vector data: geojson](#vector-data-geojson)
-- [Raster data: esri grids](#raster-data-esri-grids)
-- [Raster data: ASCII](#raster-data-ascii)
 - [Raster data: common image formats](#raster-data-common-image-formats)
+- [Raster data: ASCII](#raster-data-ascii)
 - [Geospatial data packages](#geospatial data packages)
 
 ## Lesson Exercises
@@ -35,7 +34,7 @@ Oh and while we are being a bit #rstats crazy...  Let unzip it with R too!
 unzip("data.zip",overwrite = TRUE)
 ```
 ```{r unzip_it2,echo=TRUE}
-if(!dir.exists("data")==FALSE){
+if(!dir.exists("data")==TRUE){
   unzip("../data.zip",overwrite = TRUE)
 }
 ```
@@ -149,14 +148,12 @@ For this first exercise we will just focus on getting a shapefile read into R.  
 1.) Using `rgdal::readOGR` to read in the US Census Tiger Line Files of the state boundaries.  Assign it to an object called `us_states`.
 2.) Once it is read in use `summary` to look at some of the basics and the plot the data.
 
-## Raster data: esri grids
-Our first raster data type that we will work with are ESRI grids
 
-NEED TO GET NED FOR DC
+## Raster data: GeoTIFF
+We will just show a couple of examples as reading in rasters is a bit more straightforward than vector.  Our first example will be GeoTIFFs.
 
-## Raster data: ASCII
 
-## Raster data: common image formats
+## Raster data: ArcInfo ASCII
 
 ## Exercise 2.2
 
