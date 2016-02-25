@@ -159,7 +159,7 @@ The `rgdal` function for reading in rasters is `readGDAL`.  For rasters, it esse
 
 ```{r readGDAL}
 dc_elev_gdal <- readGDAL("data/dc_ned.tif")
-dc_elev_gdal
+raster::print(dc_elev_gdal) #using the raster print method
 ```
 
 Using `raster` is just as easy
