@@ -195,7 +195,7 @@ Writing out to a raster file is done with `writeRaster`.  It has three arguments
 To write out to a GeoTIFF:
 
 ```{r write_rast}
-writeRaster(dc_elev,"dc_elev_example.tif")
+writeRaster(dc_elev,"dc_elev_example.tif", overwrite = T)
 ```
 
 ## Exercise 2.2

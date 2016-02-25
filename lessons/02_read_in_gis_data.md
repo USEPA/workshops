@@ -360,7 +360,7 @@ system.time(readGDAL("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##    0.14    0.00    0.14
+##    0.12    0.01    0.14
 ```
 
 ```r
@@ -369,7 +369,7 @@ system.time(raster("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##    0.00    0.01    0.02
+##    0.00    0.02    0.05
 ```
 
 The speed here is due to the fact that `raster` actually leaves the data on disk as opposed to pulling it all into memory.  Some operations will actually be faster on the `SpatialGrid` objects, but with bigger rasters reading in can be a challenge.  In addition, a lot of the typical raster operations come from the `raster` package and it is just a bit easier to work with `raster` objects as opposed to `sp` for this.  Lastly, it is what I prefer, so there's that.  We will stick with `raster` for the rest of the workshop.
@@ -403,11 +403,7 @@ To write out to a GeoTIFF:
 
 
 ```r
-writeRaster(dc_elev,"dc_elev_example.tif")
-```
-
-```
-## Error in .getGDALtransient(x, filename = filename, options = options, : filename exists; use overwrite=TRUE
+writeRaster(dc_elev,"dc_elev_example.tif", overwrite = T)
 ```
 
 ## Exercise 2.2
