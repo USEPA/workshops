@@ -150,7 +150,11 @@ For this first exercise we will just focus on getting a shapefile read into R.  
 
 
 ## Raster data: GeoTIFF
-We will just show a couple of examples as reading in rasters is a bit more straightforward than vector.  Our first example will be GeoTIFFs.
+We will just show a couple of examples as reading in rasters is a bit more straightforward than vector.  Our first examples will be GeoTIFF.
+
+I will show one example with `rgdal`, but then we are going to switch to using `raster` for the remainder of the examples.  We'll see why pretty quickly with this example.
+
+The `rgdal` function for reading in rasters is `readGDAL`.  For rasters, it essentially has a single argument we need to worry about, "".
 
 
 ## Raster data: ArcInfo ASCII

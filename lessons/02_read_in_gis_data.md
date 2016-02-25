@@ -91,7 +91,7 @@ summary(dc_metro)
 plot(dc_metro)
 ```
 
-![plot of chunk metro_chk](figure/metro_chk-1.png)
+![plot of chunk metro_chk](figure/metro_chk-1.png) 
 
 As I mentioned earlier, there are other ways to read in shapefiles.  Two common ways are with the `maptools` and `shapefiles` packages
 
@@ -138,7 +138,7 @@ Before we do this, we can prove that the shapefile doesn't exist.
 
 
 ```
-## [1] TRUE TRUE TRUE TRUE TRUE
+## [1] TRUE
 ```
 
 ```r
@@ -223,7 +223,7 @@ summary(examp_fgdb)
 plot(examp_fgdb)
 ```
 
-![plot of chunk check_gdb](figure/check_gdb-1.png)
+![plot of chunk check_gdb](figure/check_gdb-1.png) 
 
 Writing to a file geodatabase from R is not yet possible.
 
@@ -241,8 +241,7 @@ dc_metro_sttn <- readOGR("data/dc_metrostations.geojson", "OGRGeoJSON")
 ```
 
 ```
-## Error in ogrInfo(dsn = dsn, layer = layer, encoding = encoding, use_iconv = use_iconv, : 
-## 	GDAL Error 3: Cannot open file 'data/dc_metrostations.geojson'
+## Error in ogrInfo(dsn = dsn, layer = layer, encoding = encoding, use_iconv = use_iconv, : Cannot open data source
 ```
 
 And to see that something is there...
@@ -254,14 +253,7 @@ dc_metro_sttn
 ```
 
 ```
-## class       : SpatialPointsDataFrame 
-## features    : 40 
-## extent      : -77.085, -76.93526, 38.84567, 38.97609  (xmin, xmax, ymin, ymax)
-## coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
-## variables   : 6
-## names       : OBJECTID,   GIS_ID,                          NAME,                                                WEB_URL,                 LINE,                    ADDRESS 
-## min values  :        1, mstn_001,                     Anacostia,  http://wmata.com/rail/station_detail.cfm?station_id=1, blue, orange, silver, 1001 CONNECTICUT AVENUE NW 
-## max values  :        9, mstn_040, Woodley Park-Zoo Adams Morgan, http://wmata.com/rail/station_detail.cfm?station_id=90,   red, green, yellow, 919 RHODE ISLAND AVENUE NE
+## Error in eval(expr, envir, enclos): object 'dc_metro_sttn' not found
 ```
 
 ```r
@@ -269,13 +261,15 @@ dc_metro_sttn
 plot(dc_metro)
 ```
 
-![plot of chunk check_geojson](figure/check_geojson-1.png)
+![plot of chunk check_geojson](figure/check_geojson-1.png) 
 
 ```r
 plot(dc_metro_sttn, col = "red")
 ```
 
-![plot of chunk check_geojson](figure/check_geojson-2.png)
+```
+## Error in plot(dc_metro_sttn, col = "red"): error in evaluating the argument 'x' in selecting a method for function 'plot': Error: object 'dc_metro_sttn' not found
+```
 
 ### Writing geojson
 
@@ -288,8 +282,7 @@ writeOGR(dc_metro_sttn,"data/stations.geojson", "OGRGeoJSON",
 ```
 
 ```
-## Error in writeOGR(dc_metro_sttn, "data/stations.geojson", "OGRGeoJSON", : 
-## 	GDAL Error 3: Cannot open file 'data/stations.geojson'
+## Error in inherits(obj, "Spatial"): object 'dc_metro_sttn' not found
 ```
 
 Lastly, if you commonly work with geojson files, there is the `geojsonio` package from [rOpenSci](https://ropensci.org/) that provides a number of tools for reading, writing, and converting geojson files.  It is certainly worth exploring as it provides additiona functionality beyond the `rgdal` toolset.
@@ -302,7 +295,11 @@ For this first exercise we will just focus on getting a shapefile read into R.  
 
 
 ## Raster data: GeoTIFF
-We will just show a couple of examples as reading in rasters is a bit more straightforward than vector.  Our first example will be GeoTIFFs.
+We will just show a couple of examples as reading in rasters is a bit more straightforward than vector.  Our first examples will be GeoTIFF.
+
+I will show one example with `rgdal`, but then we are going to switch to using `raster` for the remainder of the examples.  We'll see why pretty quickly with this example.
+
+The `rgdal` function for reading in rasters is `readGDAL`.  For rasters, it essentially has a single argument we need to worry about, "".
 
 
 ## Raster data: ArcInfo ASCII
