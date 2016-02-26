@@ -356,7 +356,7 @@ system.time(readGDAL("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##   0.046   0.000   0.046
+##   0.042   0.022   0.061
 ```
 
 ```r

@@ -6,7 +6,7 @@ We now have the required packages installed and know how to read data into R. Ou
 ## Lesson Outline
 - [Explore and manipulate](#explore-and-manipulate)
 - [Projections](#projections)
-- [Intro to rgeos:Overlay and Buffer](#intro-to-rgeos-overlay-and-buffer)
+- [Intro to rgeos:Overlay and Buffer](#intro-to-rgeos-overlay-buffer-and-misc)
 - [Working with rasters](#working-with-rasters)
 - [Other geospatial packages](#other-geospatial-packages)
 
@@ -426,6 +426,7 @@ busy_sttn
 ## Error in eval(expr, envir, enclos): object 'busy_sttn' not found
 ```
 
+
 ## Projections
 Although many GIS provide project-on-the-fly (editorial: WORST THING EVER), R does not.  To get our maps to work and analysis to be correct, we need to know how to modify the projectins of our data so that they match up.  A descition of projections is way beyond the scope of this workshop, but these links provide some good background info and details:
 
@@ -453,14 +454,75 @@ Luckily, it is pretty common to have several datasets and one of which is in the
 dc_metro_sttn_prj <- spTransform(dc_metro_sttn, CRS(proj4string(dc_metro_alb)))
 ```
 
+Projecting rasters is a bit different.  We will use `raster::projectRaster` to accomplish this. Be aware that this is looking for a Proj4 string for the crs, and not a CRSobj.  
+
+
+```r
+# Not Run: Takes a bit of time.
+dc_elev_prj <- projectRaster(dc_elev, crs = proj4string(dc_metro_sttn_prj))
+```
+
 ## Exercise 3.1
 In this first exercise we will work on manipulating the Tiger Lines file of the states that we pulled in as part of lesson 2 and assinged to `us_states`.
 
 1. Assign just the DC boundary to an object named `dc_bnd`.
 2. Re-project `dc_bnd` to match the projection of `dc_nlcd`.  Assign this to an object named `dc_bnd_prj`.
  
-## Intro to rgeos: Overlay and Buffer
-In this section we are going to start working with many of the "typical" GIS type analyses, specifcially buffers and a few overlays. We will use mostly `rgeos` but will also look a bit at `sp::over`. 
+## Intro to rgeos: Overlay, Buffer and Misc.
+In this section we are going to start working with many of the "typical" GIS type analyses, specifcially buffers and a few overlays. We will use mostly `rgeos` but will also look a bit at `sp::over`.
+
+Let's start with a buffer. We will use the albers projected stations for these examples
+
+
+```r
+sttn_buff_500 <- gBuffer(dc_metro_sttn_prj, width = 500)
+plot(sttn_buff_500)
+```
+
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png) 
+
+We can see that overlapping buffers merged in this case.  If we wanted a buffer for each station we can use the "byid" argument.
+
+
+```r
+sttn_buff_500_id <- gBuffer(dc_metro_sttn_prj, width = 500, byid = TRUE)
+plot(sttn_buff_500_id)
+```
+
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png) 
+
+Now we get a 500 meter circle around each of the stations.  Let's move on to one of the overlay commands in `rgeos`,the union. NEED TO WORK ON THIS.  These never do what I think they do...
+
+
+```r
+# Create something to take difference of
+sttn_buff_100 <- gBuffer(dc_metro_sttn_prj, width = 100)
+sttn_diff <- gUnion(sttn_buff_100, sttn_buff_500, byid = T)
+plot(sttn_diff)
+```
+
+![plot of chunk union](figure/union-1.png) 
+
+Lastly, let's pull out some of the basic geographic info on our datasets using `rgeos`.  That is provided by `gArea` and `gLength`. Let's get the area and perimeter of the all the land 500 meters from a metro station
+
+
+```r
+gArea(sttn_buff_500)
+```
+
+```
+## [1] 27080141
+```
+
+```r
+gPerimeter(sttn_buff_500)
+```
+
+```
+## Error in eval(expr, envir, enclos): could not find function "gPerimeter"
+```
+
+We have left most of `rgeos` untouched, but hopefully shown enough to get you started.  
 
 ## Exercise 3.2
 We will work with the re-projected `dc_bnd_prj` lets set this up for some further analyis.

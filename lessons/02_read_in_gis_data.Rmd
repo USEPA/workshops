@@ -135,7 +135,7 @@ plot(dc_metro_sttn, col = "red", add=TRUE)
 
 Just as with shapefiles, writing to a geojson file can be accomplished with `writeOGR`.
 
-```{r write_geojson,eval=T}
+```{r write_geojson,eval=F}
 writeOGR(dc_metro_sttn,dsn="stations.gejson",layer="dc_metro_sttn",driver="GeoJSON")
 ```
 
