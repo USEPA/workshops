@@ -273,14 +273,8 @@ plot(dc_metro_sttn, col = "red")
 ```
 
 ```
-## Error in eval(expr, envir, enclos): could not find function "jpg"
-```
-
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.png) ![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-2.png) 
-
-```
-## null device 
-##           1
+## png 
+##   2
 ```
 
 ![geojson](figure/geojson.jpg

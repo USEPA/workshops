@@ -131,7 +131,7 @@ plot(dc_metro)
 plot(dc_metro_sttn, col = "red")
 ```
 ```{r,echo=FALSE}
-jpg("figure/geojson.jpg")
+jpeg("figure/geojson.jpg")
 plot(dc_metro)
 plot(dc_metro_sttn, col = "red")
 dev.off()
