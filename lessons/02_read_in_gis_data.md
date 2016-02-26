@@ -1,6 +1,6 @@
 
 ```
-## Error in eval(expr, envir, enclos): object 'opt_chunk' not found
+## Error in eval(expr, envir, enclos): object 'opts_chunk' not found
 ```
 
 # Reading and Writing Raster and Vector Data
@@ -142,7 +142,7 @@ Before we do this, we can prove that the shapefile doesn't exist.
 
 
 ```
-## [1] TRUE
+## [1] TRUE TRUE TRUE TRUE
 ```
 
 ```r
@@ -363,7 +363,7 @@ system.time(readGDAL("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##   0.041   0.004   0.045
+##   0.047   0.000   0.046
 ```
 
 ```r
@@ -372,7 +372,7 @@ system.time(raster("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##   0.006   0.000   0.005
+##   0.007   0.000   0.008
 ```
 
 The speed here is due to the fact that `raster` actually leaves the data on disk as opposed to pulling it all into memory.  Some operations will actually be faster on the `SpatialGrid` objects, but with bigger rasters reading in can be a challenge.  In addition, a lot of the typical raster operations come from the `raster` package and it is just a bit easier to work with `raster` objects as opposed to `sp` for this.  Lastly, it is what I prefer, so there's that.  We will stick with `raster` for the rest of the workshop.

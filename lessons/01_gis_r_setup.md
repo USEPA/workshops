@@ -1,6 +1,6 @@
 
 ```
-## Error in eval(expr, envir, enclos): object 'opt_chunk' not found
+## Error in eval(expr, envir, enclos): object 'opts_chunk' not found
 ```
 
 # Setting up R to do GIS
