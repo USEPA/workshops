@@ -142,7 +142,7 @@ Before we do this, we can prove that the shapefile doesn't exist.
 
 
 ```
-## [1] TRUE TRUE TRUE TRUE
+## [1] TRUE TRUE TRUE TRUE TRUE
 ```
 
 ```r
@@ -257,7 +257,14 @@ dc_metro_sttn
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'dc_metro_sttn' not found
+## class       : SpatialPointsDataFrame 
+## features    : 40 
+## extent      : -77.085, -76.93526, 38.84567, 38.97609  (xmin, xmax, ymin, ymax)
+## coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
+## variables   : 7
+## names       :                          NAME, OBJECTID,   GIS_ID,                                                WEB_URL,                 LINE,                    ADDRESS, avg_wkday 
+## min values  :                     Anacostia,        1, mstn_001,  http://wmata.com/rail/station_detail.cfm?station_id=1, blue, orange, silver, 1001 CONNECTICUT AVENUE NW,    1761.2 
+## max values  : Woodley Park-Zoo Adams Morgan,       40, mstn_040, http://wmata.com/rail/station_detail.cfm?station_id=90,   red, green, yellow, 919 RHODE ISLAND AVENUE NE,   32611.1
 ```
 
 ```r
@@ -271,9 +278,7 @@ plot(dc_metro)
 plot(dc_metro_sttn, col = "red")
 ```
 
-```
-## Error in plot(dc_metro_sttn, col = "red"): error in evaluating the argument 'x' in selecting a method for function 'plot': Error: object 'dc_metro_sttn' not found
-```
+![plot of chunk check_geojson](figure/check_geojson-2.png) 
 
 ### Writing geojson
 
@@ -285,10 +290,6 @@ writeOGR(dc_metro_sttn,"data/stations.geojson", "OGRGeoJSON",
          driver="GeoJSON")
 ```
 
-```
-## Error in inherits(obj, "Spatial"): object 'dc_metro_sttn' not found
-```
-
 Lastly, if you commonly work with geojson files, there is the `geojsonio` package from [rOpenSci](https://ropensci.org/) that provides a number of tools for reading, writing, and converting geojson files.  It is certainly worth exploring as it provides additiona functionality beyond the `rgdal` toolset.
 
 ## Exercise 2.1
@@ -296,7 +297,6 @@ For this first exercise we will just focus on getting a shapefile read into R.  
 
 1. Using `rgdal::readOGR` to read in the US Census Tiger Line Files of the state boundaries.  Assign it to an object called `us_states`.
 2. Once it is read in use `summary` to look at some of the basics and then plot the data.
-
 
 ## Raster data: GeoTIFF
 We will just show a couple of examples as reading in rasters is a bit more straightforward than vector.  Our first examples will be GeoTIFF.
@@ -363,7 +363,7 @@ system.time(readGDAL("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##    0.06    0.00    0.06
+##    0.15    0.02    0.17
 ```
 
 ```r
@@ -372,7 +372,7 @@ system.time(raster("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##    0.02    0.00    0.02
+##    0.02    0.00    0.01
 ```
 
 The speed here is due to the fact that `raster` actually leaves the data on disk as opposed to pulling it all into memory.  Some operations will actually be faster on the `SpatialGrid` objects, but with bigger rasters reading in can be a challenge.  In addition, a lot of the typical raster operations come from the `raster` package and it is just a bit easier to work with `raster` objects as opposed to `sp` for this.  Lastly, it is what I prefer, so there's that.  We will stick with `raster` for the rest of the workshop.

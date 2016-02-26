@@ -21,9 +21,93 @@ We now have the required packages installed and know how to read data into R. Ou
 - [Exercise 3.3](#exercise-33)
 
 ## Explore and manipulate
-One of the nice things about `sp` objects is that many of the tricks you know for working with data frames will also work 
+One of the nice things about `SpatialXDataFrame` objects is that many of the tricks you know for working with data frames will also work.  This allows us subset our spatial data, summarize data, etc. in an R way.
+
+Let's start working through some examples using the two Metro datasets.
+
+```{r, echo=FALSE}
+dc_metro <- readOGR("data","Metro_Lines")
+dc_metro_sttn <- readOGR("data/dc_metrostations.geojson", "OGRGeoJSON")
+dc_elev <- raster("data/dc_ned.tif")
+```
+
+We've already seen how to use the default print statements to look at the basics
+
+```{r}
+dc_metro
+dc_metro_sttn
+```
+
+We can get more info on the data with:
+
+```{r}
+head(dc_metro_sttn)
+summary(dc_metro_sttn)
+names(dc_metro_sttn)
+```
+
+And to get into the guts of the `sp` objects:
+
+```{r}
+str(dc_metro)
+```
+
+Now for the fun part.  We can use indexing/subsetting tools we already know to pull out individual features based on the data stored in the `sp` objects data frame.  For instance:
+
+```{r}
+#select with base indexing
+est_mrkt <- dc_metro_sttn[dc_metro_sttn$NAME == "Eastern Market",]
+est_mrkt
+#select with subset (plus a Lil Rhody Shout Out!)
+ri <- subset(dc_metro_sttn,NAME == "Rhode Island Ave")
+ri
+#select multiple items
+red_line_sttn <- subset(dc_metro_sttn,grepl("red",LINE))
+red_line_sttn
+```
+
+Adding data is just the same as for adding data to data frames.  I found some ridership data for the different stations and summarized that, by station, into "station_rides.csv".  Let's pull that in, and add it to `dc_metro_sttn`.  
+
+```{r}
+read.csv("data/station_rides.csv")
+dc_metro_sttn<-merge(dc_metro_sttn,station_rides,
+                     by.x="NAME",by.y="Ent.Station",all.x=TRUE)
+head(dc_metro_sttn)
+```
+
+So, now we can use these values to select.
+
+```{r}
+busy_sttn <- subset(dc_metro_sttn,avg_wkday >= 10000)
+busy_sttn
+```
 
 ## Projections
+Although many GIS provide project-on-the-fly (editorial: WORST THING EVER), R does not.  To get our maps to work and analysis to be correct, we need to know how to modify the projectins of our data so that they match up.  A descition of projections is way beyond the scope of this workshop, but these links provide some good background info and details:
+
+- [USGS](http://egsc.usgs.gov/isb//pubs/MapProjections/projections.html)
+- [NCEAS](https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/OverviewCoordinateReferenceSystems.pdf)
+
+And for more on projecting there's some good info in the [rOpenSci draft spatial data viz Task View](https://github.com/ropensci/maptools#projecting-data)
+
+For our purposes we will be using `spTransform` to reproject data.  We need to supply two arguments, "x" the object we are transforming and "CRSobj" which is the details of the new projection.  We will assume that we have good data read into R and that the original projection is already defined.  This is the case with all of the example data.
+
+There are many ways to specify the "CRSobj".  We will be using [Proj.4](https://trac.osgeo.org/proj/) strings and the `CRS` function for this.  We can get the Proj.4 strings from other datasets, or specify them from scratch.  
+To get them from scratch, the easiest thing to do is search at [spatialreference.org](http://spatialreference.org/).  You can either search there, or just use Google.  For instance, if we want the [ESRI Albers Equal Area projection as Proj.4](www.google.com/search?q=ESRI Albers Equal Area projection as Proj.4) gets it as the first result.  Just select the [Proj4](http://spatialreference.org/ref/esri/usa-contiguous-albers-equal-area-conic/proj4/) from the list.
+
+So, if we want to reproject our data using this projection:
+
+```{r}
+dc_metro_alb <- spTransform(dc_metro,
+                CRS("+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs"))
+```
+
+Luckily, it is pretty common to have several datasets and one of which is in the projections you want to use.  We can then just pull the Proj4 string from that.
+
+```{r}
+dc_metro_sttn_prj <- spTransform(dc_metro_sttn,
+                                 CRS(proj4string(dc_metro_alb))) 
+```
 
 ## Exercise 3.1
 In this first exercise we will work on manipulating the Tiger Lines file of the states that we pulled in as part of lesson 2 and assinged to `us_states`.
@@ -32,6 +116,7 @@ In this first exercise we will work on manipulating the Tiger Lines file of the 
 2. Re-project `dc_bnd` to match the projection of `dc_nlcd`.  Assign this to an object named `dc_bnd_prj`.
 
 ## Intro to rgeos: Overlay and Buffer
+In this section we are going to start working with many of the "typical" GIS type analyses.
 
 ## Exercise 3.2
 We will work with the re-projected `dc_bnd_prj` lets set this up for some further analyis.

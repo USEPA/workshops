@@ -150,7 +150,6 @@ For this first exercise we will just focus on getting a shapefile read into R.  
 1. Using `rgdal::readOGR` to read in the US Census Tiger Line Files of the state boundaries.  Assign it to an object called `us_states`.
 2. Once it is read in use `summary` to look at some of the basics and then plot the data.
 
-
 ## Raster data: GeoTIFF
 We will just show a couple of examples as reading in rasters is a bit more straightforward than vector.  Our first examples will be GeoTIFF.
 
