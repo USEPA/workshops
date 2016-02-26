@@ -130,22 +130,13 @@ dc_metro_sttn
 plot(dc_metro)
 plot(dc_metro_sttn, col = "red", add=TRUE)
 ```
-```{r,eval=FALSE,echo=FALSE}
-jpeg("figure/geojson.jpg")
-plot(dc_metro)
-plot(dc_metro_sttn, col = "red")
-dev.off()
-```
 
-![geojson](figure/geojson.jpg
-)
 ### Writing geojson
 
 Just as with shapefiles, writing to a geojson file can be accomplished with `writeOGR`.
 
-```{r write_geojson}
-writeOGR(dc_metro_sttn,"data/stations.geojson", "OGRGeoJSON", 
-         driver="GeoJSON")
+```{r write_geojson,eval=T}
+writeOGR(dc_metro_sttn,dsn="stations.gejson",layer="dc_metro_sttn",driver="GeoJSON")
 ```
 
 Lastly, if you commonly work with geojson files, there is the `geojsonio` package from [rOpenSci](https://ropensci.org/) that provides a number of tools for reading, writing, and converting geojson files.  It is certainly worth exploring as it provides additiona functionality beyond the `rgdal` toolset.

@@ -274,21 +274,13 @@ plot(dc_metro_sttn, col = "red", add = TRUE)
 
 ![plot of chunk plot_geojson](figure/plot_geojson-1.png) 
 
-
-![geojson](figure/geojson.jpg
-)
 ### Writing geojson
 
 Just as with shapefiles, writing to a geojson file can be accomplished with `writeOGR`.
 
 
 ```r
-writeOGR(dc_metro_sttn, "data/stations.geojson", "OGRGeoJSON", driver = "GeoJSON")
-```
-
-```
-## Error in writeOGR(dc_metro_sttn, "data/stations.geojson", "OGRGeoJSON", : 
-## 	GDAL Error 3: Cannot open file 'data/stations.geojson'
+writeOGR(dc_metro_sttn, dsn = "stations.gejson", layer = "dc_metro_sttn", driver = "GeoJSON")
 ```
 
 Lastly, if you commonly work with geojson files, there is the `geojsonio` package from [rOpenSci](https://ropensci.org/) that provides a number of tools for reading, writing, and converting geojson files.  It is certainly worth exploring as it provides additiona functionality beyond the `rgdal` toolset.
@@ -364,7 +356,7 @@ system.time(readGDAL("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##   0.042   0.068   0.107
+##   0.046   0.000   0.046
 ```
 
 ```r
@@ -373,7 +365,7 @@ system.time(raster("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##   0.005   0.000   0.005
+##   0.006   0.000   0.006
 ```
 
 The speed here is due to the fact that `raster` actually leaves the data on disk as opposed to pulling it all into memory.  Some operations will actually be faster on the `SpatialGrid` objects, but with bigger rasters reading in can be a challenge.  In addition, a lot of the typical raster operations come from the `raster` package and it is just a bit easier to work with `raster` objects as opposed to `sp` for this.  Lastly, it is what I prefer, so there's that.  We will stick with `raster` for the rest of the workshop.
