@@ -1,6 +1,6 @@
 ```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
 options(repos="http://cran.rstudio.com/")
-opt_chunks$set(tidy=T)
+opt_chunk$set(tidy=T)
 pkgs <- c("sp","rgdal","rgeos","raster")
 x<-lapply(pkgs, library, character.only = TRUE)
 ```

@@ -1,6 +1,6 @@
 
 ```
-## Error in eval(expr, envir, enclos): object 'opt_chunks' not found
+## Error in eval(expr, envir, enclos): object 'opt_chunk' not found
 ```
 
 # Visualizing Spatial Data in R
