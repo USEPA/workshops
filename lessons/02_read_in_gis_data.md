@@ -269,13 +269,11 @@ dc_metro_sttn
 ```r
 # And add a few more things to our plot
 plot(dc_metro)
-plot(dc_metro_sttn, col = "red")
+plot(dc_metro_sttn, col = "red", add = TRUE)
 ```
 
-```
-## png 
-##   2
-```
+![plot of chunk plot_geojson](figure/plot_geojson-1.png) 
+
 
 ![geojson](figure/geojson.jpg
 )
@@ -366,7 +364,7 @@ system.time(readGDAL("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##   0.037   0.008   0.045
+##   0.042   0.068   0.107
 ```
 
 ```r
@@ -375,7 +373,7 @@ system.time(raster("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##   0.006   0.000   0.006
+##   0.005   0.000   0.005
 ```
 
 The speed here is due to the fact that `raster` actually leaves the data on disk as opposed to pulling it all into memory.  Some operations will actually be faster on the `SpatialGrid` objects, but with bigger rasters reading in can be a challenge.  In addition, a lot of the typical raster operations come from the `raster` package and it is just a bit easier to work with `raster` objects as opposed to `sp` for this.  Lastly, it is what I prefer, so there's that.  We will stick with `raster` for the rest of the workshop.

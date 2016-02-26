@@ -125,12 +125,12 @@ And to see that something is there...
 #Let's use the defualt print 
 dc_metro_sttn
 ```
-```{r plot_geojson,eval=FALSE}
+```{r plot_geojson,eval=TRUE}
 #And add a few more things to our plot
 plot(dc_metro)
-plot(dc_metro_sttn, col = "red")
+plot(dc_metro_sttn, col = "red", add=TRUE)
 ```
-```{r,echo=FALSE}
+```{r,eval=FALSE,echo=FALSE}
 jpeg("figure/geojson.jpg")
 plot(dc_metro)
 plot(dc_metro_sttn, col = "red")
