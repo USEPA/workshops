@@ -1,16 +1,48 @@
 
 
 # Basic GIS Analysis with R
-We now have the required packages installed and know how to read data into R. Our next step is to start doing some GIS analysis with R. Throughout the course of this lesson will show how to do some basic manipulation of the `raster` and `sp` objects.
+We now have the required packages installed and know how to read data into R. Our next step is to start doing some GIS analysis with R. Throughout the course of this lesson will show how to do some basic manipulation of the `raster` and `sp` objects and then show a few examples of some relatively straightforward analyses.
 
 ## Lesson Outline
-
+- [Explore and manipulate](#explore-and-manipulate)
+- [Projections](#projections)
+- [Intro to rgeos:Overlay and Buffer](#intro-to-rgeos-overlay-and-buffer)
+- [Working with rasters](#working-with-rasters)
 - [Other geospatial packages](#other-geospatial-packages)
 
 ## Lesson Exercises
 - [Exercise 3.1](#exercise-31)
+- [Exercise 3.2](#exercise-32)
+- [Exercise 3.3](#exercise-33)
 
-## Exercise 4.1
+## Explore and manipulate
+For examples use metro lines/stations and elevation.
+
+## Projections
+
+## Exercise 3.1
+In this first exercise we will work on manipulating the Tiger Lines file of the states that we pulled in as part of lesson 2 and assinged to `us_states`.
+
+1. Assign just the DC boundary to an object named `dc_bnd`.
+2. Re-project `dc_bnd` to match the projection of `dc_nlcd`.  Assign this to an object named `dc_bnd_prj`.
+
+## Intro to rgeos: Overlay and Buffer
+
+## Exercise 3.2
+We will work with the re-projected `dc_bnd_prj` lets set this up for some further analyis.
+
+1. Buffer the DC boundary by 1000 meters.
+2. Using the overlay functions, get an object that represents only the area 1000 meters outside of DC.
+3. Determine the area of both the DC boundary as well as the surrounding 1000 meters.
+
+## Working with rasters
+
+## Exercise 3.3
+Let's combine all of this together and calculate some landcover summary statistics
+
+1. Clip out the NLCD from within the DC boundaries.
+2. Clip out the NLCD from the surrounding 1000 meters.
+3. Summarize the land use/land cover statistics and report percent of each landcover type both within the DC boundary and within the surrounding 1000 meters.
 
 ## Other Geospatial packages
 In this section, I'll introduce a few other packages that I have used or know about that provide some common analyses that may not be readily available via the base packages.  For a complete annotated listing though, the [CRAN Spatial Analysis Task View](https://cran.r-project.org/web/views/Spatial.html) should be your first stop.  The task view provides a full list of packages for working with spatial data, geostatistics, spatial regression, etc.  

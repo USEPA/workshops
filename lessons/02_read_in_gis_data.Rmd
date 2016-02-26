@@ -147,7 +147,7 @@ Lastly, if you commonly work with geojson files, there is the `geojsonio` packag
 For this first exercise we will just focus on getting a shapefile read into R.  We will be using the sticky notes I handed out to let me know who needs help and who has finished the exercise.  Once everyone is done, we will move on.
 
 1. Using `rgdal::readOGR` to read in the US Census Tiger Line Files of the state boundaries.  Assign it to an object called `us_states`.
-2. Once it is read in use `summary` to look at some of the basics and the plot the data.
+2. Once it is read in use `summary` to look at some of the basics and then plot the data.
 
 
 ## Raster data: GeoTIFF

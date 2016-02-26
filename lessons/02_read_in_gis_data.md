@@ -92,7 +92,7 @@ summary(dc_metro)
 plot(dc_metro)
 ```
 
-![plot of chunk metro_chk](figure/metro_chk-1.png) 
+![plot of chunk metro_chk](figure/metro_chk-1.png)
 
 As I mentioned earlier, there are other ways to read in shapefiles.  Two common ways are with the `maptools` and `shapefiles` packages
 
@@ -224,7 +224,7 @@ summary(examp_fgdb)
 plot(examp_fgdb)
 ```
 
-![plot of chunk check_gdb](figure/check_gdb-1.png) 
+![plot of chunk check_gdb](figure/check_gdb-1.png)
 
 Writing to a file geodatabase from R is not yet possible.
 
@@ -242,7 +242,8 @@ dc_metro_sttn <- readOGR("data/dc_metrostations.geojson", "OGRGeoJSON")
 ```
 
 ```
-## Error in ogrInfo(dsn = dsn, layer = layer, encoding = encoding, use_iconv = use_iconv, : Cannot open data source
+## Error in ogrInfo(dsn = dsn, layer = layer, encoding = encoding, use_iconv = use_iconv, : 
+## 	GDAL Error 3: Cannot open file 'data/dc_metrostations.geojson'
 ```
 
 And to see that something is there...
@@ -262,7 +263,7 @@ dc_metro_sttn
 plot(dc_metro)
 ```
 
-![plot of chunk check_geojson](figure/check_geojson-1.png) 
+![plot of chunk check_geojson](figure/check_geojson-1.png)
 
 ```r
 plot(dc_metro_sttn, col = "red")
@@ -292,7 +293,7 @@ Lastly, if you commonly work with geojson files, there is the `geojsonio` packag
 For this first exercise we will just focus on getting a shapefile read into R.  We will be using the sticky notes I handed out to let me know who needs help and who has finished the exercise.  Once everyone is done, we will move on.
 
 1. Using `rgdal::readOGR` to read in the US Census Tiger Line Files of the state boundaries.  Assign it to an object called `us_states`.
-2. Once it is read in use `summary` to look at some of the basics and the plot the data.
+2. Once it is read in use `summary` to look at some of the basics and then plot the data.
 
 
 ## Raster data: GeoTIFF
@@ -341,7 +342,7 @@ dc_elev
 ## resolution  : 0.0002777778, 0.0002777778  (x, y)
 ## extent      : -77.15306, -76.89722, 38.77639, 38.99806  (xmin, xmax, ymin, ymax)
 ## coord. ref. : +proj=longlat +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0 
-## data source : C:\data\intro_gis_with_r\lessons\data\dc_ned.tif 
+## data source : /home/jhollist/projects/intro_gis_with_r/lessons/data/dc_ned.tif 
 ## names       : dc_ned 
 ## values      : -5.316066, 131.4813  (min, max)
 ```
@@ -360,7 +361,7 @@ system.time(readGDAL("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##    0.12    0.01    0.14
+##   0.060   0.008   0.071
 ```
 
 ```r
@@ -369,7 +370,7 @@ system.time(raster("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##    0.00    0.02    0.05
+##   0.012   0.000   0.010
 ```
 
 The speed here is due to the fact that `raster` actually leaves the data on disk as opposed to pulling it all into memory.  Some operations will actually be faster on the `SpatialGrid` objects, but with bigger rasters reading in can be a challenge.  In addition, a lot of the typical raster operations come from the `raster` package and it is just a bit easier to work with `raster` objects as opposed to `sp` for this.  Lastly, it is what I prefer, so there's that.  We will stick with `raster` for the rest of the workshop.
@@ -390,7 +391,7 @@ dc_elev_ascii
 ## resolution  : 0.0002777778, 0.0002777778  (x, y)
 ## extent      : -77.15306, -76.89722, 38.77639, 38.99806  (xmin, xmax, ymin, ymax)
 ## coord. ref. : NA 
-## data source : C:\data\intro_gis_with_r\lessons\data\dc_ned.asc 
+## data source : /home/jhollist/projects/intro_gis_with_r/lessons/data/dc_ned.asc 
 ## names       : dc_ned
 ```
 
