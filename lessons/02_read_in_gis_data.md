@@ -269,16 +269,22 @@ dc_metro_sttn
 ```r
 # And add a few more things to our plot
 plot(dc_metro)
-```
-
-![plot of chunk check_geojson](figure/check_geojson-1.png) 
-
-```r
 plot(dc_metro_sttn, col = "red")
 ```
 
-![plot of chunk check_geojson](figure/check_geojson-2.png) 
+```
+## Error in eval(expr, envir, enclos): could not find function "jpg"
+```
 
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.png) ![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-2.png) 
+
+```
+## null device 
+##           1
+```
+
+![geojson](figure/geojson.jpg
+)
 ### Writing geojson
 
 Just as with shapefiles, writing to a geojson file can be accomplished with `writeOGR`.
@@ -366,7 +372,7 @@ system.time(readGDAL("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##   0.045   0.000   0.044
+##   0.037   0.008   0.045
 ```
 
 ```r

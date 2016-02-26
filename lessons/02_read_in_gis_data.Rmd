@@ -124,12 +124,21 @@ And to see that something is there...
 ```{r check_geojson}
 #Let's use the defualt print 
 dc_metro_sttn
-
+```
+```{r plot_geojson,eval=FALSE}
 #And add a few more things to our plot
 plot(dc_metro)
 plot(dc_metro_sttn, col = "red")
 ```
+```{r,echo=FALSE}
+jpg("figure/geojson.jpg")
+plot(dc_metro)
+plot(dc_metro_sttn, col = "red")
+dev.off()
+```
 
+![geojson](figure/geojson.jpg
+)
 ### Writing geojson
 
 Just as with shapefiles, writing to a geojson file can be accomplished with `writeOGR`.
