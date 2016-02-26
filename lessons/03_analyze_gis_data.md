@@ -1,7 +1,10 @@
 
+```
+## Error in eval(expr, envir, enclos): object 'opt_chunks' not found
+```
 
 # Basic GIS Analysis with R
-We now have the required packages installed and know how to read data into R. Our next step is to start doing some GIS analysis with R. Throughout the course of this lesson will show how to do some basic manipulation of the `raster` and `sp` objects and then show a few examples of some relatively straightforward analyses.
+We now have the required packages installed and know how to read data into R. Our next step is to start doing some GIS analysis with R. Throughout the course of this lesson will show how to do some basic manipulation of the `raster` and `sp` objects and then show a few examples of some relatively straightforward analyses.  We will only be scratching the surface here, but hoepfully this will provide a starting point for more work doing spatial analysis in R.  ***Note:*** *Much of this lesson assumes some familiarity with R and working with data frames.*
 
 ## Lesson Outline
 - [Explore and manipulate](#explore-and-manipulate)
@@ -16,7 +19,7 @@ We now have the required packages installed and know how to read data into R. Ou
 - [Exercise 3.3](#exercise-33)
 
 ## Explore and manipulate
-For examples use metro lines/stations and elevation.
+One of the nice things about `sp` objects is that many of the tricks you know for working with data frames will also work 
 
 ## Projections
 

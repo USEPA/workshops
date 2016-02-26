@@ -1,4 +1,7 @@
 
+```
+## Error in eval(expr, envir, enclos): object 'opt_chunks' not found
+```
 
 # Setting up R to do GIS
 Out of the box, R is not ready to do GIS analysis.  As such, we need to add a few packages that will provide most of the functionality you'd expect out of a GIS.  In this lesson we will introduce both the bare minimum packages for doing GIS as well as discuss additional packages that provide more advanced GIS analysis and visualization.

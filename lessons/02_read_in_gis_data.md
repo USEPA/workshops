@@ -1,4 +1,7 @@
 
+```
+## Error in eval(expr, envir, enclos): object 'opt_chunks' not found
+```
 
 # Reading and Writing Raster and Vector Data
 So, now that we have the base packages installed and loaded we can work on getting our data into and out of R.  While it is possible to store spatial data as R objects (e.g. via .Rda/Rdata files) that is probably not the best approach.  It is better to store spatial data in widley used files (e.g. shapefiles,.tiff, or geojson) or in spatial databases (e.g. file geodatabse or PostGIS) and then read that data into R for analysis then writing the results back out to your file format of choice.  In this lesson we will explore several ways to read in multiple vector and raster data types.
@@ -92,7 +95,7 @@ summary(dc_metro)
 plot(dc_metro)
 ```
 
-![plot of chunk metro_chk](figure/metro_chk-1.png)
+![plot of chunk metro_chk](figure/metro_chk-1.png) 
 
 As I mentioned earlier, there are other ways to read in shapefiles.  Two common ways are with the `maptools` and `shapefiles` packages
 
@@ -224,7 +227,7 @@ summary(examp_fgdb)
 plot(examp_fgdb)
 ```
 
-![plot of chunk check_gdb](figure/check_gdb-1.png)
+![plot of chunk check_gdb](figure/check_gdb-1.png) 
 
 Writing to a file geodatabase from R is not yet possible.
 
@@ -242,8 +245,7 @@ dc_metro_sttn <- readOGR("data/dc_metrostations.geojson", "OGRGeoJSON")
 ```
 
 ```
-## Error in ogrInfo(dsn = dsn, layer = layer, encoding = encoding, use_iconv = use_iconv, : 
-## 	GDAL Error 3: Cannot open file 'data/dc_metrostations.geojson'
+## Error in ogrInfo(dsn = dsn, layer = layer, encoding = encoding, use_iconv = use_iconv, : Cannot open data source
 ```
 
 And to see that something is there...
@@ -263,7 +265,7 @@ dc_metro_sttn
 plot(dc_metro)
 ```
 
-![plot of chunk check_geojson](figure/check_geojson-1.png)
+![plot of chunk check_geojson](figure/check_geojson-1.png) 
 
 ```r
 plot(dc_metro_sttn, col = "red")
@@ -342,7 +344,7 @@ dc_elev
 ## resolution  : 0.0002777778, 0.0002777778  (x, y)
 ## extent      : -77.15306, -76.89722, 38.77639, 38.99806  (xmin, xmax, ymin, ymax)
 ## coord. ref. : +proj=longlat +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0 
-## data source : /home/jhollist/projects/intro_gis_with_r/lessons/data/dc_ned.tif 
+## data source : C:\data\intro_gis_with_r\lessons\data\dc_ned.tif 
 ## names       : dc_ned 
 ## values      : -5.316066, 131.4813  (min, max)
 ```
@@ -361,7 +363,7 @@ system.time(readGDAL("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##   0.060   0.008   0.071
+##    0.06    0.00    0.06
 ```
 
 ```r
@@ -370,7 +372,7 @@ system.time(raster("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##   0.012   0.000   0.010
+##    0.02    0.00    0.02
 ```
 
 The speed here is due to the fact that `raster` actually leaves the data on disk as opposed to pulling it all into memory.  Some operations will actually be faster on the `SpatialGrid` objects, but with bigger rasters reading in can be a challenge.  In addition, a lot of the typical raster operations come from the `raster` package and it is just a bit easier to work with `raster` objects as opposed to `sp` for this.  Lastly, it is what I prefer, so there's that.  We will stick with `raster` for the rest of the workshop.
@@ -391,7 +393,7 @@ dc_elev_ascii
 ## resolution  : 0.0002777778, 0.0002777778  (x, y)
 ## extent      : -77.15306, -76.89722, 38.77639, 38.99806  (xmin, xmax, ymin, ymax)
 ## coord. ref. : NA 
-## data source : /home/jhollist/projects/intro_gis_with_r/lessons/data/dc_ned.asc 
+## data source : C:\data\intro_gis_with_r\lessons\data\dc_ned.asc 
 ## names       : dc_ned
 ```
 
