@@ -34,7 +34,6 @@ unzip("data.zip", overwrite = TRUE)
 ```
 
 
-
 ## Vector data: shapefiles
 For many, shapefiles are going to be the most common way to interact with spatial data.  In R, there are many ways to read in shapefiles.  We are going to focus using `rgdal` becuase it is flexible and provides a common interface to multiple file types.  But to be fair, I'll also quickly show a another option from `maptools`.
 
@@ -139,7 +138,7 @@ Before we do this, we can prove that the shapefile doesn't exist.
 
 
 ```
-## [1] TRUE
+## [1] TRUE TRUE TRUE TRUE
 ```
 
 ```r
@@ -238,12 +237,12 @@ To read in with `rgdal` we use "dsn" and "layer" a bit differently.  The "dsn" i
 
 
 ```r
-dc_metro_sttn <- readOGR("data/dc_metrostations.geojson", "OGRGeoJSON")
+dc_metro_sttn <- readOGR("data/metrostations.geojson", "OGRGeoJSON")
 ```
 
 ```
 ## Error in ogrInfo(dsn = dsn, layer = layer, encoding = encoding, use_iconv = use_iconv, : 
-## 	GDAL Error 3: Cannot open file 'data/dc_metrostations.geojson'
+## 	GDAL Error 3: Cannot open file 'data/metrostations.geojson'
 ```
 
 And to see that something is there...
@@ -359,7 +358,7 @@ system.time(readGDAL("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##   0.041   0.004   0.045
+##   0.042   0.003   0.045
 ```
 
 ```r
@@ -368,7 +367,7 @@ system.time(raster("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##   0.008   0.000   0.007
+##   0.005   0.000   0.005
 ```
 
 The speed here is due to the fact that `raster` actually leaves the data on disk as opposed to pulling it all into memory.  Some operations will actually be faster on the `SpatialGrid` objects, but with bigger rasters reading in can be a challenge.  In addition, a lot of the typical raster operations come from the `raster` package and it is just a bit easier to work with `raster` objects as opposed to `sp` for this.  Lastly, it is what I prefer, so there's that.  We will stick with `raster` for the rest of the workshop.

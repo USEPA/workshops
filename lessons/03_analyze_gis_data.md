@@ -30,7 +30,7 @@ Let's start working through some examples using the two Metro datasets.
 
 ```
 ## Error in ogrInfo(dsn = dsn, layer = layer, encoding = encoding, use_iconv = use_iconv, : 
-## 	GDAL Error 3: Cannot open file 'data/dc_metrostations.geojson'
+## 	GDAL Error 3: Cannot open file 'data/metrostations.geojson'
 ```
 
 We've already seen how to use the default print statements to look at the basics

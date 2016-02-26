@@ -27,7 +27,7 @@ Let's start working through some examples using the two Metro datasets.
 
 ```{r, echo=FALSE}
 dc_metro <- readOGR("data","Metro_Lines")
-dc_metro_sttn <- readOGR("data/dc_metrostations.geojson", "OGRGeoJSON")
+dc_metro_sttn <- readOGR("data/metrostations.geojson", "OGRGeoJSON")
 dc_elev <- raster("data/dc_ned.tif")
 ```
 
