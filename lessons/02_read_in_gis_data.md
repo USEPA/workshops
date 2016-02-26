@@ -241,12 +241,14 @@ dc_metro_sttn <- readOGR("data/metrostations.geojson", "OGRGeoJSON")
 ```
 
 ```
-## Error in ogrInfo(dsn = dsn, layer = layer, encoding = encoding, use_iconv = use_iconv, : 
-## 	GDAL Error 3: Cannot open file 'data/metrostations.geojson'
+## OGR data source with driver: GeoJSON 
+## Source: "data/metrostations.geojson", layer: "OGRGeoJSON"
+## with 40 features
+## It has 6 fields
 ```
 
 And to see that something is there...
-
+ 
 
 ```r
 # Let's use the defualt print
@@ -254,7 +256,14 @@ dc_metro_sttn
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'dc_metro_sttn' not found
+## class       : SpatialPointsDataFrame 
+## features    : 40 
+## extent      : -77.085, -76.93526, 38.84567, 38.97609  (xmin, xmax, ymin, ymax)
+## coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
+## variables   : 6
+## names       : OBJECTID,   GIS_ID,                          NAME,                                                WEB_URL,                 LINE,                    ADDRESS 
+## min values  :        1, mstn_001,                     Anacostia,  http://wmata.com/rail/station_detail.cfm?station_id=1, blue, orange, silver, 1001 CONNECTICUT AVENUE NW 
+## max values  :        9, mstn_040, Woodley Park-Zoo Adams Morgan, http://wmata.com/rail/station_detail.cfm?station_id=90,   red, green, yellow, 919 RHODE ISLAND AVENUE NE
 ```
 
 ```r
@@ -268,9 +277,7 @@ plot(dc_metro)
 plot(dc_metro_sttn, col = "red")
 ```
 
-```
-## Error in plot(dc_metro_sttn, col = "red"): error in evaluating the argument 'x' in selecting a method for function 'plot': Error: object 'dc_metro_sttn' not found
-```
+![plot of chunk check_geojson](figure/check_geojson-2.png) 
 
 ### Writing geojson
 
@@ -282,7 +289,8 @@ writeOGR(dc_metro_sttn, "data/stations.geojson", "OGRGeoJSON", driver = "GeoJSON
 ```
 
 ```
-## Error in inherits(obj, "Spatial"): object 'dc_metro_sttn' not found
+## Error in writeOGR(dc_metro_sttn, "data/stations.geojson", "OGRGeoJSON", : 
+## 	GDAL Error 3: Cannot open file 'data/stations.geojson'
 ```
 
 Lastly, if you commonly work with geojson files, there is the `geojsonio` package from [rOpenSci](https://ropensci.org/) that provides a number of tools for reading, writing, and converting geojson files.  It is certainly worth exploring as it provides additiona functionality beyond the `rgdal` toolset.
@@ -358,7 +366,7 @@ system.time(readGDAL("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##   0.042   0.003   0.045
+##   0.045   0.000   0.044
 ```
 
 ```r
@@ -367,7 +375,7 @@ system.time(raster("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##   0.005   0.000   0.005
+##   0.006   0.000   0.006
 ```
 
 The speed here is due to the fact that `raster` actually leaves the data on disk as opposed to pulling it all into memory.  Some operations will actually be faster on the `SpatialGrid` objects, but with bigger rasters reading in can be a challenge.  In addition, a lot of the typical raster operations come from the `raster` package and it is just a bit easier to work with `raster` objects as opposed to `sp` for this.  Lastly, it is what I prefer, so there's that.  We will stick with `raster` for the rest of the workshop.

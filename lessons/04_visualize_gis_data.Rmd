@@ -4,7 +4,7 @@ pkgs <- c("sp","rgdal","rgeos","raster","knitr")
 x<-lapply(pkgs, library, character.only = TRUE)
 opts_chunk$set(tidy=T)
 ```
-
+ 
 # Visualizing Spatial Data in R
 
 ## Lesson Outline

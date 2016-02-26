@@ -1,5 +1,5 @@
 
-
+ 
 # Visualizing Spatial Data in R
 
 ## Lesson Outline

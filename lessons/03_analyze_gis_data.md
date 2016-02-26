@@ -29,8 +29,10 @@ Let's start working through some examples using the two Metro datasets.
 ```
 
 ```
-## Error in ogrInfo(dsn = dsn, layer = layer, encoding = encoding, use_iconv = use_iconv, : 
-## 	GDAL Error 3: Cannot open file 'data/metrostations.geojson'
+## OGR data source with driver: GeoJSON 
+## Source: "data/metrostations.geojson", layer: "OGRGeoJSON"
+## with 40 features
+## It has 6 fields
 ```
 
 We've already seen how to use the default print statements to look at the basics
@@ -56,7 +58,14 @@ dc_metro_sttn
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'dc_metro_sttn' not found
+## class       : SpatialPointsDataFrame 
+## features    : 40 
+## extent      : -77.085, -76.93526, 38.84567, 38.97609  (xmin, xmax, ymin, ymax)
+## coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
+## variables   : 6
+## names       : OBJECTID,   GIS_ID,                          NAME,                                                WEB_URL,                 LINE,                    ADDRESS 
+## min values  :        1, mstn_001,                     Anacostia,  http://wmata.com/rail/station_detail.cfm?station_id=1, blue, orange, silver, 1001 CONNECTICUT AVENUE NW 
+## max values  :        9, mstn_040, Woodley Park-Zoo Adams Morgan, http://wmata.com/rail/station_detail.cfm?station_id=90,   red, green, yellow, 919 RHODE ISLAND AVENUE NE
 ```
 
 We can get more info on the data with:
@@ -67,7 +76,27 @@ head(dc_metro_sttn)
 ```
 
 ```
-## Error in head(dc_metro_sttn): error in evaluating the argument 'x' in selecting a method for function 'head': Error: object 'dc_metro_sttn' not found
+##   OBJECTID   GIS_ID                 NAME
+## 1        1 mstn_007     Columbia Heights
+## 2        2 mstn_020 Georgia Ave Petworth
+## 3        3 mstn_034               Takoma
+## 4        4 mstn_004        Brookland-CUA
+## 5        5 mstn_017          Fort Totten
+## 6        6 mstn_003         Benning Road
+##                                                  WEB_URL
+## 1 http://wmata.com/rail/station_detail.cfm?station_id=75
+## 2 http://wmata.com/rail/station_detail.cfm?station_id=76
+## 3 http://wmata.com/rail/station_detail.cfm?station_id=29
+## 4 http://wmata.com/rail/station_detail.cfm?station_id=27
+## 5 http://wmata.com/rail/station_detail.cfm?station_id=28
+## 6 http://wmata.com/rail/station_detail.cfm?station_id=90
+##                   LINE                ADDRESS
+## 1        green, yellow    3030 14TH STREET NW
+## 2        green, yellow 3700 GEORGIA AVENUE NW
+## 3                  red    327 CEDAR STREET NW
+## 4                  red 801 MICHIGAN AVENUE NE
+## 5   red, green, yellow 550 GALLOWAY STREET NE
+## 6 blue, orange, silver   4500 BENNING ROAD NE
 ```
 
 ```r
@@ -75,7 +104,40 @@ summary(dc_metro_sttn)
 ```
 
 ```
-## Error in summary(dc_metro_sttn): error in evaluating the argument 'object' in selecting a method for function 'summary': Error: object 'dc_metro_sttn' not found
+## Object of class SpatialPointsDataFrame
+## Coordinates:
+##                 min       max
+## coords.x1 -77.08500 -76.93526
+## coords.x2  38.84567  38.97609
+## Is projected: FALSE 
+## proj4string :
+## [+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0]
+## Number of points: 40
+## Data attributes:
+##     OBJECTID          GIS_ID                   NAME   
+##  Min.   : 1.00   mstn_001: 1   Anacostia         : 1  
+##  1st Qu.:10.75   mstn_002: 1   Archives-Navy Meml: 1  
+##  Median :20.50   mstn_003: 1   Benning Road      : 1  
+##  Mean   :20.50   mstn_004: 1   Brookland-CUA     : 1  
+##  3rd Qu.:30.25   mstn_005: 1   Capitol South     : 1  
+##  Max.   :40.00   mstn_006: 1   Cleveland Park    : 1  
+##                  (Other) :34   (Other)           :34  
+##                                                     WEB_URL  
+##  http://wmata.com/rail/station_detail.cfm?station_id=1  : 1  
+##  http://wmata.com/rail/station_detail.cfm?station_id=10 : 1  
+##  http://wmata.com/rail/station_detail.cfm?station_id=108: 1  
+##  http://wmata.com/rail/station_detail.cfm?station_id=11 : 1  
+##  http://wmata.com/rail/station_detail.cfm?station_id=21 : 1  
+##  http://wmata.com/rail/station_detail.cfm?station_id=23 : 1  
+##  (Other)                                                :34  
+##                    LINE                           ADDRESS  
+##  red                 :13   1001 CONNECTICUT AVENUE NW : 1  
+##  blue, orange, silver:10   1101 HOWARD ROAD SE        : 1  
+##  green, yellow       : 6   1200 INDEPENDENCE AVENUE SW: 1  
+##  green               : 4   1290 ALABAMA AVENUE SE     : 1  
+##  orange              : 2   1300 U STREET NW           : 1  
+##  red, green, yellow  : 2   1400 I STREET NW           : 1  
+##  (Other)             : 3   (Other)                    :34
 ```
 
 ```r
@@ -83,7 +145,7 @@ names(dc_metro_sttn)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'dc_metro_sttn' not found
+## [1] "OBJECTID" "GIS_ID"   "NAME"     "WEB_URL"  "LINE"     "ADDRESS"
 ```
 
 And to get into the guts of the `sp` objects:
@@ -163,52 +225,52 @@ Now for the fun part.  We can use indexing/subsetting tools we already know to p
 ```r
 # select with base indexing
 est_mrkt <- dc_metro_sttn[dc_metro_sttn$NAME == "Eastern Market", ]
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'dc_metro_sttn' not found
-```
-
-```r
 est_mrkt
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'est_mrkt' not found
+## class       : SpatialPointsDataFrame 
+## features    : 1 
+## extent      : -76.996, -76.996, 38.88463, 38.88463  (xmin, xmax, ymin, ymax)
+## coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
+## variables   : 6
+## names       : OBJECTID,   GIS_ID,           NAME,                                                WEB_URL,                 LINE,                    ADDRESS 
+## min values  :       34, mstn_011, Eastern Market, http://wmata.com/rail/station_detail.cfm?station_id=60, blue, orange, silver, 701 PENNSYLVANIA AVENUE SE 
+## max values  :       34, mstn_011, Eastern Market, http://wmata.com/rail/station_detail.cfm?station_id=60, blue, orange, silver, 701 PENNSYLVANIA AVENUE SE
 ```
 
 ```r
 # select with subset (plus a Lil Rhody Shout Out!)
 ri <- subset(dc_metro_sttn, NAME == "Rhode Island Ave")
-```
-
-```
-## Error in subset(dc_metro_sttn, NAME == "Rhode Island Ave"): error in evaluating the argument 'x' in selecting a method for function 'subset': Error: object 'dc_metro_sttn' not found
-```
-
-```r
 ri
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'ri' not found
+## class       : SpatialPointsDataFrame 
+## features    : 1 
+## extent      : -76.99594, -76.99594, 38.92107, 38.92107  (xmin, xmax, ymin, ymax)
+## coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
+## variables   : 6
+## names       : OBJECTID,   GIS_ID,             NAME,                                                WEB_URL, LINE,                    ADDRESS 
+## min values  :       37, mstn_030, Rhode Island Ave, http://wmata.com/rail/station_detail.cfm?station_id=26,  red, 919 RHODE ISLAND AVENUE NE 
+## max values  :       37, mstn_030, Rhode Island Ave, http://wmata.com/rail/station_detail.cfm?station_id=26,  red, 919 RHODE ISLAND AVENUE NE
 ```
 
 ```r
 # select multiple items
 red_line_sttn <- subset(dc_metro_sttn, grepl("red", LINE))
-```
-
-```
-## Error in subset(dc_metro_sttn, grepl("red", LINE)): error in evaluating the argument 'x' in selecting a method for function 'subset': Error: object 'dc_metro_sttn' not found
-```
-
-```r
 red_line_sttn
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'red_line_sttn' not found
+## class       : SpatialPointsDataFrame 
+## features    : 16 
+## extent      : -77.085, -76.99454, 38.8961, 38.97609  (xmin, xmax, ymin, ymax)
+## coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
+## variables   : 6
+## names       : OBJECTID,   GIS_ID,                          NAME,                                               WEB_URL,               LINE,                    ADDRESS 
+## min values  :       10, mstn_004,                 Brookland-CUA, http://wmata.com/rail/station_detail.cfm?station_id=1,                red, 1001 CONNECTICUT AVENUE NW 
+## max values  :        9, mstn_040, Woodley Park-Zoo Adams Morgan, http://wmata.com/rail/station_detail.cfm?station_id=9, red, green, yellow, 919 RHODE ISLAND AVENUE NE
 ```
 
 Adding data is just the same as for adding data to data frames.  I found some ridership data for the different stations and summarized that, by station, into "station_rides.csv".  Let's pull that in, and add it to `dc_metro_sttn`.  
@@ -314,7 +376,7 @@ dc_metro_sttn <- merge(dc_metro_sttn, station_rides, by.x = "NAME", by.y = "Ent.
 ```
 
 ```
-## Error in merge(dc_metro_sttn, station_rides, by.x = "NAME", by.y = "Ent.Station", : error in evaluating the argument 'x' in selecting a method for function 'merge': Error: object 'dc_metro_sttn' not found
+## Error in merge(dc_metro_sttn, station_rides, by.x = "NAME", by.y = "Ent.Station", : error in evaluating the argument 'y' in selecting a method for function 'merge': Error: object 'station_rides' not found
 ```
 
 ```r
@@ -322,7 +384,27 @@ head(dc_metro_sttn)
 ```
 
 ```
-## Error in head(dc_metro_sttn): error in evaluating the argument 'x' in selecting a method for function 'head': Error: object 'dc_metro_sttn' not found
+##   OBJECTID   GIS_ID                 NAME
+## 1        1 mstn_007     Columbia Heights
+## 2        2 mstn_020 Georgia Ave Petworth
+## 3        3 mstn_034               Takoma
+## 4        4 mstn_004        Brookland-CUA
+## 5        5 mstn_017          Fort Totten
+## 6        6 mstn_003         Benning Road
+##                                                  WEB_URL
+## 1 http://wmata.com/rail/station_detail.cfm?station_id=75
+## 2 http://wmata.com/rail/station_detail.cfm?station_id=76
+## 3 http://wmata.com/rail/station_detail.cfm?station_id=29
+## 4 http://wmata.com/rail/station_detail.cfm?station_id=27
+## 5 http://wmata.com/rail/station_detail.cfm?station_id=28
+## 6 http://wmata.com/rail/station_detail.cfm?station_id=90
+##                   LINE                ADDRESS
+## 1        green, yellow    3030 14TH STREET NW
+## 2        green, yellow 3700 GEORGIA AVENUE NW
+## 3                  red    327 CEDAR STREET NW
+## 4                  red 801 MICHIGAN AVENUE NE
+## 5   red, green, yellow 550 GALLOWAY STREET NE
+## 6 blue, orange, silver   4500 BENNING ROAD NE
 ```
 
 So, now we can use these values to select.
@@ -333,7 +415,7 @@ busy_sttn <- subset(dc_metro_sttn, avg_wkday >= 10000)
 ```
 
 ```
-## Error in subset(dc_metro_sttn, avg_wkday >= 10000): error in evaluating the argument 'x' in selecting a method for function 'subset': Error: object 'dc_metro_sttn' not found
+## Error in eval(expr, envir, enclos): object 'avg_wkday' not found
 ```
 
 ```r
@@ -371,10 +453,6 @@ Luckily, it is pretty common to have several datasets and one of which is in the
 dc_metro_sttn_prj <- spTransform(dc_metro_sttn, CRS(proj4string(dc_metro_alb)))
 ```
 
-```
-## Error in spTransform(dc_metro_sttn, CRS(proj4string(dc_metro_alb))): error in evaluating the argument 'x' in selecting a method for function 'spTransform': Error: object 'dc_metro_sttn' not found
-```
-
 ## Exercise 3.1
 In this first exercise we will work on manipulating the Tiger Lines file of the states that we pulled in as part of lesson 2 and assinged to `us_states`.
 
@@ -382,7 +460,7 @@ In this first exercise we will work on manipulating the Tiger Lines file of the 
 2. Re-project `dc_bnd` to match the projection of `dc_nlcd`.  Assign this to an object named `dc_bnd_prj`.
  
 ## Intro to rgeos: Overlay and Buffer
-In this section we are going to start working with many of the "typical" GIS type analyses, specifcially buffers and a few overlays.  
+In this section we are going to start working with many of the "typical" GIS type analyses, specifcially buffers and a few overlays. We will use mostly `rgeos` but will also look a bit at `sp::over`. 
 
 ## Exercise 3.2
 We will work with the re-projected `dc_bnd_prj` lets set this up for some further analyis.

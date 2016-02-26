@@ -120,7 +120,7 @@ dc_metro_sttn <- readOGR("data/metrostations.geojson", "OGRGeoJSON")
 ```
 
 And to see that something is there...
-
+ 
 ```{r check_geojson}
 #Let's use the defualt print 
 dc_metro_sttn
