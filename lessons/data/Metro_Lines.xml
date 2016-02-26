@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?><metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<origin/>
+<pubdate>20061019</pubdate>
+<title>Metro Bus Lines (BusLineLn)</title>
+<geoform>vector digital data</geoform>
+<pubinfo>
+<publish>DC GIS</publish>
+</pubinfo>
+<onlink>http://dcatlas.dcgis.dc.gov/catalog/download.asp?downloadName=BusLineLn&amp;downloadTYPE=ESRI</onlink>
+<onlink>http://dcatlas.dcgis.dc.gov/catalog/download.asp?downloadName=BusLineLn&amp;downloadTYPE=KMZ</onlink>
+<lworkcit>
+<citeinfo>
+<title>DC Geographic Information System</title>
+</citeinfo>
+</lworkcit>
+</citeinfo>
+</citation>
+<descript>
+<abstract>WMATA Metro Bus Lines. The dataset contains locations and attributes of metro bus lines, created as part of the DC Geographic Information System (DC GIS) for the D.C. Office of the Chief Technology Officer (OCTO) and participating D.C. government agencies. A shapefile provided by WMATA identified bus lines. A WMATA bus line represents a series of routes that comprise a complete public transportation bus line. Although the lines are captured and segmented at the internal WMATA line number (as opposed to the route number), the layer contains the most recent route delineation and attribution available. All DC GIS data is stored and exported in Maryland State Plane coordinates NAD 83 meters. METADATA CONTENT IS IN PROCESS OF VALIDATION AND SUBJECT TO CHANGE.</abstract>
+<purpose>This data is used for the planning and management of Washington, D.C. by local government agencies.</purpose>
+</descript>
+<timeperd>
+<timeinfo>
+<sngdate>
+<caldate>20061019</caldate>
+</sngdate>
+</timeinfo>
+<current>publication date</current>
+</timeperd>
+<status>
+<progress>Complete</progress>
+<update>Annually</update>
+</status>
+<spdom>
+<bounding>
+<westbc>-180</westbc>
+<eastbc>180</eastbc>
+<northbc>90</northbc>
+<southbc>-90</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>None</themekt>
+<themekey>transitMetro</themekey>
+<themekey>transportation</themekey>
+<themekey>Public transportation</themekey>
+<themekey>Bus Route</themekey>
+<themekey>Transit</themekey>
+<themekey>Line</themekey>
+</theme>
+<theme>
+<themekt>ISO 19115 Topic Categories</themekt>
+<themekey>transportation</themekey>
+</theme>
+<place>
+<placekt>None</placekt>
+<placekey>District of Columbia</placekey>
+<placekey>Washington</placekey>
+<placekey>D.C.</placekey>
+<placekey>DC</placekey>
+<placekey>DC GIS</placekey>
+<placekey>DCGIS</placekey>
+</place>
+</keywords>
+<accconst>None</accconst>
+<useconst>For data terms and conditions, go to http://dc.gov/page/terms-and-conditions-use-district-data</useconst>
+<ptcontac>
+<cntinfo>
+<cntorgp>
+<cntorg>Washington Metropolitan Area Transit Authority</cntorg>
+<cntper>James McBride</cntper>
+</cntorgp>
+<cntaddr>
+<addrtype>mailing and physical</addrtype>
+<address>7th Floor B Corridor, 600 Fifth Street, NW</address>
+<city>Washington</city>
+<state>DC</state>
+<postal>20001</postal>
+<country>US</country>
+</cntaddr>
+<cntvoice>202-962-2589</cntvoice>
+<cntemail>jmcbride@wmata.com</cntemail>
+<hours>9am - 5pm</hours>
+</cntinfo>
+</ptcontac>
+<datacred>Washington Metropolitan Area Transit Authority</datacred>
+<native>Microsoft Windows XP Version 5.1 (Build 2600) Service Pack 2; ESRI ArcCatalog 9.2.2.1350</native>
+</idinfo>
+<dataqual>
+<attracc>
+<attraccr>Validated by source and/or responsible agency. WMATA internal data capture and business process attribution was removed from the original file. Only line name, type, direction, etc was kept.</attraccr>
+</attracc>
+<logic>Validated by source and/or responsible agency.</logic>
+<complete>Validated by source and/or responsible agency.</complete>
+<posacc>
+<horizpa>
+<horizpar>Generally follows the street centerlines but was not captured to the DC GIS snapbase.</horizpar>
+</horizpa>
+<vertacc>
+<vertaccr>N/A</vertaccr>
+</vertacc>
+</posacc>
+<lineage>
+<srcinfo>
+<srccite>
+<citeinfo>
+<pubdate>20060101</pubdate>
+<title>WMATA Bus Lines</title>
+</citeinfo>
+</srccite>
+<typesrc>None</typesrc>
+<srccitea>WMATA Bus Lines</srccitea>
+<srccontr>Location and attribution</srccontr>
+</srcinfo>
+<procstep>
+<procdesc>WMATA provided updated bus lines in shapefile format which DC GIS staff merged the files into one layer.</procdesc>
+<proccont>
+<cntinfo>
+<cntorgp>
+<cntorg>Office of the Chief Technology Officer</cntorg>
+<cntper>GIS Data Coordinator</cntper>
+</cntorgp>
+<cntaddr>
+<addrtype>mailing and physical</addrtype>
+<address>441 4th St NW, Suite 930 South</address>
+<city>Washington</city>
+<state>DC</state>
+<postal>20001</postal>
+<country>US</country>
+</cntaddr>
+<cntfax>202-727-5660</cntfax>
+<cntemail>dcgis@dc.gov</cntemail>
+<hours>8:30am - 5:30pm</hours>
+</cntinfo>
+</proccont>
+</procstep>
+<procstep>
+<procdesc>WMATA digitized the bus lines using in-house, MAPINFO based viewer and digitization software that is part of their scheduling system. The linework was fitted to the NAVTEQ regional streets file. WMATA supplied the file in MAPINFO format to the District and the Office of Planning converted it to a shapefile.</procdesc>
+<procdate>20040823</procdate>
+<proctime>164539</proctime>
+<proccont>
+<cntinfo>
+<cntorgp>
+<cntorg>WMATA</cntorg>
+<cntper>Jim McBride</cntper>
+</cntorgp>
+<cntaddr>
+<addrtype>mailing and physical</addrtype>
+<address>7th Floor B Corridor, 600 Fifth Street, NW</address>
+<city>Washington</city>
+<state>DC</state>
+<postal>20001</postal>
+<country>US</country>
+</cntaddr>
+<cntvoice>202-962-2589</cntvoice>
+<cntemail>jmcbride@wmata.com</cntemail>
+<hours>9am - 5pm</hours>
+</cntinfo>
+</proccont>
+</procstep>
+</lineage>
+</dataqual>
+<spdoinfo>
+<direct>Vector</direct>
+<ptvctinf>
+<sdtsterm>
+<sdtstype>Complete chain</sdtstype>
+<ptvctcnt>178</ptvctcnt>
+</sdtsterm>
+<sdtsterm>
+<sdtstype>Complete chain</sdtstype>
+<ptvctcnt>178</ptvctcnt>
+</sdtsterm>
+</ptvctinf>
+</spdoinfo>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>DCGIS.BusLineLn</enttypl>
+</enttyp>
+<attr>
+<attrlabl>OBJECTID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+					<udom>Sequential unique whole numbers that are automatically generated.</udom>
+				</attrdomv>
+</attr>
+<attr>
+<attrlabl>LINENAME</attrlabl>
+<attrdef>Bus Line Name and Route Number(s)</attrdef>
+</attr>
+<attr>
+<attrlabl>USERSTRING</attrlabl>
+<attrdef>Bus Line Name Abbreviation</attrdef>
+</attr>
+<attr>
+<attrlabl>DIRECTIONN</attrlabl>
+<attrdef>Bus Line Direction name</attrdef>
+</attr>
+<attr>
+<attrlabl>SHAPE.LEN</attrlabl>
+</attr>
+<attr>
+<attrlabl>USERSTRIN1</attrlabl>
+<attrdef>Bus Line Number</attrdef>
+</attr>
+<attr>
+<attrlabl>Shape</attrlabl>
+<attrdef>Feature geometry</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+					<udom>Coordinates defining the features.</udom>
+				</attrdomv>
+</attr>
+<attr>
+<attrlabl>LINEABBR</attrlabl>
+<attrdef>Bus line internal unique identifier</attrdef>
+</attr>
+<attr>
+<attrlabl>SHAPE</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+					<udom>Coordinates defining the features.</udom>
+				</attrdomv>
+</attr>
+<attr>
+<attrlabl>DIRECTION1</attrlabl>
+<attrdef>Bus Line Direction name 2</attrdef>
+</attr>
+</detailed>
+</eainfo>
+<distinfo>
+<distrib>
+<cntinfo>
+<cntorgp>
+<cntorg>DC Office of the Chief Technology Officer</cntorg>
+<cntper>GIS Data Coordinator</cntper>
+</cntorgp>
+<cntaddr>
+<addrtype>mailing and physical</addrtype>
+<address>441 4th St NW, Suite 930 South</address>
+<city>Washington</city>
+<state>DC</state>
+<postal>20001</postal>
+<country>US</country>
+</cntaddr>
+<cntfax>(202) 727-5660</cntfax>
+<cntemail>dcgis@dc.gov</cntemail>
+<hours>8:30 am - 5:30 pm</hours>
+</cntinfo>
+</distrib>
+<distliab>Acknowledgment of the DC Geographic Information Systems Program (DC GIS). The District of Columbia Government makes no claims as to the completeness, accuracy or content of any data contained hereon, and makes no representation of any kind, including, but not limited to, the warranty of the accuracy or fitness for a particular use, nor are any such warranties to be implied or inferred with respect to the information or data furnished herein.</distliab>
+<custom>Most DC GIS datasets can be downloaded from "http://dcgis.dc.gov" on the data center page. Orders can also be made by contacting OCTO GIS at "dcgis@dc.gov", especially for datasets not available for download.</custom>
+</distinfo>
+<metainfo>
+<metd>20080509</metd>
+<metrd>05/31/06</metrd>
+<metc>
+<cntinfo>
+<cntorgp>
+<cntorg>D.C. Office of the Chief Technology Officer</cntorg>
+<cntper>GIS Data Coordinator</cntper>
+</cntorgp>
+<cntaddr>
+<addrtype>mailing and physical</addrtype>
+<address>441 4th St NW, Suite 930 South</address>
+<city>Washington</city>
+<state>DC</state>
+<postal>20001</postal>
+<country>US</country>
+</cntaddr>
+<cntfax>(202) 727-5660</cntfax>
+<cntemail>dcgis@dc.gov</cntemail>
+<hours>8:30 am - 5 pm</hours>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+</metainfo>
+</metadata>
