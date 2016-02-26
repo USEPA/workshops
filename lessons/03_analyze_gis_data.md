@@ -1,7 +1,4 @@
 
-```
-## Error in eval(expr, envir, enclos): object 'opts_chunk' not found
-```
 
 # Basic GIS Analysis with R
 We now have the required packages installed and know how to read data into R. Our next step is to start doing some GIS analysis with R. Throughout the course of this lesson will show how to do some basic manipulation of the `raster` and `sp` objects and then show a few examples of some relatively straightforward analyses.  We will only be scratching the surface here, but hoepfully this will provide a starting point for more work doing spatial analysis in R.  ***Note:*** *Much of this lesson assumes some familiarity with R and working with data frames.*
@@ -164,8 +161,8 @@ Now for the fun part.  We can use indexing/subsetting tools we already know to p
 
 
 ```r
-#select with base indexing
-est_mrkt <- dc_metro_sttn[dc_metro_sttn$NAME == "Eastern Market",]
+# select with base indexing
+est_mrkt <- dc_metro_sttn[dc_metro_sttn$NAME == "Eastern Market", ]
 ```
 
 ```
@@ -181,8 +178,8 @@ est_mrkt
 ```
 
 ```r
-#select with subset (plus a Lil Rhody Shout Out!)
-ri <- subset(dc_metro_sttn,NAME == "Rhode Island Ave")
+# select with subset (plus a Lil Rhody Shout Out!)
+ri <- subset(dc_metro_sttn, NAME == "Rhode Island Ave")
 ```
 
 ```
@@ -198,8 +195,8 @@ ri
 ```
 
 ```r
-#select multiple items
-red_line_sttn <- subset(dc_metro_sttn,grepl("red",LINE))
+# select multiple items
+red_line_sttn <- subset(dc_metro_sttn, grepl("red", LINE))
 ```
 
 ```
@@ -312,8 +309,8 @@ read.csv("data/station_rides.csv")
 ```
 
 ```r
-dc_metro_sttn<-merge(dc_metro_sttn,station_rides,
-                     by.x="NAME",by.y="Ent.Station",all.x=TRUE)
+dc_metro_sttn <- merge(dc_metro_sttn, station_rides, by.x = "NAME", by.y = "Ent.Station", 
+    all.x = TRUE)
 ```
 
 ```
@@ -332,7 +329,7 @@ So, now we can use these values to select.
 
 
 ```r
-busy_sttn <- subset(dc_metro_sttn,avg_wkday >= 10000)
+busy_sttn <- subset(dc_metro_sttn, avg_wkday >= 10000)
 ```
 
 ```
@@ -364,16 +361,14 @@ So, if we want to reproject our data using this projection:
 
 
 ```r
-dc_metro_alb <- spTransform(dc_metro,
-                CRS("+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs"))
+dc_metro_alb <- spTransform(dc_metro, CRS("+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs"))
 ```
 
 Luckily, it is pretty common to have several datasets and one of which is in the projections you want to use.  We can then just pull the Proj4 string from that.
 
 
 ```r
-dc_metro_sttn_prj <- spTransform(dc_metro_sttn,
-                                 CRS(proj4string(dc_metro_alb))) 
+dc_metro_sttn_prj <- spTransform(dc_metro_sttn, CRS(proj4string(dc_metro_alb)))
 ```
 
 ```

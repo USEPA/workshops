@@ -1,7 +1,4 @@
 
-```
-## Error in eval(expr, envir, enclos): object 'opts_chunk' not found
-```
 
 # Reading and Writing Raster and Vector Data
 So, now that we have the base packages installed and loaded we can work on getting our data into and out of R.  While it is possible to store spatial data as R objects (e.g. via .Rda/Rdata files) that is probably not the best approach.  It is better to store spatial data in widley used files (e.g. shapefiles,.tiff, or geojson) or in spatial databases (e.g. file geodatabse or PostGIS) and then read that data into R for analysis then writing the results back out to your file format of choice.  In this lesson we will explore several ways to read in multiple vector and raster data types.
@@ -26,14 +23,14 @@ For this workshop, I have collected several example datasets to use and have inc
 ```r
 library(httr)
 url <- "https://github.com/USEPA/intro_gis_with_r/blob/master/data.zip?raw=true"
-GET(url,write_disk("data.zip",overwrite = TRUE))
+GET(url, write_disk("data.zip", overwrite = TRUE))
 ```
 
 Oh and while we are being a bit #rstats crazy...  Let unzip it with R too!
 
 
 ```r
-unzip("data.zip",overwrite = TRUE)
+unzip("data.zip", overwrite = TRUE)
 ```
 
 
@@ -46,7 +43,7 @@ To read in a shapefile using `rgdal`, we want to use the `readOGR` function.  Th
 
 
 ```r
-dc_metro <- readOGR("data","Metro_Lines")
+dc_metro <- readOGR("data", "Metro_Lines")
 ```
 
 ```
@@ -101,7 +98,7 @@ As I mentioned earlier, there are other ways to read in shapefiles.  Two common 
 
 
 ```r
-dc_metro_mt<-maptools::readShapeLines("data/Metro_Lines")
+dc_metro_mt <- maptools::readShapeLines("data/Metro_Lines")
 summary(dc_metro_mt)
 ```
 
@@ -146,7 +143,7 @@ Before we do this, we can prove that the shapefile doesn't exist.
 ```
 
 ```r
-list.files("data","dc_metro")
+list.files("data", "dc_metro")
 ```
 
 ```
@@ -157,10 +154,10 @@ Now to write the shapefile:
 
 
 ```r
-writeOGR(dc_metro,"data","dc_metro",driver="ESRI Shapefile")
+writeOGR(dc_metro, "data", "dc_metro", driver = "ESRI Shapefile")
 
-#Is it there?
-list.files("data","dc_metro")
+# Is it there?
+list.files("data", "dc_metro")
 ```
 
 ```
@@ -174,7 +171,7 @@ A recent addition to the GDAL world is the ability to read ESRI File Geodatabase
 
 
 ```r
-#List feature classes
+# List feature classes
 ogrListLayers("data/spx.gdb")
 ```
 
@@ -188,7 +185,7 @@ ogrListLayers("data/spx.gdb")
 ```
 
 ```r
-examp_fgdb <- readOGR(dsn = "data/spx.gdb", layer="polygons5")
+examp_fgdb <- readOGR(dsn = "data/spx.gdb", layer = "polygons5")
 ```
 
 ```
@@ -253,7 +250,7 @@ And to see that something is there...
 
 
 ```r
-#Let's use the defualt print 
+# Let's use the defualt print
 dc_metro_sttn
 ```
 
@@ -262,7 +259,7 @@ dc_metro_sttn
 ```
 
 ```r
-#And add a few more things to our plot
+# And add a few more things to our plot
 plot(dc_metro)
 ```
 
@@ -282,8 +279,7 @@ Just as with shapefiles, writing to a geojson file can be accomplished with `wri
 
 
 ```r
-writeOGR(dc_metro_sttn,"data/stations.geojson", "OGRGeoJSON", 
-         driver="GeoJSON")
+writeOGR(dc_metro_sttn, "data/stations.geojson", "OGRGeoJSON", driver = "GeoJSON")
 ```
 
 ```
@@ -316,7 +312,7 @@ dc_elev_gdal <- readGDAL("data/dc_ned.tif")
 ```
 
 ```r
-raster::print(dc_elev_gdal) #using the raster print method
+raster::print(dc_elev_gdal)  #using the raster print method
 ```
 
 ```
@@ -363,7 +359,7 @@ system.time(readGDAL("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##   0.047   0.000   0.046
+##   0.043   0.004   0.047
 ```
 
 ```r
@@ -372,7 +368,7 @@ system.time(raster("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##   0.007   0.000   0.008
+##   0.006   0.000   0.006
 ```
 
 The speed here is due to the fact that `raster` actually leaves the data on disk as opposed to pulling it all into memory.  Some operations will actually be faster on the `SpatialGrid` objects, but with bigger rasters reading in can be a challenge.  In addition, a lot of the typical raster operations come from the `raster` package and it is just a bit easier to work with `raster` objects as opposed to `sp` for this.  Lastly, it is what I prefer, so there's that.  We will stick with `raster` for the rest of the workshop.
@@ -406,7 +402,7 @@ To write out to a GeoTIFF:
 
 
 ```r
-writeRaster(dc_elev,"dc_elev_example.tif", overwrite = T)
+writeRaster(dc_elev, "dc_elev_example.tif", overwrite = T)
 ```
 
 ## Exercise 2.2
