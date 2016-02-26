@@ -139,7 +139,7 @@ Before we do this, we can prove that the shapefile doesn't exist.
 
 
 ```
-## [1] TRUE TRUE TRUE TRUE
+## [1] TRUE
 ```
 
 ```r
@@ -359,7 +359,7 @@ system.time(readGDAL("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##   0.043   0.004   0.047
+##   0.041   0.004   0.045
 ```
 
 ```r
@@ -368,7 +368,7 @@ system.time(raster("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##   0.006   0.000   0.006
+##   0.008   0.000   0.007
 ```
 
 The speed here is due to the fact that `raster` actually leaves the data on disk as opposed to pulling it all into memory.  Some operations will actually be faster on the `SpatialGrid` objects, but with bigger rasters reading in can be a challenge.  In addition, a lot of the typical raster operations come from the `raster` package and it is just a bit easier to work with `raster` objects as opposed to `sp` for this.  Lastly, it is what I prefer, so there's that.  We will stick with `raster` for the rest of the workshop.

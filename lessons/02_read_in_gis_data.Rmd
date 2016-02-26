@@ -36,9 +36,7 @@ Oh and while we are being a bit #rstats crazy...  Let unzip it with R too!
 unzip("data.zip",overwrite = TRUE)
 ```
 ```{r unzip_it2,echo=FALSE}
-if(!dir.exists("data")==TRUE){
-  unzip("../data.zip",overwrite = TRUE)
-}
+unzip("../data.zip",overwrite = TRUE)
 ```
 
 
