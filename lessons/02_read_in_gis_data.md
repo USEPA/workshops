@@ -142,7 +142,7 @@ Before we do this, we can prove that the shapefile doesn't exist.
 
 
 ```
-## [1] TRUE TRUE TRUE TRUE TRUE
+## [1] TRUE TRUE TRUE TRUE
 ```
 
 ```r
@@ -290,13 +290,17 @@ writeOGR(dc_metro_sttn,"data/stations.geojson", "OGRGeoJSON",
          driver="GeoJSON")
 ```
 
+```
+## Error in writeOGR(dc_metro_sttn, "data/stations.geojson", "OGRGeoJSON", : layer exists, use a new layer name
+```
+
 Lastly, if you commonly work with geojson files, there is the `geojsonio` package from [rOpenSci](https://ropensci.org/) that provides a number of tools for reading, writing, and converting geojson files.  It is certainly worth exploring as it provides additiona functionality beyond the `rgdal` toolset.
 
 ## Exercise 2.1
 For this first exercise we will just focus on getting a shapefile read into R.  We will be using the sticky notes I handed out to let me know who needs help and who has finished the exercise.  Once everyone is done, we will move on.
 
 1. Using `rgdal::readOGR` to read in the US Census Tiger Line Files of the state boundaries.  Assign it to an object called `us_states`.
-2. Once it is read in use `summary` to look at some of the basics and then plot the data.
+2. Once it is read in use `summary` to look at some of the basics and then plot the data. 
 
 ## Raster data: GeoTIFF
 We will just show a couple of examples as reading in rasters is a bit more straightforward than vector.  Our first examples will be GeoTIFF.
@@ -363,7 +367,7 @@ system.time(readGDAL("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##    0.15    0.02    0.17
+##    0.04    0.01    0.06
 ```
 
 ```r
@@ -372,7 +376,7 @@ system.time(raster("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##    0.02    0.00    0.01
+##       0       0       0
 ```
 
 The speed here is due to the fact that `raster` actually leaves the data on disk as opposed to pulling it all into memory.  Some operations will actually be faster on the `SpatialGrid` objects, but with bigger rasters reading in can be a challenge.  In addition, a lot of the typical raster operations come from the `raster` package and it is just a bit easier to work with `raster` objects as opposed to `sp` for this.  Lastly, it is what I prefer, so there's that.  We will stick with `raster` for the rest of the workshop.

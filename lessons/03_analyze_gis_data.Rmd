@@ -114,9 +114,9 @@ In this first exercise we will work on manipulating the Tiger Lines file of the 
 
 1. Assign just the DC boundary to an object named `dc_bnd`.
 2. Re-project `dc_bnd` to match the projection of `dc_nlcd`.  Assign this to an object named `dc_bnd_prj`.
-
+ 
 ## Intro to rgeos: Overlay and Buffer
-In this section we are going to start working with many of the "typical" GIS type analyses.
+In this section we are going to start working with many of the "typical" GIS type analyses. 
 
 ## Exercise 3.2
 We will work with the re-projected `dc_bnd_prj` lets set this up for some further analyis.

@@ -32,7 +32,10 @@ Let's start working through some examples using the two Metro datasets.
 ```
 
 ```
-## Error in ogrInfo(dsn = dsn, layer = layer, encoding = encoding, use_iconv = use_iconv, : Cannot open data source
+## OGR data source with driver: GeoJSON 
+## Source: "data/dc_metrostations.geojson", layer: "OGRGeoJSON"
+## with 40 features
+## It has 6 fields
 ```
 
 We've already seen how to use the default print statements to look at the basics
@@ -62,10 +65,10 @@ dc_metro_sttn
 ## features    : 40 
 ## extent      : -77.085, -76.93526, 38.84567, 38.97609  (xmin, xmax, ymin, ymax)
 ## coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
-## variables   : 7
-## names       :                          NAME, OBJECTID,   GIS_ID,                                                WEB_URL,                 LINE,                    ADDRESS, avg_wkday 
-## min values  :                     Anacostia,        1, mstn_001,  http://wmata.com/rail/station_detail.cfm?station_id=1, blue, orange, silver, 1001 CONNECTICUT AVENUE NW,    1761.2 
-## max values  : Woodley Park-Zoo Adams Morgan,       40, mstn_040, http://wmata.com/rail/station_detail.cfm?station_id=90,   red, green, yellow, 919 RHODE ISLAND AVENUE NE,   32611.1
+## variables   : 6
+## names       : OBJECTID,   GIS_ID,                          NAME,                                                WEB_URL,                 LINE,                    ADDRESS 
+## min values  :        1, mstn_001,                     Anacostia,  http://wmata.com/rail/station_detail.cfm?station_id=1, blue, orange, silver, 1001 CONNECTICUT AVENUE NW 
+## max values  :       40, mstn_040, Woodley Park-Zoo Adams Morgan, http://wmata.com/rail/station_detail.cfm?station_id=90,   red, green, yellow, 919 RHODE ISLAND AVENUE NE
 ```
 
 We can get more info on the data with:
@@ -76,27 +79,27 @@ head(dc_metro_sttn)
 ```
 
 ```
-##                    NAME OBJECTID   GIS_ID
-## 7      Columbia Heights        1 mstn_007
-## 20 Georgia Ave Petworth        2 mstn_020
-## 34               Takoma        3 mstn_034
-## 4         Brookland-CUA        4 mstn_004
-## 17          Fort Totten        5 mstn_017
-## 3          Benning Road        6 mstn_003
-##                                                   WEB_URL
-## 7  http://wmata.com/rail/station_detail.cfm?station_id=75
-## 20 http://wmata.com/rail/station_detail.cfm?station_id=76
-## 34 http://wmata.com/rail/station_detail.cfm?station_id=29
-## 4  http://wmata.com/rail/station_detail.cfm?station_id=27
-## 17 http://wmata.com/rail/station_detail.cfm?station_id=28
-## 3  http://wmata.com/rail/station_detail.cfm?station_id=90
-##                    LINE                ADDRESS avg_wkday
-## 7         green, yellow    3030 14TH STREET NW   12608.3
-## 20        green, yellow 3700 GEORGIA AVENUE NW        NA
-## 34                  red    327 CEDAR STREET NW    6023.5
-## 4                   red 801 MICHIGAN AVENUE NE        NA
-## 17   red, green, yellow 550 GALLOWAY STREET NE    7442.0
-## 3  blue, orange, silver   4500 BENNING ROAD NE    3067.2
+##   OBJECTID   GIS_ID                 NAME
+## 1        1 mstn_007     Columbia Heights
+## 2        2 mstn_020 Georgia Ave Petworth
+## 3        3 mstn_034               Takoma
+## 4        4 mstn_004        Brookland-CUA
+## 5        5 mstn_017          Fort Totten
+## 6        6 mstn_003         Benning Road
+##                                                  WEB_URL
+## 1 http://wmata.com/rail/station_detail.cfm?station_id=75
+## 2 http://wmata.com/rail/station_detail.cfm?station_id=76
+## 3 http://wmata.com/rail/station_detail.cfm?station_id=29
+## 4 http://wmata.com/rail/station_detail.cfm?station_id=27
+## 5 http://wmata.com/rail/station_detail.cfm?station_id=28
+## 6 http://wmata.com/rail/station_detail.cfm?station_id=90
+##                   LINE                ADDRESS
+## 1        green, yellow    3030 14TH STREET NW
+## 2        green, yellow 3700 GEORGIA AVENUE NW
+## 3                  red    327 CEDAR STREET NW
+## 4                  red 801 MICHIGAN AVENUE NE
+## 5   red, green, yellow 550 GALLOWAY STREET NE
+## 6 blue, orange, silver   4500 BENNING ROAD NE
 ```
 
 ```r
@@ -114,14 +117,14 @@ summary(dc_metro_sttn)
 ## [+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0]
 ## Number of points: 40
 ## Data attributes:
-##                  NAME       OBJECTID          GIS_ID  
-##  Anacostia         : 1   Min.   : 1.00   mstn_001: 1  
-##  Archives-Navy Meml: 1   1st Qu.:10.75   mstn_002: 1  
-##  Benning Road      : 1   Median :20.50   mstn_003: 1  
-##  Brookland-CUA     : 1   Mean   :20.50   mstn_004: 1  
-##  Capitol South     : 1   3rd Qu.:30.25   mstn_005: 1  
-##  Cleveland Park    : 1   Max.   :40.00   mstn_006: 1  
-##  (Other)           :34                   (Other) :34  
+##     OBJECTID          GIS_ID                   NAME   
+##  Min.   : 1.00   mstn_001: 1   Anacostia         : 1  
+##  1st Qu.:10.75   mstn_002: 1   Archives-Navy Meml: 1  
+##  Median :20.50   mstn_003: 1   Benning Road      : 1  
+##  Mean   :20.50   mstn_004: 1   Brookland-CUA     : 1  
+##  3rd Qu.:30.25   mstn_005: 1   Capitol South     : 1  
+##  Max.   :40.00   mstn_006: 1   Cleveland Park    : 1  
+##                  (Other) :34   (Other)           :34  
 ##                                                     WEB_URL  
 ##  http://wmata.com/rail/station_detail.cfm?station_id=1  : 1  
 ##  http://wmata.com/rail/station_detail.cfm?station_id=10 : 1  
@@ -137,15 +140,7 @@ summary(dc_metro_sttn)
 ##  green               : 4   1290 ALABAMA AVENUE SE     : 1  
 ##  orange              : 2   1300 U STREET NW           : 1  
 ##  red, green, yellow  : 2   1400 I STREET NW           : 1  
-##  (Other)             : 3   (Other)                    :34  
-##    avg_wkday    
-##  Min.   : 1761  
-##  1st Qu.: 6027  
-##  Median : 7399  
-##  Mean   :11062  
-##  3rd Qu.:12374  
-##  Max.   :32611  
-##  NA's   :18
+##  (Other)             : 3   (Other)                    :34
 ```
 
 ```r
@@ -153,8 +148,7 @@ names(dc_metro_sttn)
 ```
 
 ```
-## [1] "NAME"      "OBJECTID"  "GIS_ID"    "WEB_URL"   "LINE"      "ADDRESS"  
-## [7] "avg_wkday"
+## [1] "OBJECTID" "GIS_ID"   "NAME"     "WEB_URL"  "LINE"     "ADDRESS"
 ```
 
 And to get into the guts of the `sp` objects:
@@ -242,10 +236,10 @@ est_mrkt
 ## features    : 1 
 ## extent      : -76.996, -76.996, 38.88463, 38.88463  (xmin, xmax, ymin, ymax)
 ## coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
-## variables   : 7
-## names       :           NAME, OBJECTID,   GIS_ID,                                                WEB_URL,                 LINE,                    ADDRESS, avg_wkday 
-## min values  : Eastern Market,       34, mstn_011, http://wmata.com/rail/station_detail.cfm?station_id=60, blue, orange, silver, 701 PENNSYLVANIA AVENUE SE,    6038.7 
-## max values  : Eastern Market,       34, mstn_011, http://wmata.com/rail/station_detail.cfm?station_id=60, blue, orange, silver, 701 PENNSYLVANIA AVENUE SE,    6038.7
+## variables   : 6
+## names       : OBJECTID,   GIS_ID,           NAME,                                                WEB_URL,                 LINE,                    ADDRESS 
+## min values  :       34, mstn_011, Eastern Market, http://wmata.com/rail/station_detail.cfm?station_id=60, blue, orange, silver, 701 PENNSYLVANIA AVENUE SE 
+## max values  :       34, mstn_011, Eastern Market, http://wmata.com/rail/station_detail.cfm?station_id=60, blue, orange, silver, 701 PENNSYLVANIA AVENUE SE
 ```
 
 ```r
@@ -259,10 +253,10 @@ ri
 ## features    : 1 
 ## extent      : -76.99594, -76.99594, 38.92107, 38.92107  (xmin, xmax, ymin, ymax)
 ## coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
-## variables   : 7
-## names       :             NAME, OBJECTID,   GIS_ID,                                                WEB_URL, LINE,                    ADDRESS, avg_wkday 
-## min values  : Rhode Island Ave,       37, mstn_030, http://wmata.com/rail/station_detail.cfm?station_id=26,  red, 919 RHODE ISLAND AVENUE NE,        NA 
-## max values  : Rhode Island Ave,       37, mstn_030, http://wmata.com/rail/station_detail.cfm?station_id=26,  red, 919 RHODE ISLAND AVENUE NE,        NA
+## variables   : 6
+## names       : OBJECTID,   GIS_ID,             NAME,                                                WEB_URL, LINE,                    ADDRESS 
+## min values  :       37, mstn_030, Rhode Island Ave, http://wmata.com/rail/station_detail.cfm?station_id=26,  red, 919 RHODE ISLAND AVENUE NE 
+## max values  :       37, mstn_030, Rhode Island Ave, http://wmata.com/rail/station_detail.cfm?station_id=26,  red, 919 RHODE ISLAND AVENUE NE
 ```
 
 ```r
@@ -276,10 +270,10 @@ red_line_sttn
 ## features    : 16 
 ## extent      : -77.085, -76.99454, 38.8961, 38.97609  (xmin, xmax, ymin, ymax)
 ## coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
-## variables   : 7
-## names       :                          NAME, OBJECTID,   GIS_ID,                                               WEB_URL,               LINE,                    ADDRESS, avg_wkday 
-## min values  :                 Brookland-CUA,        3, mstn_004, http://wmata.com/rail/station_detail.cfm?station_id=1,                red, 1001 CONNECTICUT AVENUE NW,    4637.5 
-## max values  : Woodley Park-Zoo Adams Morgan,       40, mstn_040, http://wmata.com/rail/station_detail.cfm?station_id=9, red, green, yellow, 919 RHODE ISLAND AVENUE NE,   32611.1
+## variables   : 6
+## names       : OBJECTID,   GIS_ID,                          NAME,                                               WEB_URL,               LINE,                    ADDRESS 
+## min values  :        3, mstn_004,                 Brookland-CUA, http://wmata.com/rail/station_detail.cfm?station_id=1,                red, 1001 CONNECTICUT AVENUE NW 
+## max values  :       40, mstn_040, Woodley Park-Zoo Adams Morgan, http://wmata.com/rail/station_detail.cfm?station_id=9, red, green, yellow, 919 RHODE ISLAND AVENUE NE
 ```
 
 Adding data is just the same as for adding data to data frames.  I found some ridership data for the different stations and summarized that, by station, into "station_rides.csv".  Let's pull that in, and add it to `dc_metro_sttn`.  
@@ -290,12 +284,93 @@ read.csv("data/station_rides.csv")
 ```
 
 ```
-## Warning in file(file, "rt"): cannot open file 'data/station_rides.csv': No
-## such file or directory
-```
-
-```
-## Error in file(file, "rt"): cannot open the connection
+##     X                        Ent.Station avg_wkday
+## 1   1                       Addison Road    3440.5
+## 2   2                          Anacostia    7356.4
+## 3   3             Archives-Navy Memorial    9329.6
+## 4   4                 Arlington Cemetery    1759.1
+## 5   5                           Ballston   11812.6
+## 6   6                       Benning Road    3067.2
+## 7   7                           Bethesda   10666.5
+## 8   8                      Braddock Road    4383.5
+## 9   9                      Branch Avenue    6604.6
+## 10 10                          Brookland    6672.7
+## 11 11                    Capitol Heights    2097.2
+## 12 12                      Capitol South    8630.3
+## 13 13                           Cheverly    1507.8
+## 14 14                          Clarendon    4651.1
+## 15 15                     Cleveland Park    4637.5
+## 16 16               College Park-U of MD    4533.6
+## 17 17                   Columbia Heights   12608.3
+## 18 18                   Congress Heights    2912.2
+## 19 19                        Court House    7309.1
+## 20 20                       Crystal City   13323.9
+## 21 21                           Deanwood    1761.2
+## 22 22                        Dunn Loring    5116.7
+## 23 23                      Dupont Circle   18291.8
+## 24 24                  East Falls Church    4186.3
+## 25 25                     Eastern Market    6038.7
+## 26 26                  Eisenhower Avenue    2025.8
+## 27 27                     Farragut North   26012.4
+## 28 28                      Farragut West   22365.4
+## 29 29                  Federal Center SW    6352.1
+## 30 30                   Federal Triangle    9703.1
+## 31 31                       Foggy Bottom   22413.2
+## 32 32                        Forest Glen    2409.5
+## 33 33                        Fort Totten    7442.0
+## 34 34              Franconia-Springfield    8884.9
+## 35 35                 Friendship Heights    9519.0
+## 36 36            Gallery Place-Chinatown   25714.1
+## 37 37            Georgia Avenue-Petworth    6147.8
+## 38 38                           Glenmont    6076.3
+## 39 39                          Greenbelt    6767.0
+## 40 40                          Grosvenor    5767.2
+## 41 41                         Huntington    8900.5
+## 42 42                   Judiciary Square    9120.3
+## 43 43                        King Street    8893.3
+## 44 44                     L'Enfant Plaza   21731.4
+## 45 45                           Landover    2265.6
+## 46 46                  Largo Town Center    5021.7
+## 47 47                   McPherson Square   16538.4
+## 48 48                     Medical Center    5949.5
+## 49 49                       Metro Center   28199.5
+## 50 50                   Minnesota Avenue    3132.9
+## 51 51                       Morgan Blvd.    2227.3
+## 52 52              Mt. Vernon Square-UDC    4159.3
+## 53 53                          Navy Yard    9662.7
+## 54 54                        Naylor Road    3067.9
+## 55 55                     New Carrollton    9566.7
+## 56 56                       New York Ave    7860.5
+## 57 57                           Pentagon   16788.3
+## 58 58                      Pentagon City   16145.3
+## 59 59                     Potomac Avenue    3879.1
+## 60 60              Prince George's Plaza    5196.6
+## 61 61 Reagan Washington National Airport    6198.6
+## 62 62                Rhode Island Avenue    5494.1
+## 63 63                          Rockville    4735.3
+## 64 64                            Rosslyn   16390.1
+## 65 65                        Shady Grove   13653.2
+## 66 66             Shaw-Howard University    4658.7
+## 67 67                      Silver Spring   13332.5
+## 68 68                        Smithsonian   11671.6
+## 69 69                    Southern Avenue    5766.9
+## 70 70                     Stadium-Armory    2979.0
+## 71 71                           Suitland    6213.6
+## 72 72                             Takoma    6023.5
+## 73 73                      Tenleytown-AU    7101.2
+## 74 74                          Twinbrook    4542.0
+## 75 75                   U Street-Cardozo    6847.1
+## 76 76                      Union Station   32611.1
+## 77 77                    Van Dorn Street    3488.9
+## 78 78                       Van Ness-UDC    6624.4
+## 79 79                             Vienna   13484.0
+## 80 80                Virginia Square-GMU    3663.5
+## 81 81                         Waterfront    4440.0
+## 82 82                  West Falls Church   10695.5
+## 83 83                   West Hyattsville    3862.0
+## 84 84                            Wheaton    4270.5
+## 85 85                        White Flint    4078.7
+## 86 86                   Woodley Park-Zoo    7679.7
 ```
 
 ```r
@@ -319,13 +394,13 @@ head(dc_metro_sttn)
 ## 4  http://wmata.com/rail/station_detail.cfm?station_id=27
 ## 17 http://wmata.com/rail/station_detail.cfm?station_id=28
 ## 3  http://wmata.com/rail/station_detail.cfm?station_id=90
-##                    LINE                ADDRESS avg_wkday.x avg_wkday.y
-## 7         green, yellow    3030 14TH STREET NW     12608.3     12608.3
-## 20        green, yellow 3700 GEORGIA AVENUE NW          NA          NA
-## 34                  red    327 CEDAR STREET NW      6023.5      6023.5
-## 4                   red 801 MICHIGAN AVENUE NE          NA          NA
-## 17   red, green, yellow 550 GALLOWAY STREET NE      7442.0      7442.0
-## 3  blue, orange, silver   4500 BENNING ROAD NE      3067.2      3067.2
+##                    LINE                ADDRESS avg_wkday
+## 7         green, yellow    3030 14TH STREET NW   12608.3
+## 20        green, yellow 3700 GEORGIA AVENUE NW        NA
+## 34                  red    327 CEDAR STREET NW    6023.5
+## 4                   red 801 MICHIGAN AVENUE NE        NA
+## 17   red, green, yellow 550 GALLOWAY STREET NE    7442.0
+## 3  blue, orange, silver   4500 BENNING ROAD NE    3067.2
 ```
 
 So, now we can use these values to select.
@@ -333,13 +408,6 @@ So, now we can use these values to select.
 
 ```r
 busy_sttn <- subset(dc_metro_sttn,avg_wkday >= 10000)
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'avg_wkday' not found
-```
-
-```r
 busy_sttn
 ```
 
@@ -388,9 +456,9 @@ In this first exercise we will work on manipulating the Tiger Lines file of the 
 
 1. Assign just the DC boundary to an object named `dc_bnd`.
 2. Re-project `dc_bnd` to match the projection of `dc_nlcd`.  Assign this to an object named `dc_bnd_prj`.
-
+ 
 ## Intro to rgeos: Overlay and Buffer
-In this section we are going to start working with many of the "typical" GIS type analyses.
+In this section we are going to start working with many of the "typical" GIS type analyses. 
 
 ## Exercise 3.2
 We will work with the re-projected `dc_bnd_prj` lets set this up for some further analyis.
