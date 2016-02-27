@@ -6,7 +6,7 @@ We now have the required packages installed and know how to read data into R. Ou
 ## Lesson Outline
 - [Explore and manipulate](#explore-and-manipulate)
 - [Projections](#projections)
-- [Intro to rgeos:Overlay and Buffer](#intro-to-rgeos-overlay-buffer-and-misc)
+- [Brief introduction to rgeos](#brief-introduction-to-rgeos)
 - [Working with rasters](#working-with-rasters)
 - [Other geospatial packages](#other-geospatial-packages)
 
@@ -468,7 +468,7 @@ In this first exercise we will work on manipulating the Tiger Lines file of the 
 1. Assign just the DC boundary to an object named `dc_bnd`.
 2. Re-project `dc_bnd` to match the projection of `dc_nlcd`.  Assign this to an object named `dc_bnd_prj`.
  
-## Intro to rgeos: Overlay, Buffer and Misc.
+## Brief introduction to rgeos
 In this section we are going to start working with many of the "typical" GIS type analyses, specifcially buffers and a few overlays. We will use mostly `rgeos` but will also look a bit at `sp::over`.
 
 Let's start with a buffer. We will use the albers projected stations for these examples
@@ -491,35 +491,72 @@ plot(sttn_buff_500_id)
 
 ![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png) 
 
-Now we get a 500 meter circle around each of the stations.  Let's move on to one of the overlay commands in `rgeos`,the union. NEED TO WORK ON THIS.  These never do what I think they do...
+Now we get a 500 meter circle around each of the stations.  Let's move on to one of the overlay commands in `rgeos`,the difference.
 
 
 ```r
 # Create something to take difference of
 sttn_buff_100 <- gBuffer(dc_metro_sttn_prj, width = 100)
-sttn_diff <- gUnion(sttn_buff_100, sttn_buff_500, byid = T)
+sttn_diff <- gDifference(sttn_buff_500, sttn_buff_100)
+sttn_diff
+```
+
+```
+## class       : SpatialPolygons 
+## features    : 1 
+## extent      : 1612646, 1627514, 313290.8, 328111.7  (xmin, xmax, ymin, ymax)
+## coord. ref. : +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs +towgs84=0,0,0
+```
+
+```r
+sttn_diff <- disaggregate(sttn_diff)
+sttn_diff
+```
+
+```
+## class       : SpatialPolygons 
+## features    : 18 
+## extent      : 1612646, 1627514, 313290.8, 328111.7  (xmin, xmax, ymin, ymax)
+## coord. ref. : +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs +towgs84=0,0,0
+```
+
+```r
 plot(sttn_diff)
 ```
 
-![plot of chunk union](figure/union-1.png) 
+![plot of chunk diff](figure/diff-1.png) 
 
 Lastly, let's pull out some of the basic geographic info on our datasets using `rgeos`.  That is provided by `gArea` and `gLength`. Let's get the area and perimeter of the all the land 500 meters from a metro station
 
 
 ```r
-gArea(sttn_buff_500)
+gLength(sttn_diff)
 ```
 
 ```
-## [1] 27080141
+## [1] 116586.2
 ```
 
 ```r
-gPerimeter(sttn_buff_500)
+gArea(sttn_diff)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): could not find function "gPerimeter"
+## [1] 25844073
+```
+
+```r
+# likely want area of each poly
+gArea(sttn_diff, byid = TRUE)
+```
+
+```
+##          1          2          3          4          5          6 
+##   741640.8   741640.8   741640.8 13236179.2   741640.8   741640.8 
+##          7          8          9         10         11         12 
+##   741640.8   741640.8   741640.8   741640.8   741640.8   741640.8 
+##         13         14         15         16         17         18 
+##   741640.8   741640.8   741640.8   741640.8   741640.8   741640.8
 ```
 
 We have left most of `rgeos` untouched, but hopefully shown enough to get you started.  
@@ -528,11 +565,11 @@ We have left most of `rgeos` untouched, but hopefully shown enough to get you st
 We will work with the re-projected `dc_bnd_prj` lets set this up for some further analyis.
 
 1. Buffer the DC boundary by 1000 meters.
-2. Using the overlay functions, get an object that represents only the area 1000 meters outside of DC.
+2. Assign an object that represents only the area 1000 meters outside of DC (hint: gDifference).
 3. Determine the area of both the DC boundary as well as the surrounding 1000 meters.
 
 ## Working with rasters
-
+START HERE
 ## Exercise 3.3
 Let's combine all of this together and calculate some landcover summary statistics
 
