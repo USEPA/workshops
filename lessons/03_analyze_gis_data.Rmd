@@ -171,7 +171,17 @@ We will work with the re-projected `dc_bnd_prj` lets set this up for some furthe
 3. Determine the area of both the DC boundary as well as the surrounding 1000 meters.
 
 ## Working with rasters
-START HERE
+Let's move on to rasters.  We will be doing mostly work with base R to summarize information stored in raster and use our vector datasets to interact with those rasters.  And if time, we will show a few functions from `raster`.
+
+We've already seen how to get some of the basic info of a raster.  To re-hash:
+
+```{r}
+dc_elev
+```
+
+- summarize continuous
+- summarize categories
+
 ## Exercise 3.3
 Let's combine all of this together and calculate some landcover summary statistics
 

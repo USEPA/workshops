@@ -569,7 +569,29 @@ We will work with the re-projected `dc_bnd_prj` lets set this up for some furthe
 3. Determine the area of both the DC boundary as well as the surrounding 1000 meters.
 
 ## Working with rasters
-START HERE
+Let's move on to rasters.  We will be doing mostly work with base R to summarize information stored in raster and use our vector datasets to interact with those rasters.  And if time, we will show a few functions from `raster`.
+
+We've already seen how to get some of the basic info of a raster.  To re-hash:
+
+
+```r
+dc_elev
+```
+
+```
+## class       : RasterLayer 
+## dimensions  : 798, 921, 734958  (nrow, ncol, ncell)
+## resolution  : 0.0002777778, 0.0002777778  (x, y)
+## extent      : -77.15306, -76.89722, 38.77639, 38.99806  (xmin, xmax, ymin, ymax)
+## coord. ref. : +proj=longlat +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0 
+## data source : /home/jhollist/projects/intro_gis_with_r/lessons/data/dc_ned.tif 
+## names       : dc_ned 
+## values      : -5.316066, 131.4813  (min, max)
+```
+
+- summarize continuous
+- summarize categories
+
 ## Exercise 3.3
 Let's combine all of this together and calculate some landcover summary statistics
 
