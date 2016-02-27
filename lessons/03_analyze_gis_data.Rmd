@@ -179,8 +179,34 @@ We've already seen how to get some of the basic info of a raster.  To re-hash:
 dc_elev
 ```
 
-- summarize continuous
-- summarize categories
+This gives us the basics.  There are many options for looking at the values stored in the raster.  I usually default to `values` which returns the values as a vector which we can then use in R functions.
+
+For instance, mean elevation in `dc_elev` could be calculated with 
+
+```{r}
+mean(values(dc_elev),na.omit=T)
+```
+
+If our raster contains categorical data (e.g. LULC), we can work with that too.  We don't have a ready example so lets us another `raster` function to reclassify our elevation data and then look at some summary stats of that.
+
+```{r}
+#reclass elevation into H, M, L
+elev_summ <- summary(values(dc_elev))
+rcl <- matrix(c(-Inf,elev_summ[2],1,
+                elev_summ[2],elev_summ[5],2,
+                elev_summ[5],Inf,3),
+              nrow=3,byrow=T)
+dc_elev_class <- reclassify(dc_elev,rcl)
+dc_elev_class
+```
+
+So now we have categorical data, we can do cross-tabs on the values and calculate percent in each category.
+
+```{r}
+elev_class_perc <- table(values(dc_elev_class))/
+  length(values(dc_elev_class))
+elev_class_perc
+```
 
 ## Exercise 3.3
 Let's combine all of this together and calculate some landcover summary statistics

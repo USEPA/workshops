@@ -589,8 +589,55 @@ dc_elev
 ## values      : -5.316066, 131.4813  (min, max)
 ```
 
-- summarize continuous
-- summarize categories
+This gives us the basics.  There are many options for looking at the values stored in the raster.  I usually default to `values` which returns the values as a vector which we can then use in R functions.
+
+For instance, mean elevation in `dc_elev` could be calculated with 
+
+
+```r
+mean(values(dc_elev), na.omit = T)
+```
+
+```
+## [1] 48.76833
+```
+
+If our raster contains categorical data (e.g. LULC), we can work with that too.  We don't have a ready example so lets us another `raster` function to reclassify our elevation data and then look at some summary stats of that.
+
+
+```r
+# reclass elevation into H, M, L
+elev_summ <- summary(values(dc_elev))
+rcl <- matrix(c(-Inf, elev_summ[2], 1, elev_summ[2], elev_summ[5], 2, elev_summ[5], 
+    Inf, 3), nrow = 3, byrow = T)
+dc_elev_class <- reclassify(dc_elev, rcl)
+dc_elev_class
+```
+
+```
+## class       : RasterLayer 
+## dimensions  : 798, 921, 734958  (nrow, ncol, ncell)
+## resolution  : 0.0002777778, 0.0002777778  (x, y)
+## extent      : -77.15306, -76.89722, 38.77639, 38.99806  (xmin, xmax, ymin, ymax)
+## coord. ref. : +proj=longlat +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0 
+## data source : in memory
+## names       : layer 
+## values      : 1, 3  (min, max)
+```
+
+So now we have categorical data, we can do cross-tabs on the values and calculate percent in each category.
+
+
+```r
+elev_class_perc <- table(values(dc_elev_class))/length(values(dc_elev_class))
+elev_class_perc
+```
+
+```
+## 
+##         1         2         3 
+## 0.2499912 0.4999850 0.2500238
+```
 
 ## Exercise 3.3
 Let's combine all of this together and calculate some landcover summary statistics
