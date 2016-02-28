@@ -4,8 +4,8 @@ pkgs <- c("sp","rgdal","rgeos","raster","knitr")
 x<-lapply(pkgs, library, character.only = TRUE)
 opts_chunk$set(tidy=T)
 ```
-```
-```{r data_setup, echo=FALSE}
+
+```{r data_setup, echo=FALSE,cache=TRUE}
 dc_metro <- readOGR("data","Metro_Lines")
 dc_metro_sttn <- readOGR("data/metrostations.geojson", "OGRGeoJSON")
 dc_elev <- raster("data/dc_ned.tif")
