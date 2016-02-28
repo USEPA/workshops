@@ -378,7 +378,7 @@ sttn_buff_500 <- gBuffer(dc_metro_sttn_prj, width = 500)
 plot(sttn_buff_500)
 ```
 
-![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png)
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png) 
 
 We can see that overlapping buffers merged in this case.  If we wanted a buffer for each station we can use the "byid" argument.
 
@@ -388,7 +388,7 @@ sttn_buff_500_id <- gBuffer(dc_metro_sttn_prj, width = 500, byid = TRUE)
 plot(sttn_buff_500_id)
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png)
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png) 
 
 Now we get a 500 meter circle around each of the stations.  Let's move on to one of the overlay commands in `rgeos`,the difference.
 
@@ -423,7 +423,7 @@ sttn_diff
 plot(sttn_diff)
 ```
 
-![plot of chunk diff](figure/diff-1.png)
+![plot of chunk diff](figure/diff-1.png) 
 
 Lastly, let's pull out some of the basic geographic info on our datasets using `rgeos`.  That is provided by `gArea` and `gLength`. Let's get the area and perimeter of the all the land 500 meters from a metro station
 
@@ -547,7 +547,7 @@ plot(dc_elev_crop)
 plot(sttn_buff_500, add = T)
 ```
 
-![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-1.png)
+![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-1.png) 
 
 So, with this limited to just the extent of our dataset we can now clip out the values for each of the circles with.
 
@@ -558,7 +558,7 @@ plot(dc_elev_sttns)
 plot(sttn_buff_500, add = T, border = "red", lwd = 2)
 ```
 
-![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19-1.png)
+![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19-1.png) 
 
 That gives us just the elevation within 500 meters of the Metro stations.  Probably not really interesting information, but we have it!  It might be more interesting to get the average elevation of each metro station.  Our workflow would be different as we would need to look at this on a per-station basis.  Might require a loop or a different approach all together.  Certainly possible, but beyond what we have time for today.
 

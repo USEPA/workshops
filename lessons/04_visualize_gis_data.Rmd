@@ -4,20 +4,50 @@ pkgs <- c("sp","rgdal","rgeos","raster","knitr")
 x<-lapply(pkgs, library, character.only = TRUE)
 opts_chunk$set(tidy=T)
 ```
- 
+```
+```{r data_setup, echo=FALSE}
+dc_metro <- readOGR("data","Metro_Lines")
+dc_metro_sttn <- readOGR("data/metrostations.geojson", "OGRGeoJSON")
+dc_elev <- raster("data/dc_ned.tif")
+dc_metro_prj <- spTransform(dc_metro,
+                CRS("+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs"))
+dc_metro_sttn_prj <- spTransform(dc_metro_sttn,
+                                 CRS(proj4string(dc_metro_prj)))
+dc_elev_prj <- projectRaster(dc_elev,crs=proj4string(dc_metro_sttn_prj)) 
+sttn_buff_500 <- gBuffer(dc_metro_sttn_prj,width=500)
+```
+
 # Visualizing Spatial Data in R
+Visualizing spatial data in interactive and static forms is one of the defining characteristics of GIS.  With interactive visualization and analysis, R, admittedly, is not quite up to the standards of a stand-alone GIS like QGIS or ArcGIS.  That being said, it has come quite a long way in the last several years.  Static visualization (e.g. maps) in R are, in my opinion, on par with anything you can create with a dedicated GIS.  A few (now somewhat dated) examples of maps built with R show this:
+
+- [London Bike Hires](http://spatialanalysis.co.uk/wp-content/uploads/2012/02/bike_ggplot.png)
+- [Facebook Users](http://paulbutler.org/archives/visualizing-facebook-friends/facebook_map.png)
+
+Now we won't get to this level in just an hour or so, but we will see how to build static maps, get access to simple interactivity, and then see some of the javascript based mapping packages.
 
 ## Lesson Outline
-- [Visualization packages](#visualization-packages)
+- [Visualizing spatial data with `sp` and `raster`](#visualizing-spatial-data-with-sp-and-raster)
+- [Using `ggplot2` and `ggmap`](#using-ggplot2-and-ggmap)
+- [Simple interactivity with `quickmapr`](#simple-interactivity-with-quickmapr)
+- [Javascript packages: `leaflet` and `mapview`](#javascript-packages-leaflet-and-mapview)
 
 ## Lesson Exercises
 - [Exercise 4.1](#exercise-41)
 
-## Visualization packages
-- ggplot2
-- ggmap
-- leaflet
-- mapview
-- quickmapr
+## Visualizing spatial data with `sp` and `raster`
+
+## Simple interactivity with `quickmapr`
 
 ## Exercise 3.1
+We will create a map of the data we've been working with, the NLCD and boundary.
+
+1. Map your clipped landcover and the DC boundary using the default tools from `sp` and `raster`.
+2. Create the same map, but use `quickmapr`.  Try out some of the interactivity tools: zoom, pan, identify.
+
+## Javascript packages: `leaflet` and `mapview`
+
+## Exercise 3.2
+
+
+
+## Using `ggplot2` and `ggmap`
