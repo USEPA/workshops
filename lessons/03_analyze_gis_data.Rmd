@@ -69,7 +69,7 @@ red_line_sttn
 Adding data is just the same as for adding data to data frames.  I found some ridership data for the different stations and summarized that, by station, into "station_rides.csv".  Let's pull that in, and add it to `dc_metro_sttn`.  
 
 ```{r}
-read.csv("data/station_rides.csv")
+station_rides <- read.csv("data/station_rides.csv")
 dc_metro_sttn<-merge(dc_metro_sttn,station_rides,
                      by.x="NAME",by.y="Ent.Station",all.x=TRUE)
 head(dc_metro_sttn)
@@ -112,8 +112,7 @@ dc_metro_sttn_prj <- spTransform(dc_metro_sttn,
 
 Projecting rasters is a bit different.  We will use `raster::projectRaster` to accomplish this. Be aware that this is looking for a Proj4 string for the crs, and not a CRSobj.  
 
-```{r,eval=FALSE}
-#Not Run: Takes a bit of time.
+```{r,eval=TRUE}
 dc_elev_prj <- projectRaster(dc_elev,crs=proj4string(dc_metro_sttn_prj))
 ```
 
@@ -207,6 +206,24 @@ elev_class_perc <- table(values(dc_elev_class))/
   length(values(dc_elev_class))
 elev_class_perc
 ```
+
+The last task we will show is using vector to data to clip out our raster data.  We can do this with crop and mask.  We do the crop first as it will subset our raster based on the extent.  In most cases this is a significantly smaller area than the full raster dataset and speeds up the subsequent mask. We will do this with the projected versions.
+
+```{r}
+dc_elev_crop <- crop(dc_elev_prj,sttn_buff_500)
+plot(dc_elev_crop)
+plot(sttn_buff_500,add=T)
+```
+
+So, with this limited to just the extent of our dataset we can now clip out the values for each of the circles with.
+
+```{r}
+dc_elev_sttns <- mask(dc_elev_crop,sttn_buff_500)
+plot(dc_elev_sttns)
+plot(sttn_buff_500,add=T,border="red",lwd=2)
+```
+
+That gives us just the elevation within 500 meters of the Metro stations.  Probably not really interesting information, but we have it!  It might be more interesting to get the average elevation of each metro station.  Our workflow would be different as we would need to look at this on a per-station basis.  Might require a loop or a different approach all together.  Certainly possible, but beyond what we have time for today.
 
 ## Exercise 3.3
 Let's combine all of this together and calculate some landcover summary statistics

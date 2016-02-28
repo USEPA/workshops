@@ -277,134 +277,34 @@ Adding data is just the same as for adding data to data frames.  I found some ri
 
 
 ```r
-read.csv("data/station_rides.csv")
-```
-
-```
-##     X                        Ent.Station avg_wkday
-## 1   1                       Addison Road    3440.5
-## 2   2                          Anacostia    7356.4
-## 3   3             Archives-Navy Memorial    9329.6
-## 4   4                 Arlington Cemetery    1759.1
-## 5   5                           Ballston   11812.6
-## 6   6                       Benning Road    3067.2
-## 7   7                           Bethesda   10666.5
-## 8   8                      Braddock Road    4383.5
-## 9   9                      Branch Avenue    6604.6
-## 10 10                          Brookland    6672.7
-## 11 11                    Capitol Heights    2097.2
-## 12 12                      Capitol South    8630.3
-## 13 13                           Cheverly    1507.8
-## 14 14                          Clarendon    4651.1
-## 15 15                     Cleveland Park    4637.5
-## 16 16               College Park-U of MD    4533.6
-## 17 17                   Columbia Heights   12608.3
-## 18 18                   Congress Heights    2912.2
-## 19 19                        Court House    7309.1
-## 20 20                       Crystal City   13323.9
-## 21 21                           Deanwood    1761.2
-## 22 22                        Dunn Loring    5116.7
-## 23 23                      Dupont Circle   18291.8
-## 24 24                  East Falls Church    4186.3
-## 25 25                     Eastern Market    6038.7
-## 26 26                  Eisenhower Avenue    2025.8
-## 27 27                     Farragut North   26012.4
-## 28 28                      Farragut West   22365.4
-## 29 29                  Federal Center SW    6352.1
-## 30 30                   Federal Triangle    9703.1
-## 31 31                       Foggy Bottom   22413.2
-## 32 32                        Forest Glen    2409.5
-## 33 33                        Fort Totten    7442.0
-## 34 34              Franconia-Springfield    8884.9
-## 35 35                 Friendship Heights    9519.0
-## 36 36            Gallery Place-Chinatown   25714.1
-## 37 37            Georgia Avenue-Petworth    6147.8
-## 38 38                           Glenmont    6076.3
-## 39 39                          Greenbelt    6767.0
-## 40 40                          Grosvenor    5767.2
-## 41 41                         Huntington    8900.5
-## 42 42                   Judiciary Square    9120.3
-## 43 43                        King Street    8893.3
-## 44 44                     L'Enfant Plaza   21731.4
-## 45 45                           Landover    2265.6
-## 46 46                  Largo Town Center    5021.7
-## 47 47                   McPherson Square   16538.4
-## 48 48                     Medical Center    5949.5
-## 49 49                       Metro Center   28199.5
-## 50 50                   Minnesota Avenue    3132.9
-## 51 51                       Morgan Blvd.    2227.3
-## 52 52              Mt. Vernon Square-UDC    4159.3
-## 53 53                          Navy Yard    9662.7
-## 54 54                        Naylor Road    3067.9
-## 55 55                     New Carrollton    9566.7
-## 56 56                       New York Ave    7860.5
-## 57 57                           Pentagon   16788.3
-## 58 58                      Pentagon City   16145.3
-## 59 59                     Potomac Avenue    3879.1
-## 60 60              Prince George's Plaza    5196.6
-## 61 61 Reagan Washington National Airport    6198.6
-## 62 62                Rhode Island Avenue    5494.1
-## 63 63                          Rockville    4735.3
-## 64 64                            Rosslyn   16390.1
-## 65 65                        Shady Grove   13653.2
-## 66 66             Shaw-Howard University    4658.7
-## 67 67                      Silver Spring   13332.5
-## 68 68                        Smithsonian   11671.6
-## 69 69                    Southern Avenue    5766.9
-## 70 70                     Stadium-Armory    2979.0
-## 71 71                           Suitland    6213.6
-## 72 72                             Takoma    6023.5
-## 73 73                      Tenleytown-AU    7101.2
-## 74 74                          Twinbrook    4542.0
-## 75 75                   U Street-Cardozo    6847.1
-## 76 76                      Union Station   32611.1
-## 77 77                    Van Dorn Street    3488.9
-## 78 78                       Van Ness-UDC    6624.4
-## 79 79                             Vienna   13484.0
-## 80 80                Virginia Square-GMU    3663.5
-## 81 81                         Waterfront    4440.0
-## 82 82                  West Falls Church   10695.5
-## 83 83                   West Hyattsville    3862.0
-## 84 84                            Wheaton    4270.5
-## 85 85                        White Flint    4078.7
-## 86 86                   Woodley Park-Zoo    7679.7
-```
-
-```r
+station_rides <- read.csv("data/station_rides.csv")
 dc_metro_sttn <- merge(dc_metro_sttn, station_rides, by.x = "NAME", by.y = "Ent.Station", 
     all.x = TRUE)
-```
-
-```
-## Error in merge(dc_metro_sttn, station_rides, by.x = "NAME", by.y = "Ent.Station", : error in evaluating the argument 'y' in selecting a method for function 'merge': Error: object 'station_rides' not found
-```
-
-```r
 head(dc_metro_sttn)
 ```
 
 ```
-##   OBJECTID   GIS_ID                 NAME
-## 1        1 mstn_007     Columbia Heights
-## 2        2 mstn_020 Georgia Ave Petworth
-## 3        3 mstn_034               Takoma
-## 4        4 mstn_004        Brookland-CUA
-## 5        5 mstn_017          Fort Totten
-## 6        6 mstn_003         Benning Road
-##                                                  WEB_URL
-## 1 http://wmata.com/rail/station_detail.cfm?station_id=75
-## 2 http://wmata.com/rail/station_detail.cfm?station_id=76
-## 3 http://wmata.com/rail/station_detail.cfm?station_id=29
-## 4 http://wmata.com/rail/station_detail.cfm?station_id=27
-## 5 http://wmata.com/rail/station_detail.cfm?station_id=28
-## 6 http://wmata.com/rail/station_detail.cfm?station_id=90
-##                   LINE                ADDRESS
-## 1        green, yellow    3030 14TH STREET NW
-## 2        green, yellow 3700 GEORGIA AVENUE NW
-## 3                  red    327 CEDAR STREET NW
-## 4                  red 801 MICHIGAN AVENUE NE
-## 5   red, green, yellow 550 GALLOWAY STREET NE
-## 6 blue, orange, silver   4500 BENNING ROAD NE
+##                    NAME OBJECTID   GIS_ID
+## 7      Columbia Heights        1 mstn_007
+## 20 Georgia Ave Petworth        2 mstn_020
+## 34               Takoma        3 mstn_034
+## 4         Brookland-CUA        4 mstn_004
+## 17          Fort Totten        5 mstn_017
+## 3          Benning Road        6 mstn_003
+##                                                   WEB_URL
+## 7  http://wmata.com/rail/station_detail.cfm?station_id=75
+## 20 http://wmata.com/rail/station_detail.cfm?station_id=76
+## 34 http://wmata.com/rail/station_detail.cfm?station_id=29
+## 4  http://wmata.com/rail/station_detail.cfm?station_id=27
+## 17 http://wmata.com/rail/station_detail.cfm?station_id=28
+## 3  http://wmata.com/rail/station_detail.cfm?station_id=90
+##                    LINE                ADDRESS  X avg_wkday
+## 7         green, yellow    3030 14TH STREET NW 17   12608.3
+## 20        green, yellow 3700 GEORGIA AVENUE NW NA        NA
+## 34                  red    327 CEDAR STREET NW 72    6023.5
+## 4                   red 801 MICHIGAN AVENUE NE NA        NA
+## 17   red, green, yellow 550 GALLOWAY STREET NE 33    7442.0
+## 3  blue, orange, silver   4500 BENNING ROAD NE  6    3067.2
 ```
 
 So, now we can use these values to select.
@@ -412,18 +312,18 @@ So, now we can use these values to select.
 
 ```r
 busy_sttn <- subset(dc_metro_sttn, avg_wkday >= 10000)
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'avg_wkday' not found
-```
-
-```r
 busy_sttn
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'busy_sttn' not found
+## class       : SpatialPointsDataFrame 
+## features    : 7 
+## extent      : -77.04342, -77.00742, 38.88803, 38.92785  (xmin, xmax, ymin, ymax)
+## coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
+## variables   : 8
+## names       :             NAME, OBJECTID,   GIS_ID,                                                WEB_URL,                      LINE,                    ADDRESS,  X, avg_wkday 
+## min values  : Columbia Heights,        1, mstn_007,  http://wmata.com/rail/station_detail.cfm?station_id=1,      blue, orange, silver, 1001 CONNECTICUT AVENUE NW, 17,   11671.6 
+## max values  :    Union Station,       31, mstn_037, http://wmata.com/rail/station_detail.cfm?station_id=75, red, blue, orange, silver,         900 18TH STREET NW, 76,   32611.1
 ```
 
 
@@ -458,7 +358,6 @@ Projecting rasters is a bit different.  We will use `raster::projectRaster` to a
 
 
 ```r
-# Not Run: Takes a bit of time.
 dc_elev_prj <- projectRaster(dc_elev, crs = proj4string(dc_metro_sttn_prj))
 ```
 
@@ -479,7 +378,7 @@ sttn_buff_500 <- gBuffer(dc_metro_sttn_prj, width = 500)
 plot(sttn_buff_500)
 ```
 
-![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png) 
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png)
 
 We can see that overlapping buffers merged in this case.  If we wanted a buffer for each station we can use the "byid" argument.
 
@@ -489,7 +388,7 @@ sttn_buff_500_id <- gBuffer(dc_metro_sttn_prj, width = 500, byid = TRUE)
 plot(sttn_buff_500_id)
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png) 
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png)
 
 Now we get a 500 meter circle around each of the stations.  Let's move on to one of the overlay commands in `rgeos`,the difference.
 
@@ -524,7 +423,7 @@ sttn_diff
 plot(sttn_diff)
 ```
 
-![plot of chunk diff](figure/diff-1.png) 
+![plot of chunk diff](figure/diff-1.png)
 
 Lastly, let's pull out some of the basic geographic info on our datasets using `rgeos`.  That is provided by `gArea` and `gLength`. Let's get the area and perimeter of the all the land 500 meters from a metro station
 
@@ -638,6 +537,30 @@ elev_class_perc
 ##         1         2         3 
 ## 0.2499912 0.4999850 0.2500238
 ```
+
+The last task we will show is using vector to data to clip out our raster data.  We can do this with crop and mask.  We do the crop first as it will subset our raster based on the extent.  In most cases this is a significantly smaller area than the full raster dataset and speeds up the subsequent mask. We will do this with the projected versions.
+
+
+```r
+dc_elev_crop <- crop(dc_elev_prj, sttn_buff_500)
+plot(dc_elev_crop)
+plot(sttn_buff_500, add = T)
+```
+
+![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-1.png)
+
+So, with this limited to just the extent of our dataset we can now clip out the values for each of the circles with.
+
+
+```r
+dc_elev_sttns <- mask(dc_elev_crop, sttn_buff_500)
+plot(dc_elev_sttns)
+plot(sttn_buff_500, add = T, border = "red", lwd = 2)
+```
+
+![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19-1.png)
+
+That gives us just the elevation within 500 meters of the Metro stations.  Probably not really interesting information, but we have it!  It might be more interesting to get the average elevation of each metro station.  Our workflow would be different as we would need to look at this on a per-station basis.  Might require a loop or a different approach all together.  Certainly possible, but beyond what we have time for today.
 
 ## Exercise 3.3
 Let's combine all of this together and calculate some landcover summary statistics
