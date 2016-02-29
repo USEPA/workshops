@@ -1,6 +1,6 @@
 ```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
 options(repos="http://cran.rstudio.com/")
-pkgs <- c("sp","rgdal","rgeos","raster","knitr")
+pkgs <- c("sp","rgdal","rgeos","raster","knitr","quickmapr")
 x<-lapply(pkgs, library, character.only = TRUE)
 opts_chunk$set(tidy=T)
 ```
@@ -35,10 +35,82 @@ Now we won't get to this level in just an hour or so, but we will see how to bui
 - [Exercise 4.1](#exercise-41)
 
 ## Visualizing spatial data with `sp` and `raster`
+The default plotting tools from `sp` and `raster` are good enough for most of your needs and there have been many additional tools added that allow these to be acceptable for making static maps (e.g. [GISTools](https://cran.r-project.org/web/packages/GISTools/)).  We have already seen these functions in action.  We will show these again.
+
+To create a plot of a single layer
+
+```{r}
+plot(dc_metro)
+#Play with symbology
+plot(dc_metro, col="red", lwd = 3)
+#Use data to color
+plot(dc_metro, col=dc_metro$NAME, lwd=dc_metro$GIS_ID)
+```
+
+To create a plot of a multiple layers
+
+```{r}
+plot(dc_metro)
+#Add stations, change color,size, and symbol
+plot(dc_metro_sttn, add=T, col="red", pch=15, cex=1.2)
+```
+
+Add some raster data in
+
+```{r}
+plot(dc_elev)
+plot(dc_metro, add=T)
+plot(dc_metro_sttn, add=T, col="red", pch=15,cex=1.2)
+```
+
+We can certainly get fancier with the final plot, but that means digging into the details of plotting with base R.  That'd be a workshop in and of itself!
 
 ## Simple interactivity with `quickmapr`
+At the risk of being self-serving and tooting my own horn, the next package we are going to play with is [`quickmapr`](https://cran.r-project.org/web/packages/quickmapr/index.html).  
 
-## Exercise 3.1
+While building plots with the default plotting functions is fairly painless, I wanted something that was a bit more straightfoward.  Additionally, the default plots are static and don't have any interactivity built into them and the interactive javascript solutions (coming up) expect unprojected data in lattitude and longitude.  This is the other problem I wanted to address.  This is not meant as a replacment for default plotting nor is it meant to be used to create production quality maps.  It is for use during the course of an analysis.
+
+And before we move on, keep in mind that this is currently version 0.1.1, so it has bugs, but it works well enough that I am willing to go out on a limb and have a large number of people try to break it!
+
+First thing you will need to do is intall it from CRAN and load into your library
+
+```{r, eval=FALSE}
+install.packages("quickmapr")
+library(quickmapr)
+```
+
+This package is built around the `qmap` object.  All of the information for creating the plots are stored in this object and it is what allows for the interactivity.
+
+To build this we use the function `qmap`. There are several options available, but all you need to create a plot with multiple layers is the layers to include in the plot.
+
+```{r}
+my_map <- qmap(dc_elev_prj,dc_metro_prj,dc_metro_sttn_prj)
+```
+
+So, not any different than the defualt plots (becuase it uses those!).  But now, we can do some other fun stuff.
+
+We zoom with `zi`, zo`, and `ze`. We can pan with `p`. We can identify with `i`, and we can get back to our original extent with `f`.
+
+```{r,eval=FALSE}
+zi(my_map)
+p(my_map)
+zo(my_map)
+i(my_map,3)
+f(my_map)
+```
+
+There are a few other tricks built in, but they are experimental.  For example, adding a base images from the National Map (only aerial and topo currently supported).
+
+```{r}
+my_map<-qmap(dc_metro_prj, dc_metro_sttn_prj, colors=c("yellow","green"), 
+             basemap="topo",resolution = 1000)
+my_map<-qmap(dc_metro_prj, dc_metro_sttn_prj, colors=c("yellow","green"), 
+             basemap="1m_aerial",resolution = 1000)
+```
+
+Lastly, while this can handle large datasets, it is still slow.  This is because the default plotting functions are slow as your number of features get into the 10s of thousands.  It works, but isn't nearly as zippy and smooth as a stand-alone GIS.  In short, this provided handy tools for me and allowed me to stick with a single analysis environment.   
+
+## Exercise 4.1
 We will create a map of the data we've been working with, the NLCD and boundary.
 
 1. Map your clipped landcover and the DC boundary using the default tools from `sp` and `raster`.
@@ -46,8 +118,6 @@ We will create a map of the data we've been working with, the NLCD and boundary.
 
 ## Javascript packages: `leaflet` and `mapview`
 
-## Exercise 3.2
-
-
+## Exercise 4.2
 
 ## Using `ggplot2` and `ggmap`
