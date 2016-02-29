@@ -5,7 +5,7 @@ x<-lapply(pkgs, library, character.only = TRUE)
 opts_chunk$set(tidy=T)
 ```
 
-```{r data_setup, echo=FALSE,cache=TRUE}
+```{r data_setup, echo=FALSE,cache=TRUE,message=FALSE}
 dc_metro <- readOGR("data","Metro_Lines")
 dc_metro_sttn <- readOGR("data/metrostations.geojson", "OGRGeoJSON")
 dc_elev <- raster("data/dc_ned.tif")
@@ -117,6 +117,8 @@ We will create a map of the data we've been working with, the NLCD and boundary.
 2. Create the same map, but use `quickmapr`.  Try out some of the interactivity tools: zoom, pan, identify.
 
 ## Javascript packages: `leaflet` and `mapview`
+
+
 
 ## Exercise 4.2
 

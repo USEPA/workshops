@@ -1,12 +1,7 @@
 base
-methods
-datasets
-utils
-grDevices
-graphics
-stats
 sp
 rgdal
 rgeos
 raster
 knitr
+quickmapr

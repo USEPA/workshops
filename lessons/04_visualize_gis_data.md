@@ -74,28 +74,11 @@ Add some raster data in
 
 ```r
 plot(dc_elev)
-```
-
-```
-## Error in .local(.Object, ...): `/home/jhollist/projects/intro_gis_with_r/lessons/data/dc_ned.tif' does not exist in the file system,
-## and is not recognised as a supported dataset name.
-```
-
-```r
 plot(dc_metro, add = T)
-```
-
-```
-## Error in plot.xy(xy.coords(x, y), type = type, ...): plot.new has not been called yet
-```
-
-```r
 plot(dc_metro_sttn, add = T, col = "red", pch = 15, cex = 1.2)
 ```
 
-```
-## Error in plot.xy(xy.coords(x, y), type = type, ...): plot.new has not been called yet
-```
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
 
 We can certainly get fancier with the final plot, but that means digging into the details of plotting with base R.  That'd be a workshop in and of itself!
 
@@ -164,6 +147,8 @@ We will create a map of the data we've been working with, the NLCD and boundary.
 2. Create the same map, but use `quickmapr`.  Try out some of the interactivity tools: zoom, pan, identify.
 
 ## Javascript packages: `leaflet` and `mapview`
+
+
 
 ## Exercise 4.2
 
