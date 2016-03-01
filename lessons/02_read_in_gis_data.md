@@ -67,7 +67,7 @@ summary(dc_metro)
 ## y  38.83827  38.97984
 ## Is projected: FALSE 
 ## proj4string :
-## [+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0]
+## [+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0]
 ## Data attributes:
 ##        GIS_ID               NAME                                 WEB_URL 
 ##  Metro_001:2   blue           :1   http://wmata.com/rail/maps/map.cfm:8  
@@ -91,7 +91,7 @@ summary(dc_metro)
 plot(dc_metro)
 ```
 
-![plot of chunk metro_chk](figure/metro_chk-1.png) 
+![plot of chunk metro_chk](figure/metro_chk-1.png)
 
 As I mentioned earlier, there are other ways to read in shapefiles.  For example:
 
@@ -137,9 +137,6 @@ Writing shapefiles is just as easy as reading them, assuming you have an `sp` ob
 Before we do this, we can prove that the shapefile doesn't exist.
 
 
-```
-## [1] TRUE TRUE TRUE TRUE
-```
 
 ```r
 list.files("data", "dc_metro")
@@ -175,7 +172,12 @@ ogrListLayers("data/spx.gdb")
 ```
 
 ```
-## Error in ogrListLayers("data/spx.gdb"): Cannot open data source
+## [1] "points"    "points2"   "points3"   "polygons"  "polygons2" "polygons3"
+## [7] "polygons4" "polygons5"
+## attr(,"driver")
+## [1] "OpenFileGDB"
+## attr(,"nlayers")
+## [1] 8
 ```
 
 ```r
@@ -183,7 +185,10 @@ examp_fgdb <- readOGR(dsn = "data/spx.gdb", layer = "polygons5")
 ```
 
 ```
-## Error in ogrInfo(dsn = dsn, layer = layer, encoding = encoding, use_iconv = use_iconv, : Cannot open file
+## OGR data source with driver: OpenFileGDB 
+## Source: "data/spx.gdb", layer: "polygons5"
+## with 600 features
+## It has 0 fields
 ```
 
 And to be sure it worked:
@@ -194,16 +199,28 @@ summary(examp_fgdb)
 ```
 
 ```
-## Error in summary(examp_fgdb): error in evaluating the argument 'object' in selecting a method for function 'summary': Error: object 'examp_fgdb' not found
+## Object of class SpatialPolygonsDataFrame
+## Coordinates:
+##      min   max
+## x -1e+06 1e+06
+## y -1e+06 1e+06
+## Is projected: NA 
+## proj4string : [NA]
+## Data attributes:
+##       FID       
+##  Min.   :  1.0  
+##  1st Qu.:150.8  
+##  Median :300.5  
+##  Mean   :300.5  
+##  3rd Qu.:450.2  
+##  Max.   :600.0
 ```
 
 ```r
 plot(examp_fgdb)
 ```
 
-```
-## Error in plot(examp_fgdb): error in evaluating the argument 'x' in selecting a method for function 'plot': Error: object 'examp_fgdb' not found
-```
+![plot of chunk check_gdb](figure/check_gdb-1.png)
 
 Writing to a file geodatabase from R is not yet possible.
 
@@ -239,11 +256,11 @@ dc_metro_sttn
 ## class       : SpatialPointsDataFrame 
 ## features    : 40 
 ## extent      : -77.085, -76.93526, 38.84567, 38.97609  (xmin, xmax, ymin, ymax)
-## coord. ref. : +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0 
+## coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
 ## variables   : 6
 ## names       : OBJECTID,   GIS_ID,                          NAME,                                                WEB_URL,                 LINE,                    ADDRESS 
 ## min values  :        1, mstn_001,                     Anacostia,  http://wmata.com/rail/station_detail.cfm?station_id=1, blue, orange, silver, 1001 CONNECTICUT AVENUE NW 
-## max values  :       40, mstn_040, Woodley Park-Zoo Adams Morgan, http://wmata.com/rail/station_detail.cfm?station_id=90,   red, green, yellow, 919 RHODE ISLAND AVENUE NE
+## max values  :        9, mstn_040, Woodley Park-Zoo Adams Morgan, http://wmata.com/rail/station_detail.cfm?station_id=90,   red, green, yellow, 919 RHODE ISLAND AVENUE NE
 ```
 
 ```r
@@ -252,7 +269,7 @@ plot(dc_metro)
 plot(dc_metro_sttn, col = "red", add = TRUE)
 ```
 
-![plot of chunk plot_geojson](figure/plot_geojson-1.png) 
+![plot of chunk plot_geojson](figure/plot_geojson-1.png)
 
 ### Writing geojson
 
@@ -297,7 +314,7 @@ raster::print(dc_elev_gdal)  #using the raster print method
 ## dimensions  : 798, 921, 734958, 1  (nrow, ncol, ncell, nlayers)
 ## resolution  : 0.0002777778, 0.0002777778  (x, y)
 ## extent      : -77.15306, -76.89722, 38.77639, 38.99806  (xmin, xmax, ymin, ymax)
-## coord. ref. : +proj=longlat +ellps=GRS80 +datum=NAD83 +no_defs +towgs84=0,0,0 
+## coord. ref. : +proj=longlat +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0 
 ## names       :             band1 
 ## min values  : -7.87732982635498 
 ## max values  :  132.220932006836
@@ -316,8 +333,8 @@ dc_elev
 ## dimensions  : 798, 921, 734958  (nrow, ncol, ncell)
 ## resolution  : 0.0002777778, 0.0002777778  (x, y)
 ## extent      : -77.15306, -76.89722, 38.77639, 38.99806  (xmin, xmax, ymin, ymax)
-## coord. ref. : +proj=longlat +ellps=GRS80 +datum=NAD83 +no_defs +towgs84=0,0,0 
-## data source : /data/projects/DataInformatics/intro_gis_with_r/lessons/data/dc_ned.tif 
+## coord. ref. : +proj=longlat +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0 
+## data source : /home/jhollist/projects/intro_gis_with_r/lessons/data/dc_ned.tif 
 ## names       : dc_ned 
 ## values      : -5.316066, 131.4813  (min, max)
 ```
@@ -336,7 +353,7 @@ system.time(readGDAL("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##   0.042   0.003   0.045
+##   0.064   0.008   0.071
 ```
 
 ```r
@@ -345,7 +362,7 @@ system.time(raster("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##   0.007   0.002   0.009
+##    0.00    0.00    0.01
 ```
 
 The speed here is due to the fact that `raster` actually leaves the data on disk as opposed to pulling it all into memory.  Some operations will actually be faster on the `SpatialGrid` objects, but with bigger rasters reading in can be a challenge.  In addition, a lot of the typical raster operations come from the `raster` package and, in my opinion, it is just a bit easier to work with `raster` objects as opposed to `sp` for this.  Lastly, it is what I prefer, so there's that.  We will stick with `raster` for the rest of the workshop.
@@ -366,7 +383,7 @@ dc_elev_ascii
 ## resolution  : 0.0002777778, 0.0002777778  (x, y)
 ## extent      : -77.15306, -76.89722, 38.77639, 38.99806  (xmin, xmax, ymin, ymax)
 ## coord. ref. : NA 
-## data source : /data/projects/DataInformatics/intro_gis_with_r/lessons/data/dc_ned.asc 
+## data source : /home/jhollist/projects/intro_gis_with_r/lessons/data/dc_ned.asc 
 ## names       : dc_ned
 ```
 

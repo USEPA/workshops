@@ -72,7 +72,7 @@ Writing shapefiles is just as easy as reading them, assuming you have an `sp` ob
 Before we do this, we can prove that the shapefile doesn't exist.
 
 ```{r clean_it,echo=FALSE}
-file.remove(list.files("data","dc_metro",full.names = TRUE))
+x<-file.remove(list.files("data","dc_metro",full.names = TRUE))
 ```
 ```{r noshape}
 list.files("data","dc_metro")
