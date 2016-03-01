@@ -30,23 +30,23 @@ To create a plot of a single layer
 plot(dc_metro)
 ```
 
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.png) 
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.png)
 
 ```r
 # Play with symbology
 plot(dc_metro, col = "red", lwd = 3)
 ```
 
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-2.png) 
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-2.png)
 
 ```r
 # Use data to color
 plot(dc_metro, col = dc_metro$NAME, lwd = dc_metro$GIS_ID)
 ```
 
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-3.png) 
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-3.png)
 
-To create a plot of a multiple layers
+To create a plot of a multiple layers, we can use the "add" argument.
 
 
 ```r
@@ -55,9 +55,9 @@ plot(dc_metro)
 plot(dc_metro_sttn, add = T, col = "red", pch = 15, cex = 1.2)
 ```
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png) 
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
 
-Add some raster data in
+Add some raster data in.
 
 
 ```r
@@ -66,14 +66,14 @@ plot(dc_metro, add = T)
 plot(dc_metro_sttn, add = T, col = "red", pch = 15, cex = 1.2)
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png)
 
 We can certainly get fancier with the final plot, but that means digging into the details of plotting with base R.  That'd be a workshop in and of itself!
 
 ## Simple interactivity with `quickmapr`
 At the risk of being self-serving and tooting my own horn, the next package we are going to play with is [`quickmapr`](https://cran.r-project.org/web/packages/quickmapr/index.html).  
 
-While building plots with the default plotting functions is fairly painless, I wanted something that was a bit more straightforward.  Additionally, the default plots are static and don't have any interactivity built into them and the interactive javascript solutions (coming up) expect unprojected data in latitude and longitude.  This is the other problem I wanted to address.  This is not meant as a replacement for default plotting nor is it meant to be used to create production quality maps.  It is for use during the course of an analysis.
+While building plots with the default plotting functions is fairly painless, I wanted something that was a bit more straightforward.  Additionally, the default plots are static and don't have any interactivity built into them and the interactive javascript solutions (coming up) expect unprojected data in latitude and longitude.  This is the other problem I wanted to address.  `quickmapr` is not meant as a replacement for default plotting nor is it meant to be used to create production quality maps.  It is for use during the course of an analysis.
 
 And before we move on, keep in mind that this is currently version 0.1.1, so it has bugs, but it works well enough that I am willing to go out on a limb and have a large number of people try to break it!
 
@@ -94,11 +94,11 @@ To build this we use the function `qmap`. There are several options available, b
 my_map <- qmap(dc_elev_prj, dc_metro_prj, dc_metro_sttn_prj)
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
 
 So, not any different than the default plots (because it uses those!).  But now, we can do some other fun stuff.
 
-We zoom with `zi`, zo`, and `ze`. We can pan with `p`. We can identify with `i`, and we can get back to our original extent with `f`.
+We zoom with `zi`, `zo`, and `ze`. We can pan with `p`. We can identify with `i`, and we can get back to our original extent with `f`.
 
 
 ```r
@@ -117,25 +117,25 @@ my_map <- qmap(dc_metro_prj, dc_metro_sttn_prj, colors = c("yellow", "green"),
     basemap = "topo", resolution = 800)
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png) 
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
 
 ```r
 my_map <- qmap(dc_metro_prj, dc_metro_sttn_prj, colors = c("yellow", "green"), 
     basemap = "1m_aerial", resolution = 800)
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-2.png) 
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-2.png)
 
-Lastly, while this can handle large datasets, it is still slow.  This is because the default plotting functions are slow as your number of features get into the 10s of thousands.  It works, but isn't nearly as zippy and smooth as a stand-alone GIS.  In short, this provided handy tools for me and allowed me to stick with a single analysis environment.   
+Lastly, while this can handle large datasets, it is still slow.  This is because the default plotting functions slow down as your number of features get into the 10s of thousands.  It works, but isn't nearly as zippy and smooth as a stand-alone GIS.  In short, this provided handy tools for me and allowed me to stick with a single analysis environment.   
 
 ## Exercise 4.1
-We will create a map of the data we've been working with, the NLCD and boundary.
+We will create a map of the data we've been working with, the NLCD and DC boundary.
 
-1. Map your clipped landcover and the DC boundary using the default tools from `sp` and `raster`.
+1. Map your clipped landcover and the DC boundary using the default plotting tools from `sp` and `raster`.
 2. Create the same map, but use `quickmapr`.  Try out some of the interactivity tools: zoom, pan, identify.
 
 ## Mapping with javascript: `leaflet`
-Many of the visualization tasks (e.g. zoom, pan, identify) are implemented (and implemented much better) in various javascript libraries.  As such, much of the development in R has been towards packages to access javascript libraries and allow the display of R objects. Our efforts are going to focus on the `leaflet` package which, unsurprisingly, allows us to access the leaflet javascript library.  The `leaflet` package is written and maintained through RStudio.  For more on how to use `leaflet`, check out [RStudio's tutorial](https://rstudio.github.io/leaflet/).
+Many of the visualization tasks (e.g. zoom, pan, identify) are implemented (and implemented well) in various javascript libraries.  As such, much of the development in R has been towards packages to access javascript libraries and allow the display of R objects. Our efforts are going to focus on the `leaflet` package which, unsurprisingly, allows us to access the leaflet javascript library.  The `leaflet` package is written and maintained through RStudio.  For more on how to use `leaflet`, check out [RStudio's tutorial](https://rstudio.github.io/leaflet/).
 
 Before we build some maps, let's get everything we need installed and loaded.
 
@@ -147,7 +147,7 @@ library(leaflet)
 
 Although the maps we can create with `leaflet` are really nice, there is one downside.  It is expected that the data are all in unprojected latitude and longitude, so if you have projected data, that will need to be converted back in to geographic coordinates.  For us, we have examples of data that are already in the correct projection.
 
-One of the nice things about the `leaflet` interface is that it is really easy to work iteratively and build your maps by adding data and options to and existing leaflet map. So lest start with the bare minimum.
+One of the nice things about the `leaflet` interface is that it is really easy to work iteratively and build your maps by adding data and options to an existing leaflet map. So lets start with the bare minimum.
 
 
 ```r

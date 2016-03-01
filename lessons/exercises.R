@@ -54,7 +54,30 @@ dc_in_nlcd <- crop(dc_nlcd,dc_bnd_prj)
 dc_in_nlcd <- mask(dc_in_nlcd,dc_bnd_prj)
 dc_outer_nlcd <- mask(crop(dc_nlcd,dc_outer_1000),dc_outer_1000)
 in_lulc <- round(table(values(dc_in_nlcd))/length(values(dc_in_nlcd)),3)*100
+in_lulc
 out_lulc <- round(table(values(dc_outer_nlcd))/length(values(dc_outer_nlcd)),3)*100
+out_lulc
 #Legend: http://www.mrlc.gov/nlcd01_leg.php
 
+################################################################################
+#Exercise 4.1
+################################################################################
+plot(dc_nlcd)
+plot(dc_bnd_prj,add=T)
+map <- qmap(dc_nlcd,dc_bnd_prj,colors=c(NA,"black"))
+zi(map)
+zo(map)
+i(map)
+i(map,2)
+p(map)
+f(map)
 
+################################################################################
+#Exercise 4.2
+################################################################################
+map <- leaflet()
+map <- addTiles(map)
+map <- addPolygons(map,data=dc_bnd)
+map
+map <- addRasterImage(map, dc_in_nlcd)
+map
