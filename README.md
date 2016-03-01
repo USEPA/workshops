@@ -30,7 +30,7 @@ March 2, 2016
 |3:45 PM - 5:00 PM | [Visualizing Spatial Data with R](lessons/04_visualize_gis_data.md) |
 
 ## Learn more!
-As these materials are filtered through my experience, I like to also link to other materials presenting the same idea.  A couple of really great examples are linked below.
+As these materials are filtered through my experience, I like to also link to other materials presenting the same ideas.  A couple of really great examples are linked below.
 
 - [NEON Data Skills Tutorials](http://neondataskills.org/tutorial-series/)
 - [Jamie Afflerbach's Workshop for UCSB](https://github.com/jafflerbach/spatial-analysis-R)

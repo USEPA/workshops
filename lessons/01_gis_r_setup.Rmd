@@ -6,7 +6,7 @@ opts_chunk$set(tidy=T)
 ```
  
 # Setting up R to do GIS
-Out of the box, R is not ready to do GIS analysis.  As such, we need to add a few packages that will provide most of the functionality you'd expect out of a GIS.  In this lesson we will introduce both the bare minimum packages for doing GIS as well as discuss additional packages that provide more advanced GIS analysis and visualization.
+Out of the box, R is not ready to do GIS analysis.  As such, we need to add a few packages that will provide most of the functionality you'd expect out of a GIS.  In this lesson we will introduce the bare minimum packages for doing GIS.
 
 ## Lesson Outline
 - [Required packages](#required-packages)
@@ -28,7 +28,7 @@ The four packages that provide this foundation are:
 Let's dig in a bit deeper on each of these.
 
 ### sp
-The `sp` package was originally developed by Edzer Pebesma and Roger Bivand.  Many others have contributed.  It provides the primary spatial data structures for use in R.  Many other packages assume your data is stored as one of the `sp` data structures.  Getting into the details of these is beyond the scope of this workshop, but look at the [introduction to sp vignette for more](https://cran.r-project.org/web/packages/sp/vignettes/intro_sp.pdf) details.  That being said, we will be working specifically with `SpatialPoints`, `SpatialPointsDataFrame`, `SpatialPolygons`, and `SpatialPolygonsDataFrame`.  More on that later.
+The `sp` package provides the primary spatial data structures for use in R.  Many other packages assume your data is stored as one of the `sp` data structures.  Getting into the details of these is beyond the scope of this workshop, but look at the [introduction to sp vignette for more details](https://cran.r-project.org/web/packages/sp/vignettes/intro_sp.pdf).  That being said, we will be working mostly with `SpatialPointsDataFrame` and `SpatialPolygonsDataFrame`.  More on that later.
 
 Getting `sp` added is no different than adding any other package that is on CRAN.
 
@@ -38,7 +38,7 @@ library("sp")
 ```
 
 ### rgdal
-The `rgdal` package provides tools for reading and writing multiple spatial data formats.  It is based on the [Geospatial Data Abstraction Library (GDAL)](http://www.gdal.org/) which is a project of the Open Source Geospatial Foundation (OSGeo).  The R package was authored by Roger Bivand, Tim Keitt, and Barry Rowlingson, with others contributing.  The primary use of `rgdal` is to read various spatial data formats into R and store them as `sp` objects.  In this workshop, we will be only using `rgdal` to read in shape files, but it has utility far beyond that.  
+The `rgdal` package provides tools for reading and writing multiple spatial data formats.  It is based on the [Geospatial Data Abstraction Library (GDAL)](http://www.gdal.org/) which is a project of the Open Source Geospatial Foundation (OSGeo).  The primary use of `rgdal` is to read various spatial data formats into R and store them as `sp` objects.  In this workshop, we will be only using `rgdal` to read in shape files, but it has utility far beyond that.  
 
 As before, nothing special to get set up with `rgdal` on windows.  Simply:
 
@@ -50,7 +50,7 @@ library("rgdal")
 Getting set up on Linux or Mac requires more effort (i.e. need to have GDAL installed).  As this is for a USEPA audience the windows installs will work for most.  Thus, discussion of this is mostly beyond the scope of this workshop.  
 
 ### raster
-Although `sp` and `rgdal` provide raster data capabilities, they do require that the full raster dataset be read into memory.  This can have some performance implications as well as limits the size of datasets you can readily work with.  The `raster` package works around this by working with raster data on the disk.  That too has some performance implications, but for the most part, in my opinion anyway, `raster` makes it easier to work with raster data.  It also provides several additional functions for analyzing raster data.  The `raster` package was authored by Robert Hijmans with a large number of contributors. 
+Although `sp` and `rgdal` provide raster data capabilities, they do require that the full raster dataset be read into memory.  This can have some performance implications as well as limits the size of datasets you can readily work with.  The `raster` package works around this by working with raster data on the disk.  That too has some performance implications, but for the most part, in my opinion anyway, `raster` makes it easier to work with raster data.  It also provides several additional functions for analyzing raster data.  
 
 To install, just do: 
 
@@ -60,7 +60,7 @@ library("raster")
 ```
 
 ### rgeos
-The last of the core packages for doing GIS in R is `rgeos`.  Like `rgdal`, `rgeos` is a project of OSgeo.  It is a wrapper around the [Geometry Engine Open Source](https://trac.osgeo.org/geos/) c++ library and provides a suite of tools for conducting vector GIS analyses.  It was authored in R by Roger Bivand and Colin Rundel with Edzer Pebesma and Karl Ove Hufthammer contributing.
+The last of the core packages for doing GIS in R is `rgeos`.  Like `rgdal`, `rgeos` is a project of OSgeo.  It is a wrapper around the [Geometry Engine Open Source](https://trac.osgeo.org/geos/) c++ library and provides a suite of tools for conducting vector GIS analyses.  
 
 To install on windows
 
@@ -69,7 +69,7 @@ install.packages("rgeos")
 library("rgeos")
 ```
 
-For Linux and Mac the GEOS library will also need to be available.  As with `rgdal` this is a bit beyond the scope of this workshop.  One item to note for US EPA Linux users.  The official Linux OS is Red Hat 6.  Their have been reports of problems with the version of GEOS available for Red Hat 6.  If this applies to you, contact [Jeff](mailto::hollister.jeff@epa.gov) for details on how to solve this.
+For Linux and Mac the GEOS library will also need to be available.  As with `rgdal` this is a bit beyond the scope of this workshop.  One item to note for US EPA Linux users.  The official Linux OS is Red Hat 6.  There have been reports of problems with the version of GEOS available for Red Hat 6.  If this applies to you, contact [me](mailto::hollister.jeff@epa.gov) for details on how to solve this (assuming I can remember how I did it).
 
 ## Exercise 1.1
 The first exercise won't be too thrilling, but we need to make sure everyone has the four packages installed. 
@@ -79,7 +79,7 @@ The first exercise won't be too thrilling, but we need to make sure everyone has
 
 
 ## Interacting with an external GIS
-Although we won't be working with external GIS in this workshop, there are several packages that provide ways move back and forth from another GIS and R.  
+Although we won't be working with external GIS in this workshop, there are several packages that provide ways to move back and forth from another GIS and R.  
 
 - [spgrass6](https://cran.r-project.org/web/packages/spgrass6/index.html): Provides an interface between R and [GRASS 6+](https://grass.osgeo.org/download/software/#g64x).  Allows for running R from within GRASS as well as running GRASS from within R.  
 - [rgrass7](https://cran.r-project.org/web/packages/rgrass7/index.html): Same as `spgrass6`, but for the latest version of GRASS, [GRASS 7](https://grass.osgeo.org/download/software/#g70x).

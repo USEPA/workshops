@@ -1,7 +1,7 @@
 
 
 # Basic GIS Analysis with R
-We now have the required packages installed and know how to read data into R. Our next step is to start doing some GIS analysis with R. Throughout the course of this lesson will show how to do some basic manipulation of the `raster` and `sp` objects and then show a few examples of some relatively straightforward analyses.  We will only be scratching the surface here, but hopefully this will provide a starting point for more work doing spatial analysis in R.  ***Note:*** *Much of this lesson assumes some familiarity with R and working with data frames.*
+We now have the required packages installed and know how to read data into R. Our next step is to start doing some GIS analysis with R. Throughout the course of this lesson will show how to do some basic manipulation of the `raster` and `sp` objects and then show a few examples of relatively straightforward analyses.  We will only be scratching the surface here, but hopefully this will provide a starting point for more work doing spatial analysis in R.  ***Note:*** *Much of this lesson assumes some familiarity with R and working with data frames.*
 
 ## Lesson Outline
 - [Explore and manipulate](#explore-and-manipulate)
@@ -16,7 +16,7 @@ We now have the required packages installed and know how to read data into R. Ou
 - [Exercise 3.3](#exercise-33)
 
 ## Explore and manipulate
-One of the nice things about `SpatialXDataFrame` objects is that many of the tricks you know for working with data frames will also work.  This allows us subset our spatial data, summarize data, etc. in an R way.
+One of the nice things about `SpatialXDataFrame` objects is that many of the tricks you know for working with data frames will also work.  This allows us to subset our spatial data, summarize data, etc. in a very R like way.
 
 Let's start working through some examples using the two Metro datasets.
 
@@ -148,6 +148,55 @@ names(dc_metro_sttn)
 ## [1] "OBJECTID" "GIS_ID"   "NAME"     "WEB_URL"  "LINE"     "ADDRESS"
 ```
 
+```r
+# Look at individual columns
+dc_metro_sttn$NAME
+```
+
+```
+##  [1] Columbia Heights                            
+##  [2] Georgia Ave Petworth                        
+##  [3] Takoma                                      
+##  [4] Brookland-CUA                               
+##  [5] Fort Totten                                 
+##  [6] Benning Road                                
+##  [7] Deanwood                                    
+##  [8] NoMa - Gallaudet U                          
+##  [9] Tenleytown-AU                               
+## [10] Friendship Heights                          
+## [11] Foggy Bottom-GWU                            
+## [12] Farragut West                               
+## [13] Farragut North                              
+## [14] Dupont Circle                               
+## [15] Woodley Park-Zoo Adams Morgan               
+## [16] LEnfant Plaza                               
+## [17] Smithsonian                                 
+## [18] Federal Triangle                            
+## [19] Archives-Navy Meml                          
+## [20] Waterfront                                  
+## [21] Navy Yard - Ballpark                        
+## [22] Federal Center SW                           
+## [23] Judiciary Sq                                
+## [24] Capitol South                               
+## [25] McPherson Sq                                
+## [26] Metro Center                                
+## [27] Gallery Pl-Chinatown                        
+## [28] Mt Vernon Sq - 7th St Convention Center     
+## [29] U St/African-Amer Civil War Memorial/Cardozo
+## [30] Shaw-Howard Univ                            
+## [31] Union Station                               
+## [32] Congress Heights                            
+## [33] Anacostia                                   
+## [34] Eastern Market                              
+## [35] Potomac Ave                                 
+## [36] Stadium Armory                              
+## [37] Rhode Island Ave                            
+## [38] Minnesota Ave                               
+## [39] Van Ness-UDC                                
+## [40] Cleveland Park                              
+## 40 Levels: Anacostia Archives-Navy Meml Benning Road ... Woodley Park-Zoo Adams Morgan
+```
+
 And to get into the guts of the `sp` objects:
 
 
@@ -218,6 +267,8 @@ str(dc_metro)
 ##   ..@ proj4string:Formal class 'CRS' [package "sp"] with 1 slot
 ##   .. .. ..@ projargs: chr "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0"
 ```
+
+Yikes!
 
 Now for the fun part.  We can use indexing/subsetting tools we already know to pull out individual features based on the data stored in the `sp` objects data frame.  For instance:
 
@@ -328,33 +379,33 @@ busy_sttn
 
 
 ## Projections
-Although many GIS provide project-on-the-fly (editorial: WORST THING EVER), R does not.  To get our maps to work and analysis to be correct, we need to know how to modify the projections of our data so that they match up.  A description of projections is way beyond the scope of this workshop, but these links provide some good background info and details:
+Although many GIS provide project-on-the-fly (jwh editorial: WORST THING EVER), R does not.  To get our maps to work and analysis to be correct, we need to know how to modify the projections of our data so that they match up.  A description of projections is way beyond the scope of this workshop, but these links provide some good background info and details:
 
 - [USGS](http://egsc.usgs.gov/isb//pubs/MapProjections/projections.html)
 - [NCEAS](https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/OverviewCoordinateReferenceSystems.pdf)
 
 And for more on projecting there's some good info in the [rOpenSci draft spatial data viz Task View](https://github.com/ropensci/maptools#projecting-data)
 
-For our purposes we will be using `spTransform` to reproject data.  We need to supply two arguments, "x" the object we are transforming and "CRSobj" which is the details of the new projection.  We will assume that we have good data read into R and that the original projection is already defined.  This is the case with all of the example data.
+For our purposes we will be using `spTransform` to reproject data.  We need to supply two arguments, "x", the object we are transforming, and "CRSobj" which is the details of the new projection.  We will assume that we have good data read into R and that the original projection is already defined.  This is the case with all of the example data.
 
-There are many ways to specify the "CRSobj".  We will be using [Proj.4](https://trac.osgeo.org/proj/) strings and the `CRS` function for this.  We can get the Proj.4 strings from other datasets, or specify them from scratch.  
-To get them from scratch, the easiest thing to do is search at [spatialreference.org](http://spatialreference.org/).  You can either search there, or just use Google.  For instance, if we want the [ESRI Albers Equal Area projection as Proj.4](www.google.com/search?q=ESRI Albers Equal Area projection as Proj.4) gets it as the first result.  Just select the [Proj4](http://spatialreference.org/ref/esri/usa-contiguous-albers-equal-area-conic/proj4/) from the list.
+There are many ways to specify the "CRSobj".  We will be using [Proj.4](https://trac.osgeo.org/proj/) strings and the `CRS` function for this.  We can get the Proj.4 strings from other datasets, or specify them from scratch.  To get them from scratch, the easiest thing to do is search at [spatialreference.org](http://spatialreference.org/).  You can either search there, or just use Google.  For instance, if we want the [ESRI Albers Equal Area projection as Proj.4](www.google.com/search?q=ESRI Albers Equal Area projection as Proj.4) gets it as the first result.  Just select the [Proj4](http://spatialreference.org/ref/esri/usa-contiguous-albers-equal-area-conic/proj4/) link from the list.
 
 So, if we want to reproject our data using this projection:
 
 
 ```r
-dc_metro_alb <- spTransform(dc_metro, CRS("+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs"))
+esri_alb_p4 <- "+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs"
+dc_metro_alb <- spTransform(dc_metro, CRS(esri_alb_p4))
 ```
 
-Luckily, it is pretty common to have several datasets and one of which is in the projections you want to use.  We can then just pull the Proj4 string from that.
+Luckily, it is pretty common to have several datasets with one of which in the projections you want to use.  We can then just pull the Proj4 string from that.
 
 
 ```r
 dc_metro_sttn_prj <- spTransform(dc_metro_sttn, CRS(proj4string(dc_metro_alb)))
 ```
 
-Projecting rasters is a bit different.  We will use `raster::projectRaster` to accomplish this. Be aware that this is looking for a Proj4 string for the crs, and not a CRSobj.  
+Projecting rasters is a bit different.  We will use `raster::projectRaster` to accomplish this. Be aware that this is looking for a Proj4 string for the "crs", and not a CRSobj.  
 
 
 ```r
@@ -366,7 +417,7 @@ In this first exercise we will work on manipulating the Tiger Lines file of the 
 
 1. Assign just the DC boundary to an object named `dc_bnd`.
 2. Re-project `dc_bnd` to match the projection of `dc_nlcd`.  Assign this to an object named `dc_bnd_prj`.
- 
+
 ## Brief introduction to rgeos
 In this section we are going to start working with many of the "typical" GIS type analyses, specifically buffers and a few overlays. We will use mostly `rgeos` but will also look a bit at `sp::over`.
 
@@ -408,6 +459,7 @@ sttn_diff
 ```
 
 ```r
+# pulls into individual polygons, instead of a single multi-polygon.
 sttn_diff <- disaggregate(sttn_diff)
 sttn_diff
 ```
@@ -463,12 +515,12 @@ We have left most of `rgeos` untouched, but hopefully shown enough to get you st
 ## Exercise 3.2
 We will work with the re-projected `dc_bnd_prj` lets set this up for some further analysis.
 
-1. Buffer the DC boundary by 1000 meters.
+1. Buffer the DC boundary by 1000 meters. Save it to dc_bnd_1000
 2. Assign an object that represents only the area 1000 meters outside of DC (hint: gDifference).
-3. Determine the area of both the DC boundary as well as the surrounding 1000 meters.
+3. Determine the area of both the DC boundary as well as just the surrounding 1000 meters.
 
 ## Working with rasters
-Let's move on to rasters.  We will be doing mostly work with base R to summarize information stored in raster and use our vector datasets to interact with those rasters.  And if time, we will show a few functions from `raster`.
+Let's move on to rasters.  We will be doing mostly work with base R to summarize information stored in rasters and use our vector datasets to interact with those rasters and then we will show a few functions from `raster`.
 
 We've already seen how to get some of the basic info of a raster.  To re-hash:
 
@@ -501,12 +553,13 @@ mean(values(dc_elev), na.omit = T)
 ## [1] 48.76833
 ```
 
-If our raster contains categorical data (e.g. LULC), we can work with that too.  We don't have a ready example so lets us another `raster` function to reclassify our elevation data and then look at some summary stats of that.
+If our raster contains categorical data (e.g. LULC), we can work with that too.  We don't have a ready example so lets use another `raster` function to reclassify our elevation data and then look at some summary stats of that.
 
 
 ```r
 # reclass elevation into H, M, L
 elev_summ <- summary(values(dc_elev))
+# this is the format for the look up table expected by reclassify
 rcl <- matrix(c(-Inf, elev_summ[2], 1, elev_summ[2], elev_summ[5], 2, elev_summ[5], 
     Inf, 3), nrow = 3, byrow = T)
 dc_elev_class <- reclassify(dc_elev, rcl)
