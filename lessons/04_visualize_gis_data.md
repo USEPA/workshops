@@ -127,17 +127,15 @@ There are a few other tricks built in, but they are experimental.  For example, 
 
 ```r
 my_map <- qmap(dc_metro_prj, dc_metro_sttn_prj, colors = c("yellow", "green"), 
-    basemap = "topo", resolution = 1000)
+    basemap = "topo", resolution = 600)
 ```
 
 ![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png) 
 
 ```r
-my_map <- qmap(dc_metro_prj, dc_metro_sttn_prj, colors = c("yellow", "green"), 
-    basemap = "1m_aerial", resolution = 1000)
+# Not Run my_map<-qmap(dc_metro_prj, dc_metro_sttn_prj,
+# colors=c('yellow','green'), basemap='1m_aerial',resolution = 600)
 ```
-
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-2.png) 
 
 Lastly, while this can handle large datasets, it is still slow.  This is because the default plotting functions are slow as your number of features get into the 10s of thousands.  It works, but isn't nearly as zippy and smooth as a stand-alone GIS.  In short, this provided handy tools for me and allowed me to stick with a single analysis environment.   
 
