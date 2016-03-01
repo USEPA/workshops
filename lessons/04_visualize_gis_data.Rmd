@@ -141,7 +141,7 @@ map
 
 There are lots of tiles available to us.  The default is Open Street Map. We can try out some of the other available tiles. Full list of options available from <http://leaflet-extras.github.io/leaflet-providers/preview/>.
 
-```{r}
+```{r, eval=FALSE}
 map <- leaflet()
 map <- addPolylines(map,data=dc_metro)
 map <- addProviderTiles(map,"Esri.NatGeoWorldMap")
@@ -155,7 +155,7 @@ map
 
 And we can add other layers in and also change their styling.
 
-```{r}
+```{r, eval=FALSE}
 map <- leaflet()
 map <- addTiles(map)
 map <- addPolylines(map,data=dc_metro)
@@ -168,7 +168,7 @@ map
 
 Lastly, we can add in rasters.
 
-```{r}
+```{r, eval=FALSE}
 map <- leaflet()
 map <- addTiles(map)
 map <- addPolylines(map,data=dc_metro)
