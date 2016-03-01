@@ -6,7 +6,7 @@ opts_chunk$set(tidy=T)
 ```
 
 # Reading and Writing Raster and Vector Data
-So, now that we have the base packages installed and loaded we can work on getting our data into and out of R.  While it is possible to store spatial data as R objects (e.g. via .Rda/Rdata files) that is probably not the best approach.  It is better to store spatial data in widley used files (e.g. shapefiles,.tiff, or geojson) or in spatial databases (e.g. file geodatabse or PostGIS) and then read that data into R for analysis then writing the results back out to your file format of choice.  In this lesson we will explore several ways to read in multiple vector and raster data types.
+So, now that we have the base packages installed and loaded we can work on getting our data into and out of R.  While it is possible to store spatial data as R objects (e.g. via .Rda/Rdata files) that is probably not the best approach.  It is better to store spatial data in widely used files (e.g. shapefiles,.tiff, or geojson) or in spatial databases (e.g. file geodatabse or PostGIS) and then read that data into R for analysis then writing the results back out to your file format of choice.  In this lesson we will explore several ways to read in multiple vector and raster data types.
 
 ## Lesson Outline
 - [Vector data: shapefiles](#vector-data-shapefiles)
@@ -22,7 +22,7 @@ So, now that we have the base packages installed and loaded we can work on getti
 - [Exercise 2.2](#exercise-22)
 
 ## Get the example data
-For this workshop, I have collected several example datasets to use and have included them in this repository.  So, let's first grab the dataset.  It is stored as a zip file.  You can download it [directly from this link](https://github.com/USEPA/intro_gis_with_r/blob/master/data.zip?raw=true), or we could use R.  I prefer to use the `httr` package becuase base `download.file` can act funny on different platforms.
+For this workshop, I have collected several example datasets to use and have included them in this repository.  So, let's first grab the dataset.  It is stored as a zip file.  You can download it [directly from this link](https://github.com/USEPA/intro_gis_with_r/blob/master/data.zip?raw=true), or we could use R.  I prefer to use the `httr` package because base `download.file` can act funny on different platforms.
 
 ```{r download_zip,eval=FALSE}
 library(httr)
@@ -40,7 +40,7 @@ unzip("../data.zip",overwrite = TRUE)
 ```
 
 ## Vector data: shapefiles
-For many, shapefiles are going to be the most common way to interact with spatial data.  In R, there are many ways to read in shapefiles.  We are going to focus using `rgdal` becuase it is flexible and provides a common interface to multiple file types.  But to be fair, I'll also quickly show a another option from `maptools`.
+For many, shapefiles are going to be the most common way to interact with spatial data.  In R, there are many ways to read in shapefiles.  We are going to focus using `rgdal` because it is flexible and provides a common interface to multiple file types.  But to be fair, I'll also quickly show a another option from `maptools`.
 
 ### Reading in Shapfiles
 To read in a shapefile using `rgdal`, we want to use the `readOGR` function.  This function is the primary way to interact with vector data using `rgdal`.  There are many arguments to this function, but the two you need are the "dsn" and "layer".  For a shapefile the "dsn" is the path (in our case probably "data") and the "layer" is the name of the shapefile without any extensions.  The function call to read the DC Metro shapefile from out example data looks like: 
@@ -49,7 +49,7 @@ To read in a shapefile using `rgdal`, we want to use the `readOGR` function.  Th
 dc_metro <- readOGR("data","Metro_Lines")
 ```
 
-We will get more into working with `sp` object and visualizing spatail data later, but just to prove that this did something:
+We will get more into working with `sp` object and visualizing spatial data later, but just to prove that this did something:
 
 ```{r metro_chk}
 summary(dc_metro)
@@ -63,7 +63,7 @@ dc_metro_mt<-maptools::readShapeLines("data/Metro_Lines")
 summary(dc_metro_mt)
 ```
  
-Couple of notes on this  First the `maptools` functions require that you know your geomtery type, whereas, `readOGR` will get that from the data.  I did test to see if the the `maptools::readShapeLines` was any quicker than `rgdal::readOGR` and in my huge sample of one, it was. Lastly, `readShapeLines` is a one-trick pony.  It reads in shapefiles and that is it.  As we will see, `readOGR` works across a range of vector data types and thus, is what I would recomend for most vector data I/O tasks.
+Couple of notes on this  First the `maptools` functions require that you know your geometry type, whereas, `readOGR` will get that from the data.  I did test to see if the the `maptools::readShapeLines` was any quicker than `rgdal::readOGR` and in my huge sample of one, it was. Lastly, `readShapeLines` is a one-trick pony.  It reads in shapefiles and that is it.  As we will see, `readOGR` works across a range of vector data types and thus, is what I would recommend for most vector data I/O tasks.
 
 ### Writing shapefiles
 
@@ -87,7 +87,7 @@ writeOGR(dc_metro,"data","dc_metro",driver="ESRI Shapefile")
 list.files("data","dc_metro")
 ```
 
-So same "dsn" and "layer" arguments as before.  Only differnce is that the first argument is the `sp` object you want to write out to a shapefile.  
+So same "dsn" and "layer" arguments as before.  Only difference is that the first argument is the `sp` object you want to write out to a shapefile.  
 
 ## Vector data: file geodatabase
 A recent addition to the GDAL world is the ability to read ESRI File Geodatabases.  This is easy to access on windows as the latest version of GDAL is wrapped up as part of the `rgdal` install and thus you get access to the appropriate drivers.  This is a bit more challenging on Linux (even more so on the antiquated RHEL 6 that is EPAs approved OS) as you need to have GDAL 1.11.x +.  In any event, if you use file geodatabases, you can read those directly into R with readOGR. Difference here is the "dsn" is the name of the file geodatabase (with path info if needed), and the "layer" is the feature class.
@@ -139,7 +139,7 @@ Just as with shapefiles, writing to a geojson file can be accomplished with `wri
 writeOGR(dc_metro_sttn,dsn="stations.gejson",layer="dc_metro_sttn",driver="GeoJSON")
 ```
 
-Lastly, if you commonly work with geojson files, there is the `geojsonio` package from [rOpenSci](https://ropensci.org/) that provides a number of tools for reading, writing, and converting geojson files.  It is certainly worth exploring as it provides additiona functionality beyond the `rgdal` toolset.
+Lastly, if you commonly work with geojson files, there is the `geojsonio` package from [rOpenSci](https://ropensci.org/) that provides a number of tools for reading, writing, and converting geojson files.  It is certainly worth exploring as it provides additional functionality beyond the `rgdal` toolset.
 
 ## Exercise 2.1
 For this first exercise we will just focus on getting a shapefile read into R.  We will be using the sticky notes I handed out to let me know who needs help and who has finished the exercise.  Once everyone is done, we will move on.
@@ -187,7 +187,7 @@ dc_elev_ascii
 That is really it for reading in rasters.
 
 ## Writing rasters:
-Writing out to a raster file is done with `writeRaster`.  It has three arguments, "x" which is the `raster` object, "filename" which is the output file, and "format" wich is the output raster format.  In practice, you can usually get away with not sepcifying the format as `raster` will try to infer the file format.  If you want to see the possible formats you can use `writeFormats()`.
+Writing out to a raster file is done with `writeRaster`.  It has three arguments, "x" which is the `raster` object, "filename" which is the output file, and "format" which is the output raster format.  In practice, you can usually get away with not specifying the format as `raster` will try to infer the file format.  If you want to see the possible formats you can use `writeFormats()`.
 
 To write out to a GeoTIFF:
 

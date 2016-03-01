@@ -86,11 +86,11 @@ We can certainly get fancier with the final plot, but that means digging into th
 ## Simple interactivity with `quickmapr`
 At the risk of being self-serving and tooting my own horn, the next package we are going to play with is [`quickmapr`](https://cran.r-project.org/web/packages/quickmapr/index.html).  
 
-While building plots with the default plotting functions is fairly painless, I wanted something that was a bit more straightfoward.  Additionally, the default plots are static and don't have any interactivity built into them and the interactive javascript solutions (coming up) expect unprojected data in lattitude and longitude.  This is the other problem I wanted to address.  This is not meant as a replacment for default plotting nor is it meant to be used to create production quality maps.  It is for use during the course of an analysis.
+While building plots with the default plotting functions is fairly painless, I wanted something that was a bit more straightforward.  Additionally, the default plots are static and don't have any interactivity built into them and the interactive javascript solutions (coming up) expect unprojected data in latitude and longitude.  This is the other problem I wanted to address.  This is not meant as a replacement for default plotting nor is it meant to be used to create production quality maps.  It is for use during the course of an analysis.
 
 And before we move on, keep in mind that this is currently version 0.1.1, so it has bugs, but it works well enough that I am willing to go out on a limb and have a large number of people try to break it!
 
-First thing you will need to do is intall it from CRAN and load into your library
+First thing you will need to do is install it from CRAN and load into your library
 
 
 ```r
@@ -109,7 +109,7 @@ my_map <- qmap(dc_elev_prj, dc_metro_prj, dc_metro_sttn_prj)
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
 
-So, not any different than the defualt plots (becuase it uses those!).  But now, we can do some other fun stuff.
+So, not any different than the default plots (because it uses those!).  But now, we can do some other fun stuff.
 
 We zoom with `zi`, zo`, and `ze`. We can pan with `p`. We can identify with `i`, and we can get back to our original extent with `f`.
 
@@ -148,7 +148,7 @@ We will create a map of the data we've been working with, the NLCD and boundary.
 2. Create the same map, but use `quickmapr`.  Try out some of the interactivity tools: zoom, pan, identify.
 
 ## Mapping with javascript: `leaflet`
-Many of the visualization tasks (e.g. zoom, pan, identify) are implemente (and implemented much better) in various javascript libraries.  As such, much of the development in R has been towards packages to access javascript libraries and allow the display of R objects. Our efforts are going to focus on the `leaflet` package which, unsurprisingly, allows us to access the leaflet javascript library.  The `leaflet` package is written and maintained through RStudio.  For more on how to use `leaflet`, check out [RStudio's tutorial](https://rstudio.github.io/leaflet/).
+Many of the visualization tasks (e.g. zoom, pan, identify) are implemented (and implemented much better) in various javascript libraries.  As such, much of the development in R has been towards packages to access javascript libraries and allow the display of R objects. Our efforts are going to focus on the `leaflet` package which, unsurprisingly, allows us to access the leaflet javascript library.  The `leaflet` package is written and maintained through RStudio.  For more on how to use `leaflet`, check out [RStudio's tutorial](https://rstudio.github.io/leaflet/).
 
 Before we build some maps, let's get everything we need installed and loaded.
 
@@ -160,7 +160,7 @@ library(leaflet)
 
 Although the maps we can create with `leaflet` are really nice, there is one downside.  It is expected that the data are all in unprojected latitude and longitude, so if you have projected data, that will need to be converted back in to geographic coordinates.  For us, we have examples of data that are already in the correct projection.
 
-One of the nice things about the `leaflet` interface is that it is really easy to work iteratively and build your maps by adding data and options to and exisitng leaflet map. So lest start with the bare minimum.
+One of the nice things about the `leaflet` interface is that it is really easy to work iteratively and build your maps by adding data and options to and existing leaflet map. So lest start with the bare minimum.
 
 
 ```r
@@ -218,7 +218,7 @@ For this exercise, we will create a leaflet map
 ## Other visualization options
 What we have had the time to show in this workshop is just the beginning, as there are many packages that provide support for mapping spatial data.  The following are just a few of these.
 
-- [mapview](https://cran.r-project.org/web/packages/mapview/index.html): This is a wrapper to leaflet that also greatly simplifies the creation of the maps by taking care of many of the settings behind the scenes (inlcuding, I believe, reprojecting data to workw with leaflet).  
+- [mapview](https://cran.r-project.org/web/packages/mapview/index.html): This is a wrapper to leaflet that also greatly simplifies the creation of the maps by taking care of many of the settings behind the scenes (including, I believe, reprojecting data to work with leaflet).  
 - [ggplot2](https://cran.r-project.org/web/packages/ggplot2/index.html): THE data viz package for R.  Also can be used to make maps (it is what I use for my static maps). Requires additional processing of the spatial data to create plots, but has almost unlimited possibilities for creating maps.
 - [ggmap](https://cran.r-project.org/web/packages/ggmap/index.html): A `ggplot2` based package for creating maps.  Makes it a bit easier and has built in support for some basemaps (e.g. Google Maps).
-- [cartographer](https://github.com/ropensci/cartographer): Not on CRAN and hasn't been actively developed in a while, but is interesting becuase it provides access to a different javascript library, d3 and d3-carto-maps. Similar in functionality to the leaflet solution, but d3 has support for projections built in so has possibility for better handling of projected data.  
+- [cartographer](https://github.com/ropensci/cartographer): Not on CRAN and hasn't been actively developed in a while, but is interesting because it provides access to a different javascript library, d3 and d3-carto-maps. Similar in functionality to the leaflet solution, but d3 has support for projections built in so has possibility for better handling of projected data.  

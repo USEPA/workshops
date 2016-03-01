@@ -28,7 +28,7 @@ The four packages that provide this foundation are:
 Let's dig in a bit deeper on each of these.
 
 ### sp
-The `sp` package was originally developed by Edzer Pebesma and Roger Bivand.  Many others have contributed.  It provides the primary spatial data strucutres for use in R.  Many other packages assume your data is stored as one of the `sp` data structures.  Getting into the details of these is beyond the scope of this workshop, but look at the [introduction to sp vignette for more](https://cran.r-project.org/web/packages/sp/vignettes/intro_sp.pdf) details.  That being said, we will be working specifically with `SpatialPoints`, `SpatialPointsDataFrame`, `SpatialPolygons`, and `SpatialPolygonsDataFrame`.  More on that later.
+The `sp` package was originally developed by Edzer Pebesma and Roger Bivand.  Many others have contributed.  It provides the primary spatial data structures for use in R.  Many other packages assume your data is stored as one of the `sp` data structures.  Getting into the details of these is beyond the scope of this workshop, but look at the [introduction to sp vignette for more](https://cran.r-project.org/web/packages/sp/vignettes/intro_sp.pdf) details.  That being said, we will be working specifically with `SpatialPoints`, `SpatialPointsDataFrame`, `SpatialPolygons`, and `SpatialPolygonsDataFrame`.  More on that later.
 
 Getting `sp` added is no different than adding any other package that is on CRAN.
 
@@ -47,10 +47,10 @@ install.packages("rgdal")
 library("rgdal")
 ```
 
-Getting set up on Linux or Mac requires more effort (i.e. need to have GDAL intalled).  As this is for a USEPA audience the windows installs will work for most.  Thus, discussion of this is mostly beyond the scope of this workshop.  
+Getting set up on Linux or Mac requires more effort (i.e. need to have GDAL installed).  As this is for a USEPA audience the windows installs will work for most.  Thus, discussion of this is mostly beyond the scope of this workshop.  
 
 ### raster
-Although `sp` and `rgdal` provide raster data capabilities, they do require that the full raster dataset be read into memory.  This can have some performance implications as well as limits the size of datasets you can readily work with.  The `raster` package works around this by working with raster data on the disk.  That too has some performance implications, but for the most part, in my opinion anyway, `raster` makes it easier to work with raster data.  It also provides several additional functions for analysing raster data.  THe `raster` package was authored by Robert Hijmans with a large number of contributors. 
+Although `sp` and `rgdal` provide raster data capabilities, they do require that the full raster dataset be read into memory.  This can have some performance implications as well as limits the size of datasets you can readily work with.  The `raster` package works around this by working with raster data on the disk.  That too has some performance implications, but for the most part, in my opinion anyway, `raster` makes it easier to work with raster data.  It also provides several additional functions for analyzing raster data.  The `raster` package was authored by Robert Hijmans with a large number of contributors. 
 
 To install, just do: 
 

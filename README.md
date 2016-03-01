@@ -27,7 +27,7 @@ March 2, 2016
 |2:15 PM - 2:45 PM | [Basic GIS Anslysis with R](lessons/03_analyze_gis_data.md)           |
 |2:45 PM - 3:00 PM | *BREAK*                                                               |
 |3:00 PM - 3:45 PM | [Basic GIS Anslysis with R: cont.](lessons/03_analyze_gis_data.md)    |
-|3:45 PM - 5:00 PM | [Visaulizing Spatial Data with R](lessons/04_visualize_gis_data.md) |
+|3:45 PM - 5:00 PM | [Visualizing Spatial Data with R](lessons/04_visualize_gis_data.md) |
 
 ## Learn more!
 As these materials are filtered through my experience, I like to also link to other materials presenting the same idea.  A couple of really great examples are linked below.

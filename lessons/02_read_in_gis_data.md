@@ -1,7 +1,7 @@
 
 
 # Reading and Writing Raster and Vector Data
-So, now that we have the base packages installed and loaded we can work on getting our data into and out of R.  While it is possible to store spatial data as R objects (e.g. via .Rda/Rdata files) that is probably not the best approach.  It is better to store spatial data in widley used files (e.g. shapefiles,.tiff, or geojson) or in spatial databases (e.g. file geodatabse or PostGIS) and then read that data into R for analysis then writing the results back out to your file format of choice.  In this lesson we will explore several ways to read in multiple vector and raster data types.
+So, now that we have the base packages installed and loaded we can work on getting our data into and out of R.  While it is possible to store spatial data as R objects (e.g. via .Rda/Rdata files) that is probably not the best approach.  It is better to store spatial data in widely used files (e.g. shapefiles,.tiff, or geojson) or in spatial databases (e.g. file geodatabse or PostGIS) and then read that data into R for analysis then writing the results back out to your file format of choice.  In this lesson we will explore several ways to read in multiple vector and raster data types.
 
 ## Lesson Outline
 - [Vector data: shapefiles](#vector-data-shapefiles)
@@ -17,7 +17,7 @@ So, now that we have the base packages installed and loaded we can work on getti
 - [Exercise 2.2](#exercise-22)
 
 ## Get the example data
-For this workshop, I have collected several example datasets to use and have included them in this repository.  So, let's first grab the dataset.  It is stored as a zip file.  You can download it [directly from this link](https://github.com/USEPA/intro_gis_with_r/blob/master/data.zip?raw=true), or we could use R.  I prefer to use the `httr` package becuase base `download.file` can act funny on different platforms.
+For this workshop, I have collected several example datasets to use and have included them in this repository.  So, let's first grab the dataset.  It is stored as a zip file.  You can download it [directly from this link](https://github.com/USEPA/intro_gis_with_r/blob/master/data.zip?raw=true), or we could use R.  I prefer to use the `httr` package because base `download.file` can act funny on different platforms.
 
 
 ```r
@@ -35,7 +35,7 @@ unzip("data.zip", overwrite = TRUE)
 
 
 ## Vector data: shapefiles
-For many, shapefiles are going to be the most common way to interact with spatial data.  In R, there are many ways to read in shapefiles.  We are going to focus using `rgdal` becuase it is flexible and provides a common interface to multiple file types.  But to be fair, I'll also quickly show a another option from `maptools`.
+For many, shapefiles are going to be the most common way to interact with spatial data.  In R, there are many ways to read in shapefiles.  We are going to focus using `rgdal` because it is flexible and provides a common interface to multiple file types.  But to be fair, I'll also quickly show a another option from `maptools`.
 
 ### Reading in Shapfiles
 To read in a shapefile using `rgdal`, we want to use the `readOGR` function.  This function is the primary way to interact with vector data using `rgdal`.  There are many arguments to this function, but the two you need are the "dsn" and "layer".  For a shapefile the "dsn" is the path (in our case probably "data") and the "layer" is the name of the shapefile without any extensions.  The function call to read the DC Metro shapefile from out example data looks like: 
@@ -52,7 +52,7 @@ dc_metro <- readOGR("data", "Metro_Lines")
 ## It has 4 fields
 ```
 
-We will get more into working with `sp` object and visualizing spatail data later, but just to prove that this did something:
+We will get more into working with `sp` object and visualizing spatial data later, but just to prove that this did something:
 
 
 ```r
@@ -67,7 +67,7 @@ summary(dc_metro)
 ## y  38.83827  38.97984
 ## Is projected: FALSE 
 ## proj4string :
-## [+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0]
+## [+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0]
 ## Data attributes:
 ##        GIS_ID               NAME                                 WEB_URL 
 ##  Metro_001:2   blue           :1   http://wmata.com/rail/maps/map.cfm:8  
@@ -128,7 +128,7 @@ summary(dc_metro_mt)
 ## 
 ```
  
-Couple of notes on this  First the `maptools` functions require that you know your geomtery type, whereas, `readOGR` will get that from the data.  I did test to see if the the `maptools::readShapeLines` was any quicker than `rgdal::readOGR` and in my huge sample of one, it was. Lastly, `readShapeLines` is a one-trick pony.  It reads in shapefiles and that is it.  As we will see, `readOGR` works across a range of vector data types and thus, is what I would recomend for most vector data I/O tasks.
+Couple of notes on this  First the `maptools` functions require that you know your geometry type, whereas, `readOGR` will get that from the data.  I did test to see if the the `maptools::readShapeLines` was any quicker than `rgdal::readOGR` and in my huge sample of one, it was. Lastly, `readShapeLines` is a one-trick pony.  It reads in shapefiles and that is it.  As we will see, `readOGR` works across a range of vector data types and thus, is what I would recommend for most vector data I/O tasks.
 
 ### Writing shapefiles
 
@@ -163,7 +163,7 @@ list.files("data", "dc_metro")
 ## [1] "dc_metro.dbf" "dc_metro.prj" "dc_metro.shp" "dc_metro.shx"
 ```
 
-So same "dsn" and "layer" arguments as before.  Only differnce is that the first argument is the `sp` object you want to write out to a shapefile.  
+So same "dsn" and "layer" arguments as before.  Only difference is that the first argument is the `sp` object you want to write out to a shapefile.  
 
 ## Vector data: file geodatabase
 A recent addition to the GDAL world is the ability to read ESRI File Geodatabases.  This is easy to access on windows as the latest version of GDAL is wrapped up as part of the `rgdal` install and thus you get access to the appropriate drivers.  This is a bit more challenging on Linux (even more so on the antiquated RHEL 6 that is EPAs approved OS) as you need to have GDAL 1.11.x +.  In any event, if you use file geodatabases, you can read those directly into R with readOGR. Difference here is the "dsn" is the name of the file geodatabase (with path info if needed), and the "layer" is the feature class.
@@ -175,12 +175,7 @@ ogrListLayers("data/spx.gdb")
 ```
 
 ```
-## [1] "points"    "points2"   "points3"   "polygons"  "polygons2" "polygons3"
-## [7] "polygons4" "polygons5"
-## attr(,"driver")
-## [1] "OpenFileGDB"
-## attr(,"nlayers")
-## [1] 8
+## Error in ogrListLayers("data/spx.gdb"): Cannot open data source
 ```
 
 ```r
@@ -188,10 +183,7 @@ examp_fgdb <- readOGR(dsn = "data/spx.gdb", layer = "polygons5")
 ```
 
 ```
-## OGR data source with driver: OpenFileGDB 
-## Source: "data/spx.gdb", layer: "polygons5"
-## with 600 features
-## It has 0 fields
+## Error in ogrInfo(dsn = dsn, layer = layer, encoding = encoding, use_iconv = use_iconv, : Cannot open file
 ```
 
 And to be sure it worked:
@@ -202,28 +194,16 @@ summary(examp_fgdb)
 ```
 
 ```
-## Object of class SpatialPolygonsDataFrame
-## Coordinates:
-##      min   max
-## x -1e+06 1e+06
-## y -1e+06 1e+06
-## Is projected: NA 
-## proj4string : [NA]
-## Data attributes:
-##       FID       
-##  Min.   :  1.0  
-##  1st Qu.:150.8  
-##  Median :300.5  
-##  Mean   :300.5  
-##  3rd Qu.:450.2  
-##  Max.   :600.0
+## Error in summary(examp_fgdb): error in evaluating the argument 'object' in selecting a method for function 'summary': Error: object 'examp_fgdb' not found
 ```
 
 ```r
 plot(examp_fgdb)
 ```
 
-![plot of chunk check_gdb](figure/check_gdb-1.png) 
+```
+## Error in plot(examp_fgdb): error in evaluating the argument 'x' in selecting a method for function 'plot': Error: object 'examp_fgdb' not found
+```
 
 Writing to a file geodatabase from R is not yet possible.
 
@@ -259,11 +239,11 @@ dc_metro_sttn
 ## class       : SpatialPointsDataFrame 
 ## features    : 40 
 ## extent      : -77.085, -76.93526, 38.84567, 38.97609  (xmin, xmax, ymin, ymax)
-## coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
+## coord. ref. : +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0 
 ## variables   : 6
 ## names       : OBJECTID,   GIS_ID,                          NAME,                                                WEB_URL,                 LINE,                    ADDRESS 
 ## min values  :        1, mstn_001,                     Anacostia,  http://wmata.com/rail/station_detail.cfm?station_id=1, blue, orange, silver, 1001 CONNECTICUT AVENUE NW 
-## max values  :        9, mstn_040, Woodley Park-Zoo Adams Morgan, http://wmata.com/rail/station_detail.cfm?station_id=90,   red, green, yellow, 919 RHODE ISLAND AVENUE NE
+## max values  :       40, mstn_040, Woodley Park-Zoo Adams Morgan, http://wmata.com/rail/station_detail.cfm?station_id=90,   red, green, yellow, 919 RHODE ISLAND AVENUE NE
 ```
 
 ```r
@@ -283,7 +263,7 @@ Just as with shapefiles, writing to a geojson file can be accomplished with `wri
 writeOGR(dc_metro_sttn, dsn = "stations.gejson", layer = "dc_metro_sttn", driver = "GeoJSON")
 ```
 
-Lastly, if you commonly work with geojson files, there is the `geojsonio` package from [rOpenSci](https://ropensci.org/) that provides a number of tools for reading, writing, and converting geojson files.  It is certainly worth exploring as it provides additiona functionality beyond the `rgdal` toolset.
+Lastly, if you commonly work with geojson files, there is the `geojsonio` package from [rOpenSci](https://ropensci.org/) that provides a number of tools for reading, writing, and converting geojson files.  It is certainly worth exploring as it provides additional functionality beyond the `rgdal` toolset.
 
 ## Exercise 2.1
 For this first exercise we will just focus on getting a shapefile read into R.  We will be using the sticky notes I handed out to let me know who needs help and who has finished the exercise.  Once everyone is done, we will move on.
@@ -317,7 +297,7 @@ raster::print(dc_elev_gdal)  #using the raster print method
 ## dimensions  : 798, 921, 734958, 1  (nrow, ncol, ncell, nlayers)
 ## resolution  : 0.0002777778, 0.0002777778  (x, y)
 ## extent      : -77.15306, -76.89722, 38.77639, 38.99806  (xmin, xmax, ymin, ymax)
-## coord. ref. : +proj=longlat +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0 
+## coord. ref. : +proj=longlat +ellps=GRS80 +datum=NAD83 +no_defs +towgs84=0,0,0 
 ## names       :             band1 
 ## min values  : -7.87732982635498 
 ## max values  :  132.220932006836
@@ -336,8 +316,8 @@ dc_elev
 ## dimensions  : 798, 921, 734958  (nrow, ncol, ncell)
 ## resolution  : 0.0002777778, 0.0002777778  (x, y)
 ## extent      : -77.15306, -76.89722, 38.77639, 38.99806  (xmin, xmax, ymin, ymax)
-## coord. ref. : +proj=longlat +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0 
-## data source : /home/jhollist/projects/intro_gis_with_r/lessons/data/dc_ned.tif 
+## coord. ref. : +proj=longlat +ellps=GRS80 +datum=NAD83 +no_defs +towgs84=0,0,0 
+## data source : /data/projects/DataInformatics/intro_gis_with_r/lessons/data/dc_ned.tif 
 ## names       : dc_ned 
 ## values      : -5.316066, 131.4813  (min, max)
 ```
@@ -356,7 +336,7 @@ system.time(readGDAL("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##   0.042   0.022   0.061
+##   0.042   0.011   0.052
 ```
 
 ```r
@@ -365,7 +345,7 @@ system.time(raster("data/dc_ned.tif"))
 
 ```
 ##    user  system elapsed 
-##   0.006   0.000   0.006
+##   0.009   0.000   0.009
 ```
 
 The speed here is due to the fact that `raster` actually leaves the data on disk as opposed to pulling it all into memory.  Some operations will actually be faster on the `SpatialGrid` objects, but with bigger rasters reading in can be a challenge.  In addition, a lot of the typical raster operations come from the `raster` package and it is just a bit easier to work with `raster` objects as opposed to `sp` for this.  Lastly, it is what I prefer, so there's that.  We will stick with `raster` for the rest of the workshop.
@@ -386,14 +366,14 @@ dc_elev_ascii
 ## resolution  : 0.0002777778, 0.0002777778  (x, y)
 ## extent      : -77.15306, -76.89722, 38.77639, 38.99806  (xmin, xmax, ymin, ymax)
 ## coord. ref. : NA 
-## data source : /home/jhollist/projects/intro_gis_with_r/lessons/data/dc_ned.asc 
+## data source : /data/projects/DataInformatics/intro_gis_with_r/lessons/data/dc_ned.asc 
 ## names       : dc_ned
 ```
 
 That is really it for reading in rasters.
 
 ## Writing rasters:
-Writing out to a raster file is done with `writeRaster`.  It has three arguments, "x" which is the `raster` object, "filename" which is the output file, and "format" wich is the output raster format.  In practice, you can usually get away with not sepcifying the format as `raster` will try to infer the file format.  If you want to see the possible formats you can use `writeFormats()`.
+Writing out to a raster file is done with `writeRaster`.  It has three arguments, "x" which is the `raster` object, "filename" which is the output file, and "format" which is the output raster format.  In practice, you can usually get away with not specifying the format as `raster` will try to infer the file format.  If you want to see the possible formats you can use `writeFormats()`.
 
 To write out to a GeoTIFF:
 

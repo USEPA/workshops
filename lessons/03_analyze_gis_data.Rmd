@@ -6,7 +6,7 @@ opts_chunk$set(tidy=T)
 ```
 
 # Basic GIS Analysis with R
-We now have the required packages installed and know how to read data into R. Our next step is to start doing some GIS analysis with R. Throughout the course of this lesson will show how to do some basic manipulation of the `raster` and `sp` objects and then show a few examples of some relatively straightforward analyses.  We will only be scratching the surface here, but hoepfully this will provide a starting point for more work doing spatial analysis in R.  ***Note:*** *Much of this lesson assumes some familiarity with R and working with data frames.*
+We now have the required packages installed and know how to read data into R. Our next step is to start doing some GIS analysis with R. Throughout the course of this lesson will show how to do some basic manipulation of the `raster` and `sp` objects and then show a few examples of some relatively straightforward analyses.  We will only be scratching the surface here, but hopefully this will provide a starting point for more work doing spatial analysis in R.  ***Note:*** *Much of this lesson assumes some familiarity with R and working with data frames.*
 
 ## Lesson Outline
 - [Explore and manipulate](#explore-and-manipulate)
@@ -84,7 +84,7 @@ busy_sttn
 
 
 ## Projections
-Although many GIS provide project-on-the-fly (editorial: WORST THING EVER), R does not.  To get our maps to work and analysis to be correct, we need to know how to modify the projectins of our data so that they match up.  A descition of projections is way beyond the scope of this workshop, but these links provide some good background info and details:
+Although many GIS provide project-on-the-fly (editorial: WORST THING EVER), R does not.  To get our maps to work and analysis to be correct, we need to know how to modify the projections of our data so that they match up.  A description of projections is way beyond the scope of this workshop, but these links provide some good background info and details:
 
 - [USGS](http://egsc.usgs.gov/isb//pubs/MapProjections/projections.html)
 - [NCEAS](https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/OverviewCoordinateReferenceSystems.pdf)
@@ -117,13 +117,13 @@ dc_elev_prj <- projectRaster(dc_elev,crs=proj4string(dc_metro_sttn_prj))
 ```
 
 ## Exercise 3.1
-In this first exercise we will work on manipulating the Tiger Lines file of the states that we pulled in as part of lesson 2 and assinged to `us_states`.
+In this first exercise we will work on manipulating the Tiger Lines file of the states that we pulled in as part of lesson 2 and assigned to `us_states`.
 
 1. Assign just the DC boundary to an object named `dc_bnd`.
 2. Re-project `dc_bnd` to match the projection of `dc_nlcd`.  Assign this to an object named `dc_bnd_prj`.
  
 ## Brief introduction to rgeos
-In this section we are going to start working with many of the "typical" GIS type analyses, specifcially buffers and a few overlays. We will use mostly `rgeos` but will also look a bit at `sp::over`.
+In this section we are going to start working with many of the "typical" GIS type analyses, specifically buffers and a few overlays. We will use mostly `rgeos` but will also look a bit at `sp::over`.
 
 Let's start with a buffer. We will use the albers projected stations for these examples
 
@@ -163,7 +163,7 @@ gArea(sttn_diff,byid=TRUE)
 We have left most of `rgeos` untouched, but hopefully shown enough to get you started.  
 
 ## Exercise 3.2
-We will work with the re-projected `dc_bnd_prj` lets set this up for some further analyis.
+We will work with the re-projected `dc_bnd_prj` lets set this up for some further analysis.
 
 1. Buffer the DC boundary by 1000 meters.
 2. Assign an object that represents only the area 1000 meters outside of DC (hint: gDifference).
@@ -237,6 +237,6 @@ In this section, I'll introduce a few other packages that I have used or know ab
 
 Some of the other packages I have used for various tasks have been:
 - [gdistance](https://cran.r-project.org/web/packages/gdistance/index.html): Provides tools for calculating distances across a grid.  Computes things like cost distance, accumulate costs, shortest path, etc. The [vignette for gdistance](https://cran.r-project.org/web/packages/gdistance/vignettes/gdistance1.pdf) is a good place to start for an overview of the package.
-- [geosphere](https://cran.r-project.org/web/packages/geosphere/index.html): `geosphere` provides tools for spherical trigonometry and allows working directly with lattitude, longitude, and bearing.  For more, look at the [vignette](https://cran.r-project.org/web/packages/geosphere/vignettes/geosphere.pdf).
-- [SDMTools](https://cran.r-project.org/web/packages/SDMTools/index.html): This package provides functions to work with species distribution models.  In addition though, it also has implementations of most of the metrics available in the venerable landsape ecology tool, [FRAGSTATS](http://www.umass.edu/landeco/research/fragstats/fragstats.html).
+- [geosphere](https://cran.r-project.org/web/packages/geosphere/index.html): `geosphere` provides tools for spherical trigonometry and allows working directly with latitude, longitude, and bearing.  For more, look at the [vignette](https://cran.r-project.org/web/packages/geosphere/vignettes/geosphere.pdf).
+- [SDMTools](https://cran.r-project.org/web/packages/SDMTools/index.html): This package provides functions to work with species distribution models.  In addition though, it also has implementations of most of the metrics available in the venerable landscape ecology tool, [FRAGSTATS](http://www.umass.edu/landeco/research/fragstats/fragstats.html).
 

@@ -1,7 +1,7 @@
 
 
 # Basic GIS Analysis with R
-We now have the required packages installed and know how to read data into R. Our next step is to start doing some GIS analysis with R. Throughout the course of this lesson will show how to do some basic manipulation of the `raster` and `sp` objects and then show a few examples of some relatively straightforward analyses.  We will only be scratching the surface here, but hoepfully this will provide a starting point for more work doing spatial analysis in R.  ***Note:*** *Much of this lesson assumes some familiarity with R and working with data frames.*
+We now have the required packages installed and know how to read data into R. Our next step is to start doing some GIS analysis with R. Throughout the course of this lesson will show how to do some basic manipulation of the `raster` and `sp` objects and then show a few examples of some relatively straightforward analyses.  We will only be scratching the surface here, but hopefully this will provide a starting point for more work doing spatial analysis in R.  ***Note:*** *Much of this lesson assumes some familiarity with R and working with data frames.*
 
 ## Lesson Outline
 - [Explore and manipulate](#explore-and-manipulate)
@@ -46,7 +46,7 @@ dc_metro
 ## class       : SpatialLinesDataFrame 
 ## features    : 8 
 ## extent      : -77.08576, -76.91327, 38.83827, 38.97984  (xmin, xmax, ymin, ymax)
-## coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
+## coord. ref. : +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0 
 ## variables   : 4
 ## names       :    GIS_ID,            NAME,                            WEB_URL, OBJECTID 
 ## min values  : Metro_001,            blue, http://wmata.com/rail/maps/map.cfm,        1 
@@ -61,11 +61,11 @@ dc_metro_sttn
 ## class       : SpatialPointsDataFrame 
 ## features    : 40 
 ## extent      : -77.085, -76.93526, 38.84567, 38.97609  (xmin, xmax, ymin, ymax)
-## coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
+## coord. ref. : +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0 
 ## variables   : 6
 ## names       : OBJECTID,   GIS_ID,                          NAME,                                                WEB_URL,                 LINE,                    ADDRESS 
 ## min values  :        1, mstn_001,                     Anacostia,  http://wmata.com/rail/station_detail.cfm?station_id=1, blue, orange, silver, 1001 CONNECTICUT AVENUE NW 
-## max values  :        9, mstn_040, Woodley Park-Zoo Adams Morgan, http://wmata.com/rail/station_detail.cfm?station_id=90,   red, green, yellow, 919 RHODE ISLAND AVENUE NE
+## max values  :       40, mstn_040, Woodley Park-Zoo Adams Morgan, http://wmata.com/rail/station_detail.cfm?station_id=90,   red, green, yellow, 919 RHODE ISLAND AVENUE NE
 ```
 
 We can get more info on the data with:
@@ -111,7 +111,7 @@ summary(dc_metro_sttn)
 ## coords.x2  38.84567  38.97609
 ## Is projected: FALSE 
 ## proj4string :
-## [+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0]
+## [+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0]
 ## Number of points: 40
 ## Data attributes:
 ##     OBJECTID          GIS_ID                   NAME   
@@ -216,7 +216,7 @@ str(dc_metro)
 ##   .. .. ..$ : chr [1:2] "x" "y"
 ##   .. .. ..$ : chr [1:2] "min" "max"
 ##   ..@ proj4string:Formal class 'CRS' [package "sp"] with 1 slot
-##   .. .. ..@ projargs: chr "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
+##   .. .. ..@ projargs: chr "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0"
 ```
 
 Now for the fun part.  We can use indexing/subsetting tools we already know to pull out individual features based on the data stored in the `sp` objects data frame.  For instance:
@@ -232,7 +232,7 @@ est_mrkt
 ## class       : SpatialPointsDataFrame 
 ## features    : 1 
 ## extent      : -76.996, -76.996, 38.88463, 38.88463  (xmin, xmax, ymin, ymax)
-## coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
+## coord. ref. : +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0 
 ## variables   : 6
 ## names       : OBJECTID,   GIS_ID,           NAME,                                                WEB_URL,                 LINE,                    ADDRESS 
 ## min values  :       34, mstn_011, Eastern Market, http://wmata.com/rail/station_detail.cfm?station_id=60, blue, orange, silver, 701 PENNSYLVANIA AVENUE SE 
@@ -249,7 +249,7 @@ ri
 ## class       : SpatialPointsDataFrame 
 ## features    : 1 
 ## extent      : -76.99594, -76.99594, 38.92107, 38.92107  (xmin, xmax, ymin, ymax)
-## coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
+## coord. ref. : +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0 
 ## variables   : 6
 ## names       : OBJECTID,   GIS_ID,             NAME,                                                WEB_URL, LINE,                    ADDRESS 
 ## min values  :       37, mstn_030, Rhode Island Ave, http://wmata.com/rail/station_detail.cfm?station_id=26,  red, 919 RHODE ISLAND AVENUE NE 
@@ -266,11 +266,11 @@ red_line_sttn
 ## class       : SpatialPointsDataFrame 
 ## features    : 16 
 ## extent      : -77.085, -76.99454, 38.8961, 38.97609  (xmin, xmax, ymin, ymax)
-## coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
+## coord. ref. : +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0 
 ## variables   : 6
 ## names       : OBJECTID,   GIS_ID,                          NAME,                                               WEB_URL,               LINE,                    ADDRESS 
-## min values  :       10, mstn_004,                 Brookland-CUA, http://wmata.com/rail/station_detail.cfm?station_id=1,                red, 1001 CONNECTICUT AVENUE NW 
-## max values  :        9, mstn_040, Woodley Park-Zoo Adams Morgan, http://wmata.com/rail/station_detail.cfm?station_id=9, red, green, yellow, 919 RHODE ISLAND AVENUE NE
+## min values  :        3, mstn_004,                 Brookland-CUA, http://wmata.com/rail/station_detail.cfm?station_id=1,                red, 1001 CONNECTICUT AVENUE NW 
+## max values  :       40, mstn_040, Woodley Park-Zoo Adams Morgan, http://wmata.com/rail/station_detail.cfm?station_id=9, red, green, yellow, 919 RHODE ISLAND AVENUE NE
 ```
 
 Adding data is just the same as for adding data to data frames.  I found some ridership data for the different stations and summarized that, by station, into "station_rides.csv".  Let's pull that in, and add it to `dc_metro_sttn`.  
@@ -319,7 +319,7 @@ busy_sttn
 ## class       : SpatialPointsDataFrame 
 ## features    : 7 
 ## extent      : -77.04342, -77.00742, 38.88803, 38.92785  (xmin, xmax, ymin, ymax)
-## coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
+## coord. ref. : +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0 
 ## variables   : 8
 ## names       :             NAME, OBJECTID,   GIS_ID,                                                WEB_URL,                      LINE,                    ADDRESS,  X, avg_wkday 
 ## min values  : Columbia Heights,        1, mstn_007,  http://wmata.com/rail/station_detail.cfm?station_id=1,      blue, orange, silver, 1001 CONNECTICUT AVENUE NW, 17,   11671.6 
@@ -328,7 +328,7 @@ busy_sttn
 
 
 ## Projections
-Although many GIS provide project-on-the-fly (editorial: WORST THING EVER), R does not.  To get our maps to work and analysis to be correct, we need to know how to modify the projectins of our data so that they match up.  A descition of projections is way beyond the scope of this workshop, but these links provide some good background info and details:
+Although many GIS provide project-on-the-fly (editorial: WORST THING EVER), R does not.  To get our maps to work and analysis to be correct, we need to know how to modify the projections of our data so that they match up.  A description of projections is way beyond the scope of this workshop, but these links provide some good background info and details:
 
 - [USGS](http://egsc.usgs.gov/isb//pubs/MapProjections/projections.html)
 - [NCEAS](https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/OverviewCoordinateReferenceSystems.pdf)
@@ -362,13 +362,13 @@ dc_elev_prj <- projectRaster(dc_elev, crs = proj4string(dc_metro_sttn_prj))
 ```
 
 ## Exercise 3.1
-In this first exercise we will work on manipulating the Tiger Lines file of the states that we pulled in as part of lesson 2 and assinged to `us_states`.
+In this first exercise we will work on manipulating the Tiger Lines file of the states that we pulled in as part of lesson 2 and assigned to `us_states`.
 
 1. Assign just the DC boundary to an object named `dc_bnd`.
 2. Re-project `dc_bnd` to match the projection of `dc_nlcd`.  Assign this to an object named `dc_bnd_prj`.
  
 ## Brief introduction to rgeos
-In this section we are going to start working with many of the "typical" GIS type analyses, specifcially buffers and a few overlays. We will use mostly `rgeos` but will also look a bit at `sp::over`.
+In this section we are going to start working with many of the "typical" GIS type analyses, specifically buffers and a few overlays. We will use mostly `rgeos` but will also look a bit at `sp::over`.
 
 Let's start with a buffer. We will use the albers projected stations for these examples
 
@@ -451,7 +451,7 @@ gArea(sttn_diff, byid = TRUE)
 
 ```
 ##          1          2          3          4          5          6 
-##   741640.8   741640.8   741640.8 13236179.2   741640.8   741640.8 
+##   741640.8   741640.8 13236179.2   741640.8   741640.8   741640.8 
 ##          7          8          9         10         11         12 
 ##   741640.8   741640.8   741640.8   741640.8   741640.8   741640.8 
 ##         13         14         15         16         17         18 
@@ -461,7 +461,7 @@ gArea(sttn_diff, byid = TRUE)
 We have left most of `rgeos` untouched, but hopefully shown enough to get you started.  
 
 ## Exercise 3.2
-We will work with the re-projected `dc_bnd_prj` lets set this up for some further analyis.
+We will work with the re-projected `dc_bnd_prj` lets set this up for some further analysis.
 
 1. Buffer the DC boundary by 1000 meters.
 2. Assign an object that represents only the area 1000 meters outside of DC (hint: gDifference).
@@ -482,8 +482,8 @@ dc_elev
 ## dimensions  : 798, 921, 734958  (nrow, ncol, ncell)
 ## resolution  : 0.0002777778, 0.0002777778  (x, y)
 ## extent      : -77.15306, -76.89722, 38.77639, 38.99806  (xmin, xmax, ymin, ymax)
-## coord. ref. : +proj=longlat +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0 
-## data source : /home/jhollist/projects/intro_gis_with_r/lessons/data/dc_ned.tif 
+## coord. ref. : +proj=longlat +ellps=GRS80 +datum=NAD83 +no_defs +towgs84=0,0,0 
+## data source : /data/projects/DataInformatics/intro_gis_with_r/lessons/data/dc_ned.tif 
 ## names       : dc_ned 
 ## values      : -5.316066, 131.4813  (min, max)
 ```
@@ -518,7 +518,7 @@ dc_elev_class
 ## dimensions  : 798, 921, 734958  (nrow, ncol, ncell)
 ## resolution  : 0.0002777778, 0.0002777778  (x, y)
 ## extent      : -77.15306, -76.89722, 38.77639, 38.99806  (xmin, xmax, ymin, ymax)
-## coord. ref. : +proj=longlat +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0 
+## coord. ref. : +proj=longlat +ellps=GRS80 +datum=NAD83 +no_defs +towgs84=0,0,0 
 ## data source : in memory
 ## names       : layer 
 ## values      : 1, 3  (min, max)
@@ -574,6 +574,6 @@ In this section, I'll introduce a few other packages that I have used or know ab
 
 Some of the other packages I have used for various tasks have been:
 - [gdistance](https://cran.r-project.org/web/packages/gdistance/index.html): Provides tools for calculating distances across a grid.  Computes things like cost distance, accumulate costs, shortest path, etc. The [vignette for gdistance](https://cran.r-project.org/web/packages/gdistance/vignettes/gdistance1.pdf) is a good place to start for an overview of the package.
-- [geosphere](https://cran.r-project.org/web/packages/geosphere/index.html): `geosphere` provides tools for spherical trigonometry and allows working directly with lattitude, longitude, and bearing.  For more, look at the [vignette](https://cran.r-project.org/web/packages/geosphere/vignettes/geosphere.pdf).
-- [SDMTools](https://cran.r-project.org/web/packages/SDMTools/index.html): This package provides functions to work with species distribution models.  In addition though, it also has implementations of most of the metrics available in the venerable landsape ecology tool, [FRAGSTATS](http://www.umass.edu/landeco/research/fragstats/fragstats.html).
+- [geosphere](https://cran.r-project.org/web/packages/geosphere/index.html): `geosphere` provides tools for spherical trigonometry and allows working directly with latitude, longitude, and bearing.  For more, look at the [vignette](https://cran.r-project.org/web/packages/geosphere/vignettes/geosphere.pdf).
+- [SDMTools](https://cran.r-project.org/web/packages/SDMTools/index.html): This package provides functions to work with species distribution models.  In addition though, it also has implementations of most of the metrics available in the venerable landscape ecology tool, [FRAGSTATS](http://www.umass.edu/landeco/research/fragstats/fragstats.html).
 
