@@ -6,8 +6,8 @@ opts_chunk$set(tidy=T)
 ```
 
 ```{r data_setup, echo=FALSE,cache=TRUE,message=FALSE}
-dc_metro <- readOGR("data","Metro_Lines")
-dc_metro_sttn <- readOGR("data/metrostations.geojson", "OGRGeoJSON")
+dc_metro <- readOGR("data","Metro_Lines",verbose=FALSE)
+dc_metro_sttn <- readOGR("data/metrostations.geojson", "OGRGeoJSON",verbose = FALSE)
 dc_elev <- raster("data/dc_ned.tif")
 dc_metro_prj <- spTransform(dc_metro,
                 CRS("+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs"))
