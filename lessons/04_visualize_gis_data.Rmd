@@ -1,6 +1,6 @@
 ```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
 options(repos="http://cran.rstudio.com/")
-pkgs <- c("sp","rgdal","rgeos","raster","knitr","quickmapr")
+pkgs <- c("sp","rgdal","rgeos","raster","knitr","quickmapr","leaflet")
 x<-lapply(pkgs, library, character.only = TRUE)
 opts_chunk$set(tidy=T)
 ```
@@ -27,12 +27,13 @@ Now we won't get to this level in just an hour or so, but we will see how to bui
 
 ## Lesson Outline
 - [Visualizing spatial data with `sp` and `raster`](#visualizing-spatial-data-with-sp-and-raster)
-- [Using `ggplot2` and `ggmap`](#using-ggplot2-and-ggmap)
 - [Simple interactivity with `quickmapr`](#simple-interactivity-with-quickmapr)
-- [Javascript packages: `leaflet` and `mapview`](#javascript-packages-leaflet-and-mapview)
+- [Mapping with javascript: `leaflet`](#mapping-with-javascript-leaflet)
+- [Other visualization options](#other-visualization-options)
 
 ## Lesson Exercises
 - [Exercise 4.1](#exercise-41)
+- [Exercise 4.2](#exercise-42)
 
 ## Visualizing spatial data with `sp` and `raster`
 The default plotting tools from `sp` and `raster` are good enough for most of your needs and there have been many additional tools added that allow these to be acceptable for making static maps (e.g. [GISTools](https://cran.r-project.org/web/packages/GISTools/)).  We have already seen these functions in action.  We will show these again.
@@ -116,10 +117,75 @@ We will create a map of the data we've been working with, the NLCD and boundary.
 1. Map your clipped landcover and the DC boundary using the default tools from `sp` and `raster`.
 2. Create the same map, but use `quickmapr`.  Try out some of the interactivity tools: zoom, pan, identify.
 
-## Javascript packages: `leaflet` and `mapview`
+## Mapping with javascript: `leaflet`
+Many of the visualization tasks (e.g. zoom, pan, identify) are implemente (and implemented much better) in various javascript libraries.  As such, much of the development in R has been towards packages to access javascript libraries and allow the display of R objects. Our efforts are going to focus on the `leaflet` package which, unsurprisingly, allows us to access the leaflet javascript library.  The `leaflet` package is written and maintained through RStudio.  For more on how to use `leaflet`, check out [RStudio's tutorial](https://rstudio.github.io/leaflet/).
 
+Before we build some maps, let's get everything we need installed and loaded.
 
+```{r eval=FALSE}
+install.packages("leaflet")
+library(leaflet)
+```
+
+Although the maps we can create with `leaflet` are really nice, there is one downside.  It is expected that the data are all in unprojected latitude and longitude, so if you have projected data, that will need to be converted back in to geographic coordinates.  For us, we have examples of data that are already in the correct projection.
+
+One of the nice things about the `leaflet` interface is that it is really easy to work iteratively and build your maps by adding data and options to and exisitng leaflet map. So lest start with the bare minimum.
+
+```{r}
+map <- leaflet()
+map <- addTiles(map)
+map <- addPolylines(map,data=dc_metro)
+map
+```
+
+There are lots of tiles available to us.  The default is Open Street Map. We can try out some of the other available tiles. Full list of options available from <http://leaflet-extras.github.io/leaflet-providers/preview/>.
+
+```{r}
+map <- leaflet()
+map <- addPolylines(map,data=dc_metro)
+map <- addProviderTiles(map,"Esri.NatGeoWorldMap")
+map
+#or
+map <- leaflet()
+map <- addPolylines(map,data=dc_metro)
+map <- addProviderTiles(map,"MapQuestOpen.Aerial")
+map
+```
+
+And we can add other layers in and also change their styling.
+
+```{r}
+map <- leaflet()
+map <- addTiles(map)
+map <- addPolylines(map,data=dc_metro)
+map <- addCircles(map, data=dc_metro_sttn,
+                  color="red", weight = 7,
+                  popup = dc_metro_sttn$NAME)
+
+map
+```
+
+Lastly, we can add in rasters.
+
+```{r}
+map <- leaflet()
+map <- addTiles(map)
+map <- addPolylines(map,data=dc_metro)
+#Note: Takes a while.  Does projection behind the scenes.
+map <- addRasterImage(map, dc_elev)
+map
+```
 
 ## Exercise 4.2
+For this exercise, we will create a leaflet map
 
-## Using `ggplot2` and `ggmap`
+1. Create a leaflet map and add in the DC boundary.  Look at the `addPolygons` help to get you started.
+2. Add in the NLCD you clipped out as part of lesson 3.
+
+## Other visualization options
+What we have had the time to show in this workshop is just the beginning, as there are many packages that provide support for mapping spatial data.  The following are just a few of these.
+
+- [mapview](https://cran.r-project.org/web/packages/mapview/index.html): This is a wrapper to leaflet that also greatly simplifies the creation of the maps by taking care of many of the settings behind the scenes (inlcuding, I believe, reprojecting data to workw with leaflet).  
+- [ggplot2](https://cran.r-project.org/web/packages/ggplot2/index.html): THE data viz package for R.  Also can be used to make maps (it is what I use for my static maps). Requires additional processing of the spatial data to create plots, but has unlimited possibilities for creating maps.
+- [ggmap](https://cran.r-project.org/web/packages/ggmap/index.html): A `ggplot2` based package for creating maps.  Makes it a bit easier and has built in support for some basemaps (e.g. Google Maps).
+- [cartographer](https://github.com/ropensci/cartographer): Not on CRAN and hasn't been actively developed in a while, but is interesting becuase it provides access to a different javascript library, d3 and d3-carto-maps. Similar in functionality to the leaflet solution, but d3 has support for projections built in so has possibility for better handling of projected data.  
