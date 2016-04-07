@@ -53,7 +53,7 @@ ri_towns <- spTransform(ri_towns,CRS(proj4string(ri_lulc)))
 ## #Now add the towns
 ## plot(ri_towns, add = TRUE)
 
-## ---- echo=FALSE---------------------------------------------------------
+## ---- echo=FALSE,message=FALSE-------------------------------------------
 #Doing this to hack the empty space issue with 2 plots
 png("figure/base.png")
 #Plot landcover first
@@ -106,7 +106,7 @@ sk_bnd
 ## plot(ri_towns)
 ## plot(sk_bnd, border="red", lwd = 3, add=T)
 
-## ----echo=FALSE----------------------------------------------------------
+## ----echo=FALSE,message=FALSE--------------------------------------------
 png("figure/towns.png")
 #And plot it with base
 plot(ri_towns)
@@ -125,7 +125,7 @@ sk_lulc@legend@colortable <- ri_lulc@legend@colortable
 ## #Now add the towns
 ## plot(sk_bnd, border="red",add = T, lwd = 3)
 
-## ---- echo=FALSE---------------------------------------------------------
+## ---- echo=FALSE,message=FALSE-------------------------------------------
 png("figure/sk.png")
 #Plot landcover first
 plot(sk_lulc)

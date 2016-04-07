@@ -1,9 +1,3 @@
----
-title: 'Spatial Data Analysis in R: Lightning Demo!'
-author: "Jeff W. Hollister"
-date: "04/14/2016"
-output: html_document
----
 
 [Just the Code](README.R)
 
@@ -223,7 +217,7 @@ map
 ## Error: pandoc document conversion failed with error 2
 ```
 
-Link to output [`leaflet` map](map.html)
+Link to output [`leaflet` map](https://cdn.rawgit.com/usepa/gis_r_demo/map.html)
 
 ##Analyze it
 Last thing we would expect to be able to do with any GIS is some geospatial analysis.  For this demo we will keep it simple and pull out some land use and landcover summaries for Burlington.
