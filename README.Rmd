@@ -106,12 +106,23 @@ I won't spend time on cartography per se, but thought I'd show some examples of 
 
 Let's first look at our data with base functions.  It is pretty straightforward.
 
-```{r}
+```{r, eval=FALSE}
 #Plot landcover first
 plot(ri_lulc)
 #Now add the towns
 plot(ri_towns, add = TRUE)
 ```
+```{r, echo=FALSE}
+#Doing this to hack the empty space issue with 2 plots
+png("figure/base.png")
+#Plot landcover first
+plot(ri_lulc)
+#Now add the towns
+plot(ri_towns, add = TRUE)
+dev.off()
+```
+
+![base](figure/base.png)
 
 Next, I'll show is using our data in R, with the `leaflet` package (and javascript library) to build interactive web maps.
 
@@ -139,7 +150,7 @@ ri_towns_geo <- spTransform(ri_towns,proj4)
 
 Now let's create the `leaflet` map.
 
-```{r}
+```{r, eval=FALSE}
 map <- leaflet()
 map <- addTiles(map)
 map <- addPolygons(map,data=ri_towns_geo)
@@ -147,6 +158,17 @@ map <- addPolygons(map,data=ri_towns_geo)
 #map <- addRasterImage(map, data = ri_lulc)
 map
 ```
+```{r, echo=FALSE}
+library(htmlwidgets)
+map <- leaflet()
+map <- addTiles(map)
+map <- addPolygons(map,data=ri_towns_geo)
+#Not Run: Takes a while.  Does projection behind the scenes.
+#map <- addRasterImage(map, data = ri_lulc)
+saveWidget(map, file="map.html")
+```
+
+Link to output [`leaflet` map](map.html)
 
 ##Analyze it
 Last thing we would expect to be able to do with any GIS is some geospatial analysis.  For this demo we will keep it simple and pull out some land use and landcover summaries for Burlington.
@@ -158,10 +180,21 @@ First, let's extract just South Kingstown from the towns.
 idx <- ri_towns[["NAME"]] == "SOUTH KINGSTOWN" & !is.na(ri_towns[["NAME"]])
 sk_bnd <- ri_towns[idx,]
 sk_bnd
+```
+```{r,eval=FALSE}
 #And plot it with base
 plot(ri_towns)
 plot(sk_bnd, border="red", lwd = 3, add=T)
 ```
+```{r,echo=FALSE}
+png("figure/towns.png")
+#And plot it with base
+plot(ri_towns)
+plot(sk_bnd, border="red", lwd = 3, add=T)
+dev.off()
+```
+
+![towns](figure/towns.png)
 
 Now we can use the boundary to clip out the land use/land cover.
 ```{r , echo = FALSE, messages = FALSE}
@@ -169,11 +202,24 @@ sk_lulc <- crop(ri_lulc,sk_bnd)
 sk_lulc <- mask(sk_lulc,sk_bnd)
 #Color map get's lost, so ...
 sk_lulc@legend@colortable <- ri_lulc@legend@colortable
+```
+```{r, eval=FALSE}
 #Plot landcover first
 plot(sk_lulc)
 #Now add the towns
 plot(sk_bnd, border="red",add = T, lwd = 3)
 ```
+
+```{r, echo=FALSE}
+png("figure/sk.png")
+#Plot landcover first
+plot(sk_lulc)
+#Now add the towns
+plot(sk_bnd, border="red",add = T, lwd = 3)
+dev.off()
+```
+
+![sk](figure/sk.png)
 
 Last thing to do is summarize our stats:
 
