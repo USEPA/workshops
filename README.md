@@ -174,10 +174,6 @@ plot(ri_lulc)
 plot(ri_towns, add = TRUE)
 ```
 
-```
-## png 
-##   2
-```
 
 ![base](figure/base.png)
 
@@ -217,7 +213,7 @@ map
 ## Error: pandoc document conversion failed with error 2
 ```
 
-Link to output [`leaflet` map](https://cdn.rawgit.com/usepa/gis_r_demo/map.html)
+Link to output [`leaflet` map](https://cdn.rawgit.com/usepa/gis_r_demo/master/map.html)
 
 ##Analyze it
 Last thing we would expect to be able to do with any GIS is some geospatial analysis.  For this demo we will keep it simple and pull out some land use and landcover summaries for Burlington.
@@ -249,10 +245,6 @@ plot(ri_towns)
 plot(sk_bnd, border="red", lwd = 3, add=T)
 ```
 
-```
-## png 
-##   2
-```
 
 ![towns](figure/towns.png)
 
@@ -267,10 +259,6 @@ plot(sk_bnd, border="red",add = T, lwd = 3)
 ```
 
 
-```
-## png 
-##   2
-```
 
 ![sk](figure/sk.png)
 

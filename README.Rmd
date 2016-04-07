@@ -108,12 +108,12 @@ plot(ri_towns, add = TRUE)
 ```
 ```{r, echo=FALSE,message=FALSE}
 #Doing this to hack the empty space issue with 2 plots
-png("figure/base.png")
+x<-png("figure/base.png")
 #Plot landcover first
 plot(ri_lulc)
 #Now add the towns
 plot(ri_towns, add = TRUE)
-dev.off()
+x<-dev.off()
 ```
 
 ![base](figure/base.png)
@@ -162,7 +162,7 @@ map <- addPolygons(map,data=ri_towns_geo)
 saveWidget(map, file="map.html")
 ```
 
-Link to output [`leaflet` map](https://cdn.rawgit.com/usepa/gis_r_demo/map.html)
+Link to output [`leaflet` map](https://cdn.rawgit.com/usepa/gis_r_demo/master/map.html)
 
 ##Analyze it
 Last thing we would expect to be able to do with any GIS is some geospatial analysis.  For this demo we will keep it simple and pull out some land use and landcover summaries for Burlington.
@@ -181,11 +181,11 @@ plot(ri_towns)
 plot(sk_bnd, border="red", lwd = 3, add=T)
 ```
 ```{r,echo=FALSE,message=FALSE}
-png("figure/towns.png")
+x<-png("figure/towns.png")
 #And plot it with base
 plot(ri_towns)
 plot(sk_bnd, border="red", lwd = 3, add=T)
-dev.off()
+x<-dev.off()
 ```
 
 ![towns](figure/towns.png)
@@ -205,12 +205,12 @@ plot(sk_bnd, border="red",add = T, lwd = 3)
 ```
 
 ```{r, echo=FALSE,message=FALSE}
-png("figure/sk.png")
+x<-png("figure/sk.png")
 #Plot landcover first
 plot(sk_lulc)
 #Now add the towns
 plot(sk_bnd, border="red",add = T, lwd = 3)
-dev.off()
+x<-dev.off()
 ```
 
 ![sk](figure/sk.png)
