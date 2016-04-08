@@ -152,14 +152,18 @@ map <- addPolygons(map,data=ri_towns_geo)
 #map <- addRasterImage(map, data = ri_lulc)
 map
 ```
-```{r, echo=FALSE}
-library(htmlwidgets)
+```{r, echo=FALSE,message=FALSE,error=FALSE}
 map <- leaflet()
 map <- addTiles(map)
 map <- addPolygons(map,data=ri_towns_geo)
-#Not Run: Takes a while.  Does projection behind the scenes.
-#map <- addRasterImage(map, data = ri_lulc)
-saveWidget(map, file="map.html")
+#Thanks spacedman! 
+#https://stackoverflow.com/questions/30336235/how-to-access-map-generated-by-leaflet-in-r
+saveas <- function(map, file){
+    class(map) <- c("saveas",class(map))
+    attr(map,"filesave")=file
+    map
+}
+map<-saveas(map,"map.html")
 ```
 
 Link to output [`leaflet` map](https://cdn.rawgit.com/usepa/gis_r_demo/master/map.html)

@@ -83,7 +83,7 @@ ls()
 ```
 ##  [1] "codes"        "idx"          "map"          "proj4"       
 ##  [5] "ri_lulc"      "ri_towns"     "ri_towns_geo" "sk_bnd"      
-##  [9] "sk_lulc"      "values"
+##  [9] "sk_lulc"      "values"       "x"
 ```
 
 ```r
@@ -209,9 +209,6 @@ map <- addPolygons(map,data=ri_towns_geo)
 map
 ```
 
-```
-## Error: pandoc document conversion failed with error 2
-```
 
 Link to output [`leaflet` map](https://cdn.rawgit.com/usepa/gis_r_demo/master/map.html)
 
