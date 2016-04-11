@@ -1,5 +1,5 @@
 
-[Just the Code](README.R)
+[Just the Code](gis_demo.R)
 
 Free and open source software solutions for GIS have come a long way in the last several years as the tools to handle file I/O, vector analysis, and raster processing have matured.  Built on top of many of these libraries are some farily well known options and include [QGIS](http://www.qgis.org/en/site/), [GRASS](https://grass.osgeo.org/), and [PostGIS](http://postgis.net/).  During this same time, we have seen the rise of the [R Language for Statistical Computing](https://www.r-project.org/) and not to be left behind many of the same libraries are now supported in R.  So given all of these options, plus the tools many use provided by [esri](https://www.esri.com) there is a rich ecosystem of options for GIS analysts.  
 
@@ -81,9 +81,12 @@ ls()
 ```
 
 ```
-##  [1] "codes"        "idx"          "map"          "proj4"       
-##  [5] "ri_lulc"      "ri_towns"     "ri_towns_geo" "sk_bnd"      
-##  [9] "sk_lulc"      "values"       "x"
+##  [1] "burl"            "burlington_bnd"  "burlington_lulc"
+##  [4] "codes"           "lc_url"          "map"            
+##  [7] "proj4"           "qmap"            "ri_lulc"        
+## [10] "ri_towns"        "ri_towns_geo"    "towns_url"      
+## [13] "values"          "vt_lulc"         "vt_towns"       
+## [16] "vt_towns_geo"    "x"
 ```
 
 ```r
@@ -96,11 +99,11 @@ ri_towns
 ## class       : SpatialPolygonsDataFrame 
 ## features    : 421 
 ## extent      : 220310.4, 432040.9, 23048.49, 340916.6  (xmin, xmax, ymin, ymax)
-## coord. ref. : +proj=tmerc +lat_0=41.08333333333334 +lon_0=-71.5 +k=0.99999375 +x_0=99999.99999999999 +y_0=0 +datum=NAD83 +units=us-ft +no_defs +ellps=GRS80 +towgs84=0,0,0 
+## coord. ref. : +proj=tmerc +lat_0=41.08333333333334 +lon_0=-71.5 +k=0.99999375 +x_0=99999.99999999999 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=us-ft +no_defs +towgs84=0,0,0 
 ## variables   : 12
 ## names       :         AREA,    PERIMETER, RITOWN5K_, RITOWN5K_I,       NAME, MCD, CFIPS,     COUNTY, OSP, CFIPS_MCD, TWNCODE, LAND 
-## min values  : 1.003758e+04, 100233.14739,        10,          1, BARRINGTON,   0,     0,    BRISTOL,   0,         0,      BA,    N 
-## max values  : 9.982708e+04,    998.21603,        99,         99, WOONSOCKET,  80,     9, WASHINGTON,   9,      9040,      WY,    Y
+## min values  : 1.003758e+04,     22.76307,         2,          1, BARRINGTON,   0,     0,    BRISTOL,   0,         0,      BA,    N 
+## max values  : 9.982708e+04, 388647.11922,       422,        421, WOONSOCKET,  80,    10, WASHINGTON,  39,      9040,      WY,    Y
 ```
 
 ```r
@@ -114,11 +117,11 @@ ri_towns[ri_towns$NAME=="SOUTH KINGSTOWN" & !is.na(ri_towns$NAME),]
 ## class       : SpatialPolygonsDataFrame 
 ## features    : 33 
 ## extent      : 293569.4, 342676.3, 101120.6, 160990.8  (xmin, xmax, ymin, ymax)
-## coord. ref. : +proj=tmerc +lat_0=41.08333333333334 +lon_0=-71.5 +k=0.99999375 +x_0=99999.99999999999 +y_0=0 +datum=NAD83 +units=us-ft +no_defs +ellps=GRS80 +towgs84=0,0,0 
+## coord. ref. : +proj=tmerc +lat_0=41.08333333333334 +lon_0=-71.5 +k=0.99999375 +x_0=99999.99999999999 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=us-ft +no_defs +towgs84=0,0,0 
 ## variables   : 12
 ## names       :         AREA,   PERIMETER, RITOWN5K_, RITOWN5K_I,            NAME, MCD, CFIPS,     COUNTY, OSP, CFIPS_MCD, TWNCODE, LAND 
-## min values  : 1.022623e+04,   1153.8242,       128,        102, SOUTH KINGSTOWN,  35,     9, WASHINGTON,  32,      9035,      SK,    N 
-## max values  : 8.427670e+03,    981.3334,       375,        417, SOUTH KINGSTOWN,  35,     9, WASHINGTON,  32,      9035,      SK,    Y
+## min values  : 1.022623e+04,    210.0716,       128,        102, SOUTH KINGSTOWN,  35,     9, WASHINGTON,  32,      9035,      SK,    N 
+## max values  : 8.427670e+03, 388647.1192,       375,        417, SOUTH KINGSTOWN,  35,     9, WASHINGTON,  32,      9035,      SK,    Y
 ```
 
 ```r
@@ -131,8 +134,8 @@ ri_lulc
 ## dimensions  : 3487, 2442, 8515254  (nrow, ncol, ncell)
 ## resolution  : 30, 30  (x, y)
 ## extent      : 1969215, 2042475, 2269215, 2373825  (xmin, xmax, ymin, ymax)
-## coord. ref. : +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=23 +lon_0=-96 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs +ellps=GRS80 +towgs84=0,0,0 
-## data source : /home/jhollist/projects/gis_r_demo/data/NLCD2011_LC_Rhode_Island.tif 
+## coord. ref. : +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=23 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs +towgs84=0,0,0 
+## data source : /data/projects/gis_r_demo/data/NLCD2011_LC_Rhode_Island.tif 
 ## names       : NLCD2011_LC_Rhode_Island 
 ## values      : 0, 255  (min, max)
 ## attributes  :
@@ -229,11 +232,11 @@ sk_bnd
 ## class       : SpatialPolygonsDataFrame 
 ## features    : 33 
 ## extent      : 1997764, 2012689, 2297463, 2316429  (xmin, xmax, ymin, ymax)
-## coord. ref. : +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=23 +lon_0=-96 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs +ellps=GRS80 +towgs84=0,0,0 
+## coord. ref. : +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=23 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs +towgs84=0,0,0 
 ## variables   : 12
 ## names       :         AREA,   PERIMETER, RITOWN5K_, RITOWN5K_I,            NAME, MCD, CFIPS,     COUNTY, OSP, CFIPS_MCD, TWNCODE, LAND 
-## min values  : 1.022623e+04,   1153.8242,       128,        102, SOUTH KINGSTOWN,  35,     9, WASHINGTON,  32,      9035,      SK,    N 
-## max values  : 8.427670e+03,    981.3334,       375,        417, SOUTH KINGSTOWN,  35,     9, WASHINGTON,  32,      9035,      SK,    Y
+## min values  : 1.022623e+04,    210.0716,       128,        102, SOUTH KINGSTOWN,  35,     9, WASHINGTON,  32,      9035,      SK,    N 
+## max values  : 8.427670e+03, 388647.1192,       375,        417, SOUTH KINGSTOWN,  35,     9, WASHINGTON,  32,      9035,      SK,    Y
 ```
 
 ```r
