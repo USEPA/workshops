@@ -82,11 +82,12 @@ ls()
 
 ```
 ##  [1] "burl"            "burlington_bnd"  "burlington_lulc"
-##  [4] "codes"           "lc_url"          "map"            
-##  [7] "proj4"           "qmap"            "ri_lulc"        
-## [10] "ri_towns"        "ri_towns_geo"    "towns_url"      
-## [13] "values"          "vt_lulc"         "vt_towns"       
-## [16] "vt_towns_geo"    "x"
+##  [4] "codes"           "idx"             "lc_url"         
+##  [7] "map"             "proj4"           "qmap"           
+## [10] "ri_lulc"         "ri_towns"        "ri_towns_geo"   
+## [13] "saveas"          "sk_bnd"          "sk_lulc"        
+## [16] "towns_url"       "values"          "vt_lulc"        
+## [19] "vt_towns"        "vt_towns_geo"    "x"
 ```
 
 ```r
@@ -206,7 +207,7 @@ Now let's create the `leaflet` map.
 ```r
 map <- leaflet()
 map <- addTiles(map)
-map <- addPolygons(map,data=ri_towns_geo)
+map <- addPolygons(map,data=ri_towns_geo, popup = ri_towns$NAME)
 #Not Run: Takes a while.  Does projection behind the scenes.
 #map <- addRasterImage(map, data = ri_lulc)
 map

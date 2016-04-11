@@ -16,6 +16,7 @@ unzip("data/ri_towns.zip",exdir = "data")
 
 #Get Landcover
 #Using NLCD becuase I wanted a raster example!
+#Download takes time!  DON'T DEMO
 lc_url <-"http://gisdata.usgs.gov/tdds/downloadfile.php?TYPE=nlcd2011_lc_state&FNAME=NLCD2011_LC_Rhode_Island.zip"
 download.file(lc_url,"data/ri_lulc.zip")
 unzip("data/ri_lulc.zip",exdir ="data")
@@ -54,18 +55,19 @@ plot(ri_lulc)
 plot(ri_towns, add = TRUE)
 
 ## ------------------------------------------------------------------------
-#Get the package
+#Get the package if you need it
 install.packages("leaflet")
-library("leaflet")
+
 
 ## ------------------------------------------------------------------------
+# Reproject because web mapping...
 proj4 <- CRS("+ellps=WGS84 +proj=longlat +datum=WGS84 +no_defs")
 ri_towns_geo <- spTransform(ri_towns,proj4)
 
 ## ------------------------------------------------------------------------
 map <- leaflet()
 map <- addTiles(map)
-map <- addPolygons(map,data=ri_towns_geo)
+map <- addPolygons(map,data=ri_towns_geo,popup = ri_towns$NAME)
 #Not Run: Takes a while.  Does projection behind the scenes.
 #map <- addRasterImage(map, data = ri_lulc)
 map

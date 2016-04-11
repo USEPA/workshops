@@ -147,7 +147,7 @@ Now let's create the `leaflet` map.
 ```{r, eval=FALSE}
 map <- leaflet()
 map <- addTiles(map)
-map <- addPolygons(map,data=ri_towns_geo)
+map <- addPolygons(map,data=ri_towns_geo, popup = ri_towns$NAME)
 #Not Run: Takes a while.  Does projection behind the scenes.
 #map <- addRasterImage(map, data = ri_lulc)
 map
@@ -155,7 +155,7 @@ map
 ```{r, echo=FALSE,message=FALSE,error=FALSE}
 map <- leaflet()
 map <- addTiles(map)
-map <- addPolygons(map,data=ri_towns_geo)
+map <- addPolygons(map,data=ri_towns_geo,popup = ri_towns$NAME)
 #Thanks spacedman! 
 #https://stackoverflow.com/questions/30336235/how-to-access-map-generated-by-leaflet-in-r
 saveas <- function(map, file){
