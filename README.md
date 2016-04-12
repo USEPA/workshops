@@ -36,7 +36,7 @@ First, let's go find some data. As I am in Rhode Island, I will keep it local an
 
 ```r
 #Get the Town Boundaries
-towns_url <- "http://rigis.org/geodata/bnd/muni97b.zip"
+towns_url <- "http://rigis.org/geodata/bnd/muni97c.zip"
 download.file(towns_url,"data/ri_towns.zip")
 unzip("data/ri_towns.zip",exdir = "data")
 
@@ -82,7 +82,10 @@ ls()
 ```
 
 ```
-## [1] "ri_lulc"  "ri_towns"
+##  [1] "codes"        "idx"          "map"          "proj4"       
+##  [5] "ri_lulc"      "ri_towns"     "ri_towns_geo" "saveas"      
+##  [9] "sk_bnd"       "sk_lulc"      "towns_url"    "values"      
+## [13] "x"
 ```
 
 ```r

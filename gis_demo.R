@@ -12,7 +12,7 @@ library("rgeos")
 
 ## ------------------------------------------------------------------------
 #Get the Town Boundaries
-towns_url <- "http://rigis.org/geodata/bnd/muni97b.zip"
+towns_url <- "http://rigis.org/geodata/bnd/muni97c.zip"
 download.file(towns_url,"data/ri_towns.zip")
 unzip("data/ri_towns.zip",exdir = "data")
 

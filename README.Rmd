@@ -1,5 +1,5 @@
 ```{r echo=FALSE}
-rm(list=ls())
+rm(list)
 ```
 
 [Just the Code](gis_demo.R)
@@ -35,7 +35,7 @@ First, let's go find some data. As I am in Rhode Island, I will keep it local an
 
 ```{r, eval=FALSE}
 #Get the Town Boundaries
-towns_url <- "http://rigis.org/geodata/bnd/muni97b.zip"
+towns_url <- "http://rigis.org/geodata/bnd/muni97c.zip"
 download.file(towns_url,"data/ri_towns.zip")
 unzip("data/ri_towns.zip",exdir = "data")
 
