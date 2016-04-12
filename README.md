@@ -52,13 +52,13 @@ We now have some vector data (the towns) and raster data (the land cover) locall
 
 ```r
 #Read in the vector town boundary
-ri_towns <- readOGR("data","muni97b")
+ri_towns <- readOGR("data","muni97c")
 ```
 
 ```
 ## OGR data source with driver: ESRI Shapefile 
-## Source: "data", layer: "muni97b"
-## with 421 features
+## Source: "data", layer: "muni97c"
+## with 406 features
 ## It has 12 fields
 ```
 
@@ -96,13 +96,13 @@ ri_towns
 
 ```
 ## class       : SpatialPolygonsDataFrame 
-## features    : 421 
+## features    : 406 
 ## extent      : 220310.4, 432040.9, 23048.49, 340916.6  (xmin, xmax, ymin, ymax)
 ## coord. ref. : +proj=tmerc +lat_0=41.08333333333334 +lon_0=-71.5 +k=0.99999375 +x_0=99999.99999999999 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=us-ft +no_defs +towgs84=0,0,0 
 ## variables   : 12
 ## names       :         AREA,    PERIMETER, RITOWN5K_, RITOWN5K_I,       NAME, MCD, CFIPS,     COUNTY, OSP, CFIPS_MCD, TWNCODE, LAND 
-## min values  : 1.003758e+04,     22.76307,         2,          1, BARRINGTON,   0,     0,    BRISTOL,   0,         0,      BA,    N 
-## max values  : 9.982708e+04, 388647.11922,       422,        421, WOONSOCKET,  80,    10, WASHINGTON,  39,      9040,      WY,    Y
+## min values  : 1.003758e+04,     22.76307,         2,          1, BARRINGTON,   5,     1,    BRISTOL,   1,      1005,      BA,    N 
+## max values  : 9.982708e+04, 388647.11922,       422,        420, WOONSOCKET,  80,    10, WASHINGTON,  39,      9040,      WY,    Y
 ```
 
 ```r
@@ -114,13 +114,13 @@ ri_towns[ri_towns$NAME=="SOUTH KINGSTOWN" & !is.na(ri_towns$NAME),]
 
 ```
 ## class       : SpatialPolygonsDataFrame 
-## features    : 33 
-## extent      : 293569.4, 342676.3, 101120.6, 160990.8  (xmin, xmax, ymin, ymax)
+## features    : 32 
+## extent      : 293569.4, 342630.9, 101120.6, 160990.8  (xmin, xmax, ymin, ymax)
 ## coord. ref. : +proj=tmerc +lat_0=41.08333333333334 +lon_0=-71.5 +k=0.99999375 +x_0=99999.99999999999 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=us-ft +no_defs +towgs84=0,0,0 
 ## variables   : 12
 ## names       :         AREA,   PERIMETER, RITOWN5K_, RITOWN5K_I,            NAME, MCD, CFIPS,     COUNTY, OSP, CFIPS_MCD, TWNCODE, LAND 
-## min values  : 1.022623e+04,    210.0716,       128,        102, SOUTH KINGSTOWN,  35,     9, WASHINGTON,  32,      9035,      SK,    N 
-## max values  : 8.427670e+03, 388647.1192,       375,        417, SOUTH KINGSTOWN,  35,     9, WASHINGTON,  32,      9035,      SK,    Y
+## min values  : 1.022623e+04,    210.0716,       128,        279, SOUTH KINGSTOWN,  35,     9, WASHINGTON,  32,      9035,      SK,    N 
+## max values  : 8.876685e+04, 388647.1192,       375,        420, SOUTH KINGSTOWN,  35,     9, WASHINGTON,  32,      9035,      SK,    Y
 ```
 
 ```r
@@ -229,13 +229,13 @@ sk_bnd
 
 ```
 ## class       : SpatialPolygonsDataFrame 
-## features    : 33 
-## extent      : 1997764, 2012689, 2297463, 2316429  (xmin, xmax, ymin, ymax)
+## features    : 32 
+## extent      : 1997764, 2012676, 2297463, 2316244  (xmin, xmax, ymin, ymax)
 ## coord. ref. : +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=23 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs +towgs84=0,0,0 
 ## variables   : 12
 ## names       :         AREA,   PERIMETER, RITOWN5K_, RITOWN5K_I,            NAME, MCD, CFIPS,     COUNTY, OSP, CFIPS_MCD, TWNCODE, LAND 
-## min values  : 1.022623e+04,    210.0716,       128,        102, SOUTH KINGSTOWN,  35,     9, WASHINGTON,  32,      9035,      SK,    N 
-## max values  : 8.427670e+03, 388647.1192,       375,        417, SOUTH KINGSTOWN,  35,     9, WASHINGTON,  32,      9035,      SK,    Y
+## min values  : 1.022623e+04,    210.0716,       128,        279, SOUTH KINGSTOWN,  35,     9, WASHINGTON,  32,      9035,      SK,    N 
+## max values  : 8.876685e+04, 388647.1192,       375,        420, SOUTH KINGSTOWN,  35,     9, WASHINGTON,  32,      9035,      SK,    Y
 ```
 
 ```r
@@ -282,21 +282,21 @@ knitr::kable(values[,3:4])
 
 | Perc|description                  |
 |----:|:----------------------------|
-|  8.5|Water                        |
-|  6.9|Developed, Open Space        |
-|  7.3|Developed, Low Intensity     |
-|  5.2|Developed, Medium Intensity  |
+|  6.0|Water                        |
+|  7.2|Developed, Open Space        |
+|  7.6|Developed, Low Intensity     |
+|  5.4|Developed, Medium Intensity  |
 |  1.0|Developed High Intensity     |
-|  1.5|Bare Rock/Sand/Clay          |
-| 29.4|Deciduous Forest             |
-|  2.0|Evergreen Forest             |
-|  4.1|Mixed Forest                 |
+|  1.1|Bare Rock/Sand/Clay          |
+| 30.6|Deciduous Forest             |
+|  2.1|Evergreen Forest             |
+|  4.2|Mixed Forest                 |
 |  0.6|Shrub/Scrub                  |
-|  3.3|Grasslands/Herbaceous        |
-|  7.1|Pasture/Hay                  |
-|  1.6|Cultivated Crops             |
-| 18.7|Woody Wetlands               |
-|  2.8|Emergent Herbaceous Wetlands |
+|  3.4|Grasslands/Herbaceous        |
+|  7.4|Pasture/Hay                  |
+|  1.7|Cultivated Crops             |
+| 19.4|Woody Wetlands               |
+|  2.3|Emergent Herbaceous Wetlands |
 
 Whew!  Did I finish in 5 minutes.  Most likely not even close.
 

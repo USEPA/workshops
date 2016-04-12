@@ -12,7 +12,7 @@ library("rgeos")
 
 ## ------------------------------------------------------------------------
 #Get the Town Boundaries
-towns_url <- "http://rigis.org/geodata/bnd/muni97c.zip"
+towns_url <- "http://www.rigis.org/geodata/bnd/muni97c.zip"
 download.file(towns_url,"data/ri_towns.zip")
 unzip("data/ri_towns.zip",exdir = "data")
 
@@ -25,7 +25,7 @@ unzip("data/ri_lulc.zip",exdir ="data")
 
 ## ------------------------------------------------------------------------
 #Read in the vector town boundary
-ri_towns <- readOGR("data","muni97b")
+ri_towns <- readOGR("data","muni97c")
 
 ## ------------------------------------------------------------------------
 #Read in the raster landcover
@@ -66,7 +66,7 @@ map
 ## ------------------------------------------------------------------------
 #Some simple analysis with town of South Kingstown
 #Use base R indexing to grab this
-idx <- ri_towns[["NAME"]] == "SOUTH KINGSTOWN" & !is.na(ri_towns[["NAME"]])
+idx <- ri_towns[["NAME"]] == "SOUTH KINGSTOWN"
 sk_bnd <- ri_towns[idx,]
 sk_bnd
 

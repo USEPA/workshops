@@ -50,7 +50,7 @@ We now have some vector data (the towns) and raster data (the land cover) locall
 
 ```{r}
 #Read in the vector town boundary
-ri_towns <- readOGR("data","muni97b")
+ri_towns <- readOGR("data","muni97c")
 ```
 
 That wasn't too bad.  Essentially (for shapefiles, anyway) the first argument is the folder where the shapefiles reside and the second argument is the name of the shapefile (without the `.shp` extension).
