@@ -106,10 +106,8 @@ ri_towns
 ```
 
 ```r
-#Look at the attributes for my town
-#ri_towns[ri_towns$NAME=="SOUTH KINGSTOWN",]
-#A few rogue poly's that need to be dealt with (RIGIS is on it!)
-ri_towns[ri_towns$NAME=="SOUTH KINGSTOWN" & !is.na(ri_towns$NAME),]
+#Look at the summary for my town
+ri_towns[ri_towns$NAME=="SOUTH KINGSTOWN",]
 ```
 
 ```
