@@ -1,4 +1,5 @@
 
+
 [Just the Code](gis_demo.R)
 
 Free and open source software solutions for GIS have come a long way in the last several years as the tools to handle file I/O, vector analysis, and raster processing have matured.  Built on top of many of these libraries are some farily well known options and include [QGIS](http://www.qgis.org/en/site/), [GRASS](https://grass.osgeo.org/), and [PostGIS](http://postgis.net/).  During this same time, we have seen the rise of the [R Language for Statistical Computing](https://www.r-project.org/) and not to be left behind many of the same libraries are now supported in R.  So given all of these options, plus the tools many use provided by [esri](https://www.esri.com) there is a rich ecosystem of options for GIS analysts.  
@@ -81,13 +82,7 @@ ls()
 ```
 
 ```
-##  [1] "burl"            "burlington_bnd"  "burlington_lulc"
-##  [4] "codes"           "idx"             "lc_url"         
-##  [7] "map"             "proj4"           "qmap"           
-## [10] "ri_lulc"         "ri_towns"        "ri_towns_geo"   
-## [13] "saveas"          "sk_bnd"          "sk_lulc"        
-## [16] "towns_url"       "values"          "vt_lulc"        
-## [19] "vt_towns"        "vt_towns_geo"    "x"
+## [1] "ri_lulc"  "ri_towns"
 ```
 
 ```r

@@ -3,10 +3,12 @@
 install.packages(c("sp","raster","rgdal","rgeos","leaflet"))
 
 ## ------------------------------------------------------------------------
+#Load the needed libraries
 library("sp")
 library("raster")
 library("rgdal")
-library("rgeos")
+#Not used for the demo, but provides the full suite of vector operations
+library("rgeos") 
 
 ## ------------------------------------------------------------------------
 #Get the Town Boundaries
@@ -29,23 +31,15 @@ ri_towns <- readOGR("data","muni97b")
 #Read in the raster landcover
 ri_lulc <- raster("data/NLCD2011_LC_Rhode_Island.tif")
 
-## ------------------------------------------------------------------------
-#List the objects in memory
-ls()
-
 #Let's look at the towns
 #Default view (from the raster package, actually)
 ri_towns
-
-#Look at the attributes for my town
-#ri_towns[ri_towns$NAME=="SOUTH KINGSTOWN",]
-#A few rogue poly's that need to be dealt with (RIGIS is on it!)
-ri_towns[ri_towns$NAME=="SOUTH KINGSTOWN" & !is.na(ri_towns$NAME),]
 
 #Now for the raster
 ri_lulc
 
 ## ------------------------------------------------------------------------
+# Need to manage our projections
 ri_towns <- spTransform(ri_towns,CRS(proj4string(ri_lulc)))
 
 ## ------------------------------------------------------------------------
@@ -58,7 +52,6 @@ plot(ri_towns, add = TRUE)
 #Get the package if you need it
 install.packages("leaflet")
 
-
 ## ------------------------------------------------------------------------
 # Reproject because web mapping...
 proj4 <- CRS("+ellps=WGS84 +proj=longlat +datum=WGS84 +no_defs")
@@ -68,39 +61,42 @@ ri_towns_geo <- spTransform(ri_towns,proj4)
 map <- leaflet()
 map <- addTiles(map)
 map <- addPolygons(map,data=ri_towns_geo,popup = ri_towns$NAME)
-#Not Run: Takes a while.  Does projection behind the scenes.
-#map <- addRasterImage(map, data = ri_lulc)
 map
 
 ## ------------------------------------------------------------------------
+#Some simple analysis with town of South Kingstown
 #Use base R indexing to grab this
 idx <- ri_towns[["NAME"]] == "SOUTH KINGSTOWN" & !is.na(ri_towns[["NAME"]])
 sk_bnd <- ri_towns[idx,]
 sk_bnd
 
 ## ------------------------------------------------------------------------
-#And plot it with base
+#And plot it with base just to check
 plot(ri_towns)
 plot(sk_bnd, border="red", lwd = 3, add=T)
 
 ## ------------------------------------------------------------------------
+#Clip out the landcover for SK
 sk_lulc <- crop(ri_lulc,sk_bnd)
 sk_lulc <- mask(sk_lulc,sk_bnd)
 #Color map get's lost, so ...
 sk_lulc@legend@colortable <- ri_lulc@legend@colortable
 
 ## ------------------------------------------------------------------------
+#And check it again ...
 #Plot landcover first
 plot(sk_lulc)
 #Now add the towns
 plot(sk_bnd, border="red",add = T, lwd = 3)
 
 ## ------------------------------------------------------------------------
+#Summarize our landcover
 values <- getValues(sk_lulc)
 values <- data.frame(table(values))
 values$Perc <- round(100 * (values$Freq/sum(values$Freq)),1)
 
 ## ------------------------------------------------------------------------
+#Add in code definitions and make a nice table.
 codes <- read.csv("data/nlcd_2011_codes.csv")
 values <- merge(values,codes,by.x="values",by.y="code")
 knitr::kable(values[,3:4])

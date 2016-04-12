@@ -1,3 +1,6 @@
+```{r echo=FALSE}
+rm(list=ls())
+```
 
 [Just the Code](gis_demo.R)
 
