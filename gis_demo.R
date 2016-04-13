@@ -68,7 +68,6 @@ map
 #Use base R indexing to grab this
 idx <- ri_towns[["NAME"]] == "SOUTH KINGSTOWN"
 sk_bnd <- ri_towns[idx,]
-sk_bnd
 
 ## ------------------------------------------------------------------------
 #And plot it with base just to check
