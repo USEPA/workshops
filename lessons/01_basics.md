@@ -1,7 +1,4 @@
 
-```
-## Error in eval(expr, envir, enclos): object 'opts_chunk' not found
-```
 
 # R Basics
 
@@ -98,21 +95,21 @@ rnorm(100,mean=10,sd=2)
 ```
 
 ```
-##   [1]  8.833034 10.086516  6.672026  9.862096  9.242544  5.317029  8.995909
-##   [8] 12.633461 11.138866  7.789029  7.741698 10.989251 11.165161  9.076080
-##  [15]  8.550311  9.647288  5.957461 12.387022 13.076560 15.199195 10.370707
-##  [22] 10.259506  9.025247  8.555879 10.519650 13.922154 10.555875  4.653503
-##  [29] 10.699977  8.097083 12.255284 11.183190 11.539054  8.157080  9.730807
-##  [36]  9.146847  5.599393  8.606428  7.311609 10.006638 10.233902  5.893678
-##  [43] 10.101806 10.808658 14.515905 12.855232 11.169736 13.951735 15.213330
-##  [50] 10.787878 11.768313 14.948095  8.107234  7.710584  9.133762 11.927181
-##  [57]  7.510215  8.395424  8.971912 11.523086 10.570033 11.512860 10.625874
-##  [64] 12.616257 12.452592 11.253402 12.757814  9.354403  8.646445 10.881174
-##  [71] 12.218304  9.145909 11.922511  9.607609 11.570320  8.861045 10.589774
-##  [78] 10.056591  8.433250  6.949068 11.756922 10.023002 13.430284 11.332747
-##  [85] 10.966069 11.300299  8.174893 11.531932 12.540156 10.891479 10.761215
-##  [92]  9.587696 11.089967  8.651234 10.433523 12.021365  9.463582  6.560089
-##  [99] 10.305249  5.765410
+##   [1] 12.405748 10.549905 11.797116 10.357689  9.129299 10.427904 11.711522
+##   [8]  7.965375  5.953234  9.089229  6.932313 13.325762 13.700348  7.952293
+##  [15] 10.393865 10.428730 11.868979 10.445377 11.553769  9.199506 12.630821
+##  [22] 13.258877 10.728164  6.481825 13.443749 11.732455  9.958548 11.343234
+##  [29] 11.270124  5.178503 12.168447 11.769266 11.132982  7.538400 14.774536
+##  [36]  9.405463 10.440472 11.270473  8.698320 10.393937 10.626295  8.942960
+##  [43]  6.278483 11.020072  9.558191 11.522813  8.134101  9.811750  8.993579
+##  [50]  9.916536 11.429622 12.159128 10.900693 10.898191 11.269742 13.728882
+##  [57] 10.725920 13.063549  9.002397 11.443958 10.172448 12.646602 12.089533
+##  [64]  8.619172 14.427501  5.250653 14.101932  9.472726 11.003116 11.327857
+##  [71]  5.925153  8.367595 12.293033 11.320725 11.548972  8.920620 10.129128
+##  [78] 14.717894 10.690025 10.033114 11.066271  8.816936  8.808514 10.599306
+##  [85] 12.102121  9.564718 10.640546  7.942588  7.202946 12.843101  9.980963
+##  [92] 12.052644 13.666104  8.623707 14.071495  9.606064  8.099647  9.879443
+##  [99]  9.575503 10.406508
 ```
 
 ```r
@@ -121,7 +118,7 @@ mean(rnorm(100))
 ```
 
 ```
-## [1] -0.24351
+## [1] 0.03134724
 ```
 
 ```r
@@ -130,7 +127,7 @@ sum(rnorm(100))
 ```
 
 ```
-## [1] -1.573808
+## [1] 0.3899793
 ```
 
 A few side notes.  The `#` indicates a comment.  You can put whatever else you'd like after this, but on the same line as the `#`.  R will not evaluate it. Multiple `#####`, are still just seen as a comment.  When commenting your code, err on the side of too much!  Also, you will see `()`, `[]`, and `{}` used in R code.  The `()` indicates a function (almost always), the `[]` indicates indexing (grabbing values by the location), and the `{}` groups code that is meant to be run together and is usually used when programming functions in R.
@@ -150,27 +147,10 @@ When a package gets installed, that means the source is downloaded and put into 
 ```r
 #Install dplyr and ggplot2
 install.packages("ggplot2")
-```
-
-```
-## Error in install.packages : Updating loaded packages
-```
-
-```r
 install.packages("dplyr")
-```
 
-```
-## Error in install.packages : Updating loaded packages
-```
-
-```r
 #You can also put more than one in like
 install.packages(c("randomForest","formatR"))
-```
-
-```
-## Error in install.packages : Updating loaded packages
 ```
 
 ###Loading packages
@@ -415,29 +395,12 @@ Next thing you might want to do is navigate around your files and directories.
 ```r
 #See the current directory
 getwd()
-```
 
-```
-## [1] "/data/projects/region1_r/lessons"
-```
-
-```r
 #Change the directory
 setwd("figures")
-```
 
-```
-## Error in setwd("figures"): cannot change working directory
-```
-
-```r
 #List files and directories
 list.files()
-```
-
-```
-## [1] "01_basics.Rmd" "02_data.Rmd"   "03_viz.Rmd"    "purl_all.R"   
-## [5] "render_all.R"
 ```
 
 While you can do this directly from the console, it is going to be better practice to mostly use RStudio projects to manage your folders, working directory etc.  You can also navigate using the Files, etc. pane. 

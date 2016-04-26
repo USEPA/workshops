@@ -1,7 +1,4 @@
 
-```
-## Error in eval(expr, envir, enclos): object 'opts_chunk' not found
-```
 
 # Working With Data in R
 
@@ -252,6 +249,10 @@ numbers <- c(1:26,NA)
 letters <- c(NA,letters) #letters is a special object available from base R
 logical <- c(rep(TRUE,13),NA,rep(FALSE,13))
 examp_df <- data.frame(letters,numbers,logical)
+```
+
+```
+## Error in data.frame(letters, numbers, logical): arguments imply differing number of rows: 28, 27
 ```
 
 Now that we have this data frame we probably want to do something with it.  We can examine it in many ways.

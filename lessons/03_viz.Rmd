@@ -1,4 +1,5 @@
 ```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
+library(knitr)
 options(repos="http://cran.rstudio.com/")
 opts_chunk$set(fig.path="figures/")
 if(!require("ggplot2")){

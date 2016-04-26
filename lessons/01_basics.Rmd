@@ -1,4 +1,5 @@
 ```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
+library(knitr)
 options(repos="http://cran.rstudio.com/")
 opts_chunk$set(fig.path="figures/")
 if(!require("ggplot2")){
@@ -110,7 +111,7 @@ One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Netw
 When a package gets installed, that means the source is downloaded and put into your library.  A default library location is set for you so no need to worry about that.  In fact on Windows most of this is pretty automatic.  Let's give it a shot.
 
 
-```{r install_package, }
+```{r install_package, eval=FALSE}
 #Install dplyr and ggplot2
 install.packages("ggplot2")
 install.packages("dplyr")
@@ -227,7 +228,7 @@ This is probably a good spot to bring up quotes vs no quotes around arguments in
 
 Next thing you might want to do is navigate around your files and directories.
 
-```{r useful_functions_directory}
+```{r useful_functions_directory,eval=FALSE}
 #See the current directory
 getwd()
 
