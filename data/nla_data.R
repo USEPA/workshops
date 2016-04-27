@@ -7,12 +7,13 @@ nla_wq <- read.csv("nla_wq.csv", stringsAsFactors = FALSE)
 nla_secchi <- read.csv("nla_secchi.csv", stringsAsFactors = FALSE)
 file.remove("nla_wq.csv","nla_secchi.csv")
 nla_wq <- nla_wq %>% 
-  select(SITE_ID,VISIT_NO,SITE_TYPE,EPA_REG,WSA_ECO9,LAKE_ORIGIN,PTL,
+  select(SITE_ID,VISIT_NO,RT_NLA,EPA_REG,WSA_ECO9,LAKE_ORIGIN,PTL,
                   NTL,CHLA) %>%
   filter(VISIT_NO == 1)
 nla_secchi <- nla_secchi %>%
   select(SITE_ID,VISIT_NO,SECMEAN) %>%
   filter(VISIT_NO == 1)
 nla_dat <- full_join(nla_wq,nla_secchi) %>%
-  tbl_df()
-write.csv(nla_dat,"data/nla_dat.csv",row.names = FALSE)
+  select(SITE_ID,RT_NLA,EPA_REG,WSA_ECO9,LAKE_ORIGIN,PTL,NTL,CHLA,SECMEAN) %>%
+  na.omit(nla_dat) 
+write.csv(nla_dat,"../data/nla_dat.csv",row.names = FALSE)

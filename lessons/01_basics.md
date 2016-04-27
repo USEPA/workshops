@@ -7,7 +7,6 @@ In this first lesson we are going to go over the very basics of R, cover some ba
 ## Lesson Outline:
 
 - [Working with R and RStudio](#working-with-r-and-rstudio)
-- [Workflow](#workflow)
 - [Functions and basic syntax](#functions-and-basic-syntax)
 - [Packages](#packages)
 - [Operators and objects](#operators-and-objects)
@@ -47,28 +46,14 @@ This exercise will make sure R and RStudio are working and that you can get arou
 
 3. Create a new project.  Name it "intro_r_workshop".  We will use this for the rest of the workshop.
 
-4. Create a new "R Script" in the Source Pane, save that file into your newly created project and name it "lesson1.R". It'll just be a blank text file at this point.
+4. Create a new "R Script" in the Source Pane, save that file into your newly created project and name it "r1_introR.R". It'll just be a blank text file at this point.
 
-5. Download the [R code for the workshop](https://raw.githubusercontent.com/rhodyrstats/intro_r_workshop/master/lessons/intro_r_code.R) and save it in the project folder. 
-
-##Workflow
-Before we move on, we need to introduce a few of the basics about working in the console, working via scripts, and workspaces/projects.  We will also start working with some simple, yet important R functions.
-
-Being thoughtful about workflow from the beginning of a project is something that gets overlooked a lot, but a little up-front effort can provide a big benefit.  For our purposes we are going to make use of RStudio projects and will script almost everything.  The console has its utility and we will use it plenty, especially when we are first figuring out how to use commands.  But beyond that, we will store all of our work in a script.  The basic workflow I am going to advocate is:
-
-1. Use a single project for this workshop (we created that in Lesson 1: Exercise 1).
-2. Start everything in a script and use copy/paste or the RStudio tools to send to the console.
-3. Use a new script for each lesson.
-4. Comment ruthlessly.
-5. Don't save .RData files or workspace history.  The script should recreate whatever you need.
-
-This, of course, is not the only way you can structure a workflow, but I think it should be a good starting point for this workshop and one you can adapt to your own work afterwards.  And to provide a little motivation, the more you utilize scripts, the more reproducible your work is, the more likely you will be able to recall what you did 3 months from now (your future self will thank you), and the easier it will be to transition your work from scripts to functions and, ultimately, to R packages.
 
 ##Functions and basic syntax
 
 R is built off of functions and most of everything you do uses a function.
 
-The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many.  For instance:
+The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many (> 3000).  For instance:
 
 
 ```r
@@ -95,21 +80,21 @@ rnorm(100,mean=10,sd=2)
 ```
 
 ```
-##   [1] 11.496232 11.831616 11.307878  8.011845 10.855936  7.495169 12.650815
-##   [8]  9.211520 12.131513 11.052185 12.905559 10.582564  9.703212  9.285319
-##  [15]  7.478409  9.462074 15.478451 10.021234 12.174681 10.702274 10.368771
-##  [22]  9.198926  9.753879  8.951513  4.990931 12.667085  9.686528 12.598083
-##  [29] 10.297173  8.911838  9.298611  9.265286  6.943727 11.764175 11.986166
-##  [36]  9.800821 11.061093 12.564249  9.708585 12.353429  6.922858 12.000147
-##  [43] 10.385917 13.776363 10.822853  8.468878  9.044410  9.938519  9.087332
-##  [50]  7.693447 11.731722 13.090759 11.984082  7.903791  7.928259 12.820158
-##  [57] 12.439429  7.525337  7.812014 12.404380  9.718555  9.511998  8.578250
-##  [64] 11.384109 14.107322  6.686371 13.249596  4.909928 11.904593  9.252105
-##  [71]  9.741333  8.327835 11.104260  8.174898  8.365037  8.922083 13.264043
-##  [78] 11.074557  9.821650 11.183845 10.417996 13.248585  9.769843 11.733795
-##  [85] 10.338482 10.734817  9.154946 12.720007  9.125427  9.134391 11.328048
-##  [92] 10.466567 10.064439 10.427018  8.349376  9.144381 11.854391  8.877880
-##  [99]  7.643934 10.170778
+##   [1]  6.673878  6.521837 11.445919  9.695210  9.529117  8.424214  9.549672
+##   [8]  7.952583  8.707572 10.499854  9.033758  7.424684 10.168811 12.024852
+##  [15]  9.905058  9.449878 11.978762 13.591027  9.126658 11.409706 10.474322
+##  [22] 12.343841  7.837513 12.302387  9.953838 11.058999  8.302797 11.211107
+##  [29] 10.876226 10.105830  9.484440  5.838616  9.666795  6.511733 10.959860
+##  [36] 12.256577 10.854104  9.715762  9.154574 11.554149 11.219027  9.921689
+##  [43]  5.743103 11.873000  9.672423 10.133952  6.596768  9.809640  5.856553
+##  [50]  9.598721 10.804932 10.361558  8.787963 10.873451  9.660613 10.615826
+##  [57]  9.564302  8.923877  9.859073  4.411031 11.538039  6.358734  9.161544
+##  [64]  9.119286  8.559509 12.225422 10.642840  9.816069 10.552198  9.236808
+##  [71]  7.491381 10.034995 10.969128 10.453803  8.128504 10.491883  7.370917
+##  [78] 11.821969  9.163356  5.506479 15.739115  9.891430 10.134503  9.129070
+##  [85] 11.510006  7.219416 10.586508  8.876176  9.114226  9.039145 11.241288
+##  [92]  9.059064 10.305250  8.011301  8.682418  8.480679  9.848229  7.268177
+##  [99]  8.830704 11.793270
 ```
 
 ```r
@@ -118,7 +103,7 @@ mean(rnorm(100))
 ```
 
 ```
-## [1] 0.09860722
+## [1] 0.1110126
 ```
 
 ```r
@@ -127,7 +112,15 @@ sum(rnorm(100))
 ```
 
 ```
-## [1] -0.7545606
+## [1] 13.89084
+```
+
+```r
+# NOTES:
+#Comments
+#()
+#[]
+#{}
 ```
 
 A few side notes.  The `#` indicates a comment.  You can put whatever else you'd like after this, but on the same line as the `#`.  R will not evaluate it. Multiple `#####`, are still just seen as a comment.  When commenting your code, err on the side of too much!  Also, you will see `()`, `[]`, and `{}` used in R code.  The `()` indicates a function (almost always), the `[]` indicates indexing (grabbing values by the location), and the `{}` groups code that is meant to be run together and is usually used when programming functions in R.
@@ -145,6 +138,7 @@ When a package gets installed, that means the source is downloaded and put into 
 
 
 ```r
+#Installing Packages from CRAN
 #Install dplyr and ggplot2
 install.packages("ggplot2")
 install.packages("dplyr")
@@ -158,6 +152,7 @@ One source of confusion that many have is when they cannot access a package that
 
 
 ```r
+#Loading packages into your library
 #Add libraries to your R Session
 library("ggplot2")
 library("dplyr")
@@ -194,12 +189,11 @@ Lastly, a quick note on packages and libraries.  You will often hear people use 
 ##Exercise 1.2
 For this second exercise we are going to get used to using some basic functions, working with scripts and not just the console, and look through some task views and get used to basic navigation around packages.  Use the green stickies when you have completed, and red stickies if you are running into problems.
 
-1. If it is not already open, open the "lesson1.R" file you created in Exercise 1. Enter your commands into this script.
-2. Add the `print` function to your script.  Copy/past this or use the "run" button in RStudio to have R interpret it and print something to the screen.
+1. If you wish to save your work in a script, make sure "r1_introR.R" file you created in Exercise 1 is open. Enter your commands into this script.  Otherwise, you may work directly in the console.
+2. Use the `print` function.  If using a script, copy/paste this or use the "run" button in RStudio to have R interpret it and print something to the screen.
 3. Combine `mean` and `rnorm` to return the mean value of a set of random numbers.
 4. Install the package, `dplyr`
 5. Load `dplyr` into your library.
-6. Make sure to save all these functions inside your "lesson1.R" script.  
 
 ##Operators and objects
 As I mentioned above, the console and using R interactively is very powerful.  We will do this quite a bit.  Let's spend a little time playing around in the console and learn a few new functions.
@@ -389,25 +383,9 @@ save(a,y,file="lesson2_ay.RData")
 
 This is probably a good spot to bring up quotes vs no quotes around arguments in a function.  This is a very common stumbling block.  The general rule is that no quotes are used only when referring to an object that currently exists.  Quotes are used in all other cases.  For instance in `save(a,y,file="lesson2_ay.RData")` the objects `a` and `y` are not quoted because they are objects in the workspace.  `file` is an argument of save and arguments are never quoted.  We quote the name of the file "lesson2_ay.RData" because it is not an R object but the name of a file to be created.  You will likely still have some issues with this.  My recommendation is to think about if it is an object in your R workspace or not.  If so, no quotes! This isn't foolproof, but works well most of the time.
 
-Next thing you might want to do is navigate around your files and directories.
-
-
-```r
-#See the current directory
-getwd()
-
-#Change the directory
-setwd("figures")
-
-#List files and directories
-list.files()
-```
-
-While you can do this directly from the console, it is going to be better practice to mostly use RStudio projects to manage your folders, working directory etc.  You can also navigate using the Files, etc. pane. 
+Next thing you might want to do is navigate around your files and directories. While you can do this directly from the console, it is going to be better practice to mostly use RStudio projects to manage your folders, working directory etc.  You can also navigate using the Files, etc. pane. 
 
 ##Exercise 1.3
-Remember to add each of these as new lines to your `lesson1.R` script.  Also, please still use the green stickies when you have completed, and red stickies if you are running into problems. So, for this exercise:
-
 1. Create two objects named `number1` and `number2` and give them the values of 25 and 4, respectively 
 2. Create two more objects named `string1` and `string2`, give them any character string that you would like. 
 3. Now using `number1`,`number2`, and the power of math create an object called `number3` that equals 100.

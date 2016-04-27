@@ -22,7 +22,6 @@ In this first lesson we are going to go over the very basics of R, cover some ba
 ## Lesson Outline:
 
 - [Working with R and RStudio](#working-with-r-and-rstudio)
-- [Workflow](#workflow)
 - [Functions and basic syntax](#functions-and-basic-syntax)
 - [Packages](#packages)
 - [Operators and objects](#operators-and-objects)
@@ -62,28 +61,14 @@ This exercise will make sure R and RStudio are working and that you can get arou
 
 3. Create a new project.  Name it "intro_r_workshop".  We will use this for the rest of the workshop.
 
-4. Create a new "R Script" in the Source Pane, save that file into your newly created project and name it "lesson1.R". It'll just be a blank text file at this point.
+4. Create a new "R Script" in the Source Pane, save that file into your newly created project and name it "r1_introR.R". It'll just be a blank text file at this point.
 
-5. Download the [R code for the workshop](https://raw.githubusercontent.com/rhodyrstats/intro_r_workshop/master/lessons/intro_r_code.R) and save it in the project folder. 
-
-##Workflow
-Before we move on, we need to introduce a few of the basics about working in the console, working via scripts, and workspaces/projects.  We will also start working with some simple, yet important R functions.
-
-Being thoughtful about workflow from the beginning of a project is something that gets overlooked a lot, but a little up-front effort can provide a big benefit.  For our purposes we are going to make use of RStudio projects and will script almost everything.  The console has its utility and we will use it plenty, especially when we are first figuring out how to use commands.  But beyond that, we will store all of our work in a script.  The basic workflow I am going to advocate is:
-
-1. Use a single project for this workshop (we created that in Lesson 1: Exercise 1).
-2. Start everything in a script and use copy/paste or the RStudio tools to send to the console.
-3. Use a new script for each lesson.
-4. Comment ruthlessly.
-5. Don't save .RData files or workspace history.  The script should recreate whatever you need.
-
-This, of course, is not the only way you can structure a workflow, but I think it should be a good starting point for this workshop and one you can adapt to your own work afterwards.  And to provide a little motivation, the more you utilize scripts, the more reproducible your work is, the more likely you will be able to recall what you did 3 months from now (your future self will thank you), and the easier it will be to transition your work from scripts to functions and, ultimately, to R packages.
 
 ##Functions and basic syntax
 
 R is built off of functions and most of everything you do uses a function.
 
-The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many.  For instance:
+The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many (> 3000).  For instance:
 
 ```{r function_examples}
 #Print
@@ -96,6 +81,12 @@ rnorm(100,mean=10,sd=2)
 mean(rnorm(100))
 #Sum
 sum(rnorm(100))
+
+# NOTES:
+#Comments
+#()
+#[]
+#{}
 ```
 
 A few side notes.  The `#` indicates a comment.  You can put whatever else you'd like after this, but on the same line as the `#`.  R will not evaluate it. Multiple `#####`, are still just seen as a comment.  When commenting your code, err on the side of too much!  Also, you will see `()`, `[]`, and `{}` used in R code.  The `()` indicates a function (almost always), the `[]` indicates indexing (grabbing values by the location), and the `{}` groups code that is meant to be run together and is usually used when programming functions in R.
@@ -112,6 +103,7 @@ When a package gets installed, that means the source is downloaded and put into 
 
 
 ```{r install_package, eval=FALSE}
+#Installing Packages from CRAN
 #Install dplyr and ggplot2
 install.packages("ggplot2")
 install.packages("dplyr")
@@ -124,6 +116,7 @@ install.packages(c("randomForest","formatR"))
 One source of confusion that many have is when they cannot access a package that they just installed. This is because getting to this point requires an extra step, loading (or attaching) the package.   
 
 ```{r load_package}
+#Loading packages into your library
 #Add libraries to your R Session
 library("ggplot2")
 library("dplyr")
@@ -154,12 +147,11 @@ Lastly, a quick note on packages and libraries.  You will often hear people use 
 ##Exercise 1.2
 For this second exercise we are going to get used to using some basic functions, working with scripts and not just the console, and look through some task views and get used to basic navigation around packages.  Use the green stickies when you have completed, and red stickies if you are running into problems.
 
-1. If it is not already open, open the "lesson1.R" file you created in Exercise 1. Enter your commands into this script.
-2. Add the `print` function to your script.  Copy/past this or use the "run" button in RStudio to have R interpret it and print something to the screen.
+1. If you wish to save your work in a script, make sure "r1_introR.R" file you created in Exercise 1 is open. Enter your commands into this script.  Otherwise, you may work directly in the console.
+2. Use the `print` function.  If using a script, copy/paste this or use the "run" button in RStudio to have R interpret it and print something to the screen.
 3. Combine `mean` and `rnorm` to return the mean value of a set of random numbers.
 4. Install the package, `dplyr`
 5. Load `dplyr` into your library.
-6. Make sure to save all these functions inside your "lesson1.R" script.  
 
 ##Operators and objects
 As I mentioned above, the console and using R interactively is very powerful.  We will do this quite a bit.  Let's spend a little time playing around in the console and learn a few new functions.
@@ -226,24 +218,9 @@ save(a,y,file="lesson2_ay.RData")
 
 This is probably a good spot to bring up quotes vs no quotes around arguments in a function.  This is a very common stumbling block.  The general rule is that no quotes are used only when referring to an object that currently exists.  Quotes are used in all other cases.  For instance in `save(a,y,file="lesson2_ay.RData")` the objects `a` and `y` are not quoted because they are objects in the workspace.  `file` is an argument of save and arguments are never quoted.  We quote the name of the file "lesson2_ay.RData" because it is not an R object but the name of a file to be created.  You will likely still have some issues with this.  My recommendation is to think about if it is an object in your R workspace or not.  If so, no quotes! This isn't foolproof, but works well most of the time.
 
-Next thing you might want to do is navigate around your files and directories.
-
-```{r useful_functions_directory,eval=FALSE}
-#See the current directory
-getwd()
-
-#Change the directory
-setwd("figures")
-
-#List files and directories
-list.files()
-```
-
-While you can do this directly from the console, it is going to be better practice to mostly use RStudio projects to manage your folders, working directory etc.  You can also navigate using the Files, etc. pane. 
+Next thing you might want to do is navigate around your files and directories. While you can do this directly from the console, it is going to be better practice to mostly use RStudio projects to manage your folders, working directory etc.  You can also navigate using the Files, etc. pane. 
 
 ##Exercise 1.3
-Remember to add each of these as new lines to your `lesson1.R` script.  Also, please still use the green stickies when you have completed, and red stickies if you are running into problems. So, for this exercise:
-
 1. Create two objects named `number1` and `number2` and give them the values of 25 and 4, respectively 
 2. Create two more objects named `string1` and `string2`, give them any character string that you would like. 
 3. Now using `number1`,`number2`, and the power of math create an object called `number3` that equals 100.
