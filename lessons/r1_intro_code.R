@@ -13,7 +13,14 @@ mean(rnorm(100))
 #Sum
 sum(rnorm(100))
 
+# NOTES:
+#Comments
+#()
+#[]
+#{}
+
 ## ----install_package, eval=FALSE-----------------------------------------
+## #Installing Packages from CRAN
 ## #Install dplyr and ggplot2
 install.packages("ggplot2")
 install.packages("dplyr")
@@ -22,6 +29,7 @@ install.packages("dplyr")
 install.packages(c("randomForest","formatR"))
 
 ## ----load_package--------------------------------------------------------
+#Loading packages into your library
 #Add libraries to your R Session
 library("ggplot2")
 library("dplyr")
@@ -84,16 +92,6 @@ rm(x)
 save.image("lesson2.RData")
 ## #Saves just the a and y objects to a file called lesson2_ay.RData
 save(a,y,file="lesson2_ay.RData")
-
-## ----useful_functions_directory,eval=FALSE-------------------------------
-## #See the current directory
-getwd()
-
-## #Change the directory
-setwd("figures")
-
-## #List files and directories
-list.files()
 
 ## ----help_from_console, eval=FALSE---------------------------------------
 ## #Using the help command/shortcut
@@ -168,9 +166,9 @@ first_last
 
 ## ----create_data_frame---------------------------------------------------
 numbers <- c(1:26,NA)
-letters <- c(NA,letters) #letters is a special object available from base R
+letts <- c(NA,letters) #letters is a special object available from base R
 logical <- c(rep(TRUE,13),NA,rep(FALSE,13))
-examp_df <- data.frame(letters,numbers,logical)
+examp_df <- data.frame(letts,numbers,logical)
 
 ## ----examine_data_frame--------------------------------------------------
 #See the first 6 rows
@@ -192,68 +190,44 @@ summary(examp_df)
 #remove NA
 na.omit(examp_df)
 
-## ----factor_examples-----------------------------------------------------
-#An unordered factor
-yn <- factor(c("yes", "no", "no", "yes", "yes"))
-yn
-
-#An ordered factor
-lmh <- factor (c("high","high","low","medium","low","medium","high"),levels=c("low","medium","high"),ordered=TRUE )
-lmh
-
-## ----list_examples-------------------------------------------------------
-examp_list<-list(letters=c("x","y","z"),animals=c("cat","dog","bird","fish"),numbers=1:100,df=examp_df)
-examp_list
-
 ## ----readcsv-------------------------------------------------------------
-#Grab data from the web
-web_df <- read.csv("http://jwhollister.com/public/files/example.csv")
-head(web_df)
-str(web_df)
-dim(web_df)
-summary(web_df)
+#Grab data from a local file
+nla_wq <- read.csv("../data/nla_dat.csv",stringsAsFactors = FALSE)
+head(nla_wq)
+str(nla_wq)
+dim(nla_wq)
+summary(nla_wq)
+
+## ----access_colums-------------------------------------------------------
+#What columuns do we have?
+names(nla_wq)
+#The site id column
+nla_wq$SITE_ID
+#The chlorophyll a column
+nla_wq$CHLA
 
 ################################################################################
 # ./03_viz.R
 ################################################################################
 ## ----plot_examp----------------------------------------------------------
-plot(mtcars$hp,mtcars$qsec)
+plot(nla_wq$CHLA,nla_wq$NTL)
 
 ## ----plot_examp_2--------------------------------------------------------
-plot(mtcars$hp,mtcars$qsec,main="Changes in Quartermile time as function of horsepower",
-     xlab="Total Horsepower",ylab="Quartermile Time (secs)")
-
-## ----pairs_examp---------------------------------------------------------
-plot(iris, main="Iris Pairs Plot")
-
-## ----abline_examp--------------------------------------------------------
-plot(iris$Petal.Width,iris$Petal.Length, main="Petal Dimensions")
-#horizontal line at specified y value
-abline(h=4)
-#a vertical line
-abline(v=1.5)
-#Line with a slope and intercept
-abline(0,1)
-
-## ----abline_examp_lm-----------------------------------------------------
-plot(iris$Petal.Width,iris$Petal.Length, main="Petal Dimensions")
-#abline accepts a liner model object as input
-#linear model is done with lm, and uses a formula as input
-abline(lm(Petal.Length~Petal.Width,data=iris))
+plot(nla_wq$CHLA,nla_wq$NTL,main="NLA Nutrient and Chlorophyll",
+     xlab="Chlorophyll a",ylab="Total Nitrogen")
 
 ## ----boxplot_examp-------------------------------------------------------
-boxplot(iris$Petal.Length, main="Boxplot of Petal Length",ylab="Length(cm)")
+boxplot(nla_wq$CHLA)
 
 ## ----boxplot_grps_examp--------------------------------------------------
-boxplot(iris$Petal.Length~iris$Species, main="Boxplot of Petal Length by Species",ylab="Length(cm)")
+boxplot(nla_wq$CHLA ~ nla_wq$EPA_REG)
+#Given the spread, maybe  a log transform makes sense
+boxplot(log10(nla_wq$CHLA) ~ nla_wq$EPA_REG)
 
 ## ----base_hist_examp-----------------------------------------------------
-hist(iris$Sepal.Length)
-hist(airquality$Temp,breaks=10)
-
-## ----cdf_examp-----------------------------------------------------------
-aq_temp_ecdf<-ecdf(airquality$Temp)
-plot(aq_temp_ecdf)
+hist(nla_wq$PTL)
+#And log again specifying number of breaks (e.g. bins)
+hist(log10(nla_wq$PTL), breaks=10)
 
 ## ----ggplot_install, eval=FALSE------------------------------------------
 install.packages("ggplot2")
@@ -263,71 +237,67 @@ library("ggplot2")
 # aes() are the "aesthetics" info.  When you simply add the x and y
 # that can seem a bit of a confusing term.  You also use aes() to 
 # change color, shape, size etc. of some items 
-iris_gg<-ggplot(iris,aes(x=Petal.Length,y=Petal.Width))
+nla_gg<-ggplot(nla_wq,aes(x=CHLA,y=NTL))
 
 ## ----points_examp--------------------------------------------------------
 #Different syntax than you are used to
-iris_gg + 
+nla_gg + 
   geom_point()
 
 #This too can be saved to an object
-iris_scatter<-iris_gg +
+nla_scatter<-nla_gg +
                 geom_point()
 
 #Call it to create the plot
-iris_scatter
+nla_scatter
 
 ## ----iris_labels---------------------------------------------------------
-iris_scatter<-iris_scatter +
-                labs(title="Iris Petal Morphology Relationship",
-                     x="Petal Length", y="Petal Width")
-iris_scatter
+#Getting fancy to show italics and greek symbols
+x_lab <- expression(paste("Chlorophyll ",italic(a), " (", mu, "g/L)"))
+y_lab <- expression(paste("Total Nitrogen ", "(", mu, "g/L)"))
+nla_scatter<-nla_scatter +
+                labs(title="Nitrogen and Chlorophyll in US Lakes",
+                     x=x_lab, y=y_lab)
+nla_scatter
 
 ## ----iris_colors---------------------------------------------------------
-iris_scatter<- iris_scatter +
-                geom_point(aes(color=Species, shape=Species),size=5)
-iris_scatter
+nla_scatter<- nla_scatter +
+                geom_point(aes(color=RT_NLA, shape=RT_NLA),size=2)
+nla_scatter
 
 ## ----iris_loess----------------------------------------------------------
-iris_scatter_loess<-iris_scatter +
+nla_scatter_loess<-nla_scatter +
                 geom_smooth()
-iris_scatter_loess
+nla_scatter_loess
 
 ## ----iris_lm-------------------------------------------------------------
-iris_scatter_lm<-iris_scatter +
+nla_scatter_lm<-nla_scatter +
                   geom_smooth(method="lm")
-iris_scatter_lm
+nla_scatter_lm
 
 ## ----iris_lm_groups------------------------------------------------------
-iris_scatter_lm_group<-iris_scatter+
+nla_scatter_lm_group<-nla_scatter +
                         geom_smooth(method="lm", 
-                                    aes(group=Species))
-iris_scatter_lm_group
+                                    aes(group=RT_NLA))
+nla_scatter_lm_group
 
 ## ----iris_lm_color-------------------------------------------------------
-iris_scatter_lm_color<-iris_scatter+
+nla_scatter_lm_color<-nla_scatter +
                         geom_smooth(method="lm", 
-                                    aes(color=Species))
-iris_scatter_lm_color
+                                    aes(color=RT_NLA))
+nla_scatter_lm_color
 
 ## ----gg_box_examp--------------------------------------------------------
-ggplot(iris,aes(x=Species,y=Sepal.Width)) +
+ggplot(nla_wq,aes(x=EPA_REG,y=log10(CHLA))) +
   geom_boxplot()
 
 ## ----gg_hist_examp-------------------------------------------------------
-ggplot(iris,aes(x=Sepal.Width))+
+ggplot(nla_wq,aes(x=log10(CHLA)))+
   geom_histogram(binwidth=0.25)
 
-## ----gg_bar_examp2-------------------------------------------------------
-iris_species_mean<-group_by(iris,Species) %>%
-                    summarize(mean_pl=mean(Petal.Length))
-iris_meanpl_bar<-ggplot(iris_species_mean,aes(x=Species,y=mean_pl))+
-  geom_bar(stat="identity")
-iris_meanpl_bar
-
 ## ----themes_examp--------------------------------------------------------
-scatter_p<-ggplot(iris,aes(x=Petal.Width,y=Petal.Length)) +
-              geom_point(aes(colour=Species, shape=Species))
+scatter_p<-ggplot(nla_wq,aes(x=log10(PTL),y=log10(CHLA))) +
+              geom_point(aes(colour=LAKE_ORIGIN, shape=LAKE_ORIGIN))
 scatter_p
 
 ## ----themes_examp_custom-------------------------------------------------
@@ -344,17 +314,19 @@ scatter_p + theme_classic()
 
 ## ----themes_examp_polished-----------------------------------------------
 #Now Let's start over, with some new colors and regression lines
-scatter_polished <- ggplot(iris,aes(x=Petal.Width,y=Petal.Length)) +
-              geom_point(aes(colour=Species, shape=Species)) +
-              stat_smooth(method="lm", aes(colour=Species)) +
-              scale_colour_manual(breaks = iris$Species,
+x_lab <- expression(paste("Chlorophyll ",italic(a), " (", mu, "g/L)"))
+y_lab <- expression(paste("Total Nitrogen ", "(", mu, "g/L)"))
+scatter_polished <- ggplot(nla_wq,aes(x=log10(PTL),y=log10(CHLA))) +
+              geom_point(aes(colour=RT_NLA, shape=RT_NLA)) +
+              stat_smooth(method="lm", aes(colour=RT_NLA)) +
+              scale_colour_manual(breaks = nla_wq$RT_NLA,
                                   values= c("steelblue1",
                                             "sienna",
                                             "springgreen3")) + 
               theme_classic(18,"Times") +
               theme(text=element_text(colour="slategray")) +
-              labs(title="Iris Petal Morphology Relationship",
-                     x="Petal Length", y="Petal Width")
+              labs(title="National Lake Phosphorus and Chlorophyll Relationship",
+                     x=x_lab, y=y_lab)
               
 
 scatter_polished 
@@ -367,16 +339,6 @@ ggsave(plot=scatter_polished,
 ## #Save as PDF
 ggsave(plot=scatter_polished,
        file="Fig1.pdf")
-
-## ----facet_grid_example--------------------------------------------------
-#From the examples in H. Wickham. ggplot2: elegant graphics for data analysis. 
-#Springer New York, 2009. 
-#In particular the facet_grid help.
-p <- ggplot(mtcars, aes(mpg, wt)) + geom_point()
-# With one variable
-p + facet_grid(cyl ~ .)
-# With two variables
-p + facet_grid(vs ~ am)
 
 ## ----facet_grid_nla, warning=FALSE, message=FALSE------------------------
 tp_chla <- ggplot(nla_wq,aes(x=log10(PTL),y=log10(CHLA))) + geom_point()
