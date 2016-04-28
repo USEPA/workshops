@@ -18,7 +18,7 @@ In this first lesson we are going to go over the very basics of R, cover some ba
 - [Exercise 1.3](#exercise-13)
 
 ## Code
-Before we get started, the code for all three lessons has been consolidated into a single R script.  If you'd like, download [`r1_intro_code.R`](https://raw.githubusercontent.com/USEPA/region1_r/master/lessons/r1_intro_code.R?token=AFL8S045V4TYfY6_jYljtDvXnPi4-T9xks5XK4f8wA%3D%3D) and follow along during the live coding. 
+Before we get started, the code for all three lessons has been consolidated into a single R script.  If you'd like, download [`r1_intro_code.R`](https://raw.githubusercontent.com/USEPA/region1_r/master/lessons/r1_intro_code.R?token=AFL8S045V4TYfY6_jYljtDvXnPi4-T9xks5XK4f8wA%3D%3D) and follow along during the live coding. Be sure to save it as a `.R` file.  It will want to save it as text...
 
 ##Working with R and RStudio
 Over the last several years, RStudio has become a very popular IDE (integrated development environment) for R. In addition to interacting with the R Console, RStudio has many extras built in including version control integration, package building, reproducible research, de-bugging, and built-in text editor with smart highlighting and code completion.  This is the environment we will be using for the workshop and should set you up for continued learning with R.
@@ -83,21 +83,21 @@ rnorm(100,mean=10,sd=2)
 ```
 
 ```
-##   [1]  8.308657  9.088284 12.552021 13.087951 10.451301 12.116889 11.346833
-##   [8] 10.270504  6.857139  9.553129 12.476733  5.222211  9.487278  8.374246
-##  [15] 12.433597 11.521290  8.732328  8.098550 12.653726 11.426097 10.173030
-##  [22] 13.763736 12.301484  9.054532 13.326362 12.878867  9.334231  8.559139
-##  [29] 10.003784 12.082319 10.235590 10.844044 11.774250 11.882901  9.612322
-##  [36]  9.906396  8.609570  6.498616 10.090055  5.774323  8.460438  9.704131
-##  [43]  8.766844 13.133150  9.266171  8.750607  7.693508  9.177770  8.331866
-##  [50] 13.382791  8.990450  9.226210  9.206064  8.482407  9.564922 10.671096
-##  [57] 10.898839  9.573482  9.162078 11.690153  9.120404  8.465903 10.041198
-##  [64] 10.022874  9.119383 10.320864  9.494991 11.946271  6.532593 12.629972
-##  [71] 10.260955  4.876457  9.911070 10.530596  9.024172 10.058946  7.639564
-##  [78]  7.892410 10.114500  9.247409  9.738289  8.688639 10.376253 10.565417
-##  [85]  7.306617  8.110932 13.672796 10.947983  7.868201  8.402380  9.584324
-##  [92] 10.898342  8.367022 12.696245  6.471944  8.756553 12.568661  7.238423
-##  [99]  6.406767 12.440851
+##   [1] 12.314901  8.512036 12.412152  6.436038 13.185739  6.357257 14.907032
+##   [8]  6.941684  6.854043 13.022466 13.615196  7.791419 13.209479 13.413576
+##  [15] 12.994860 11.011323 12.604764  8.548227 10.924977  6.711169  7.106277
+##  [22] 12.479448 10.517133 12.845160  6.477599 14.154174 13.416675  7.211778
+##  [29]  9.630285 11.146910 10.631806  9.044461 13.990407  9.845205 10.083153
+##  [36]  9.491347  9.144898  8.420083 11.293926 11.077625 10.120013  9.271337
+##  [43]  7.889435 10.373976  9.615221  9.289088 11.641150  8.450934  8.991747
+##  [50]  9.867078  9.546116 10.810055 10.111057 10.662674  7.531505 11.273957
+##  [57] 14.137167 12.116271 11.701438 10.469298  5.123613 10.819322 13.275091
+##  [64]  8.409544 12.587397  9.487933  7.030448 11.461373  8.173544 10.293956
+##  [71]  9.722599  9.067910 12.413641  7.113276 10.333200  9.631543 10.537474
+##  [78] 10.005102 11.697716  8.071224  5.525381 10.158603  8.452020  6.356243
+##  [85] 11.903683 11.201056  8.949143  8.921257 10.026955  7.682094  7.493465
+##  [92]  9.303084 11.332152  8.187987  9.227110  9.613126 14.986043 14.025569
+##  [99]  8.657854  9.700514
 ```
 
 ```r
@@ -106,7 +106,7 @@ mean(rnorm(100))
 ```
 
 ```
-## [1] 0.05112922
+## [1] -0.1952344
 ```
 
 ```r
@@ -115,7 +115,7 @@ sum(rnorm(100))
 ```
 
 ```
-## [1] -17.51851
+## [1] -6.321527
 ```
 
 ```r
