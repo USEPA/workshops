@@ -262,7 +262,7 @@ nla_scatter
 
 ## ----iris_colors---------------------------------------------------------
 nla_scatter<- nla_scatter +
-                geom_point(aes(color=SITE_TYPE, shape=SITE_TYPE),size=5)
+                geom_point(aes(color=RT_NLA, shape=RT_NLA),size=2)
 nla_scatter
 
 ## ----iris_loess----------------------------------------------------------
@@ -278,13 +278,13 @@ nla_scatter_lm
 ## ----iris_lm_groups------------------------------------------------------
 nla_scatter_lm_group<-nla_scatter +
                         geom_smooth(method="lm", 
-                                    aes(group=SITE_TYPE))
+                                    aes(group=RT_NLA))
 nla_scatter_lm_group
 
 ## ----iris_lm_color-------------------------------------------------------
 nla_scatter_lm_color<-nla_scatter +
                         geom_smooth(method="lm", 
-                                    aes(color=SITE_TYPE))
+                                    aes(color=RT_NLA))
 nla_scatter_lm_color
 
 ## ----gg_box_examp--------------------------------------------------------
@@ -314,17 +314,19 @@ scatter_p + theme_classic()
 
 ## ----themes_examp_polished-----------------------------------------------
 #Now Let's start over, with some new colors and regression lines
-scatter_polished <- ggplot(iris,aes(x=Petal.Width,y=Petal.Length)) +
-              geom_point(aes(colour=Species, shape=Species)) +
-              stat_smooth(method="lm", aes(colour=Species)) +
-              scale_colour_manual(breaks = iris$Species,
+x_lab <- expression(paste("Chlorophyll ",italic(a), " (", mu, "g/L)"))
+y_lab <- expression(paste("Total Nitrogen ", "(", mu, "g/L)"))
+scatter_polished <- ggplot(nla_wq,aes(x=log10(PTL),y=log10(CHLA))) +
+              geom_point(aes(colour=RT_NLA, shape=RT_NLA)) +
+              stat_smooth(method="lm", aes(colour=RT_NLA)) +
+              scale_colour_manual(breaks = nla_wq$RT_NLA,
                                   values= c("steelblue1",
                                             "sienna",
                                             "springgreen3")) + 
               theme_classic(18,"Times") +
               theme(text=element_text(colour="slategray")) +
-              labs(title="Iris Petal Morphology Relationship",
-                     x="Petal Length", y="Petal Width")
+              labs(title="National Lake Phosphorus and Chlorophyll Relationship",
+                     x=x_lab, y=y_lab)
               
 
 scatter_polished 
@@ -337,16 +339,6 @@ ggsave(plot=scatter_polished,
 ## #Save as PDF
 ggsave(plot=scatter_polished,
        file="Fig1.pdf")
-
-## ----facet_grid_example--------------------------------------------------
-#From the examples in H. Wickham. ggplot2: elegant graphics for data analysis. 
-#Springer New York, 2009. 
-#In particular the facet_grid help.
-p <- ggplot(mtcars, aes(mpg, wt)) + geom_point()
-# With one variable
-p + facet_grid(cyl ~ .)
-# With two variables
-p + facet_grid(vs ~ am)
 
 ## ----facet_grid_nla, warning=FALSE, message=FALSE------------------------
 tp_chla <- ggplot(nla_wq,aes(x=log10(PTL),y=log10(CHLA))) + geom_point()

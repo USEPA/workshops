@@ -151,7 +151,7 @@ Now to add some colors, shapes etc to the point.  Look at the `geom_point()` doc
 
 ```r
 nla_scatter<- nla_scatter +
-                geom_point(aes(color=RT_NLA, shape=RT_NLA),size=5)
+                geom_point(aes(color=RT_NLA, shape=RT_NLA),size=2)
 nla_scatter
 ```
 
@@ -296,22 +296,23 @@ scatter_p + theme_classic()
 ![plot of chunk themes_examp_stock](figures/themes_examp_stock-2.png) 
 
 Let's build on one of these and try to create a more polished plot.  We will start from scratch and add in some custom colors too.
-#START HERE JEFF
 
 
 ```r
 #Now Let's start over, with some new colors and regression lines
-scatter_polished <- ggplot(iris,aes(x=Petal.Width,y=Petal.Length)) +
-              geom_point(aes(colour=Species, shape=Species)) +
-              stat_smooth(method="lm", aes(colour=Species)) +
-              scale_colour_manual(breaks = iris$Species,
+x_lab <- expression(paste("Chlorophyll ",italic(a), " (", mu, "g/L)"))
+y_lab <- expression(paste("Total Nitrogen ", "(", mu, "g/L)"))
+scatter_polished <- ggplot(nla_wq,aes(x=log10(PTL),y=log10(CHLA))) +
+              geom_point(aes(colour=RT_NLA, shape=RT_NLA)) +
+              stat_smooth(method="lm", aes(colour=RT_NLA)) +
+              scale_colour_manual(breaks = nla_wq$RT_NLA,
                                   values= c("steelblue1",
                                             "sienna",
                                             "springgreen3")) + 
               theme_classic(18,"Times") +
               theme(text=element_text(colour="slategray")) +
-              labs(title="Iris Petal Morphology Relationship",
-                     x="Petal Length", y="Petal Width")
+              labs(title="National Lake Phosphorus and Chlorophyll Relationship",
+                     x=x_lab, y=y_lab)
               
 
 scatter_polished 
@@ -337,30 +338,6 @@ In this last section we won't have an exercise, but I did want to show some othe
 
 ###Facets
 First thing I want to show are facets.  Facets allow you to lay out multiple plots in a grid.  With a single facet the result is similar to what we already accomplished by coloring/sizing points based on a factor in the dataset, but it separates into different plots and we can easily add an additional factor to organize by column.  Looking at some of the examples provided with `facet_grid()` shows us how these can work.
-
-
-```r
-#From the examples in H. Wickham. ggplot2: elegant graphics for data analysis. 
-#Springer New York, 2009. 
-#In particular the facet_grid help.
-p <- ggplot(mtcars, aes(mpg, wt)) + geom_point()
-# With one variable
-p + facet_grid(cyl ~ .)
-```
-
-![plot of chunk facet_grid_example](figures/facet_grid_example-1.png) 
-
-```r
-# With two variables
-p + facet_grid(vs ~ am)
-```
-
-![plot of chunk facet_grid_example](figures/facet_grid_example-2.png) 
-
-And a parting example using the NLA data.
-
-
-
 
 
 ```r
