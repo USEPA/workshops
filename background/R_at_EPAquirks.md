@@ -1,3 +1,4 @@
+# This document is Deprecated.  April 30, 2016, Erik Beck #
 # Starting Point #
 ## My First Markdown Doc ##
 To add Erik's thoughts about R install and operation issues at EPA and workarounds.
