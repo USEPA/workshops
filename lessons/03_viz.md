@@ -24,7 +24,7 @@ The workhorse function for plotting data in R is `plot()`.  With this one comman
 plot(nla_wq$CHLA,nla_wq$NTL)
 ```
 
-![plot of chunk plot_examp](figures/plot_examp-1.png) 
+![plot of chunk plot_examp](figures/plot_examp-1.png)
 
 Hey, a plot!  Not bad.  Let's customize a bit because those axis labels aren't terribly useful and we need a title. For that we can use the `main`, `xlab`, and `ylab` arguments.
 
@@ -34,7 +34,7 @@ plot(nla_wq$CHLA,nla_wq$NTL,main="NLA Nutrient and Chlorophyll",
      xlab="Chlorophyll a",ylab="Total Nitrogen")
 ```
 
-![plot of chunk plot_examp_2](figures/plot_examp_2-1.png) 
+![plot of chunk plot_examp_2](figures/plot_examp_2-1.png)
 
 Now, let's look at boxplots and histograms.
 
@@ -45,23 +45,23 @@ Two great ways to use boxplots are straight up and then by groups. For this we w
 boxplot(nla_wq$CHLA)
 ```
 
-![plot of chunk boxplot_examp](figures/boxplot_examp-1.png) 
+![plot of chunk boxplot_examp](figures/boxplot_examp-1.png)
 
-As plots go, well, um, not great.  Let's try it with a bit more info and create a boxplot for each of the groups.  This is using formula notation which is in the base form of `y ~ x`.  Thinking about this form a 2-dimensional plot standpoint it makes sense as your x-axis is the group and y is the value of interest.
+As plots go, well, um, not great.  Let's try it with a bit more info and create a boxplot for each of the groups.  This is using formula notation which is in the base form of `y ~ x`.  Thinking about this form a 2-dimensional plot standpoint it makes sense as your x-axis is the group and y is the value of interest.  We will use a log transformation for this.  And a quick note on logs in R, the `log()` function provides this and has to arguments.  The first is the vector of numeric values you wish to transfrom, and the second is the base.  Default base for `log()` is the the natural log.  A convenience function `log10()` is the equivalent of doing `log(100,base=10)`.  We will use `log10()` for these examples.
 
 
 ```r
 boxplot(nla_wq$CHLA ~ nla_wq$EPA_REG)
 ```
 
-![plot of chunk boxplot_grps_examp](figures/boxplot_grps_examp-1.png) 
+![plot of chunk boxplot_grps_examp](figures/boxplot_grps_examp-1.png)
 
 ```r
 #Given the spread, maybe  a log transform makes sense
 boxplot(log10(nla_wq$CHLA) ~ nla_wq$EPA_REG)
 ```
 
-![plot of chunk boxplot_grps_examp](figures/boxplot_grps_examp-2.png) 
+![plot of chunk boxplot_grps_examp](figures/boxplot_grps_examp-2.png)
 
 And finally, histograms.
 
@@ -70,14 +70,14 @@ And finally, histograms.
 hist(nla_wq$PTL)
 ```
 
-![plot of chunk base_hist_examp](figures/base_hist_examp-1.png) 
+![plot of chunk base_hist_examp](figures/base_hist_examp-1.png)
 
 ```r
 #And log again specifying number of breaks (e.g. bins)
 hist(log10(nla_wq$PTL), breaks=10)
 ```
 
-![plot of chunk base_hist_examp](figures/base_hist_examp-2.png) 
+![plot of chunk base_hist_examp](figures/base_hist_examp-2.png)
 
 ##Introduction to `ggplot2`
 
@@ -116,7 +116,7 @@ nla_gg +
   geom_point()
 ```
 
-![plot of chunk points_examp](figures/points_examp-1.png) 
+![plot of chunk points_examp](figures/points_examp-1.png)
 
 ```r
 #This too can be saved to an object
@@ -127,7 +127,7 @@ nla_scatter<-nla_gg +
 nla_scatter
 ```
 
-![plot of chunk points_examp](figures/points_examp-2.png) 
+![plot of chunk points_examp](figures/points_examp-2.png)
 
 Not appreciably better than base, in my opinion.  But what if we want to add some stuff...
 
@@ -144,7 +144,7 @@ nla_scatter<-nla_scatter +
 nla_scatter
 ```
 
-![plot of chunk iris_labels](figures/iris_labels-1.png) 
+![plot of chunk iris_labels](figures/iris_labels-1.png)
 
 Now to add some colors, shapes etc to the point.  Look at the `geom_point()` documentation for this.
 
@@ -155,7 +155,7 @@ nla_scatter<- nla_scatter +
 nla_scatter
 ```
 
-![plot of chunk iris_colors](figures/iris_colors-1.png) 
+![plot of chunk iris_colors](figures/iris_colors-1.png)
 
 You'll notice we used `aes()` again, but this time inside of the geometry.  This tells ggplot2 that this aes only applies to the points.  Other geometeries will not be affected by this.
 
@@ -170,7 +170,7 @@ nla_scatter_loess<-nla_scatter +
 nla_scatter_loess
 ```
 
-![plot of chunk iris_loess](figures/iris_loess-1.png) 
+![plot of chunk iris_loess](figures/iris_loess-1.png)
 
 Try that in `base` with so little code!
 
@@ -183,7 +183,7 @@ nla_scatter_lm<-nla_scatter +
 nla_scatter_lm
 ```
 
-![plot of chunk iris_lm](figures/iris_lm-1.png) 
+![plot of chunk iris_lm](figures/iris_lm-1.png)
 
 And if we are interested in the regressions by group we could do it this way.
 
@@ -195,7 +195,7 @@ nla_scatter_lm_group<-nla_scatter +
 nla_scatter_lm_group
 ```
 
-![plot of chunk iris_lm_groups](figures/iris_lm_groups-1.png) 
+![plot of chunk iris_lm_groups](figures/iris_lm_groups-1.png)
 
 Or, if we wanted our regression lines to match the color.
 
@@ -207,7 +207,7 @@ nla_scatter_lm_color<-nla_scatter +
 nla_scatter_lm_color
 ```
 
-![plot of chunk iris_lm_color](figures/iris_lm_color-1.png) 
+![plot of chunk iris_lm_color](figures/iris_lm_color-1.png)
 
 
 Notice, that we specified the `aes()` again, but for `geom_smooth()`.  We only specified the x and y in the original `ggplot` object, so if want to do something different in the subsequent functions we need to overwrite it for the function in which we want a different mapping (i.e. groups).
@@ -226,7 +226,7 @@ ggplot(nla_wq,aes(x=EPA_REG,y=log10(CHLA))) +
   geom_boxplot()
 ```
 
-![plot of chunk gg_box_examp](figures/gg_box_examp-1.png) 
+![plot of chunk gg_box_examp](figures/gg_box_examp-1.png)
 
 ###Histograms
 
@@ -236,7 +236,7 @@ ggplot(nla_wq,aes(x=log10(CHLA)))+
   geom_histogram(binwidth=0.25)
 ```
 
-![plot of chunk gg_hist_examp](figures/gg_hist_examp-1.png) 
+![plot of chunk gg_hist_examp](figures/gg_hist_examp-1.png)
 
 ##Exercise 4.1
 Let's now build some plots with `ggplot2`
@@ -262,7 +262,7 @@ scatter_p<-ggplot(nla_wq,aes(x=log10(PTL),y=log10(CHLA))) +
 scatter_p
 ```
 
-![plot of chunk themes_examp](figures/themes_examp-1.png) 
+![plot of chunk themes_examp](figures/themes_examp-1.png)
 
 Nothing new there.  Let's now edit some of this theme by dropping the grey background and the grid, and changing our font.
 
@@ -276,7 +276,7 @@ scatter_p_base<-scatter_p +
 scatter_p_base
 ```
 
-![plot of chunk themes_examp_custom](figures/themes_examp_custom-1.png) 
+![plot of chunk themes_examp_custom](figures/themes_examp_custom-1.png)
 
 Still not great, but it shows the basics.  You can build on this and edit EVERYTHING in the plot.  To get an idea of what you have access to, take a look at the help on `theme()` (e.g. `help("theme")`).
 
@@ -287,13 +287,13 @@ There are a few alterantive themes available by default (use `help("ggtheme")`) 
 scatter_p + theme_bw()
 ```
 
-![plot of chunk themes_examp_stock](figures/themes_examp_stock-1.png) 
+![plot of chunk themes_examp_stock](figures/themes_examp_stock-1.png)
 
 ```r
 scatter_p + theme_classic()
 ```
 
-![plot of chunk themes_examp_stock](figures/themes_examp_stock-2.png) 
+![plot of chunk themes_examp_stock](figures/themes_examp_stock-2.png)
 
 Let's build on one of these and try to create a more polished plot.  We will start from scratch and add in some custom colors too.
 
@@ -311,14 +311,14 @@ scatter_polished <- ggplot(nla_wq,aes(x=log10(PTL),y=log10(CHLA))) +
                                             "springgreen3")) + 
               theme_classic(18,"Times") +
               theme(text=element_text(colour="slategray")) +
-              labs(title="National Lake Phosphorus and Chlorophyll Relationship",
+              labs(title="National \n Lake P and Chl a \n Relationship",
                      x=x_lab, y=y_lab)
               
 
 scatter_polished 
 ```
 
-![plot of chunk themes_examp_polished](figures/themes_examp_polished-1.png) 
+![plot of chunk themes_examp_polished](figures/themes_examp_polished-1.png)
 
 A bit complicated for some of the custom stuff, but that is the price you have to pay to get complete control over the output.  Last thing we probably want to do now is to save the plot.  Since we have our plot as a `ggplot` object we can use the `ggsave()` function.
 
@@ -346,7 +346,7 @@ tp_chla <- ggplot(nla_wq,aes(x=log10(PTL),y=log10(CHLA))) + geom_point()
 tp_chla + facet_grid(RT_NLA ~ .)
 ```
 
-![plot of chunk facet_grid_nla](figures/facet_grid_nla-1.png) 
+![plot of chunk facet_grid_nla](figures/facet_grid_nla-1.png)
 
 ```r
 tp_chla +
@@ -354,7 +354,7 @@ tp_chla +
   facet_grid(RT_NLA ~ LAKE_ORIGIN)
 ```
 
-![plot of chunk facet_grid_nla](figures/facet_grid_nla-2.png) 
+![plot of chunk facet_grid_nla](figures/facet_grid_nla-2.png)
 
 ###Sources of Help on `ggplot2`
 - [Winston Chang's Cookbook](http://www.cookbook-r.com/Graphs/): Many great step-by-step examples.  Good starting point for you own plots

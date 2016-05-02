@@ -325,7 +325,7 @@ scatter_polished <- ggplot(nla_wq,aes(x=log10(PTL),y=log10(CHLA))) +
                                             "springgreen3")) + 
               theme_classic(18,"Times") +
               theme(text=element_text(colour="slategray")) +
-              labs(title="National Lake Phosphorus and Chlorophyll Relationship",
+              labs(title="National \n Lake P and Chl a \n Relationship",
                      x=x_lab, y=y_lab)
               
 

@@ -54,7 +54,7 @@ Two great ways to use boxplots are straight up and then by groups. For this we w
 boxplot(nla_wq$CHLA)
 ```
 
-As plots go, well, um, not great.  Let's try it with a bit more info and create a boxplot for each of the groups.  This is using formula notation which is in the base form of `y ~ x`.  Thinking about this form a 2-dimensional plot standpoint it makes sense as your x-axis is the group and y is the value of interest.
+As plots go, well, um, not great.  Let's try it with a bit more info and create a boxplot for each of the groups.  This is using formula notation which is in the base form of `y ~ x`.  Thinking about this form a 2-dimensional plot standpoint it makes sense as your x-axis is the group and y is the value of interest.  We will use a log transformation for this.  And a quick note on logs in R, the `log()` function provides this and has to arguments.  The first is the vector of numeric values you wish to transfrom, and the second is the base.  Default base for `log()` is the the natural log.  A convenience function `log10()` is the equivalent of doing `log(100,base=10)`.  We will use `log10()` for these examples.
 
 ```{r boxplot_grps_examp}
 boxplot(nla_wq$CHLA ~ nla_wq$EPA_REG)
@@ -254,7 +254,7 @@ scatter_polished <- ggplot(nla_wq,aes(x=log10(PTL),y=log10(CHLA))) +
                                             "springgreen3")) + 
               theme_classic(18,"Times") +
               theme(text=element_text(colour="slategray")) +
-              labs(title="National Lake Phosphorus and Chlorophyll Relationship",
+              labs(title="National \n Lake P and Chl a \n Relationship",
                      x=x_lab, y=y_lab)
               
 
