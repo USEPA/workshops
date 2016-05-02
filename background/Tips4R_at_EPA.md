@@ -25,7 +25,7 @@ other users of R
 ## Note that we will be posting the notes, code, and data for this class on the StatCOP SharePoint site. ##
 
 # R Books #
-* Packt Publishing (eBook and print)
+* Hadley Wickham's Books: [Advanced R](http://adv-r.had.co.nz/) and [R Packages](http://r-pkgs.had.co.nz/)
 * O'Reilly Media (Tim, not Bill) (eBook and print)
 * Amazon (eBook and print)
 * MIT Library (Dewey Library, part of the Sloan School of Management)
