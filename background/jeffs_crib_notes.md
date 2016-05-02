@@ -28,7 +28,7 @@ output: pdf_document
 14. Navigating workspace in console and RStudio
 15. Exercise 1.3
 16. Help
-17. Data in R Lesson
+17. *Data in R Lesson*
 18. Data types
 19. NA (and others)
 20. Data sturctures
@@ -41,6 +41,23 @@ output: pdf_document
 24. Data manipulation
     - No examples, no time
     - Except: columns with $
+25. Exercise 2.2
+26. ***Break***
+27. *Data Viz Lesson*
+28. Base 
+    - Scatter
+    - Box
+    - Hist
+39. ggplot
+    - Scatter
+    - box
+    - hist
+30. Exercise 4.1
+31. ***TIME DEPENDENT***
+32. Themes
+33. Facets
+34. Help
+35. Examples
 
 
 

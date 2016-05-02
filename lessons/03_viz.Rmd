@@ -31,6 +31,15 @@ Visualizing  data is an area where R really shines.  For this we will split our 
 ## Lesson Exercises:
 - [Exercise 4.1](#exercise-41)
 
+## Some examples for inspiration!
+Before we get started, I do like to show what is possible.  A couple of geospatial examples of maps created in R.
+
+A few (now somewhat dated) examples of maps built with R show this:
+
+![London Bike Hires](http://spatialanalysis.co.uk/wp-content/uploads/2012/02/bike_ggplot.png)
+
+![Facebook Users](http://media.economist.com/sites/default/files/imagecache/original-size/FbMap.jpg)
+
 ##Simple plots with base R
 When you first get a dataset and are just starting to explore it, you want do be able to quickly visualize different bits and pieces about the data.  I tend to do this, initially, with base R. We will cover some quick plots with base R.  Later we are going to go into more detail on `ggplot2` which is becoming the gold standard of viz in R.  For now we will look at some of the simple, yet very useful, plots that come with base R.  
 
@@ -298,5 +307,3 @@ tp_chla +
 - Cool rCharts examples: [rCharts Gallery](http://rcharts.io/gallery/)
 - ggplot examples: [Google Image Search](http://goo.gl/P0q2Lx)
 - R Data Viz, gone wrong:[Accidental aRt](http://accidental-art.tumblr.com) 
-- [London Bike Hires](http://spatialanalysis.co.uk/wp-content/uploads/2012/02/bike_ggplot.png)
-- [Facebook Users](http://paulbutler.org/archives/visualizing-facebook-friends/facebook_map.png)
