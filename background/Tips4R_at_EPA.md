@@ -21,6 +21,7 @@ other users of R
 * StatCOP SharePoint Site (  )
 * EPA R Users Group SharePoint Site (  )
 * EPA Co-workers
+
 ## Note that we will be posting the notes, code, and data for this class on the StatCOP SharePoint site. ##
 
 # R Books #
