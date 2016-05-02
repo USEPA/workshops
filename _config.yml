@@ -7,7 +7,7 @@ highlighter:      pygments
 # Permalinks
 permalink:            pretty
 paginate_path:        /introR/page:num
-relative_permalinks:  true
+
 
 # Setup
 title:            'Introduction to R'
