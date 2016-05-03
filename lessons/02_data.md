@@ -396,6 +396,8 @@ If you want to learn more about any of these data structure, [Hadley Wickham's A
 
 For the first exercise of lesson 2, we are going to build a data frame from scratch.  
 
+[data](../data/nla_dat.csv)
+
 1.) If you are using a script to keep all of your code, make sure it is open and enter you code in there.
 
 2.) Create three vectors.  One with numeric data, one with character, and a third with boolean data.  Each vector must contain 10 values.
