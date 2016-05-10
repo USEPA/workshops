@@ -7,18 +7,18 @@ layout: post_page
 
 In theory, you now have a basic understanding of how to conduct a typical data analysis workflow in R.  All that is left is to be able to write it up in such a way that others can not only understand what we did, but repeat it exactly on their own machines. To do this effectively we need to understand how to create reusable R code and create reproducible reports.  This will be a very high level introduction to both concepts, but should hopefully give you a jumping off place for more learning.
 
-##Quick Links to Exercises and R code
+## Quick Links to Exercises and R code
 - [Lesson 8 R Code](/introR/rmd_posts/2015-01-15-08-Repeat-Reproduce.R): All the code from this post in an R Script.
 - [Exercise 1](#exercise-1): Create your own function
 
 
-##Lesson Goals
+## Lesson Goals
 - Understand how to create your own functions
 - Be able to use basic programming control structures
 - Gain familiarity with Markdown and `knitr`
 - Create a simple, reproducible document and presentation
 
-##Functions and Programming with R
+## Functions and Programming with R
 At this point we should be pretty well versed at using functions.  They have a name, some arguments, and they do something.  Some return a value, some don't.  In short they form the basic structure of R.  One of the cool things about R (and programming in general), is that we are not stuck with the functions provided to us.  We can (and should!) develop our own as we often want to do things repeatedly, and in slightly different contexts.  Creating a function to deal with this fact helps us a great deal because we do not have to repeat ourselves, we can just use what we have already written.  Creating a function is really easy.  We use the `function()` function.  It has the basic structure of: 
 
 
@@ -113,7 +113,7 @@ myplot(iris$Petal.Length,iris$Petal.Width,iris$Species,"petal_petal.jpg")
 ## Saving 7 x 7 in image
 {% endhighlight %}
 
-![plot of chunk plot_function_examp]({{ site.url }}/figure/plot_function_examp-1.png) 
+![plot of chunk plot_function_examp]({{ site.url }}/figure/plot_function_examp-1.png)
 
 {% highlight r %}
 myplot(iris$Sepal.Length,iris$Sepal.Width,iris$Species,"sepal_l_petal_w.jpg")
@@ -125,11 +125,11 @@ myplot(iris$Sepal.Length,iris$Sepal.Width,iris$Species,"sepal_l_petal_w.jpg")
 ## Saving 7 x 7 in image
 {% endhighlight %}
 
-![plot of chunk plot_function_examp]({{ site.url }}/figure/plot_function_examp-2.png) 
+![plot of chunk plot_function_examp]({{ site.url }}/figure/plot_function_examp-2.png)
 
 Cool, a function, that does something useful.  It still is just a collection of functions at this point though.  What if we wanted to repeat something or have the function make some decisions and do one thing given a set of criteria and something else for a different set?  Well we need to look more at some of the classic programming structures in R.  For this introduction, I am going to look just at `if-else` statements, `for` loops (some in the R world think this to be bad since R is optimized for working on vectors, but I think the concept useful and I M writing this, so there!),  and `return()`.  
 
-###if-else
+### if-else
 If you have done any programing in any language, then `if-else` statements are not new to you.  All they do is allow us to tell the function how to make some decisions.  
 
 I will show the examples in the context of a function as that is how they are most commonly used. So, we can implement them in R like:
@@ -212,7 +212,7 @@ plus_minus(37*0)
 ## [1] "zero"
 {% endhighlight %}
 
-###for
+## for
 A `for` loop allows you to repeat code.  You specify a variable and a range of values and the `for` loop runs the code for each value in your range.  The basic structure looks like:
 
 ```
@@ -345,7 +345,7 @@ loop_time
 
 {% highlight text %}
 ##    user  system elapsed 
-##  18.498   0.002  18.529
+##  10.237   0.000  10.243
 {% endhighlight %}
 
 Wow, quite a difference in time! It is examples like this that lead to all the talk around why R is slow at looping.  In general I agree that if there is an obvious vectorized/base solution (in this case simply adding the two vectors) use that.  That being said, it isn't always obvious what the vectorized solution would be. In that case there are some easy things to do to speed this up.  With loops that write to an object and that object is getting re-sized, we may also know the final size of that object so we can do one simple thing to dramatically improve perfomance: pre-allocate your memory, like this:
@@ -369,12 +369,12 @@ system.time(add_vecs2(large_vec1,large_vec2))
 
 {% highlight text %}
 ##    user  system elapsed 
-##   0.205   0.000   0.205
+##   0.088   0.000   0.088
 {% endhighlight %}
 
 Now thats better.  In short, if an obvious vector or primitive solution exists, use that.  If those aren't clear and you need to use a loop, don't be afraid to use one.  There are plenty of examples where a vectorized solution exists for a loop, but it may be difficult to code and understand.  Personally, I think it is possible to go too far down the vectorized path.  Do it when it makes sense, otherwise take advantage of the for loop! You can always try and speed things up after you have got your code working the first time.
 
-###return
+## return
 The last control structure we are going to talk about is `return()`.  All `return()` does is provide a result from a function and terminates the function.  You may be asking yourself, didn't we terminate and get a value from the functions we just created?  We did and `return()` is not mandatory for R functions as they will return the last calculation.  However, I do think that including a `return()` is good practice and allows us to be clear and more specific about what you get out of your functions.  Let's take a look at the `sum_vec()` function (even though, I just explained why this is not the best function), the `odd_even()` function  and make simple changes to take advantage of `return()`.
 
 First, `odd_even()`
@@ -404,7 +404,7 @@ sum_vec<-function(vec){
 
 
 
-##Exercise 1
+## Exercise 1
 For this exercise we are going to practice with functions and some of the control structures.
 
 1. Our first task is to create a simple function.  This one is a bit contrived, but wanted let you try it first before we work on our NLA data.  Create a function that allows you to calculate the mean or standard deviation (hint: sd()) of an input vector.
@@ -428,7 +428,7 @@ plot_nla<-function(x,y,out=NULL){
 {% endhighlight %}
 
 
-##Markdown
+## Markdown
 Markdown isn't R, but it has become an important tool in the R ecosystem as it can be used to create package vignettes, can be used on [GitHub](http://github.com), and forms the basis for several reproducible research tools in RStudio.  Markdown is a tool that allows you to write simply formatted text that is converted to HTML/XHTML.  The primary goal of markdown is readibility of the raw file.  Over the last couple of years, Markdown has emerged as a key way to write up reproducible documents, create websites (this whole website was written in Markdown), and make presentations.  For the basics of markdown and general information look at [Daring Fireball](http://daringfireball.net/projects/markdown/basics).
 
 *note: this text borrowed liberally from another class [SciComp2014](http://scicomp2014.edc.uri.edu)*
@@ -504,7 +504,7 @@ The text you want linked goes in the `[]` and the link itself goes in the `()`. 
 
 The only difference is the use of the `!` at the beginning.  When parsed, the image itself will be included, and not just linked text.  As these will be on the web, the images need to also be available via the web.  You can link to local files, but will need to use a path relative to the root of the document you are working on.  Let's not worry about that. It's easy, but beyond the scope of this tutorial.
 
-##Reproducible Documents and Presentations
+## Reproducible Documents and Presentations
 By itself Markdown is pretty cool, but doesn't really provide any value added to the way most of us already work.  However, when you add in a few other things, it, in my opinion, changes things dramatically.  Two tools in particular that, along with Markdown, have moved reproducible research forward (especially as it relates to R) are, the `knitr` package and a tool called pandoc.  We are not going to cover the details of these, but we will use them via RStudio.  
 
 In short, these three tools allow us to write up documents, embed code via "code chunks", run that code and render the final document with nicely formatted text, results, figures etc into a final format of our choosing.  We can create `.html`, `.docx`, `.pdf`, ...  The benefit of doing this is that all of our data and code are a part of the document.  I share my source document, then anyone can reproduce all of our calculations.  For instance, I can make a manuscript that looks like this:
@@ -519,7 +519,7 @@ While we can't get to this level of detail with just the stock RStudio tools, we
 
 First, lets talk a bit about "code chunks."  
 
-###Code Chunks
+## Code Chunks
 Since we are talking about markdown and R, our documents will all be R Markdown documents (i.e. .Rmd).  To include R Code in your .Rmd you would do something like:
 
     ```{r}
@@ -552,7 +552,7 @@ Lastly, each of your code chunks can have a label.  That would be accomplished w
     
 Now, lets get started and actually create a reproducible document
 
-###Create a Document
+## Create a Document
 To create your document, go to File: New File : R Markdown.  You should get a window that looks something like:
 
 ![New RMarkdown](/introR/figure/newrmarkdown.jpg)
@@ -578,7 +578,7 @@ Click this and behold the magic!
 
 Spend some time playing around with this document.  Add in some other markdown, text and a code chunk then `knit()` it to see the outcome.  It should be easy to see how this could be used to write the text describing an analysis, embed the analysis and figure creation directly in the document, and render a final document.  You share the source and rendered document and anyone has access to your full record of that research!
 
-###Create a Presentation
+## Create a Presentation
 Creating a presentation is not much different.  We just need a way to specify different slides.
 
 Repeat the steps from above, but this time instead of selecting "Document", select "Presentation".  Only thing we need to know is that a second level header (i.e. `##`) is what specifies the title of the next slide.  Any thing you put after that goes on that slide.  Similar to before, play around with this, add a slide with some new text, new code and knit it.  There you have it, a reproducible presentation.  
