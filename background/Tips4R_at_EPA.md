@@ -1,7 +1,7 @@
 # Tips and Resources Using R at EPA Region One #
 
 # Installation #
-* Request non-standard software through Region One's Intranet site (see Erik's email of ... for details)
+* Request non-standard software through Region One's Intranet site (see Erik's email of April 15, 2016 for details)
 * Once approved, our BigFix system (that popup box with the blue 'B' that tells you to restart the computer) will push the programs to your desktop
 
 # If these happen, think about getting help... #
@@ -18,8 +18,8 @@ other users of R
 
 # R Resources at EPA #
 * Skillport (books and videos)
-* StatCOP SharePoint Site (  )
-* EPA R Users Group SharePoint Site (  )
+* StatCOP SharePoint Site: [StatCOP](https://usepa.sharepoint.com/sites/R1_Community/statcop)
+* EPA R Users Group SharePoint Site: [R Users Group] (https://usepa.sharepoint.com/sites/ORD_Community/R-User-Group)
 * EPA Co-workers
 
 ## Note that we will be posting the notes, code, and data for this class on the StatCOP SharePoint site. ##

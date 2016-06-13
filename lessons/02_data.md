@@ -396,6 +396,7 @@ If you want to learn more about any of these data structure, [Hadley Wickham's A
 
 For the first exercise of lesson 2, we are going to build a data frame from scratch.  
 
+
 1.) If you are using a script to keep all of your code, make sure it is open and enter you code in there.
 
 2.) Create three vectors.  One with numeric data, one with character, and a third with boolean data.  Each vector must contain 10 values.
@@ -556,6 +557,8 @@ nla_wq$CHLA
 
 ##Exercise 2.2
 From here on out I hope to have these exercises begin to build on each other. We may not do that 100%, but there should at least be a modicum of continuity. For this exercise we are going to grab some data, look at that data, and be able to describe some basic information about that dataset.  The data we are using is the 2007 National Lakes Assessment.
+
+[data](https://raw.githubusercontent.com/USEPA/region1_r/master/data/nla_dat.csv)
 
 1. Let's focus on using a script for the rest of our exercises.  Create a new script in RStudio.  Name it "nla_analysis.R"
 2. As you write the script, comment as you go. Remember comments are lines that begin with `#`.
