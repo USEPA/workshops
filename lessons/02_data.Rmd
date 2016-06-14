@@ -65,16 +65,27 @@ is.na()#Will tell you if a value is NA
 ###Data structures
 The next set of information relates to the many data structures in R.  
 
+Great table borrowed library from [Hadley Wickham's Advanced R Book](http://adv-r.had.co.nz/Data-structures.html).
+
+|             | Homogeneous   | Heterogeneous |
+|-------------|---------------|---------------|
+| 1d          | Atomic vector | List          |
+| 2d          | Matrix        | Data frame    |
+| nd          | Array         | 	            |
+
 The data structures in base R include:
 
 - vector
 - list
 - matrix
 - data frame
+- array
+
+Plus, 
 - factors
 - tables
 
-Our efforts will focus on vectors, and data frames.  We will discuss just  We will leave it to your curiousity to explore the basics of lists, factors, matrix, and table data structures.
+Our efforts will focus on vectors, and data frames.  We will discuss just the basics and will leave it to your curiousity to explore the basics of lists, factors, matrix, arrays, and table data structures.
 
 ### Vectors
 A vector is the most common and basic data structure in `R` and is pretty much the workhorse of R. 
