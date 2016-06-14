@@ -11,19 +11,23 @@ R has many uses at EPA, including Region One's Boston Office and Chelmsford Lab
 
 ## Examples ##
 Some interesting, but far from exhaustive, ones below
+
 ### Water ###
 * Mystic River data analysis and grade validation.
 * USGS gage data
 * NWIS water quality data
 * Lake Champlain water quality dataset (Massive multi-site multi-parameter since 1990)
+
 ### Air ###
 * National air monitoring analysis.
-* 
+
 ### Waste ###
 * Sample result analysis, static or geospatial
+
 ### Enforcement ###
 * Analysis of ICIS data, ECHO data, etc
+
 ### Chemistry ###
 * Construction and analysis of big data sets
 * Chemometrics (chemical fingerprinting)
-* 
+
