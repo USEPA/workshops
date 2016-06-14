@@ -15,8 +15,7 @@ This workshop will be held on June 16, 2016.
 
 | Time                | Topic                                     | 
 | ------------------- | ----------------------------------------- | 
-| 8:30 AM - 8:40 AM   | Welcome and Logistics                     |
-| 8:40 AM - 9:15 AM   | Introductions and Motivation              |
+| 8:30 AM - 9:15 AM   | Welcome, Introductions, and Motivation    |
 | 9:15 AM - 10:45 AM  | [R Basics](lessons/01_basics.md)([pdf](https://github.com/USEPA/region1_r/raw/master/lessons/01_basics.pdf))          | 
 | 10:45 PM - 11:00 AM | *BREAK*                                   |
 | 11:00 AM - 12:30 PM | [Data in R](lessons/02_data.md)([pdf](https://github.com/USEPA/region1_r/raw/master/lessons/02_data.pdf))           |       
