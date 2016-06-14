@@ -9,9 +9,6 @@ if(!require("ggplot2")){
 if(!require("dplyr")){
   install.packages("dplyr")
 }
-if(!require("randomForest")){
-  install.packages("randomForest")
-}
 library("ggplot2")
 library("dplyr")
 ```
@@ -126,7 +123,7 @@ library("ggplot2")
 library("dplyr")
 
 #You can also access functions without loading by using package::function
-randomForest::randomForest
+dplyr::mutate
 
 ```
 

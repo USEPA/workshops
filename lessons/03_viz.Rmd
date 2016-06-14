@@ -9,9 +9,6 @@ if(!require("ggplot2")){
 if(!require("dplyr")){
   install.packages("dplyr")
 }
-if(!require("randomForest")){
-  install.packages("randomForest")
-}
 library("ggplot2")
 library("dplyr")
 nla_wq <- read.csv("../data/nla_dat.csv",stringsAsFactors = FALSE)
