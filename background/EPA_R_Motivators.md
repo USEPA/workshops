@@ -1,5 +1,5 @@
 # Motivations for learning and using R at EPA #
-R has meany uses at EPA, including Region One's Boston Office and Chelmsford Lab
+R has many uses at EPA, including Region One's Boston Office and Chelmsford Lab
 ## Powerful ##
 
 ## Free ##
