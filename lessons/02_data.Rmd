@@ -65,7 +65,7 @@ is.na()#Will tell you if a value is NA
 ###Data structures
 The next set of information relates to the many data structures in R.  
 
-Great table borrowed library from [Hadley Wickham's Advanced R Book](http://adv-r.had.co.nz/Data-structures.html).
+Great table borrowed from [Hadley Wickham's Advanced R Book](http://adv-r.had.co.nz/Data-structures.html).
 
 |             | Homogeneous   | Heterogeneous |
 |-------------|---------------|---------------|
