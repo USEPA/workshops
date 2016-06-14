@@ -17,6 +17,7 @@ Some interesting, but far from exhaustive, ones below
 * USGS gage data
 * NWIS water quality data
 * Lake Champlain water quality dataset (Massive multi-site multi-parameter since 1990)
+* Review and analyze EPA real-time buoy data.
 
 ### Air ###
 * National air monitoring analysis.
