@@ -31,7 +31,7 @@ Find the RStudio shortcut or menu (OS specific of course) and fire it up.  Once 
 ![rstudio](figures/rstudio.jpg)
 
 ###Create a Project
-Projects are a way to organize your work in RStudio.  Essentially they are simply folders, but with a few added files so that you can manage some options on a per project basis.  To create a new project use File:New Project, or use the drop-down on the top right of the RStudio window.  It will look like this after you select "New Project..."
+Projects are a way to organize your work in RStudio.  Essentially they are folders, but with a few added files so that you can manage some options on a per project basis.  To create a new project use File:New Project, or use the drop-down on the top right of the RStudio window.  It will look like this after you select "New Project..."
 
 ![rstudio proj](figures/rstudio_proj.jpg)
 
@@ -54,9 +54,9 @@ This exercise will make sure R and RStudio are working and that you can get arou
 
 ##Functions and basic syntax
 
-R is built off of functions and most of everything you do uses a function.
+R is a functional programming language and as such, most everything you do uses a function.
 
-The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many (> 3000).  For instance:
+The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many (2823).  For instance:
 
 
 ```r
@@ -83,21 +83,21 @@ rnorm(100,mean=10,sd=2)
 ```
 
 ```
-##   [1] 14.105756 12.163354  9.599973 11.458606  7.676904  7.679912  6.591814
-##   [8]  3.425657 12.236461 11.865465  6.908345  8.529613  8.882183 11.255186
-##  [15] 12.317696  9.617902 12.122028 12.525939  8.364473  9.157624  7.295302
-##  [22] 12.156662  8.884022 11.302141 10.850941  9.429422  7.430100  5.969190
-##  [29] 12.451725  8.113194  9.667341 13.547652 12.401104  7.327557 10.072500
-##  [36] 12.867946 10.151675  7.507546 11.048041 11.723182  9.801152  8.589348
-##  [43]  3.962446 11.904785 11.229140  9.767907  7.644976  9.418052  9.878547
-##  [50]  7.668918  7.413560 12.500586 10.253458  9.795602  9.697321  8.031294
-##  [57] 13.985808 10.236147  8.999254  9.831509 10.722130 10.827505 10.317637
-##  [64] 12.662957  8.718716 11.912948  7.620004 10.117708 12.233925 14.158935
-##  [71] 10.900524 12.933242  7.833351 13.722574 10.105444 10.408570  7.441343
-##  [78] 13.802948 10.724574  5.890493 10.138410 10.784090  6.376190 13.173173
-##  [85] 12.230739 12.498720  9.117153  9.012161 10.815029 10.981312 12.228272
-##  [92]  8.502757  8.175024 11.914026 12.596813  9.027606 11.898012 10.060036
-##  [99] 12.678304  9.624666
+##   [1] 10.788392 11.155478 12.639479  8.855100 10.216107  8.899601  8.604532
+##   [8]  9.538922 10.084200  8.381321 11.211275  7.257009 10.161647 11.821492
+##  [15]  6.988609  6.146336  8.208657  8.349062 12.903420 12.935442 12.913890
+##  [22] 10.195469  9.147278 10.572679  6.692033 12.618637 10.745729 12.886184
+##  [29] 12.683379  4.547621 11.606484  9.215311 12.435786  9.298833 11.519661
+##  [36] 10.878844 12.411003 13.667937 11.349032  9.477155 10.687313  9.834607
+##  [43] 12.472979 10.208433  9.448288 10.459834 10.961497 10.292313 12.708175
+##  [50]  9.677913  6.781384 11.028625  5.154378  9.612159 11.184971  7.899426
+##  [57] 11.879958 14.998753  7.457632 14.622738  8.277561  7.811355 11.347284
+##  [64] 14.360350  9.790868  8.183410 11.699474 10.260341 11.905316  9.110214
+##  [71]  8.771096  9.879211  8.502758  9.044604 12.092409 11.598566 10.446180
+##  [78] 11.250886  8.503182  5.926362  7.126032  9.760792  5.797512 10.927216
+##  [85] 14.503428 10.236815 10.229329  9.200188 11.903691  8.804072  7.434135
+##  [92]  8.700374 10.661146 11.225094 12.031341 11.531519 10.342123 10.209210
+##  [99]  9.233260  5.280885
 ```
 
 ```r
@@ -106,7 +106,7 @@ mean(rnorm(100))
 ```
 
 ```
-## [1] 0.0476767
+## [1] -0.128326
 ```
 
 ```r
@@ -115,7 +115,7 @@ sum(rnorm(100))
 ```
 
 ```
-## [1] -2.757673
+## [1] -2.415472
 ```
 
 ```r
@@ -147,7 +147,7 @@ install.packages("ggplot2")
 install.packages("dplyr")
 
 #You can also put more than one in like
-install.packages(c("randomForest","formatR"))
+install.packages(c("quickmapr","formatR"))
 ```
 
 ###Loading packages
