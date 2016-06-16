@@ -4,10 +4,12 @@ output: pdf_document
 ---
 \Huge
 
-1. Welcome, Introduce me, stickies, 
+1. Welcome, Introductions, Motivations
 2. Show GitHub
 3. Logistics of class
     - Schedule Timing
+    - Stickies
+    - Helpers
 4. Download code
 5. Rstudio walk through
     - open
