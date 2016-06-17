@@ -218,13 +218,14 @@ Completely creating a data frame from scratch is useful (especially when you sta
 `read.csv()` is a specialized version of `read.table()` that focuses on, big surprise here, .csv files. This command assumes a header row with column names and that the delimiter is a comma. The expected no data value is NA and by default, strings are converted to factors by default (this can trip people up).
 
 Source files for `read.csv()` can either be on a local hard drive or, and this is pretty cool, on the web. We will be using the later for our examples and exercises. If you had a local file it would be accessed like `mydf <- read.csv("C:/path/to/local/file.csv")`. As an aside, paths and use of forward vs back slash is important. R is looking for forward slashes ("/"), or unix-like paths. You can use these in place of the back slash and be fine. You can use a back slash but it needs to be a double back slash ("\"). This is becuase the single backslash in an escape character that is used to indicate things like newlines or tabs. 
-For today's workshop we will focus on grabbing data from a local file.  Follow [this link](https://raw.githubusercontent.com/USEPA/region1_r/master/data/nla_dat.csv?token=AFL8S5sdVQxShPQXn1fAivwXw8dCLi0Pks5XKkIwwA%3D%3D) to download the data to your machine. 
+For today's workshop we will focus on grabbing data from a file on the web. 
 
 Let's give it a try.
 
 ```{r readcsv}
-#Grab data from a local file
-nla_wq <- read.csv("../data/nla_dat.csv",stringsAsFactors = FALSE)
+#Grab data from a web file
+nla_url <- "https://usepa.github.io/region1_r/nla_dat.csv"
+nla_wq <- read.csv(nla_url,stringsAsFactors = FALSE)
 head(nla_wq)
 str(nla_wq)
 dim(nla_wq)
