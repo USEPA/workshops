@@ -1,6 +1,6 @@
 # Introduction to R for Analysis of Coastal and Estuarine Data
 
-Instructors: *Dr. Jeffrey Hollister, jhollist@epa.gov, Dr. Marcus W. Beck, beck.marcus@epa.gov*
+Instructors: *Dr. Jeffrey Hollister, hollister.jeff@epa.gov, Dr. Marcus W. Beck, beck.marcus@epa.gov*
 
 *Sunday Nov. 5, 2017, 8:30am - 4:30pm* 
 
