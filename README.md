@@ -1,8 +1,4 @@
----
-output:
-  word_document: default
-  pdf_document: default
----
+
 # US EPA Region 7 Introduction to R Workshop
 
 This repository contains materials for an R workshop for USEPA Region 7 New England Regional Staff. The workshop will provide attendees with an introduction to the R Language for statistical computing and will cover the folling topics:
