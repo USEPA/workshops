@@ -16,31 +16,44 @@ In this first lesson we are going to go over the very basics of R, cover some ba
 - [Exercise 1.1](#exercise-11)
 - [Exercise 1.2](#exercise-12)
 - [Exercise 1.3](#exercise-13)
+- [Exercise 1.3](#exercise-14)
 
 ## Code
-Before we get started, the code for all three lessons has been consolidated into a single R script.  If you'd like, download [`r1_intro_code.R`](https://raw.githubusercontent.com/USEPA/region1_r/master/lessons/r1_intro_code.R) and follow along during the live coding. 
+Before we get started, the code for all three lessons has been consolidated into a single R script.  If you'd like, download [`r7_intro_code.R`](https://raw.githubusercontent.com/USEPA/region7_r/master/lessons/r7_intro_code.R) and follow along during the live coding. 
 
-##Working with R and RStudio
+## Working with R and RStudio
 Over the last several years, RStudio has become a very popular IDE (integrated development environment) for R. In addition to interacting with the R Console, RStudio has many extras built in including version control integration, package building, reproducible research, de-bugging, and built-in text editor with smart highlighting and code completion.  This is the environment we will be using for the workshop and should set you up for continued learning with R.
 
 Before we get to the first exercise, let's spend a bit of time working with RStudio. Just watch as I demo this.  The first exercise will have you doing these steps.
 
-###Fire up R and RStudio
+### Fire up R and RStudio
 Find the RStudio shortcut or menu (OS specific of course) and fire it up.  Once done, it should look something like:
 
 ![rstudio](figures/rstudio.jpg)
 
-###Create a Project
+Let's take some time to look around.  I'll show each of the different sections, or "panes" as they are known.
+
+### Projects
+
 Projects are a way to organize your work in RStudio.  Essentially they are folders, but with a few added files so that you can manage some options on a per project basis.  To create a new project use File:New Project, or use the drop-down on the top right of the RStudio window.  It will look like this after you select "New Project..."
 
 ![rstudio proj](figures/rstudio_proj.jpg)
 
-###Create a Script
+### Scripts
+
 Scripts are text files that hold the code you write.  We will work both with scripts and the console during this workshop.  To create a new script you use "File:New File:R Script".
 
 ![rstudio script](figures/rstudio_script.jpg)
 
-##Exercise 1.1
+
+### Interacting with R inside of RStudio
+
+Once you have functions in your script, they still need to be sent to the R console.  There are several ways to do this.  There is the old stand-by of copying and pasting, but this is a bit cumbersome.  Instead you can use the `Run` button in the upper right corner of the source pane, or even better (I think so, anyway) you can use `ctrl-enter`.  Both the `Run` buttons and `ctrl-enter` will send the line that your cursor is on and move to the next line or it will send just selected text.
+
+![rstudio-script](figures/rstudio_run.jpg)
+
+## Exercise 1.1
+
 This exercise will make sure R and RStudio are working and that you can get around the basics in RStudio.  Use the green stickies when you have completed, and red stickies if you are running into problems.
 
 1. Start RStudio: To start both R and RStudio requires only firing up RStudio.  RStudio should be available from All Programs at the Start Menu.  Fire up RStudio. 
@@ -51,12 +64,13 @@ This exercise will make sure R and RStudio are working and that you can get arou
 
 4. Create a new "R Script" in the Source Pane, save that file into your newly created project and name it "r1_introR.R". It'll just be a blank text file at this point.
 
+5. Add a single line to this script with the following text: `ls()`.  This is an R function that lists objects in your current environment.  Use the various ways we showed to send this command to the R Console.  Also, try typing this directly into the R Console and hit `Enter` to run it.  
 
-##Functions and basic syntax
+## Functions and basic syntax 
 
 R is a functional programming language and as such, most everything you do uses a function.
 
-The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many (2950).  For instance:
+The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many (3059 functions, to be exact).  Some examples:
 
 
 ```r
@@ -83,21 +97,21 @@ rnorm(100,mean=10,sd=2)
 ```
 
 ```
-##   [1]  6.186882  9.250700 12.041430 12.110307  7.929990 14.187112  6.852703
-##   [8]  9.848336  8.976086 10.090024  8.457648 11.228188  6.190831  7.772861
-##  [15] 11.261785 11.084677 11.604935  9.778471 12.042450 12.901129  8.714449
-##  [22]  9.950682 11.592251 10.930698 11.880839  8.149720 10.597041  6.792525
-##  [29] 11.721401 13.516732  9.214421 12.384373  8.676380  8.132918  9.854282
-##  [36] 11.736919  8.480102  9.778095  9.941451  7.776226  6.796257 10.924626
-##  [43]  7.445235 10.462890 11.490767 10.562844  8.934723 11.228199 14.258261
-##  [50] 10.612838 11.725990 11.794129 10.189608 10.317792 12.850554 10.838332
-##  [57] 11.328162 13.551919  9.896555  8.847116  8.513586  8.452259 11.952175
-##  [64]  8.698931  6.167393 11.710668 13.937679 10.339667  9.986179  9.921961
-##  [71]  8.561251  7.964678 13.726969  9.734932 10.343110  8.633302  6.929595
-##  [78]  7.692809 11.106837 12.523735 14.181972  8.149250  9.412582  7.879285
-##  [85] 10.046101  7.650297  9.880692 10.260639 11.463771  8.396608 10.019949
-##  [92]  7.194296  8.033039 10.477512  9.223564 11.573705  9.193531  6.734388
-##  [99]  9.070560 12.231105
+##   [1] 10.557129  9.629633  9.106013  8.760871  7.325930 14.297621 11.255741
+##   [8] 12.946728 10.237757  9.830945  7.005941 11.695842  9.772867 11.876579
+##  [15] 11.925480  9.956818  6.836114 11.426112  8.258574 10.117960 11.094266
+##  [22]  9.282609  9.808691  9.291626  9.242510  9.381433 11.052098  9.470096
+##  [29] 11.966235 11.528156  7.767759  8.418277  7.036037  8.067767 10.247246
+##  [36]  6.923245 11.978185 13.209618  8.144246  6.814691 11.466304 11.210415
+##  [43]  9.746202 10.864511  9.697986 10.652606  8.703394  9.786705 12.199234
+##  [50]  6.644590 10.953740  6.968339 10.291776  6.712193 10.349481 11.608491
+##  [57]  9.994634  6.934086 11.229056 12.080422  9.351994  5.661690 11.539832
+##  [64] 10.358482  9.423947 11.855324 11.556937 11.218017 10.421197  7.238703
+##  [71] 13.966165 17.281767 12.309158 11.355309 10.167995 11.221382 10.234518
+##  [78] 11.773043  7.523982  7.441546 11.139951  7.158095  8.953710 13.346811
+##  [85]  9.990186  6.484184  8.193713  7.628234  5.672780  8.200881  7.975403
+##  [92]  7.889632 11.285879 10.816013  6.129958  6.488256 11.395866 10.520999
+##  [99] 13.347104 11.074256
 ```
 
 ```r
@@ -106,7 +120,7 @@ mean(rnorm(100))
 ```
 
 ```
-## [1] 0.005524206
+## [1] 0.02580525
 ```
 
 ```r
@@ -115,8 +129,13 @@ sum(rnorm(100))
 ```
 
 ```
-## [1] 15.18562
+## [1] -27.06361
 ```
+
+### A few side notes 
+
+There are several other characters that commonly show up in R code.  These are:
+
 
 ```r
 # NOTES:
@@ -126,16 +145,26 @@ sum(rnorm(100))
 #{}
 ```
 
-A few side notes.  The `#` indicates a comment.  You can put whatever else you'd like after this, but on the same line as the `#`.  R will not evaluate it. Multiple `#####`, are still just seen as a comment.  When commenting your code, err on the side of too much!  Also, you will see `()`, `[]`, and `{}` used in R code.  The `()` indicates a function (almost always), the `[]` indicates indexing (grabbing values by the location), and the `{}` groups code that is meant to be run together and is usually used when programming functions in R.
+The `#` indicates a comment.  You can put whatever else you'd like after this, but on the same line as the `#`.  R will not evaluate it. Multiple `#####`, are still just seen as a comment.  When commenting your code, err on the side of too much!  Also, you will see `()`, `[]`, and `{}` used in R code.  The `()` indicates a function (almost always), the `[]` indicates indexing (grabbing values by the location), and the `{}` groups code that is meant to be run together and is usually used when programming functions in R.
 
-##Packages
+### Exercise 1.2
+
+For this second exercise we are going to get used to using some basic functions.  Use the green stickies when you have completed, and red stickies if you are running into problems.
+
+1. Save your work in a script, make sure "r1_introR.R" file you created in Exercise 1 is open. Enter your commands into this script.  
+2. Use the `print` function.  Remember, use the "run" button or `ctrl-enter` in RStudio to have R interpret it and print something to the screen.
+3. Combine `mean` and `rnorm` to return the mean value of a set of random numbers.
+
+## Packages
 
 The base install of R is quite powerful, but you will soon have a need or desire to go beyond this.  Packages provide this ability.  They are a standardized method for extending R with new methods, techniques, and programming functionality.  There is a lot to say about packages regarding finding them, using them, etc., but for now let's focus just on the basics.  
 
-###CRAN
-One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.
+### CRAN
 
-###Installing packages
+One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of 2017-02-03, there are 9994 on CRAN! 
+
+### Installing packages
+
 When a package gets installed, that means the source is downloaded and put into your library.  A default library location is set for you so no need to worry about that.  In fact on Windows most of this is pretty automatic.  Let's give it a shot.
 
 
@@ -150,7 +179,8 @@ install.packages("dplyr")
 install.packages(c("quickmapr","formatR"))
 ```
 
-###Loading packages
+### Using packages
+
 One source of confusion that many have is when they cannot access a package that they just installed. This is because getting to this point requires an extra step, loading (or attaching) the package.   
 
 
@@ -174,33 +204,16 @@ dplyr::mutate
 
 You will often see people use `require()` to load a package. It is better form to not do this. For a more detailed explanation of why `library()` and not `require()` see [Yihui Xie's post on the subject](http://yihui.name/en/2014/07/library-vs-require/.)
 
-###Some other useful commands
-There are a lot of other commands that help you navigate packages
+And now for a little pedantry.  You will often hear people use the terms "library" and "package" interchangeably.  This is not correct.  A package is what is submitted to CRAN, it is what contains a group of functions that address a common problem, and it is what has allowed R to expand.  A library is, more or less, where you packages are stored.  You have a path to that library and this is where R puts new packages that you install (e.g. via `install.packages()`).  These two terms are related, but most certainly different.  Apologies up front if I slip and use one when I actually mean the other...
 
+### Exercise 1.3
 
-```r
-#See what is installed
-installed.packages()
+For this third exercise we are going to get used to using some basic functions, working with scripts and not just the console, and look through some task views and get used to basic navigation around packages.  Use the green stickies when you have completed, and red stickies if you are running into problems.
 
-#What packages are available?
-available.packages()
+1. Install the `dplyr` and `ggplot2` packages.  Do this directly in the console
+2. Load `ggplot` and `dplyr` into your library.  Do this in your script.  Make sure that it gets sent to the console.
 
-#Update, may take a while if you have many packages installed
-update.packages()
-```
-
-Lastly, a quick note on packages and libraries.  You will often hear people use the terms interchangeably.  This is not correct.  A package is what is submitted to CRAN, it is what contains a group of functions that address a common problem, and it is what has allowed R to expand.  A library is, more or less, where you packages are stored.  You have a path to that library and this is where R puts new packages that you install (e.g. via `install.packages()`).  These two terms are related, but most certainly different.  Apologies up front if I slip and use one when I actually mean the other...
-
-##Exercise 1.2
-For this second exercise we are going to get used to using some basic functions, working with scripts and not just the console, and look through some task views and get used to basic navigation around packages.  Use the green stickies when you have completed, and red stickies if you are running into problems.
-
-1. If you wish to save your work in a script, make sure "r1_introR.R" file you created in Exercise 1 is open. Enter your commands into this script.  Otherwise, you may work directly in the console.
-2. Use the `print` function.  If using a script, copy/paste this or use the "run" button in RStudio to have R interpret it and print something to the screen.
-3. Combine `mean` and `rnorm` to return the mean value of a set of random numbers.
-4. Install the package, `dplyr`
-5. Load `dplyr` into your library.
-
-##Operators and objects
+## Operators and objects
 As I mentioned above, the console and using R interactively is very powerful.  We will do this quite a bit.  Let's spend a little time playing around in the console and learn a few new functions.
 
 R can be used as a calculator and a way to compare values.  Some examples of the basic operators:
@@ -305,7 +318,7 @@ R can be used as a calculator and a way to compare values.  Some examples of the
 
 That's neat, but so what...  
 
-Well, it could be interesting to do something with those values and save them for re-use.  We can do that with objects (everything in R is an object) and use the assignment operator, `<-`.  Know that object names cannot start with a number, contain spaces, or (most) special characters.  Underscore and periods are allowed.  
+Well, it could be interesting to do something with those values and save them for re-use.  We can do that with objects (everything in R is an object) and use the assignment operator, `<-`.  Know that object names cannot start with a number, contain spaces, or (most) special characters.  Underscores and periods are allowed.  
 
 **NOTE:** If you have experience with other, object-oriented languages, then just be aware that R objects, at least the general use of the term, are different.  
 
@@ -366,9 +379,7 @@ a2
 ## [1] "Larry"
 ```
 
-Now that we have a little experience working in the console and creating objects with `<-`, we might want to be able to do some additional things to navigate around, look at these objects etc.
-
-Some functions that you might find useful for working with your R workspace:
+Now that we have a little experience working in the console and creating objects with `<-`, we might want to be able to do some additional things to navigate around, look at these objects etc.  You can do a lot of this directly in RStudio in the Environment, History pane which is likely in the upper right corner of the window.  Alternatively, you can explore your current environment via the console.  Some functions that you might find useful for working with your R workspace:
 
 
 ```r
@@ -386,11 +397,11 @@ save.image("lesson2.RData")
 save(a,y,file="lesson2_ay.RData")
 ```
 
-This is probably a good spot to bring up quotes vs no quotes around arguments in a function.  This is a very common stumbling block.  The general rule is that no quotes are used only when referring to an object that currently exists.  Quotes are used in all other cases.  For instance in `save(a,y,file="lesson2_ay.RData")` the objects `a` and `y` are not quoted because they are objects in the workspace.  `file` is an argument of save and arguments are never quoted.  We quote the name of the file "lesson2_ay.RData" because it is not an R object but the name of a file to be created.  You will likely still have some issues with this.  My recommendation is to think about if it is an object in your R workspace or not.  If so, no quotes! This isn't foolproof, but works well most of the time.
+This is probably a good spot to bring up quotes vs no quotes around arguments in a function.  This is a very common stumbling block.  The general rule is that no quotes are used only when referring to an object that currently exists.  Quotes are used in all other cases.  For instance in `save(a,y,file="lesson2_ay.RData")` the objects `a` and `y` are not quoted because they are objects in the workspace.  `file` is an argument of save and argument names are never quoted.  We quote the name of the file "lesson2_ay.RData" because it is not an R object but the name of a file to be created.  You will likely still have some issues with this.  My recommendation is to think about if it is an object in your R workspace or not.  If so, no quotes! This isn't foolproof, but works well most of the time.
 
 Next thing you might want to do is navigate around your files and directories. While you can do this directly from the console, it is going to be better practice to mostly use RStudio projects to manage your folders, working directory etc.  You can also navigate using the Files, etc. pane. 
 
-##Exercise 1.3
+##Exercise 1.4
 1. Create two objects named `number1` and `number2` and give them the values of 25 and 4, respectively 
 2. Create two more objects named `string1` and `string2`, give them any character string that you would like. 
 3. Now using `number1`,`number2`, and the power of math create an object called `number3` that equals 100.
@@ -408,8 +419,11 @@ Getting help from the console is straightforward and can be done numerous ways.
 
 ```r
 #Using the help command/shortcut
+#When you know the name of a function
 help("print") #Help on the print command
 ?print #Help on the print command using the `?` shortcut
+
+#When you know the name of the package
 help(package="dplyr") #Help on the package `dplyr`
 
 #Don't know the exact name or just part of it
@@ -426,7 +440,7 @@ In addition to help from within R itself, CRAN and the R-Project have many resou
 - [Spatial Analysis Task View](http://cran.r-project.org/web/views/Spatial.html): One I use a lot that lists all the relevant packages for spatial analysis, GIS, and Remote Sensing in R. 
 
 ###Google and StackOverflow
-While the resources already mentioned are useful, often the quickest way is to just turn to Google.  However, a search for "R" is a bit challenging.  A few ways around this.  Google works great if you search for a given package.  You can search for mailing lists directly (i.e. "R-sig-geo").  An R specific search tool, [RSeek.org](http://www.rseek.org/), has been created to facilitate this.  
+While the resources already mentioned are useful, often the quickest way is to just turn to Google.  However, a search for "R" is a bit challenging.  A few ways around this.  Google works great if you search for a given package or function name.  You can search for mailing lists directly (i.e. "R-sig-geo").  An R specific search tool, [RSeek.org](http://www.rseek.org/), has been created to facilitate this.  
 
 One specific resource that I use quite a bit is [StackOverflow with the 'r' tag](http://stackoverflow.com/questions/tagged/r).  StackOverflow is a discussion forum for all things related to programming.  You can then use this tag and the search functions in StackOverflow and find answers to almost anything you can think of.
 
@@ -435,7 +449,6 @@ As I mention earlier, there are TOO many resources to mention and everyone has t
 
 - [R For Cats](http://rforcats.net/): Basic introduction site, meant to be a gentle and light-hearted introduction
 - [Advanced R](http://adv-r.had.co.nz/): Web home of Hadley Wickham's new book.  Gets into more advanced topics, but also covers the basics in a great way.
-- [Why R is Hard To Learn](http://r4stats.com/articles/why-r-is-hard-to-learn/): Long and detailed blog post discussing some of the challenges people often face when learning R.
 - [Other Resources](http://scicomp2014.edc.uri.edu/resources.html): A list I helped compile for a URI Class.
 - [CRAN Cheatsheets](http://cran.r-project.org/doc/contrib/Short-refcard.pdf): A good cheat sheet from the official source
 - [RStudio Cheatsheets](http://www.rstudio.com/resources/cheatsheets/): Additional cheat sheets from RStudio.  I am especially fond of the data wrangling one.

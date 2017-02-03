@@ -1,5 +1,4 @@
 ```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
-nf <- length(unlist(sapply(search()[grep("package",search())],lsf.str)))
 library(knitr)
 options(repos="http://cran.rstudio.com/")
 opts_chunk$set(fig.path="figures/",R.options=list(max.print=100),message = FALSE,
@@ -31,6 +30,7 @@ In this first lesson we are going to go over the very basics of R, cover some ba
 - [Exercise 1.1](#exercise-11)
 - [Exercise 1.2](#exercise-12)
 - [Exercise 1.3](#exercise-13)
+- [Exercise 1.3](#exercise-14)
 
 ## Code
 Before we get started, the code for all three lessons has been consolidated into a single R script.  If you'd like, download [`r7_intro_code.R`](https://raw.githubusercontent.com/USEPA/region7_r/master/lessons/r7_intro_code.R) and follow along during the live coding. 
@@ -45,14 +45,13 @@ Find the RStudio shortcut or menu (OS specific of course) and fire it up.  Once 
 
 ![rstudio](figures/rstudio.jpg)
 
-###Create a Project
+Let's take some time to look around.  I'll show each of the different sections, or "panes" as they are known.
+
 ### Projects
 
 Projects are a way to organize your work in RStudio.  Essentially they are folders, but with a few added files so that you can manage some options on a per project basis.  To create a new project use File:New Project, or use the drop-down on the top right of the RStudio window.  It will look like this after you select "New Project..."
 
 ![rstudio proj](figures/rstudio_proj.jpg)
-
-###Create a Script
 
 ### Scripts
 
@@ -60,12 +59,14 @@ Scripts are text files that hold the code you write.  We will work both with scr
 
 ![rstudio script](figures/rstudio_script.jpg)
 
-##Exercise 1.1
+
 ### Interacting with R inside of RStudio
 
-ADD THIS
+Once you have functions in your script, they still need to be sent to the R console.  There are several ways to do this.  There is the old stand-by of copying and pasting, but this is a bit cumbersome.  Instead you can use the `Run` button in the upper right corner of the source pane, or even better (I think so, anyway) you can use `ctrl-enter`.  Both the `Run` buttons and `ctrl-enter` will send the line that your cursor is on and move to the next line or it will send just selected text.
 
-### Exercise 1.1: Hello, RStudio
+![rstudio-script](figures/rstudio_run.jpg)
+
+## Exercise 1.1
 
 This exercise will make sure R and RStudio are working and that you can get around the basics in RStudio.  Use the green stickies when you have completed, and red stickies if you are running into problems.
 
@@ -166,8 +167,8 @@ And now for a little pedantry.  You will often hear people use the terms "librar
 
 For this third exercise we are going to get used to using some basic functions, working with scripts and not just the console, and look through some task views and get used to basic navigation around packages.  Use the green stickies when you have completed, and red stickies if you are running into problems.
 
-4. Install the package, `dplyr`
-5. Load `dplyr` into your library.
+1. Install the `dplyr` and `ggplot2` packages.  Do this directly in the console
+2. Load `ggplot` and `dplyr` into your library.  Do this in your script.  Make sure that it gets sent to the console.
 
 ## Operators and objects
 As I mentioned above, the console and using R interactively is very powerful.  We will do this quite a bit.  Let's spend a little time playing around in the console and learn a few new functions.
@@ -192,7 +193,7 @@ R can be used as a calculator and a way to compare values.  Some examples of the
 
 That's neat, but so what...  
 
-Well, it could be interesting to do something with those values and save them for re-use.  We can do that with objects (everything in R is an object) and use the assignment operator, `<-`.  Know that object names cannot start with a number, contain spaces, or (most) special characters.  Underscore and periods are allowed.  
+Well, it could be interesting to do something with those values and save them for re-use.  We can do that with objects (everything in R is an object) and use the assignment operator, `<-`.  Know that object names cannot start with a number, contain spaces, or (most) special characters.  Underscores and periods are allowed.  
 
 **NOTE:** If you have experience with other, object-oriented languages, then just be aware that R objects, at least the general use of the term, are different.  
 
@@ -213,9 +214,7 @@ a2<-"Larry"
 a2
 ```
 
-Now that we have a little experience working in the console and creating objects with `<-`, we might want to be able to do some additional things to navigate around, look at these objects etc.
-
-Some functions that you might find useful for working with your R workspace:
+Now that we have a little experience working in the console and creating objects with `<-`, we might want to be able to do some additional things to navigate around, look at these objects etc.  You can do a lot of this directly in RStudio in the Environment, History pane which is likely in the upper right corner of the window.  Alternatively, you can explore your current environment via the console.  Some functions that you might find useful for working with your R workspace:
 
 ```{r useful_functions_workspace, eval=FALSE}
 #List all objects in current workspace
@@ -232,11 +231,11 @@ save.image("lesson2.RData")
 save(a,y,file="lesson2_ay.RData")
 ```
 
-This is probably a good spot to bring up quotes vs no quotes around arguments in a function.  This is a very common stumbling block.  The general rule is that no quotes are used only when referring to an object that currently exists.  Quotes are used in all other cases.  For instance in `save(a,y,file="lesson2_ay.RData")` the objects `a` and `y` are not quoted because they are objects in the workspace.  `file` is an argument of save and arguments are never quoted.  We quote the name of the file "lesson2_ay.RData" because it is not an R object but the name of a file to be created.  You will likely still have some issues with this.  My recommendation is to think about if it is an object in your R workspace or not.  If so, no quotes! This isn't foolproof, but works well most of the time.
+This is probably a good spot to bring up quotes vs no quotes around arguments in a function.  This is a very common stumbling block.  The general rule is that no quotes are used only when referring to an object that currently exists.  Quotes are used in all other cases.  For instance in `save(a,y,file="lesson2_ay.RData")` the objects `a` and `y` are not quoted because they are objects in the workspace.  `file` is an argument of save and argument names are never quoted.  We quote the name of the file "lesson2_ay.RData" because it is not an R object but the name of a file to be created.  You will likely still have some issues with this.  My recommendation is to think about if it is an object in your R workspace or not.  If so, no quotes! This isn't foolproof, but works well most of the time.
 
 Next thing you might want to do is navigate around your files and directories. While you can do this directly from the console, it is going to be better practice to mostly use RStudio projects to manage your folders, working directory etc.  You can also navigate using the Files, etc. pane. 
 
-##Exercise 1.3
+##Exercise 1.4
 1. Create two objects named `number1` and `number2` and give them the values of 25 and 4, respectively 
 2. Create two more objects named `string1` and `string2`, give them any character string that you would like. 
 3. Now using `number1`,`number2`, and the power of math create an object called `number3` that equals 100.
@@ -253,14 +252,16 @@ Getting help from the console is straightforward and can be done numerous ways.
 
 ```{r help_from_console, eval=FALSE}
 #Using the help command/shortcut
+#When you know the name of a function
 help("print") #Help on the print command
 ?print #Help on the print command using the `?` shortcut
+
+#When you know the name of the package
 help(package="dplyr") #Help on the package `dplyr`
 
 #Don't know the exact name or just part of it
 apropos("print") #Returns all available functions with "print" in the name
 ??print #Shortcut, but also searches demos and vignettes in a formatted page
-
 ```
 
 ###Official R Resources
@@ -272,7 +273,7 @@ In addition to help from within R itself, CRAN and the R-Project have many resou
 - [Spatial Analysis Task View](http://cran.r-project.org/web/views/Spatial.html): One I use a lot that lists all the relevant packages for spatial analysis, GIS, and Remote Sensing in R. 
 
 ###Google and StackOverflow
-While the resources already mentioned are useful, often the quickest way is to just turn to Google.  However, a search for "R" is a bit challenging.  A few ways around this.  Google works great if you search for a given package.  You can search for mailing lists directly (i.e. "R-sig-geo").  An R specific search tool, [RSeek.org](http://www.rseek.org/), has been created to facilitate this.  
+While the resources already mentioned are useful, often the quickest way is to just turn to Google.  However, a search for "R" is a bit challenging.  A few ways around this.  Google works great if you search for a given package or function name.  You can search for mailing lists directly (i.e. "R-sig-geo").  An R specific search tool, [RSeek.org](http://www.rseek.org/), has been created to facilitate this.  
 
 One specific resource that I use quite a bit is [StackOverflow with the 'r' tag](http://stackoverflow.com/questions/tagged/r).  StackOverflow is a discussion forum for all things related to programming.  You can then use this tag and the search functions in StackOverflow and find answers to almost anything you can think of.
 
@@ -281,7 +282,6 @@ As I mention earlier, there are TOO many resources to mention and everyone has t
 
 - [R For Cats](http://rforcats.net/): Basic introduction site, meant to be a gentle and light-hearted introduction
 - [Advanced R](http://adv-r.had.co.nz/): Web home of Hadley Wickham's new book.  Gets into more advanced topics, but also covers the basics in a great way.
-- [Why R is Hard To Learn](http://r4stats.com/articles/why-r-is-hard-to-learn/): Long and detailed blog post discussing some of the challenges people often face when learning R.
 - [Other Resources](http://scicomp2014.edc.uri.edu/resources.html): A list I helped compile for a URI Class.
 - [CRAN Cheatsheets](http://cran.r-project.org/doc/contrib/Short-refcard.pdf): A good cheat sheet from the official source
 - [RStudio Cheatsheets](http://www.rstudio.com/resources/cheatsheets/): Additional cheat sheets from RStudio.  I am especially fond of the data wrangling one.

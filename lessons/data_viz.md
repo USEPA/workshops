@@ -281,7 +281,7 @@ scatter_p_base<-scatter_p +
   theme(panel.background = element_blank(), 
         panel.grid = element_blank(),
         panel.border = element_rect(fill = NA),
-        text=element_text(family="Times",colour="red",size=24))
+        text=element_text(family="serif",colour="red",size=24))
 scatter_p_base
 ```
 

@@ -1,8 +1,4 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
+
 ```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
 library(knitr)
 options(repos="http://cran.rstudio.com/")

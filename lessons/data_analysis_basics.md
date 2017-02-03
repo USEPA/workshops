@@ -1,5 +1,6 @@
 
 
+
 # Introduction
 This notebook will cover calculating basic statistics with R, conducting statistical tests, and building simple linear models.  We will use the 2007 NLA data for the examples and show steps from getting data, to cleaning data, to analysis and statistics.
 
@@ -50,7 +51,7 @@ tbl_df(nla)
 ```
 
 ```
-## # A tibble: 974 Ã— 10
+## # A tibble: 974 × 10
 ##          SITE_ID    ST  EPA_REG RT_NLA LAKE_ORIGIN   PTL   NTL   TURB
 ##            <chr> <chr>    <chr>  <chr>       <chr> <int> <int>  <dbl>
 ## 1  NLA06608-0001    MT Region_8    REF     NATURAL     6   151  0.474
@@ -244,7 +245,7 @@ orig_stats_ntl
 ```
 
 ```
-## # A tibble: 2 Ã— 4
+## # A tibble: 2 × 4
 ##   LAKE_ORIGIN  mean_ntl median_ntl    sd_ntl
 ##         <chr>     <dbl>      <dbl>     <dbl>
 ## 1    MAN-MADE  842.8644      544.5  961.5889
@@ -282,21 +283,21 @@ We can look at histograms and density:
 hist(nla$NTL)
 ```
 
-![plot of chunk histogram_density](figure/histogram_density-1.png)
+![plot of chunk histogram_density](figures/histogram_density-1.png)
 
 ```r
 #Log transform it
 hist(log1p(nla$NTL)) #log1p adds one to deal with zeros
 ```
 
-![plot of chunk histogram_density](figure/histogram_density-2.png)
+![plot of chunk histogram_density](figures/histogram_density-2.png)
 
 ```r
 #Density plot
 plot(density(log1p(nla$NTL)))
 ```
 
-![plot of chunk histogram_density](figure/histogram_density-3.png)
+![plot of chunk histogram_density](figures/histogram_density-3.png)
 
 And boxplots:
 
@@ -306,20 +307,20 @@ And boxplots:
 boxplot(nla$CHLA)
 ```
 
-![plot of chunk boxplots](figure/boxplots-1.png)
+![plot of chunk boxplots](figures/boxplots-1.png)
 
 ```r
 boxplot(log1p(nla$CHLA))
 ```
 
-![plot of chunk boxplots](figure/boxplots-2.png)
+![plot of chunk boxplots](figures/boxplots-2.png)
 
 ```r
 #Boxplots per group
 boxplot(log1p(nla$CHLA)~nla$EPA_REG)
 ```
 
-![plot of chunk boxplots](figure/boxplots-3.png)
+![plot of chunk boxplots](figures/boxplots-3.png)
 
 And scatterplots:
 
@@ -329,14 +330,14 @@ And scatterplots:
 plot(log1p(nla$PTL),log1p(nla$CHLA))
 ```
 
-![plot of chunk scatterplots](figure/scatterplots-1.png)
+![plot of chunk scatterplots](figures/scatterplots-1.png)
 
 ```r
 #A matrix of scatterplot
 plot(log1p(nla[,6:10]))
 ```
 
-![plot of chunk scatterplots](figure/scatterplots-2.png)
+![plot of chunk scatterplots](figures/scatterplots-2.png)
 
 
 Lastly, it might be nice to look at these on a per variable basis or on some grouping variable. First we could look at the density of each measured variable. This requires some manipulation of the data which will allow us to use facets in ggplot to create a density distribution for each of the variables.
@@ -356,7 +357,7 @@ dens_gg <-ggplot(nla_gather,aes(x=log1p(value))) +
 dens_gg
 ```
 
-![plot of chunk fancy_density](figure/fancy_density-1.png)
+![plot of chunk fancy_density](figures/fancy_density-1.png)
 
 Next we could look at a scatterplot matrix of the relationship between phosphorus and chlorophyl by each EPA Region.  No need to re-do the shape of the data frame for this one.
 
@@ -368,7 +369,7 @@ ggplot(nla, aes(x=log1p(PTL),y=log1p(NTL))) +
   facet_wrap("EPA_REG")
 ```
 
-![plot of chunk fancy_matrix](figure/fancy_matrix-1.png)
+![plot of chunk fancy_matrix](figures/fancy_matrix-1.png)
 
 ### Challenge
 1. Build a scatterplot that looks at the relationship between PTL and NTL.  
@@ -432,7 +433,7 @@ ANOVA can get involved quickly and I haven't done them since my last stats class
 boxplot(log1p(nla$CHLA)~nla$RT_NLA)
 ```
 
-![plot of chunk simple_anova](figure/simple_anova-1.png)
+![plot of chunk simple_anova](figures/simple_anova-1.png)
 
 ```r
 # One way analysis of variance
