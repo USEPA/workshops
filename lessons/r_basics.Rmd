@@ -33,29 +33,40 @@ In this first lesson we are going to go over the very basics of R, cover some ba
 - [Exercise 1.3](#exercise-13)
 
 ## Code
-Before we get started, the code for all three lessons has been consolidated into a single R script.  If you'd like, download [`r7_intro_code.R`](https://raw.githubusercontent.com/USEPA/region1_r/master/lessons/r1_intro_code.R) and follow along during the live coding. 
+Before we get started, the code for all three lessons has been consolidated into a single R script.  If you'd like, download [`r7_intro_code.R`](https://raw.githubusercontent.com/USEPA/region7_r/master/lessons/r7_intro_code.R) and follow along during the live coding. 
 
-##Working with R and RStudio
+## Working with R and RStudio
 Over the last several years, RStudio has become a very popular IDE (integrated development environment) for R. In addition to interacting with the R Console, RStudio has many extras built in including version control integration, package building, reproducible research, de-bugging, and built-in text editor with smart highlighting and code completion.  This is the environment we will be using for the workshop and should set you up for continued learning with R.
 
 Before we get to the first exercise, let's spend a bit of time working with RStudio. Just watch as I demo this.  The first exercise will have you doing these steps.
 
-###Fire up R and RStudio
+### Fire up R and RStudio
 Find the RStudio shortcut or menu (OS specific of course) and fire it up.  Once done, it should look something like:
 
 ![rstudio](figures/rstudio.jpg)
 
 ###Create a Project
+### Projects
+
 Projects are a way to organize your work in RStudio.  Essentially they are folders, but with a few added files so that you can manage some options on a per project basis.  To create a new project use File:New Project, or use the drop-down on the top right of the RStudio window.  It will look like this after you select "New Project..."
 
 ![rstudio proj](figures/rstudio_proj.jpg)
 
 ###Create a Script
+
+### Scripts
+
 Scripts are text files that hold the code you write.  We will work both with scripts and the console during this workshop.  To create a new script you use "File:New File:R Script".
 
 ![rstudio script](figures/rstudio_script.jpg)
 
 ##Exercise 1.1
+### Interacting with R inside of RStudio
+
+ADD THIS
+
+### Exercise 1.1: Hello, RStudio
+
 This exercise will make sure R and RStudio are working and that you can get around the basics in RStudio.  Use the green stickies when you have completed, and red stickies if you are running into problems.
 
 1. Start RStudio: To start both R and RStudio requires only firing up RStudio.  RStudio should be available from All Programs at the Start Menu.  Fire up RStudio. 
@@ -66,12 +77,13 @@ This exercise will make sure R and RStudio are working and that you can get arou
 
 4. Create a new "R Script" in the Source Pane, save that file into your newly created project and name it "r1_introR.R". It'll just be a blank text file at this point.
 
+5. Add a single line to this script with the following text: `ls()`.  This is an R function that lists objects in your current environment.  Use the various ways we showed to send this command to the R Console.  Also, try typing this directly into the R Console and hit `Enter` to run it.  
 
-##Functions and basic syntax
+## Functions and basic syntax 
 
 R is a functional programming language and as such, most everything you do uses a function.
 
-The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many (`r nf `).  For instance:
+The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many (`r pkgs <- search(); pkgs <- pkgs[grep("package:",pkgs)]; length(unlist(sapply(pkgs,lsf.str)))` functions, to be exact).  Some examples:
 
 ```{r function_examples}
 #Print
@@ -84,7 +96,13 @@ rnorm(100,mean=10,sd=2)
 mean(rnorm(100))
 #Sum
 sum(rnorm(100))
+```
 
+### A few side notes 
+
+There are several other characters that commonly show up in R code.  These are:
+
+```{r common}
 # NOTES:
 #Comments
 #()
@@ -92,16 +110,26 @@ sum(rnorm(100))
 #{}
 ```
 
-A few side notes.  The `#` indicates a comment.  You can put whatever else you'd like after this, but on the same line as the `#`.  R will not evaluate it. Multiple `#####`, are still just seen as a comment.  When commenting your code, err on the side of too much!  Also, you will see `()`, `[]`, and `{}` used in R code.  The `()` indicates a function (almost always), the `[]` indicates indexing (grabbing values by the location), and the `{}` groups code that is meant to be run together and is usually used when programming functions in R.
+The `#` indicates a comment.  You can put whatever else you'd like after this, but on the same line as the `#`.  R will not evaluate it. Multiple `#####`, are still just seen as a comment.  When commenting your code, err on the side of too much!  Also, you will see `()`, `[]`, and `{}` used in R code.  The `()` indicates a function (almost always), the `[]` indicates indexing (grabbing values by the location), and the `{}` groups code that is meant to be run together and is usually used when programming functions in R.
 
-##Packages
+### Exercise 1.2
+
+For this second exercise we are going to get used to using some basic functions.  Use the green stickies when you have completed, and red stickies if you are running into problems.
+
+1. Save your work in a script, make sure "r1_introR.R" file you created in Exercise 1 is open. Enter your commands into this script.  
+2. Use the `print` function.  Remember, use the "run" button or `ctrl-enter` in RStudio to have R interpret it and print something to the screen.
+3. Combine `mean` and `rnorm` to return the mean value of a set of random numbers.
+
+## Packages
 
 The base install of R is quite powerful, but you will soon have a need or desire to go beyond this.  Packages provide this ability.  They are a standardized method for extending R with new methods, techniques, and programming functionality.  There is a lot to say about packages regarding finding them, using them, etc., but for now let's focus just on the basics.  
 
-###CRAN
-One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.
+### CRAN
 
-###Installing packages
+One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of `r format(Sys.time(), "%Y-%m-%d")`, there are `r nrow(available.packages())` on CRAN! 
+
+### Installing packages
+
 When a package gets installed, that means the source is downloaded and put into your library.  A default library location is set for you so no need to worry about that.  In fact on Windows most of this is pretty automatic.  Let's give it a shot.
 
 
@@ -115,7 +143,8 @@ install.packages("dplyr")
 install.packages(c("quickmapr","formatR"))
 ```
 
-###Loading packages
+### Using packages
+
 One source of confusion that many have is when they cannot access a package that they just installed. This is because getting to this point requires an extra step, loading (or attaching) the package.   
 
 ```{r load_package}
@@ -131,32 +160,16 @@ dplyr::mutate
 
 You will often see people use `require()` to load a package. It is better form to not do this. For a more detailed explanation of why `library()` and not `require()` see [Yihui Xie's post on the subject](http://yihui.name/en/2014/07/library-vs-require/.)
 
-###Some other useful commands
-There are a lot of other commands that help you navigate packages
+And now for a little pedantry.  You will often hear people use the terms "library" and "package" interchangeably.  This is not correct.  A package is what is submitted to CRAN, it is what contains a group of functions that address a common problem, and it is what has allowed R to expand.  A library is, more or less, where you packages are stored.  You have a path to that library and this is where R puts new packages that you install (e.g. via `install.packages()`).  These two terms are related, but most certainly different.  Apologies up front if I slip and use one when I actually mean the other...
 
-```{r other_packages, eval=FALSE}
-#See what is installed
-installed.packages()
+### Exercise 1.3
 
-#What packages are available?
-available.packages()
+For this third exercise we are going to get used to using some basic functions, working with scripts and not just the console, and look through some task views and get used to basic navigation around packages.  Use the green stickies when you have completed, and red stickies if you are running into problems.
 
-#Update, may take a while if you have many packages installed
-update.packages()
-```
-
-Lastly, a quick note on packages and libraries.  You will often hear people use the terms interchangeably.  This is not correct.  A package is what is submitted to CRAN, it is what contains a group of functions that address a common problem, and it is what has allowed R to expand.  A library is, more or less, where you packages are stored.  You have a path to that library and this is where R puts new packages that you install (e.g. via `install.packages()`).  These two terms are related, but most certainly different.  Apologies up front if I slip and use one when I actually mean the other...
-
-##Exercise 1.2
-For this second exercise we are going to get used to using some basic functions, working with scripts and not just the console, and look through some task views and get used to basic navigation around packages.  Use the green stickies when you have completed, and red stickies if you are running into problems.
-
-1. If you wish to save your work in a script, make sure "r1_introR.R" file you created in Exercise 1 is open. Enter your commands into this script.  Otherwise, you may work directly in the console.
-2. Use the `print` function.  If using a script, copy/paste this or use the "run" button in RStudio to have R interpret it and print something to the screen.
-3. Combine `mean` and `rnorm` to return the mean value of a set of random numbers.
 4. Install the package, `dplyr`
 5. Load `dplyr` into your library.
 
-##Operators and objects
+## Operators and objects
 As I mentioned above, the console and using R interactively is very powerful.  We will do this quite a bit.  Let's spend a little time playing around in the console and learn a few new functions.
 
 R can be used as a calculator and a way to compare values.  Some examples of the basic operators:
