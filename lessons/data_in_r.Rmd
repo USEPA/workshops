@@ -205,7 +205,7 @@ We aren't going to spend too much time on factors, but we do need to cover the v
 
 > A factor is a vector that can contain only predefined values, and is used to 
 > store categorical data. Factors are built on top of integer vectors using two 
-> attributes: the class, “factor”, which makes them behave differently from 
+> attributes: the class, "factor", which makes them behave differently from 
 > regular integer vectors, and the levels, which defines the set of allowed values.
 
 In short, we use factors to describe categories and we it is best practice to explicitly define your factors or let the functions you use handle the conversion to factors.  We will talk a bit more about this later.
@@ -228,13 +228,13 @@ Completely creating a data frame from scratch is useful (especially when you sta
 `read.csv()` is a specialized version of `read.table()` that focuses on, big surprise here, .csv files. This command assumes a header row with column names and that the delimiter is a comma. The expected no data value is NA and by default, strings are converted to factors by default (this can trip people up). If you remember, we discussed earlier that we should explicitly define our factors.  We will use `read.csv()`, with this defualt behaviour turned off.
 
 Source files for `read.csv()` can either be on a local hard drive or, and this is pretty cool, on the web. We will be using the later for our examples and exercises. If you had a local file it would be accessed like `mydf <- read.csv("C:/path/to/local/file.csv")`. As an aside, paths and use of forward vs back slash is important. R is looking for forward slashes ("/"), or unix-like paths. You can use these in place of the back slash and be fine. You can use a back slash but it needs to be a double back slash ("\"). This is becuase the single backslash in an escape character that is used to indicate things like newlines or tabs. 
-For today's workshop we will focus on grabbing data from a file on the web. 
+For today's workshop we will focus on grabbing data from a file on the web, but a local file is nearly the same you just use the path to the file instead of a URL. 
 
 Let's give it a try.
 
 ```{r readcsv}
 #Grab data from a web file
-nla_url <- ""
+nla_url <- "https://raw.githubusercontent.com/USEPA/region7_r/master/nla_dat.csv"
 nla_wq <- read.csv(nla_url,stringsAsFactors = FALSE)
 head(nla_wq)
 str(nla_wq)
@@ -242,28 +242,17 @@ dim(nla_wq)
 summary(nla_wq)
 ```
 
+Take note of the argument we used on `read.csv()`.  The `stringsAsFactors = FALSE` is what we want to use to make sure factors are not getting automatically created.
+
 ## Other ways to read data
+
 Although, `read.csv()` and `read.table()` are very flexible, they are not the only options for reading in data.  This could be a full day in and of itself, but packages like `readr`, `readxl`, and `rio` provide flexible methods for reading in data.  Also, databases can also be accessed directly in R and much of this functionality is in the `DBI` and `RODBC` packages.  Making the connections is not entirely trivial, but an easier way to take advantage of this is via the `dplyr` package.  See the [vignette on databases](https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html) fo a lot of good examples of working with common open source databases.
 
-## Data Manipulation
-Lastly, a quick word on manipulating and cleaning datasets with R.  This is the step you will likely spend the most time on and thus, is a big topic.  For this workshop, unfortunately, we have very little time to spend on this.  The only bit of working with data frames that will be helpful is how to access the individual columns (which are vectors!).  There are a couple of ways to do this.  We will only use one.
-
-```{r access_colums}
-#What columuns do we have?
-names(nla_wq)
-#The site id column
-nla_wq$SITE_ID
-#The chlorophyll a column
-nla_wq$CHLA
-```
-
 ## Exercise 2.2
-From here on out I hope to have these exercises begin to build on each other. We may not do that 100%, but there should at least be a modicum of continuity. For this exercise we are going to grab some data, look at that data, and be able to describe some basic information about that dataset.  The data we are using is the 2007 National Lakes Assessment.
+From here on out I hope to have these exercises begin to build on each other. We may not do that 100%, but there should at least be a modicum of continuity. For this exercise we are going to grab some data, look at that data, and be able to describe some basic information about that dataset.  The data we are using is the 2012 National Lakes Assessment.  URL's for those files are included below.
 
-1. Let's focus on using a script for the rest of our exercises.  Create a new script in RStudio.  Name it "nla_analysis.R"
-2. As you write the script, comment as you go. Remember comments are lines that begin with `#`.
-3. Add a function to your script that creates a data frame named `nla_wq`.
-4. Add commands to your script that will provides details on the structure (hint: `str`) of the newly created data frame
-5. Get the mean value for the `CHLA` column. 
+1. We will be using a new script for the rest of our exercises.  Create this script in RStudio and name it "nla_analysis.R"
+2. As you write the script, comment as you go. Some good examples are what we used in the first script where we provided some details on each of the exercises. Remember comments are lines that begin with `#` and you can put whatever you like after that.
+3. Add a function to your script that creates a data frame named `nla_wq` (hint: `read.csv`).  The URL for this is: <https://bit.ly/nla_water>
 5. Run the script and make sure it doesn't throw any errors and you do in fact get a data frame.
-6. Explore the data frame using some of the functions we covered (e.g. `head()`,`summary()`, or `str()`).  This part does not need to be included in the script. 
+6. Explore the data frame using some of the functions we covered (e.g. `head()`,`summary()`, or `str()`).  This part does not need to be included in the script. It is just a quick QA step to be sure the data read in as expected.

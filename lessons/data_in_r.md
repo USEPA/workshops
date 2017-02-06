@@ -3,7 +3,7 @@
 
 # Working With Data in R
 
-In this lesson we are going to focus on data and how it is dealt with by R.  This will include a discussion of the basic data types and data structures.  Lastly we will cover how to get data that lives in other files into R.  We will work through examples using base R. I will demo other ways of getting data into R with some additional packages
+In this lesson we are going to focus on data and how it is dealt with by R.  This will include a discussion of the basic data types and data structures.  Lastly we will cover how to get data that lives in other files into R.  We will work through examples using base R. I will demo other ways of getting data into R with some additional packages.
 
 ## Lesson Outline:
 
@@ -17,12 +17,12 @@ In this lesson we are going to focus on data and how it is dealt with by R.  Thi
 - [Exercise 2.1](#exercise-21)
 - [Exercise 2.2](#exercise-22)
 
-##Data types and data structures in R
+## Data types and data structures in R
 *Borrowed liberally from Jenny Bryan's [course materials on r](http://www.stat.ubc.ca/~jenny/STAT545A/quick-index.html) and Karthik Ram's [material from the Canberra Software Carpentry R Bootcamp](https://github.com/swcarpentry/2013-10-09-canberra).  Anything good is because of Jenny and Karthik.  Mistakes are all mine.*
 
-Remember that everything in R is an object.  With regards to data, those objects have some specific characteristics that help R (and us) know what kind of data we are dealing with and what kind of operations can be done on that data.  This stuff may be a bit dry, but a basic understanding will help as so much of what we do with analysis has to do with the organization and type of data we have. First, lets discuss the atomic data types.
+Remember that everything in R is an object.  With regards to data, those objects have some specific characteristics that help R (and us) know what kind of data we are dealing with and what kind of operations can be done on that data.  This stuff may be a bit dry, but a basic understanding will help, as so much of what we do with analysis has to do with the organization and type of data we have. First, lets discuss the atomic data types.
 
-###Data types
+### Data types
 
 There are 6 basic atomic classes: character, numeric (real or decimal), integer, logical, complex, and raw.
 
@@ -51,7 +51,7 @@ is.na()#Will tell you if a value is NA
 
 `Inf` is infinity. You can have positive or negative infinity and `NaN` means "not a number."  It's an undefined value.
 
-###Data structures
+### Data structures
 The next set of information relates to the many data structures in R.  
 
 Great table borrowed from [Hadley Wickham's Advanced R Book](http://adv-r.had.co.nz/Data-structures.html).
@@ -71,13 +71,14 @@ The data structures in base R include:
 - array
 
 Plus, 
+
 - factors
 - tables
 
-Our efforts will focus on vectors, and data frames.  We will discuss just the basics and will leave it to your curiousity to explore the basics of lists, factors, matrix, arrays, and table data structures.
+Our efforts will focus on vectors, data frames, and a brief introduction to factors.  We will discuss just the basics and will leave it to your curiousity to explore the basics of list, matrix, array, and table data structures.
 
 ### Vectors
-A vector is the most common and basic data structure in `R` and is pretty much the workhorse of R. 
+A vector is the most common and basic data structure in `R` and is pretty much the workhorse/building block of data in R. 
 
 A vector can be a vector of characters, logical, integers or numeric and all values in the vector must be of the same data type.  Specifically, these are known as atomic vectors.
 
@@ -401,35 +402,43 @@ na.omit(examp_df)
 ## 26     y      26   FALSE
 ```
 
+### Factors
+
+We aren't going to spend too much time on factors, but we do need to cover the very basics as they tend to be a point of confusion for those just learning R (and those of us who've been using it for years).  One of the best descriptions of a factor comes from [Hadley Wickham's, Advanced R](http://adv-r.had.co.nz/Data-structures.html) book:
+
+> A factor is a vector that can contain only predefined values, and is used to 
+> store categorical data. Factors are built on top of integer vectors using two 
+> attributes: the class, "factor", which makes them behave differently from 
+> regular integer vectors, and the levels, which defines the set of allowed values.
+
+In short, we use factors to describe categories and we it is best practice to explicitly define your factors or let the functions you use handle the conversion to factors.  We will talk a bit more about this later.
+
 If you want to learn more about any of these data structure, [Hadley Wickham's Advanced R section on data structures](http://adv-r.had.co.nz/Data-structures.html) is really good.
 
-
-##Exercise 2.1
+## Exercise 2.1
 
 For the first exercise of lesson 2, we are going to build a data frame from scratch.  
+1. We will continue to use the script from from the previous exercises.  Use it to store and run the code for this exercise.
+2. Add in a comment line to separate this section.  It should look something like: `# Exercise 2.1: Build a Data Frame From Scratch`.
+2. Create three vectors.  One with numeric data, one with character, and a third with boolean data.  Each vector must contain 10 values.
+3. Combine these three vectors into a data frame (hint: `data.frame()`) that is stored in an object called `my_df`.
+4. Now from the console, explore `my_df` with some of the functions we talked about earlier (e.g., summary, str, head, etc.).
 
-1.) If you are using a script to keep all of your code, make sure it is open and enter you code in there.
+## Reading external data
 
-2.) Create three vectors.  One with numeric data, one with character, and a third with boolean data.  Each vector must contain 10 values.
-
-3.) Combine these three vectors into a data frame (hint: `data.frame()`) that is stored in an object called `my_df`.
-
-4.) Now from the console, explore `my_df` with some of the functions we talked about earlier (e.g., summary, str, head, etc.).
-
-##Reading external data
 Completely creating a data frame from scratch is useful (especially when you start writing your own functions), but more often than not data is stored in an external file that you need to read into R.  These may be delimited text files, spreadsheets, relational databases, SAS files ...  You get the idea.  Instead of treating this subject exhaustively, we will focus just on a single file type, `.csv` that is very commonly encountered and (usually) easy to create from other file types.  For this, we will use `read.csv()`(although there are many, compelling options from packages like `rio` and `readr`). 
 
-`read.csv()` is a specialized version of `read.table()` that focuses on, big surprise here, .csv files. This command assumes a header row with column names and that the delimiter is a comma. The expected no data value is NA and by default, strings are converted to factors by default (this can trip people up).
+`read.csv()` is a specialized version of `read.table()` that focuses on, big surprise here, .csv files. This command assumes a header row with column names and that the delimiter is a comma. The expected no data value is NA and by default, strings are converted to factors by default (this can trip people up). If you remember, we discussed earlier that we should explicitly define our factors.  We will use `read.csv()`, with this defualt behaviour turned off.
 
 Source files for `read.csv()` can either be on a local hard drive or, and this is pretty cool, on the web. We will be using the later for our examples and exercises. If you had a local file it would be accessed like `mydf <- read.csv("C:/path/to/local/file.csv")`. As an aside, paths and use of forward vs back slash is important. R is looking for forward slashes ("/"), or unix-like paths. You can use these in place of the back slash and be fine. You can use a back slash but it needs to be a double back slash ("\"). This is becuase the single backslash in an escape character that is used to indicate things like newlines or tabs. 
-For today's workshop we will focus on grabbing data from a file on the web. 
+For today's workshop we will focus on grabbing data from a file on the web, but a local file is nearly the same you just use the path to the file instead of a URL. 
 
 Let's give it a try.
 
 
 ```r
 #Grab data from a web file
-nla_url <- "https://usepa.github.io/region1_r/nla_dat.csv"
+nla_url <- "https://raw.githubusercontent.com/USEPA/region7_r/master/nla_dat.csv"
 nla_wq <- read.csv(nla_url,stringsAsFactors = FALSE)
 head(nla_wq)
 ```
@@ -497,83 +506,17 @@ summary(nla_wq)
 ##  Max.   :936.00   Max.   :36.710
 ```
 
-##Other ways to read data
+Take note of the argument we used on `read.csv()`.  The `stringsAsFactors = FALSE` is what we want to use to make sure factors are not getting automatically created.
+
+## Other ways to read data
+
 Although, `read.csv()` and `read.table()` are very flexible, they are not the only options for reading in data.  This could be a full day in and of itself, but packages like `readr`, `readxl`, and `rio` provide flexible methods for reading in data.  Also, databases can also be accessed directly in R and much of this functionality is in the `DBI` and `RODBC` packages.  Making the connections is not entirely trivial, but an easier way to take advantage of this is via the `dplyr` package.  See the [vignette on databases](https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html) fo a lot of good examples of working with common open source databases.
 
-##Data Manipulation
-Lastly, a quick word on manipulating and cleaning datasets with R.  This is the step you will likely spend the most time on and thus, is a big topic.  For this workshop, unfortunately, we have very little time to spend on this.  The only bit of working with data frames that will be helpful is how to access the individual columns (which are vectors!).  There are a couple of ways to do this.  We will only use one.
+## Exercise 2.2
+From here on out I hope to have these exercises begin to build on each other. We may not do that 100%, but there should at least be a modicum of continuity. For this exercise we are going to grab some data, look at that data, and be able to describe some basic information about that dataset.  The data we are using is the 2012 National Lakes Assessment.  URL's for those files are included below.
 
-
-```r
-#What columuns do we have?
-names(nla_wq)
-```
-
-```
-## [1] "SITE_ID"     "RT_NLA"      "EPA_REG"     "WSA_ECO9"    "LAKE_ORIGIN"
-## [6] "PTL"         "NTL"         "CHLA"        "SECMEAN"
-```
-
-```r
-#The site id column
-nla_wq$SITE_ID
-```
-
-```
-##   [1] "NLA06608-0001" "NLA06608-0002" "NLA06608-0003" "NLA06608-0004"
-##   [5] "NLA06608-0006" "NLA06608-0007" "NLA06608-0008" "NLA06608-0010"
-##   [9] "NLA06608-0012" "NLA06608-0013" "NLA06608-0014" "NLA06608-0015"
-##  [13] "NLA06608-0016" "NLA06608-0019" "NLA06608-0020" "NLA06608-0021"
-##  [17] "NLA06608-0023" "NLA06608-0024" "NLA06608-0025" "NLA06608-0029"
-##  [21] "NLA06608-0031" "NLA06608-0033" "NLA06608-0036" "NLA06608-0037"
-##  [25] "NLA06608-0038" "NLA06608-0041" "NLA06608-0042" "NLA06608-0043"
-##  [29] "NLA06608-0044" "NLA06608-0045" "NLA06608-0048" "NLA06608-0049"
-##  [33] "NLA06608-0050" "NLA06608-0053" "NLA06608-0057" "NLA06608-0061"
-##  [37] "NLA06608-0062" "NLA06608-0064" "NLA06608-0065" "NLA06608-0066"
-##  [41] "NLA06608-0068" "NLA06608-0069" "NLA06608-0071" "NLA06608-0072"
-##  [45] "NLA06608-0073" "NLA06608-0076" "NLA06608-0078" "NLA06608-0079"
-##  [49] "NLA06608-0080" "NLA06608-0081" "NLA06608-0085" "NLA06608-0086"
-##  [53] "NLA06608-0089" "NLA06608-0090" "NLA06608-0091" "NLA06608-0099"
-##  [57] "NLA06608-0101" "NLA06608-0102" "NLA06608-0104" "NLA06608-0105"
-##  [61] "NLA06608-0110" "NLA06608-0111" "NLA06608-0112" "NLA06608-0113"
-##  [65] "NLA06608-0115" "NLA06608-0116" "NLA06608-0120" "NLA06608-0124"
-##  [69] "NLA06608-0126" "NLA06608-0127" "NLA06608-0128" "NLA06608-0129"
-##  [73] "NLA06608-0130" "NLA06608-0132" "NLA06608-0134" "NLA06608-0137"
-##  [77] "NLA06608-0139" "NLA06608-0140" "NLA06608-0141" "NLA06608-0142"
-##  [81] "NLA06608-0144" "NLA06608-0148" "NLA06608-0149" "NLA06608-0150"
-##  [85] "NLA06608-0152" "NLA06608-0153" "NLA06608-0155" "NLA06608-0158"
-##  [89] "NLA06608-0161" "NLA06608-0162" "NLA06608-0167" "NLA06608-0168"
-##  [93] "NLA06608-0169" "NLA06608-0173" "NLA06608-0174" "NLA06608-0175"
-##  [97] "NLA06608-0176" "NLA06608-0177" "NLA06608-0179" "NLA06608-0180"
-##  [ reached getOption("max.print") -- omitted 986 entries ]
-```
-
-```r
-#The chlorophyll a column
-nla_wq$CHLA
-```
-
-```
-##   [1]   0.24   3.84  16.96   4.60   4.08   2.43  30.24   4.38   4.90  16.03
-##  [11]   8.75  20.00  13.00   4.03  20.24   2.29   2.78  44.15   1.30 123.12
-##  [21]   5.26   8.92   5.07   8.02   4.33   0.88   2.21   5.41 135.61  20.16
-##  [31]  54.00   1.14   3.95   6.26 125.40   3.50   2.18  19.04   0.57   1.75
-##  [41]   0.95   7.41 198.72  10.13   0.49  10.88  10.02   2.35  58.46   6.66
-##  [51]   4.04  18.24  11.36   4.36 118.80   4.60   0.70   1.20  38.20   5.98
-##  [61]   1.77   3.26  84.76   4.69   1.35   2.82   2.54  31.59 228.24   5.92
-##  [71]   0.46   0.43  12.91   8.11   1.58   1.33  12.80  52.56 110.16   1.36
-##  [81]  22.25   1.87   4.18   8.22   5.20  10.40  79.80   3.14  39.00   2.56
-##  [91] 936.00  21.76   2.59  70.40   6.75  19.68  25.76   3.58  18.40  30.62
-##  [ reached getOption("max.print") -- omitted 986 entries ]
-```
-
-##Exercise 2.2
-From here on out I hope to have these exercises begin to build on each other. We may not do that 100%, but there should at least be a modicum of continuity. For this exercise we are going to grab some data, look at that data, and be able to describe some basic information about that dataset.  The data we are using is the 2007 National Lakes Assessment.
-
-1. Let's focus on using a script for the rest of our exercises.  Create a new script in RStudio.  Name it "nla_analysis.R"
-2. As you write the script, comment as you go. Remember comments are lines that begin with `#`.
-3. Add a function to your script that creates a data frame named `nla_wq`.
-4. Add commands to your script that will provides details on the structure (hint: `str`) of the newly created data frame
-5. Get the mean value for the `CHLA` column. 
+1. We will be using a new script for the rest of our exercises.  Create this script in RStudio and name it "nla_analysis.R"
+2. As you write the script, comment as you go. Some good examples are what we used in the first script where we provided some details on each of the exercises. Remember comments are lines that begin with `#` and you can put whatever you like after that.
+3. Add a function to your script that creates a data frame named `nla_wq` (hint: `read.csv`).  The URL for this is: <https://bit.ly/nla_water>
 5. Run the script and make sure it doesn't throw any errors and you do in fact get a data frame.
-6. Explore the data frame using some of the functions we covered (e.g. `head()`,`summary()`, or `str()`).  This part does not need to be included in the script. 
+6. Explore the data frame using some of the functions we covered (e.g. `head()`,`summary()`, or `str()`).  This part does not need to be included in the script. It is just a quick QA step to be sure the data read in as expected.

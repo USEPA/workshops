@@ -17,7 +17,7 @@ In this first lesson we are going to go over the very basics of R, cover some ba
 - [Exercise 1.1](#exercise-11)
 - [Exercise 1.2](#exercise-12)
 - [Exercise 1.3](#exercise-13)
-- [Exercise 1.3](#exercise-14)
+- [Exercise 1.4](#exercise-14)
 
 ## Code
 Before we get started, the code for all three lessons has been consolidated into a single R script.  If you'd like, download [`r7_intro_code.R`](https://raw.githubusercontent.com/USEPA/region7_r/master/lessons/r7_intro_code.R) and follow along during the live coding. 
@@ -65,6 +65,8 @@ This exercise will make sure R and RStudio are working and that you can get arou
 
 4. Create a new "R Script" in the Source Pane, save that file into your newly created project and name it "r1_introR.R". It'll just be a blank text file at this point.
 
+2. Add in a comment line to separate this section.  It should look something like: `# Exercise 1.1: Just Getting used to RStudio and Scripts`.
+
 5. Add a single line to this script with the following text: `ls()`.  This is an R function that lists objects in your current environment.  Use the various ways we showed to send this command to the R Console.  Also, try typing this directly into the R Console and hit `Enter` to run it.  
 
 ## Functions and basic syntax 
@@ -98,21 +100,21 @@ rnorm(100,mean=10,sd=2)
 ```
 
 ```
-##   [1]  6.439171  8.580331 10.415495 11.641519 10.376882 12.645003  7.271674
-##   [8]  8.094501 10.741567  9.620334  7.131258 10.954929 11.769453 13.028255
-##  [15] 10.202118 12.206159 11.734334  7.665935  7.309785  9.187253 12.813755
-##  [22] 11.842594 11.351656 10.778708  5.390928  8.707585  8.196077 11.718580
-##  [29]  9.323946 12.270792 11.864605  8.438980  8.871700 12.500722  7.845634
-##  [36]  8.983223 13.033544 10.919282  8.385464 13.249811 10.655061  8.281232
-##  [43] 10.879150 13.858319  8.786388  7.201611  6.169456  8.800486 10.118751
-##  [50]  7.493701  8.292521  6.333703 10.721213  9.564506 10.718482 15.328590
-##  [57] 12.222168  7.512466  8.441905 10.698383 12.096392 12.335816 10.330011
-##  [64] 10.502276  9.267503  8.926603  7.429448  8.930859 11.754866 10.126791
-##  [71]  8.507918 10.717738  9.581623  8.427227  9.034449 10.146101 10.281123
-##  [78] 12.849213 13.366353 11.896624  8.102782  9.954976 12.430472 10.176410
-##  [85] 10.030532  9.901341 11.058299  8.829923 13.280548  8.917318 11.664350
-##  [92]  9.100996  9.652024 11.866933 10.450825 12.560312  9.955615  7.314085
-##  [99]  8.728778 10.541801
+##   [1]  8.724526 10.395148 12.148667 12.586251 10.435859 10.666495 12.709130
+##   [8]  7.931543 10.807927  8.068073  9.222086  6.553963 13.972830 14.059467
+##  [15] 11.449872  7.142285 11.936947  8.327788 10.916394 10.226994 12.245932
+##  [22]  9.527039  7.889499  9.912339  7.241662 14.082841 11.269139  9.356662
+##  [29]  8.045419  9.433890  8.685784  9.720497 12.479356 10.739582  7.444480
+##  [36]  9.809546  9.747554 10.890886  7.780826  9.851235 11.312440 12.191447
+##  [43] 10.507623 11.615698  7.999668 11.567267 10.460140 11.735911 11.053794
+##  [50] 13.689501  9.087721 13.326327 12.537589 12.833831  8.089981  5.875960
+##  [57]  4.510101 11.743892  7.699487 10.419249  9.092416 10.263541  8.636747
+##  [64]  9.641042 10.549796  9.459328  6.549094  8.428398 10.581965  8.162318
+##  [71] 11.956845  8.677270 10.709259 14.333607  9.319754  9.560855  9.517556
+##  [78]  8.107807  9.447604 11.364546 11.307724 10.871826 10.190516  6.726736
+##  [85] 14.813083  7.824443  8.824914  9.064244 11.083659 12.213585  9.180814
+##  [92]  9.028958  7.150784  6.624067 10.426247  9.552225 11.004300 11.952902
+##  [99] 11.933681 10.755002
 ```
 
 ```r
@@ -121,7 +123,7 @@ mean(rnorm(100))
 ```
 
 ```
-## [1] -0.02764131
+## [1] 0.03146363
 ```
 
 ```r
@@ -130,7 +132,7 @@ sum(rnorm(100))
 ```
 
 ```
-## [1] -2.882707
+## [1] 14.18359
 ```
 
 ### A few side notes 
@@ -153,6 +155,7 @@ The `#` indicates a comment.  You can put whatever else you'd like after this, b
 For this second exercise we are going to get used to using some basic functions.  Use the green stickies when you have completed, and red stickies if you are running into problems.
 
 1. Save your work in a script, make sure "r1_introR.R" file you created in Exercise 1 is open. Enter your commands into this script.  
+2. Add in a comment line to separate this section.  It should look something like: `# Exercise 1.2: Getting used to functions and basic syntax`.
 2. Use the `print` function.  Remember, use the "run" button or `ctrl-enter` in RStudio to have R interpret it and print something to the screen.
 3. Combine `mean` and `rnorm` to return the mean value of a set of random numbers.
 
@@ -211,8 +214,11 @@ And now for a little pedantry.  You will often hear people use the terms "librar
 
 For this third exercise we are going to get used to using some basic functions, working with scripts and not just the console, and look through some task views and get used to basic navigation around packages.  Use the green stickies when you have completed, and red stickies if you are running into problems.
 
-1. Install the `dplyr` and `ggplot2` packages.  Do this directly in the console
+1. Install the `dplyr` and `ggplot2` packages.  Do this directly in the console.
+2. Why might we not want to add `install.packages` into the script?
+2. Add in a comment line to separate this section.  It should look something like: `# Exercise 1.3: Adding packages`.
 2. Load `ggplot` and `dplyr` into your library.  Do this in your script.  Make sure that it gets sent to the console.
+3. Why might we want to add the `library()` calls in our script?
 
 ## Operators and objects
 As I mentioned above, the console and using R interactively is very powerful.  We will do this quite a bit.  Let's spend a little time playing around in the console and learn a few new functions.
@@ -403,6 +409,7 @@ This is probably a good spot to bring up quotes vs no quotes around arguments in
 Next thing you might want to do is navigate around your files and directories. While you can do this directly from the console, it is going to be better practice to mostly use RStudio projects to manage your folders, working directory etc.  You can also navigate using the Files, etc. pane. 
 
 ##Exercise 1.4
+1. Add in a comment line to separate this section.  It should look something like: `# Exercise 1.4: Objects and Operators`.
 1. Create two objects named `number1` and `number2` and give them the values of 25 and 4, respectively 
 2. Create two more objects named `string1` and `string2`, give them any character string that you would like. 
 3. Now using `number1`,`number2`, and the power of math create an object called `number3` that equals 100.
