@@ -1,5 +1,6 @@
 
 
+
 # R Basics
 
 In this first lesson we are going to go over the very basics of R, cover some basic terminology, talk a little about syntax and point you to resources for getting help.
@@ -70,7 +71,7 @@ This exercise will make sure R and RStudio are working and that you can get arou
 
 R is a functional programming language and as such, most everything you do uses a function.
 
-The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many (3059 functions, to be exact).  Some examples:
+The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many (2922 functions, to be exact).  Some examples:
 
 
 ```r
@@ -97,21 +98,21 @@ rnorm(100,mean=10,sd=2)
 ```
 
 ```
-##   [1] 10.557129  9.629633  9.106013  8.760871  7.325930 14.297621 11.255741
-##   [8] 12.946728 10.237757  9.830945  7.005941 11.695842  9.772867 11.876579
-##  [15] 11.925480  9.956818  6.836114 11.426112  8.258574 10.117960 11.094266
-##  [22]  9.282609  9.808691  9.291626  9.242510  9.381433 11.052098  9.470096
-##  [29] 11.966235 11.528156  7.767759  8.418277  7.036037  8.067767 10.247246
-##  [36]  6.923245 11.978185 13.209618  8.144246  6.814691 11.466304 11.210415
-##  [43]  9.746202 10.864511  9.697986 10.652606  8.703394  9.786705 12.199234
-##  [50]  6.644590 10.953740  6.968339 10.291776  6.712193 10.349481 11.608491
-##  [57]  9.994634  6.934086 11.229056 12.080422  9.351994  5.661690 11.539832
-##  [64] 10.358482  9.423947 11.855324 11.556937 11.218017 10.421197  7.238703
-##  [71] 13.966165 17.281767 12.309158 11.355309 10.167995 11.221382 10.234518
-##  [78] 11.773043  7.523982  7.441546 11.139951  7.158095  8.953710 13.346811
-##  [85]  9.990186  6.484184  8.193713  7.628234  5.672780  8.200881  7.975403
-##  [92]  7.889632 11.285879 10.816013  6.129958  6.488256 11.395866 10.520999
-##  [99] 13.347104 11.074256
+##   [1]  6.439171  8.580331 10.415495 11.641519 10.376882 12.645003  7.271674
+##   [8]  8.094501 10.741567  9.620334  7.131258 10.954929 11.769453 13.028255
+##  [15] 10.202118 12.206159 11.734334  7.665935  7.309785  9.187253 12.813755
+##  [22] 11.842594 11.351656 10.778708  5.390928  8.707585  8.196077 11.718580
+##  [29]  9.323946 12.270792 11.864605  8.438980  8.871700 12.500722  7.845634
+##  [36]  8.983223 13.033544 10.919282  8.385464 13.249811 10.655061  8.281232
+##  [43] 10.879150 13.858319  8.786388  7.201611  6.169456  8.800486 10.118751
+##  [50]  7.493701  8.292521  6.333703 10.721213  9.564506 10.718482 15.328590
+##  [57] 12.222168  7.512466  8.441905 10.698383 12.096392 12.335816 10.330011
+##  [64] 10.502276  9.267503  8.926603  7.429448  8.930859 11.754866 10.126791
+##  [71]  8.507918 10.717738  9.581623  8.427227  9.034449 10.146101 10.281123
+##  [78] 12.849213 13.366353 11.896624  8.102782  9.954976 12.430472 10.176410
+##  [85] 10.030532  9.901341 11.058299  8.829923 13.280548  8.917318 11.664350
+##  [92]  9.100996  9.652024 11.866933 10.450825 12.560312  9.955615  7.314085
+##  [99]  8.728778 10.541801
 ```
 
 ```r
@@ -120,7 +121,7 @@ mean(rnorm(100))
 ```
 
 ```
-## [1] 0.02580525
+## [1] -0.02764131
 ```
 
 ```r
@@ -129,7 +130,7 @@ sum(rnorm(100))
 ```
 
 ```
-## [1] -27.06361
+## [1] -2.882707
 ```
 
 ### A few side notes 
@@ -161,7 +162,7 @@ The base install of R is quite powerful, but you will soon have a need or desire
 
 ### CRAN
 
-One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of 2017-02-03, there are 9994 on CRAN! 
+One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of 2017-02-06, there are 10009 on CRAN! 
 
 ### Installing packages
 
