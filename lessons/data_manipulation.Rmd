@@ -25,13 +25,15 @@ Data wrangling (manipulation, jujitsu, cleaning, etc.) is the part of any data a
 - [Indexing lists](#indexing-lists)
 - [Indexing data frames](#indexing-data-frames)
 - [`dplyr`](#dplyr)
+- [`tidyr`](#tidyr)
 
 ## Lesson Exercises:
 - [Exercise 3.1](#exercise-31)
 - [Exercise 3.2](#exercise-32)
+- [Exercise 3.3](#exercise-33)
 
 
-##Indexing vectors
+## Indexing vectors
 
 In base R you can use a indexing to select out rows and columns.  You will see this quite often in other peoples' code or in other sources for help. So, we should at least cover it so that it isn't foreign when you see it elsewhere.
 
@@ -56,7 +58,7 @@ x[c(TRUE,FALSE)]
 x[x%%2==0]
 ```
 
-##Indexing lists
+## Indexing lists
 Basic indexing of lists isn't too much different than indexing a vector, but remember for our discussion of lists, that you can have any R object stored in a list (e.g., a vector, another list, a data.frame).  So to get the item you want can be a bit tricky.  A few simple examples.
 
 ```{r list_index}
@@ -70,7 +72,7 @@ x_list[[2]]
 x_list[[2]][7]
 ```
 
-##Indexing data frames
+## Indexing data frames
 You can also index a data frame or select individual columns of a data frame.  Since a data frame has two dimensions, you need to specify an index for both the row and the column.  You can specify both and get a single value like `data_frame[row,column]`,specify just the row and the get the whole row back like `data_frame[row,]` or get just the column with `data_frame[,column]`.   These examples show that.
 
 ```{r data_frame_index}
@@ -106,7 +108,7 @@ virginica_iris<-iris$Sepal.Width[iris$Species=="virginica"]
 head(virginica_iris)
 ```
 
-##dplyr
+## dplyr
 
 The package `dplyr` is a fairly new (2014) package that tries to provide easy tools for the most common data manipulation tasks.  It is built to work directly with data frames.  The thinking behind it was largely inspired by the package `plyr` which has been in use for some time but suffered from being slow in some cases.  `dplyr` addresses this by porting much of the computation to c++.  An additional feature is the ability to work with data stored directly in an external database.  The benefits of doing this are that the data can be managed natively in a relational database, queries can be conducted on that database, and only the results of the query returned.  
 
@@ -115,7 +117,7 @@ This addresses a common problem with R in that all operations are conducted in m
 - [`dplyr` GitHub repo](https://github.com/hadley/dplyr)
 - [CRAN page: vignettes here](http://cran.rstudio.com/web/packages/dplyr/)
 
-###Using dplyr
+### Using dplyr
 So, base R can do what you need, but it is a bit complicated and the syntax is a bit dense.  In `dplyr` this can be done with two functions, `select()` and `filter()`.  The code can be a bit more verbose, but it allows you to write code that is much more readable.  Before we start we need to make sure we've got everything installed and loaded.  If you do not have R Version 3.0.2 or greater you will have some problems (i.e. no `dplyr` for you).
 
 ```{r real_setup, echo=FALSE, include=FALSE, purl=FALSE}
@@ -131,7 +133,6 @@ library("dplyr")
 ```
 
 I am going to repeat some of what I showed above on data frames but now with `dplyr`.  This is what we will be using in the exercises.
-
 
 ```{r more_data_frame_dplyr}
 #First, select some columns
@@ -164,30 +165,18 @@ dplyr_big_iris_pipe<-select(iris,Species,Sepal.Length,Petal.Length) %>%
 head(dplyr_big_iris_pipe)
 ```
 
-##Exercise 3.1
+## Exercise 3.1
 This exercise is going to focus on using what we just covered on `dplyr` to start to clean up the National Lakes Assessment data files.  Remember to use the stickies: green when you're done, red if you have a problem.
 
 1. If it isn't already open, make sure you have the script we created, "nla_analysis.R" opened up.
 2. Start a new section of code in this script by simply putting in a line or two of comments indicating what it is this set of code does.
 3. Our goal for this is to create a new data frame that represents a subset of the observations as well as a subset of the columns. 
-4. Subset the water quality data from `nla_wq` and store that in a new data frame calles `nla_wq_subset`.  The columns we want for this are: SITE_ID, VISIT_NO, SITE_TYPE, ST, EPA_REG, LAKE_ORIGIN, WSA_ECO9, TURB, NTL, PTL, and CHLA. 
-6. Last thing we are going to need to do is get a subset of the observations.  We need only the lakes with VISIT_NO equal to 1 and SITE_TYPE equal to "PROB_Lake".  Keep the same name, `nla_wq_subset`, for this data frames.
+4. We want a selction of columns from the water quality data, `nla_wq`, stored in a new data frame calles `nla_wq_subset`.  The columns we want for this are: SITE_ID, VISIT_NO, SITE_TYPE, ST, EPA_REG, LAKE_ORIGIN, WSA_ECO9, TURB, NTL, PTL, and CHLA. 
+6. Last thing we are going to need to do is get a subset of the observations.  We need only the lakes with VISIT_NO equal to 1 and SITE_TYPE equal to "PROB_Lake".  Keep the same name, `nla_wq_subset`, for this data frame.
 
-###Modifying and summarizing with dplyr
-One area where `dplyr` really shines is in aggregating, modifying and summarizing.  Let's start with aggregation.  We can do this with `group_by()` and  `summarize()`.
+### Modifying data with dplyr
 
-First, we'll look at an example of grouping a data frame and summarizing the data within those groups.
-
-```{r aggregate_examp}
-#Chained with Pipes
-group_by(iris,Species)%>%
-  summarize(mean(Sepal.Length),
-            mean(Sepal.Width),
-            mean(Petal.Length),
-            mean(Petal.Width))
-```
-
-There are many other functions in `dplyr` that are useful.  Much of what they do, can certainly be accomplished with base R, but not quite as intuitively.  Let's run through some examples with `arrange()`, `slice()`,  and `mutate()`.
+There are many functions for modifying data in `dplyr` that are useful.  Much of what they do, can certainly be accomplished with base R, but not quite as intuitively.  Let's run through some examples with `arrange()`, `slice()`,  and `mutate()`.
 
 First `arrange()` will re-order a data frame based on the values of a columns.  It will take multiple columns and can be in descending or ascending order. I think `iris` is getting a bit tired, let's try a different stock data frame this time:  `mtcars`.  If you are interested you can try `data()` to see what is available.
 
@@ -215,30 +204,16 @@ slice(mtcars_tbl,3:10)
 mutate(mtcars_tbl,kml=mpg*0.425)
 ```
 
-Lastly, one more function, `rowwise()` allows us run rowwise, operations.  Let's use a bit of a contrived example for this.
-
-```{r rowwise_examp}
-#First a dataset of temperatures, recorded weekly at 100 sites.
-temp_df<-data.frame(id=1:100,week1=runif(100,20,25), week2=runif(100,19,24), 
-                    week3=runif(100,18,26), week4=runif(100,17,23))
-head(temp_df)
-#To add row means to the dataset, without the ID
-temp_df2<-temp_df %>% 
-  rowwise() %>% 
-  mutate(site_mean = mean(c(week1,week2,week3,week4)))
-head(temp_df2)
-```
-
-We now have quite a few tools that we can use to clean and manipulate data in R.  We have barely touched what both base R and `dplyr` are capable of accomplishing, but hopefully you now have some basics to build on.  I personally think the database connection in `dplyr` are going to prove very useful.
+We now have quite a few tools that we can use to clean and manipulate data in R.  We have barely touched what both base R and `dplyr` are capable of accomplishing, but hopefully you now have some basics to build on. 
 
 Let's practice some of these last functions with our NLA data.
 
+## Exercise 3.2
 
-##Exercise 3.2
+In this exercise we want to select out the lakes that had the highest and lowest N:P ratio.  We can use `mutate`, `arrange`, and `slice` to accomplish this.
 
-Add a new section to our script to calculate the nla water quality means. 
+1. Add a new section to your script to hold a single, piped workflow to accomplish this 
+2. Use `mutate` to add a column to your data.frame that contains the N:P ratio.
+3. Use `arrange` to order that data.frame
+4. Use `slice` to select out the first and last rows (hint: you'll need to figure out how many rows are in your data.frame).
 
-1. Use `nla_wq_subset` that we created in the previous exercise.
-2. Add some lines to your script to calculate the mean by LAKE_ORIGIN, for TURB, NTL, PTL, and CHLA. Save to a data frame named nla_wq_means_orig.
-3. Repeat the same analysis but for the WSA_ECO9 ecoregions.  Save this to a data frame named `nla_wq_means_eco`.
-4. It might be interesting to compare the grouped means to the means of each value for the entire dataset.  Using `summarize()`, calculate the mean wq for all lakes (hint: no groups!).  Save this as `nla_wq_means`.
