@@ -23,7 +23,7 @@ nla_wq_subset <- read.csv(nla_url,stringsAsFactors = FALSE)
 
 # Data Visualization
 
-Visualizing  data is an area where R really shines.  For this we will split our focus between base and an installed package, `ggplot2`.  I will show some quick and easy graphics that we can produce with base R, but we won't spend anytime customizing them. Instead, we will move on quickly to `ggplot2`, which is now (I have no data to back this up), the de-facto standard for visualizing data in R.  Given that `ggplot2` is general package for creating essentiall ALL types of visualizations, it can seem quite complex (and it is).  What I hope you will get out of this section is a basic understanding of how to create a figure and, most importantly, how to find help and examples that you can build off of.
+Visualizing  data is an area where R really shines.  For this we will split our focus between base and an installed package, `ggplot2`.  I will show some quick and easy graphics that we can produce with base R, but we won't spend anytime customizing them. Instead, we will move on quickly to `ggplot2`, which is now (I have no data to back this up), the de-facto standard for visualizing data in R.  Given that `ggplot2` is general package for creating essentially ALL types of visualizations, it can seem quite complex (and it is).  What I hope you will get out of this section is a basic understanding of how to create a figure and, most importantly, how to find help and examples that you can build off of for your own visualizations.
 
 ## Lesson Outline:
 
@@ -45,6 +45,16 @@ A few (now somewhat dated) examples of maps built with R show this:
 ![London Bike Hires](http://spatialanalysis.co.uk/wp-content/uploads/2012/02/bike_ggplot.png)
 
 ![Facebook Users](http://media.economist.com/sites/default/files/imagecache/original-size/FbMap.jpg)
+
+And some fairly complicated figures:
+
+![psych_repro](https://d2ufo47lrtsv5s.cloudfront.net/content/sci/349/6251/aac4716/F1.large.jpg?width=800&height=600&carousel=1)
+
+And lastly some cool examples using `ggplot2` with `plotly`.
+
+<http://blog.revolutionanalytics.com/2014/11/3-d-plots-with-plotly.html>
+
+Now that we are sufficiently motivated, lets take a step back to the very basics.
 
 ## Simple plots with base R
 When you first get a dataset and are just starting to explore it, you want do be able to quickly visualize different bits and pieces about the data.  I tend to do this, initially, with base R. We will cover some quick plots with base R.  Later we are going to go into more detail on `ggplot2` which is becoming the gold standard of viz in R.  For now we will look at some of the simple, yet very useful, plots that come with base R.  
@@ -70,7 +80,7 @@ Two great ways to use boxplots are straight up and then by groups. For this we w
 boxplot(nla_wq_subset$CHLA)
 ```
 
-As plots go, well, um, not great.  Let's try it with a bit more info and create a boxplot for each of the groups.  This is using formula notation which is in the base form of `y ~ x`.  Thinking about this form a 2-dimensional plot standpoint it makes sense as your x-axis is the group and y is the value of interest.  We will use a log transformation for this.  And a quick note on logs in R, the `log()` function provides this and has to arguments.  The first is the vector of numeric values you wish to transfrom, and the second is the base.  Default base for `log()` is the the natural log.  A convenience function `log10()` is the equivalent of doing `log(100,base=10)`.  We will use `log10()` for these examples.
+As plots go, well, um, not great.  Let's try it with a bit more info and create a boxplot for each of the groups.  This is using formula notation which is in the base form of `y ~ x`.  Thinking about this form a 2-dimensional plot standpoint it makes sense as your x-axis is the group and y is the value of interest.  We will use a log transformation for this.  And a quick note on logs in R, the `log()` function provides this and has to arguments.  The first is the vector of numeric values you wish to transform, and the second is the base.  Default base for `log()` is the the natural log.  A convenience function `log10()` is the equivalent of doing `log(100,base=10)`.  We will use `log10()` for these examples.
 
 ```{r boxplot_grps_examp}
 boxplot(nla_wq_subset$CHLA ~ nla_wq_subset$EPA_REG)
@@ -88,7 +98,7 @@ hist(log10(nla_wq_subset$PTL), breaks=10)
 
 ## Introduction to `ggplot2`: scatterplot
 
-More can certainly be done with base graphics, but, assuming we have time, we will move to `ggplot2` for some more complex plotting.  If you are interested, there has been some interesting back and forth on `ggplot2` versus base.  Read [here for the base case](http://simplystatistics.org/2016/02/11/why-i-dont-use-ggplot2/) and [here for the `ggplot2` case](http://varianceexplained.org/r/why-I-use-ggplot2/).  In short, to each their own!  For me, I am mostly team `ggplot2`.
+More can certainly be done with base graphics, but we will move to `ggplot2` for our more complex plotting.  If you are interested, there has been some interesting back and forth on `ggplot2` versus base.  Read [here for the base case](http://simplystatistics.org/2016/02/11/why-i-dont-use-ggplot2/) and [here for the `ggplot2` case](http://varianceexplained.org/r/why-I-use-ggplot2/).  In short, to each their own!  For me, I am mostly team `ggplot2`.
 
 A lot has been written and discussed about `ggplot2`.  In particular see [here](http://ggplot2.org/), [here](http://docs.ggplot2.org/current/) and [here](https://github.com/karthikram/ggplot-lecture).  The gist of all this, is that `ggplot2` is an implementation of something known as the "grammar of graphics."  This separates the basic components of a graphic into distinct parts (e.g. like the parts of speech in a sentence).  You add these parts together and get a figure.
 
@@ -149,7 +159,7 @@ nla_scatter <-  nla_scatter +
 nla_scatter
 ```
 
-You'll notice we used `aes()` again, but this time inside of the geometry.  This tells ggplot2 that this aes only applies to the points.  Other geometeries will not be affected by this.
+You'll notice we used `aes()` again, but this time inside of the geometry.  This tells ggplot2 that this aes only applies to the points.  Other geometries will not be affected by this.
 
 In short, this is much easier than using base.  Now `ggplot2` really shines when you want to add stats (regression lines, intervals, etc.). 
 
@@ -157,7 +167,7 @@ Lets add a loess line with 95% confidence intervals
 
 ```{r iris_loess}
 nla_scatter_loess <- nla_scatter +
-                geom_smooth()
+                geom_smooth(method = "loess")
 nla_scatter_loess
 ```
 
@@ -200,20 +210,20 @@ Before we get into another exercise, lets look at some of the other geometries. 
 ## Exercise 4.1
 Let's now build some plots with `ggplot2`
 
-1. Add this code to your `nla_analysis.R` script.
+1. Add this code in a new section of your `nla_analysis.R` script.
 
-3. Build a scatter plot showing the relationship between PTL and CHLA (`log10()` transform both) with each LAKE_ORIGIN value a different color.  For some optional fun add in a regression line for each value of LAKE_ORIGIN.
+3. Build a scatter plot showing the relationship between PTL and CHLA (`log10()` transform both) with each LAKE_ORIGIN value a different color.  For some optional fun add in a regression line for each value of LAKE_ORIGIN.  There are many ways to do the log transforms.  Either try some ideas out or search online for some help.  
 
 ## Introduction to `ggplot2`: barchart
 
 (These instructions inspired by the [R Graphics Cookbook](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/#bar-graphs))
 
-Prior to jumping into coding any figure I like to think a bit about what I want to show and will actually sketch that out on paper.  Doing this also forces you to start thinking about what data you need to create that figure. In the case of the bar chart with error bars at a minimum we will need some mean value to plot and some representation of error for the error bars.  Another common thing to do is plot this for multiple categories and for multiple values.  
+I didn't mention this before, but prior to jumping into coding any figure I like to think a bit about what I want to show and will actually sketch that out on paper.  Doing this also forces you to start thinking about what data you need in order to create that figure. In the case of the bar chart with error bars at a minimum we will need some mean value to plot and some representation of error for the error bars.  Another common thing to do is plot this for multiple categories and for multiple values.  
 For this example, we will be interested in looking at Nitrogen and Phosphorus concentrations across ecoregions.  Let's first start with the data.
 
 ### Data for bar chart: NLA 2012
 
-Assuming we still have access to it, we will use the NLA 2012 water quality data for the bar chart with error bars.  Specifically we will be interested in total nitrogen, total phosphorus, and ecoregion.  First, if we haven't don it already, let's load up our packages:
+We will be using the same NLA 2007 water quality data for the bar chart with error bars.  Specifically we will be interested in total nitrogen, total phosphorus, and ecoregion.  First, if we haven't done it already, let's load up our packages:
 
 ```{r packages}
 library(dplyr) # For some basic data massaging
@@ -229,7 +239,7 @@ tbl_df(nla_wq_subset)
 
 
 ### Manipulating the data
-Remember, for this example we are going to plot nutrients vs. ecoregions, thus, we will need to summarize the per lake data on an ecoregional basis and get the mean and standard error for each nutrient within each ecoregion.   Also, many of the `ggplot2` functions will easily create seperate plots if a catergorical factor is supplied.  We will keep this in mind becuase we want different bars for each of the variables.
+Remember, for this example we are going to plot mean nutrients vs. ecoregions, thus, we will need to summarize the per lake data on an ecoregional basis and get the mean and standard error for each nutrient within each ecoregion.   Also, many of the `ggplot2` functions will easily create separate plots if a categorical factor is supplied.  We will keep this in mind because we want different bars for each of the variables.
 
 Given this we need a data frame that looks like:
 
@@ -258,7 +268,9 @@ nla_bar_data <- full_join(nla_bar_mean, nla_bar_se)
 nla_bar_data
 ```
 
-Now that was easy!  I am being sarcastic, because getting the data ready is really about 90% of the effort.  In reality this usually takes me a couple of iterations of getting things wrong. Now we can use this to build out our plot.
+Now that was easy!  
+
+I am being sarcastic, because getting the data ready is really about 90% of the effort.  In reality this usually takes me a couple of iterations of getting things wrong.  So if it is not immediately obvious why we did these steps, that is not unusual.  Now we can use this to build out our plot.
 
 ```{r barchart}
 nla_bar <- ggplot(nla_bar_data,aes(x = WSA_ECO9, y = mean, fill = variable)) +
@@ -270,11 +282,11 @@ nla_bar <- ggplot(nla_bar_data,aes(x = WSA_ECO9, y = mean, fill = variable)) +
 nla_bar
 ```
 
-So that looks pretty good, but their might be a lot of other change you might want to see with this figure.  We will consider three:
+So that looks pretty good, but there might other changes you want to see with this figure.  We will consider three:
 
 ### Re-order x-axis
 
-I find bar charts to be fairly difficult to read accurately so getting order of the ecoregions is not easy.  One way to get at that is to order the x-axis based on one of the variables.  For this we will re-order the axis, in descending order of mean Phosphorus.  `ggplot2` uses the order of a factor to do this. And while we could do this with base R, that'd make our heads hurt, so Hadley to the rescue with the `forcats` package and som `magrittr` kung fu.
+I find bar charts to be fairly difficult to read accurately so getting order of the ecoregions is not easy.  One way to get at that is to order the x-axis based on one of the variables.  For this we will re-order the axis, in descending order of mean Phosphorus.  `ggplot2` uses the order of a factor to do this. And while we could do this with base R, that'd make our heads hurt, so Hadley to the rescue with the `forcats` package and some `magrittr` kung fu.
 
 ```{r reorder}
 library(forcats)
@@ -300,21 +312,10 @@ nla_bar <- ggplot(nla_bar_data,aes(x = desc_ecoregion, y = mean, fill = variable
 nla_bar
 ```
 
-And lastly maybe I want phosphorus first.  This is a bit more straightforward.
-
-```{r barchart2}
-nla_bar <- ggplot(nla_bar_data,aes(x = desc_ecoregion, y = mean, fill = fct_relevel(factor(variable),"phosphorus" ,"nitrogen")))+
-  geom_bar(stat = "identity", position = position_dodge()) +
-  geom_errorbar(aes(ymin=mean-std_error, ymax=mean+std_error),
-                  width=.2,                    # Width of the error bars
-                  position=position_dodge(.9))
-
-nla_bar
-```
 
 ### Change color of bars
 
-Believe it or not, there is a fair bit of research behind which colors we should use for plots that aid in interpretation, are readable by those with colorblindness, etc.  So the defualt is probably good while we build the plot, but we almost always want to move beyond that.  For this we will use the [`viridis` package](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html)
+Believe it or not, there is a fair bit of research behind which colors we should use for plots that aid in interpretation, are readable by those with colorblindness, etc.  So the default is probably good while we build the plot, but we almost always want to move beyond that.  For this we will use the [`viridis` package](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html)
 
 ```{r viridis}
 library(viridis)
@@ -388,7 +389,7 @@ nla_bar +
 
 ### Saving the figure
 
-Once you have the details of your figure, figured (he, he) out you need to move it from the screen and into your manuscript.  This requires saving the output to a file.  The `ggplot2` package comes with a function to facilitate this, `ggsave()`.  To output a ggplot2 object to a high resolution tiff:
+Once you have the details of your figure, figured (he, he) out you need to move it from the screen and into your manuscript.  This requires saving the output to a file.  The `ggplot2` package comes with a function to facilitate this, `ggsave()`.  To output a ggplot2 object to a high resolution jpeg:
 
 ```{r ggsave, eval = TRUE}
 ggsave(filename = "nla_bar_chart.jpg",
@@ -399,7 +400,7 @@ ggsave(filename = "nla_bar_chart.jpg",
        dpi = 300)
 ```
 
-This should get you pretty close to providing the figures required by the journal you are submitting too.  If there are additional things you need to do your figure you can either edit the file directly in an image processing program (e.g. gimp or irfanview) or you can manipulate the file in R with the `magick` package, essentially an R client for ImageMagick.  Using `magick` is a bit beyond the scope of what we want to do today, but I will show a quick example of something I had to do for a paper recently: remlibmagick++-devove white space around borders of the image.  We can do with this using the auto crop functionality in `magick`.
+This should get you pretty close to providing the figures required by the journal you are submitting too.  If there are additional things you need to do your figure you can either edit the file directly in an image processing program (e.g. gimp or irfanview) or you can manipulate the file in R with the `magick` package, essentially an R client for ImageMagick.  Using `magick` is a bit beyond the scope of what we want to do today, but I will show a quick example of something I had to do for a paper recently: remove white space around borders of the image.  We can do with this using the auto crop functionality in `magick`.
 
 ```{r autocrop, eval = TRUE}
 library(magick)
@@ -468,3 +469,15 @@ tp_chla +
 - Cool rCharts examples: [rCharts Gallery](http://rcharts.io/gallery/)
 - ggplot examples: [Google Image Search](http://goo.gl/P0q2Lx)
 - R Data Viz, gone wrong:[Accidental aRt](http://accidental-art.tumblr.com) 
+  - [My own claim to fame](http://accidental-art.tumblr.com/post/96720455195/was-trying-to-mess-with-projections-in-ggplot)
+
+### Some additional information
+
+- Three dimensional plots:  There are many ways to do three dimensional plots in R.  A nice implementation of this with the help of a little javascript magic is plotly.  A lot of nice examples here: <https://plot.ly/r/#3d-charts>.  There are also some additional packages that support this, namely [scatterplot3d](https://cran.r-project.org/package=scatterplot3d)
+
+- Animations: Additionally, you can create animations.  The only one I have played with is [`gganimate`](https://github.com/dgrtwo/gganimate) which allows you to use what we know about `ggplot2` and create animations.  It is not on CRAN yet so would need to be installed by using the `devtools` package:
+
+```{r devtools_install, eval=FALSE}
+library(devtools)
+install_github("dgrtwo/gganimate")
+```
