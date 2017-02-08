@@ -13,6 +13,8 @@ if(!require("randomForest")){
 }
 library("ggplot2")
 library("dplyr")
+nla_url <- "https://usepa.github.io/region1_r/nla_dat.csv"
+nla_wq_subset <- read.csv(nla_url,stringsAsFactors = FALSE)
 ```
 
 # Basic Data Wrangling with R
