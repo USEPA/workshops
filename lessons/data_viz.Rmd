@@ -9,6 +9,12 @@ if(!require("ggplot2")){
 if(!require("dplyr")){
   install.packages("dplyr")
 }
+if(!require("tidyr")){
+  install.packages("tidyr")
+}
+if(!require("ggthemes")){
+  install.packages("ggthemes")
+}
 library("ggplot2")
 library("dplyr")
 nla_url <- "https://usepa.github.io/region1_r/nla_dat.csv"
@@ -276,10 +282,10 @@ library(forcats)
 eco9_ord <- nla_bar_data %>%
   filter(variable == "phosphorus") %>%
   arrange(desc(mean)) %>%
-  .$FW_ECO9
+  .$WSA_ECO9
 
 nla_bar_data <- nla_bar_data %>%
-  mutate(desc_ecoregion = fct_relevel(factor(FW_ECO9,eco9_ord)))
+  mutate(desc_ecoregion = fct_relevel(factor(WSA_ECO9,eco9_ord)))
 ```
 
 Now with that done, we can recreate our plot from above
@@ -384,9 +390,9 @@ nla_bar +
 
 Once you have the details of your figure, figured (he, he) out you need to move it from the screen and into your manuscript.  This requires saving the output to a file.  The `ggplot2` package comes with a function to facilitate this, `ggsave()`.  To output a ggplot2 object to a high resolution tiff:
 
-```{r ggsave, eval = FALSE}
-ggsave(filename = "nla_bar_chart.tiff",
-       plot = nla12_bar,
+```{r ggsave, eval = TRUE}
+ggsave(filename = "nla_bar_chart.jpg",
+       plot = nla_bar,
        width = 8,
        height = 4,
        units = "in", 
@@ -395,20 +401,20 @@ ggsave(filename = "nla_bar_chart.tiff",
 
 This should get you pretty close to providing the figures required by the journal you are submitting too.  If there are additional things you need to do your figure you can either edit the file directly in an image processing program (e.g. gimp or irfanview) or you can manipulate the file in R with the `magick` package, essentially an R client for ImageMagick.  Using `magick` is a bit beyond the scope of what we want to do today, but I will show a quick example of something I had to do for a paper recently: remlibmagick++-devove white space around borders of the image.  We can do with this using the auto crop functionality in `magick`.
 
-```{r autocrop, eval = FALSE}
+```{r autocrop, eval = TRUE}
 library(magick)
-nla_fig <- image_read("nla_bar_chart.tiff")
+nla_fig <- image_read("nla_bar_chart.jpg")
 nla_fig <- image_trim(nla_fig)
-image_write(nla_fig, "nla_bar_chart_trim.tiff" )
+image_write(nla_fig, "nla_bar_chart_trim.jpg" )
 ```
 
 The original tiff:
 
-![](nla_bar_chart.tiff)
+![](nla_bar_chart.jpg)
 
 The trimmed version:
 
-![](nla_bar_chart_trim.tiff)
+![](nla_bar_chart_trim.jpg)
 
 ## Exercise 4.2
 
