@@ -158,8 +158,8 @@ dens_gg <-ggplot(nla_gather,aes(x=log1p(value))) +
   geom_density() +
   facet_wrap("parameter") +
   labs(x="log1p of measured value")
-#ggplotly(dens_gg)
-dens_gg
+ggplotly(dens_gg)
+#dens_gg
 ```
 
 Next we could look at a scatterplot matrix of the relationship between phosphorus and chlorophyl by each EPA Region.  No need to re-do the shape of the data frame for this one.

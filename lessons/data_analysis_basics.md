@@ -299,11 +299,16 @@ dens_gg <-ggplot(nla_gather,aes(x=log1p(value))) +
   geom_density() +
   facet_wrap("parameter") +
   labs(x="log1p of measured value")
-#ggplotly(dens_gg)
-dens_gg
+ggplotly(dens_gg)
 ```
 
 ![plot of chunk fancy_density](figures/fancy_density-1.png)
+
+```r
+#dens_gg
+```
+
+![plot of chunk fancy_density](figures/fancy_density-2.png)
 
 Next we could look at a scatterplot matrix of the relationship between phosphorus and chlorophyl by each EPA Region.  No need to re-do the shape of the data frame for this one.
 
@@ -668,12 +673,12 @@ iris_rf
 ##                      Number of trees: 500
 ## No. of variables tried at each split: 2
 ## 
-##         OOB estimate of  error rate: 5.33%
+##         OOB estimate of  error rate: 4.67%
 ## Confusion matrix:
 ##            setosa versicolor virginica class.error
 ## setosa         50          0         0        0.00
 ## versicolor      0         47         3        0.06
-## virginica       0          5        45        0.10
+## virginica       0          4        46        0.08
 ```
 
 Can we predict species, well, I'd say so!  
@@ -694,12 +699,12 @@ iris_rf2
 ##                      Number of trees: 500
 ## No. of variables tried at each split: 2
 ## 
-##         OOB estimate of  error rate: 4%
+##         OOB estimate of  error rate: 5.33%
 ## Confusion matrix:
 ##            setosa versicolor virginica class.error
 ## setosa         50          0         0        0.00
 ## versicolor      0         47         3        0.06
-## virginica       0          3        47        0.06
+## virginica       0          5        45        0.10
 ```
 
 The only thing we haven't seen before here is the ".".  That indicates all the other variables in the data frame.  It is just a shortcut and you could explicitly name the variables to use.
