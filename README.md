@@ -27,7 +27,7 @@ Time                | Topic
 12:30 PM - 1:00 PM  | *LUNCH*
 1:00 PM - 2:30 PM   | [Data manipulation](lessons/data_manipulation.md)  ([pdf](lessons/data_manipulation.pdf))
 2:30 PM - 2:45 PM   | *BREAK*
-2:45 PM - 4:00 PM   | [Data aggregataion](lessons/data_aggregation.md)  ([pdf](lessons/data_aggregation.pdf))
+2:45 PM - 4:00 PM   | [Data aggregation](lessons/data_aggregation.md)  ([pdf](lessons/data_aggregation.pdf))
 
 
 

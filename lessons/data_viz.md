@@ -13,8 +13,8 @@ Visualizing  data is an area where R really shines.  For this we will split our 
 - [Cool stuff and getting help with `ggplot2`](#cool-stuff-and-getting-help-with-ggplot2)
 
 ## Lesson Exercises:
-- [Exercise 4.1](#exercise-41)
-- [Exercise 4.2](#exercise-42)
+- [Exercise 5.1](#exercise-41)
+- [Exercise 5.2](#exercise-42)
 
 ## Some examples for inspiration!
 Before we get started, I do like to show what is possible.  A couple of geospatial examples of maps created in R.
@@ -238,7 +238,7 @@ In short, some of the initial setup for ggplot is a bit more verbose than base R
 Before we get into another exercise, lets look at some of the other geometries.  In particular, boxplots and histograms.  If you want to see all that you can do, take a look at the list of `ggplot2` [geom functions](http://docs.ggplot2.org/current/).
 
 
-## Exercise 4.1
+## Exercise 5.1
 Let's now build some plots with `ggplot2`
 
 1. Add this code in a new section of your `nla_analysis.R` script.
@@ -537,7 +537,7 @@ The trimmed version:
 
 ![](nla_bar_chart_trim.jpg)
 
-## Exercise 4.2
+## Exercise 5.2
 
 1.) Let's make a similar chart, but instead of nutrients, let's plot mean and standard error of chlorophyll and secchi by EPA region (EPA_REG).
 
@@ -601,7 +601,7 @@ tp_chla +
 
 ### Some additional information
 
-- Three dimensional plots:  There are many ways to do three dimensional plots in R.  A nice implementation of this with the help of a little javascript magic is plotly.  A lot of nice examples here: <https://plot.ly/r/#3d-charts>.  There are also some additional packages that support this, namely [scatterplot3d](https://cran.r-project.org/package=scatterplot3d)
+- Three dimensional plots:  There are many ways to do three dimensional plots in R.  A nice implementation of this with the help of a little javascript magic is plotly.  A lot of nice examples here: <https://plot.ly/r/#3d-charts> and <https://plot.ly/~jackp/17249.embed>.  There are also some additional packages that support this, namely [scatterplot3d](https://cran.r-project.org/package=scatterplot3d)
 
 - Animations: Additionally, you can create animations.  The only one I have played with is [`gganimate`](https://github.com/dgrtwo/gganimate) which allows you to use what we know about `ggplot2` and create animations.  It is not on CRAN yet so would need to be installed by using the `devtools` package:
 
