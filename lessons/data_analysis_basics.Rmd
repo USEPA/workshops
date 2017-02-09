@@ -149,7 +149,7 @@ plot(log1p(nla_wq_subset[,6:9]))
 Lastly, it might be nice to look at these on a per variable basis or on some grouping variable. First we could look at the density of each measured variable. This requires some manipulation of the data which will allow us to use facets in ggplot to create a density distribution for each of the variables.
 
 ```{r fancy_density, message=FALSE, warning=FALSE}
-#Getting super fancy with tidyr, plotly, and ggplot2 to visualize all variables
+#Getting super fancy with tidyr, plotly (commented out for md), and ggplot2 to visualize all variables
 library(tidyr)
 library(ggplot2)
 library(plotly)
@@ -158,7 +158,8 @@ dens_gg <-ggplot(nla_gather,aes(x=log1p(value))) +
   geom_density() +
   facet_wrap("parameter") +
   labs(x="log1p of measured value")
-ggplotly(dens_gg)
+#ggplotly(dens_gg)
+dens_gg
 ```
 
 Next we could look at a scatterplot matrix of the relationship between phosphorus and chlorophyl by each EPA Region.  No need to re-do the shape of the data frame for this one.
@@ -186,7 +187,7 @@ t.test(nla_wq_subset$SECMEAN ~ nla_wq_subset$LAKE_ORIGIN)
 
 #Wide Format - need to do some work to get there - tidyr is handy!
 wide_nla <- spread(nla_wq_subset,LAKE_ORIGIN,SECMEAN)
-names(wide_nla)[9:10]<-c("man_made", "natural")
+names(wide_nla)[8:9]<-c("man_made", "natural")
 t.test(wide_nla$man_made, wide_nla$natural)
 ```
 
@@ -229,9 +230,9 @@ Let's first take a look at correlations.  These can be done with `cor()`.
 #For a pair
 cor(log1p(nla_wq_subset$PTL),log1p(nla_wq_subset$NTL))
 #For a correlation matrix
-cor(log1p(nla_wq_subset[,6:10]))
+cor(log1p(nla_wq_subset[,6:9]))
 #Spearman Rank Correlations
-cor(log1p(nla_wq_subset[,6:10]),method = "spearman")
+cor(log1p(nla_wq_subset[,6:9]),method = "spearman")
 ```
 
 You can also test for differences using:
@@ -256,7 +257,7 @@ head(resid(chla_tp)) # The resdiuals
 We can also do multiple linear regression.
 
 ```{r multiple, warning=FALSE, message=FALSE}
-chla_tp_tn_turb <- lm(log1p(CHLA) ~ log1p(PTL) + log1p(NTL) + log1p(TURB), data = nla_wq_subset)
+chla_tp_tn_turb <- lm(log1p(CHLA) ~ log1p(PTL) + log1p(NTL), data = nla_wq_subset)
 summary(chla_tp_tn_turb)
 ```
 
@@ -291,7 +292,7 @@ There are quite a few functions included with this package, but the one we are m
 
 ```{r rf_example}
 rf_x<-select(iris,Petal.Width, Petal.Length, Sepal.Width, Sepal.Length)
-rf_y<-rf_y$Species
+rf_y<-iris$Species
 iris_rf<-randomForest(x=rf_x,y=rf_y)
 iris_rf
 ```
