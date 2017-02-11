@@ -209,13 +209,11 @@ produces markdown,
 
 
 <pre>
-
 |LAKE_ORIGIN |  mean_ntl| median_ntl|   sd_ntl|
 |:-----------|---------:|----------:|--------:|
 |MAN-MADE    |  825.3617|        531|  939.357|
 |NATURAL     | 1626.5516|        624| 3096.758|
-
-<pre>
+</pre>
 
 
 which renders in html to something like this.
