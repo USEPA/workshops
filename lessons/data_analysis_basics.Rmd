@@ -3,7 +3,7 @@
 library(knitr)
 options(repos="http://cran.rstudio.com/")
 opts_chunk$set(fig.path="figures/",R.options=list(max.print=100),message = FALSE,
-               warning = FALSE, error = FALSE)
+               warning = FALSE, error = FALSE, cache = TRUE)
 if(!require("ggplot2")){
   install.packages("ggplot2")
 }
@@ -103,11 +103,14 @@ knitr::kable(orig_stats_ntl)
 
 produces markdown,
 
+
 <pre>
-```{r tableit2, results= "asis", echo=FALSE}
-knitr::kable(orig_stats_ntl)
-```
+|LAKE_ORIGIN |  mean_ntl| median_ntl|   sd_ntl|
+|:-----------|---------:|----------:|--------:|
+|MAN-MADE    |  825.3617|        531|  939.357|
+|NATURAL     | 1626.5516|        624| 3096.758|
 <pre>
+
 
 which renders in html to something like this.
 
