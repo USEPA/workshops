@@ -96,13 +96,22 @@ orig_stats_ntl
 
 And, just because it is cool, a markdown table!
 
-```{r tableit, echo=FALSE}
+The code,
+```{r tableit, eval=FALSE}
 knitr::kable(orig_stats_ntl)
 ```
 
-which renders in html to something like,
+produces markdown,
 
-```{r tableit2, results="asis", echo=FALSE}
+<pre>
+```{r tableit2, results= "asis", echo=FALSE}
+knitr::kable(orig_stats_ntl)
+```
+<pre>
+
+which renders in html to something like this.
+
+```{r tableit3, results="asis", echo=FALSE}
 knitr::kable(orig_stats_ntl)
 ```
 
@@ -212,7 +221,7 @@ So now that we know a difference exists, we can look at this more carefully, per
 ```{r bonferonni}
 tukey_test <- TukeyHSD(nla_anova, ordered = TRUE, conf.level = 0.95)
 tukey_test
-summary(pair_t)
+summary(tukey_test)
 ```
 
 ## Exercise 6.3

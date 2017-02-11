@@ -199,13 +199,23 @@ orig_stats_ntl
 
 And, just because it is cool, a markdown table!
 
+The code,
+
+```r
+knitr::kable(orig_stats_ntl)
+```
+
+produces markdown,
+
+<pre>
 
 |LAKE_ORIGIN |  mean_ntl| median_ntl|   sd_ntl|
 |:-----------|---------:|----------:|--------:|
 |MAN-MADE    |  825.3617|        531|  939.357|
 |NATURAL     | 1626.5516|        624| 3096.758|
+<pre>
 
-which renders in html to something like,
+which renders in html to something like this.
 
 
 |LAKE_ORIGIN |  mean_ntl| median_ntl|   sd_ntl|
@@ -307,8 +317,6 @@ ggplotly(dens_gg)
 ```r
 #dens_gg
 ```
-
-![plot of chunk fancy_density](figures/fancy_density-2.png)
 
 Next we could look at a scatterplot matrix of the relationship between phosphorus and chlorophyl by each EPA Region.  No need to re-do the shape of the data frame for this one.
 
@@ -455,15 +463,12 @@ tukey_test
 ```
 
 ```r
-summary(pair_t)
+summary(tukey_test)
 ```
 
 ```
-##                 Length Class  Mode     
-## method          1      -none- character
-## data.name       1      -none- character
-## p.value         4      -none- numeric  
-## p.adjust.method 1      -none- character
+##        Length Class  Mode   
+## RT_NLA 12     -none- numeric
 ```
 
 ## Exercise 6.3
@@ -673,12 +678,12 @@ iris_rf
 ##                      Number of trees: 500
 ## No. of variables tried at each split: 2
 ## 
-##         OOB estimate of  error rate: 4.67%
+##         OOB estimate of  error rate: 4%
 ## Confusion matrix:
 ##            setosa versicolor virginica class.error
 ## setosa         50          0         0        0.00
 ## versicolor      0         47         3        0.06
-## virginica       0          4        46        0.08
+## virginica       0          3        47        0.06
 ```
 
 Can we predict species, well, I'd say so!  
@@ -699,12 +704,12 @@ iris_rf2
 ##                      Number of trees: 500
 ## No. of variables tried at each split: 2
 ## 
-##         OOB estimate of  error rate: 5.33%
+##         OOB estimate of  error rate: 4%
 ## Confusion matrix:
 ##            setosa versicolor virginica class.error
 ## setosa         50          0         0        0.00
 ## versicolor      0         47         3        0.06
-## virginica       0          5        45        0.10
+## virginica       0          3        47        0.06
 ```
 
 The only thing we haven't seen before here is the ".".  That indicates all the other variables in the data frame.  It is just a shortcut and you could explicitly name the variables to use.
