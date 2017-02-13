@@ -46,7 +46,9 @@ Find the RStudio shortcut or menu (OS specific of course) and fire it up.  Once 
 
 ![rstudio](figures/rstudio.jpg)
 
+
 Let's take some time to look around.  I'll show each of the different sections, or "panes" as they are known.
+
 
 ### Projects
 
@@ -63,7 +65,7 @@ Scripts are text files that hold the code you write.  We will work both with scr
 
 ### Interacting with R inside of RStudio
 
-Once you have functions in your script, they still need to be sent to the R console.  There are several ways to do this.  There is the old stand-by of copying and pasting, but this is a bit cumbersome.  Instead you can use the `Run` button in the upper right corner of the source pane, or even better (I think so, anyway) you can use `ctrl-enter`.  Both the `Run` buttons and `ctrl-enter` will send the line that your cursor is on and move to the next line or it will send just selected text.
+Once you have functions in your script, they still need to be sent to the R console.  There are several ways to do this.  There is the old stand-by of copying and pasting, but this is a bit cumbersome.  Instead you can use the `Run` button in the upper right corner of the source pane, or even better (I think so, anyway) you can use `ctrl-enter`.  Both the `Run` buttons and `ctrl-enter` will send the line that your cursor is on and move to the next line or it will send just the selected text.
 
 ![rstudio-script](figures/rstudio_run.jpg)
 

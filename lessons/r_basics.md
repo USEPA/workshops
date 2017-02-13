@@ -32,7 +32,9 @@ Find the RStudio shortcut or menu (OS specific of course) and fire it up.  Once 
 
 ![rstudio](figures/rstudio.jpg)
 
+
 Let's take some time to look around.  I'll show each of the different sections, or "panes" as they are known.
+
 
 ### Projects
 
@@ -49,7 +51,7 @@ Scripts are text files that hold the code you write.  We will work both with scr
 
 ### Interacting with R inside of RStudio
 
-Once you have functions in your script, they still need to be sent to the R console.  There are several ways to do this.  There is the old stand-by of copying and pasting, but this is a bit cumbersome.  Instead you can use the `Run` button in the upper right corner of the source pane, or even better (I think so, anyway) you can use `ctrl-enter`.  Both the `Run` buttons and `ctrl-enter` will send the line that your cursor is on and move to the next line or it will send just selected text.
+Once you have functions in your script, they still need to be sent to the R console.  There are several ways to do this.  There is the old stand-by of copying and pasting, but this is a bit cumbersome.  Instead you can use the `Run` button in the upper right corner of the source pane, or even better (I think so, anyway) you can use `ctrl-enter`.  Both the `Run` buttons and `ctrl-enter` will send the line that your cursor is on and move to the next line or it will send just the selected text.
 
 ![rstudio-script](figures/rstudio_run.jpg)
 
@@ -73,7 +75,7 @@ This exercise will make sure R and RStudio are working and that you can get arou
 
 R is a functional programming language and as such, most everything you do uses a function.
 
-The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many (2922 functions, to be exact).  Some examples:
+The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many (2972 functions, to be exact).  Some examples:
 
 
 ```r
@@ -100,21 +102,21 @@ rnorm(100,mean=10,sd=2)
 ```
 
 ```
-##   [1]  8.724526 10.395148 12.148667 12.586251 10.435859 10.666495 12.709130
-##   [8]  7.931543 10.807927  8.068073  9.222086  6.553963 13.972830 14.059467
-##  [15] 11.449872  7.142285 11.936947  8.327788 10.916394 10.226994 12.245932
-##  [22]  9.527039  7.889499  9.912339  7.241662 14.082841 11.269139  9.356662
-##  [29]  8.045419  9.433890  8.685784  9.720497 12.479356 10.739582  7.444480
-##  [36]  9.809546  9.747554 10.890886  7.780826  9.851235 11.312440 12.191447
-##  [43] 10.507623 11.615698  7.999668 11.567267 10.460140 11.735911 11.053794
-##  [50] 13.689501  9.087721 13.326327 12.537589 12.833831  8.089981  5.875960
-##  [57]  4.510101 11.743892  7.699487 10.419249  9.092416 10.263541  8.636747
-##  [64]  9.641042 10.549796  9.459328  6.549094  8.428398 10.581965  8.162318
-##  [71] 11.956845  8.677270 10.709259 14.333607  9.319754  9.560855  9.517556
-##  [78]  8.107807  9.447604 11.364546 11.307724 10.871826 10.190516  6.726736
-##  [85] 14.813083  7.824443  8.824914  9.064244 11.083659 12.213585  9.180814
-##  [92]  9.028958  7.150784  6.624067 10.426247  9.552225 11.004300 11.952902
-##  [99] 11.933681 10.755002
+##   [1]  9.148439  8.244873 12.809390 10.270566 10.857999  8.640229 10.091414
+##   [8] 11.887714  6.553034 10.790384  9.688987 10.088331  8.964356 11.196232
+##  [15] 11.748327  9.367074 13.613868  8.610799  6.997118 10.755731  5.596462
+##  [22] 15.101721 10.429324 10.560774  8.475368  7.626122  7.732709  8.072248
+##  [29] 10.490229 10.246041 11.081006 12.176738 12.362063  8.570916  5.618368
+##  [36] 15.660068 10.586974 10.784224 11.270706 11.536572 12.490984 10.302700
+##  [43]  8.669302  9.899981 12.715020  7.985805 13.815403  9.906993 11.780336
+##  [50]  9.670081  8.605125  7.556609 13.361786  6.758279 11.399905  9.461651
+##  [57] 10.410561 11.977923  9.366659 10.159600 11.635354 10.970074  9.071118
+##  [64] 13.844147  9.429806 10.946747 11.329165 12.677459  7.848923 12.803325
+##  [71]  8.228969  9.954472 10.406966  6.556048 10.157412  8.427046  9.143193
+##  [78] 12.779368 10.428450 10.408216  6.840958  8.753578  6.708538  8.068699
+##  [85]  8.784557  7.362438  9.046107  8.466858  9.051564 13.160876  8.334009
+##  [92]  7.243890  5.019647 11.368333 12.587103  8.616944  7.634725 12.826097
+##  [99]  9.048625 11.993855
 ```
 
 ```r
@@ -123,7 +125,7 @@ mean(rnorm(100))
 ```
 
 ```
-## [1] 0.03146363
+## [1] -0.100988
 ```
 
 ```r
@@ -132,7 +134,7 @@ sum(rnorm(100))
 ```
 
 ```
-## [1] 14.18359
+## [1] -12.32753
 ```
 
 ### A few side notes 
@@ -165,7 +167,7 @@ The base install of R is quite powerful, but you will soon have a need or desire
 
 ### CRAN
 
-One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of 2017-02-06, there are 10009 on CRAN! 
+One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of 2017-02-13, there are 10042 on CRAN! 
 
 ### Installing packages
 

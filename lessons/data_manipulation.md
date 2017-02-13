@@ -20,7 +20,7 @@ Data wrangling (manipulation, jujitsu, cleaning, etc.) is the part of any data a
 
 ## Indexing vectors
 
-In base R you can use a indexing to select out rows and columns.  You will see this quite often in other peoples' code or in other sources for help. So, we should at least cover it so that it isn't foreign when you see it elsewhere.
+In base R you can use indexing to select out rows and columns.  You will see this quite often in other peoples' code or in other sources for help. So, we should at least cover it so that it isn't foreign when you see it elsewhere.
 
 First lets work with indexing vectors.
 
@@ -288,7 +288,7 @@ This addresses a common problem with R in that all operations are conducted in m
 - [CRAN page: vignettes here](http://cran.rstudio.com/web/packages/dplyr/)
 
 ### Using dplyr
-So, base R can do what you need, but it is a bit complicated and the syntax is a bit dense.  In `dplyr` this can be done with two functions, `select()` and `filter()`.  The code can be a bit more verbose, but it allows you to write code that is much more readable.  Before we start we need to make sure we've got everything installed and loaded.  If you do not have R Version 3.0.2 or greater you will have some problems (i.e. no `dplyr` for you).
+So, base R can do what you need, but it is a bit complicated and the syntax is a bit dense.  In `dplyr` this can be done with two functions, `select()` and `filter()`.  The code can be a bit more verbose, but it allows you to write code that is much more readable.  Before we start we need to make sure we've got everything installed and loaded.  If you do not have R Version 3.1.2 or greater you will have some problems (i.e. no `dplyr` for you).
 
 
 

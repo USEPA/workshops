@@ -85,9 +85,8 @@ The data structures in base R include:
 Plus, 
 
 - factors
-- tables
 
-Our efforts will focus on vectors, data frames, and a brief introduction to factors.  We will discuss just the basics and will leave it to your curiousity to explore the basics of list, matrix, array, and table data structures.
+Our efforts will focus on vectors, data frames, and a brief introduction to factors.  We will discuss just the basics and will leave it to your curiousity to explore the basics of list, matrix, and array data structures.
 
 ### Vectors
 A vector is the most common and basic data structure in `R` and is pretty much the workhorse/building block of data in R. 
