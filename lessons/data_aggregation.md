@@ -2,7 +2,7 @@
 
 # Basic Data Aggregation with R
 
-Admittedly, data aggregation and manipulation are somewhat artificial distinctions but for the purposes of these lessons I am using them to break apart what we do to data in its existing format (data manipulation, the last lesson) and what we do to more radically change the format of our data through aggregating and summarizing data.  We will first introduce the `tidyr` package and then jump back into summarizing data with `dplyr`.  To goal of these two lessons are to provide you with enough tools to accomplish the lion's share of data manipulation and aggregation tasks.
+Admittedly, data aggregation and manipulation are somewhat artificial distinctions but for the purposes of these lessons I am using them to break apart what we do to data in its existing format (data manipulation, the last lesson) and what we do to more radically change the format of our data through aggregating and summarizing data.  We will first introduce the `tidyr` package and then jump back into summarizing data with `dplyr`.  The goal of these two lessons are to provide you with enough tools to accomplish the lion's share of data manipulation and aggregation tasks.
 
 ## Lesson Outline:
 
@@ -17,7 +17,7 @@ Admittedly, data aggregation and manipulation are somewhat artificial distinctio
 
 ## Tidyverse
 
-I probably should have brought this up already, but most of what we are learning in this workshop is centered around what is now known as the "Tidyverse".  The "tidyverse" is build on a mindset for data analysis that assumes our data is in a data frame and that the rows off that data frame represent observations and the columns represent variables and the cells are values for those observations and variables.  In addition, the "tidyverse" is also a mindset for package development that implements this.  All of Hadley Wickham's packages that we are using in here (`dplyr`,`tidyr`, `ggplot2`) are part of the "tidyverse." Beyond this, I'm not going to go into too much detail (other than by example), but I did want to provide some links so that you can read up on this if you want.
+I probably should have brought this up already, but most of what we are learning in this workshop is centered around what is now known as the "Tidyverse".  The "tidyverse" is build on a mindset, developed and encouraged by Hadley Wickham, for data analysis that assumes our data is in a data frame and that the rows off that data frame represent observations and the columns represent variables and the cells are values for those observations and variables.  In addition, the "tidyverse" is also a mindset for package development that implements this.  All of Hadley Wickham's packages that we are using in here (`dplyr`,`tidyr`, `ggplot2`) are part of the "tidyverse." Beyond this, I'm not going to go into too much detail (other than by example), but I did want to provide some links so that you can read up on this if you want.
 
 - [Tidy Data Paper](https://www.jstatsoft.org/article/view/v059i10/v59i10.pdf): The original paper that laid out the concept.  The packages described in the paper are now mostly replaced (e.g. with `dplyr` and `tidyr`), but the concepts remain valid.
 - [Tidyverse](http://tidyverse.org/): Website for all things tidy.
