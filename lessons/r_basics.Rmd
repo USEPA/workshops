@@ -79,7 +79,7 @@ This exercise will make sure R and RStudio are working and that you can get arou
 
 3. Create a new project.  Name it "intro_r_workshop".  We will use this for the rest of the workshop.
 
-4. Create a new "R Script" in the Source Pane, save that file into your newly created project and name it "r1_introR.R". It'll just be a blank text file at this point.
+4. Create a new "R Script" in the Source Pane, save that file into your newly created project and name it "r7_introR.R". It'll just be a blank text file at this point.
 
 2. Add in a comment line to separate this section.  It should look something like: `# Exercise 1.1: Just Getting used to RStudio and Scripts`.
 

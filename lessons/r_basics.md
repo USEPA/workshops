@@ -65,7 +65,7 @@ This exercise will make sure R and RStudio are working and that you can get arou
 
 3. Create a new project.  Name it "intro_r_workshop".  We will use this for the rest of the workshop.
 
-4. Create a new "R Script" in the Source Pane, save that file into your newly created project and name it "r1_introR.R". It'll just be a blank text file at this point.
+4. Create a new "R Script" in the Source Pane, save that file into your newly created project and name it "r7_introR.R". It'll just be a blank text file at this point.
 
 2. Add in a comment line to separate this section.  It should look something like: `# Exercise 1.1: Just Getting used to RStudio and Scripts`.
 
@@ -75,7 +75,7 @@ This exercise will make sure R and RStudio are working and that you can get arou
 
 R is a functional programming language and as such, most everything you do uses a function.
 
-The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many (2972 functions, to be exact).  Some examples:
+The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many (2922 functions, to be exact).  Some examples:
 
 
 ```r
@@ -102,21 +102,21 @@ rnorm(100,mean=10,sd=2)
 ```
 
 ```
-##   [1]  9.148439  8.244873 12.809390 10.270566 10.857999  8.640229 10.091414
-##   [8] 11.887714  6.553034 10.790384  9.688987 10.088331  8.964356 11.196232
-##  [15] 11.748327  9.367074 13.613868  8.610799  6.997118 10.755731  5.596462
-##  [22] 15.101721 10.429324 10.560774  8.475368  7.626122  7.732709  8.072248
-##  [29] 10.490229 10.246041 11.081006 12.176738 12.362063  8.570916  5.618368
-##  [36] 15.660068 10.586974 10.784224 11.270706 11.536572 12.490984 10.302700
-##  [43]  8.669302  9.899981 12.715020  7.985805 13.815403  9.906993 11.780336
-##  [50]  9.670081  8.605125  7.556609 13.361786  6.758279 11.399905  9.461651
-##  [57] 10.410561 11.977923  9.366659 10.159600 11.635354 10.970074  9.071118
-##  [64] 13.844147  9.429806 10.946747 11.329165 12.677459  7.848923 12.803325
-##  [71]  8.228969  9.954472 10.406966  6.556048 10.157412  8.427046  9.143193
-##  [78] 12.779368 10.428450 10.408216  6.840958  8.753578  6.708538  8.068699
-##  [85]  8.784557  7.362438  9.046107  8.466858  9.051564 13.160876  8.334009
-##  [92]  7.243890  5.019647 11.368333 12.587103  8.616944  7.634725 12.826097
-##  [99]  9.048625 11.993855
+##   [1] 14.456868  7.471977 14.297483 13.127861  9.728886 11.983070  9.306490
+##   [8] 11.871214  9.878618  9.106449  9.353313 10.631137  8.946616 11.525988
+##  [15]  7.766620  5.762064 10.421269 11.555805 11.754044  8.098920  7.785731
+##  [22]  7.504559  9.072182  7.294369  8.322627  7.287291 12.165353 10.104064
+##  [29]  7.525730  7.363283  6.746065  9.474359  9.891555 10.862703  6.641146
+##  [36]  4.988531  8.320469 11.572163  7.942513 11.852185 10.722635 12.166569
+##  [43]  7.868963  8.905642 12.534517  5.279886  9.387692 11.137619  9.788295
+##  [50] 10.681006  7.928938  7.029504  9.928384 12.237308  6.246361  9.451357
+##  [57] 11.053319  7.906376 13.875015 10.701991 10.547830 10.513011  8.466960
+##  [64] 12.904427 10.252557  7.233676  9.575264 10.895399 12.642352 10.842296
+##  [71]  6.997818 10.988100 11.241123  6.413633  8.565758 12.880594  7.467957
+##  [78]  9.376505 10.593615  9.292777  7.533098  9.683696  9.391539 10.032870
+##  [85] 11.455912  8.399301  9.756392  5.117630  7.634953 10.054562 11.588901
+##  [92] 10.646984 10.623372  4.866720 10.064531 11.752348 12.645299  8.608404
+##  [99]  7.575347  8.567518
 ```
 
 ```r
@@ -125,7 +125,7 @@ mean(rnorm(100))
 ```
 
 ```
-## [1] -0.100988
+## [1] 0.1327204
 ```
 
 ```r
@@ -134,7 +134,7 @@ sum(rnorm(100))
 ```
 
 ```
-## [1] -12.32753
+## [1] 1.055635
 ```
 
 ### A few side notes 
@@ -167,7 +167,7 @@ The base install of R is quite powerful, but you will soon have a need or desire
 
 ### CRAN
 
-One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of 2017-02-13, there are 10042 on CRAN! 
+One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of 2017-02-14, there are 10046 on CRAN! 
 
 ### Installing packages
 
