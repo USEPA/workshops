@@ -243,7 +243,7 @@ summary(nla_wq)
 
 Take note of the argument we used on `read.csv()`.  The `stringsAsFactors = FALSE` is what we want to use to make sure factors are not getting automatically created.
 
-## Other ways to read data
+## Other ways to read data 
 
 Although, `read.csv()` and `read.table()` are very flexible, they are not the only options for reading in data.  This could be a full day in and of itself, but packages like `readr`, `readxl`, and `rio` provide flexible methods for reading in data.  Also, databases can also be accessed directly in R and much of this functionality is in the `DBI` and `RODBC` packages.  Making the connections is not entirely trivial, but an easier way to take advantage of this is via the `dplyr` package.  See the [vignette on databases](https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html) fo a lot of good examples of working with common open source databases.
 

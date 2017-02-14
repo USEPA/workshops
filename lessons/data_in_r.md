@@ -435,4 +435,87 @@ For today's workshop we will focus on grabbing data from a file on the web, but 
 Let's give it a try.
 
 
+```r
+#Grab data from a web file
+nla_url <- "https://raw.githubusercontent.com/USEPA/region7_r/master/nla_dat.csv"
+nla_wq <- read.csv(nla_url,stringsAsFactors = FALSE)
+head(nla_wq)
+```
 
+```
+##         SITE_ID RT_NLA  EPA_REG WSA_ECO9 LAKE_ORIGIN PTL NTL  CHLA SECMEAN
+## 1 NLA06608-0001    REF Region_8      WMT     NATURAL   6 151  0.24    6.40
+## 2 NLA06608-0002  SO-SO Region_4      CPL    MAN-MADE  36 695  3.84    0.55
+## 3 NLA06608-0003  TRASH Region_6      CPL     NATURAL  43 738 16.96    0.71
+## 4 NLA06608-0004  SO-SO Region_8      WMT    MAN-MADE  18 344  4.60    1.80
+## 5 NLA06608-0006    REF Region_1      NAP    MAN-MADE   7 184  4.08    3.21
+## 6 NLA06608-0007    REF Region_5      UMW     NATURAL   8 493  2.43    3.15
+```
+
+```r
+str(nla_wq)
+```
+
+```
+## 'data.frame':	1086 obs. of  9 variables:
+##  $ SITE_ID    : chr  "NLA06608-0001" "NLA06608-0002" "NLA06608-0003" "NLA06608-0004" ...
+##  $ RT_NLA     : chr  "REF" "SO-SO" "TRASH" "SO-SO" ...
+##  $ EPA_REG    : chr  "Region_8" "Region_4" "Region_6" "Region_8" ...
+##  $ WSA_ECO9   : chr  "WMT" "CPL" "CPL" "WMT" ...
+##  $ LAKE_ORIGIN: chr  "NATURAL" "MAN-MADE" "NATURAL" "MAN-MADE" ...
+##  $ PTL        : int  6 36 43 18 7 8 66 10 159 28 ...
+##  $ NTL        : int  151 695 738 344 184 493 801 473 1026 384 ...
+##  $ CHLA       : num  0.24 3.84 16.96 4.6 4.08 ...
+##  $ SECMEAN    : num  6.4 0.55 0.71 1.8 3.21 3.15 0.79 4.48 0.31 0.65 ...
+```
+
+```r
+dim(nla_wq)
+```
+
+```
+## [1] 1086    9
+```
+
+```r
+summary(nla_wq)
+```
+
+```
+##    SITE_ID             RT_NLA            EPA_REG         
+##  Length:1086        Length:1086        Length:1086       
+##  Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character  
+##                                                          
+##                                                          
+##                                                          
+##    WSA_ECO9         LAKE_ORIGIN             PTL               NTL         
+##  Length:1086        Length:1086        Min.   :   1.00   Min.   :    5.0  
+##  Class :character   Class :character   1st Qu.:  10.00   1st Qu.:  309.5  
+##  Mode  :character   Mode  :character   Median :  25.50   Median :  575.0  
+##                                        Mean   : 109.22   Mean   : 1175.8  
+##                                        3rd Qu.:  89.75   3rd Qu.: 1172.0  
+##                                        Max.   :4679.00   Max.   :26100.0  
+##       CHLA           SECMEAN      
+##  Min.   :  0.07   Min.   : 0.040  
+##  1st Qu.:  2.98   1st Qu.: 0.650  
+##  Median :  8.02   Median : 1.380  
+##  Mean   : 29.38   Mean   : 2.195  
+##  3rd Qu.: 26.08   3rd Qu.: 2.850  
+##  Max.   :936.00   Max.   :36.710
+```
+
+Take note of the argument we used on `read.csv()`.  The `stringsAsFactors = FALSE` is what we want to use to make sure factors are not getting automatically created.
+
+## Other ways to read data 
+
+Although, `read.csv()` and `read.table()` are very flexible, they are not the only options for reading in data.  This could be a full day in and of itself, but packages like `readr`, `readxl`, and `rio` provide flexible methods for reading in data.  Also, databases can also be accessed directly in R and much of this functionality is in the `DBI` and `RODBC` packages.  Making the connections is not entirely trivial, but an easier way to take advantage of this is via the `dplyr` package.  See the [vignette on databases](https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html) fo a lot of good examples of working with common open source databases.
+
+## Exercise 2.2
+From here on out I hope to have these exercises begin to build on each other. We may not do that 100%, but there should at least be a modicum of continuity. For this exercise we are going to grab some data, look at that data, and be able to describe some basic information about that dataset.  The data we are using is the 2012 National Lakes Assessment.  URL's for those files are included below.
+
+1. We will be using a new script for the rest of our exercises.  Create this script in RStudio and name it "nla_analysis.R"
+2. As you write the script, comment as you go. Some good examples are what we used in the first script where we provided some details on each of the exercises. Remember comments are lines that begin with `#` and you can put whatever you like after that.
+3. Add a function to your script that creates a data frame named `nla_wq` (hint: `read.csv`).  The URL for this is: <https://bit.ly/nla_water>
+5. Run the script and make sure it doesn't throw any errors and you do in fact get a data frame.
+6. Explore the data frame using some of the functions we covered (e.g. `head()`,`summary()`, or `str()`).  This part does not need to be included in the script. It is just a quick QA step to be sure the data read in as expected.
