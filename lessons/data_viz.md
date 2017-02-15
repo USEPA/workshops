@@ -552,19 +552,19 @@ library(ggplot2)
 nla_chla_secc_mean <- nla_wq_subset %>%
   group_by(EPA_REG) %>%
   summarize(chla = mean(CHLA),
-            secchi = mean(SECMEAN)) %>%
+            secchi = mean(TURB)) %>%
   gather("variable","mean",2:3)
 
 nla_chla_secc_se <- nla_wq_subset %>%
   group_by(EPA_REG) %>%
   summarize(chla = sd(log1p(CHLA))/sqrt(length(CHLA)),
-            secchi = sd(log1p(SECMEAN))/sqrt(length(SECMEAN))) %>%
+            secchi = sd(log1p(TURB))/sqrt(length(TURB))) %>%
   gather("variable","se",2:3)
           
 nla_chla_secc_data <- full_join(nla_chla_secc_mean, nla_chla_secc_se)
 ```
 
-3.) Now look back at the examples and see if you can create a bar chart that shows the mean,  and error bars of CHLA and SECMEAN by EPA_REG.
+3.) Now look back at the examples and see if you can create a bar chart that shows the mean,  and error bars of CHLA and TURB by EPA_REG.
 
 ## Cool stuff and getting help with `ggplot2`
 In this last section we won't have an exercise, but I did want to show some other things that `ggplot2` can do and show some other functions that people have built on top of `ggplot2` that are pretty cool.  Lastly, I provide some links on more reading as well as some nice (and fun) data visualization galleries.
