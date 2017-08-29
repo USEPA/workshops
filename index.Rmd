@@ -1,0 +1,65 @@
+---
+title: "USEPA R User Group Workshop Agenda"
+editor_options:
+  chunk_output_type: console
+date: "2017-09-11 to 2017-09-13"
+output:
+  html_document:
+    df_print: paged
+---
+
+## Mon, Sep. 11
+
+|Time   |Title                         |Speaker                    |
+|-------|------------------------------|---------------------------|
+|11:00 AM - 1:00 PM|Registration||
+|1:00 PM - 1:10 PM|Introduction|Jeff Hollister and Ann Vega, US EPA, Office of Research and Development|
+|1:10 PM - 1:30 PM|Welcome|Harvey Simon, US EPA, Office of Environmental Information, Acting Deputy CIO|
+|**Keynote Address**|||
+|1:30 PM - 2:30 PM|Air Quality Epidemiology and R|Joel Schwartz, Harvard University, T.H. Chan School of Public Health|
+|2:30 PM - 3:00 PM|**Break**||
+|**R Across the Federal Gov**|||
+|3:00 PM - 3:20 PM|TBD|Arcenis Rojas, Bureau of Labor Statistics|
+|3:20 PM - 3:40 PM|In with the New: a Shiny App for Exploring Summary Data Tables from the Medical Expenditure Panel Survey|Emily Mitchell, Agency for Healthcare Research and Quality|
+|3:40 PM - 4:00 PM|An R Shiny Implementation for Clinical Review Tools at the FDA|Jimmy Wong, Food and Drug Administration|
+|4:00 PM - 4:20 PM|TBD|Richard Schwinn, Small Business Administration|
+|4:20 PM - 4:40 PM|Some Uses of R at USDA NASS|Nathan Cruze, National Agricultural Statistics Service|
+|4:40 PM - 5:00 PM|Discussion of using R at Federal Agencies|Ann Vega, U.S. Environmental Protection Agency|
+|**Evening Activities**|||
+|5:00 PM - 6:30 PM|Informal Social|Dubliner Irish Pub & Restaurant|
+
+## Tues, Sep. 12
+
+|Time   |Title                         |Speaker                    |
+|-------|------------------------------|---------------------------|
+|**Morning Workshops**|||
+|8:00 AM - 11:30 AM|Introduction to R - Part 1|Wendy Martinez, Bureau of Labor Statistics|
+|8:00 AM - 11:30 AM|Spatial Analysis/GIS with R|Jeff Hollister, US EPA, Office of Research and Development|
+|8:00 AM - 11:30 AM|Data Visualization with ggplot2|Lou Reynolds, US EPA, Region 3|
+|11:30 AM - 1:30 PM|**Lunch**|On your own|
+|**Afternoon Workshops**|||
+|1:30 PM - 5:00 PM|Introduction to R - Part 2|Wendy Martinez, Bureau of Labor Statistics|
+|1:30 PM - 5:00 PM|Spatial Analysis/GIS with R|Jeff Hollister, US EPA, Office of Research and Development|
+|1:30 PM - 5:00 PM|Data Visualization with ggplot2|Lou Reynolds, US EPA, Region 3|
+
+## Wed, Sep 13
+
+|Time   |Title                         |Speaker                    |
+|-------|------------------------------|---------------------------|
+|8:45 AM - 9:00 AM|Welcome Day 2||   
+|**R at US EPA**|||
+|9:00 AM - 9:20 AM|Hierarchical modeling: an overview and an environmental application|Mike Messner, US EPA, Office of Water|
+|9:20 AM - 9:40 AM|Trend Analysis|David Farrar, US EPA, Office of Research and Development|
+|9:40 AM - 10:00 AM|"AIRPORT", the AQS Shiny App|Stephen Krabbe, US EPA, Region 7|
+|10:00 AM - 10:20 AM|A Shiny app for QCing continuous stream sensor data|David Gibbs, US EPA, ORISE Participant|
+|10:20 AM - 10:40 AM|Water quality portal data discovery and analysis tools|Britt Dean, US EPA, ORISE Participant and Laura Shumway, US EPA, Office of Water|
+|10:40 AM - 11:00 AM|R packages as a reproducible framework for lake and cyanobacteria research|Jeff Hollister, US EPA, Office of Research and Development|
+|11:00 AM - 11:15 AM|**Break**||
+|**Short Talks**|||
+|11:15 AM - 11:25 AM|Using R to write control code for a CNC router|Michael Messner, US EPA, Office of Water|
+|11:25 AM - 11:35 AM|Using R to Analyze GeoSpatial Multi-Pollutant Data|Marta Fuoco, US EPA, Region 5|
+|11:35 AM - 11:45 AM|Organizing Data from Long-to-Wide Format – Issues and Troubleshooting|Austin Heinrich, US EPA, Office of Water|
+|11:45 AM - 11:50 AM|Questions?|| 
+|11:50 AM - Noon|Wrap-up|Ann Vega|
+
+*Note:  This agenda is lovingly made with RStudio, R, `rmarkdown`, and `knitr`*
