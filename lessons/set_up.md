@@ -1,9 +1,4 @@
-```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
-options(repos="http://cran.rstudio.com/")
-pkgs <- c("sf","raster","knitr")
-x<-lapply(pkgs, library, character.only = TRUE)
-opts_chunk$set(tidy=T)
-```
+
  
 # Setting up R to do GIS
 Out of the box, R is not ready to do GIS analysis.  As such, we need to add a few packages that will provide most of the functionality you'd expect out of a GIS.  In this lesson we will introduce the bare minimum packages for doing GIS.
@@ -25,7 +20,8 @@ The [`sf` package](http://r-spatial.github.io/sf/) provides vector data handling
 
 Getting `sf` added is no different than adding any other package that is on CRAN.
 
-```{r add_sp, eval=FALSE}
+
+```r
 install.packages("sf")
 library("sf")
 ```
@@ -36,7 +32,8 @@ For our raster data processing we will use the venerable `raster` package.
 
 To install, just do: 
 
-```{r add_raster, eval=FALSE}
+
+```r
 install.packages("raster")
 library("raster")
 ```
@@ -46,7 +43,8 @@ library("raster")
 While we won't be using the `rgdal` package directly, `raster` does depend on it so I wanted to mention it breifly. The `rgdal` package provides tools for reading and writing multiple spatial data formats.  It is based on the [Geospatial Data Abstraction Library (GDAL)](http://www.gdal.org/) which is a project of the Open Source Geospatial Foundation (OSGeo).  The primary use of `rgdal` is to read various spatial data formats into R and store them as `sp` objects.  In this workshop, we will be only using `rgdal` to read in shape files, but it has utility far beyond that.  
 As before, nothing special to get set up with `rgdal` on windows.  Simply:
 
-```{r add_rgdal, eval=FALSE}
+
+```r
 install.packages("rgdal")
 library("rgdal")
 ```
