@@ -13,9 +13,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Materials for this workshop are linked below:
 
-- [Data Vis Materials](R3DataVis.html)
-- [Data Vis Source](R3DataVis.rmd)
-- [Data Vis Data](VisData.xlsx)
-- [RStudio Data Wrangling Cheatsheet](data-wrangling-cheatsheet.pdf)
-- [RStudio Data Visualization Cheatsheet](ggplot2-cheatsheet.pdf)
-- [RStudio RMarkdown Cheatsheet](rmarkdown-cheatsheet.pdf)
+- [Data Vis Materials](workshops/R3DataVis.html)
+- [Data Vis Source](workshops/R3DataVis.rmd)
+- [Data Vis Data](workshops/VisData.xlsx)
+- [RStudio Data Wrangling Cheatsheet](workshops/data-wrangling-cheatsheet.pdf)
+- [RStudio Data Visualization Cheatsheet](workshops/ggplot2-cheatsheet.pdf)
+- [RStudio RMarkdown Cheatsheet](workshops/rmarkdown-cheatsheet.pdf)
