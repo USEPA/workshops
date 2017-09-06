@@ -33,12 +33,12 @@ output:
 |Time   |Title                         |Speaker                    |
 |-------|------------------------------|---------------------------|
 |**Morning Workshops**|||
-|8:00 AM - 11:30 AM|Introduction to R - Part 1|Wendy Martinez, Bureau of Labor Statistics|
+|8:00 AM - 11:30 AM|[Introduction to R - Part 1](intro_r_workshop.html)|Wendy Martinez, Bureau of Labor Statistics|
 |8:00 AM - 11:30 AM|[Spatial Analysis/GIS with R](https://github.com/usepa/rspatial_workshop)|Jeff Hollister, US EPA, Office of Research and Development|
 |8:00 AM - 11:30 AM|[Data Visualization with ggplot2](data_vis_workshop.html)|Lou Reynolds, US EPA, Region 3|
 |11:30 AM - 1:30 PM|**Lunch**|On your own|
 |**Afternoon Workshops**|||
-|1:30 PM - 5:00 PM|Introduction to R - Part 2|Wendy Martinez, Bureau of Labor Statistics|
+|1:30 PM - 5:00 PM|[Introduction to R - Part 2](intro_r_workshop.html)|Wendy Martinez, Bureau of Labor Statistics|
 |1:30 PM - 5:00 PM|[Spatial Analysis/GIS with R](https://github.com/usepa/rspatial_workshop)|Jeff Hollister, US EPA, Office of Research and Development|
 |1:30 PM - 5:00 PM|[Data Visualization with ggplot2](data_vis_workshop.html)|Lou Reynolds, US EPA, Region 3|
 
