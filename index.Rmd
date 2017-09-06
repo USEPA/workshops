@@ -8,6 +8,13 @@ output:
     df_print: paged
 ---
 
+#### On-line participation details:
+
+The webinar will be active on Monday, Sep 11 from 1pm - 5pm and on Wednesday from 8:45am to Noon.  The workshops will not be available for on-line participation. Audio will be availble via the webinar link; however, should you run into problems the call-in number may also be used.
+
+- webinar link: <https://epawebconferencing.acms.com/rusergroup/>
+- call-in #: 1-866-299-3188, code: 5135697635
+
 ## Mon, Sep. 11
 
 |Time   |Title                         |Speaker                    |
@@ -36,7 +43,8 @@ output:
 |8:00 AM - 11:30 AM|[Introduction to R - Part 1](intro_r_workshop.html)|Wendy Martinez, Bureau of Labor Statistics|
 |8:00 AM - 11:30 AM|[Spatial Analysis/GIS with R](https://github.com/usepa/rspatial_workshop)|Jeff Hollister, US EPA, Office of Research and Development|
 |8:00 AM - 11:30 AM|[Data Visualization with ggplot2](data_vis_workshop.html)|Lou Reynolds, US EPA, Region 3|
-|11:30 AM - 1:30 PM|**Lunch**|On your own|
+|**Lunch**|||
+|11:30 AM - 1:30 PM||On your own|
 |**Afternoon Workshops**|||
 |1:30 PM - 5:00 PM|[Introduction to R - Part 2](intro_r_workshop.html)|Wendy Martinez, Bureau of Labor Statistics|
 |1:30 PM - 5:00 PM|[Spatial Analysis/GIS with R](https://github.com/usepa/rspatial_workshop)|Jeff Hollister, US EPA, Office of Research and Development|
