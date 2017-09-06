@@ -54,9 +54,9 @@ Getting set up on Linux or Mac requires more effort (i.e. need to have GDAL inst
 ## Exercise 1.1
 The first exercise won't be too thrilling, but we need to make sure everyone has the four packages installed. 
 
-1.) Install `sf` and load `sf` into your library.
-2.) Repeat, with `raster` and `rgdal`.
-3.) Install `dplyr`.
+1. Install `sf` and load `sf` into your library.
+2. Repeat, with `raster` and `rgdal`.
+3. Install `dplyr`.
 
 
 ## Interacting with an external GIS
