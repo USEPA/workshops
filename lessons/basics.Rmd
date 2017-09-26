@@ -1,0 +1,25 @@
+```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
+options(repos="http://cran.rstudio.com/")
+pkgs <- c("sf","sp","rgdal","rgeos","raster","knitr")
+x<-lapply(pkgs, library, character.only = TRUE)
+opts_chunk$set(tidy=T)
+```
+
+# Set Up
+
+## Lesson Outline
+- [Thing](#thing)
+
+
+## Lesson Exercises
+- [Exercise 1](#exercise-1)
+
+## Thing
+
+
+## Exercise 3.1
+In this first exercise 
+
+1. Assign ...
+2. Do ...
+
