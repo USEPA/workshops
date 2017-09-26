@@ -1,10 +1,11 @@
-files <- list.files(pattern = "*.Rmd")
-for(i in files){
-  rmd_time <- file.info(i)
-  md_time <- file.info(gsub(".Rmd",".md",i))
-  if(is.na(md_time$mtime)) {md_time$mtime <- 0}
-  if(md_time$mtime <= rmd_time$mtime){
-    knitr::knit(i)
-    rmarkdown::render(i,output_format = "pdf_document")
+render_all<-function(path=".",pattern="*.Rmd"){
+  files <- list.files(path,pattern,full.names = T)
+  for(i in files){
+    out <- stringr::str_replace(i,"Rmd","md")
+    if(!file.exists(out)){
+      knitr::knit(i,output=out)
+    } else if((file.info(i)$mtime-file.info(out)$mtime)>0){
+      knitr::knit(i,output=out)
+    }
   }
 }

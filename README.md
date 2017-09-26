@@ -1,47 +1,51 @@
 
-# US EPA Region 7 Introduction to R Workshop
+# US EPA Region 7/Atlantic Ecology Division R-a-palooza
 
-This repository contains materials for an R workshop for USEPA Region 7 New England Regional Staff. The workshop will provide attendees with an introduction to the R Language for statistical computing and will cover the folling topics:
+This repository contains materials for a series of short workshops and presentations on the use of the R Language for statistical computing.  Jeff Hollister from the Office of Research and Developments Atlantic Ecolgy Division will be running the workshops and presentation for Region 7 Staff.  Over the course of three days we will cover the folling topics:
 
-- R Syntax
-- Packages
-- Data Types and Data Structures
-- Reading in external data
-- Data Manipulation
-- Data Aggregation
-- Data Visualization
-- Exploratory Data Analysis
+- Introduction to R 
+- Spatial Data Analysis with R
+- Reproducible Research
+- Open science approach for understanding cyanobacteria blooms
 
-The goal of this workshop is to provide a solid basis for futher learning in R and will focus on the language, data management, and visualization.  While we will cover some basic data analysis, the focus will not be on statistics and modelling.  Participants will gain familiarity with syntax, data structures, and several popular packages including `dplyr`, `tidyr`, and `ggplot2`.
+The goal of these workshops and presentatins is to provide a solid basis for futher learning in R, introduce more advanced topics, and given an overview of how the Atlantic Ecology Division is utilizing open science and the R Language in its cyanobacteria research efforts.  
 
 # Tentative Workshop Schedule
 
-## Day 1
+## Tuesday, October 10, PM - Spatial data analysis with R
 
-Time                | Topic                                     
-------------------- | ----------------------------------------- 
-8:30 AM - 9:15 AM   | Welcome, Introductions, and Motivation    
-9:15 AM - 10:45 AM  | [R Basics](lessons/r_basics.md)  ([pdf](lessons/r_basics.pdf))
-10:45 PM - 11:00 AM | *BREAK*
-11:00 AM - 12:30 PM | [Data in R](lessons/data_in_r.md)  ([pdf](lessons/data_in_r.pdf))
-12:30 PM - 1:00 PM  | *LUNCH*
-1:00 PM - 2:30 PM   | [Data manipulation](lessons/data_manipulation.md)  ([pdf](lessons/data_manipulation.pdf))
-2:30 PM - 2:45 PM   | *BREAK*
-2:45 PM - 4:00 PM   | [Data aggregataion](lessons/data_aggregation.md)  ([pdf](lessons/data_aggregation.pdf))
+|Time             |Topic  |
+|-----------------|-------|
+|12:00 PM - 12:45 PM|Welcome|
+|12:45 PM - 1:00 PM|[Set-up](lessons/set_up.md)|
+|1:00 PM - 2:00 PM|[Spatial data I/O](lessons/spatial_data_io.md)|
+|2:00 PM - 3:30 PM|[Basic Spatial Analysis](lessons/basic_spatial_analysis.md)|
+|3:30 PM - 3:45 PM| BREAK |
+|3:45 PM - 5:00 PM|[Spatial Data Visualization](lessons/spatial_data_viz.md)|
 
+## Wednesday, October 11, AM - Reproducible Research Documents with R
 
+|Time                | Topic                                     |
+|------------------- | ----------------------------------------- |
+|8:30 AM - 10:45 AM  | [TBD](lessons/)  |
+|10:45 PM - 11:00 AM | *BREAK*|
+|11:00 AM - 12:30 PM | [TBD](lessons/)  |   
+|12:30 PM - 1:30 PM  | *LUNCH*|
 
-## Day 2
+## Thursday, October 12, AM - Introduction to R
 
-Time                | Topic                                     
-------------------- | -----------------------------------------
-8:30 AM - 10:45 AM  | [Data Visualization 1](lessons/data_viz.md)  ([pdf](lessons/data_viz.pdf))
-10:45 PM - 11:00 AM | *BREAK*
-11:00 AM - 12:30 PM | [Data Visualization 2](lessons/data_viz.md)  ([pdf](lessons/data_viz.pdf))   
-12:30 PM - 1:00 PM  | *LUNCH*
-1:00 PM - 2:30 PM   | [Data analysis basics](lessons/data_analysis_basics.md)  ([pdf](lessons/data_analysis_basics.pdf))
-2:30 PM - 2:45 PM   | *BREAK*
-2:45 PM - 4:00 PM   | [People's Choice](lessons/peoples_choice.md) ([pdf](lessons/peoples_choice.pdf))
+|Time                | Topic                                     |
+|------------------- | ----------------------------------------- |
+|8:30 AM - 10:45 AM  | [TBD](lessons/)  |
+|10:45 PM - 11:00 AM | *BREAK*|
+|11:00 AM - 12:30 PM | [TBD](lessons/)  |   
+|12:30 PM - 1:30 PM  | *LUNCH*|
+
+## Thursday, October 12, PM - Open Science Approach to Cyanobacteria Research
+|Time                | Topic                                     |
+|------------------- | ----------------------------------------- |
+|1:30 PM - 2:20 PM  | [Open Science Approach to Cyanobacteria Research](https://usepa.github.io/cyano_open_sci_aag) |
+|2:20 PM - 2:30 PM | Questions |
 
 
 
