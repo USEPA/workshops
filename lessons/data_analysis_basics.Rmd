@@ -3,7 +3,7 @@
 library(knitr)
 options(repos="http://cran.rstudio.com/")
 opts_chunk$set(fig.path="figures/",R.options=list(max.print=100),message = FALSE,
-               warning = FALSE, error = FALSE)
+               warning = FALSE, error = FALSE, cache = TRUE)
 if(!require("ggplot2")){
   install.packages("ggplot2")
 }
@@ -12,83 +12,49 @@ if(!require("dplyr")){
 }
 library("ggplot2")
 library("dplyr")
+nla_url <- "https://usepa.github.io/region1_r/nla_dat.csv"
+nla_wq_subset <- read.csv(nla_url,stringsAsFactors = FALSE)
 ```
 
-# Introduction
-This notebook will cover calculating basic statistics with R, conducting statistical tests, and building simple linear models.  We will use the 2007 NLA data for the examples and show steps from getting data, to cleaning data, to analysis and statistics.
+# Basic Data analysis with R
 
-## Get Data
-First step in any project will be getting the data read into R.  For this lesson we are using the 2007 National Lakes Assessment data, which ,luckily, can be accessed directly from a URL.  
+This lesson will cover calculating basic statistics with R, conducting statistical tests, building simple linear models, and if there is time, we can talk a bit about `randomForest` .  We will continue to use the 2007 NLA data for the examples (e.g. `nla_wq_subset`)
 
-```{r get_nla_data, message=FALSE, warning=FALSE}
-# URL for 2007 NLA water quality data
-nla_wq_url <- "https://www.epa.gov/sites/production/files/2014-10/nla2007_chemical_conditionestimates_20091123.csv"
+## Lesson Outline:
 
-nla_secchi_url <- "https://www.epa.gov/sites/production/files/2014-10/nla2007_secchi_20091008.csv"
+- [Basic Statistics](#basic-statist)
+- [Data visualization for data analysis](#data-visualization-for-data-analysis)
+- [Some tests: t-test and ANOVA](#some-tests-ttest-and-anova)
+- [Correlations and Linear modeling](#correlations-and-linear-modeling)
+- [Random Forest](#random-forest)
 
-# Read into an R data.frame with read.csv
-nla_wq <- read.csv(nla_wq_url, stringsAsFactors = FALSE)
-nla_secchi <- read.csv(nla_secchi_url, stringsAsFactor = FALSE)
-```
+## Lesson Exercises:
+- [Exercise 6.1](#exercise-61)
+- [Exercise 6.2](#exercise-62)
+- [Exercise 6.3](#exercise-63)
 
-### Challenge
-1. Make sure you have both nla_wq and nla_secchi data.frames read in successfully.
-2. How many rows are in nla_wq?  
-3. How many rows are in nla_secchi?
-4. Using `names()` list out the column names to your screen.  
+## Basic Statistics
 
-## Clean Data
-So this dataset is a bit bigger than we probably want, let's do some clean up using `dplyr`.  We want to select out a few columns, filter out the data that we want and get our data.frame ready for futher analysis.
-
-```{r clean_nla_data, message=FALSE, warning=FALSE}
-#Load dplyr into current session
-library(dplyr)
-
-#Clean up NLA Water quality
-nla_wq_cln <- nla_wq %>%
-  filter(VISIT_NO == 1,
-         SITE_TYPE == "PROB_Lake") %>%
-  select(SITE_ID,ST,EPA_REG,RT_NLA,LAKE_ORIGIN,PTL,NTL,TURB,CHLA)
-
-#Clean up NLA Secchi
-nla_secchi_cln <- nla_secchi %>%
-  filter(VISIT_NO == 1) %>%
-  select(SITE_ID, SECMEAN)
-
-#Join the two together based on SITE_ID and the finally filter out NA's
-nla <- left_join(x = nla_wq_cln, y = nla_secchi_cln, by = "SITE_ID") %>%
-  filter(complete.cases(NTL,PTL,TURB,CHLA,SECMEAN))
-tbl_df(nla)
-```
-
-So now we have a dataset ready for analysis.
-
-### Challenge
-1. Using `filter()` and `select()` see if you can create a new data frame that has just NTL and PTL for the state of Rhode Island.
-
-## Analyze Data
-
-### Basic Stats
 First step in analyzing a dataset like this is going to be to dig through some basic statistics as well as some basic plots.  
 
 We can get a summary of the full data frame:
 
 ```{r summary, message=FALSE, warning=FALSE}
 #Get a summary of the data frame
-summary(nla)
+summary(nla_wq_subset)
 ```
 
 Or, we can pick and choose what stats we want.  For instance:
 
 ```{r individual_stats, message=FALSE, warning=FALSE}
 #Stats for Total Nitrogen
-mean(nla$NTL)
-median(nla$NTL)
-min(nla$NTL)
-max(nla$NTL)
-sd(nla$NTL)
-IQR(nla$NTL)
-range(nla$NTL)
+mean(nla_wq_subset$NTL)
+median(nla_wq_subset$NTL)
+min(nla_wq_subset$NTL)
+max(nla_wq_subset$NTL)
+sd(nla_wq_subset$NTL)
+IQR(nla_wq_subset$NTL)
+range(nla_wq_subset$NTL)
 ```
 
 In these cases we took care of our NA values during our data clean up, but there may be reasons you would not want to do that.  If you retained NA values, you would need to think about how to handle those.  One way is to remove it from the calculation of the statistics using the `na.rm = TRUE` argument.  For instance:
@@ -104,7 +70,7 @@ It is also useful to be able to return some basic counts for different groups.  
 
 ```{r table, message=FALSE, warning=FALSE}
 #The table() funciton is usefule for returning counts
-table(nla$LAKE_ORIGIN)
+table(nla_wq_subset$LAKE_ORIGIN)
 ```
 
 The `table()` function is also useful for looking at multiple columns at once.  A contrived example of that:
@@ -117,10 +83,10 @@ xy_tab
 prop.table(xy_tab)
 ```
 
-Lastly, we can combine these with some `dplyr` and get summary stats for groups.  
+Lastly, we can use what we learned in the [data aggregation](data_aggregation.md#using-groups-to-summarize-data) lesson and can combine these with some `dplyr` and get summary stats for groups.  
 
 ```{r grouping, message=FALSE, warning=FALSE}
-orig_stats_ntl <- nla %>%
+orig_stats_ntl <- nla_wq_subset %>%
   group_by(LAKE_ORIGIN) %>%
   summarize(mean_ntl = mean(NTL),
             median_ntl = median(NTL),
@@ -130,79 +96,96 @@ orig_stats_ntl
 
 And, just because it is cool, a markdown table!
 
-```{r tableit, results="asis"}
+The code,
+```{r tableit, eval=FALSE}
 knitr::kable(orig_stats_ntl)
 ```
 
-### Challenge
+produces markdown,
+
+
+<pre>
+|LAKE_ORIGIN |  mean_ntl| median_ntl|   sd_ntl|
+|:-----------|---------:|----------:|--------:|
+|MAN-MADE    |  825.3617|        531|  939.357|
+|NATURAL     | 1626.5516|        624| 3096.758|
+</pre>
+
+
+which renders in html to something like this.
+
+```{r tableit3, results="asis", echo=FALSE}
+knitr::kable(orig_stats_ntl)
+```
+
+## Exercise 6.1
 1. Look at some of the basic stats for other columns in our data.  What is the standard deviation for PTL?  What is the median Secchi depth?  Play around with others.
 2. Using some `dplyr` magic, let's look at mean Secchi by reference class (RT_NLA). 
-3. The `quantile()` function allows greater control over getting different quantiles of your data.  For instance you can use it to get the min, median and max with `quantile(nla$NTL, probs = c(0,0.5,1))`.  Re-write this function to return the 33 and 66 quantiles.
+3. The `quantile()` function allows greater control over getting different quantiles of your data.  For instance you can use it to get the min, median and max with `quantile(nla_wq_subset$NTL, probs = c(0,0.5,1))`.  Re-write this to return the 33rd and 66th quantiles.
 
-### Some quick useful viz
+## Data visualization for data analysis
 
-While visualization isn't the point of this lesson, some things are useful to do at this stage of analysis.  In particular is looking at distributions and some basic scatterplots.
+While we have already covered visualization and talked about these, I wanted to include them here as they really are an integral part of exploratory data analysis. In particular distributions and bi-variate relationships are better displayed graphically.  
 
 We can look at histograms and density:
 
 ```{r histogram_density, message=FALSE, warning=FALSE}
 #A single histogram using base
-hist(nla$NTL)
+hist(nla_wq_subset$NTL)
 #Log transform it
-hist(log1p(nla$NTL)) #log1p adds one to deal with zeros
+hist(log1p(nla_wq_subset$NTL)) #log1p adds one to deal with zeros
 #Density plot
-plot(density(log1p(nla$NTL)))
+plot(density(log1p(nla_wq_subset$NTL)))
 ```
 
 And boxplots:
 
 ```{r boxplots, message=FALSE, warning=FALSE}
 #Simple boxplots
-boxplot(nla$CHLA)
-boxplot(log1p(nla$CHLA))
+boxplot(nla_wq_subset$CHLA)
+boxplot(log1p(nla_wq_subset$CHLA))
 
 #Boxplots per group
-boxplot(log1p(nla$CHLA)~nla$EPA_REG)
+boxplot(log1p(nla_wq_subset$CHLA)~nla_wq_subset$EPA_REG)
 ```
 
 And scatterplots:
 
 ```{r scatterplots, message=FALSE, warning=FALSE}
 #A single scatterplot
-plot(log1p(nla$PTL),log1p(nla$CHLA))
+plot(log1p(nla_wq_subset$PTL),log1p(nla_wq_subset$CHLA))
 #A matrix of scatterplot
-plot(log1p(nla[,6:10]))
+plot(log1p(nla_wq_subset[,6:9]))
 ```
-
 
 Lastly, it might be nice to look at these on a per variable basis or on some grouping variable. First we could look at the density of each measured variable. This requires some manipulation of the data which will allow us to use facets in ggplot to create a density distribution for each of the variables.
 
 ```{r fancy_density, message=FALSE, warning=FALSE}
-#Getting super fancy with tidyr, plotly, and ggplot2 to visualize all variables
+#Getting super fancy with tidyr, plotly (commented out for md), and ggplot2 to visualize all variables
 library(tidyr)
 library(ggplot2)
 library(plotly)
-nla_gather <- gather(nla,parameter,value,6:10)
+nla_gather <- gather(nla_wq_subset,parameter,value,6:9)
 dens_gg <-ggplot(nla_gather,aes(x=log1p(value))) +
   geom_density() +
   facet_wrap("parameter") +
   labs(x="log1p of measured value")
-#ggplotly(dens_gg)
-dens_gg
+ggplotly(dens_gg)
+#dens_gg
 ```
 
 Next we could look at a scatterplot matrix of the relationship between phosphorus and chlorophyl by each EPA Region.  No need to re-do the shape of the data frame for this one.
 
 ```{r fancy_matrix, message=FALSE, warning=FALSE}
-ggplot(nla, aes(x=log1p(PTL),y=log1p(NTL))) +
+ggplot(nla_wq_subset, aes(x=log1p(PTL),y=log1p(NTL))) +
   geom_point() +
   geom_smooth(method = "lm") +
   facet_wrap("EPA_REG")
 ```
 
-### Challenge
+### Exercise 6.2
 1. Build a scatterplot that looks at the relationship between PTL and NTL.  
-2. Build a boxplot that shows a boxplot of secchi by the reference class (RT_NLA)/
+2. Build a boxplot that shows a boxplot of secchi by the reference class (RT_NLA)
 
 ## Some tests: t-test and ANOVA
 There are way more tests than we can show examples for.  For today we will show two very common and straightforward tests.  The t-test and an ANOVA.
@@ -212,11 +195,11 @@ First we will look at the t-test to test and see if `LAKE_ORIGIN` shows a differ
 
 ```{r t-test, message=FALSE, warning=FALSE}
 #Long Format - original format for LAKE_ORIGIN and SECMEAN
-t.test(nla$SECMEAN ~ nla$LAKE_ORIGIN)
+t.test(nla_wq_subset$SECMEAN ~ nla_wq_subset$LAKE_ORIGIN)
 
 #Wide Format - need to do some work to get there - tidyr is handy!
-wide_nla <- spread(nla,LAKE_ORIGIN,SECMEAN)
-names(wide_nla)[9:10]<-c("man_made", "natural")
+wide_nla <- spread(nla_wq_subset,LAKE_ORIGIN,SECMEAN)
+names(wide_nla)[8:9]<-c("man_made", "natural")
 t.test(wide_nla$man_made, wide_nla$natural)
 ```
 
@@ -227,14 +210,27 @@ ANOVA can get involved quickly and I haven't done them since my last stats class
 
 ```{r simple_anova, message=FALSE, warning=FALSE}
 # A quick visual of this:
-boxplot(log1p(nla$CHLA)~nla$RT_NLA)
+boxplot(log1p(nla_wq_subset$CHLA)~nla_wq_subset$RT_NLA)
 
 # One way analysis of variance
-nla_anova <- aov(log1p(CHLA)~RT_NLA, data=nla)
+nla_anova <- aov(log1p(CHLA)~RT_NLA, data=nla_wq_subset)
 nla_anova #Terms
 summary(nla_anova) #The table
 anova(nla_anova) #The table with a bit more
 ```
+
+So now that we know a difference exists, we can look at this more carefully, perhaps with a Tukey's Honest Significance Test.
+
+```{r bonferonni}
+tukey_test <- TukeyHSD(nla_anova, ordered = TRUE, conf.level = 0.95)
+tukey_test
+summary(tukey_test)
+```
+
+## Exercise 6.3
+
+1. Run an ANOVA to see if mean chlorophyll differs across EPA Regions (EPA_REG).
+2. Run a Tukey's HSD to look at the per region comparisons.
 
 ## Correlations and Linear modeling
 The last bit of basic stats we will cover is going to be linear relationships.
@@ -244,17 +240,17 @@ Let's first take a look at correlations.  These can be done with `cor()`.
 
 ```{r cor, message=FALSE, warning=FALSE}
 #For a pair
-cor(log1p(nla$PTL),log1p(nla$NTL))
+cor(log1p(nla_wq_subset$PTL),log1p(nla_wq_subset$NTL))
 #For a correlation matrix
-cor(log1p(nla[,6:10]))
+cor(log1p(nla_wq_subset[,6:9]))
 #Spearman Rank Correlations
-cor(log1p(nla[,6:10]),method = "spearman")
+cor(log1p(nla_wq_subset[,6:9]),method = "spearman")
 ```
 
 You can also test for differences using:
 
 ```{r cor_test, message=FALSE,warning=FALSE}
-cor.test(log1p(nla$PTL),log1p(nla$NTL))
+cor.test(log1p(nla_wq_subset$PTL),log1p(nla_wq_subset$NTL))
 ```
 
 ### Linear models
@@ -262,7 +258,7 @@ Basic linear models in R can be built with the `lm()` function.  If you aren't b
 
 ```{r}
 # The simplest case
-chla_tp <- lm(log1p(CHLA) ~ log1p(PTL), data=nla) #Creates the model
+chla_tp <- lm(log1p(CHLA) ~ log1p(PTL), data=nla_wq_subset) #Creates the model
 summary(chla_tp) #Basic Summary
 names(chla_tp) #The bits
 chla_tp$coefficients #My preference
@@ -273,14 +269,78 @@ head(resid(chla_tp)) # The resdiuals
 We can also do multiple linear regression.
 
 ```{r multiple, warning=FALSE, message=FALSE}
-chla_tp_tn_turb <- lm(log1p(CHLA) ~ log1p(PTL) + log1p(NTL) + log1p(TURB), data = nla)
+chla_tp_tn_turb <- lm(log1p(CHLA) ~ log1p(PTL) + log1p(NTL), data = nla_wq_subset)
 summary(chla_tp_tn_turb)
 ```
 
 There's a lot more we can do with linear models including dummy variables (character or factors will work), interactions, etc.  That's a bit more than we want to get into.  Again the link below is a good place to start for more info.
 
-### Challenge
+### Exercise 6.4
 1. Use `lm()` to look at using secchi depth to predict chlorophyll.
 
+## Random Forest
+
+Random forests were developed by Leo Breiman at UC-Berkely ([Breiman 2001](http://dx.doi.org/10.1023/A:1010933404324)).  At their simplest, a random forest is a collection (or ensemble) of classification (or regression) trees.  Each tree is developed based on a resampling of both the data and variables.  They have been shown to have superior predictive perfomance as well as to be robust to violation of the standard suite of assumptions that often plague other approaches.  In my opinion, if you want to learn one machine learning approach, this is it.  If you want to read more, a few good references are:
+
+- [Cutler et. al. (2007):Random forests for classification in ecology](http://dx.doi.org/10.1890/07-0539.1)
+- [Fern´andez-Delgado et al. 2014: Do we Need Hundreds of Classifiers to Solve Real World Classification Problems?](http://jmlr.org/papers/volume15/delgado14a/delgado14a.pdf) (HT:[Simply Statistics](http://simplystatistics.org/2014/12/17/a-non-comprehensive-list-of-awesome-things-other-people-did-in-2014/))
+
+The implementation in R is accessed through the `randomForest` package.  Let's install this, load it up and start to look around.
+
+```{r rf_actual_install, echo=FALSE, include=FALSE, purl=FALSE}
+if(!require("randomForest")){
+  install.packages("randomForest")
+}
+library("randomForest")
+```
+
+```{r rf_install, eval=FALSE}
+install.packages("randomForest")
+library("randomForest")
+help(package="randomForest")
+```
+
+There are quite a few functions included with this package, but the one we are most interested in is the workhorse `randomForest()` function.  For our examples we will look at classification trees.  The bare minimum we need for this to work are just our independent (x) and dependent variables (y).  Let's see if we can predict iris species from the morphology measurements...
+
+```{r rf_example}
+rf_x<-select(iris,Petal.Width, Petal.Length, Sepal.Width, Sepal.Length)
+rf_y<-iris$Species
+iris_rf<-randomForest(x=rf_x,y=rf_y)
+iris_rf
+```
+
+Can we predict species, well, I'd say so!  
+
+We can also call `randomForest()` using a formula for a data frame like,
+
+```{r rf_form_examp}
+iris_rf2<-randomForest(Species~.,data=iris)
+iris_rf2
+```
+
+The only thing we haven't seen before here is the ".".  That indicates all the other variables in the data frame.  It is just a shortcut and you could explicitly name the variables to use.
+
+Lastly, we can look at a couple of plots that tell us a little bit more about the model with some of the plotting functions that come with randomForest.
+
+```{r rf_plots}
+#Error vs num of trees
+plot(iris_rf2)
+#Variable Importance
+varImpPlot(iris_rf2)
+```
+
+The default plot shows error for the total model and and each of the classes as a function of the number of trees. Variable importance is plotting the decrease in Gini as each variable is added to the model.  
+
+For the basics, that is it! 
+
+## Exercise 6.5
+
+For this exercise we are going to use a random forest and try to predict the NLA reference class from the water quality measurements.
+
+1. Add a new section to the script
+2. Build your model to predict RT_NLA.  You may specify the model however makes the most sense
+3. Print to the screen your result, plot the error and variable importance. When finished put a green sticky up and we will come around to check.
+
 ## Getting More Help
+
 One nice site that covers basic stats in R is [Quick R: Basic Statistics](http://www.statmethods.net/stats/index.html).  There are others, but that is a good first stop.

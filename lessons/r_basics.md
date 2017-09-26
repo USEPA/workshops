@@ -32,7 +32,9 @@ Find the RStudio shortcut or menu (OS specific of course) and fire it up.  Once 
 
 ![rstudio](figures/rstudio.jpg)
 
+
 Let's take some time to look around.  I'll show each of the different sections, or "panes" as they are known.
+
 
 ### Projects
 
@@ -49,7 +51,7 @@ Scripts are text files that hold the code you write.  We will work both with scr
 
 ### Interacting with R inside of RStudio
 
-Once you have functions in your script, they still need to be sent to the R console.  There are several ways to do this.  There is the old stand-by of copying and pasting, but this is a bit cumbersome.  Instead you can use the `Run` button in the upper right corner of the source pane, or even better (I think so, anyway) you can use `ctrl-enter`.  Both the `Run` buttons and `ctrl-enter` will send the line that your cursor is on and move to the next line or it will send just selected text.
+Once you have functions in your script, they still need to be sent to the R console.  There are several ways to do this.  There is the old stand-by of copying and pasting, but this is a bit cumbersome.  Instead you can use the `Run` button in the upper right corner of the source pane, or even better (I think so, anyway) you can use `ctrl-enter`.  Both the `Run` buttons and `ctrl-enter` will send the line that your cursor is on and move to the next line or it will send just the selected text.
 
 ![rstudio-script](figures/rstudio_run.jpg)
 
@@ -63,7 +65,7 @@ This exercise will make sure R and RStudio are working and that you can get arou
 
 3. Create a new project.  Name it "intro_r_workshop".  We will use this for the rest of the workshop.
 
-4. Create a new "R Script" in the Source Pane, save that file into your newly created project and name it "r1_introR.R". It'll just be a blank text file at this point.
+4. Create a new "R Script" in the Source Pane, save that file into your newly created project and name it "r7_introR.R". It'll just be a blank text file at this point.
 
 2. Add in a comment line to separate this section.  It should look something like: `# Exercise 1.1: Just Getting used to RStudio and Scripts`.
 
@@ -100,21 +102,21 @@ rnorm(100,mean=10,sd=2)
 ```
 
 ```
-##   [1]  8.724526 10.395148 12.148667 12.586251 10.435859 10.666495 12.709130
-##   [8]  7.931543 10.807927  8.068073  9.222086  6.553963 13.972830 14.059467
-##  [15] 11.449872  7.142285 11.936947  8.327788 10.916394 10.226994 12.245932
-##  [22]  9.527039  7.889499  9.912339  7.241662 14.082841 11.269139  9.356662
-##  [29]  8.045419  9.433890  8.685784  9.720497 12.479356 10.739582  7.444480
-##  [36]  9.809546  9.747554 10.890886  7.780826  9.851235 11.312440 12.191447
-##  [43] 10.507623 11.615698  7.999668 11.567267 10.460140 11.735911 11.053794
-##  [50] 13.689501  9.087721 13.326327 12.537589 12.833831  8.089981  5.875960
-##  [57]  4.510101 11.743892  7.699487 10.419249  9.092416 10.263541  8.636747
-##  [64]  9.641042 10.549796  9.459328  6.549094  8.428398 10.581965  8.162318
-##  [71] 11.956845  8.677270 10.709259 14.333607  9.319754  9.560855  9.517556
-##  [78]  8.107807  9.447604 11.364546 11.307724 10.871826 10.190516  6.726736
-##  [85] 14.813083  7.824443  8.824914  9.064244 11.083659 12.213585  9.180814
-##  [92]  9.028958  7.150784  6.624067 10.426247  9.552225 11.004300 11.952902
-##  [99] 11.933681 10.755002
+##   [1] 14.456868  7.471977 14.297483 13.127861  9.728886 11.983070  9.306490
+##   [8] 11.871214  9.878618  9.106449  9.353313 10.631137  8.946616 11.525988
+##  [15]  7.766620  5.762064 10.421269 11.555805 11.754044  8.098920  7.785731
+##  [22]  7.504559  9.072182  7.294369  8.322627  7.287291 12.165353 10.104064
+##  [29]  7.525730  7.363283  6.746065  9.474359  9.891555 10.862703  6.641146
+##  [36]  4.988531  8.320469 11.572163  7.942513 11.852185 10.722635 12.166569
+##  [43]  7.868963  8.905642 12.534517  5.279886  9.387692 11.137619  9.788295
+##  [50] 10.681006  7.928938  7.029504  9.928384 12.237308  6.246361  9.451357
+##  [57] 11.053319  7.906376 13.875015 10.701991 10.547830 10.513011  8.466960
+##  [64] 12.904427 10.252557  7.233676  9.575264 10.895399 12.642352 10.842296
+##  [71]  6.997818 10.988100 11.241123  6.413633  8.565758 12.880594  7.467957
+##  [78]  9.376505 10.593615  9.292777  7.533098  9.683696  9.391539 10.032870
+##  [85] 11.455912  8.399301  9.756392  5.117630  7.634953 10.054562 11.588901
+##  [92] 10.646984 10.623372  4.866720 10.064531 11.752348 12.645299  8.608404
+##  [99]  7.575347  8.567518
 ```
 
 ```r
@@ -123,7 +125,7 @@ mean(rnorm(100))
 ```
 
 ```
-## [1] 0.03146363
+## [1] 0.1327204
 ```
 
 ```r
@@ -132,7 +134,7 @@ sum(rnorm(100))
 ```
 
 ```
-## [1] 14.18359
+## [1] 1.055635
 ```
 
 ### A few side notes 
@@ -165,7 +167,7 @@ The base install of R is quite powerful, but you will soon have a need or desire
 
 ### CRAN
 
-One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of 2017-02-06, there are 10009 on CRAN! 
+One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of 2017-02-14, there are 10046 on CRAN! 
 
 ### Installing packages
 

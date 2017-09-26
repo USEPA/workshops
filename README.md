@@ -12,6 +12,7 @@ The goal of these workshops and presentatins is to provide a solid basis for fut
 
 # Tentative Workshop Schedule
 
+<<<<<<< HEAD
 ## Tuesday, October 10, PM - Spatial data analysis with R
 
 |Time             |Topic  |
@@ -46,7 +47,6 @@ The goal of these workshops and presentatins is to provide a solid basis for fut
 |------------------- | ----------------------------------------- |
 |1:30 PM - 2:20 PM  | [Open Science Approach to Cyanobacteria Research](https://usepa.github.io/cyano_open_sci_aag) |
 |2:20 PM - 2:30 PM | Questions |
-
 
 
 ## EPA Disclaimer
