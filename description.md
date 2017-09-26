@@ -1,17 +1,21 @@
-# Introduction to R for Analysis of Coastal and Estuarine Data
+### Introduction to R for Analysis of Coastal and Estuarine Data
 
-[R](https://www.r-project.org/) is a language for statistical computing as well as a general purpose programming language.  Increasingly, it has become one of the primary languages used in data science and for data analysis across many of the natural sciences.  This series of workshops will provide attendees with the foundations for continued learning of R and for analysis coastal and estuarine data.  The three topic areas will be: Introduction to R the language, spatial analysis of estuarine data in R, and time series analysis of estuarine data in R.  
+*Conveners: Jeffrey W. Hollister (hollister.jeff@epa.gov), Marcus W. Beck (beck.marcus@epa.gov)*
 
-## Intro R
+*Sunday, Nov. 5, 8:30 AM - 4:30 PM*
 
-In this first workshop, attendees will learn the basics of the R language, including: syntax, data structures, reading and writing data, data manipulation, and basic data visualization tools.  All lessons will be presented with a focus on the concepts of [tidy data]() and [reproducibility](), which will provide attendees with a solid basis for continued learning.
+### Short description
 
-## Special Topics in R: Spatial
+The [R](https://www.r-project.org/) language for statistical computing is a powerful tool with many data science and analysis applications. Challenges to using R are a steep learning curve and a staggering amount of contributed packages. This series of workshops will provide the foundations for continued learning of R in the context of coastal and estuarine data. A morning session will introduce the R language and two afternoon sessions will cover basic spatial analysis and evaluation of time series data. Attendees will have an understanding of how R can facilitate effective analyses and will leave with the necessary resources for continued learning.
 
+### Long description
+ 
+[R](https://www.r-project.org/) is an open-source language for statistical computing as well as a general purpose programming language. Increasingly, it has become one of the primary languages used in data science and for data analysis across many of the natural sciences. The popularity of R has in part been facilitated by its strong user base, which has contributed over 10,000 supporting packages. In addition to a steep learning curve, a primary challenge in effective use of this software is knowing which packages are most relevant for estuarine and coastal research. This series of three workshops will address these issues by providing attendees with the foundations for continued learning of R for analysis of coastal and estuarine data. The three topic areas will be: Introduction to R the language (Morning Session), spatial analysis of estuarine data in R (Early Afternoon), and time series analysis of estuarine data in R (Late Afternoon).  Popular R packages will be introduced for each of the topics.  Participants may register for any of the sessions individually or participate in all of them.  No prior experience is required for the Introduction to the R language session. For the spatial and time series analysis workshops, attendees are expected to know the basics of R that will be covered in the introduction, in addition to basic principles for the special topics (e.g., geoprocessing, properties of time series, etc.). Attendees must bring their own laptops with the most recent versions of [R](https://www.r-project.org/) and [RStudio](https://www.rstudio.com/products/rstudio/download3/) installed.  Attendees will leave the workshop with an understanding of how R can facilitate effective analysis and will have the necessary resources for continued learning. All lessons will be presented with a focus on the concepts of [tidy data](http://vita.had.co.nz/papers/tidy-data.pdf) and [reproducibility](http://kbroman.org/steps2rr/), both of which are fundamental principles that will lead to improved data analysis.
 
-## Special Topics in R: Time Series
+__Basics of the R language (8:30-11:30 AM):__  Participants will learn to overcome initial challenges of using a command-line interface. The topics will include basics of R syntax, data structures, reading and writing data, data manipulation, and basic data visualization in R.  The afternoon sessions will assume participation in the morning session, or a basic knowledge of R.
 
+__Spatial Analysis using R (12:30-2:30 PM):__ The early afternoon session will introduce attendees to basic spatial analysis using R. The lessons and guided examples will demonstrate use of R to replace and augment common spatial analyses that are typically performed in proprietary software such as ArcGIS. 
 
-## Pre-requisites
+__Analysis of Time Series data using R (3:00-4:30 PM):__ The late afternoon session will address analyses of time series data with a specific focus on analysis of data from continuous water quality monitors and long time series of discrete data. Topics to be covered will include statistical properties of time series, quality assurance screening, exploratory analysis, and formal trend analysis methods (e.g., Seasonal Kendall tests). 
 
-No prior experience is required for the Introduction to the R language session.  For the spatial and time series analysis workshops you are expected to know the basics of R that will be covered in the introduction 
+Keywords: data science, R, spatial analysis, statistical programming, time series
