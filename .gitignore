@@ -3,3 +3,4 @@
 .RData
 .Ruserdata
 cerf_r.Rproj
+ignore/*
