@@ -12,8 +12,7 @@ The goal of these workshops and presentatins is to provide a solid basis for fut
 
 # Tentative Workshop Schedule
 
-<<<<<<< HEAD
-## Tuesday, October 10, PM - Spatial data analysis with R
+## Tuesday, October 10, PM - Spatial data analysis with R - STC
 
 |Time             |Topic  |
 |-----------------|-------|
@@ -24,7 +23,7 @@ The goal of these workshops and presentatins is to provide a solid basis for fut
 |3:30 PM - 3:45 PM| BREAK |
 |3:45 PM - 5:00 PM|[Spatial Data Visualization](lessons/spatial_data_viz.md)|
 
-## Wednesday, October 11, AM - Reproducible Research Documents with R
+## Wednesday, October 11, AM - Reproducible Research Documents with R - Regional Office
 
 |Time                | Topic                                     |
 |------------------- | ----------------------------------------- |
@@ -33,20 +32,20 @@ The goal of these workshops and presentatins is to provide a solid basis for fut
 |11:00 AM - 12:30 PM | [TBD](lessons/)  |   
 |12:30 PM - 1:30 PM  | *LUNCH*|
 
-## Thursday, October 12, AM - Introduction to R
+## Wednesday, October 11, PM - Open Science Approach to Cyanobacteria Research - Regional Office
 
-|Time                | Topic                                     |
-|------------------- | ----------------------------------------- |
-|8:30 AM - 10:45 AM  | [TBD](lessons/)  |
-|10:45 PM - 11:00 AM | *BREAK*|
-|11:00 AM - 12:30 PM | [TBD](lessons/)  |   
-|12:30 PM - 1:30 PM  | *LUNCH*|
-
-## Thursday, October 12, PM - Open Science Approach to Cyanobacteria Research
 |Time                | Topic                                     |
 |------------------- | ----------------------------------------- |
 |1:30 PM - 2:20 PM  | [Open Science Approach to Cyanobacteria Research](https://usepa.github.io/cyano_open_sci_aag) |
 |2:20 PM - 2:30 PM | Questions |
+
+## Thursday, October 12, AM - Introduction to R - STC
+
+|Time                | Topic                                     |
+|------------------- | ----------------------------------------- |
+|8:30 AM - 10:45 AM  | [TBD](lessons/)  |
+|10:45 PM - 11:00 AM | *BREAK*|
+|11:00 AM - 12:30 PM | [TBD](lessons/)  |   
 
 
 ## EPA Disclaimer
