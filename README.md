@@ -36,7 +36,7 @@ The goal of these workshops and presentatins is to provide a solid basis for fut
 
 |Time                | Topic                                     |
 |------------------- | ----------------------------------------- |
-|1:30 PM - 2:20 PM  | [Open Science Approach to Cyanobacteria Research](https://usepa.github.io/cyano_open_sci_aag) |
+|1:30 PM - 2:20 PM  | [Open Science Approach to Cyanobacteria Research](https://jwhollister.com/cyano_open_sci) |
 |2:20 PM - 2:30 PM | Questions |
 
 ## Thursday, October 12, AM - Introduction to R - STC
