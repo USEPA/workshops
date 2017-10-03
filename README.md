@@ -43,9 +43,11 @@ The goal of these workshops and presentatins is to provide a solid basis for fut
 
 |Time                | Topic                                     |
 |------------------- | ----------------------------------------- |
-|8:30 AM - 10:45 AM  | [TBD](lessons/)  |
+|8:30 AM - 8:45 AM   | Welcome |
+|8:45 AM - 10:00 AM  | [R Basics](lessons/r_basics.md) |
+|10:00 AM - 10:30 AM | [Data Frames](lessons/data_frame.md) |
 |10:45 PM - 11:00 AM | *BREAK*|
-|11:00 AM - 12:30 PM | [TBD](lessons/)  |   
+|11:00 AM - 12:30 PM | [Visualizing and manipulating data frames](lessons/data_manip_viz.md)  |   
 
 
 ## EPA Disclaimer
