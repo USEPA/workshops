@@ -1,0 +1,162 @@
+
+
+# R's workhorse data structure: The data frame
+
+Simply put, a data structure is a way for programming languages to handle storing information.  Like most languages, R has several structures (vectors, matrix, lists, etc.) but since R is built for data analysis the data frame, a spreadsheet like structure with rows and columns, is the most widely used and useful to learn first.  In addition, the data frame (or is it data.frame) is the basis for many modern R pacakges (e.g. the tidyverse) and getting used to it will allow you to quickly build your R skills.
+
+*Note:* It is useful to know more about the different data structures such as vectors, lists, and factors (a weird one that is for catergorical data).  But that is beyond what we have time for.  You can look at some of our [old materials](data_in_r.md) or even better look at what I think is the best source on this information, Hadley Wickham's [Data Structures Chapter in Advanced R](http://adv-r.had.co.nz/Data-structures.html).
+
+## Lesson Outline
+- [Build a data frame](#build-a-data-frame)
+- [Read external data](#reading-external-data])
+
+## Lesson Exercises
+- [Exercise 1](#exercise-1)
+
+## Build a data frame
+Let's now take a quick look at building a simple data frame from scratch with the `data.frame()` function.  This is mostly a teaching excercise as we will use the function very little in the excercises to come.  
+
+
+```r
+# Our first data frame
+
+my_df <- data.frame(names = c("joe","jenny","bob","sue"), 
+                    age = c(45, 27, 38,51), 
+                    knows_r = c(FALSE, TRUE, TRUE,FALSE))
+my_df
+```
+
+```
+##   names age knows_r
+## 1   joe  45   FALSE
+## 2 jenny  27    TRUE
+## 3   bob  38    TRUE
+## 4   sue  51   FALSE
+```
+
+That created a data frame with 3 columns (names, age, knows_r) and four rows.  For each row we have some information on the name of an individual (stored as a character/string), their age (stored as a numeric value), and a column indicating if they know R or not (stored as a boolean/logical).
+
+If you've worked with data before in a spreadsheet or from a table in a database, this rectangular structure should look somewhat familiar.   One way (there are many!) we can access the different parts of the data frame is like:
+
+
+```r
+# Use the dollar sign to get a column
+my_df$age
+
+# Grab a row with indexing
+my_df{2,}
+```
+
+```
+## Error: <text>:5:6: unexpected '{'
+## 4: # Grab a row with indexing
+## 5: my_df{
+##         ^
+```
+
+At this point, we have:
+
+- built a data frame from scratch
+- seen rows and columns
+- heard about "rectangular" structure
+- seen how to get a row and a column
+
+The purpose of all this was to introduce the concept of the data frame.  Moving forward we will use other tools to read in data, but the end result will be the same: a data frame with rows (i.e. observations) and columns (i.e. variables).
+
+## Reading external data
+
+Completely creating a data frame from scratch is useful (especially when you start writing your own functions), but more often than not data is stored in an external file that you need to read into R.  These may be delimited text files, spreadsheets, relational databases, SAS files ...  You get the idea.  Instead of treating this subject exhaustively, we will focus just on a single file type, `.csv` that is very commonly encountered and (usually) easy to create from other file types.  For this, we will use `read.csv()`(although there are many, compelling options from packages like `rio` and `readr`). 
+
+`read.csv()` is a specialized version of `read.table()` that focuses on, big surprise here, .csv files. This command assumes a header row with column names and that the delimiter is a comma. The expected no data value is NA and by default, strings are converted to factors by default (this can trip people up). If you remember, we discussed earlier that we should explicitly define our factors.  We will use `read.csv()`, with this defualt behaviour turned off.
+
+Source files for `read.csv()` can either be on a local hard drive or, and this is pretty cool, on the web. We will be using the later for our examples and exercises. If you had a local file it would be accessed like `mydf <- read.csv("C:/path/to/local/file.csv")`. As an aside, paths and use of forward vs back slash is important. R is looking for forward slashes ("/"), or unix-like paths. You can use these in place of the back slash and be fine. You can use a back slash but it needs to be a double back slash ("\"). This is becuase the single backslash in an escape character that is used to indicate things like newlines or tabs. 
+
+For today's workshop we will focus on grabbing data from a file on the web, but a local file is nearly the same you use the path to the file instead of a URL. 
+
+Let's give it a try.
+
+
+```r
+#Grab data from a web file
+nla_url <- "https://raw.githubusercontent.com/USEPA/region7_r/master/nla_dat.csv"
+nla_wq <- read.csv(nla_url,stringsAsFactors = FALSE)
+head(nla_wq)
+```
+
+```
+##         SITE_ID RT_NLA  EPA_REG WSA_ECO9 LAKE_ORIGIN PTL NTL  CHLA SECMEAN
+## 1 NLA06608-0001    REF Region_8      WMT     NATURAL   6 151  0.24    6.40
+## 2 NLA06608-0002  SO-SO Region_4      CPL    MAN-MADE  36 695  3.84    0.55
+## 3 NLA06608-0003  TRASH Region_6      CPL     NATURAL  43 738 16.96    0.71
+## 4 NLA06608-0004  SO-SO Region_8      WMT    MAN-MADE  18 344  4.60    1.80
+## 5 NLA06608-0006    REF Region_1      NAP    MAN-MADE   7 184  4.08    3.21
+## 6 NLA06608-0007    REF Region_5      UMW     NATURAL   8 493  2.43    3.15
+```
+
+```r
+str(nla_wq)
+```
+
+```
+## 'data.frame':	1086 obs. of  9 variables:
+##  $ SITE_ID    : chr  "NLA06608-0001" "NLA06608-0002" "NLA06608-0003" "NLA06608-0004" ...
+##  $ RT_NLA     : chr  "REF" "SO-SO" "TRASH" "SO-SO" ...
+##  $ EPA_REG    : chr  "Region_8" "Region_4" "Region_6" "Region_8" ...
+##  $ WSA_ECO9   : chr  "WMT" "CPL" "CPL" "WMT" ...
+##  $ LAKE_ORIGIN: chr  "NATURAL" "MAN-MADE" "NATURAL" "MAN-MADE" ...
+##  $ PTL        : int  6 36 43 18 7 8 66 10 159 28 ...
+##  $ NTL        : int  151 695 738 344 184 493 801 473 1026 384 ...
+##  $ CHLA       : num  0.24 3.84 16.96 4.6 4.08 ...
+##  $ SECMEAN    : num  6.4 0.55 0.71 1.8 3.21 3.15 0.79 4.48 0.31 0.65 ...
+```
+
+```r
+dim(nla_wq)
+```
+
+```
+## [1] 1086    9
+```
+
+```r
+summary(nla_wq)
+```
+
+```
+##    SITE_ID             RT_NLA            EPA_REG         
+##  Length:1086        Length:1086        Length:1086       
+##  Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character  
+##                                                          
+##                                                          
+##                                                          
+##    WSA_ECO9         LAKE_ORIGIN             PTL               NTL         
+##  Length:1086        Length:1086        Min.   :   1.00   Min.   :    5.0  
+##  Class :character   Class :character   1st Qu.:  10.00   1st Qu.:  309.5  
+##  Mode  :character   Mode  :character   Median :  25.50   Median :  575.0  
+##                                        Mean   : 109.22   Mean   : 1175.8  
+##                                        3rd Qu.:  89.75   3rd Qu.: 1172.0  
+##                                        Max.   :4679.00   Max.   :26100.0  
+##       CHLA           SECMEAN      
+##  Min.   :  0.07   Min.   : 0.040  
+##  1st Qu.:  2.98   1st Qu.: 0.650  
+##  Median :  8.02   Median : 1.380  
+##  Mean   : 29.38   Mean   : 2.195  
+##  3rd Qu.: 26.08   3rd Qu.: 2.850  
+##  Max.   :936.00   Max.   :36.710
+```
+
+Take note of the argument we used on `read.csv()`.  The `stringsAsFactors = FALSE` is what we want to use to make sure factors are not getting automatically created.
+
+## Other ways to read data 
+
+Although, `read.csv()` and `read.table()` are very flexible, they are not the only options for reading in data.  This could be a full day in and of itself, but packages like `readr`, `readxl`, and `rio` provide flexible methods for reading in data.  Also, databases can also be accessed directly in R and much of this functionality is in the `DBI` and `RODBC` packages.  Making the connections is not entirely trivial, but an easier way to take advantage of this is via the `dplyr` package.  See the [vignette on databases](https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html) fo a lot of good examples of working with common open source databases.
+
+## Exercise 1
+From here on out I hope to have the exercises will build on each other. For this exercise we are going to grab some data, look at that data, and be able to describe some basic information about that dataset.  The data we are using is the 2012 National Lakes Assessment.  URL's for those files are included below.
+
+1. We will be using a new script for the rest of our exercises.  Create this script in RStudio and name it "nla_analysis.R"
+2. As you write the script, comment as you go. Some good examples are what we used in the first script where we provided some details on each of the exercises. Remember comments are lines that begin with `#` and you can put whatever you like after that.
+3. Add a line to your script that creates a data frame named `nla_wq` (hint: `read.csv`).  The URL for this is: <https://bit.ly/nla_water>
+5. Run the script and make sure it doesn't throw any errors and you do in fact get a data frame.
+6. Explore the data frame using some of the functions we covered above (e.g. `head()`,`summary()`, or `str()`).  This part does not need to be included in the script. It is just a quick QA step to be sure the data read in as expected.
