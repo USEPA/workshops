@@ -8,4 +8,7 @@ render_all<-function(path=".",pattern="*.Rmd"){
       knitr::knit(i,output=out)
     }
   }
+  system("git add -A")
+  system("git commit -m 'new render'")
+  system("git push origin master")
 }
