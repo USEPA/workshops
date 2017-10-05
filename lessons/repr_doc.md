@@ -3,10 +3,11 @@
 
 # Reproducible Research Documents
 
-To do this effectively we need to understand how to create reusable R code and create reproducible reports.  This will be a very high level introduction to both concepts, but should hopefully give you a jumping off place for more learning.
+Reproducibility and the ["reproducibility crisis"](http://www.bbc.com/news/science-environment-39054778) in science have received quite a bit of attention over the last several years. As such, interest in making our work more reproducible has also increased.  The focus of this workshop is on a small, but very important part, of reproducibility, computational reproducibility.  In particular, we will focus on what Victoria Stodden has described as "Open or Reproducible Research" in which code, data, and descriptions are all freely available (for more on this see <http://stodden.net/icerm_report.pdf>).  An exhaustive review of all things reproducible is beyond the scope of this workshop, so I will point you to the best general resource I know of on this, the [rOpenSci Reproducibility Guide](http://ropensci.github.io/reproducibility-guide) and in particular the [Introduction](http://ropensci.github.io/reproducibility-guide/sections/introduction/).
 
-## Lesson Goals
-- Understand value of reproducible documents
+After taking this workshop, you will:
+
+- Understand the value of reproducible documents
 - Gain familiarity with Markdown, `rmarkdown` and `knitr`
 - Create a reproducible document and presentation
 
@@ -16,8 +17,8 @@ To do this effectively we need to understand how to create reusable R code and c
 - [YAML](#yaml)
 - [Markdown](#markdown)
 - [Code chunks](#code-chunks)
+- [Rendering](#rendering)
 - [Reproducible Presentations](#reproducible-presentations)
-
 
 ## Exercises
 - [Exercise 1](#exercise-1)
@@ -25,9 +26,8 @@ To do this effectively we need to understand how to create reusable R code and c
 
 
 ## Reproducible Documents
-By itself Markdown is pretty cool, but doesn't really provide any value added to the way most of us already work.  However, when you add in a few other things, it, in my opinion, changes things dramatically.  Two tools in particular that, along with Markdown, have moved reproducible research forward (especially as it relates to R) are, the `knitr` package and a tool called pandoc.  We are not going to cover the details of these, but we will use them via RStudio.  
 
-In short, these three tools allow us to write up documents, embed code via "code chunks", run that code and render the final document with nicely formatted text, results, figures etc into a final format of our choosing.  We can create `.html`, `.docx`, `.pdf`, ...  The benefit of doing this is that all of our data and code are a part of the document.  I share my source document, then anyone can reproduce all of our calculations.  For instance, I can make a manuscript that looks like this:
+Reproducible documents, are documents that mix text and code and allow others to re-run your analysis.  They are inspired by Donald Knuth's ideas on [literate programming](http://www-cs-faculty.stanford.edu/~knuth/lp.html).  Specific to the R world we build reproducible documents with Markdown, `rmarkdown`, `knitr`, and an external tool called [pandoc](https://pandoc.org/). In short, these tools allow us to write up documents, embed code via "code chunks", run that code and render the final document with nicely formatted text, results, figures etc into a final format of our choosing.  We can create `.html`, `.docx`, `.pdf`, ...  The benefit of doing this is that all of our data and code are a part of the document.  We can share our source document, then anyone can reproduce all of our calculations.  For instance, we can make a manuscript that looks like this:
 
 ![Rendered Manuscript](figures/rendered.jpg)
 
@@ -35,9 +35,9 @@ from a source markdown document that looks like:
 
 ![Raw RMarkdown](figures/source.jpg)
 
-While we can't get to this level of detail with just the stock RStudio tools, we can still do some pretty cool stuff.  We are not going to do an exercise on this one, but we will walk through an example to create a simple reproducible research document and a presentation using the RStudio interface.  This may seem a departure for me, but anything to increase the adoption of reproducible research is a win!
+While we can't get to this level of detail with just the stock RStudio tools (i.e. in requires a bit of LaTeX shenanigans), we can still do some pretty cool stuff. For instance, we can see how this could be used to write the text describing an analysis, embed the analysis and figure creation directly in the document, and render a final document.  You share the source and rendered document and anyone has access to your full record of that analysis!  Additionally, maybe you have a standard set of analyses to run on a dataset that is evolving or updated on a regular basis.  We can build an R Markdown document that reads in a dataset, runs analysis and updates the output.  
 
-It should be easy to see how this could be used to write the text describing an analysis, embed the analysis and figure creation directly in the document, and render a final document.  You share the source and rendered document and anyone has access to your full record of that research!
+With all of this in mind, let's jump into working with some R Markdown document and learn about the basic building blocks: YAML, Markdown, and Code Chunks.
 
 ## Create a Document
 To create your document, go to File: New File : R Markdown.  You should get a window that looks something like:
@@ -57,11 +57,10 @@ In this document we can see a couple of things.  In particular we see `YAML`, `M
     output: pdf_document
     ---
 
-This is the YAML(YAML Ain't Markup Language) header or front-matter.  It is metadata about the document that can be very useful.  For our purposes we don't need to know anything more about this.  Below that you see text, code chunks, and if it were included some markdown.  At its core this is all we need for a reproducible document.  We can now take this document, pass it through `knitr::knit()` (remember this syntax from the first lesson?) and pandoc and get our output.  We can do this from the console and/or shell, or we can use RStudio.  
-
+This is the YAML(YAML Ain't Markup Language) header or front-matter.  It is metadata about the document that can be very useful.  There is a lot more we can do with the YAML.  There are additional fields available for us to you, or we can even create our own.  For our purposes these basic ones are good, but we can also look at the additional built in ones.  The [`rmarkdown` cheatsheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf) is a good place to look as is the [online documentation for `rmarkdown`](http://rmarkdown.rstudio.com/lesson-1.html).  A lot of the optional ones I use are part of the [output format](http://rmarkdown.rstudio.com/lesson-9.html) 
 
 ## Markdown
-Markdown isn't R, but it has become an important tool in the R ecosystem as it can be used to create package vignettes, can be used on [GitHub](http://github.com), and forms the basis for several reproducible research tools in RStudio.  Markdown is a tool that allows you to write simply formatted text that is converted to HTML/XHTML.  The primary goal of markdown is readibility of the raw file.  Over the last couple of years, Markdown has emerged as a key way to write up reproducible documents, create websites (this whole website was written in Markdown), and make presentations.  For the basics of markdown and general information look at [Daring Fireball](http://daringfireball.net/projects/markdown/basics).
+Markdown isn't R, but it has become an important tool in the R ecosystem as it can be used to create package vignettes, can be used on [GitHub](http://github.com), and forms the basis for several reproducible research tools in RStudio.  Markdown is a tool that allows you to write simply formatted text that is converted to HTML/XHTML.  The primary goal of markdown is readibility of the raw file.  Over the last couple of years, Markdown has emerged as a key way to write up reproducible documents, create websites, write documentation (all of these lessons are written in Markdown), and make presentations.  For the basics of markdown and general information look at [Daring Fireball](http://daringfireball.net/projects/markdown/basics).
 
 *note: this text borrowed liberally from another class [SciComp2014](http://scicomp2014.edc.uri.edu)*
 
@@ -138,20 +137,19 @@ The text you want linked goes in the `[]` and the link itself goes in the `()`. 
 
 And renders like: ![EPA Seal](https://www.epa.gov/sites/production/files/2013-06/epa_seal_verysmall_trim.gif)
 
-The only difference is the use of the `!` at the beginning.  When parsed, the image itself will be included, and not just linked text.  As these will be on the web, the images need to also be available via the web.  You can link to local files, but will need to use a path relative to the root of the document you are working on.  Let's not worry about that as it is a bit beyond the scope of this tutorial.
+The only difference is the use of the `!` at the beginning.  When parsed, the image itself will be included, and not linked text.  As these will be on the web, the images need to also be available via the web.  You can link to local files, but will need to use a path relative to the root of the document you are working on.  Let's not worry about that as it is a bit beyond the scope of this tutorial.
 
 And with this, we can have some real fun.  
 
 ![matt foley](https://media.giphy.com/media/n7Nwr10hWzROE/giphy.gif)
 
-Now that we can structure out text with Markdown, we need to add the next step: incorportaing code.
+Now that we know a bit out the YAML that controls the document build process, and we can structure our text with Markdown, we need to add the last step: incorportaing code.
 
 ## Code Chunks
 
-Since we are talking about markdown and R, our documents will all be R Markdown documents (i.e. .Rmd).  To include R Code in your .Rmd you would do something like:
+As we have mentioned, our documents will all be R Markdown documents (i.e. .Rmd).  To include R Code in your `.Rmd` you would do something like:
 
 <pre>```{r}
-message('```{r}
 x<-rnorm(100)
 x<br>```</pre>
 
@@ -176,8 +174,6 @@ x<-rnorm(100)
 y<-jitter(x,1000)
 plot(x,y)<br>```</pre>
 
-Now, lets do something with the document we have been playing with.
-
 ## Rendering
 
 If you look near the top of the editor window you will see:
@@ -186,9 +182,20 @@ If you look near the top of the editor window you will see:
 
 Click this and behold the magic!
 
+Alternatively, we can use the console to do this.
+
+
+```r
+rmarkdwon::render("my_rmd.Rmd")
+```
+
+```
+## Error in loadNamespace(name): there is no package called 'rmarkdwon'
+```
+
 ## Exercise 1 
 
-
+Our first exercise is going to be creating a reproducible research document from scratch.  We will start on this together and will create a new `.Rmd` that will read in a data file.  From there you will build a document that describes an analysis (your choice), runs the analysis, and creates a figure.  Save the `.Rmd`  as well as the rendered output.  This is intentionally open.  If you get stuck, let me know.
 
 ## Reproducible Presentations
 Creating a presentation is not much different.  We just need a way to specify different slides.
