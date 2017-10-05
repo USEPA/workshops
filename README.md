@@ -28,10 +28,9 @@ The goal of these workshops and presentatins is to provide a solid basis for fut
 |Time                | Topic                                     |
 |------------------- | ----------------------------------------- |
 |8:30 AM - 8:45 AM   | Welcome and introductions                 |
-|8:45 AM - 9:15 AM   | [Reproduciblity and Repeatability](lessons/rr.md)|
-|9:15 AM - 10:45 AM  | [Reproducible documents with RStudio](lessons/repr_doc.md)
+|8:45 AM - 10:45 AM  | [Reproducible documents with RStudio](lessons/repr_doc.md)|
 |10:45 PM - 11:00 AM | *BREAK*|
-|11:00 AM - 12:30 PM | [Working with code chunks](lessons/code_chunk.md)  |   
+|11:00 AM - 12:30 PM | [Advanced Reproducibility Topics](lessons/advanced_rr.md)|   
 |12:30 PM - 1:30 PM  | *LUNCH*|
 
 ## Wednesday, October 11, PM - Open Science Approach to Cyanobacteria Research - Regional Office
