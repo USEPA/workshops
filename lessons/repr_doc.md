@@ -152,7 +152,10 @@ Since we are talking about markdown and R, our documents will all be R Markdown 
 
 
 ```
-## [1] "```{r}\nx<-rnorm(100)\nx\n```"
+## ```{r}
+## x<-rnorm(100)
+## x
+## ```
 ```
 
 This identifies what is known as a code chunk.  When written like it is above, it will echo the code to your final document, evalute the code with R and echo the results to the final document.  There are some cases where you might not want all of this to happen.  You may want just the code returned and not have it evalutated by R.  This is accomplished with:
