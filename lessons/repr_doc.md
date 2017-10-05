@@ -42,7 +42,7 @@ It should be easy to see how this could be used to write the text describing an 
 ## Create a Document
 To create your document, go to File: New File : R Markdown.  You should get a window that looks something like:
 
-![New RMarkdown](/introR/figure/newrmarkdown.jpg)
+![New RMarkdown](figures/newrmarkdown.jpg)
 
 Add title and author, select "HTML" as the output and click "OK".  RStudio will open a new tab in the editor and in it will be your new document, with some very useful examples.
 
@@ -150,36 +150,31 @@ Now that we can structure out text with Markdown, we need to add the next step: 
 
 Since we are talking about markdown and R, our documents will all be R Markdown documents (i.e. .Rmd).  To include R Code in your .Rmd you would do something like:
 
-
-```
-## ```{r}
-## x<-rnorm(100)
-## x
-## ```
-```
+<pre>```{r}
+message('```{r}
+x<-rnorm(100)
+x<br>```</pre>
 
 This identifies what is known as a code chunk.  When written like it is above, it will echo the code to your final document, evalute the code with R and echo the results to the final document.  There are some cases where you might not want all of this to happen.  You may want just the code returned and not have it evalutated by R.  This is accomplished with:
 
-    ```{r eval=FALSE}
-    x<-rnorm(100)
-    ```
+<pre>```{r eval=FALSE}
+x<-rnorm(100)<br>```</pre>
 
 Alternatively, you might just want the output returned, as would be the case when using R Markdown to produce a figure in a presentation or paper:
 
 
-    ```{r echo=FALSE}
-    x<-rnorm(100)
-    y<-jitter(x,1000)
-    plot(x,y)
-    ```
+<pre>```{r echo=FALSE}
+x<-rnorm(100)
+y<-jitter(x,1000)
+plot(x,y)<br>```</pre>
     
 Lastly, each of your code chunks can have a label.  That would be accomplished with something like:
  
-    ```{r myFigure, echo=FALSE}
-    x<-rnorm(100)
-    y<-jitter(x,1000)
-    plot(x,y)
-    ```
+    
+<pre>```{r myFigure, echo=FALSE}
+x<-rnorm(100)
+y<-jitter(x,1000)
+plot(x,y)<br>```</pre>
 
 Now, lets do something with the document we have been playing with.
 
@@ -187,7 +182,7 @@ Now, lets do something with the document we have been playing with.
 
 If you look near the top of the editor window you will see:
 
-![knit it](/introR/figure/knit.jpg)
+![knit it](figures/knit.jpg)
 
 Click this and behold the magic!
 
