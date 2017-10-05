@@ -198,14 +198,28 @@ rmarkdwon::render("my_rmd.Rmd")
 Our first exercise is going to be creating a reproducible research document from scratch.  We will start on this together and will create a new `.Rmd` that will read in a data file.  From there you will build a document that describes an analysis (your choice), runs the analysis, and creates a figure.  Save the `.Rmd`  as well as the rendered output.  This is intentionally open.  If you get stuck, let me know.
 
 ## Reproducible Presentations
-Creating a presentation is not much different.  We just need a way to specify different slides.
 
-Repeat the steps from above, but this time instead of selecting "Document", select "Presentation".  Only thing we need to know is that a second level header (i.e. `##`) is what specifies the title of the next slide.  Any thing you put after that goes on that slide.  Similar to before, play around with this, add a slide with some new text, new code and knit it.  There you have it, a reproducible presentation.  
+Now that we have created and rendered our first reproducible document, we can move on to a presenatation.  Presentations are not much different.  We just need a way to specify different slides.
+
+Repeat the steps from above that show us how to start a new document, but this time instead of selecting "Document", select "Presentation".  
+
+![present](figures/present.jpg)
+
+Let's stick with the defualt, ioslides, on this.  Slidy and isoslides are different javascript frameworks for html slides.  There are some slight differences between them, but the basics are the same.  Beamer is a LaTeX method for slides, and since not everyone has LaTeX installed we can't demo that.
+
+This should look pretty similar to our documents.  Only difference is that `## Slide Title` is what `rmarkdown` and `knitr` is looking for to differentiate the slides. 
+
+Let's work together to add some new slides.
 
 I know you will probably wonder can you change the look and feel of this presentation, and the answer is yes.  I have done that, but using a different method for creating slides by using the `xaringan` package.  An example of that presentation is the talk I am giving this afternoon on our [cyanobacteria research efforts](http://jwhollister.com/cyano_open_sci).  It does take a bit more work to set this up and it is admittedly a bit more fiddly than using something like Power Point, but if you have data analysis and results or the talk will need to be updated with new results, then a reproducible presentation begins to make a lot more sense.
 
-Let's take some time and create a new presentation.
-
+Let's take some time and create a new presentation for out final exercise
 
 ## Exercise 2
+
+1. Create a new presentation
+2. Using the example for our .Rmd document, read in your data file.
+3. Add four slides: one that describes your analysis, one that shows results, one that shows a figure, and the last one will includes animated gif (hint: `![image](url)`).  Go to <https://giphy.com> and search for some good (and appropriate for work) ones.  For instance, <https://giphy.com/search/happy-dance> has some nice ones.
+
+If there is time, we can present these for everyone.
 
