@@ -196,7 +196,7 @@ rmarkdwon::render("my_rmd.Rmd")
 
 ## Exercise 1 
 
-Our first exercise is going to be creating a reproducible research document from scratch.  We will start on this together and will create a new `.Rmd` that will read in a data file.  From there you will build a document that describes an analysis (your choice), runs the analysis, and creates a figure.  Save the `.Rmd`  as well as the rendered output.  This is intentionally open.  If you get stuck, let me know.
+Our first exercise is going to be creating a reproducible research document from scratch.  We will start on this together and will create a new `.Rmd` that will read in a data file (for reference: .  From there you will build a document that describes an analysis (your choice), runs the analysis, and creates a figure.  Save the `.Rmd`  as well as the rendered output.  This is intentionally open.  If you get stuck, let me know.
 
 ## Reproducible Presentations
 
