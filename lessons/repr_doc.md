@@ -195,7 +195,7 @@ rmarkdwon::render("my_rmd.Rmd")
 
 ## Exercise 1 
 
-Our first exercise is going to be creating a reproducible research document from scratch.  We will start on this together and will create a new `.Rmd` that will read in a data file (for reference: .  From there you will build a document that describes an analysis (your choice), runs the analysis, and creates a figure.  Save the `.Rmd`  as well as the rendered output.  This is intentionally open.  If you get stuck, let me know.
+Our first exercise is going to be creating a reproducible research document from scratch.  We will start on this together and will create a new `.Rmd` that will read in a data file (for reference: <https://raw.githubusercontent.com/USEPA/region7_r/master/lessons/data/fake_nla_1.csv>).  From there you will build a document that describes an analysis (your choice), runs the analysis, and creates a figure.  Save the `.Rmd`  as well as the rendered output.  This is intentionally open.  If you get stuck, let me know.
 
 ## Reproducible Presentations
 
@@ -218,7 +218,7 @@ Let's take some time and create a new presentation for out final exercise
 ## Exercise 2
 
 1. Create a new presentation
-2. Using the example for our .Rmd document, read in your data file.
+2. Using the example from our .Rmd document, read in your data file.
 3. Add four slides: one that describes your analysis, one that shows results, one that shows a figure, and the last one will includes animated gif (hint: `![image](url)`).  Go to <https://giphy.com> and search for some good (and appropriate for work) ones.  For instance, <https://giphy.com/search/happy-dance> has some nice ones.
 
 If there is time, we can present these for everyone.
