@@ -42,16 +42,20 @@ If you've worked with data before in a spreadsheet or from a table in a database
 ```r
 # Use the dollar sign to get a column
 my_df$age
+```
 
+```
+## [1] 45 27 38 51
+```
+
+```r
 # Grab a row with indexing
-my_df{2,}
+my_df[2,]
 ```
 
 ```
-## Error: <text>:5:6: unexpected '{'
-## 4: # Grab a row with indexing
-## 5: my_df{
-##         ^
+##   names age knows_r
+## 2 jenny  27    TRUE
 ```
 
 At this point, we have:
@@ -71,7 +75,7 @@ Completely creating a data frame from scratch is useful (especially when you sta
 
 Source files for `read.csv()` can either be on a local hard drive or, and this is pretty cool, on the web. We will be using the later for our examples and exercises. If you had a local file it would be accessed like `mydf <- read.csv("C:/path/to/local/file.csv")`. As an aside, paths and use of forward vs back slash is important. R is looking for forward slashes ("/"), or unix-like paths. You can use these in place of the back slash and be fine. You can use a back slash but it needs to be a double back slash ("\"). This is becuase the single backslash in an escape character that is used to indicate things like newlines or tabs. 
 
-For today's workshop we will focus on grabbing data from a file on the web, but a local file is nearly the same you use the path to the file instead of a URL. 
+For today's workshop we will focus on grabbing data from a file on the web, but a local file is nearly the same as you use the path to the file instead of a URL. 
 
 Let's give it a try.
 
