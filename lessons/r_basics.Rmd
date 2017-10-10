@@ -120,7 +120,7 @@ The `#` indicates a comment.  You can put whatever else you'd like after this, b
 
 For this second exercise we are going to get used to using some basic functions.  Use the yellow stickies when you have completed, and blue stickies if you are running into problems.
 
-1. Save your work in a script, make sure "r1_introR.R" file you created in Exercise 1 is open. Enter your commands into this script.  
+1. Save your work in a script, make sure "r7_introR.R" file you created in Exercise 1 is open. Enter your commands into this script.  
 2. Add in a comment line to separate this section.  It should look something like: `# Exercise 1.2: Getting used to functions and basic syntax`.
 2. Use the `print` function.  Remember, use the "run" button or `ctrl-enter` in RStudio to have R interpret it and print something to the screen.
 3. Combine `mean` and `rnorm` to return the mean value of a set of random numbers.
@@ -242,7 +242,7 @@ This is probably a good spot to bring up quotes vs no quotes around arguments in
 
 Next thing you might want to do is navigate around your files and directories. While you can do this directly from the console, it is going to be better practice to mostly use RStudio projects to manage your folders, working directory etc.  You can also navigate using the Files, etc. pane. 
 
-##Exercise 1.4
+## Exercise 1.4
 1. Add in a comment line to separate this section.  It should look something like: `# Exercise 1.4: Objects and Operators`.
 1. Create two objects named `number1` and `number2` and give them the values of 25 and 4, respectively 
 2. Create two more objects named `string1` and `string2`, give them any character string that you would like. 
@@ -252,10 +252,10 @@ Next thing you might want to do is navigate around your files and directories. W
 6. Remove `string2`
 10. Try to add `string1` and `number1`.  What happens?  
 
-##Getting help
+## Getting help
 Being able to find help and interpret that help is probably one of the most important skills for learning a new language.  R is no different. Help on functions and packages can be accessed directly from R, can be found on CRAN and other official R resources, searched on Google, found on StackOverflow, or from any number of fantastic online resources. I will cover a few of these here. 
 
-###Help from the console
+### Help from the console
 Getting help from the console is straightforward and can be done numerous ways.
 
 ```{r help_from_console, eval=FALSE}
@@ -272,7 +272,7 @@ apropos("print") #Returns all available functions with "print" in the name
 ??print #Shortcut, but also searches demos and vignettes in a formatted page
 ```
 
-###Official R Resources
+### Official R Resources
 In addition to help from within R itself, CRAN and the R-Project have many resources available for support.  Two of the most notable are the mailing lists and the [task views](http://cran.r-project.org/web/views/).
 
 - [R Help Mailing List](https://stat.ethz.ch/mailman/listinfo/r-help): The main mailing list for R help.  Can be a bit daunting and some (although not most) senior folks can be, um, curmudgeonly...
@@ -280,12 +280,12 @@ In addition to help from within R itself, CRAN and the R-Project have many resou
 - [Environmetrics Task View](http://cran.r-project.org/web/views/Environmetrics.html): Task views are great in that they provide an annotated list of packages relevant to a particular field.  This one is maintained by Gavin Simpson and has great info on packages relevant to much of the work at EPA.
 - [Spatial Analysis Task View](http://cran.r-project.org/web/views/Spatial.html): One I use a lot that lists all the relevant packages for spatial analysis, GIS, and Remote Sensing in R. 
 
-###Google and StackOverflow
+### Google and StackOverflow
 While the resources already mentioned are useful, often the quickest way is to just turn to Google.  However, a search for "R" is a bit challenging.  A few ways around this.  Google works great if you search for a given package or function name.  You can search for mailing lists directly (i.e. "R-sig-geo").  An R specific search tool, [RSeek.org](http://www.rseek.org/), has been created to facilitate this.  
 
 One specific resource that I use quite a bit is [StackOverflow with the 'r' tag](http://stackoverflow.com/questions/tagged/r).  StackOverflow is a discussion forum for all things related to programming.  You can then use this tag and the search functions in StackOverflow and find answers to almost anything you can think of.
 
-###Other Resources
+### Other Resources
 As I mention earlier, there are TOO many resources to mention and everyone has their favorites.  Below are just a few that I like.
 
 - [R For Cats](http://rforcats.net/): Basic introduction site, meant to be a gentle and light-hearted introduction

@@ -100,21 +100,21 @@ rnorm(100,mean=10,sd=2)
 ```
 
 ```
-##   [1] 11.675862  8.853496 11.212567  9.460266 12.716536 13.035887  8.866268
-##   [8]  8.801752  6.997511 11.607766  6.821175 10.936860 12.891806 11.971175
-##  [15]  8.025595 10.424036 11.504877  9.291907  9.436228  9.620204 10.592420
-##  [22] 10.361058  8.926137 10.386749  9.226443 10.204884  8.795485  9.251071
-##  [29]  9.866703 12.085570 11.355978  8.317149  9.688775 13.446988 10.666762
-##  [36]  9.057946  7.088903 13.537762  8.367117 11.376026 10.268221 12.137294
-##  [43] 12.415289  9.673863  8.068162  9.557247  7.814771  9.069145 12.425367
-##  [50]  6.125793 12.465577  8.979610  6.073567 12.723070 11.199055  9.768846
-##  [57]  8.917350  8.403276 12.122587 11.640019  9.932182  8.959937  9.432988
-##  [64] 11.079912  8.790961 13.481996  8.645537 14.038556 11.844600 12.779915
-##  [71]  9.351399  9.563015  9.864509  8.901158  7.910706  8.840532  8.814955
-##  [78]  9.984148 10.328046 12.109674 11.362893  9.727435 11.493803  9.936709
-##  [85] 13.483235  9.848996 10.678940  8.955152 10.602652  9.055133  9.602309
-##  [92]  6.210823  6.328444  7.281236 11.675642 10.936607 10.889443 11.266903
-##  [99]  8.153372  9.867146
+##   [1] 12.204309  8.621328 11.746949 11.140529  8.419103  6.412930  7.598545
+##   [8]  8.646316 12.055057  7.626054 10.196927  8.788276  6.482143  7.686753
+##  [15]  9.107271 12.308010  9.855718 13.277581  8.380338 12.794590 11.601807
+##  [22]  9.499577  8.775056 12.896898 10.951753  8.290120  7.810060  9.417106
+##  [29]  9.459389  6.632473  6.899548  9.239264 11.658646 13.022592 11.914860
+##  [36] 10.978095 11.652275 12.307193 10.415183  5.480785 12.261080  8.557597
+##  [43] 10.871824 11.428777  9.021094  8.743286  8.668073 11.374799 12.003311
+##  [50]  8.686246 10.575036 10.274167 10.995223  7.542637 13.427220  7.040345
+##  [57] 12.128998  8.558664 11.127660  6.637964  4.471454  9.426541 14.230651
+##  [64]  6.052397  8.276267 11.056981  8.677362 10.901828 10.952248  8.922125
+##  [71]  6.384985 13.673899  7.835810  7.494227 10.707371  7.583363  9.932580
+##  [78] 12.747844  8.960340 12.543802 11.337023  7.509150  4.625352  8.579544
+##  [85]  6.821312 10.291929  7.422647 12.374001 12.575414  7.406304  9.149808
+##  [92] 11.896510  7.620006 10.655197  9.306362  6.354674  9.536692 11.512306
+##  [99]  9.045018  9.428139
 ```
 
 ```r
@@ -123,7 +123,7 @@ mean(rnorm(100))
 ```
 
 ```
-## [1] -0.0144597
+## [1] 0.03015416
 ```
 
 ```r
@@ -132,7 +132,7 @@ sum(rnorm(100))
 ```
 
 ```
-## [1] 5.937621
+## [1] -11.94902
 ```
 
 ### A few side notes 
@@ -154,7 +154,7 @@ The `#` indicates a comment.  You can put whatever else you'd like after this, b
 
 For this second exercise we are going to get used to using some basic functions.  Use the yellow stickies when you have completed, and blue stickies if you are running into problems.
 
-1. Save your work in a script, make sure "r1_introR.R" file you created in Exercise 1 is open. Enter your commands into this script.  
+1. Save your work in a script, make sure "r7_introR.R" file you created in Exercise 1 is open. Enter your commands into this script.  
 2. Add in a comment line to separate this section.  It should look something like: `# Exercise 1.2: Getting used to functions and basic syntax`.
 2. Use the `print` function.  Remember, use the "run" button or `ctrl-enter` in RStudio to have R interpret it and print something to the screen.
 3. Combine `mean` and `rnorm` to return the mean value of a set of random numbers.
@@ -408,7 +408,7 @@ This is probably a good spot to bring up quotes vs no quotes around arguments in
 
 Next thing you might want to do is navigate around your files and directories. While you can do this directly from the console, it is going to be better practice to mostly use RStudio projects to manage your folders, working directory etc.  You can also navigate using the Files, etc. pane. 
 
-##Exercise 1.4
+## Exercise 1.4
 1. Add in a comment line to separate this section.  It should look something like: `# Exercise 1.4: Objects and Operators`.
 1. Create two objects named `number1` and `number2` and give them the values of 25 and 4, respectively 
 2. Create two more objects named `string1` and `string2`, give them any character string that you would like. 
@@ -418,10 +418,10 @@ Next thing you might want to do is navigate around your files and directories. W
 6. Remove `string2`
 10. Try to add `string1` and `number1`.  What happens?  
 
-##Getting help
+## Getting help
 Being able to find help and interpret that help is probably one of the most important skills for learning a new language.  R is no different. Help on functions and packages can be accessed directly from R, can be found on CRAN and other official R resources, searched on Google, found on StackOverflow, or from any number of fantastic online resources. I will cover a few of these here. 
 
-###Help from the console
+### Help from the console
 Getting help from the console is straightforward and can be done numerous ways.
 
 
@@ -439,7 +439,7 @@ apropos("print") #Returns all available functions with "print" in the name
 ??print #Shortcut, but also searches demos and vignettes in a formatted page
 ```
 
-###Official R Resources
+### Official R Resources
 In addition to help from within R itself, CRAN and the R-Project have many resources available for support.  Two of the most notable are the mailing lists and the [task views](http://cran.r-project.org/web/views/).
 
 - [R Help Mailing List](https://stat.ethz.ch/mailman/listinfo/r-help): The main mailing list for R help.  Can be a bit daunting and some (although not most) senior folks can be, um, curmudgeonly...
@@ -447,12 +447,12 @@ In addition to help from within R itself, CRAN and the R-Project have many resou
 - [Environmetrics Task View](http://cran.r-project.org/web/views/Environmetrics.html): Task views are great in that they provide an annotated list of packages relevant to a particular field.  This one is maintained by Gavin Simpson and has great info on packages relevant to much of the work at EPA.
 - [Spatial Analysis Task View](http://cran.r-project.org/web/views/Spatial.html): One I use a lot that lists all the relevant packages for spatial analysis, GIS, and Remote Sensing in R. 
 
-###Google and StackOverflow
+### Google and StackOverflow
 While the resources already mentioned are useful, often the quickest way is to just turn to Google.  However, a search for "R" is a bit challenging.  A few ways around this.  Google works great if you search for a given package or function name.  You can search for mailing lists directly (i.e. "R-sig-geo").  An R specific search tool, [RSeek.org](http://www.rseek.org/), has been created to facilitate this.  
 
 One specific resource that I use quite a bit is [StackOverflow with the 'r' tag](http://stackoverflow.com/questions/tagged/r).  StackOverflow is a discussion forum for all things related to programming.  You can then use this tag and the search functions in StackOverflow and find answers to almost anything you can think of.
 
-###Other Resources
+### Other Resources
 As I mention earlier, there are TOO many resources to mention and everyone has their favorites.  Below are just a few that I like.
 
 - [R For Cats](http://rforcats.net/): Basic introduction site, meant to be a gentle and light-hearted introduction
