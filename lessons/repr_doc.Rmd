@@ -198,6 +198,8 @@ rmarkdwon::render("my_rmd.Rmd")
 
 Our first exercise is going to be creating a reproducible research document from scratch.  We will start on this together and will create a new `.Rmd` that will read in a data file (for reference: <https://raw.githubusercontent.com/USEPA/region7_r/master/lessons/data/fake_nla_1.csv>).  From there you will build a document that describes an analysis (your choice), runs the analysis, and creates a figure.  Save the `.Rmd`  as well as the rendered output.  This is intentionally open.  If you get stuck, let me know.
 
+If you have time, update your document with new data (another fake NLA dataset (I modified it a bit) is at <https://raw.githubusercontent.com/USEPA/region7_r/master/lessons/data/fake_nla_2.csv>).  You can either replace the data you have or you can add this dataset to the original (look at `rbind()`).
+
 ## Reproducible Presentations
 
 Now that we have created and rendered our first reproducible document, we can move on to a presenatation.  Presentations are not much different.  We just need a way to specify different slides.
