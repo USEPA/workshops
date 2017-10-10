@@ -17,11 +17,11 @@ The goal of these workshops and presentatins is to provide a solid basis for fut
 |Time             |Topic  |
 |-----------------|-------|
 |12:00 PM - 12:45 PM|Welcome|
-|12:45 PM - 1:00 PM|[Set-up](lessons/set_up.md)|
-|1:00 PM - 2:00 PM|[Spatial data I/O](lessons/spatial_data_io.md)|
-|2:00 PM - 3:30 PM|[Basic Spatial Analysis](lessons/basic_spatial_analysis.md)|
+|12:45 PM - 1:00 PM|[Set-up](https://github.com/USEPA/rspatial_workshop/blob/master/lessons/set_up.md)|
+|1:00 PM - 2:00 PM|[Spatial data I/O](https://github.com/USEPA/rspatial_workshop/blob/master/lessons/spatial_data_io.md)|
+|2:00 PM - 3:30 PM|[Basic Spatial Analysis](https://github.com/USEPA/rspatial_workshop/blob/master/lessons/basic_spatial_analysis.md)|
 |3:30 PM - 3:45 PM| *BREAK* |
-|3:45 PM - 5:00 PM|[Spatial Data Visualization](lessons/spatial_data_viz.md)|
+|3:45 PM - 5:00 PM|[Spatial Data Visualization](https://github.com/USEPA/rspatial_workshop/blob/master/lessons/spatial_data_viz.md)|
 
 ## Wednesday, October 11, AM - Reproducible Research Documents with R - Regional Office
 
