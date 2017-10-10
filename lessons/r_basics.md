@@ -19,8 +19,6 @@ In this first lesson we are going to go over the very basics of R, cover some ba
 - [Exercise 1.3](#exercise-13)
 - [Exercise 1.4](#exercise-14)
 
-## Code
-Before we get started, the code for all three lessons has been consolidated into a single R script.  If you'd like, download [`r7_intro_code.R`](https://raw.githubusercontent.com/USEPA/region7_r/master/lessons/r7_intro_code.R) and follow along during the live coding. 
 
 ## Working with R and RStudio
 Over the last several years, RStudio has become a very popular IDE (integrated development environment) for R. In addition to interacting with the R Console, RStudio has many extras built in including version control integration, package building, reproducible research, de-bugging, and built-in text editor with smart highlighting and code completion.  This is the environment we will be using for the workshop and should set you up for continued learning with R.
@@ -75,7 +73,7 @@ This exercise will make sure R and RStudio are working and that you can get arou
 
 R is a functional programming language and as such, most everything you do uses a function.
 
-The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many (2922 functions, to be exact).  Some examples:
+The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many (2890 functions, to be exact).  Some examples:
 
 
 ```r
@@ -102,21 +100,21 @@ rnorm(100,mean=10,sd=2)
 ```
 
 ```
-##   [1] 14.456868  7.471977 14.297483 13.127861  9.728886 11.983070  9.306490
-##   [8] 11.871214  9.878618  9.106449  9.353313 10.631137  8.946616 11.525988
-##  [15]  7.766620  5.762064 10.421269 11.555805 11.754044  8.098920  7.785731
-##  [22]  7.504559  9.072182  7.294369  8.322627  7.287291 12.165353 10.104064
-##  [29]  7.525730  7.363283  6.746065  9.474359  9.891555 10.862703  6.641146
-##  [36]  4.988531  8.320469 11.572163  7.942513 11.852185 10.722635 12.166569
-##  [43]  7.868963  8.905642 12.534517  5.279886  9.387692 11.137619  9.788295
-##  [50] 10.681006  7.928938  7.029504  9.928384 12.237308  6.246361  9.451357
-##  [57] 11.053319  7.906376 13.875015 10.701991 10.547830 10.513011  8.466960
-##  [64] 12.904427 10.252557  7.233676  9.575264 10.895399 12.642352 10.842296
-##  [71]  6.997818 10.988100 11.241123  6.413633  8.565758 12.880594  7.467957
-##  [78]  9.376505 10.593615  9.292777  7.533098  9.683696  9.391539 10.032870
-##  [85] 11.455912  8.399301  9.756392  5.117630  7.634953 10.054562 11.588901
-##  [92] 10.646984 10.623372  4.866720 10.064531 11.752348 12.645299  8.608404
-##  [99]  7.575347  8.567518
+##   [1] 11.675862  8.853496 11.212567  9.460266 12.716536 13.035887  8.866268
+##   [8]  8.801752  6.997511 11.607766  6.821175 10.936860 12.891806 11.971175
+##  [15]  8.025595 10.424036 11.504877  9.291907  9.436228  9.620204 10.592420
+##  [22] 10.361058  8.926137 10.386749  9.226443 10.204884  8.795485  9.251071
+##  [29]  9.866703 12.085570 11.355978  8.317149  9.688775 13.446988 10.666762
+##  [36]  9.057946  7.088903 13.537762  8.367117 11.376026 10.268221 12.137294
+##  [43] 12.415289  9.673863  8.068162  9.557247  7.814771  9.069145 12.425367
+##  [50]  6.125793 12.465577  8.979610  6.073567 12.723070 11.199055  9.768846
+##  [57]  8.917350  8.403276 12.122587 11.640019  9.932182  8.959937  9.432988
+##  [64] 11.079912  8.790961 13.481996  8.645537 14.038556 11.844600 12.779915
+##  [71]  9.351399  9.563015  9.864509  8.901158  7.910706  8.840532  8.814955
+##  [78]  9.984148 10.328046 12.109674 11.362893  9.727435 11.493803  9.936709
+##  [85] 13.483235  9.848996 10.678940  8.955152 10.602652  9.055133  9.602309
+##  [92]  6.210823  6.328444  7.281236 11.675642 10.936607 10.889443 11.266903
+##  [99]  8.153372  9.867146
 ```
 
 ```r
@@ -125,7 +123,7 @@ mean(rnorm(100))
 ```
 
 ```
-## [1] 0.1327204
+## [1] -0.0144597
 ```
 
 ```r
@@ -134,7 +132,7 @@ sum(rnorm(100))
 ```
 
 ```
-## [1] 1.055635
+## [1] 5.937621
 ```
 
 ### A few side notes 
@@ -154,7 +152,7 @@ The `#` indicates a comment.  You can put whatever else you'd like after this, b
 
 ### Exercise 1.2
 
-For this second exercise we are going to get used to using some basic functions.  Use the green stickies when you have completed, and red stickies if you are running into problems.
+For this second exercise we are going to get used to using some basic functions.  Use the yellow stickies when you have completed, and blue stickies if you are running into problems.
 
 1. Save your work in a script, make sure "r1_introR.R" file you created in Exercise 1 is open. Enter your commands into this script.  
 2. Add in a comment line to separate this section.  It should look something like: `# Exercise 1.2: Getting used to functions and basic syntax`.
@@ -167,7 +165,7 @@ The base install of R is quite powerful, but you will soon have a need or desire
 
 ### CRAN
 
-One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of 2017-02-14, there are 10046 on CRAN! 
+One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of 2017-10-10, there are 11568 on CRAN! 
 
 ### Installing packages
 
@@ -203,7 +201,7 @@ dplyr::mutate
 ```
 ## function (.data, ...) 
 ## {
-##     mutate_(.data, .dots = lazyeval::lazy_dots(...))
+##     UseMethod("mutate")
 ## }
 ## <environment: namespace:dplyr>
 ```
