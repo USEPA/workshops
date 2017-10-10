@@ -18,9 +18,9 @@ nla_url <- "https://usepa.github.io/region1_r/nla_dat.csv"
 nla_wq_subset <- read.csv(nla_url,stringsAsFactors = FALSE)
 ```
 
-# Basic Data Wrangling with R
+# Manipulating data frames and visualizing your data
 
-Data wrangling (manipulation, jujitsu, cleaning, etc.) is the part of any data analysis that will take the most time.  While it may not necessarily be fun, it is foundational to all the work that follows.  For this workshop we are just going to cover the bare essentials of data wrangling in R and will see how to do this with Hadley Wickham's `dplyr` package.
+Data wrangling (manipulation, jujitsu, cleaning, etc.) is the part of any data analysis that will take the most time.  While it may not necessarily be fun, it is foundational to all the work that follows.  For this workshop we are just going to cover the bare essentials of data wrangling in R and will see how to do this with Hadley Wickham's `dplyr` package.  We will also begin to do some basic data visualization.
 
 ## Lesson Outline:
 
@@ -34,7 +34,7 @@ Data wrangling (manipulation, jujitsu, cleaning, etc.) is the part of any data a
 S
 ## dplyr
 
-The package `dplyr` is a fairly new (2014) package that tries to provide easy tools for the most common data manipulation tasks.  It is built to work directly with data frames.  The thinking behind it was largely inspired by the package `plyr` which has been in use for some time but suffered from being slow in some cases.  `dplyr` addresses this by porting much of the computation to c++.  An additional feature is the ability to work with data stored directly in an external database.  The benefits of doing this are that the data can be managed natively in a relational database, queries can be conducted on that database, and only the results of the query returned.  
+The package `dplyr` is a package that tries to provide easy tools for the most common data manipulation tasks.  It is built to work directly with data frames and this is one of the foundational packages in what is now known as the [tidyverse](https://tidyverse.org).  The thinking behind it was largely inspired by the package `plyr` which has been in use for some time but suffered from being slow in some cases.  `dplyr` addresses this by porting much of the computation to c++.  An additional feature is the ability to work with data stored directly in an external database.  The benefits of doing this are that the data can be managed natively in a relational database, queries can be conducted on that database, and only the results of the query returned.  
 
 This addresses a common problem with R in that all operations are conducted in memory and thus the amount of data you can work with is limited by available memory.  The database connections essentially remove that limitation in that you can have a database of many 100s GB, conduct queries on it directly and pull back just what you need for analysis in R.  There is a lot of great info on `dplyr`.  If you have an interest, i'd encourage you to look more.  The vignettes are particulary good.
 
@@ -42,7 +42,7 @@ This addresses a common problem with R in that all operations are conducted in m
 - [CRAN page: vignettes here](http://cran.rstudio.com/web/packages/dplyr/)
 
 ### Using dplyr
-So, base R can do what you need, but it is a bit complicated and the syntax is a bit dense.  In `dplyr` this can be done with two functions, `select()` and `filter()`.  The code can be a bit more verbose, but it allows you to write code that is much more readable.  Before we start we need to make sure we've got everything installed and loaded.  If you do not have R Version 3.1.2 or greater you will have some problems (i.e. no `dplyr` for you).
+So, base R can do what you need, but it is a bit complicated and the syntax is a bit dense (e.g. `iris[iris$Species == "versicolor",c(1,2,5)]`).  In `dplyr` this can be done with two functions, `select()` and `filter()`.  The code can be a bit more verbose, but it allows you to write code that is much more readable.  Before we start we need to make sure we've got everything installed and loaded.  If you do not have R Version 3.1.2 or greater you will have some problems (i.e. no `dplyr` for you).
 
 ```{r real_setup, echo=FALSE, include=FALSE, purl=FALSE}
 if(!require("dplyr")){
@@ -56,7 +56,7 @@ install.packages("dplyr")
 library("dplyr")
 ```
 
-I am going to repeat some of what I showed above on data frames but now with `dplyr`.  This is what we will be using in the exercises.
+Let's see how to select some columns and filter the results with `dplyr`. 
 
 ```{r more_data_frame_dplyr}
 #First, select some columns
@@ -68,6 +68,9 @@ head(dplyr_big_iris)
 #Or maybe we want just the virginica species
 virginica_iris<-filter(iris,Species=="virginica")
 head(virginica_iris)
+
+#And another way to look at these as a tibble
+tbl_df(virginica_iris)
 ```
 
 But what if I wanted to select and filter?  There are three ways to do this: use intermediate steps, nested functions, or pipes.  With the intermediate steps, you essentially create a temporary data frame and use that as input to the next function.  You can also nest functions (i.e. one function inside of another).  This is handy, but can be difficult to read if too many functions are nested as the process from inside out.  The last option, pipes, are a fairly recent addition to R.  Pipes in the unix/linux world are not new and allow you to chain commands together where the output of one command is the input to the next.  This provides a more natural way to read the commands in that they are executed in the way you conceptualize it and make the interpretation of the code a bit easier.  Pipes in R look like `%>%` and are made available via th `magrittr` package, which is installed as part of `dplyr`.  We will talk a bit about this, but the best desciption, by far, is the secion on pipes in the [R For Data Science](http://r4ds.had.co.nz/pipes.html) book.
@@ -118,9 +121,15 @@ And some fairly complicated figures:
 
 ![psych_repro](https://d2ufo47lrtsv5s.cloudfront.net/content/sci/349/6251/aac4716/F1.large.jpg?width=800&height=600&carousel=1)
 
-And lastly some cool examples using `ggplot2` with `plotly`.
+And some cool examples using `ggplot2` with `plotly`.
 
 <http://blog.revolutionanalytics.com/2014/11/3-d-plots-with-plotly.html>
+
+Lastly, so that you know that there are many (often cool) mistakes that lead up to a final visualization there is [Accidental aRt](http://accidental-art.tumblr.com/).  And for a specific example ...
+
+This final figure from [Hollister et al. 2017](http://onlinelibrary.wiley.com/enhanced/figures/doi/10.1002/ecs2.1321#figure-viewer-ecs21321-fig-0011) had as one of its early iterations this ["psychadelic doughnut"](http://accidental-art.tumblr.com/post/96720455195/was-trying-to-mess-with-projections-in-ggplot)
+
+(**ht to Anne Kuhn, my office mate, for the name**)
 
 Now that we are sufficiently motivated, lets take a step back to the very basics.
 
