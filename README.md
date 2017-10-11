@@ -23,6 +23,7 @@ The goal of these workshops and presentatins is to provide a solid basis for fut
 |3:30 PM - 3:45 PM| *BREAK* |
 |3:45 PM - 5:00 PM|[Spatial Data Visualization](https://github.com/USEPA/rspatial_workshop/blob/master/lessons/spatial_data_viz.md)|
 
+[Link for updated code](https://github.com/jhollist/rspatial_workshop_r7/blob/master/rspatial_workshop.R)
 ## Wednesday, October 11, AM - Reproducible Research Documents with R - Regional Office
 
 |Time                | Topic                                     |
