@@ -1,27 +1,21 @@
 
-```
-## Error in FUN(X[[i]], ...): there is no package called 'sf'
-```
+<insertHTML:[columns.html]
 
-```
-## Error in eval(expr, envir, enclos): object 'opts_chunk' not found
-```
+Data Vizualization
+========================================================
+date: November 5, 2017
+autosize: true
+css: frm.css
+transition: none
 
-# Set Up
+Motivation
+========================================================
+get pumped
 
-## Lesson Outline
-- [Thing](#thing)
+Lesson outline
+========================================================
+outline
 
-
-## Lesson Exercises
-- [Exercise 1](#exercise-1)
-
-## Thing
-
-
-## Exercise 3.1
-In this first exercise 
-
-1. Assign ...
-2. Do ...
-
+Exercises
+========================================================
+exercise

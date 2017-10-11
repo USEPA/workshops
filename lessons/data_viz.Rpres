@@ -1,7 +1,10 @@
-
+```{r setup, echo = FALSE}
+# chunk options
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
 <insertHTML:[columns.html]
 
-Time series analysis
+Data Vizualization
 ========================================================
 date: November 5, 2017
 autosize: true
