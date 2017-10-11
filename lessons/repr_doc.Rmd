@@ -149,7 +149,7 @@ And with this, we can have some real fun.
 
 ![matt foley](https://media.giphy.com/media/n7Nwr10hWzROE/giphy.gif)
 
-Now that we know a bit out the YAML that controls the document build process, and we can structure our text with Markdown, we need to add the last step: incorportaing code.
+Now we know that YAML controls the document build process, and we can structure our text with Markdown, we need to add the last step: incorportaing code.
 
 ## Code Chunks
 
@@ -190,8 +190,8 @@ Click this and behold the magic!
 
 Alternatively, we can use the console to do this.
 
-```{r render_examp}
-rmarkdwon::render("my_rmd.Rmd")
+```{r render_examp, eval=FALSE}
+rmarkdown::render("my_rmd.Rmd")
 ```
 
 ## Exercise 1 

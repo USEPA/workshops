@@ -143,7 +143,7 @@ And with this, we can have some real fun.
 
 ![matt foley](https://media.giphy.com/media/n7Nwr10hWzROE/giphy.gif)
 
-Now that we know a bit out the YAML that controls the document build process, and we can structure our text with Markdown, we need to add the last step: incorportaing code.
+Now we know that YAML controls the document build process, and we can structure our text with Markdown, we need to add the last step: incorportaing code.
 
 ## Code Chunks
 
@@ -186,11 +186,7 @@ Alternatively, we can use the console to do this.
 
 
 ```r
-rmarkdwon::render("my_rmd.Rmd")
-```
-
-```
-## Error in loadNamespace(name): there is no package called 'rmarkdwon'
+rmarkdown::render("my_rmd.Rmd")
 ```
 
 ## Exercise 1 
