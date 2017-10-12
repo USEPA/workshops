@@ -1,23 +1,41 @@
 ```{r setup, echo = FALSE}
 # chunk options
-knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dpi = 300)
 ```
 <insertHTML:[columns.html]
 
-Data Vizualization
+Data Visualization
 ========================================================
 date: November 5, 2017
+author: Marcus W Beck
 autosize: true
 css: frm.css
 transition: none
 
-Motivation
-========================================================
-get pumped
+```{r fig.width = 8, fig.height = 4.5, out.width = '800px', echo = F, fig.align = 'center'}
+library(ggplot2)
+data(iris)
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species, group = Species)) + 
+  geom_point() + 
+  geom_smooth(method = 'lm') + 
+  theme_bw()
+```
 
 Lesson outline
 ========================================================
-outline
+* Simple plots with base R
+* `ggplot2`: introduction
+* `ggplot2`: scatterplots
+* `ggplot2`: barchart
+* `ggplot2`: customizing 
+* Other cool stuff
+
+Motivation
+========================================================
+* Data can be 
+get pumped
+
+
 
 Exercises
 ========================================================
