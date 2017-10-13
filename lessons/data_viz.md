@@ -18,10 +18,10 @@ Lesson outline
 A whirlwind tour of data viz
 * Simple plots with base R
 * `ggplot2`: introduction
-* `ggplot2`: scatterplots
-* `ggplot2`: barchart
-* `ggplot2`: customizing 
-* Other cool stuff
+* `ggplot2`: data, mapping, aesthetics, and geom layers
+* `ggplot2`: themes
+* `ggplot2`: additional geoms
+* Resources
 
 Motivation
 ========================================================
@@ -226,7 +226,13 @@ pairs(iris)
 
 <img src="data_viz-figure/unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="700px" style="display: block; margin: auto;" />
 
-ggplot2: overview
+Exercise 1
+========================================================
+* Using the `iris` dataset, make a scatterplot of petal length (y axis) vs petal width (x-axis)
+* Give it appropriate axis labels and a title
+* Change the point type, size, and color (see `?plot` and `?par`)
+
+ggplot2: introduction
 ========================================================
 * Base graphics are okay for exploratory stuff
 * ggplot2 is meant to improve on base by linking the graph components following a **grammar of graphics** - like parts of speech
@@ -237,7 +243,7 @@ ggplot2: overview
 <img src="data_viz-figure/ggplot2_hex.png" alt="Drawing" style="width: 200px;"/>
 </div>
 
-ggplot2: overview
+ggplot2: introduction
 ========================================================
 * We'll start by installing and loading [tidyverse](https://www.tidyverse.org/), which includes ggplot2 (you should have this from the earlier session)
 
@@ -266,14 +272,14 @@ loadedNamespaces()
 [56] "lazyeval"   "munsell"    "broom"     
 ```
 
-ggplot2: overview
+ggplot2: data, mapping, aesthetics, and layers
 ========================================================
 * The general concepts of `ggplot2` revolve around the **data**, plot **layers**, **aesthetics**, and **mapping**
 * This is by far the biggest hurdle in learning `ggplot`
 * Just remember, the **aesthetics** are parts of the plot **layers** that **map** the variables in the **data** to the plot
 * We'll demonstrate when this system breaks down to understand how it works
 
-ggplot2: overview
+ggplot2: data, mapping, aesthetics, and layers
 ========================================================
 * We'll start with a very simple scatterplot with the iris data
 
@@ -291,7 +297,7 @@ head(iris)
 6          5.4         3.9          1.7         0.4  setosa
 ```
 
-ggplot2: overview
+ggplot2: data, mapping, aesthetics, and layers
 ========================================================
 * All ggplot plots start with the `ggplot` function
 * It will typically need two pieces of information, the **data** and how the data are **mapped** to the plot **aesthetics**
@@ -301,7 +307,7 @@ ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length))
 ```
 * This says, make a `ggplot` object for the iris **data**, where the variables Sepal.Width and Sepal.Length are **mapped** to the **x** and **y** aesthetics
 
-ggplot2: overview
+ggplot2: data, mapping, aesthetics, and layers
 ========================================================
 * The `aes` function defines the mapping of variables to aesthetics
 
@@ -314,7 +320,7 @@ aes(x = Sepal.Width, y = Sepal.Length)
 * y -> Sepal.Length
 ```
 
-ggplot2: overview
+ggplot2: data, mapping, aesthetics, and layers
 ========================================================
 * What happens when we run this function?
 
@@ -325,7 +331,7 @@ ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length))
 <img src="data_viz-figure/unnamed-chunk-21-1.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="700px" style="display: block; margin: auto;" />
 * We get an empty plot - this is our foundation
 
-ggplot2: overview
+ggplot2: data, mapping, aesthetics, and layers
 ========================================================
 * We add plot elements to the base plot using `+`
 
@@ -336,7 +342,7 @@ ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length)) +
 
 <img src="data_viz-figure/unnamed-chunk-22-1.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="700px" style="display: block; margin: auto;" />
 
-ggplot2: overview
+ggplot2: data, mapping, aesthetics, and layers
 ========================================================
 * We add plot elements to the base plot using `+`
 
@@ -347,7 +353,7 @@ ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length)) +
 * "geoms" are plot layers that put the mapping of aesthetics in action
 * There are many geoms: [http://ggplot2.tidyverse.org/reference/](http://ggplot2.tidyverse.org/reference/)
 
-ggplot2:overview
+ggplot2: data, mapping, aesthetics, and layers
 ========================================================
 * We can swap out any geom that uses x/y aesthetics
 
@@ -358,7 +364,7 @@ ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length)) +
 
 <img src="data_viz-figure/unnamed-chunk-24-1.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="700px" style="display: block; margin: auto;" />
 
-ggplot2: overview
+ggplot2: data, mapping, aesthetics, and layers
 ========================================================
 * We can swap out any geom that uses x/y aesthetics
 
@@ -369,7 +375,7 @@ ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length)) +
 
 <img src="data_viz-figure/unnamed-chunk-25-1.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="700px" style="display: block; margin: auto;" />
 
-ggplot2: overview
+ggplot2: data, mapping, aesthetics, and layers
 ========================================================
 * We can swap out any geom that uses x/y aesthetics
 
@@ -380,7 +386,7 @@ ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length)) +
 
 <img src="data_viz-figure/unnamed-chunk-26-1.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="700px" style="display: block; margin: auto;" />
 
-ggplot2: overview
+ggplot2: data, mapping, aesthetics, and layers
 ========================================================
 * We can swap out any geom that uses x/y aesthetics
 
@@ -394,7 +400,7 @@ Execution halted
 ```
 * Oh snap, what happened?
 
-ggplot2: overview
+ggplot2: data, mapping, aesthetics, and layers
 ========================================================
 * We can swap out any geom that uses x/y aesthetics
 
@@ -405,7 +411,7 @@ ggplot2: overview
 <img src="data_viz-figure/aesreq.png" alt="Drawing" style="width: 800px;"/>
 </div>
 
-ggplot2: overview
+ggplot2: data, mapping, aesthetics, and layers
 ========================================================
 * Let's return to the `geom_point` layer, what are its aesthetics?
 
@@ -416,7 +422,7 @@ ggplot2: overview
 <img src="data_viz-figure/aesreq2.png" alt="Drawing" style="width: 800px;"/>
 </div>
 
-ggplot2: overview
+ggplot2: data, mapping, aesthetics, and layers
 ========================================================
 * Let's add some more aesthetics
 
@@ -428,7 +434,7 @@ ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length,
 
 <img src="data_viz-figure/unnamed-chunk-30-1.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="700px" style="display: block; margin: auto;" />
 
-ggplot2: overview
+ggplot2: data, mapping, aesthetics, and layers
 ========================================================
 * Let's add some more aesthetics
 
@@ -440,7 +446,7 @@ ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length,
 
 <img src="data_viz-figure/unnamed-chunk-31-1.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="700px" style="display: block; margin: auto;" />
 
-ggplot2: overview
+ggplot2: data, mapping, aesthetics, and layers
 ========================================================
 * Let's add some more aesthetics, what's the difference?
 
@@ -452,7 +458,7 @@ ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length,
 
 <img src="data_viz-figure/unnamed-chunk-32-1.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="700px" style="display: block; margin: auto;" />
 
-ggplot2: overview
+ggplot2: data, mapping, aesthetics, and layers
 ========================================================
 * We'll use this plot going forward
 
@@ -474,7 +480,7 @@ class(p)
 [1] "gg"     "ggplot"
 ```
 
-ggplot2: overview
+ggplot2: data, mapping, aesthetics, and layers
 ========================================================
 * Let's modify the plot a bit
 
@@ -486,7 +492,7 @@ p
 
 <img src="data_viz-figure/unnamed-chunk-35-1.png" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" width="700px" style="display: block; margin: auto;" />
 
-ggplot2: overview
+ggplot2: data, mapping, aesthetics, and layers
 ========================================================
 * Let's modify the plot a bit
 
@@ -497,22 +503,292 @@ p
 
 <img src="data_viz-figure/unnamed-chunk-36-1.png" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="700px" style="display: block; margin: auto;" />
 
-ggplot2: overview
+ggplot2: data, mapping, aesthetics, and layers
 ========================================================
-adding lines, themes
+* What does our plot object contain?
 
-ggplot2: barchart
+```r
+ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length, 
+                             colour = Species)
+       ) +
+  geom_point() +
+  xlab('Width (cm)') + ylab('Length (cm)') +
+  ggtitle('Iris sepal dimensions') +
+  scale_colour_manual(values = c('red', 'blue', 'green'))
+```
+
+ggplot2: themes
 ========================================================
-ex
-
-ggplot2: customizing
+* We can further modify ggplot objects using `theme`
+* This is for all non-data elements of a plot, such as:
+  * fonts
+  * legend position
+  * plot and panel backgrounds
+  * axis tick spacing
+  * grid lines
+  * etc.
+  
+ggplot2: themes
 ========================================================
-ex
+* Let's change the legend position
 
-Other cool stuff
+```r
+p <- p + theme(legend.position = 'top')
+p
+```
+
+<img src="data_viz-figure/unnamed-chunk-38-1.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="700px" style="display: block; margin: auto;" />
+
+ggplot2: themes
+========================================================
+* Let's remove the grid lines
+
+```r
+p <- p + theme(
+  panel.grid.major = element_blank(), 
+  panel.grid.minor = element_blank()
+)
+p
+```
+
+<img src="data_viz-figure/unnamed-chunk-39-1.png" title="plot of chunk unnamed-chunk-39" alt="plot of chunk unnamed-chunk-39" width="700px" style="display: block; margin: auto;" />
+
+ggplot2: themes
+========================================================
+* Let's change the plot background color
+
+```r
+p <- p + theme(panel.background = element_rect(fill = 'white'))
+p
+```
+
+<img src="data_viz-figure/unnamed-chunk-40-1.png" title="plot of chunk unnamed-chunk-40" alt="plot of chunk unnamed-chunk-40" width="700px" style="display: block; margin: auto;" />
+
+ggplot2: themes
+========================================================
+* How many theme options are there? 
+
+```r
+?theme
+```
+<div align='center'>
+<img src="data_viz-figure/thms.png" alt="Drawing" style="width: 800px;"/>
+</div>
+
+ggplot2: themes
+========================================================
+* Fortunately, we have several pre-packaged themes
+* These are overall themes that can be called with one function
+* However, it's still useful to know about `theme` for specific plot options
+* What are the pre-packaged themes?
+  * `theme_bw()`
+  * `theme_classic()` 
+  * `theme_minimal()`
+  * [http://ggplot2.tidyverse.org/reference/ggtheme.html]()
+  * [https://github.com/jrnold/ggthemes]()
+
+ggplot2: themes
+========================================================
+* Using `theme_bw()`
+
+```r
+p <- p + theme_bw()
+p
+```
+
+<img src="data_viz-figure/unnamed-chunk-42-1.png" title="plot of chunk unnamed-chunk-42" alt="plot of chunk unnamed-chunk-42" width="700px" style="display: block; margin: auto;" />
+
+ggplot2: themes
+========================================================
+* Using `theme_bw()`
+
+```r
+p <- p + theme_bw(base_size = 10, base_family = 'serif')
+p
+```
+
+<img src="data_viz-figure/unnamed-chunk-43-1.png" title="plot of chunk unnamed-chunk-43" alt="plot of chunk unnamed-chunk-43" width="700px" style="display: block; margin: auto;" />
+
+ggplot2: themes
+========================================================
+* Let's add some more layers - `geom_smooth()`
+
+```r
+p + geom_smooth()
+```
+
+<img src="data_viz-figure/unnamed-chunk-44-1.png" title="plot of chunk unnamed-chunk-44" alt="plot of chunk unnamed-chunk-44" width="700px" style="display: block; margin: auto;" />
+
+ggplot2: additional geoms
+========================================================
+* Let's add some more layers - `geom_smooth()`
+
+```r
+p <- p + geom_smooth(method = 'lm')
+p
+```
+
+<img src="data_viz-figure/unnamed-chunk-45-1.png" title="plot of chunk unnamed-chunk-45" alt="plot of chunk unnamed-chunk-45" width="700px" style="display: block; margin: auto;" />
+
+ggplot2: additional geoms
+========================================================
+* Now what's in our plot?
+
+```r
+ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length, 
+                             colour = Species)
+       ) +
+  geom_point() +
+  xlab('Width (cm)') + ylab('Length (cm)') +
+  ggtitle('Iris sepal dimensions') +
+  scale_colour_manual(values = c('red', 'blue', 'green')) + 
+  theme_bw(base_size = 10, base_family = 'serif') + 
+  geom_smooth(method = 'lm')
+```
+
+ggplot2: additional geoms
+========================================================
+* Let's do a quick demo to understand mapping aesthetics:
+
+```r
+p <- ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length)
+       ) +
+  geom_point(aes(colour = Species)) +
+  xlab('Width (cm)') + ylab('Length (cm)') +
+  ggtitle('Iris sepal dimensions') +
+  scale_colour_manual(values = c('red', 'blue', 'green')) + 
+  theme_bw(base_size = 10, base_family = 'serif') + 
+  geom_smooth(method = 'lm')
+```
+
+ggplot2: additional geoms
+========================================================
+* What happened?
+
+```r
+p
+```
+
+<img src="data_viz-figure/unnamed-chunk-48-1.png" title="plot of chunk unnamed-chunk-48" alt="plot of chunk unnamed-chunk-48" width="700px" style="display: block; margin: auto;" />
+
+ggplot2: additional geoms
+========================================================
+* What happened?
+
+```r
+p <- ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length)
+       ) +
+  geom_point(aes(colour = Species)) +
+  xlab('Width (cm)') + ylab('Length (cm)') +
+  ggtitle('Iris sepal dimensions') +
+  scale_colour_manual(values = c('red', 'blue', 'green')) + 
+  theme_bw(base_size = 10, base_family = 'serif') + 
+  geom_smooth(method = 'lm')
+```
+* The `aes` function in `ggplot` applies globally
+* The `aes` function in a "geom" applies only to the geom
+
+ggplot2: additional geoms
+========================================================
+* What would happen here?
+
+```r
+p <- ggplot(data = iris) +
+  geom_point(aes(x = Sepal.Width, y = Sepal.Length, 
+                 colour = Species)) +
+  xlab('Width (cm)') + ylab('Length (cm)') +
+  ggtitle('Iris sepal dimensions') +
+  scale_colour_manual(values = c('red', 'blue', 'green')) + 
+  theme_bw(base_size = 10, base_family = 'serif') + 
+  geom_smooth(method = 'lm')
+```
+
+Exercise 2
+========================================================
+* Using the `iris` dataset, make a scatterplot of petal length (y axis) vs petal width (x-axis)
+* Give it appropriate axis labels and a title
+* Map point type to species
+* Give it a theme you like
+* Bonus: facet the plot by species (hint `?facet_wrap`)
+
+ggplot2: Summary
+========================================================
+* Let's recap... `ggplot` is different from base
+* Requires mapping data using aesthetics for plot layers/geoms
+* Each plot layer has specific aesthetics
+* Order of aesthetics matter
+* `theme` and pre-packaged themes modify the format
+
+ggplot2: summary
+========================================================
+* We do not have time to explore all of the geoms in ggplot2
+* Ask yourself these questions before plotting:
+  * Why am I plotting? Exploratory or publication?
+  * What do I want to show? Relationships, distributions, quantities?
+  * How many variables do I want to plot?
+  * Do I need more than one plot to convey the message?
+
+Resources
 ========================================================
 * Some arguments for [base](https://simplystatistics.org/2016/02/11/why-i-dont-use-ggplot2/) graphics v [ggplot2](http://varianceexplained.org/r/why-I-use-ggplot2/), most people are using ggplot2 these days
+* [Winston Chang's cookbook](http://www.cookbook-r.com/Graphs/): good step-by-step examples
+* [Official ggplot2 documentation](http://ggplot2.tidyverse.org/reference/)
+* [RStudio cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)
 
-Sources of help
+ggplot2: Bonus exercise
 ========================================================
-ex
+* What if we want to show the distribution of one variable?
+* What if we want to show how it changes by a grouping factor? 
+* We would not use `geom_point()`...
+* Options include `geom_histogram()`, `geom_boxplot()`, `geom_bar()`, `geom_violin()`, others
+* Could require some data wrangling
+
+ggplot2: Bonus exercise
+========================================================
+* Let's plot the distribution of petal width by species
+* The easy way:
+
+```r
+ggplot(data = iris, aes(x = Species, y = Petal.Width)) + 
+  geom_boxplot() + 
+  theme_bw()
+```
+
+<img src="data_viz-figure/unnamed-chunk-51-1.png" title="plot of chunk unnamed-chunk-51" alt="plot of chunk unnamed-chunk-51" width="700px" style="display: block; margin: auto;" />
+
+ggplot2: Bonus exercise
+========================================================
+* Let's plot the mean (+/- spread) of petal width by species
+* The hacker way (data wrangling):
+
+```r
+toplo <- group_by(iris, Species) %>% 
+  summarise(
+    ave = mean(Petal.Width), 
+    std = sd(Petal.Width)
+    )
+toplo
+```
+
+```
+# A tibble: 3 x 3
+     Species   ave       std
+      <fctr> <dbl>     <dbl>
+1     setosa 0.246 0.1053856
+2 versicolor 1.326 0.1977527
+3  virginica 2.026 0.2746501
+```
+
+ggplot2: Bonus exercise
+========================================================
+* Let's plot the mean (+/- spread) of petal width by species
+* The hacker way (data wrangling):
+
+```r
+ggplot(toplo, aes(x = Species, y = ave)) + 
+  geom_bar(stat = 'identity') + 
+  geom_errorbar(aes(ymin = ave - std, ymax = ave + std)) + 
+  theme_bw()
+```
+
+<img src="data_viz-figure/unnamed-chunk-53-1.png" title="plot of chunk unnamed-chunk-53" alt="plot of chunk unnamed-chunk-53" width="700px" style="display: block; margin: auto;" />
