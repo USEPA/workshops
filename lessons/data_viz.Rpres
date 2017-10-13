@@ -1,9 +1,21 @@
 ```{r setup, echo = FALSE, message = F, warning = F}
-# chunk options
-knitr::opts_chunk$set(warning = FALSE, message = FALSE, dpi = 300)
-
 library(ggplot2)
 library(plotly)
+library(knitr)
+
+# chunk options
+opts_chunk$set(warning = FALSE, message = FALSE, dpi = 300, fig.align = 'center', out.width = '700px')
+
+# chunk hook
+knit_hooks$set(
+  small.mar = function(before = FALSE, options, envir) {
+    if (before) par(mar = c(4, 4, .5, .5))  # smaller margin on top and right
+    }, 
+  def.mar = function(before, options, envir) {
+    if (before) par(mar = c(5, 4, 4, 2))
+    }
+  )
+
 ```
 <insertHTML:[columns.html]
 
@@ -11,11 +23,13 @@ Data Visualization
 ========================================================
 date: November 5, 2017
 author: Marcus W Beck
-autosize: true
+autosize: false
 css: frm.css
 transition: none
+width: 960
+height: 700
 
-```{r fig.width = 8, fig.height = 4.5, out.width = '800px', echo = F, fig.align = 'center'}
+```{r fig.width = 8, fig.height = 4.5, out.width = '800px', echo = F}
 library(ggplot2)
 data(iris)
 ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species, group = Species)) + 
@@ -26,6 +40,7 @@ ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species, group = Spe
 
 Lesson outline
 ========================================================
+A whirlwind tour of data viz...
 * Simple plots with base R
 * `ggplot2`: introduction
 * `ggplot2`: scatterplots
@@ -76,22 +91,118 @@ Simple plots with base R
 
 Simple plots with base R
 ========================================================
-* The scatterplot can be created with one line... `plot(y ~ x, data)`
+* The scatterplot can be created with `plot`
+* Let's load the `iris` dataset from the [datasets](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html) package
+* Measurements on 150 flowers from three species
 ```{r}
 data(iris)
+str(iris)
+```
+
+Simple plots with base R
+========================================================
+* The scatterplot can be created with `plot`
+* Let's load the `iris` dataset from the [datasets](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html) package
+* Measurements on 150 flowers from three species
+```{r}
+data(iris)
+head(iris)
+```
+
+Simple plots with base R
+========================================================
+* The scatterplot can be created with one line... `plot(y ~ x, data)`
+* This literally says... from the data object, plot the variables y (on the y-axis) against x (on the x-axis)
+```{r, fig.width = 6, fig.height = 4.5, eval = F}
 plot(Sepal.Length ~ Sepal.Width, data = iris)
 ```
 
 Simple plots with base R
 ========================================================
-* The scatterplot can be created with one line... `plot(data$x, data$y)`
-```{r}
+```{r, fig.width = 5, fig.height = 4, small.mar = TRUE}
+plot(Sepal.Length ~ Sepal.Width, data = iris)
+```
+
+Simple plots with base R
+========================================================
+* We can also use alternative notation without using the data argument
+```{r, fig.width = 5, fig.height = 4, eval = F}
+plot(iris$Sepal.Width, iris$Sepal.Length)
+```
+* As compared to...
+```{r, fig.width = 6, fig.height = 4.5, eval = F}
+plot(Sepal.Length ~ Sepal.Width, data = iris)
+```
+* Note the arrangement of y/x variables in each
+
+Simple plots with base R
+========================================================
+* We can also use alternative notation without using the data argument
+```{r, fig.width = 5, fig.height = 4, eval = T, out.width = '600px', small.mar = T}
 plot(iris$Sepal.Width, iris$Sepal.Length)
 ```
 
-`ggplot2`: overview
+Simple plots with base R
 ========================================================
-ex
+* But check out the axis labels...
+```{r, fig.width = 5, fig.height = 4, eval = T, out.width = '600px', small.mar = T}
+plot(iris$Sepal.Width, iris$Sepal.Length)
+```
+
+Simple plots with base R
+========================================================
+* `plot` has lots of optional arguments, called within `plot` or separately using `par`
+<div align='center'>
+<img src="data_viz-figure/plotopt.png" alt="Drawing" style="width: 900px;"/>
+</div> 
+
+Simple plots with base R
+========================================================
+* Change axis labels, give it a title...
+```{r, fig.width = 5, fig.height = 4, eval = T, out.width = '600px', def.mar = T}
+plot(iris$Sepal.Width, iris$Sepal.Length, xlab = 'Width (cm)', ylab = 'Length (cm)', main = 'Sepal dimensions')
+```
+
+Simple plots with base R
+========================================================
+* The plot margins are too big, let's change that
+```{r, fig.width = 5, fig.height = 4, eval = T, out.width = '600px'}
+par(mar = c(4.5, 4.5, 1, 1))
+plot(iris$Sepal.Width, iris$Sepal.Length, xlab = 'Width (cm)', ylab = 'Length (cm)', main = 'Sepal dimensions')
+```
+
+Simple plots with base R
+========================================================
+* Other base plot functions - bar plots
+```{r, fig.width = 5, fig.height = 4, small.par = T}
+barplot(table(iris$Species))
+```
+
+Simple plots with base R
+========================================================
+* Other base plot functions - histogram
+```{r, fig.width = 5, fig.height = 4, small.par = T}
+hist(iris$Sepal.Length)
+```
+
+Simple plots with base R
+========================================================
+* Other base plot functions - paired scatter plots
+```{r, fig.width = 5, fig.height = 4, small.par = T}
+pairs(iris)
+```
+
+<code>ggplot2</code>: overview
+========================================================
+* Base graphics are okay for exploratory stuff
+* ggplot2 is meant to improve on base by linking the graph components following a **grammar of graphics** 
+* Makes thinking, reasoning, and communicatings graphics easier
+* Start with a foundational component to add additional pieces
+
+<div align='center'>
+<img src="data_viz-figure/ggplot2_hex.png" alt="Drawing" style="width: 100px;"/>
+</div>
+
 
 `ggplot2`: scatterplots
 ========================================================
