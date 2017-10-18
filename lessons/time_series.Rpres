@@ -3,6 +3,7 @@ library(tidyverse)
 library(WRTDStidal)
 library(gridExtra)
 library(grid)
+library(SWMPr)
 
 # chunk options
 knitr::opts_chunk$set(warning = FALSE, message = FALSE, dpi = 300, fig.align = 'center', out.width = '700px')
@@ -61,14 +62,98 @@ Lesson outline
 * Quick QAQC 
 * Formal trend tests
 
-<img src="time_series-figure/aliens.jpg" alt="Drawing" style="width: 150px;"/>
+<img src="time_series-figure/aliens.jpg" alt="Drawing" style="width: 250px;"/>
 
 What is a time series
 ========================================================
 * As Hagrid says, anything with a time stamp
 * Otherwise, it's a steady state dataset
 * In theory, all data sets are time series
-* Time series analysis considers observation **order** as defining factor
+* Time series analysis considers observation **order** as a defining factor
+
+What is a time series
+========================================================
+**Observations indexed and ordered by a time stamp**, they come in many shapes and sizes
+
+```{r fig.width = 8, fig.height = 4.5, out.width = '900px', echo = F}
+set.seed(123)
+data(austres)
+data(nottem)
+
+n <- 100
+smp <- rnorm(n)
+nrm <- smp %>% 
+  data.frame(
+    dts = 1:n, 
+    val = .,
+    lab = 'Value'
+  )
+
+walk <- nrm %>% 
+  mutate(val = cumsum(val))
+
+aust <- data.frame(
+  dts = as.numeric(time(austres)),
+  val = as.numeric(austres)/ 1000,
+  lab = 'Pop. (1e3)'
+  )
+
+nott <- data.frame(
+  dts = as.numeric(time(nottem)),
+  val = as.numeric(nottem),
+  lab = 'Temp (F)'
+  )
+
+dats <- list(
+  nrm = nrm, 
+  walk = walk,
+  austres = aust, 
+  nottem = nott
+  ) %>% 
+  enframe
+
+tsplo <- pmap(dats, function(name, value){
+  
+  lab <- unique(value$lab)
+  ggplot(value, aes(x = dts, y = val)) +
+    geom_line() + 
+    geom_point(size = 0.8) + 
+    scale_y_continuous(lab) +
+    theme_bw() +
+    theme(
+      panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(),
+      axis.title.x = element_blank()
+    ) + 
+    ggtitle(name)
+  
+  })
+
+grid.arrange(
+  tsplo[[1]], tsplo[[2]], tsplo[[3]], tsplo[[4]],
+  bottom = 'Time',
+  ncol = 2
+)
+```
+
+What is a time series
+========================================================
+**Observations indexed and ordered by a time stamp**, they can be composed of parts (real or artificial)
+```{r, fig.width = 8, fig.height = 4.5, out.width = '900px', echo = F}
+## get data
+data(apadbwq)
+swmp1 <- apadbwq
+
+## subset for daily decomposition
+dat <- subset(swmp1, subset = c('2013-07-01 00:00', '2013-07-31 00:00'))
+
+## decomposition and plot
+test <- decomp(dat, param = 'do_mgl', frequency = 'daily')
+plot(test)
+```
+
+
+
 
 Properties of time series
 ========================================================
@@ -90,13 +175,14 @@ regular/irregular, censored
 
 Exploratory analysis
 ========================================================
-Basic plots (use lubridate for conditional plots), decomposition plots
+Basic plots (use lubridate for conditional plots), decomposition plots, acf
 
 QAQC screening
 ========================================================
 complete cases? 
 censored data?
 bogus data?
+missing observations (omit? impute?)
 
 Formal trend analysis methods
 ========================================================
