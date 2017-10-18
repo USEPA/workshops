@@ -4,14 +4,15 @@ library(WRTDStidal)
 library(gridExtra)
 library(grid)
 library(SWMPr)
+library(GGally)
 
 # chunk options
-knitr::opts_chunk$set(warning = FALSE, message = FALSE, dpi = 300, fig.align = 'center', out.width = '700px')
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dpi = 300, fig.align = 'center', out.width = '900px', fig.width = 8, fig.height = 4.5)
 
 # chunk hook
 knitr::knit_hooks$set(
   small.mar = function(before = FALSE, options, envir) {
-    if (before) par(mar = c(4, 4, .5, .5))  # smaller margin on top and right
+    if (before) par(mar = c(4, 4, 1, 1))  # smaller margin on top and right
     }, 
   def.mar = function(before, options, envir) {
     if (before) par(mar = c(5, 4, 4, 2))
@@ -75,8 +76,7 @@ What is a time series
 ========================================================
 **Observations indexed and ordered by a time stamp**, they come in many shapes and sizes
 
-```{r fig.width = 8, fig.height = 4.5, out.width = '900px', echo = F}
-set.seed(123)
+```{r echo = F}
 data(austres)
 data(nottem)
 
@@ -139,25 +139,115 @@ grid.arrange(
 What is a time series
 ========================================================
 **Observations indexed and ordered by a time stamp**, they can be composed of parts (real or artificial)
-```{r, fig.width = 8, fig.height = 4.5, out.width = '900px', echo = F}
-## get data
-data(apadbwq)
-swmp1 <- apadbwq
-
+```{r, echo = F}
 ## subset for daily decomposition
-dat <- subset(swmp1, subset = c('2013-07-01 00:00', '2013-07-31 00:00'))
+dat <- subset(apadbwq, subset = c('2013-07-01 00:00', '2013-07-31 00:00'))
 
 ## decomposition and plot
 test <- decomp(dat, param = 'do_mgl', frequency = 'daily')
 plot(test)
 ```
 
+What is a time series
+========================================================
+**Observations indexed and ordered by a time stamp**, they can be multivariate
+```{r, echo = F}
+dat <- apacpnut %>% 
+  qaqc(qaqc_keep = NULL) %>% 
+  select(-no2f, -no3f) %>% 
+  rename(
+    Orthophosphate = po4f, 
+    Ammonium= nh4f, 
+    `Nitrite/Nitrate` = no23f,
+    Chlorophyll = chla_n
+  )
 
+ggpairs(dat[, -1]) +
+  theme_bw()
+```
+
+What is a time series
+========================================================
+**Observations indexed and ordered by a time stamp**, they can be multivariate
+```{r, echo = F}
+dat <- dat %>%
+  gather('var', 'val', -datetimestamp)
+ggplot(dat, aes(x = datetimestamp)) +
+  geom_ribbon(aes(ymax = val), ymin = 0, fill = 'blue', alpha = 0.6) + 
+  geom_line(aes(y = val)) +
+  geom_line(aes(y = val)) +
+  facet_wrap(~var, ncol = 1, scale = 'free_y') +
+  theme_bw() + 
+  theme(axis.title.x = element_blank()) +
+  ylab('Concentration (mg/L, ug/L)') +
+  scale_x_datetime(expand = c(0, 0))
+```
+
+Properties of time series
+========================================================
+Assumptions for basic parametric models:
+* Residuals are individually normally distributed
+* Constant variance or homogeneity (i.e., even spread of residuals)
+* Explanatory variables are deterministic
+* Independence of observations or no pattern in residuals
+
+Properties of time series
+========================================================
+Assumptions for basic parametric models:
+```{r, echo = T, fig.height = 3, fig.width = 9, small.mar = T}
+x <- rnorm(100)
+y <- x + rnorm(100)
+par(mfrow = c(1, 3))
+plot(x); plot(y)
+plot(y ~ x)
+abline(reg = lm(y ~ x))
+```
+
+Properties of time series
+========================================================
+Assumptions for basic parametric models:
+```{r, echo = T, small.mar = T}
+par(mfrow = c(2, 2))
+mod1 <- lm(y ~ x)
+plot(mod1)
+```
+
+Properties of time series
+========================================================
+Assumptions for basic parametric models:
+```{r, echo = T, fig.height = 3, fig.width = 9, small.mar = T}
+x <- cumsum(x)
+y <- cumsum(y)
+par(mfrow = c(1, 3))
+plot(x); plot(y)
+plot(y ~ x)
+abline(reg = lm(y ~ x))
+```
+
+Properties of time series
+========================================================
+Assumptions for basic parametric models:
+```{r, echo = T, small.mar = T}
+mod2 <- lm(y ~ x)
+par(mfrow = c(2, 2))
+plot(mod2)
+```
+
+Properties of time series
+========================================================
+Assumptions for basic parametric models:
+```{r, echo = T, small.mar = T, fig.height = 3, fig.width = 9, small.mar = T}
+par(mfrow = c(1, 2))
+acf(resid(mod1))
+acf(resid(mod2))
+```
 
 
 Properties of time series
 ========================================================
-Craziness - date are ordered by time stamp
+* Time series violate the common assumption that observations are independent
+* Time is a 'nuisance' variable that must be accounted for
+* Time has interesting properties that can be leveraged for analysis
 
 Properties of time series
 ========================================================
