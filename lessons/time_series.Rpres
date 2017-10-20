@@ -258,22 +258,40 @@ Exercise 1: A gentle introduction
 incremental: true
 
 1) Load the datasets `sapdc` and `apacp`
-2) How many variables?
+
+2) What are the variables?
+
 3) What is the time range?
+
 4) What is the time step?
+
+5) Bonus: plot a time series
+
+Exercise 1: A gentle introduction
+========================================================
+1) Load the datasets `sapdc` and `apacp`
+
+https://USEPA.github.io/cerf_r/lessons/data/sapdc.RData
+
+https://USEPA.github.io/cerf_r/lessons/data/apacp.RData
+```{r}
+load('data/sapdc.RData')
+load('data/apacp.RData')
+```
+2) what are the variables?
+
+3) What is the time range?
+
+4) What is the time step?
+
 5) Bonus: plot a time series
 
 Exercise 1: A gentle introduction
 ========================================================
 ```{r}
-load(file = 'https://USEPA.github.io/cerf_r/lessons/data/sapdc.RData')
-load(file = 'https://USEPA.github.io/cerf_r/lessons/data/apacp.RData')
+head(sapdc)
+head(apacp)
 ```
-
-
-Properties of time series
-========================================================
-Time series structures in R
 
 Properties of time series
 ========================================================

@@ -157,16 +157,91 @@ Exercise 1: A gentle introduction
 incremental: true
 
 1) Load the datasets `sapdc` and `apacp`
-2) How many variables?
+
+2) What are the variables?
+
 3) What is the time range?
+
 4) What is the time step?
+
+5) Bonus: plot a time series
+
+Exercise 1: A gentle introduction
+========================================================
+1) Load the datasets `sapdc` and `apacp`
+
+https://USEPA.github.io/cerf_r/lessons/data/sapdc.RData
+
+https://USEPA.github.io/cerf_r/lessons/data/apacp.RData
+
+```r
+load('data/sapdc.RData')
+load('data/apacp.RData')
+```
+2) what are the variables?
+
+3) What is the time range?
+
+4) What is the time step?
+
 5) Bonus: plot a time series
 
 Exercise 1: A gentle introduction
 ========================================================
 
-
+```r
+head(sapdc)
+```
 
 ```
-Error in readChar(con, 5L, useBytes = TRUE) : cannot open the connection
+        DateTimeStamp Temp  Sal DO_obs ATemp   BP WSpd      Tide
+1 2012-01-01 00:00:00 14.9 33.3    5.0  11.9 1022  0.5 0.8914295
+2 2012-01-01 00:30:00 14.9 33.4    5.5  11.3 1022  0.6 1.0011830
+3 2012-01-01 01:00:00 14.9 33.4    5.9   9.9 1021  0.6 1.0728098
+4 2012-01-01 01:30:00 14.8 33.3    6.4  10.0 1022  2.4 1.1110885
+5 2012-01-01 02:00:00 14.7 33.2    6.6  11.4 1022  1.3 1.1251628
+6 2012-01-01 02:30:00 14.7 33.3    6.1  10.7 1021  0.0 1.1223799
 ```
+
+```r
+head(apacp)
+```
+
+```
+        date    po4   nh4   no2   no3   no23 chla
+1 2002-04-02 0.0040 0.028 0.002 0.047 0.0490 1.80
+2 2002-04-30 0.0140 0.138 0.005 0.115 0.1200 1.20
+3 2002-06-04 0.0060 0.049 0.002 0.024 0.0260 3.40
+4 2002-07-02 0.0155 0.088 0.002    NA 0.0395 3.35
+5 2002-08-06 0.0110 0.040 0.003 0.036 0.0390 7.80
+6 2002-09-10 0.0260 0.039 0.003 0.013 0.0160 0.80
+```
+
+Properties of time series
+========================================================
+R packages for time series analysis
+
+Types of WQ/estuarine time series
+========================================================
+discrete
+continuous
+regular/irregular, censored
+
+Exploratory analysis
+========================================================
+Basic plots (use lubridate for conditional plots), decomposition plots, acf
+
+QAQC screening
+========================================================
+complete cases? 
+censored data?
+bogus data?
+missing observations (omit? impute?)
+
+Formal trend analysis methods
+========================================================
+Kendall tests
+
+Exercises
+========================================================
+exercise
