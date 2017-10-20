@@ -69,6 +69,8 @@ What is a time series
 
 Properties of time series
 ========================================================
+incremental: true
+
 Assumptions for basic parametric models:
 * Residuals are individually normally distributed
 * Constant variance or homogeneity (i.e., even spread of residuals)
@@ -141,12 +143,24 @@ acf(resid(mod2))
 
 <img src="time_series-figure/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" width="900px" style="display: block; margin: auto;" />
 
-
 Properties of time series
 ========================================================
+incremental: true
+
 * Time series violate the common assumption that observations are independent
 * Time is a 'nuisance' variable that must be accounted for
 * Time has interesting properties that can be leveraged for analysis
+* The structure of time series also represents analysis overhead
+
+Exercise 1: A gentle introduction
+========================================================
+incremental: true
+
+1) Load the datasets `sapdc` and `apacp`
+2) How many variables?
+3) What is the time range?
+4) What is the time step?
+5) Bonus: plot a time series
 
 Properties of time series
 ========================================================
