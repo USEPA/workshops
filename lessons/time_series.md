@@ -162,35 +162,11 @@ incremental: true
 4) What is the time step?
 5) Bonus: plot a time series
 
-Properties of time series
+Exercise 1: A gentle introduction
 ========================================================
-Time series structures in R
 
-Properties of time series
-========================================================
-R packages for time series analysis
 
-Types of WQ/estuarine time series
-========================================================
-discrete
-continuous
-regular/irregular, censored
 
-Exploratory analysis
-========================================================
-Basic plots (use lubridate for conditional plots), decomposition plots, acf
-
-QAQC screening
-========================================================
-complete cases? 
-censored data?
-bogus data?
-missing observations (omit? impute?)
-
-Formal trend analysis methods
-========================================================
-Kendall tests
-
-Exercises
-========================================================
-exercise
+```
+Error in readChar(con, 5L, useBytes = TRUE) : cannot open the connection
+```

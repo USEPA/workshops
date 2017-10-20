@@ -263,6 +263,14 @@ incremental: true
 4) What is the time step?
 5) Bonus: plot a time series
 
+Exercise 1: A gentle introduction
+========================================================
+```{r}
+load(file = 'https://USEPA.github.io/cerf_r/lessons/data/sapdc.RData')
+load(file = 'https://USEPA.github.io/cerf_r/lessons/data/apacp.RData')
+```
+
+
 Properties of time series
 ========================================================
 Time series structures in R
