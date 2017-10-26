@@ -8,6 +8,7 @@ render_all<-function(path=".",pattern="*.Rmd"){
       knitr::knit(i,output=out_html)
     } else if((file.info(i)$mtime-file.info(out)$mtime)>0){
       knitr::knit(i,output=out)
+    } else if((file.info(i)$mtime-file.info(out_html)$mtime)>0){
       knitr::knit(i,output=out_html)
     }
   }
