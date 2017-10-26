@@ -3,10 +3,6 @@
 ## Error in FUN(X[[i]], ...): there is no package called 'sf'
 ```
 
-```
-## Error in eval(expr, envir, enclos): object 'opts_chunk' not found
-```
-
 # Set Up
 
 ## Lesson Outline
