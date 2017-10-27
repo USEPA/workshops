@@ -30,7 +30,6 @@ height: 700
 
 Lesson outline
 ========================================================
-* What is a time series 
 * Properties of time series
 * Types of WQ/estuarine time series
 * Exploratory analysis
@@ -217,15 +216,157 @@ head(apacp)
 6 2002-09-10 0.0260 0.039 0.003 0.013 0.0160 0.80
 ```
 
-Properties of time series
+Exercise 1: A gentle introduction
 ========================================================
-R packages for time series analysis
+
+https://beckmw.shinyapps.io/swmp_comp/
+
+<div align='center'>
+<img src="time_series-figure/swmp_comp.png" alt="Drawing" style="width: 800px;"/>
+</div>
 
 Types of WQ/estuarine time series
 ========================================================
-discrete
-continuous
-regular/irregular, censored
+* The two most common water quality time series:
+  
+  * discrete monitoring data (e.g., nutrient data)
+    * Many large systems have these data
+    * Good for trend analysis
+    * Typically a monthly time step
+    * Detection limits can be an issue
+  
+  ***
+<div align='center'>
+<img src="time_series-figure/tb_map.png" alt="Drawing" style="width: 600px;"/>
+</div>
+
+Types of WQ/estuarine time series
+========================================================
+* The two most common water quality time series:
+  
+  * continuous sonde data (e.g., dissolved oxygen, tidal height)
+    * More common for site-level analysis
+    * Time steps can be 'continuous'
+    * Good for signal processing
+    * Observations are more correlated
+  
+<img src="time_series-figure/unnamed-chunk-13-1.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" width="600px" style="display: block; margin: auto;" />
+
+Exercise 2: A less gentle introduction
+========================================================
+Now we will import the raw data for apacp, sapdc and format for time series analysis
+
+1) Load the datasets in R
+
+https://usepa.github.io/cerf_r/lessons/data/apacp.txt
+https://usepa.github.io/cerf_r/lessons/data/sapdc.txt
+
+2) Format the time series column
+
+Exercise 2: A less gentle introduction
+========================================================
+
+1) Load the datasets in R
+
+
+```r
+apacp <- read.table('https://usepa.github.io/cerf_r/lessons/data/apacp.txt', 
+                    header = T, sep = ',')
+sapdc <- read.table('https://usepa.github.io/cerf_r/lessons/data/sapdc.txt', 
+                    header = T, sep = ',')
+str(apacp)
+```
+
+```
+'data.frame':	140 obs. of  7 variables:
+ $ date: Factor w/ 140 levels "2002-04-02","2002-04-30",..: 1 2 3 4 5 6 7 8 9 10 ...
+ $ po4 : num  0.004 0.014 0.006 0.0155 0.011 0.026 0.0095 0.0065 0.0105 0.014 ...
+ $ nh4 : num  0.028 0.138 0.049 0.088 0.04 0.039 0.0365 0.061 0.061 0.237 ...
+ $ no2 : num  0.002 0.005 0.002 0.002 0.003 0.003 0.009 0.0055 0.004 0.003 ...
+ $ no3 : num  0.047 0.115 0.024 NA 0.036 ...
+ $ no23: num  0.049 0.12 0.026 0.0395 0.039 ...
+ $ chla: num  1.8 1.2 3.4 3.35 7.8 ...
+```
+
+Exercise 2: A less gentle introduction
+========================================================
+incremental: true
+
+2) Format the time series column
+
+Let's step back a second...
+
+* R recognizes two two types of time objects
+* The time column must be one of these types (in most cases)
+  * **Date** for dates, and **POSIXct** for date/time
+* Converting the time column to one of these two objects is half the battle  
+
+Exercise 2: A less gentle introduction
+========================================================
+Why can't we use the text format of the date?
+
+
+```r
+plot(chla ~ date, apacp)
+```
+
+<img src="time_series-figure/unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="900px" style="display: block; margin: auto;" />
+
+Many analyses require a formatted date or date/time object, much easier to manipulate
+
+Exercise 2: A less gentle introduction
+========================================================
+Time can be specified many different ways:
+
+11/5/17
+
+5/11/17
+
+Nov. 5, 2017
+
+11-5-2017
+
+11/5/17 1:30
+
+11-5-2017 01:30:00
+
+The [lubridate](https://github.com/tidyverse/lubridate) package is your friend
+
+Exercise 2: A less gentle introduction
+========================================================
+
+The [lubridate](https://github.com/tidyverse/lubridate) package is your friend
+
+We'll start with date conversions because they are simpler:
+
+
+```r
+library(lubridate)
+?ymd
+```
+
+Exercise 2: A less gentle introduction
+========================================================
+
+The [lubridate](https://github.com/tidyverse/lubridate) package is your friend
+
+We'll start with date conversions because they are simpler:
+
+
+```r
+class(apacp$date)
+```
+
+```
+[1] "factor"
+```
+
+```r
+apacp$date <- ymd(apacp$date)
+plot(chla ~ date, apacp)
+```
+
+<img src="time_series-figure/unnamed-chunk-17-1.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" width="900px" style="display: block; margin: auto;" />
 
 Exploratory analysis
 ========================================================

@@ -5,6 +5,7 @@ library(gridExtra)
 library(grid)
 library(SWMPr)
 library(GGally)
+library(lubridate)
 
 # chunk options
 knitr::opts_chunk$set(warning = FALSE, message = FALSE, dpi = 300, fig.align = 'center', out.width = '900px', fig.width = 8, fig.height = 4.5)
@@ -56,7 +57,6 @@ grid.arrange(p1, p2, ncol = 1, left = textGrob(chllab(), rot = 90))
 
 Lesson outline
 ========================================================
-* What is a time series 
 * Properties of time series
 * Types of WQ/estuarine time series
 * Exploratory analysis
@@ -238,7 +238,7 @@ plot(mod2)
 Properties of time series
 ========================================================
 Assumptions for basic parametric models:
-```{r, echo = T, small.mar = T, fig.height = 3, fig.width = 9, small.mar = T}
+```{r, echo = T, fig.height = 3, fig.width = 9, small.mar = T}
 par(mfrow = c(1, 2))
 acf(resid(mod1))
 acf(resid(mod2))
@@ -293,15 +293,145 @@ head(sapdc)
 head(apacp)
 ```
 
-Properties of time series
+Exercise 1: A gentle introduction
 ========================================================
-R packages for time series analysis
+
+https://beckmw.shinyapps.io/swmp_comp/
+
+<div align='center'>
+<img src="time_series-figure/swmp_comp.png" alt="Drawing" style="width: 800px;"/>
+</div>
 
 Types of WQ/estuarine time series
 ========================================================
-discrete
-continuous
-regular/irregular, censored
+* The two most common water quality time series:
+  
+  * discrete monitoring data (e.g., nutrient data)
+    * Many large systems have these data
+    * Good for trend analysis
+    * Typically a monthly time step
+    * Detection limits can be an issue
+  
+  ***
+<div align='center'>
+<img src="time_series-figure/tb_map.png" alt="Drawing" style="width: 600px;"/>
+</div>
+
+Types of WQ/estuarine time series
+========================================================
+* The two most common water quality time series:
+  
+  * continuous sonde data (e.g., dissolved oxygen, tidal height)
+    * More common for site-level analysis
+    * Time steps can be 'continuous'
+    * Good for signal processing
+    * Observations are more correlated
+  
+```{r echo = F, fig.height = 3, fig.width = 7, out.width = '600px'}
+toplo <- sapdc %>% 
+  select(DateTimeStamp, DO_obs, Tide) %>% 
+  gather('var', 'val', DO_obs:Tide) %>% 
+  mutate(
+    mo = month(DateTimeStamp)
+  ) %>% 
+  filter(mo %in% 7)
+
+ggplot(toplo, aes(x = DateTimeStamp, y = val)) + 
+  geom_line() +
+  facet_wrap(~var, ncol = 1, scales = 'free_y') + 
+  theme_bw() + 
+  theme(axis.title.x = element_blank(), axis.title.y = element_blank())
+```
+
+Exercise 2: A less gentle introduction
+========================================================
+Now we will import the raw data for apacp, sapdc and format for time series analysis
+
+1) Load the datasets in R
+
+https://usepa.github.io/cerf_r/lessons/data/apacp.txt
+https://usepa.github.io/cerf_r/lessons/data/sapdc.txt
+
+2) Format the time series column
+
+Exercise 2: A less gentle introduction
+========================================================
+
+1) Load the datasets in R
+
+```{r}
+apacp <- read.table('https://usepa.github.io/cerf_r/lessons/data/apacp.txt', 
+                    header = T, sep = ',')
+sapdc <- read.table('https://usepa.github.io/cerf_r/lessons/data/sapdc.txt', 
+                    header = T, sep = ',')
+str(apacp)
+```
+
+Exercise 2: A less gentle introduction
+========================================================
+incremental: true
+
+2) Format the time series column
+
+Let's step back a second...
+
+* R recognizes two two types of time objects
+* The time column must be one of these types (in most cases)
+  * **Date** for dates, and **POSIXct** for date/time
+* Converting the time column to one of these two objects is half the battle  
+
+Exercise 2: A less gentle introduction
+========================================================
+Why can't we use the text format of the date?
+
+```{r fig.height = 3, fig.width = 9, small.mar = T}
+plot(chla ~ date, apacp)
+```
+
+Many analyses require a formatted date or date/time object, much easier to manipulate
+
+Exercise 2: A less gentle introduction
+========================================================
+Time can be specified many different ways:
+
+11/5/17
+
+5/11/17
+
+Nov. 5, 2017
+
+11-5-2017
+
+11/5/17 1:30
+
+11-5-2017 01:30:00
+
+The [lubridate](https://github.com/tidyverse/lubridate) package is your friend
+
+Exercise 2: A less gentle introduction
+========================================================
+
+The [lubridate](https://github.com/tidyverse/lubridate) package is your friend
+
+We'll start with date conversions because they are simpler:
+
+```{r}
+library(lubridate)
+?ymd
+```
+
+Exercise 2: A less gentle introduction
+========================================================
+
+The [lubridate](https://github.com/tidyverse/lubridate) package is your friend
+
+We'll start with date conversions because they are simpler:
+
+```{r fig.height = 3, fig.width = 9, small.mar = T}
+class(apacp$date)
+apacp$date <- ymd(apacp$date)
+plot(chla ~ date, apacp)
+```
 
 Exploratory analysis
 ========================================================
