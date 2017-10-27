@@ -337,13 +337,9 @@ Exercise 2: A less gentle introduction
 
 The [lubridate](https://github.com/tidyverse/lubridate) package is your friend
 
-We'll start with date conversions because they are simpler:
+We'll start with **Date** conversions because they are simpler:
+* ymd, ydm, mdy, myd, dmy, dym, yq
 
-
-```r
-library(lubridate)
-?ymd
-```
 
 Exercise 2: A less gentle introduction
 ========================================================
@@ -354,19 +350,84 @@ We'll start with date conversions because they are simpler:
 
 
 ```r
+library(lubridate)
+apacp$date <- ymd(apacp$date)
 class(apacp$date)
 ```
 
 ```
-[1] "factor"
+[1] "Date"
 ```
 
 ```r
-apacp$date <- ymd(apacp$date)
 plot(chla ~ date, apacp)
 ```
 
-<img src="time_series-figure/unnamed-chunk-17-1.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" width="900px" style="display: block; margin: auto;" />
+<img src="time_series-figure/unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" width="900px" style="display: block; margin: auto;" />
+
+Exercise 2: A less gentle introduction
+========================================================
+
+**POSIXct** objects are more complicated
+* Includes a date and time component
+* Usually have to consider the timezone
+
+Any of these functions will work:
+* ymd_hms, ymd_hm, ymd_h, dmy_hms, dmy_hm, dmy_h, mdy_hms, mdy_hm, mdy_h, ydm_hms, ydm_hm, ydm_h
+
+Exercise 2: A less gentle introduction
+========================================================
+
+
+```r
+head(sapdc)
+```
+
+```
+        DateTimeStamp Temp  Sal DO_obs ATemp   BP WSpd      Tide
+1 2012-01-01 00:00:00 14.9 33.3    5.0  11.9 1022  0.5 0.8914295
+2 2012-01-01 00:30:00 14.9 33.4    5.5  11.3 1022  0.6 1.0011830
+3 2012-01-01 01:00:00 14.9 33.4    5.9   9.9 1021  0.6 1.0728098
+4 2012-01-01 01:30:00 14.8 33.3    6.4  10.0 1022  2.4 1.1110885
+5 2012-01-01 02:00:00 14.7 33.2    6.6  11.4 1022  1.3 1.1251628
+6 2012-01-01 02:30:00 14.7 33.3    6.1  10.7 1021  0.0 1.1223799
+```
+
+```r
+sapdc$DateTimeStamp <- ymd_hms(sapdc$DateTimeStamp)
+class(sapdc$DateTimeStamp)
+```
+
+```
+[1] "POSIXct" "POSIXt" 
+```
+
+Exercise 2: A less gentle introduction
+========================================================
+
+The time zone must also be specified, otherwise it defaults to Zulu time or your computer's time
+
+```r
+tz(sapdc$DateTimeStamp)
+```
+
+```
+[1] "UTC"
+```
+* R does not have a predefined list of time zones
+* R uses the operating system's time zones
+* Most computers recognize [Olson names](http://en.wikipedia.org/wiki/List_of_tz_database_time_zones), "Country/City" format
+* Important for comparing data, may shift sooner/later if not specified
+
+Exercise 2: A less gentle introduction
+========================================================
+* Sapelo Island is on the Atlantic Coast in Georgia
+* Time stamps in NERRS data do not observe DST
+
+```r
+sapdc$DateTimeStamp <- ymd_hms(sapdc$DateTimeStamp, tz = 'America/Jamaica')
+```
+
 
 Exploratory analysis
 ========================================================
