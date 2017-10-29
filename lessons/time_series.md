@@ -920,13 +920,101 @@ QAQC screening
   * Last observation carried forward
 * Check out the [imputeTS](https://cran.r-project.org/web/packages/imputeTS/index.html) and [imputeTestbench](https://cran.r-project.org/web/packages/imputeTestbench/index.html) packages
 
-Formal trend analysis methods
+Kendall and Seasonal Kendall tests
 ========================================================
-Kendall tests
+incremental: true
 
-Exercises
+* Trend analysis can mean several things
+  * What is the change over time?
+  * In what time periods have the changes occurred?
+  * What is the magnitude and direction of change?
+  * Is this change significant?
+  * Is this change significant relative to natural variation?
+* Kendall tests let you answer these questions
+
+Kendall and Seasonal Kendall tests
 ========================================================
-exercise
+incremental: true
+
+* But remember, these tests:
+  * Only give you a direction, magnitude, and significance value
+  * Depend entirely on the time interval you choose
+  * They only evaluate monotonic changes
+  * They are not descriptive
+
+Kendall and Seasonal Kendall tests
+========================================================
+
+* We will use functions in the [EnvStats](https://cran.r-project.org/web/packages/EnvStats/index.html) package
+
+
+```r
+install.packages('EnvStats')
+library(EnvStats)
+```
+
+Kendall tests
+========================================================
+
+The **Kendall test** for time series:
+$$S = \sum_{i = 1}^{n - 1}\sum_{j = i + 1}^{n} sign\left[\left(X_j - X_i\right)\left(Y_j - Y_i\right)\right]$$
+$$\hat{\tau} = \frac{2S}{n\left(n - 1\right)}$$
+
+$\hat{\tau}$ will vary from -1 to 1 similar to a correlation coefficient, follows an approximate normal-distribution for hypothesis-testing
+
+Kendall tests
+========================================================
+
+The **Kendall test** for time series:
+$$\hat{\beta}_1 = Median\left(\frac{Y_j - Y_i}{X_j - X_i}\right), i < j$$
+
+$\hat{\beta}_1$ is the Theil (Sen) non-parametric estimate of slope or the rate of change in the interval
+
+All you need to know:
+
+* $\hat{\tau}$ is direction and magnitude of trend 
+* $\hat{\beta}_1$ is the linear rate of change
+
+Seasonal Kendall tests
+========================================================
+
+The **Seasonal Kendall test** is exactly the same... 
+
+...except separate tests by month across years (January 1981, 1982, ..., February 1981, 1982, ...), results are pooled.
+
+* Overall $\hat{\tau}$ is the weighted average of the seasonal estimates
+* Overall $\hat{\beta_1}$ is the median of all two-point slope estimates within each season 
+
+Use the seasonal Kendall test if you expect *normal* seasonal variation as a confounding effect
+
+Seasonal Kendall tests
+========================================================
+
+
+```r
+plot(chla ~ date, apacp, type = 'l')
+```
+
+<img src="time_series-figure/unnamed-chunk-41-1.png" title="plot of chunk unnamed-chunk-41" alt="plot of chunk unnamed-chunk-41" width="900px" style="display: block; margin: auto;" />
+
+Run the test:
+
+```r
+# load libraries, add decimal date
+library(EnvStats)
+library(lubridate)
+nut$dec_yr <- decimal_date(nut$datetimestamp) 
+
+# run test
+ests_k1 <- kendallTrendTest(chla_n ~ dec_yr, nut)
+ests_k1$estimate
+ests_k1$p.value
+```
+
+Summary
+========================================================
+summary
+
 
 <!-- put this in the last slide -- use jquery to append page # to all sections -->
 
