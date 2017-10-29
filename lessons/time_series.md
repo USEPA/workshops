@@ -227,13 +227,11 @@ https://beckmw.shinyapps.io/swmp_comp/
 
 Types of WQ/estuarine time series
 ========================================================
-* The two most common water quality time series:
-  
-  * discrete monitoring data (e.g., nutrient data)
-    * Many large systems have these data
-    * Good for trend analysis
-    * Typically a monthly time step
-    * Detection limits can be an issue
+* discrete monitoring data (e.g., nutrient data)
+  * Many large systems have these data
+  * Good for trend analysis
+  * Typically a monthly time step
+  * Detection limits can be an issue
   
   ***
 <div align='center'>
@@ -242,13 +240,11 @@ Types of WQ/estuarine time series
 
 Types of WQ/estuarine time series
 ========================================================
-* The two most common water quality time series:
-  
-  * continuous sonde data (e.g., dissolved oxygen, tidal height)
-    * More common for site-level analysis
-    * Time steps can be 'continuous'
-    * Good for signal processing
-    * Observations are more correlated
+* continuous sonde data (e.g., dissolved oxygen, tidal height)
+  * More common for site-level analysis
+  * Time steps can be 'continuous'
+  * Good for signal processing
+  * Observations are more correlated
   
 <img src="time_series-figure/unnamed-chunk-13-1.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" width="600px" style="display: block; margin: auto;" />
 
@@ -296,7 +292,7 @@ incremental: true
 
 Let's step back a second...
 
-* R recognizes two two types of time objects
+* R recognizes two types of time objects
 * The time column must be one of these types (in most cases)
   * **Date** for dates, and **POSIXct** for date/time
 * Converting the time column to one of these two objects is half the battle  
@@ -377,6 +373,7 @@ Any of these functions will work:
 
 Exercise 2: A less gentle introduction
 ========================================================
+incremental: true
 
 
 ```r
@@ -447,3 +444,15 @@ Kendall tests
 Exercises
 ========================================================
 exercise
+
+<!-- put this in the last slide -- use jquery to append page # to all sections -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+
+for(i=0;i<$("section").length;i++) {
+if(i==0) continue
+$("section").eq(i).append("<p style='font-size:medium;position:fixed;left:10px;bottom:10px;'>" + i + "</p>")
+}
+
+</script>
