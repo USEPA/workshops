@@ -294,7 +294,7 @@ Let's step back a second...
 
 * R recognizes two types of time objects
 * The time column must be one of these types (in most cases)
-  * **Date** for dates, and **POSIXct** for date/time
+  * **Date** for dates, and **POSIX** for date/time
 * Converting the time column to one of these two objects is half the battle  
 
 Exercise 2: A less gentle introduction
@@ -336,7 +336,6 @@ The [lubridate](https://github.com/tidyverse/lubridate) package is your friend
 We'll start with **Date** conversions because they are simpler:
 * ymd, ydm, mdy, myd, dmy, dym, yq
 
-
 Exercise 2: A less gentle introduction
 ========================================================
 
@@ -364,7 +363,7 @@ plot(chla ~ date, apacp)
 Exercise 2: A less gentle introduction
 ========================================================
 
-**POSIXct** objects are more complicated
+**POSIX** objects are more complicated
 * Includes a date and time component
 * Usually have to consider the timezone
 
@@ -418,17 +417,383 @@ tz(sapdc$DateTimeStamp)
 
 Exercise 2: A less gentle introduction
 ========================================================
-* Sapelo Island is on the Atlantic Coast in Georgia
+* Sapelo Island is on the Atlantic Coast of Georgia
 * Time stamps in NERRS data do not observe DST
 
 ```r
 sapdc$DateTimeStamp <- ymd_hms(sapdc$DateTimeStamp, tz = 'America/Jamaica')
+class(sapdc$DateTimeStamp)
 ```
 
+```
+[1] "POSIXct" "POSIXt" 
+```
+
+```r
+tz(sapdc$DateTimeStamp)
+```
+
+```
+[1] "America/Jamaica"
+```
+
+```r
+head(sapdc)
+```
+
+```
+        DateTimeStamp Temp  Sal DO_obs ATemp   BP WSpd      Tide
+1 2012-01-01 00:00:00 14.9 33.3    5.0  11.9 1022  0.5 0.8914295
+2 2012-01-01 00:30:00 14.9 33.4    5.5  11.3 1022  0.6 1.0011830
+3 2012-01-01 01:00:00 14.9 33.4    5.9   9.9 1021  0.6 1.0728098
+4 2012-01-01 01:30:00 14.8 33.3    6.4  10.0 1022  2.4 1.1110885
+5 2012-01-01 02:00:00 14.7 33.2    6.6  11.4 1022  1.3 1.1251628
+6 2012-01-01 02:30:00 14.7 33.3    6.1  10.7 1021  0.0 1.1223799
+```
+
+A final note about time zones
+========================================================
+What happens when we work with data from two different time zones?
+
+
+```r
+toplo1 <- sapdc[1:100, ]
+toplo2 <- toplo1 
+toplo2$DateTimeStamp <- ymd_hms(toplo2$DateTimeStamp, tz = 'America/Regina')
+head(toplo1$DateTimeStamp)
+```
+
+```
+[1] "2012-01-01 00:00:00 EST" "2012-01-01 00:30:00 EST"
+[3] "2012-01-01 01:00:00 EST" "2012-01-01 01:30:00 EST"
+[5] "2012-01-01 02:00:00 EST" "2012-01-01 02:30:00 EST"
+```
+
+```r
+head(toplo2$DateTimeStamp)
+```
+
+```
+[1] "2012-01-01 00:00:00 CST" "2012-01-01 00:30:00 CST"
+[3] "2012-01-01 01:00:00 CST" "2012-01-01 01:30:00 CST"
+[5] "2012-01-01 02:00:00 CST" "2012-01-01 02:30:00 CST"
+```
+
+A final note about time zones
+========================================================
+incremental: true
+
+What happens when we work with data from two different time zones?
+
+```r
+plot(toplo1$DateTimeStamp, toplo1$Tide, type = 'l')
+lines(toplo2$DateTimeStamp, toplo2$Tide, col = 'red')
+```
+
+<img src="time_series-figure/unnamed-chunk-21-1.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="900px" style="display: block; margin: auto;" />
+
+**POSIX** objects are always referenced by the time zone
 
 Exploratory analysis
 ========================================================
-Basic plots (use lubridate for conditional plots), decomposition plots, acf
+incremental: true
+
+* Now that the **Date** (apadb) and **POSIX** objects (sapdc) are formatted, exploratory analysis is much easier
+* We can leverage the full power of [lubridate](https://github.com/tidyverse/lubridate)
+* Several functions are available to extract components of **Date** and **POSIX** objects
+  * year, month, day, mday, wday, qday, yday, dec_time, hour, minute, second
+
+Exploratory analysis
+========================================================
+incremental: true
+
+* **Date** objects
+
+
+```r
+apacp <- apacp %>% 
+  mutate(
+    yr = year(date), 
+    mo = month(date), 
+    molb = month(date, label = TRUE),
+    mdy = mday(date),
+    wdy = wday(date), 
+    qdy = qday(date),
+    ydy = yday(date)
+  )
+head(apacp)
+```
+
+```
+        date    po4   nh4   no2   no3   no23 chla   yr mo molb mdy wdy qdy
+1 2002-04-02 0.0040 0.028 0.002 0.047 0.0490 1.80 2002  4  Apr   2   3   2
+2 2002-04-30 0.0140 0.138 0.005 0.115 0.1200 1.20 2002  4  Apr  30   3  30
+3 2002-06-04 0.0060 0.049 0.002 0.024 0.0260 3.40 2002  6  Jun   4   3  65
+4 2002-07-02 0.0155 0.088 0.002    NA 0.0395 3.35 2002  7  Jul   2   3   2
+5 2002-08-06 0.0110 0.040 0.003 0.036 0.0390 7.80 2002  8  Aug   6   3  37
+6 2002-09-10 0.0260 0.039 0.003 0.013 0.0160 0.80 2002  9  Sep  10   3  72
+  ydy
+1  92
+2 120
+3 155
+4 183
+5 218
+6 253
+```
+
+Exploratory analysis
+========================================================
+incremental: true
+
+* The same functions work for **POSIX** objects, plus those that work on time (hour, minute, second)
+
+
+```r
+sapdc <- sapdc %>% 
+  mutate(
+    mo = month(DateTimeStamp, label = TRUE),
+    dy = mday(DateTimeStamp),
+    hr = hour(DateTimeStamp),
+    mn = minute(DateTimeStamp), 
+    sc = second(DateTimeStamp)
+  )
+head(sapdc)
+```
+
+```
+        DateTimeStamp Temp  Sal DO_obs ATemp   BP WSpd      Tide  mo dy hr
+1 2012-01-01 00:00:00 14.9 33.3    5.0  11.9 1022  0.5 0.8914295 Jan  1  0
+2 2012-01-01 00:30:00 14.9 33.4    5.5  11.3 1022  0.6 1.0011830 Jan  1  0
+3 2012-01-01 01:00:00 14.9 33.4    5.9   9.9 1021  0.6 1.0728098 Jan  1  1
+4 2012-01-01 01:30:00 14.8 33.3    6.4  10.0 1022  2.4 1.1110885 Jan  1  1
+5 2012-01-01 02:00:00 14.7 33.2    6.6  11.4 1022  1.3 1.1251628 Jan  1  2
+6 2012-01-01 02:30:00 14.7 33.3    6.1  10.7 1021  0.0 1.1223799 Jan  1  2
+  mn sc
+1  0  0
+2 30  0
+3  0  0
+4 30  0
+5  0  0
+6 30  0
+```
+
+Exploratory analysis
+========================================================
+incremental: true
+
+* Some analyses will require time as a numeric value, use the decimal time function
+
+
+```r
+dctm <- dec_time(apacp$date)
+names(dctm)
+```
+
+```
+[1] "day_num"  "month"    "year"     "dec_time"
+```
+
+```r
+head(dctm$day_num)
+```
+
+```
+[1] 0.2547945 0.3315068 0.4273973 0.5041096 0.6000000 0.6958904
+```
+
+```r
+head(dctm$month)
+```
+
+```
+[1] 4 4 6 7 8 9
+```
+
+```r
+head(dctm$year)
+```
+
+```
+[1] 2002 2002 2002 2002 2002 2002
+```
+
+```r
+head(dctm$dec_time)
+```
+
+```
+[1] 2002.255 2002.332 2002.427 2002.504 2002.600 2002.696
+```
+
+Exploratory analysis
+========================================================
+
+* Exploratory plots are much easier with columns for each time component
+
+
+```r
+ggplot(apacp, aes(x = date, y = chla)) + 
+  geom_line()
+```
+
+<img src="time_series-figure/unnamed-chunk-25-1.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="800px" style="display: block; margin: auto;" />
+
+Exploratory analysis
+========================================================
+
+* Exploratory plots are much easier with columns for each time component
+
+
+```r
+ggplot(apacp, aes(x = factor(yr), y = chla)) + 
+  geom_boxplot()
+```
+
+<img src="time_series-figure/unnamed-chunk-26-1.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="800px" style="display: block; margin: auto;" />
+
+Exploratory analysis
+========================================================
+
+* Exploratory plots are much easier with columns for each time component
+
+
+```r
+ggplot(apacp, aes(x = molb, y = chla)) + 
+  geom_boxplot()
+```
+
+<img src="time_series-figure/unnamed-chunk-27-1.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="800px" style="display: block; margin: auto;" />
+
+Exploratory analysis
+========================================================
+
+* Exploratory plots are much easier with separate columns for each time component
+
+
+```r
+ggplot(apacp, aes(x = ydy, y = chla, colour = factor(yr))) + 
+  geom_line()
+```
+
+<img src="time_series-figure/unnamed-chunk-28-1.png" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="800px" style="display: block; margin: auto;" />
+
+Exploratory analysis
+========================================================
+
+* Exploratory plots are much easier with separate columns for each time component
+
+
+```r
+ggplot(sapdc, aes(x = factor(hr), y = DO_obs)) + 
+  geom_boxplot() +
+  facet_wrap(~ mo, ncol = 6)
+```
+
+<img src="time_series-figure/unnamed-chunk-29-1.png" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="900px" style="display: block; margin: auto;" />
+
+Exploratory analysis
+========================================================
+
+* The date axis can be formatted with [scale_x_date ](http://ggplot2.tidyverse.org/reference/scale_date.html)
+
+
+```r
+ggplot(apacp, aes(x = date, y = chla)) + 
+  geom_line() + 
+  scale_x_date(date_labels = "%Y - %m")
+```
+
+<img src="time_series-figure/unnamed-chunk-30-1.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="800px" style="display: block; margin: auto;" />
+
+Exploratory analysis
+========================================================
+
+* The date axis can be formatted with [scale_x_date ](http://ggplot2.tidyverse.org/reference/scale_date.html)
+
+
+```r
+ggplot(apacp, aes(x = date, y = chla)) + 
+  geom_line() + 
+  scale_x_date(date_labels = "%Y - %m", date_breaks = '2 years')
+```
+
+<img src="time_series-figure/unnamed-chunk-31-1.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="800px" style="display: block; margin: auto;" />
+
+Exploratory analysis
+========================================================
+
+* Similarly, a **POSIX** date/time axis can be formatted with [scale_x_datetime](http://ggplot2.tidyverse.org/reference/scale_x_datetime.html)
+
+
+```r
+toplo <- sapdc[1:1000, ]
+ggplot(toplo, aes(x = DateTimeStamp, y = Temp)) + 
+  geom_line()
+```
+
+<img src="time_series-figure/unnamed-chunk-32-1.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="800px" style="display: block; margin: auto;" />
+
+Exploratory analysis
+========================================================
+
+* Similarly, a **POSIX** date/time axis can be formatted with [scale_x_datetime](http://ggplot2.tidyverse.org/reference/scale_x_datetime.html)
+
+
+```r
+toplo <- sapdc[1:1000, ]
+ggplot(toplo, aes(x = DateTimeStamp, y = Temp)) + 
+  geom_line() + 
+  scale_x_datetime(date_labels = "%d %H")
+```
+
+<img src="time_series-figure/unnamed-chunk-33-1.png" title="plot of chunk unnamed-chunk-33" alt="plot of chunk unnamed-chunk-33" width="800px" style="display: block; margin: auto;" />
+
+Exploratory analysis
+========================================================
+
+* Similarly, a **POSIX** date/time axis can be formatted with [scale_x_datetime](http://ggplot2.tidyverse.org/reference/scale_x_datetime.html)
+
+
+```r
+toplo <- sapdc[1:1000, ]
+ggplot(toplo, aes(x = DateTimeStamp, y = Temp)) + 
+  geom_line() + 
+  scale_x_datetime(date_labels = "%d %H", date_breaks = '36 hours')
+```
+
+<img src="time_series-figure/unnamed-chunk-34-1.png" title="plot of chunk unnamed-chunk-34" alt="plot of chunk unnamed-chunk-34" width="800px" style="display: block; margin: auto;" />
+
+Exploratory analysis
+========================================================
+incremental: true
+
+* We can easily summarize the data with [dplyr](http://dplyr.tidyverse.org/)
+* Get average, median, variance, max/min, etc. by a grouping variable
+
+
+```r
+apacp_sum <- apacp %>% 
+  group_by(yr) %>% 
+  summarise(
+    med = median(chla, na.rm = T), 
+    sd = sd(chla, na.rm = T), 
+    min = min(chla, na.rm = T),
+    max = max(chla, na.rm = T)
+  )
+head(apacp_sum)
+```
+
+```
+# A tibble: 6 x 5
+     yr    med        sd   min    max
+  <dbl>  <dbl>     <dbl> <dbl>  <dbl>
+1  2002 2.3500 2.0667171 0.800  7.800
+2  2003 5.2865 4.4708274 1.282 14.952
+3  2004 2.6000 4.5184135 0.650 17.300
+4  2005 1.4950 0.5755097 0.740  2.560
+5  2006 4.7100 2.7980739 1.560 10.425
+6  2007 4.3250 3.2404288 2.700 13.600
+```
 
 QAQC screening
 ========================================================

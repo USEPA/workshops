@@ -373,7 +373,7 @@ Let's step back a second...
 
 * R recognizes two types of time objects
 * The time column must be one of these types (in most cases)
-  * **Date** for dates, and **POSIXct** for date/time
+  * **Date** for dates, and **POSIX** for date/time
 * Converting the time column to one of these two objects is half the battle  
 
 Exercise 2: A less gentle introduction
@@ -412,7 +412,6 @@ The [lubridate](https://github.com/tidyverse/lubridate) package is your friend
 We'll start with **Date** conversions because they are simpler:
 * ymd, ydm, mdy, myd, dmy, dym, yq
 
-
 Exercise 2: A less gentle introduction
 ========================================================
 
@@ -430,7 +429,7 @@ plot(chla ~ date, apacp)
 Exercise 2: A less gentle introduction
 ========================================================
 
-**POSIXct** objects are more complicated
+**POSIX** objects are more complicated
 * Includes a date and time component
 * Usually have to consider the timezone
 
@@ -461,16 +460,227 @@ tz(sapdc$DateTimeStamp)
 
 Exercise 2: A less gentle introduction
 ========================================================
-* Sapelo Island is on the Atlantic Coast in Georgia
+* Sapelo Island is on the Atlantic Coast of Georgia
 * Time stamps in NERRS data do not observe DST
 ```{r}
 sapdc$DateTimeStamp <- ymd_hms(sapdc$DateTimeStamp, tz = 'America/Jamaica')
+class(sapdc$DateTimeStamp)
+tz(sapdc$DateTimeStamp)
+head(sapdc)
 ```
 
+A final note about time zones
+========================================================
+What happens when we work with data from two different time zones?
+
+```{r}
+toplo1 <- sapdc[1:100, ]
+toplo2 <- toplo1 
+toplo2$DateTimeStamp <- ymd_hms(toplo2$DateTimeStamp, tz = 'America/Regina')
+head(toplo1$DateTimeStamp)
+head(toplo2$DateTimeStamp)
+```
+
+A final note about time zones
+========================================================
+incremental: true
+
+What happens when we work with data from two different time zones?
+```{r fig.height = 3, fig.width = 8, small.mar = T}
+plot(toplo1$DateTimeStamp, toplo1$Tide, type = 'l')
+lines(toplo2$DateTimeStamp, toplo2$Tide, col = 'red')
+```
+
+**POSIX** objects are always referenced by the time zone
 
 Exploratory analysis
 ========================================================
-Basic plots (use lubridate for conditional plots), decomposition plots, acf
+incremental: true
+
+* Now that the **Date** (apadb) and **POSIX** objects (sapdc) are formatted, exploratory analysis is much easier
+* We can leverage the full power of [lubridate](https://github.com/tidyverse/lubridate)
+* Several functions are available to extract components of **Date** and **POSIX** objects
+  * year, month, day, mday, wday, qday, yday, dec_time, hour, minute, second
+
+Exploratory analysis
+========================================================
+incremental: true
+
+* **Date** objects
+
+```{r}
+apacp <- apacp %>% 
+  mutate(
+    yr = year(date), 
+    mo = month(date), 
+    molb = month(date, label = TRUE),
+    mdy = mday(date),
+    wdy = wday(date), 
+    qdy = qday(date),
+    ydy = yday(date)
+  )
+head(apacp)
+```
+
+Exploratory analysis
+========================================================
+incremental: true
+
+* The same functions work for **POSIX** objects, plus those that work on time (hour, minute, second)
+
+```{r}
+sapdc <- sapdc %>% 
+  mutate(
+    mo = month(DateTimeStamp, label = TRUE),
+    dy = mday(DateTimeStamp),
+    hr = hour(DateTimeStamp),
+    mn = minute(DateTimeStamp), 
+    sc = second(DateTimeStamp)
+  )
+head(sapdc)
+```
+
+Exploratory analysis
+========================================================
+incremental: true
+
+* Some analyses will require time as a numeric value, use the decimal time function
+
+```{r}
+dctm <- dec_time(apacp$date)
+names(dctm)
+head(dctm$day_num)
+head(dctm$month)
+head(dctm$year)
+head(dctm$dec_time)
+```
+
+Exploratory analysis
+========================================================
+
+* Exploratory plots are much easier with columns for each time component
+
+```{r eval = T, fig.width = 7, fig.height = 3, out.width = '800px'}
+ggplot(apacp, aes(x = date, y = chla)) + 
+  geom_line()
+```
+
+Exploratory analysis
+========================================================
+
+* Exploratory plots are much easier with columns for each time component
+
+```{r eval = T, fig.width = 7, fig.height = 3, out.width = '800px'}
+ggplot(apacp, aes(x = factor(yr), y = chla)) + 
+  geom_boxplot()
+```
+
+Exploratory analysis
+========================================================
+
+* Exploratory plots are much easier with columns for each time component
+
+```{r eval = T, fig.width = 7, fig.height = 3, out.width = '800px'}
+ggplot(apacp, aes(x = molb, y = chla)) + 
+  geom_boxplot()
+```
+
+Exploratory analysis
+========================================================
+
+* Exploratory plots are much easier with separate columns for each time component
+
+```{r eval = T, fig.width = 7, fig.height = 3, out.width = '800px'}
+ggplot(apacp, aes(x = ydy, y = chla, colour = factor(yr))) + 
+  geom_line()
+```
+
+Exploratory analysis
+========================================================
+
+* Exploratory plots are much easier with separate columns for each time component
+
+```{r eval = T, fig.width = 9, fig.height = 3, out.width = '900px'}
+ggplot(sapdc, aes(x = factor(hr), y = DO_obs)) + 
+  geom_boxplot() +
+  facet_wrap(~ mo, ncol = 6)
+```
+
+Exploratory analysis
+========================================================
+
+* The date axis can be formatted with [scale_x_date ](http://ggplot2.tidyverse.org/reference/scale_date.html)
+
+```{r fig.height = 3, fig.width = 7, out.width = '800px'}
+ggplot(apacp, aes(x = date, y = chla)) + 
+  geom_line() + 
+  scale_x_date(date_labels = "%Y - %m")
+```
+
+Exploratory analysis
+========================================================
+
+* The date axis can be formatted with [scale_x_date ](http://ggplot2.tidyverse.org/reference/scale_date.html)
+
+```{r fig.height = 3, fig.width = 7, out.width = '800px'}
+ggplot(apacp, aes(x = date, y = chla)) + 
+  geom_line() + 
+  scale_x_date(date_labels = "%Y - %m", date_breaks = '2 years')
+```
+
+Exploratory analysis
+========================================================
+
+* Similarly, a **POSIX** date/time axis can be formatted with [scale_x_datetime](http://ggplot2.tidyverse.org/reference/scale_x_datetime.html)
+
+```{r fig.height = 3, fig.width = 7, out.width = '800px'}
+toplo <- sapdc[1:1000, ]
+ggplot(toplo, aes(x = DateTimeStamp, y = Temp)) + 
+  geom_line()
+```
+
+Exploratory analysis
+========================================================
+
+* Similarly, a **POSIX** date/time axis can be formatted with [scale_x_datetime](http://ggplot2.tidyverse.org/reference/scale_x_datetime.html)
+
+```{r fig.height = 3, fig.width = 7, out.width = '800px'}
+toplo <- sapdc[1:1000, ]
+ggplot(toplo, aes(x = DateTimeStamp, y = Temp)) + 
+  geom_line() + 
+  scale_x_datetime(date_labels = "%d %H")
+```
+
+Exploratory analysis
+========================================================
+
+* Similarly, a **POSIX** date/time axis can be formatted with [scale_x_datetime](http://ggplot2.tidyverse.org/reference/scale_x_datetime.html)
+
+```{r fig.height = 3, fig.width = 7, out.width = '800px'}
+toplo <- sapdc[1:1000, ]
+ggplot(toplo, aes(x = DateTimeStamp, y = Temp)) + 
+  geom_line() + 
+  scale_x_datetime(date_labels = "%d %H", date_breaks = '36 hours')
+```
+
+Exploratory analysis
+========================================================
+incremental: true
+
+* We can easily summarize the data with [dplyr](http://dplyr.tidyverse.org/)
+* Get average, median, variance, max/min, etc. by a grouping variable
+
+```{r}
+apacp_sum <- apacp %>% 
+  group_by(yr) %>% 
+  summarise(
+    med = median(chla, na.rm = T), 
+    sd = sd(chla, na.rm = T), 
+    min = min(chla, na.rm = T),
+    max = max(chla, na.rm = T)
+  )
+head(apacp_sum)
+```
 
 QAQC screening
 ========================================================
