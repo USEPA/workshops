@@ -795,11 +795,40 @@ head(apacp_sum)
 6  2007 4.3250 3.2404288 2.700 13.600
 ```
 
+Exercise 3
+========================================================
+
+1) Summarize the dissolved oxygen data at sapdc by hour - find the mean and standard deviation
+
+2) Plot the hourly averages 
+
+3) Bonus: Plot the hourly averages +/- standard deviation (hint: geom_ribbon)
+
+
+Exercise 3
+========================================================
+
+
+```r
+toplo <- sapdc %>% 
+  mutate(hr = hour(DateTimeStamp)) %>% 
+  group_by(hr) %>% 
+  summarise(
+    ave = mean(DO_obs, na.rm = T), 
+    std = sd(DO_obs, na.rm = T)
+  )
+ggplot(toplo, aes(x = hr, y = ave)) +
+  geom_ribbon(aes(ymax = ave + std, ymin = ave - std)) +
+  geom_line()
+```
+
+<img src="time_series-figure/unnamed-chunk-36-1.png" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="800px" style="display: block; margin: auto;" />
+
 QAQC screening
 ========================================================
 
-* The raw data will likely need to be pre-processed depending on the analysis
-* Issues can range from simple problems to more complex
+* The raw data will probably need pre-processing depending on the analysis
+* Issues can be simple to complex
   * complete cases? 
   * regular or irregular time step?
   * censored data?
@@ -877,7 +906,7 @@ plot(chla ~ date, apacp, type = 'l')
 lines(dts, chla_int$y, col = 'blue')
 ```
 
-<img src="time_series-figure/unnamed-chunk-38-1.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="900px" style="display: block; margin: auto;" />
+<img src="time_series-figure/unnamed-chunk-39-1.png" title="plot of chunk unnamed-chunk-39" alt="plot of chunk unnamed-chunk-39" width="900px" style="display: block; margin: auto;" />
 
 QAQC screening
 ========================================================
