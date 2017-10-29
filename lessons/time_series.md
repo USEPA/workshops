@@ -797,10 +797,99 @@ head(apacp_sum)
 
 QAQC screening
 ========================================================
-complete cases? 
-censored data?
-bogus data?
-missing observations (omit? impute?)
+
+* The raw data will likely need to be pre-processed depending on the analysis
+* Issues can range from simple problems to more complex
+  * complete cases? 
+  * regular or irregular time step?
+  * censored data?
+  * bogus data?
+  * missing observations (omit? impute?)
+* For all cases, plot the data first!
+
+QAQC screening
+========================================================
+
+* If you are lucky, your data will have QAQC flags
+* If not, ask yourself what are aceptable characteristics of your data?
+* How will you deal with unacceptable characteristics? 
+
+QAQC screening
+========================================================
+
+* Simple cases can be dealt with using [dplyr](http://dplyr.tidyverse.org/)
+* Two different approaches:
+
+```r
+apacp_filt <- apacp %>% 
+  mutate(
+    chla = ifelse(chla > 19, NA, chla)
+  )
+
+apacp_filt <- apacp %>% 
+  filter(chla <= 19)
+```
+
+QAQC screening
+========================================================
+
+* A common requirement for analysis is a regular time step with no missing values
+
+```r
+head(apacp)
+```
+
+```
+        date    po4   nh4   no2   no3   no23 chla   yr mo molb mdy wdy qdy
+1 2002-04-02 0.0040 0.028 0.002 0.047 0.0490 1.80 2002  4  Apr   2   3   2
+2 2002-04-30 0.0140 0.138 0.005 0.115 0.1200 1.20 2002  4  Apr  30   3  30
+3 2002-06-04 0.0060 0.049 0.002 0.024 0.0260 3.40 2002  6  Jun   4   3  65
+4 2002-07-02 0.0155 0.088 0.002    NA 0.0395 3.35 2002  7  Jul   2   3   2
+5 2002-08-06 0.0110 0.040 0.003 0.036 0.0390 7.80 2002  8  Aug   6   3  37
+6 2002-09-10 0.0260 0.039 0.003 0.013 0.0160 0.80 2002  9  Sep  10   3  72
+  ydy
+1  92
+2 120
+3 155
+4 183
+5 218
+6 253
+```
+
+```r
+sum(is.na(apacp$chla))
+```
+
+```
+[1] 3
+```
+
+QAQC screening
+========================================================
+
+* A common analysis requirement is a regular time step with no missing values
+* This is a pain to deal with, interpolation from a new date (or datetimestamp) vector is needed
+
+```r
+dts <- seq.Date(min(apacp$date), max(apacp$date), by = 'month')
+chla_int <- approx(x = apacp$date, y = apacp$chla, xout = dts)
+plot(chla ~ date, apacp, type = 'l')
+lines(dts, chla_int$y, col = 'blue')
+```
+
+<img src="time_series-figure/unnamed-chunk-38-1.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="900px" style="display: block; margin: auto;" />
+
+QAQC screening
+========================================================
+
+* Missing values are also tricky, two scenarios:
+  * Simply remove the missing data
+  * Impute (or predict) the missing data
+* For imputation, what's the best way to predict?
+  * Replace with overall or seasonal mean
+  * Linear interpolation
+  * Last observation carried forward
+* Check out the [imputeTS](https://cran.r-project.org/web/packages/imputeTS/index.html) and [imputeTestbench](https://cran.r-project.org/web/packages/imputeTestbench/index.html) packages
 
 Formal trend analysis methods
 ========================================================
