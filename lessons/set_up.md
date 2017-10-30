@@ -93,7 +93,11 @@ If you are taking the afternoon workshops as well, please also run the following
 
 
 ```r
+#spatial packages
 install.packages(c("sf","rgdal","sp","raster"))
+
+#time series packages
+install.packages(c("lubridate", "EnvStats"))
 ```
 
 

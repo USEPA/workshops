@@ -1,21 +1,29 @@
 ```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
 options(repos="http://cran.rstudio.com/")
-pkgs <- c("sf","sp","rgdal","rgeos","raster","knitr")
+pkgs <- c("dplyr","knitr")
 x<-lapply(pkgs, library, character.only = TRUE)
 opts_chunk$set(tidy=T)
 ```
 
-# Set Up
+# Basics of R
 
 ## Lesson Outline
-- [Thing](#thing)
-
+- [RStudio](#rstudio)
+- [Scripts](#scripts)
+- [R language fundamentals](#r-language-fundamentals)
+- [The data frame](#the-data-frame)
 
 ## Lesson Exercises
 - [Exercise 1](#exercise-1)
+- [Exercise 2](#exercise-2)
 
-## Thing
+## RStudio
 
+## Scripts
+
+## R language fundamentals
+
+## The data frame
 
 ## Exercise 3.1
 In this first exercise 

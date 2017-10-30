@@ -1,19 +1,24 @@
 
-```
-## Error in FUN(X[[i]], ...): there is no package called 'sf'
-```
 
-# Set Up
+# Basics of R
 
 ## Lesson Outline
-- [Thing](#thing)
-
+- [RStudio](#rstudio)
+- [Scripts](#scripts)
+- [R language fundamentals](#r-language-fundamentals)
+- [The data frame](#the-data-frame)
 
 ## Lesson Exercises
 - [Exercise 1](#exercise-1)
+- [Exercise 2](#exercise-2)
 
-## Thing
+## RStudio
 
+## Scripts
+
+## R language fundamentals
+
+## The data frame
 
 ## Exercise 3.1
 In this first exercise 
