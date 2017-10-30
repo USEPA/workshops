@@ -20,9 +20,10 @@
 
 ## The data frame
 
-## Exercise 3.1
+## Exercise 1
 In this first exercise 
 
 1. Assign ...
 2. Do ...
 
+## Exercise 2
