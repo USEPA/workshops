@@ -15,7 +15,7 @@ height: 700
 
 ========================================================
 <div align='center'>
-<img src="time_series-figure/harry.jpg" alt="Drawing" style="width: 600px;"/>
+<img src="time_series-figure/harry.jpg" alt="Drawing" style="width: 800px;"/>
 </div>
 
 ========================================================
@@ -521,7 +521,7 @@ apacp <- apacp %>%
     qdy = qday(date),
     ydy = yday(date)
   )
-head(apacp)
+head(apacp, 4)
 ```
 
 ```
@@ -530,15 +530,11 @@ head(apacp)
 2 2002-04-30 0.0140 0.138 0.005 0.115 0.1200 1.20 2002  4  Apr  30   3  30
 3 2002-06-04 0.0060 0.049 0.002 0.024 0.0260 3.40 2002  6  Jun   4   3  65
 4 2002-07-02 0.0155 0.088 0.002    NA 0.0395 3.35 2002  7  Jul   2   3   2
-5 2002-08-06 0.0110 0.040 0.003 0.036 0.0390 7.80 2002  8  Aug   6   3  37
-6 2002-09-10 0.0260 0.039 0.003 0.013 0.0160 0.80 2002  9  Sep  10   3  72
   ydy
 1  92
 2 120
 3 155
 4 183
-5 218
-6 253
 ```
 
 Exploratory analysis
@@ -599,14 +595,6 @@ head(dctm$day_num)
 
 ```
 [1] 0.2547945 0.3315068 0.4273973 0.5041096 0.6000000 0.6958904
-```
-
-```r
-head(dctm$month)
-```
-
-```
-[1] 4 4 6 7 8 9
 ```
 
 ```r
@@ -822,7 +810,7 @@ ggplot(toplo, aes(x = hr, y = ave)) +
   geom_line()
 ```
 
-<img src="time_series-figure/unnamed-chunk-36-1.png" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="800px" style="display: block; margin: auto;" />
+<img src="time_series-figure/unnamed-chunk-36-1.png" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="700px" style="display: block; margin: auto;" />
 
 QAQC screening
 ========================================================
@@ -895,6 +883,7 @@ sum(is.na(apacp$chla))
 
 QAQC screening
 ========================================================
+incremental: true
 
 * A common analysis requirement is a regular time step with no missing values
 * This is a pain to deal with, interpolation from a new date (or datetimestamp) vector is needed
@@ -910,6 +899,7 @@ lines(dts, chla_int$y, col = 'blue')
 
 QAQC screening
 ========================================================
+incremental: true
 
 * Missing values are also tricky, two scenarios:
   * Simply remove the missing data
@@ -957,7 +947,9 @@ Kendall tests
 ========================================================
 
 The **Kendall test** for time series:
+
 $$S = \sum_{i = 1}^{n - 1}\sum_{j = i + 1}^{n} sign\left[\left(X_j - X_i\right)\left(Y_j - Y_i\right)\right]$$
+
 $$\hat{\tau} = \frac{2S}{n\left(n - 1\right)}$$
 
 $\hat{\tau}$ will vary from -1 to 1 similar to a correlation coefficient, follows an approximate normal-distribution for hypothesis-testing
@@ -966,6 +958,7 @@ Kendall tests
 ========================================================
 
 The **Kendall test** for time series:
+
 $$\hat{\beta}_1 = Median\left(\frac{Y_j - Y_i}{X_j - X_i}\right), i < j$$
 
 $\hat{\beta}_1$ is the Theil (Sen) non-parametric estimate of slope or the rate of change in the interval
@@ -985,10 +978,12 @@ The **Seasonal Kendall test** is exactly the same...
 * Overall $\hat{\tau}$ is the weighted average of the seasonal estimates
 * Overall $\hat{\beta_1}$ is the median of all two-point slope estimates within each season 
 
-Use the seasonal Kendall test if you expect *normal* seasonal variation as a confounding effect
+Use the seasonal Kendall test if you expect **normal** seasonal variation as a confounding effect, this assumes **no heterogeneity** between seasons
 
 Seasonal Kendall tests
 ========================================================
+
+Let's see if there's a change from 2002 to 2014:
 
 
 ```r
@@ -997,24 +992,161 @@ plot(chla ~ date, apacp, type = 'l')
 
 <img src="time_series-figure/unnamed-chunk-41-1.png" title="plot of chunk unnamed-chunk-41" alt="plot of chunk unnamed-chunk-41" width="900px" style="display: block; margin: auto;" />
 
-Run the test:
+Seasonal Kendall tests
+========================================================
+
+Let's see if there's a change from 2002 to 2014:
+
 
 ```r
-# load libraries, add decimal date
-library(EnvStats)
-library(lubridate)
-nut$dec_yr <- decimal_date(nut$datetimestamp) 
+apacp$yr <- year(apacp$date)
+
+ggplot(apacp, aes(x = factor(yr), y = chla)) + 
+  geom_boxplot()
+```
+
+<img src="time_series-figure/unnamed-chunk-42-1.png" title="plot of chunk unnamed-chunk-42" alt="plot of chunk unnamed-chunk-42" width="700px" style="display: block; margin: auto;" />
+
+Seasonal Kendall tests
+========================================================
+incremental: true
+
+Run the test, requires month and decimal time:
+
+
+
+```r
+# add decimal date, month
+apacp$dec_time <- decimal_date(apacp$date) 
+apacp$mo <- month(apacp$date)
 
 # run test
-ests_k1 <- kendallTrendTest(chla_n ~ dec_yr, nut)
-ests_k1$estimate
-ests_k1$p.value
+trnd <- kendallSeasonalTrendTest(chla ~ mo + dec_time, apacp)
+trnd$estimate
 ```
+
+```
+         tau        slope    intercept 
+   0.3426876    0.3979609 -656.0408110 
+```
+
+```r
+trnd$p.value
+```
+
+```
+Chi-Square (Het)        z (Trend) 
+    5.700662e-01     1.728328e-07 
+```
+
+Seasonal Kendall tests
+========================================================
+incremental: true
+
+What do these results mean?
+
+
+```r
+trnd$estimate
+```
+
+```
+         tau        slope    intercept 
+   0.3426876    0.3979609 -656.0408110 
+```
+
+```r
+trnd$p.value
+```
+
+```
+Chi-Square (Het)        z (Trend) 
+    5.700662e-01     1.728328e-07 
+```
+
+* There is a **significant** (p < 0.05), **positive** trend from 2002 to 2014
+* The estimated rate of increase is ~ 0.40 ug/L per year of chlorophyll
+* There is no heterogeneity between seasons (p > 0.05)
+
+Exercise 4
+========================================================
+
+1) Filter the nutrient data to test a different pair of years
+
+2) Run the Seasonal Kendall test on a different nutrient parameter
+
+3) Evaluate the results - what is the trend? Is it significant? Do you satisfy heterogeneity assumption?
+
+Exercise 4
+========================================================
+
+* Ammonium trends from 2005 to 2008
+
+
+```r
+ggplot(apacp, aes(x = factor(yr), y = nh4)) + 
+  geom_boxplot()
+```
+
+<img src="time_series-figure/unnamed-chunk-46-1.png" title="plot of chunk unnamed-chunk-46" alt="plot of chunk unnamed-chunk-46" width="700px" style="display: block; margin: auto;" />
+
+Exercise 4
+========================================================
+
+
+```r
+# subset
+totst <- apacp %>% 
+  filter(yr > 2004 & yr < 2009)
+
+# run test
+trnd <- kendallSeasonalTrendTest(nh4 ~ mo + dec_time, totst)
+trnd$estimate
+```
+
+```
+         tau        slope    intercept 
+ 0.084848485  0.003930489 -8.269395447 
+```
+
+```r
+trnd$p.value
+```
+
+```
+Chi-Square (Het)        z (Trend) 
+       0.2404153        0.5409930 
+```
+
+Seasonal Kendall tests
+========================================================
+incremental: true
+
+* Use it if you want to detect trend independent of seasonal variation
+* No heterogeneity between seasons
+* If violated, aggregate by years and use regular Kendall
+* Both methods are simple - monotonic trend only
 
 Summary
 ========================================================
-summary
+incremental: true
 
+* We have just scratched the surface, time series analysis is wide and deep
+  * Spectral analysis
+  * Forecasting and prediction
+  * Auto-regressive and moving average modelling
+  * Descriptive trend analysis
+* In all cases, time is a variable that is controlled or leveraged, it cannot be ignored!
+
+Summary
+========================================================
+
+Additional resources:
+
+* [CRAN Time Series task view](https://cran.r-project.org/web/views/TimeSeries.html)
+* [Statistical Methods in Water Resources ](https://pubs.usgs.gov/twri/twri4a3/pdf/twri4a3-new.pdf), Helsel and Hirsch 2002
+* [Time Series Analysis: With Applications in R](https://www.amazon.com/Time-Analysis-Applications-Springer-Statistics/dp/0387759581/ref=pd_sim_14_1?_encoding=UTF8&pd_rd_i=0387759581&pd_rd_r=XDPZ0G6AX33V554GH5A9&pd_rd_w=AuOkZ&pd_rd_wg=cuVAc&psc=1&refRID=XDPZ0G6AX33V554GH5A9), Cryer and Chan 2010
+* [Time Series Analysis and Its Applications](https://www.amazon.com/Time-Analysis-Its-Applications-Statistics/dp/144197864X/ref=pd_sim_14_7?_encoding=UTF8&pd_rd_i=144197864X&pd_rd_r=XDPZ0G6AX33V554GH5A9&pd_rd_w=AuOkZ&pd_rd_wg=cuVAc&psc=1&refRID=XDPZ0G6AX33V554GH5A9), Shumway and Stoffer 2011
 
 <!-- put this in the last slide -- use jquery to append page # to all sections -->
 
@@ -1023,7 +1155,7 @@ summary
 
 for(i=0;i<$("section").length;i++) {
 if(i==0) continue
-$("section").eq(i).append("<p style='font-size:medium;position:fixed;left:10px;bottom:10px;'>" + i + "</p>")
+$("section").eq(i).append("<p style='font-size:medium;position:fixed;right:10px;top:10px;'>" + i + " / " + $("section").length + "</p>")
 }
 
 </script>
