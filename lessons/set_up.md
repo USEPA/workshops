@@ -2,7 +2,7 @@
 
 # Set Up
 
-Thanks for your interest in learning R.  For the CERF R workshop, we will be using [RStudio](https://www.rstudio.com/) as our interface to R.  In order to participate in this workshop you will need to make sure you have R and RStudio installed on your laptop.  The instructions below should help you get all the software installed that we will need.  Big thanks to the [USGS-R Training group](https://owi.usgs.gov/R/training.html) for making their materials availabe.  These instructions below are mostly theirs with some light editing.
+Thanks for your interest in learning R.  For the CERF R workshop, we will be using [RStudio](https://www.rstudio.com/) as our interface to R.  In order to participate in this workshop you will need to make sure you have R and RStudio installed on your laptop.   Big thanks to the [USGS-R Training group](https://owi.usgs.gov/R/training.html) for making their installation materials availabe.  The instructions below are mostly theirs with some light editing and should help you get all set up for the workshop.
 
 #Install R and RStudio
 These instructions are for Windows install. Download and install R for Mac [here](https://cran.r-project.org/bin/macosx/). 
@@ -65,7 +65,7 @@ Ideally you should be running the latest stable release (v3.4.2 as of October 20
 Here is what my R version looks like.
 
 ```
-## [1] "R version 3.4.1 (2017-06-30)"
+## [1] "R version 3.4.2 (2017-09-28)"
 ```
 
 # Add packages
