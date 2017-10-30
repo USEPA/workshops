@@ -93,7 +93,11 @@ That's OK! There’s a dialog box hiding behind RStudio asking if you want to cr
 If you are taking the afternoon workshops as well, please also run the following to install the required packages.
 
 ```{r eval=FALSE}
-install.packages(c("sf","rgdal","sp","raster","lubridate","EnvStats"))
+#spatial packages
+install.packages(c("sf","rgdal","sp","raster"))
+
+#time series packages
+install.packages(c("lubridate", "EnvStats"))
 ```
 
 
