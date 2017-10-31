@@ -4,7 +4,7 @@
 
 Thanks for your interest in learning R.  For the CERF R workshop, we will be using [RStudio](https://www.rstudio.com/) as our interface to R.  In order to participate in this workshop you will need to make sure you have R and RStudio installed on your laptop.   Big thanks to the [USGS-R Training group](https://owi.usgs.gov/R/training.html) for making their installation materials availabe.  The instructions below are mostly theirs with some light editing and should help you get all set up for the workshop.
 
-#Install R and RStudio
+# Install R and RStudio
 These instructions are for Windows install. Download and install R for Mac [here](https://cran.r-project.org/bin/macosx/). 
 
 ## Download and install R
@@ -30,7 +30,7 @@ At this screen, uncheck 'Create a desktop icon' because non-admin users in Windo
 ![Uncheck desktop icon](figure/install_tasks.png#inline-img "uncheck desktop icon")
 
 
-##Download and install RStudio
+## Download and install RStudio
 [Download RStudio Desktop](https://www.rstudio.com/products/rstudio/download/)
 
 Double-click the installer. It will ask for your administrator credentials to install (you might need to have your IT rep install again). 
@@ -39,7 +39,7 @@ Accept all the default options for the RStudio install.
 
 ![RStudio install screen](figure/install_rstudio.png#inline-img "RStudio install screen")
 
-#Check Install
+# Check Install
 
 ## Open RStudio
 Once installed, RStudio should be accessible from the start menu.  Start up RStudio.  Once running it should look something like:
