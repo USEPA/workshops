@@ -1,15 +1,15 @@
+
 ```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
 options(repos="http://cran.rstudio.com/")
 pkgs <- c("dplyr","knitr")
 x<-lapply(pkgs, library, character.only = TRUE)
-opts_chunk$set(tidy=T)
+opts_chunk$set(tidy=FALSE)
 ```
 
 # Basics of R
 
 ## Lesson Outline
 - [RStudio](#rstudio)
-- [Scripts](#scripts)
 - [R language fundamentals](#r-language-fundamentals)
 - [The data frame](#the-data-frame)
 
@@ -19,7 +19,7 @@ opts_chunk$set(tidy=T)
 
 ## RStudio
 
-## Working with R and RStudio
+### Working with R and RStudio
 Over the last several years, RStudio has become a very popular IDE (integrated development environment) for R. In addition to interacting with the R Console, RStudio has many extras built in including version control integration, package building, reproducible research, de-bugging, and built-in text editor with smart highlighting and code completion.  This is the environment we will be using for the workshop and should set you up for continued learning with R.
 
 Before we get to the first exercise, let's spend a bit of time working with RStudio. Just watch as I demo this.  The first exercise will have you doing these steps.
@@ -39,7 +39,7 @@ Projects are a way to organize your work in RStudio.  Essentially they are folde
 
 ![rstudio proj](figure/rstudio_proj.jpg)
 
-## Scripts
+### Scripts
 
 Scripts are text files that hold the code you write.  We will work both with scripts and the console during this workshop.  To create a new script you use "File:New File:R Script".
 
@@ -52,21 +52,22 @@ Once you have functions in your script, they still need to be sent to the R cons
 
 ![rstudio-script](figure/rstudio_run.jpg)
 
-### Exercise 1
+## Exercise 1
 
 This exercise will make sure R and RStudio are working and that you can get around the basics in RStudio.  Use the green stickies when you have completed, and red stickies if you are running into problems.
 
 1. Start RStudio: To start both R and RStudio requires only firing up RStudio.  RStudio should be available from All Programs at the Start Menu.  Fire up RStudio. 
-
 2. Take a few minutes to look around RStudio.  Find the Console Pane. Find Global and Project Options (hint: look in Tools).  Look at the Environment, History Pane.  Look at the Files, Plots, Packages, etc. pane.
 
-3. Create a new project.  Name it "intro_r_workshop".  We will use this for the rest of the workshop.
+3. Create a new project.  Name it "cerf_r_workshop".  We will use this for the rest of the workshop.
 
-4. Create a new "R Script" in the Source Pane, save that file into your newly created project and name it "r7_introR.R". It'll just be a blank text file at this point.
+4. Create a new "R Script" in the Source Pane, save that file into your newly created project and name it "cerf_workshop.R". It'll just be a blank text file at this point.
 
 2. Add in a comment line to separate this section.  It should look something like: `# Exercise 1: Just Getting used to RStudio and Scripts`.
 
 5. Add a single line to this script with the following text: `ls()`.  This is an R function that lists objects in your current environment.  Use the various ways we showed to send this command to the R Console.  Also, try typing this directly into the R Console and hit `Enter` to run it.  
+
+6. Lastly, we need to get this project set up with some example data for our upcoming exercises.  You should have downloaded this already, but if not, the data are available from <https://usepa.github.io/cerf_r/data.zip>.  Copy this zip file into your project and unzip into a folder named `data`.  
 
 
 ## R language fundamentals
@@ -203,7 +204,7 @@ As I mention earlier, there are TOO many resources to mention and everyone has t
 
 Simply put, a data structure is a way for programming languages to handle storing information.  Like most languages, R has several structures (vectors, matrix, lists, etc.) but since R is built for data analysis the data frame, a spreadsheet like structure with rows and columns, is the most widely used and useful to learn first.  In addition, the data frame (or is it data.frame) is the basis for many modern R pacakges (e.g. the tidyverse) and getting used to it will allow you to quickly build your R skills.
 
-*Note:* It is useful to know more about the different data structures such as vectors, lists, and factors (a weird one that is for catergorical data).  But that is beyond what we have time for.  One of the best sources on this information is Hadley Wickham's [Data Structures Chapter in Advanced R](http://adv-r.had.co.nz/Data-structures.html).
+*Note:* It is useful to know more about the different data structures such as vectors, lists, and factors (a weird one that is for catergorical data).  But that is beyond what we have time for.  You can look at some of our [old materials](data_in_r.md) or even better look at what I think is the best source on this information, Hadley Wickham's [Data Structures Chapter in Advanced R](http://adv-r.had.co.nz/Data-structures.html).
 
 ### Build a data frame
 Let's now take a quick look at building a simple data frame from scratch with the `data.frame()` function.  This is mostly a teaching excercise as we will use the function very little in the excercises to come.  
@@ -246,39 +247,29 @@ Completely creating a data frame from scratch is useful (especially when you sta
 
 Source files for `read.csv()` can either be on a local hard drive or, and this is pretty cool, on the web. We will be using the later for our examples and exercises. If you had a local file it would be accessed like `mydf <- read.csv("C:/path/to/local/file.csv")`. As an aside, paths and use of forward vs back slash is important. R is looking for forward slashes ("/"), or unix-like paths. You can use these in place of the back slash and be fine. You can use a back slash but it needs to be a double back slash ("\"). This is becuase the single backslash in an escape character that is used to indicate things like newlines or tabs. 
 
-For today's workshop we will focus on grabbing data from a file on the web, but a local file is nearly the same as you use the path to the file instead of a URL. 
-
 Let's give it a try.
 
 ```{r readcsv}
 #Grab data from a web file
-nca_url <- "https://raw.githubusercontent.com/USEPA/region7_r/master/nla_dat.csv"
-nca_wq <- read.csv(nca_url,stringsAsFactors = FALSE)
-head(nca_wq)
-str(nca_wq)
-dim(nca_wq)
-summary(nca_wq)
+nla_url <- "https://www.epa.gov/sites/production/files/2014-10/nla2007_chemical_conditionestimates_20091123.csv"
+nla_wq <- read.csv(nla_url,stringsAsFactors = FALSE)
+head(nla_wq)
+str(nla_wq)
+dim(nla_wq)
+summary(nla_wq)
 ```
 
 Take note of the argument we used on `read.csv()`.  The `stringsAsFactors = FALSE` is what we want to use to make sure factors are not getting automatically created.
 
-## Other ways to read data 
+### Other ways to read data 
 
 Although, `read.csv()` and `read.table()` are very flexible, they are not the only options for reading in data.  This could be a full day in and of itself, but packages like `readr`, `readxl`, and `rio` provide flexible methods for reading in data.  Also, databases can also be accessed directly in R and much of this functionality is in the `DBI` and `RODBC` packages.  Making the connections is not entirely trivial, but an easier way to take advantage of this is via the `dplyr` package.  See the [vignette on databases](https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html) fo a lot of good examples of working with common open source databases.
 
-## Exercise 1
-From here on out I hope to have the exercises will build on each other. For this exercise we are going to grab some data, look at that data, and be able to describe some basic information about that dataset.  The data we are using is the 2012 National Lakes Assessment.  URL's for those files are included below.
-
-1. We will be using a new script for the rest of our exercises.  Create this script in RStudio and name it "nla_analysis.R"
-2. As you write the script, comment as you go. Some good examples are what we used in the first script where we provided some details on each of the exercises. Remember comments are lines that begin with `#` and you can put whatever you like after that.
-3. Add a line to your script that creates a data frame named `nla_wq` (hint: `read.csv`).  The URL for this is: <https://bit.ly/nla_water>
-5. Run the script and make sure it doesn't throw any errors and you do in fact get a data frame.
-6. Explore the data frame using some of the functions we covered above (e.g. `head()`,`summary()`, or `str()`).  This part does not need to be included in the script. It is just a quick QA step to be sure the data read in as expected.
-
-## Exercise 1
-In this first exercise 
-
-1. Assign ...
-2. Do ...
-
 ## Exercise 2
+From here on out I hope to have the exercises will build on each other. For this exercise we are going to grab some data, look at that data, and be able to describe some basic information about that dataset.  The data we are using is the 2010 National Coastal Conidition Assessment from EPA's Office of Water.  URL's for those files are included below.
+
+1. We will be using a new script for the rest of our exercises.  Create this script in RStudio and name it "nca_analysis.R"
+2. As you write the script, comment as you go. Some good examples are what we used in the first script where we provided some details on each of the exercises. Remember comments are lines that begin with `#` and you can put whatever you like after that.
+3. Add a line to your script that creates two data frames. One named `nca_sites` and the other names `nca_wc`.  These are in the `data` folder you downloaded and we moved earlier.  The `read.csv` function is your friend here and the paths to the two files are `"data/nca_2010_siteinfo.csv"` and `"data/nca_2010_waterchem.csv"`.
+5. Now run your script and make sure it doesn't throw any errors and you do in fact get a data frame.
+6. Explore the data frame using some of the functions we covered above (e.g. `head()`,`summary()`, or `str()`).  This part does not need to be included in the script and can be done directly inthe console. It is just a quick QA step to be sure the data read in as expected.
