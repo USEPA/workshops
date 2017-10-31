@@ -19,11 +19,261 @@ opts_chunk$set(tidy=T)
 
 ## RStudio
 
+## Working with R and RStudio
+Over the last several years, RStudio has become a very popular IDE (integrated development environment) for R. In addition to interacting with the R Console, RStudio has many extras built in including version control integration, package building, reproducible research, de-bugging, and built-in text editor with smart highlighting and code completion.  This is the environment we will be using for the workshop and should set you up for continued learning with R.
+
+Before we get to the first exercise, let's spend a bit of time working with RStudio. Just watch as I demo this.  The first exercise will have you doing these steps.
+
+### Fire up R and RStudio
+Find the RStudio shortcut or menu (OS specific of course) and fire it up.  Once done, it should look something like:
+
+![rstudio](figure/rstudio.jpg)
+
+
+Let's take some time to look around.  I'll show each of the different sections, or "panes" as they are known.
+
+
+### Projects
+
+Projects are a way to organize your work in RStudio.  Essentially they are folders, but with a few added files so that you can manage some options on a per project basis.  To create a new project use File:New Project, or use the drop-down on the top right of the RStudio window.  It will look like this after you select "New Project..."
+
+![rstudio proj](figure/rstudio_proj.jpg)
+
 ## Scripts
+
+Scripts are text files that hold the code you write.  We will work both with scripts and the console during this workshop.  To create a new script you use "File:New File:R Script".
+
+![rstudio script](figure/rstudio_script.jpg)
+
+
+### Interacting with R inside of RStudio
+
+Once you have functions in your script, they still need to be sent to the R console.  There are several ways to do this.  There is the old stand-by of copying and pasting, but this is a bit cumbersome.  Instead you can use the `Run` button in the upper right corner of the source pane, or even better (I think so, anyway) you can use `ctrl-enter`.  Both the `Run` buttons and `ctrl-enter` will send the line that your cursor is on and move to the next line or it will send just the selected text.
+
+![rstudio-script](figure/rstudio_run.jpg)
+
+### Exercise 1
+
+This exercise will make sure R and RStudio are working and that you can get around the basics in RStudio.  Use the green stickies when you have completed, and red stickies if you are running into problems.
+
+1. Start RStudio: To start both R and RStudio requires only firing up RStudio.  RStudio should be available from All Programs at the Start Menu.  Fire up RStudio. 
+
+2. Take a few minutes to look around RStudio.  Find the Console Pane. Find Global and Project Options (hint: look in Tools).  Look at the Environment, History Pane.  Look at the Files, Plots, Packages, etc. pane.
+
+3. Create a new project.  Name it "intro_r_workshop".  We will use this for the rest of the workshop.
+
+4. Create a new "R Script" in the Source Pane, save that file into your newly created project and name it "r7_introR.R". It'll just be a blank text file at this point.
+
+2. Add in a comment line to separate this section.  It should look something like: `# Exercise 1: Just Getting used to RStudio and Scripts`.
+
+5. Add a single line to this script with the following text: `ls()`.  This is an R function that lists objects in your current environment.  Use the various ways we showed to send this command to the R Console.  Also, try typing this directly into the R Console and hit `Enter` to run it.  
+
 
 ## R language fundamentals
 
+### Functions and basic syntax
+
+R is a functional programming language and as such, most everything you do uses a function.
+
+The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many (`r pkgs <- search(); pkgs <- pkgs[grep("package:",pkgs)]; length(unlist(sapply(pkgs,lsf.str)))` functions, to be exact).  Some examples:
+
+```{r function_examples}
+#Print
+print("hello world!")
+#A sequence
+seq(1,10)
+#Random normal numbers
+rnorm(100,mean=10,sd=2)
+#Mean
+mean(rnorm(100))
+#Sum
+sum(rnorm(100))
+```
+
+Very often you will see functions used like this:
+
+```{r eval=FALSE}
+my_random_sum <- sum(rnorm(100))
+```
+
+In this case the first part of the line is the name of an object.  You make this up.  Ideally it should have some meaning, but the only rules are that it can't start with a number and must not have any spaces.  The second bit, `<-`, is the assignment operator.  This tells R to take the result of `sum(rnorm(100))` and store it an object named, `my_random_sum`.  
+
+With this, you have the very basics of how we write R code and save objects that can be used later.
+
+### A few side notes 
+
+There are several other characters that commonly show up in R code.  These are:
+
+```{r common}
+# NOTES:
+#Comments
+#()
+#[]
+#{}
+```
+
+The `#` indicates a comment.  You can put whatever else you'd like after this, but on the same line as the `#`.  R will not evaluate it. Multiple `#####`, are still just seen as a comment.  When commenting your code, err on the side of too much!  Also, you will see `()`, `[]`, and `{}` used in R code.  The `()` indicates a function (almost always), the `[]` indicates indexing (grabbing values by the location), and the `{}` groups code that is meant to be run together and is usually used when programming functions in R.
+
+### Packages
+
+The base install of R is quite powerful, but you will soon have a need or desire to go beyond this.  Packages provide this ability.  They are a standardized method for extending R with new methods, techniques, and programming functionality.  There is a lot to say about packages regarding finding them, using them, etc., but for now let's focus just on the basics.  
+
+### CRAN
+
+One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of `r format(Sys.time(), "%Y-%m-%d")`, there are `r nrow(available.packages())` on CRAN! 
+
+### Installing packages
+
+When a package gets installed, that means the source is downloaded and put into your library.  A default library location is set for you so no need to worry about that.  In fact on Windows most of this is pretty automatic.  Let's give it a shot.
+
+
+```{r install_package, eval=FALSE}
+#Installing Packages from CRAN
+#Install dplyr and ggplot2
+install.packages("ggplot2")
+install.packages("dplyr")
+
+#You can also put more than one in like
+install.packages(c("quickmapr","formatR"))
+```
+
+### Using packages
+
+One source of confusion that many have is when they cannot access a package that they just installed. This is because getting to this point requires an extra step, loading (or attaching) the package.   
+
+```{r load_package}
+#Loading packages into your library
+#Add libraries to your R Session
+library("ggplot2")
+library("dplyr")
+
+#You can also access functions without loading by using package::function
+dplyr::mutate
+
+```
+
+You will often see people use `require()` to load a package. It is better form to not do this. For a more detailed explanation of why `library()` and not `require()` see [Yihui Xie's post on the subject](http://yihui.name/en/2014/07/library-vs-require/.)
+
+And now for a little pedantry.  You will often hear people use the terms "library" and "package" interchangeably.  This is not correct.  A package is what is submitted to CRAN, it is what contains a group of functions that address a common problem, and it is what has allowed R to expand.  A library is, more or less, where you packages are stored.  You have a path to that library and this is where R puts new packages that you install (e.g. via `install.packages()`).  These two terms are related, but most certainly different.  Apologies up front if I slip and use one when I actually mean the other...
+
+### Getting Help
+
+Being able to find help and interpret that help is probably one of the most important skills for learning a new language.  R is no different. Help on functions and packages can be accessed directly from R, can be found on CRAN and other official R resources, searched on Google, found on StackOverflow, or from any number of fantastic online resources. I will cover a few of these here. 
+
+### Help from the console
+Getting help from the console is straightforward and can be done numerous ways.
+
+```{r help_from_console, eval=FALSE}
+#Using the help command/shortcut
+#When you know the name of a function
+help("print") #Help on the print command
+?print #Help on the print command using the `?` shortcut
+
+#When you know the name of the package
+help(package="dplyr") #Help on the package `dplyr`
+
+#Don't know the exact name or just part of it
+apropos("print") #Returns all available functions with "print" in the name
+??print #Shortcut, but also searches demos and vignettes in a formatted page
+```
+
+### Official R Resources
+In addition to help from within R itself, CRAN and the R-Project have many resources available for support.  Two of the most notable are the mailing lists and the [task views](http://cran.r-project.org/web/views/).
+
+- [R Help Mailing List](https://stat.ethz.ch/mailman/listinfo/r-help): The main mailing list for R help.  Can be a bit daunting and some (although not most) senior folks can be, um, curmudgeonly...
+- [R-sig-ecology](https://stat.ethz.ch/mailman/listinfo/r-sig-ecology): A special interest group for use of R in ecology.  Less daunting the the main help with participation from some big names in ecological modelling and statistics (e.g., Ben Bolker, Gavin Simpson, and Phil Dixon).  One of the moderators is great, the other is a bit of a jerk (it's me).
+- [Environmetrics Task View](http://cran.r-project.org/web/views/Environmetrics.html): Task views are great in that they provide an annotated list of packages relevant to a particular field.  This one is maintained by Gavin Simpson and has great info on packages relevant to much of the work at EPA.
+- [Spatial Analysis Task View](http://cran.r-project.org/web/views/Spatial.html): One I use a lot that lists all the relevant packages for spatial analysis, GIS, and Remote Sensing in R. 
+
+### Google and StackOverflow
+While the resources already mentioned are useful, often the quickest way is to just turn to Google.  However, a search for "R" is a bit challenging.  A few ways around this.  Google works great if you search for a given package or function name.  You can search for mailing lists directly (i.e. "R-sig-geo").  An R specific search tool, [RSeek.org](http://www.rseek.org/), has been created to facilitate this.  
+
+One specific resource that I use quite a bit is [StackOverflow with the 'r' tag](http://stackoverflow.com/questions/tagged/r).  StackOverflow is a discussion forum for all things related to programming.  You can then use this tag and the search functions in StackOverflow and find answers to almost anything you can think of.
+
+### Other Resources
+As I mention earlier, there are TOO many resources to mention and everyone has their favorites.  Below are just a few that I like.
+
+- [R For Cats](http://rforcats.net/): Basic introduction site, meant to be a gentle and light-hearted introduction
+- [Advanced R](http://adv-r.had.co.nz/): Web home of Hadley Wickham's new book.  Gets into more advanced topics, but also covers the basics in a great way.
+- [Other Resources](http://scicomp2014.edc.uri.edu/resources.html): A list I helped compile for a URI Class.
+- [CRAN Cheatsheets](http://cran.r-project.org/doc/contrib/Short-refcard.pdf): A good cheat sheet from the official source
+- [RStudio Cheatsheets](http://www.rstudio.com/resources/cheatsheets/): Additional cheat sheets from RStudio.  I am especially fond of the data wrangling one.
+
 ## The data frame
+
+Simply put, a data structure is a way for programming languages to handle storing information.  Like most languages, R has several structures (vectors, matrix, lists, etc.) but since R is built for data analysis the data frame, a spreadsheet like structure with rows and columns, is the most widely used and useful to learn first.  In addition, the data frame (or is it data.frame) is the basis for many modern R pacakges (e.g. the tidyverse) and getting used to it will allow you to quickly build your R skills.
+
+*Note:* It is useful to know more about the different data structures such as vectors, lists, and factors (a weird one that is for catergorical data).  But that is beyond what we have time for.  One of the best sources on this information is Hadley Wickham's [Data Structures Chapter in Advanced R](http://adv-r.had.co.nz/Data-structures.html).
+
+### Build a data frame
+Let's now take a quick look at building a simple data frame from scratch with the `data.frame()` function.  This is mostly a teaching excercise as we will use the function very little in the excercises to come.  
+
+```{r dataframe}
+# Our first data frame
+
+my_df <- data.frame(names = c("joe","jenny","bob","sue"), 
+                    age = c(45, 27, 38,51), 
+                    knows_r = c(FALSE, TRUE, TRUE,FALSE))
+my_df
+```
+
+That created a data frame with 3 columns (names, age, knows_r) and four rows.  For each row we have some information on the name of an individual (stored as a character/string), their age (stored as a numeric value), and a column indicating if they know R or not (stored as a boolean/logical).
+
+If you've worked with data before in a spreadsheet or from a table in a database, this rectangular structure should look somewhat familiar.   One way (there are many!) we can access the different parts of the data frame is like:
+
+```{r df_parts}
+# Use the dollar sign to get a column
+my_df$age
+
+# Grab a row with indexing
+my_df[2,]
+```
+
+At this point, we have:
+
+- built a data frame from scratch
+- seen rows and columns
+- heard about "rectangular" structure
+- seen how to get a row and a column
+
+The purpose of all this was to introduce the concept of the data frame.  Moving forward we will use other tools to read in data, but the end result will be the same: a data frame with rows (i.e. observations) and columns (i.e. variables).
+
+### Reading external data
+
+Completely creating a data frame from scratch is useful (especially when you start writing your own functions), but more often than not data is stored in an external file that you need to read into R.  These may be delimited text files, spreadsheets, relational databases, SAS files ...  You get the idea.  Instead of treating this subject exhaustively, we will focus just on a single file type, `.csv` that is very commonly encountered and (usually) easy to create from other file types.  For this, we will use `read.csv()`(although there are many, compelling options from packages like `rio` and `readr`). 
+
+`read.csv()` is a specialized version of `read.table()` that focuses on, big surprise here, .csv files. This command assumes a header row with column names and that the delimiter is a comma. The expected no data value is NA and by default, strings are converted to factors by default (this can trip people up). If you remember, we discussed earlier that we should explicitly define our factors.  We will use `read.csv()`, with this defualt behaviour turned off.
+
+Source files for `read.csv()` can either be on a local hard drive or, and this is pretty cool, on the web. We will be using the later for our examples and exercises. If you had a local file it would be accessed like `mydf <- read.csv("C:/path/to/local/file.csv")`. As an aside, paths and use of forward vs back slash is important. R is looking for forward slashes ("/"), or unix-like paths. You can use these in place of the back slash and be fine. You can use a back slash but it needs to be a double back slash ("\"). This is becuase the single backslash in an escape character that is used to indicate things like newlines or tabs. 
+
+For today's workshop we will focus on grabbing data from a file on the web, but a local file is nearly the same as you use the path to the file instead of a URL. 
+
+Let's give it a try.
+
+```{r readcsv}
+#Grab data from a web file
+nca_url <- "https://raw.githubusercontent.com/USEPA/region7_r/master/nla_dat.csv"
+nca_wq <- read.csv(nca_url,stringsAsFactors = FALSE)
+head(nca_wq)
+str(nca_wq)
+dim(nca_wq)
+summary(nca_wq)
+```
+
+Take note of the argument we used on `read.csv()`.  The `stringsAsFactors = FALSE` is what we want to use to make sure factors are not getting automatically created.
+
+## Other ways to read data 
+
+Although, `read.csv()` and `read.table()` are very flexible, they are not the only options for reading in data.  This could be a full day in and of itself, but packages like `readr`, `readxl`, and `rio` provide flexible methods for reading in data.  Also, databases can also be accessed directly in R and much of this functionality is in the `DBI` and `RODBC` packages.  Making the connections is not entirely trivial, but an easier way to take advantage of this is via the `dplyr` package.  See the [vignette on databases](https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html) fo a lot of good examples of working with common open source databases.
+
+## Exercise 1
+From here on out I hope to have the exercises will build on each other. For this exercise we are going to grab some data, look at that data, and be able to describe some basic information about that dataset.  The data we are using is the 2012 National Lakes Assessment.  URL's for those files are included below.
+
+1. We will be using a new script for the rest of our exercises.  Create this script in RStudio and name it "nla_analysis.R"
+2. As you write the script, comment as you go. Some good examples are what we used in the first script where we provided some details on each of the exercises. Remember comments are lines that begin with `#` and you can put whatever you like after that.
+3. Add a line to your script that creates a data frame named `nla_wq` (hint: `read.csv`).  The URL for this is: <https://bit.ly/nla_water>
+5. Run the script and make sure it doesn't throw any errors and you do in fact get a data frame.
+6. Explore the data frame using some of the functions we covered above (e.g. `head()`,`summary()`, or `str()`).  This part does not need to be included in the script. It is just a quick QA step to be sure the data read in as expected.
 
 ## Exercise 1
 In this first exercise 
