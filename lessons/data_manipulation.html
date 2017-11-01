@@ -134,6 +134,7 @@ $(document).ready(function () {
 <h2>Lesson Exercises:</h2>
 <ul>
 <li><a href="#exercise-1">Exercise 1</a></li>
+<li><a href="#exercise-2">Exercise 2</a></li>
 </ul>
 </div>
 <div id="dplyr" class="section level2">
@@ -242,16 +243,16 @@ head(dplyr_big_iris_pipe)</code></pre>
 <p>Now that we have two data frames pulled in and have cleaned them up a bit, we might want to look at ways to combine the information that is in both. We can do this by “joining” the two together. The general concept of joins stems from relational databases where you have multiple database tables that share a common field or fields.</p>
 <p>Let’s create some examples to look at.</p>
 <pre class="r"><code>table1 &lt;- data.frame(id = c(1,2,3,4,5), height = seq(0,400,by=100), 
-                     weight = runif(5,30,50), 
+                     weight = round(runif(5,30,50),2), 
                      x = c(-73,-73,-74,-75,-72), y = c(46,47,47,48,44))
 table2 &lt;- data.frame(id = c(1,3,4), category = c(&quot;low&quot;,&quot;medium&quot;,&quot;medium-high&quot;))
 table1</code></pre>
-<pre><code>##   id height   weight   x  y
-## 1  1      0 33.58447 -73 46
-## 2  2    100 34.16424 -73 47
-## 3  3    200 41.90799 -74 47
-## 4  4    300 42.64645 -75 48
-## 5  5    400 46.80069 -72 44</code></pre>
+<pre><code>##   id height weight   x  y
+## 1  1      0  35.68 -73 46
+## 2  2    100  34.41 -73 47
+## 3  3    200  44.24 -74 47
+## 4  4    300  35.08 -75 48
+## 5  5    400  43.66 -72 44</code></pre>
 <pre class="r"><code>table2</code></pre>
 <pre><code>##   id    category
 ## 1  1         low
@@ -263,17 +264,17 @@ table1</code></pre>
 <pre class="r"><code>table_2_1 &lt;- left_join(table2, table1)</code></pre>
 <pre><code>## Joining, by = &quot;id&quot;</code></pre>
 <pre class="r"><code>table_1_2</code></pre>
-<pre><code>##   id height   weight   x  y    category
-## 1  1      0 33.58447 -73 46         low
-## 2  2    100 34.16424 -73 47        &lt;NA&gt;
-## 3  3    200 41.90799 -74 47      medium
-## 4  4    300 42.64645 -75 48 medium-high
-## 5  5    400 46.80069 -72 44        &lt;NA&gt;</code></pre>
+<pre><code>##   id height weight   x  y    category
+## 1  1      0  35.68 -73 46         low
+## 2  2    100  34.41 -73 47        &lt;NA&gt;
+## 3  3    200  44.24 -74 47      medium
+## 4  4    300  35.08 -75 48 medium-high
+## 5  5    400  43.66 -72 44        &lt;NA&gt;</code></pre>
 <pre class="r"><code>table_2_1</code></pre>
-<pre><code>##   id    category height   weight   x  y
-## 1  1         low      0 33.58447 -73 46
-## 2  3      medium    200 41.90799 -74 47
-## 3  4 medium-high    300 42.64645 -75 48</code></pre>
+<pre><code>##   id    category height weight   x  y
+## 1  1         low      0  35.68 -73 46
+## 2  3      medium    200  44.24 -74 47
+## 3  4 medium-high    300  35.08 -75 48</code></pre>
 </div>
 <div id="long-to-wide-format" class="section level2">
 <h2>Long to wide format</h2>
@@ -285,48 +286,48 @@ table_1_2_long &lt;- gather(table_1_2, variable, value, 2:6)</code></pre>
 <pre><code>## Warning: attributes are not identical across measure variables; they will
 ## be dropped</code></pre>
 <pre class="r"><code>table_1_2_long</code></pre>
-<pre><code>##    id variable            value
-## 1   1   height                0
-## 2   2   height              100
-## 3   3   height              200
-## 4   4   height              300
-## 5   5   height              400
-## 6   1   weight 33.5844680154696
-## 7   2   weight 34.1642367560416
-## 8   3   weight 41.9079944817349
-## 9   4   weight 42.6464525097981
-## 10  5   weight 46.8006932502612
-## 11  1        x              -73
-## 12  2        x              -73
-## 13  3        x              -74
-## 14  4        x              -75
-## 15  5        x              -72
-## 16  1        y               46
-## 17  2        y               47
-## 18  3        y               47
-## 19  4        y               48
-## 20  5        y               44
-## 21  1 category              low
-## 22  2 category             &lt;NA&gt;
-## 23  3 category           medium
-## 24  4 category      medium-high
-## 25  5 category             &lt;NA&gt;</code></pre>
+<pre><code>##    id variable       value
+## 1   1   height           0
+## 2   2   height         100
+## 3   3   height         200
+## 4   4   height         300
+## 5   5   height         400
+## 6   1   weight       35.68
+## 7   2   weight       34.41
+## 8   3   weight       44.24
+## 9   4   weight       35.08
+## 10  5   weight       43.66
+## 11  1        x         -73
+## 12  2        x         -73
+## 13  3        x         -74
+## 14  4        x         -75
+## 15  5        x         -72
+## 16  1        y          46
+## 17  2        y          47
+## 18  3        y          47
+## 19  4        y          48
+## 20  5        y          44
+## 21  1 category         low
+## 22  2 category        &lt;NA&gt;
+## 23  3 category      medium
+## 24  4 category medium-high
+## 25  5 category        &lt;NA&gt;</code></pre>
 <p>Now to go the other direction, we use <code>spread</code> (as in spread out the key:value pairs in two columns into a bunch of new columns named by the key).</p>
 <pre class="r"><code>table_1_2_wide &lt;- spread(table_1_2_long, variable, value)
 table_1_2_wide</code></pre>
-<pre><code>##   id    category height           weight   x  y
-## 1  1         low      0 33.5844680154696 -73 46
-## 2  2        &lt;NA&gt;    100 34.1642367560416 -73 47
-## 3  3      medium    200 41.9079944817349 -74 47
-## 4  4 medium-high    300 42.6464525097981 -75 48
-## 5  5        &lt;NA&gt;    400 46.8006932502612 -72 44</code></pre>
+<pre><code>##   id    category height weight   x  y
+## 1  1         low      0  35.68 -73 46
+## 2  2        &lt;NA&gt;    100  34.41 -73 47
+## 3  3      medium    200  44.24 -74 47
+## 4  4 medium-high    300  35.08 -75 48
+## 5  5        &lt;NA&gt;    400  43.66 -72 44</code></pre>
 </div>
 <div id="exercise-2" class="section level2">
 <h2>Exercise 2</h2>
 <p>For the last exercise of the data manipulation lesson we will join our two NCCA tables together and convert them using <code>tidyr</code>.</p>
 <ol style="list-style-type: decimal">
 <li><p>The <code>nca_wc_subset</code> data frame is in a long format (hint: look at PARAMETER and RESULT). Convert this data frame into <code>nca_wc_wide</code> using <code>gather</code>.</p></li>
-<li><p>Create a new data frame, named <code>ncca</code>, that is a combination of the the sites and water chemistry data that has only the rows we filtered our for the Northeast (hint: <code>left_join</code> and proper order).</p></li>
+<li><p>Create a new data frame, named <code>ncca</code>, that is a combination of the the sites and water chemistry data that has only the rows we filtered out for the Northeast (hint: <code>left_join</code> and proper order).</p></li>
 </ol>
 </div>
 </div>

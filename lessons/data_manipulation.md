@@ -15,6 +15,7 @@ Lesson Exercises:
 -----------------
 
 -   [Exercise 1](#exercise-1)
+-   [Exercise 2](#exercise-2)
 
 dplyr
 -----
@@ -157,18 +158,18 @@ Let's create some examples to look at.
 
 ``` r
 table1 <- data.frame(id = c(1,2,3,4,5), height = seq(0,400,by=100), 
-                     weight = runif(5,30,50), 
+                     weight = round(runif(5,30,50),2), 
                      x = c(-73,-73,-74,-75,-72), y = c(46,47,47,48,44))
 table2 <- data.frame(id = c(1,3,4), category = c("low","medium","medium-high"))
 table1
 ```
 
-    ##   id height   weight   x  y
-    ## 1  1      0 47.30269 -73 46
-    ## 2  2    100 47.71512 -73 47
-    ## 3  3    200 37.73277 -74 47
-    ## 4  4    300 48.23718 -75 48
-    ## 5  5    400 32.97160 -72 44
+    ##   id height weight   x  y
+    ## 1  1      0  47.91 -73 46
+    ## 2  2    100  36.74 -73 47
+    ## 3  3    200  39.76 -74 47
+    ## 4  4    300  31.16 -75 48
+    ## 5  5    400  39.47 -72 44
 
 ``` r
 table2
@@ -197,21 +198,21 @@ table_2_1 <- left_join(table2, table1)
 table_1_2
 ```
 
-    ##   id height   weight   x  y    category
-    ## 1  1      0 47.30269 -73 46         low
-    ## 2  2    100 47.71512 -73 47        <NA>
-    ## 3  3    200 37.73277 -74 47      medium
-    ## 4  4    300 48.23718 -75 48 medium-high
-    ## 5  5    400 32.97160 -72 44        <NA>
+    ##   id height weight   x  y    category
+    ## 1  1      0  47.91 -73 46         low
+    ## 2  2    100  36.74 -73 47        <NA>
+    ## 3  3    200  39.76 -74 47      medium
+    ## 4  4    300  31.16 -75 48 medium-high
+    ## 5  5    400  39.47 -72 44        <NA>
 
 ``` r
 table_2_1
 ```
 
-    ##   id    category height   weight   x  y
-    ## 1  1         low      0 47.30269 -73 46
-    ## 2  3      medium    200 37.73277 -74 47
-    ## 3  4 medium-high    300 48.23718 -75 48
+    ##   id    category height weight   x  y
+    ## 1  1         low      0  47.91 -73 46
+    ## 2  3      medium    200  39.76 -74 47
+    ## 3  4 medium-high    300  31.16 -75 48
 
 Long to wide format
 -------------------
@@ -234,32 +235,32 @@ table_1_2_long <- gather(table_1_2, variable, value, 2:6)
 table_1_2_long
 ```
 
-    ##    id variable            value
-    ## 1   1   height                0
-    ## 2   2   height              100
-    ## 3   3   height              200
-    ## 4   4   height              300
-    ## 5   5   height              400
-    ## 6   1   weight 47.3026876477525
-    ## 7   2   weight 47.7151177823544
-    ## 8   3   weight  37.732766373083
-    ## 9   4   weight 48.2371838670224
-    ## 10  5   weight 32.9715951299295
-    ## 11  1        x              -73
-    ## 12  2        x              -73
-    ## 13  3        x              -74
-    ## 14  4        x              -75
-    ## 15  5        x              -72
-    ## 16  1        y               46
-    ## 17  2        y               47
-    ## 18  3        y               47
-    ## 19  4        y               48
-    ## 20  5        y               44
-    ## 21  1 category              low
-    ## 22  2 category             <NA>
-    ## 23  3 category           medium
-    ## 24  4 category      medium-high
-    ## 25  5 category             <NA>
+    ##    id variable       value
+    ## 1   1   height           0
+    ## 2   2   height         100
+    ## 3   3   height         200
+    ## 4   4   height         300
+    ## 5   5   height         400
+    ## 6   1   weight       47.91
+    ## 7   2   weight       36.74
+    ## 8   3   weight       39.76
+    ## 9   4   weight       31.16
+    ## 10  5   weight       39.47
+    ## 11  1        x         -73
+    ## 12  2        x         -73
+    ## 13  3        x         -74
+    ## 14  4        x         -75
+    ## 15  5        x         -72
+    ## 16  1        y          46
+    ## 17  2        y          47
+    ## 18  3        y          47
+    ## 19  4        y          48
+    ## 20  5        y          44
+    ## 21  1 category         low
+    ## 22  2 category        <NA>
+    ## 23  3 category      medium
+    ## 24  4 category medium-high
+    ## 25  5 category        <NA>
 
 Now to go the other direction, we use `spread` (as in spread out the key:value pairs in two columns into a bunch of new columns named by the key).
 
@@ -268,12 +269,12 @@ table_1_2_wide <- spread(table_1_2_long, variable, value)
 table_1_2_wide
 ```
 
-    ##   id    category height           weight   x  y
-    ## 1  1         low      0 47.3026876477525 -73 46
-    ## 2  2        <NA>    100 47.7151177823544 -73 47
-    ## 3  3      medium    200  37.732766373083 -74 47
-    ## 4  4 medium-high    300 48.2371838670224 -75 48
-    ## 5  5        <NA>    400 32.9715951299295 -72 44
+    ##   id    category height weight   x  y
+    ## 1  1         low      0  47.91 -73 46
+    ## 2  2        <NA>    100  36.74 -73 47
+    ## 3  3      medium    200  39.76 -74 47
+    ## 4  4 medium-high    300  31.16 -75 48
+    ## 5  5        <NA>    400  39.47 -72 44
 
 Exercise 2
 ----------
@@ -282,4 +283,4 @@ For the last exercise of the data manipulation lesson we will join our two NCCA 
 
 1.  The `nca_wc_subset` data frame is in a long format (hint: look at PARAMETER and RESULT). Convert this data frame into `nca_wc_wide` using `gather`.
 
-2.  Create a new data frame, named `ncca`, that is a combination of the the sites and water chemistry data that has only the rows we filtered our for the Northeast (hint: `left_join` and proper order).
+2.  Create a new data frame, named `ncca`, that is a combination of the the sites and water chemistry data that has only the rows we filtered out for the Northeast (hint: `left_join` and proper order).
