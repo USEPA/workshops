@@ -22,7 +22,7 @@ Data wrangling (manipulation, jujitsu, cleaning, etc.) is the part of any data a
 
 The `dplyr` package tries to provide easy tools for the most common data manipulation tasks.  It is built to work directly with data frames and this is one of the foundational packages in what is now known as the [tidyverse](https://tidyverse.org).  The thinking behind it was largely inspired by the package `plyr` which has been in use for some time but suffered from being slow in some cases.  `dplyr` addresses this by porting much of the computation to c++.  An additional feature is the ability to work with data stored directly in an external database.  The benefits of doing this are that the data can be managed natively in a relational database, queries can be conducted on that database, and only the results of the query returned.  
 
-This addresses a common problem with R in that all operations are conducted in memory and thus the amount of data you can work with is limited by available memory.  The database connections essentially remove that limitation in that you can have a database of many 100s GB, conduct queries on it directly and pull back just what you need for analysis in R.  There is a lot of great info on `dplyr`.  If you have an interest, i'd encourage you to look more.  The vignettes are particulary good.
+This addresses a common problem with R in that all operations are conducted in memory and thus the amount of data you can work with is limited by available memory.  The database connections essentially remove that limitation in that you can have a database of many 100s GB, conduct queries on it directly and pull back just what you need for analysis in R.  There is a lot of great info on `dplyr`.  If you have an interest, I'd encourage you to look more.  The vignettes are particularly good.
 
 - [`dplyr` GitHub repo](https://github.com/hadley/dplyr)
 - [CRAN page: vignettes here](http://cran.rstudio.com/web/packages/dplyr/)
@@ -59,7 +59,7 @@ head(virginica_iris)
 tbl_df(virginica_iris)
 ```
 
-But what if I wanted to select and filter?  There are three ways to do this: use intermediate steps, nested functions, or pipes.  With the intermediate steps, you essentially create a temporary data frame and use that as input to the next function.  You can also nest functions (i.e. one function inside of another).  This is handy, but can be difficult to read if too many functions are nested as the process from inside out.  The last option, pipes, are a fairly recent addition to R.  Pipes in the unix/linux world are not new and allow you to chain commands together where the output of one command is the input to the next.  This provides a more natural way to read the commands in that they are executed in the way you conceptualize it and make the interpretation of the code a bit easier.  Pipes in R look like `%>%` and are made available via th `magrittr` package, which is installed as part of `dplyr`.  We will talk a bit about this, but the best desciption, by far, is the secion on pipes in the [R For Data Science](http://r4ds.had.co.nz/pipes.html) book.
+But what if I wanted to select and filter?  There are three ways to do this: use intermediate steps, nested functions, or pipes.  With the intermediate steps, you essentially create a temporary data frame and use that as input to the next function.  You can also nest functions (i.e. one function inside of another).  This is handy, but can be difficult to read if too many functions are nested as the process from inside out.  The last option, pipes, are a fairly recent addition to R.  Pipes in the UNIX/Linux world are not new and allow you to chain commands together where the output of one command is the input to the next.  This provides a more natural way to read the commands in that they are executed in the way you conceptualize it and make the interpretation of the code a bit easier.  Pipes in R look like `%>%` and are made available via the `magrittr` package, which is installed as part of `dplyr`.  We will talk a bit about this, but the best description, by far, is the section on pipes in the [R For Data Science](http://r4ds.had.co.nz/pipes.html) book.
 
 
 Let's try all three with the same analysis: selecting out a subset of columns but for only a single species.
@@ -87,8 +87,8 @@ This exercise is going to focus on using what we just covered on `dplyr` to star
 1. If it isn't already open, make sure you have the script we created, "nca_analysis.R" opened up.
 2. Start a new section of code in this script by simply putting in a line or two of comments indicating what it is this set of code does.
 3. Our goal for this is to create a new data frame that represents a subset of the observations as well as a subset of the columns. 
-4. We want a selction of columns from the water chemistry data.  From `nca_wc` use `select` to create a new data frame called `nca_wc_subset` that contains just the following columns: SITE_ID, DATE_COL, STATE, PARAMETER, RESULT. 
-5. From `nca_sites` we want to both select columns and filter out some observations. The output data frame should be called `nca_sites_subset`.  Use `select` to select out: SITE_ID, DATE_COL, STATE, VISIT_NO, WTBDY_NM, PROVINCE, STATION_DEPTH, ALAT_DD, and ALON_DD.  Now use `filter` to get VISIT_NO equal to 1 and NCCR_REG equal to "Northeast".
+4. We want a selection of columns from the water chemistry data.  From `nca_wc` use `select` to create a new data frame called `nca_wc_subset` that contains just the following columns: SITE_ID,PARAMETER, RESULT. 
+5. From `nca_sites` we want to both select columns and filter out some observations. First, use `filter` to get VISIT_NO equal to 1 and NCCR_REG equal to "Northeast".  Now, use `select` to select out: SITE_ID, DATE_COL, STATE, WTBDY_NM, PROVINCE, STATION_DEPTH, ALAT_DD, and ALON_DD.  The final output data frame should be called `nca_sites_subset`.
 
 ## Joins
 
@@ -97,13 +97,15 @@ Now that we have two data frames pulled in and have cleaned them up a bit, we mi
 Let's create some examples to look at.
 
 ```{r}
-table1 <- data.frame(id = c(1,2,3,4,5), value = seq(0,400,by=100))
-table2 <- data.frame(id = c(1,3,4), category = c("low","medium","high"))
+table1 <- data.frame(id = c(1,2,3,4,5), height = seq(0,400,by=100), 
+                     weight = runif(5,30,50), 
+                     x = c(-73,-73,-74,-75,-72), y = c(46,47,47,48,44))
+table2 <- data.frame(id = c(1,3,4), category = c("low","medium","medium-high"))
 table1
 table2
 ```
 
-We can use the field that is common between the two, `id` in this case, to merge (i.e. "join") the two tables togehter.  Databases, and by extension `dplyr`, have many ways to do these joins.  We are only going to talk about one, the left join.  A left join allows you to join two tables and the result is a table that has all of the records from the first table (i.e. the "left" one) and only the matching records from the second (i.e. the "right" one).  Let's look at how we can use the `dplyr` function, `left_join` to do this in R.
+We can use the field that is common between the two, `id` in this case, to merge (i.e. "join") the two tables together.  Databases, and by extension `dplyr`, have many ways to do these joins.  We are only going to talk about one, the left join.  A left join allows you to join two tables and the result is a table that has all of the records from the first table (i.e. the "left" one) and only the matching records from the second (i.e. the "right" one).  Let's look at how we can use the `dplyr` function, `left_join` to do this in R.
 
 ```{r}
 table_1_2 <- left_join(table1, table2)
@@ -114,5 +116,29 @@ table_2_1
 
 ## Long to wide format
 
-## Excercise 2
+Lastly, we are going to show how to do some pretty amazing data manipulation using thy `tidyr` package.  One of the primary goals of `tidyr` is to facilitate converting data from a long format (a.k.a. "narrow", database style) to a wide or spreadsheet kind of format.  If you are well versed in spreadsheets this is similar to restructuring a worksheet using pivot tables.
+
+Let's look back at our example from above, specifically `table_1_2`.  This would be an example of a wide formatted data set.  We can use this to show the two workhorse functions in `tidyr`, `gather` and `spread`.
+
+If we want to take this dataset and convert into a long format we use `gather` (as in we gather up selected columns and place them into two output columns as a key:value pair).
+
+```{r}
+library(tidyr)
+table_1_2_long <- gather(table_1_2, variable, value, 2:6)
+table_1_2_long
+```
+
+Now to go the other direction, we use `spread` (as in spread out the key:value pairs in two columns into a bunch of new columns named by the key).
+
+```{r}
+table_1_2_wide <- spread(table_1_2_long, variable, value)
+table_1_2_wide
+```
+
+## Exercise 2
+For the last exercise of the data manipulation lesson we will join our two NCCA tables together and convert them using `tidyr`.
+
+1. The `nca_wc_subset` data frame is in a long format (hint: look at PARAMETER and RESULT).  Convert this data frame into `nca_wc_wide` using `gather`.
+
+2. Create a new data frame, named `ncca`, that is a combination of the the sites and water chemistry data that has only the rows we filtered our for the Northeast (hint: `left_join` and proper order).
 
