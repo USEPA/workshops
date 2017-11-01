@@ -42,6 +42,13 @@ dplyr_sel<-select(iris,Sepal.Length,Petal.Length,Species)
 #That's it.  Select one or many columns
 #Now select some, like before
 dplyr_big_iris<-filter(iris, Petal.Length>=6)
+```
+
+```
+## Warning: package 'bindrcpp' was built under R version 3.4.1
+```
+
+```r
 head(dplyr_big_iris)
 ```
 
@@ -160,6 +167,80 @@ This exercise is going to focus on using what we just covered on `dplyr` to star
 5. From `nca_sites` we want to both select columns and filter out some observations. The output data frame should be called `nca_sites_subset`.  Use `select` to select out: SITE_ID, DATE_COL, STATE, VISIT_NO, WTBDY_NM, PROVINCE, STATION_DEPTH, ALAT_DD, and ALON_DD.  Now use `filter` to get VISIT_NO equal to 1 and NCCR_REG equal to "Northeast".
 
 ## Joins
+
+Now that we have two data frames pulled in and have cleaned them up a bit, we might want to look at ways to combine the information that is in both.  We can do this by "joining" the two together.  The general concept of joins stems from relational databases where you have multiple database tables that share a common field or fields.
+
+Let's create some examples to look at.
+
+
+```r
+table1 <- data.frame(id = c(1,2,3,4,5), value = seq(0,400,by=100))
+table2 <- data.frame(id = c(1,3,4), category = c("low","medium","high"))
+table1
+```
+
+```
+##   id value
+## 1  1     0
+## 2  2   100
+## 3  3   200
+## 4  4   300
+## 5  5   400
+```
+
+```r
+table2
+```
+
+```
+##   id category
+## 1  1      low
+## 2  3   medium
+## 3  4     high
+```
+
+We can use the field that is common between the two, `id` in this case, to merge (i.e. "join") the two tables togehter.  Databases, and by extension `dplyr`, have many ways to do these joins.  We are only going to talk about one, the left join.  A left join allows you to join two tables and the result is a table that has all of the records from the first table (i.e. the "left" one) and only the matching records from the second (i.e. the "right" one).  Let's look at how we can use the `dplyr` function, `left_join` to do this in R.
+
+
+```r
+table_1_2 <- left_join(table1, table2)
+```
+
+```
+## Joining, by = "id"
+```
+
+```r
+table_2_1 <- left_join(table2, table1)
+```
+
+```
+## Joining, by = "id"
+```
+
+```r
+table_1_2
+```
+
+```
+##   id value category
+## 1  1     0      low
+## 2  2   100     <NA>
+## 3  3   200   medium
+## 4  4   300     high
+## 5  5   400     <NA>
+```
+
+```r
+table_2_1
+```
+
+```
+##   id category value
+## 1  1      low     0
+## 2  3   medium   200
+## 3  4     high   300
+```
 
 ## Long to wide format
 

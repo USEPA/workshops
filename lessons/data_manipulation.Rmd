@@ -92,6 +92,26 @@ This exercise is going to focus on using what we just covered on `dplyr` to star
 
 ## Joins
 
+Now that we have two data frames pulled in and have cleaned them up a bit, we might want to look at ways to combine the information that is in both.  We can do this by "joining" the two together.  The general concept of joins stems from relational databases where you have multiple database tables that share a common field or fields.
+
+Let's create some examples to look at.
+
+```{r}
+table1 <- data.frame(id = c(1,2,3,4,5), value = seq(0,400,by=100))
+table2 <- data.frame(id = c(1,3,4), category = c("low","medium","high"))
+table1
+table2
+```
+
+We can use the field that is common between the two, `id` in this case, to merge (i.e. "join") the two tables togehter.  Databases, and by extension `dplyr`, have many ways to do these joins.  We are only going to talk about one, the left join.  A left join allows you to join two tables and the result is a table that has all of the records from the first table (i.e. the "left" one) and only the matching records from the second (i.e. the "right" one).  Let's look at how we can use the `dplyr` function, `left_join` to do this in R.
+
+```{r}
+table_1_2 <- left_join(table1, table2)
+table_2_1 <- left_join(table2, table1)
+table_1_2
+table_2_1
+```
+
 ## Long to wide format
 
 ## Excercise 2
