@@ -7,8 +7,10 @@ opts_chunk$set(tidy=T)
 
 # Spatial/GIS Analysis with R
 
+Given the size of this topic and limited time we have to spend on it this introduction of Spatial and GIS analyses with R is going to focus on one type of spatial data, vector, and one class of spatail data structures in r, simple features.
+
 ## Lesson Outline
-- [Required spatial packages](#required-spatial-packages)
+- [Required packages](#required-spatial-packages)
 - [Read in spatial data](#read-in-spatial-data)
 - [Spatial data manipulation](#spatial-data-manipulation)
 - [Projections](#projections)
@@ -20,7 +22,7 @@ opts_chunk$set(tidy=T)
 - [Exercise 2](#exercise-2)
 - [Exercise 3](#exercise-3)
 
-## Required spatial packages
+## Required packages
 
 ## Read in spatial data
 

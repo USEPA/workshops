@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<origin>Rhode Island Dept. of Transportation, MIS/GIS Section, Two Capital Hill, Providence, R.I.  02908-5872</origin>
+<pubdate>201606</pubdate>
+<title>Municipal Boundaries (1997); muni97d</title>
+<geoform>vector digital data</geoform>
+<pubinfo>
+<pubplace>Providence, Rhode Island</pubplace>
+<publish>RIGIS</publish>
+</pubinfo>
+<othercit>Suggested bibliographic reference: RIGIS, 2016. Municipal Boundaries (1997); muni97d. Rhode Island Geographic Information System (RIGIS) Data Distribution System, URL: http://www.rigis.org, Environmental Data Center, University of Rhode Island, Kingston, Rhode Island (last date accessed: 10 June 2016).</othercit>
+<onlink>http://www.rigis.org</onlink>
+<lworkcit>
+<citeinfo>
+<origin>Rhode Island Geographic Information System (RIGIS) Data Distribution System</origin>
+<pubdate>1993</pubdate>
+<title>Rhode Island Geographic Information System (RIGIS)</title>
+<onlink>http://www.rigis.org</onlink>
+</citeinfo>
+</lworkcit>
+</citeinfo>
+</citation>
+<descript>
+<abstract>Political boundary lines for Rhode Island municipalities with city and town feature attributes and name annotation including physical shoreline features for bay and coastal waters including islands and coastal ponds, State, county, city, and town boundaries</abstract>
+<purpose>General mapping, graphic display and GIS analysis of Rhode Island state boundaries, including state, county, city, town, and coastal boundaries</purpose>
+<supplinf>Combined RIDOT state, county,  city and town lines with Intermap Technologies 5k coastal boundaries.  Internal terrestrial town boundaries are USGS 24:000 scale topo map boundaries modified for RIGIS 1:5000 road centerlines where defined as town boundaries.</supplinf>
+</descript>
+<timeperd>
+<timeinfo>
+<sngdate>
+<caldate>2001</caldate>
+</sngdate>
+</timeinfo>
+<current>publication date</current>
+</timeperd>
+<status>
+<progress>Complete</progress>
+<update>As needed</update>
+</status>
+<spdom>
+<bounding>
+<westbc>-71.896602</westbc>
+<eastbc>-71.117438</eastbc>
+<northbc>42.018935</northbc>
+<southbc>41.145927</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>ISO 19115 Topic Category</themekt>
+<themekey>boundaries</themekey>
+</theme>
+<theme>
+<themekt>None</themekt>
+<themekey>Town</themekey>
+<themekey>Boundaries,</themekey>
+<themekey>Coastline,</themekey>
+<themekey>Rhode Island</themekey>
+</theme>
+<place>
+<placekt>GNIS</placekt>
+<placekey>United States</placekey>
+<placekey>Rhode Island</placekey>
+<placekey>northeast</placekey>
+<placekey>New England</placekey>
+</place>
+</keywords>
+<accconst>None.</accconst>
+<useconst>This dataset is provided 'as is.’  The producer(s) of this dataset, contributors to this dataset, the Rhode Island Geographic Information System (RIGIS) consortium, the State of Rhode Island, and the University of Rhode Island do not make any warranties of any kind for this dataset, and are not liable for any loss or damage however and whenever caused by any use of this dataset. Please acknowledge both RIGIS and the primary producer(s) of this dataset in any derived products.  Versions of the RIGIS logo suitable for both printed and web-based products are available at http://www.rigis.org/logos.</useconst>
+<ptcontac>
+<cntinfo>
+<cntorgp>
+<cntorg>Rhode Island Department of Transportation</cntorg>
+<cntper>Stephen Kut</cntper>
+</cntorgp>
+<cntaddr>
+<addrtype>mailing address</addrtype>
+<address>Two Capitol Hill, Room 330B</address>
+<city>Providence</city>
+<state>Rhode Island</state>
+<postal>02903</postal>
+</cntaddr>
+<cntvoice>401-222-6935, Ext. 4485</cntvoice>
+<cntemail>stephen.kut@dot.ri.gov</cntemail>
+</cntinfo>
+</ptcontac>
+<datacred>Rhode Island Dept. of Transportation, MIS/GIS Section, Two Capital Hill, Providence, R.I.  02908-5872</datacred>
+</idinfo>
+<dataqual>
+<attracc>
+<attraccr>Shoreline boundary consistent with 1:5000 orthophotography Political boundary lines from USGS 7.5 minute quad. map series</attraccr>
+</attracc>
+<logic>Topologically complete ArcInfo Polygon Coverage</logic>
+<complete>Shoreline boundary consistent with 1:5000 orthophotography Political boundary lines from USGS 7.5 minute quad. map series</complete>
+<posacc>
+<horizpa>
+<horizpar>Shoreline to national mapping standards for 1:5000 Orhtophotography plus or minus 10-17 feet</horizpar>
+</horizpa>
+</posacc>
+<lineage>
+<srcinfo>
+<srccite>
+<citeinfo>
+<origin>USGS</origin>
+<origin>RIGIS</origin>
+<pubdate>198907</pubdate>
+<title>Municipal Boundaries (1989); muni89</title>
+<geoform>vector digital data</geoform>
+<pubinfo>
+<pubplace>Providence, Rhode Island</pubplace>
+<publish>RIGIS</publish>
+</pubinfo>
+<othercit>
+USGS has contributed these data into the Rhode Island Geographic Information System Database
+Suggested bibliographic reference: RIGIS, 1989. Municipal Boundaries (1989); muni89. Rhode Island Geographic Information System (RIGIS) Data Distribution System, URL: http://www.edc.uri.edu/rigis, Environmental Data Center, University of Rhode Island, Kingston, Rhode Island (last date accessed: 16 July 2015).
+</othercit>
+<onlink>http://www.edc.uri.edu/rigis</onlink>
+<lworkcit>
+<citeinfo>
+<origin>Rhode Island Geographic Information System (RIGIS) Data Distribution System</origin>
+<pubdate>1993</pubdate>
+<title>Rhode Island Geographic Information System (RIGIS)</title>
+<onlink>http://www.edc.uri.edu/rigis</onlink>
+</citeinfo>
+</lworkcit>
+</citeinfo>
+</srccite>
+<srcscale>24000</srcscale>
+<typesrc>digital file</typesrc>
+<srctime>
+<timeinfo>
+<sngdate>
+<caldate>198908</caldate>
+</sngdate>
+</timeinfo>
+<srccurr>publication date</srccurr>
+</srctime>
+<srccitea>muni89</srccitea>
+<srccontr>spatial features and attribute data</srccontr>
+</srcinfo>
+<srcinfo>
+<srccite>
+<citeinfo>
+<origin>Rhode Island Dept. of Transportation</origin>
+<pubdate>unknown</pubdate>
+<title>1:5,000 RIDOT Roads</title>
+<edition>unknown</edition>
+<geoform>vector digital data</geoform>
+<serinfo>
+<sername>RIDOT road center lines from 1:5000' orthophotos and GPS.</sername>
+</serinfo>
+<pubinfo>
+<pubplace>Providence, Rhode Island</pubplace>
+<publish>Rhode Island Dept. of Transportation</publish>
+</pubinfo>
+</citeinfo>
+</srccite>
+<srcscale>5000</srcscale>
+<typesrc>digital file</typesrc>
+<srccitea>RIDOT roads</srccitea>
+<srccontr>spatial features</srccontr>
+</srcinfo>
+<srcinfo>
+<srccite>
+<citeinfo>
+<origin>Intermap Corporation</origin>
+<origin>National Grid USA</origin>
+<origin>Rhode Island Department of Transportation</origin>
+<pubdate>1998</pubdate>
+<title>1997 Digital Orthophotographs</title>
+<geoform>raster digital data</geoform>
+<pubinfo>
+<pubplace>Providence, RI</pubplace>
+<publish>Rhode Island Department of Transportation</publish>
+</pubinfo>
+<othercit>
+Suggested bibliographic reference:
+RIGIS, 1998.  1997 Digital Orthophotographs.  Rhode Island Geographic Information System (RIGIS) Data Distribution System, URL: http://www.edc.uri.edu/rigis, Environmental Data Center, University of Rhode Island, Kingston, Rhode Island (last date accessed: 17 December 2010).
+</othercit>
+<onlink>http://www.edc.uri.edu/rigis</onlink>
+<lworkcit>
+<citeinfo>
+<origin>Rhode Island Geographic Information System (RIGIS)</origin>
+<pubdate>1993</pubdate>
+<title>Rhode Island Geographic Information System (RIGIS) Data Distribution System</title>
+<onlink>http://www.edc.uri.edu/rigis</onlink>
+</citeinfo>
+</lworkcit>
+</citeinfo>
+</srccite>
+<typesrc>digital files</typesrc>
+<srctime>
+<timeinfo>
+<sngdate>
+<caldate>199704</caldate>
+</sngdate>
+</timeinfo>
+<srccurr>ground condition</srccurr>
+</srctime>
+<srccitea>1997 orthos</srccitea>
+<srccontr>Primary source for updated coastline representation.</srccontr>
+</srcinfo>
+<procstep>
+<procdesc>Combined RIDOT state, county,  city and town lines with Intermap Technologies 5k coastal boundaries.  Internal terrestrial town boundaries are USGS 24:000 scale topo map boundaries - identical to those represented in the "Municipal Boundaries (1989) dataset (also available from RIGIS), with the exception of shared internal town boundaries that were updated to align with the RIGIS 1:5000 road centerlines as appropriate.</procdesc>
+<srcused>muni89</srcused>
+<srcused>RIDOT roads</srcused>
+<srcused>1997 orthos</srcused>
+<procdate>2001</procdate>
+<proccont>
+<cntinfo>
+<cntorgp>
+<cntorg>Rhode Island Department of Transportation</cntorg>
+<cntper>Stephen Kut</cntper>
+</cntorgp>
+<cntaddr>
+<addrtype>mailing address</addrtype>
+<address>Two Capitol Hill, Room 330B</address>
+<city>Providence</city>
+<state>Rhode Island</state>
+<postal>02903</postal>
+</cntaddr>
+<cntvoice>401-222-6935, Ext. 4485</cntvoice>
+<cntemail>stephen.kut@dot.ri.gov</cntemail>
+</cntinfo>
+</proccont>
+</procstep>
+<procstep>
+<procdesc>Renamed dataset from "State, Coastline, Town Boundaries" to "Municipal Boundaries (1997); muni97."  Re-titled RIGIS shapefile download from "ritown5k_shp" to "muni97."  Updated metadata title, suggested citation, access and use constraints, spatial reference information, distribution information, and metadata information.  Added a new process step that represents an overview of how this dataset is believed to have been initially developed by RIDOT.</procdesc>
+<procdate>20150723</procdate>
+<proccont>
+<cntinfo>
+<cntorgp>
+<cntorg>Environmental Data Center, University of Rhode Island</cntorg>
+<cntper>Greg Bonynge</cntper>
+</cntorgp>
+<cntpos>Geospatial Extension Specialist</cntpos>
+<cntaddr>
+<addrtype>mailing and physical</addrtype>
+<address>1 Greenhouse Road</address>
+<city>Kingston</city>
+<state>Rhode Island</state>
+<postal>02881</postal>
+<country>US</country>
+</cntaddr>
+<cntvoice>401-874-2180</cntvoice>
+<cntemail>greg@edc.uri.edu</cntemail>
+<cntinst>email preferred</cntinst>
+</cntinfo>
+</proccont>
+</procstep>
+<procstep>
+<procdesc>Fixed OSP code for East Greenwich from OSP=10 to OSP=9. Out of the two East Greenwich polygons, the OSP code was different for both (one had a code of 9, while the other had a code of 10). The OSP-10 corresponds to East Providence.</procdesc>
+<procdate>20151005</procdate>
+<proccont>
+<cntinfo>
+<cntorgp>
+<cntorg>University of Rhode Island Environmental Data Center</cntorg>
+<cntper>Erica Tefft</cntper>
+</cntorgp>
+<cntaddr>
+<addrtype>mailing and physical</addrtype>
+<address>1 Greenhouse Road</address>
+<city>Kingston</city>
+<state>RI</state>
+<postal>02881</postal>
+</cntaddr>
+<cntvoice>401-874-5054</cntvoice>
+<cntemail>erica@edc.uri.edu</cntemail>
+<cntinst>email preferred</cntinst>
+</cntinfo>
+</proccont>
+</procstep>
+<procstep>
+<procdesc>
+It was brought to our attention that there were 7 polygons that had no attribute information and did not belong to a town. FID 56 was determined to be part of Warren (based on emails with Town Planner and Harbor Master); appropriate attribute information was added. FID 333, 335 &amp; 342 were deleted as they all represented water areas. FID 327 &amp; 341 were determined to be part of South Kingstown and appropriate attribute information was added. FID 411 was deleted as it was determine to be a part of Stonnington, CT. Those changes resolved the 7 "un-named" polygons. The following were also deleted as they represented polygons of digitized water areas; since most coastal ponds and rivers were digitized to the shoreline (and excluded the water area), these were deleted for consistency throughout the state's coastline - FID 397, 342, 356, 310, 339, 133, 128, 66, 21, 16, &amp; 10. 
+The metadata was updated to reflect these changes; other minor metadata updates were made.
+</procdesc>
+<procdate>20160412</procdate>
+<proccont>
+<cntinfo>
+<cntorgp>
+<cntorg>University of Rhode Island Environmental Data Center</cntorg>
+<cntper>Erica Tefft</cntper>
+</cntorgp>
+<cntaddr>
+<addrtype>mailing and physical</addrtype>
+<address>1 Greenhouse Road</address>
+<city>Kingston</city>
+<state>RI</state>
+<postal>02881</postal>
+</cntaddr>
+<cntvoice>401-874-5054</cntvoice>
+<cntemail>erica@edc.uri.edu</cntemail>
+<cntinst>email preferred</cntinst>
+</cntinfo>
+</proccont>
+</procstep>
+<procstep>
+<procdesc>
+The following edits were made: 
+1) Remaining water polygons were removed - FIDs: 14, 18, 21, 23, 24, 26, 34, 97, 104, 328, 356, 380, and 399.
+2) Gould Island (FID 78) was incorrectly categorized as Tiverton; this was switched to Portsmouth, and all muni-related attribute values were corrected. The proper Gould Island designation was received from Gary Crosby (gcrosby@portsmouthri.com) in the form of a parcel record of ownership. 
+3) Edited FID 12 (East Providence) to extend boundary to include missing land along the shoreline. Recalculated area and perimeter values.
+4) Created new feature, FID 395, to cover portion of Bold Point belonging to Providence. Calculated area and perimeter values. 
+5) Created two new features, FID 393 and FID 394, to cover the "Twin Islands" (Gingerbread Island and Pancake Island) and coded both with muni values for Providence. Calculated area and perimeter values for both.
+</procdesc>
+<procdate>20160609</procdate>
+<proccont>
+<cntinfo>
+<cntorgp>
+<cntorg>Division of Planning, Department of Administration</cntorg>
+<cntper>Christina Delage Baza</cntper>
+</cntorgp>
+<cntaddr>
+<addrtype>mailing and physical</addrtype>
+<address>1 Capitol Hill</address>
+<city>Providence</city>
+<state>RI</state>
+<postal>02908</postal>
+</cntaddr>
+<cntvoice>401-222-6481</cntvoice>
+<cntfax>401-222-6482</cntfax>
+<cntemail>Christina.DelageBaza@doa.ri.gov</cntemail>
+<cntinst>email preferred</cntinst>
+</cntinfo>
+</proccont>
+</procstep>
+</lineage>
+</dataqual>
+<spdoinfo>
+<direct>Vector</direct>
+<ptvctinf>
+<sdtsterm>
+<sdtstype>G-polygon</sdtstype>
+<ptvctcnt>396</ptvctcnt>
+</sdtsterm>
+</ptvctinf>
+</spdoinfo>
+<spref>
+<horizsys>
+<planar>
+<mapproj>
+<mapprojn>NAD 1983 StatePlane Rhode Island FIPS 3800 Feet</mapprojn>
+<transmer>
+<sfctrmer>0.99999375</sfctrmer>
+<longcm>-71.5</longcm>
+<latprjo>41.08333333333334</latprjo>
+<feast>328083.3333333333</feast>
+<fnorth>0.0</fnorth>
+</transmer>
+</mapproj>
+<planci>
+<plance>coordinate pair</plance>
+<coordrep>
+<absres>0.000000007286382608384659</absres>
+<ordres>0.000000007286382608384659</ordres>
+</coordrep>
+<plandu>foot_us</plandu>
+</planci>
+</planar>
+<geodetic>
+<horizdn>D North American 1983</horizdn>
+<ellips>GRS 1980</ellips>
+<semiaxis>6378137.0</semiaxis>
+<denflat>298.257222101</denflat>
+</geodetic>
+</horizsys>
+</spref>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>Municipal Boundaries (1997), version D; muni97d</enttypl>
+</enttyp>
+<attr>
+<attrlabl>Shape</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Coordinates defining the features.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>OBJECTID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>NAME</attrlabl>
+<attrdef>Name of City or Town</attrdef>
+<attrdefs>RIGIS</attrdefs>
+<attrdomv>
+<udom>Free text field.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>MCD</attrlabl>
+<attrdef>US Census major civil division</attrdef>
+<attrdefs>US Census</attrdefs>
+<attrdomv>
+<rdom>
+<rdommin>0</rdommin>
+<rdommax>80</rdommax>
+</rdom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>CFIPS</attrlabl>
+<attrdef>County federal info processing system</attrdef>
+<attrdefs>US Census</attrdefs>
+<attrdomv>
+<rdom>
+<rdommin>0</rdommin>
+<rdommax>10</rdommax>
+</rdom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>COUNTY</attrlabl>
+<attrdef>County Name</attrdef>
+<attrdefs>RIGIS</attrdefs>
+<attrdomv>
+<udom>Free text field.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>OSP</attrlabl>
+<attrdef>Numeric city town identifier</attrdef>
+<attrdefs>RI Statewide Planning</attrdefs>
+<attrdomv>
+<rdom>
+<rdommin>1</rdommin>
+<rdommax>39</rdommax>
+</rdom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>CFIPS_MCD</attrlabl>
+<attrdef>county and city-town code</attrdef>
+<attrdefs>US Census</attrdefs>
+<attrdomv>
+<rdom>
+<rdommin>0</rdommin>
+<rdommax>9040</rdommax>
+</rdom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>TWNCODE</attrlabl>
+<attrdef>Alpha Town Code</attrdef>
+<attrdefs>RIGIS</attrdefs>
+<attrdomv>
+<udom>Free text field (note that twncode appears to correlate with name field)</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>LAND</attrlabl>
+<attrdef>Indicates whether or not the feature represents land or a closed coastal water body, such as a salt pond.</attrdef>
+<attrdefs>unknown</attrdefs>
+<attrdomv>
+<edom>
+<edomv>N</edomv>
+<edomvd>not land</edomvd>
+<edomvds>unknown</edomvds>
+</edom>
+<edom>
+<edomv>Y</edomv>
+<edomvd>represents land</edomvd>
+<edomvds>unknown</edomvds>
+</edom>
+</attrdomv>
+</attr>
+</detailed>
+</eainfo>
+<distinfo>
+<distrib>
+<cntinfo>
+<cntorgp>
+<cntorg>University of Rhode Island Environmental Data Center</cntorg>
+<cntper>Erica Tefft</cntper>
+</cntorgp>
+<cntaddr>
+<addrtype>mailing and physical</addrtype>
+<address>1 Greenhouse Road</address>
+<city>Kingston</city>
+<state>RI</state>
+<postal>02881</postal>
+</cntaddr>
+<cntvoice>401-874-5054</cntvoice>
+<cntemail>erica@edc.uri.edu</cntemail>
+<cntinst>email preferred</cntinst>
+</cntinfo>
+</distrib>
+<distliab>This dataset is provided 'as is.'  The producer(s) of this dataset, contributors to this dataset, the Rhode Island Geographic Information System (RIGIS) consortium, the State of Rhode Island, and the University of Rhode Island do not make any warranties of any kind for this dataset, and are not liable for any loss or damage however and whenever caused by any use of this dataset.</distliab>
+<stdorder>
+<digform>
+<digtinfo>
+<formname>Esri shapefile</formname>
+<filedec>ZIP</filedec>
+</digtinfo>
+<digtopt>
+<onlinopt>
+<computer>
+<networka>
+<networkr>http://www.rigis.org</networkr>
+</networka>
+</computer>
+</onlinopt>
+</digtopt>
+</digform>
+<fees>No fee for downloading directly from the RIGIS Data Distribution System located at http://www.edc.uri.edu/rigis.</fees>
+</stdorder>
+</distinfo>
+<metainfo>
+<metd>20070628</metd>
+<metrd>20160610</metrd>
+<metc>
+<cntinfo>
+<cntorgp>
+<cntorg>Rhode Island Department of Transportation</cntorg>
+<cntper>Stephen Kut</cntper>
+</cntorgp>
+<cntaddr>
+<addrtype>mailing address</addrtype>
+<address>Two Capitol Hill, Room 330B</address>
+<city>Providence</city>
+<state>Rhode Island</state>
+<postal>02903</postal>
+</cntaddr>
+<cntvoice>401-222-6935, Ext. 4485</cntvoice>
+<cntemail>stephen.kut@dot.ri.gov</cntemail>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standards for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+</metainfo>
+</metadata>
