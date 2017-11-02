@@ -38,23 +38,23 @@ library("sf")
 
 ## Read in spatial data 
 
-For this workshop, I have collected a couple of example datasets to use and have included them in this repository.  So, let's first grab the dataset.  It is stored as a zip file.  You can download it [directly from this link](https://usepa.github.io/cerf_r/data.zip), but most of you should have done this prior to the workshop.  Let's find this file and unzip it into our project.  We can do this via our trusty point and click methods or we can use R.
+For this workshop, I have collected a couple of example datasets to use and have included them in this repository.  So, let's first grab the dataset.  It is stored as a zip file.  You can download it [directly from this link](https://usepa.github.io/cerf_r/data.zip), but most of you should have done this prior to the workshop.  Let's find this file and unzip it into our project.  We can do this via our trusty point and click methods or we can use R. The code below assumes the data is in my Downloads folder and that I am in the correct working directory in R.
 
 ```{r}
-unzip("C:/Users/JHollist/Downloads/data.zip",)
+unzip("C:/Users/JHollist/Downloads/data.zip", overwrite = TRUE)
 ```
 
 
-For many, shapefiles are going to be the most common way to interact with spatial data.  With `sf`, reading in in shapefiles is straightforward via the `st_read()` function.
+For many, shapefiles are going to be the most common way to interact with spatial data.  Thus, our efforts today will look just at working with a shapefile.  With `sf`, reading in in shapefiles is straightforward via the `st_read()` function.
 
 ```{r read_shp}
-dc_metro <- st_read(here("data/Metro_Lines.shp"))
+ri_towns <- st_read("data/muni97d.shp")
 ```
 
 We will get more into working with `sf` object and visualizing spatial data later, but just to prove that this did something:
 
-```{r metro_chk}
-dc_metro
+```{r towns_chk}
+ri_towns
 plot(dc_metro)
 ```
 
