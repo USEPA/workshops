@@ -121,10 +121,11 @@ $(document).ready(function () {
 
 <div id="spatialgis-analysis-with-r" class="section level1">
 <h1>Spatial/GIS Analysis with R</h1>
+<p>Given the size of this topic and limited time we have to spend on it this introduction of Spatial and GIS analyses with R is going to focus on one type of spatial data, vector, and one class of spatial data structures in r, simple features.</p>
 <div id="lesson-outline" class="section level2">
 <h2>Lesson Outline</h2>
 <ul>
-<li><a href="#required-spatial-packages">Required spatial packages</a></li>
+<li><a href="#required-spatial-packages">Required packages</a></li>
 <li><a href="#read-in-spatial-data">Read in spatial data</a></li>
 <li><a href="#spatial-data-manipulation">Spatial data manipulation</a></li>
 <li><a href="#projections">Projections</a></li>
@@ -140,8 +141,16 @@ $(document).ready(function () {
 <li><a href="#exercise-3">Exercise 3</a></li>
 </ul>
 </div>
-<div id="required-spatial-packages" class="section level2">
-<h2>Required spatial packages</h2>
+<div id="required-packages" class="section level2">
+<h2>Required packages</h2>
+<p>Since the late 2000’s there has been a rapid increase in the spatial data handling and analysis capability of R. The <code>rgdal</code>, <code>rgeos</code>, <code>raster</code>, and <code>sp</code> packages (through the very significant effort of the package authors) provided the foundation for doing GIS entirely within R. More recently a new route for handling vector data has emerged in the <a href="https://cran.r-project.org/package=sf"><code>sf</code> package</a>. Most current development for vector processing is focusing on <code>sf</code>. As such, this workshop will as well. Raster data is still dealt with via <a href="https://cran.r-project.org/package=raster"><code>raster</code></a>. As mentioned, in this workshop we will only be focusing on a single class of data: vector data as represented by simple features. Thus, we only need a single package.</p>
+<div id="sf" class="section level3">
+<h3>sf</h3>
+<p>The <a href="http://r-spatial.github.io/sf/"><code>sf</code> package</a> provides vector data handling via the Simple Features standard, an Open Geospatial Consortium and International Standards Organization standard for spatial data. In addition, <code>sf</code> provides a tidy spatial data format that allows for manipulation with the popular <code>dplyr</code> package.</p>
+<p>Getting <code>sf</code> added is no different than adding any other package that is on CRAN.</p>
+<pre class="r"><code>install.packages(&quot;sf&quot;)
+library(&quot;sf&quot;)</code></pre>
+</div>
 </div>
 <div id="read-in-spatial-data" class="section level2">
 <h2>Read in spatial data</h2>
