@@ -38,7 +38,27 @@ library("sf")
 
 ## Read in spatial data 
 
+For this workshop, I have collected a couple of example datasets to use and have included them in this repository.  So, let's first grab the dataset.  It is stored as a zip file.  You can download it [directly from this link](https://usepa.github.io/cerf_r/data.zip), but most of you should have done this prior to the workshop.  Let's find this file and unzip it into our project.  We can do this via our trusty point and click methods or we can use R.
 
+```{r}
+unzip("C:/Users/JHollist/Downloads/data.zip",)
+```
+
+
+For many, shapefiles are going to be the most common way to interact with spatial data.  With `sf`, reading in in shapefiles is straightforward via the `st_read()` function.
+
+```{r read_shp}
+dc_metro <- st_read(here("data/Metro_Lines.shp"))
+```
+
+We will get more into working with `sf` object and visualizing spatial data later, but just to prove that this did something:
+
+```{r metro_chk}
+dc_metro
+plot(dc_metro)
+```
+
+The spatial data types that `sf` recognizes follow the general concept of points, lines and polygons.  You can see for this that the Metro Lines are read in as a MUTLILINESTRING.  Details on these are beyond what we can cover in this short workshop, but the `sf` documentation does a good job, in particular the [Simple Features in R vignette](https://r-spatial.github.io/sf/articles/sf1.html).
 
 ## Exercise 1
 
