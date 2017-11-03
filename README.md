@@ -1,6 +1,14 @@
 # cerf_r
 
-This repository contains materials for the R workshops to be held on Sunday, Nov 5 at the 2017 CERF meeting in Providence, RI.  
+This repository contains materials for the R workshops to be held on Sunday, Nov 5 at the 2017 CERF meeting in Providence, RI.  We will be meeting in room 553AB, fifth floor of the Rhode Island Convention Center.
+
+# Instructors and Helpers
+
+- Marcus Beck, Southern California Coastal Water Research Project
+- Jeff Hollister, US EPA, Atlantic Ecology Division
+- Jim Hagy, US EPA, Gulf Ecology Division
+- Stephen Shivers, ORISE at US EPA, Atlantic Ecology Division
+- Q Kellogg, URI, Coastal Institute
 
 # Schedule
 

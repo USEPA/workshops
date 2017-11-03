@@ -15,7 +15,6 @@ Given the size of this topic and limited time we have to spend on it this introd
 - [Spatial data manipulation](#spatial-data-manipulation)
 - [Projections](#projections)
 - [Spatial data visualization](#spatial-data-visualization)
-- [Example spatial workflow](#example-spatial-workflow)
 
 ## Lesson Exercises
 - [Exercise 1](#exercise-1)
@@ -80,7 +79,7 @@ We've already seen how to use the default print statements to look at the basics
 ri_towns
 ```
 
-We can get more info on the data with are usuall data frame tools:
+We can get more info on the data with the usual data frame tools:
 
 ```{r}
 head(ri_towns)
@@ -99,10 +98,18 @@ library(dplyr)
 # Let's get just South Kingstown and clean up the attributes a bit.
 sk_town <- ri_towns %>%
   filter(NAME == "SOUTH KINGSTOWN") %>%
-  select(NAME,COUNTY)
+  select(NAME,COUNTY, AREA)
 plot(st_geometry(sk_town))
 ```
 
+Now that we have the polygons (there are `r nrow(sk_town)`) for the town pulled out we can work with these poly's.  One thing you might want to do is have this represented a single MULTIPOLYGON.  We can use dplyr to do this.  
+
+```{r}
+sk_town <- sk_town %>%
+  group_by(NAME) %>%
+  summarize(total_area_sqmi = sum(AREA)/27878400)
+sk_town
+```
 
 ## Projections
 
@@ -138,8 +145,62 @@ plot(st_geometry(sk_town_alb))
 
 ## Spatial data visualization
 
+We have already seen out we can plot using the base plotting function (i.e. `plot()`), but those are pretty limited.  If we want to move beyond those to make more polished maps or interact with the data we need to use additional packages.
+
+First, lets look at how we would make a very simple map using `ggplot2`. For example, this figure was created solely with `ggplot2`.
+
+![](figure/gis_probability_map-1.jpeg)
+
+Currently, the mapping of `sf` objects with `ggplot2` is only available from the latest version on GitHub.  It should be moving to CRAN in the near future, but for now we can use `devtools` (you will need to intall this with `install.packages("devtools")`).
+
+With devtools we can install the GitHub version of `ggplot2` like this:
+
+```{r eval=FALSE}
+devtools::install_github("tidyverse/ggplot2")
+```
+
+With the bleeding edge version of `ggplot2` we can plot `sf` objects directly.
+
+```{r}
+library(ggplot2)
+ri_towns_gg <- ggplot(ri_towns) + 
+  geom_sf() +
+  geom_sf(data=sk_town, fill="darkolivegreen2")
+ri_towns_gg
+```
+
+With `ggplot2` we have the ability create any kind of map we can conceive of, but we can't interact with our data. To do that, requires an additional pacakge, `mapview`.
+
+Many of the visualization tasks (e.g. zoom, pan, identify) are implemented (and implemented well) in various javascript libraries.  As such, much of the development in R has been towards packages to access javascript libraries and allow the display of R objects. Our efforts are going to focus on the [`mpaview` package](https://cran.r-project.org/package=mapview) which provides a relatively streamlined way to access the [leaflet javascript library](http://leafletjs.com/) in R.  It uses the `leaflet` package, which  is written and maintained through RStudio.  For more on how to use `leaflet` directly, check out [RStudio's tutorial](https://rstudio.github.io/leaflet/).  For additional tutorials on mapview, see articles on [the r-spatial page.](https://r-spatial.github.io/mapview/index.html) 
+
+Before we build some maps, let's get everything we need installed and loaded.
+
+```{r eval=FALSE}
+install.packages("leaflet")
+install.packages("mapview")
+library(mapview)
+```
+
+Although the maps we can create with `mapview` are really nice, there is one downside.  It is expected that the data are all in unprojected latitude and longitude, so if you have projected data, that will need to be converted back in to geographic coordinates. This happens behind the scenes by `mapview` so it is easy to do, just be aware that your maps will display in the ubiquitous web mercator projection. For most applications this won't be a problem, but if your viz requires accurate shape and size and you are in high lattitudes, you will need to think carefully about the impacts of this.
+
+So lets get started with the bare minimum of `mapview()` 
+
+```{r, eval=FALSE}
+map <- mapview(ri_towns)
+map
+```
+
+The default options from `mapview()` are pretty nice and we won't be going beyond these.  But since this is built off of `leaflet`, in theory most things that leaflet can do, we can use in our mapview maps.  Let's explore the map a bit before we move on.
+
+Now, lets add other layers in and also change their styling.
+
+```{r, eval=FALSE}
+map + sk_town
+```
+
 ## Exercise 3
 
-## Example spatial workflow
+For this exercise, we will create a `mapview` map and if there is time, a `ggplot2` map.
 
-
+1. Create a `mapview` map with the South Kingstown border and the `large_sav`.  Play around with the map to get a feel for the zooming, layer switching, identifying, etc.
+2. Now let's create a `ggplot` map of all the Rhode Island towns and the full `sav`.  Make sure the `sav` is mapped with an appropriate color (i.e. not pink!).  Look at `colors()` for some options. 
