@@ -55,6 +55,25 @@ We will get more into working with `sf` object and visualizing spatial data late
 plot(st_geometry(ri_towns))
 ```
 
+Another common source of spatial data is as a spreadsheet or csv file with x and y coordinates included.  We can convert that type of data to an `sf` object and then have the ability to do all of our normal GISy type operations
+
+For example:
+```{r}
+nca_sites <- read.csv("data/nca_2010_siteinfo.csv") %>% 
+  select(site_id = SITE_ID, station_depth = STATION_DEPTH,
+         x = ALON_DD, y = ALAT_DD)
+tbl_df(nca_sites)
+```
+
+Then we can take this data frame and convert it into a POINTS `sf` object.
+
+```{r}
+nca_sites_sf <- st_as_sf(nca_sites, coords = c("x","y")) %>%
+  st_set_crs("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
+head(nca_sites_sf)
+plot(st_geometry(nca_sites_sf))
+```
+
 The spatial data types that `sf` recognizes follow the general concept of points, lines and polygons.  You can see for this that the Rhode Island  are read in as a POLYGON.  Details on these are beyond what we can cover in this short workshop, but the `sf` documentation does a good job, in particular the [Simple Features in R vignette](https://r-spatial.github.io/sf/articles/sf1.html).
 
 ## Exercise 1
