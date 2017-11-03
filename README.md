@@ -18,12 +18,12 @@ This repository contains materials for the R workshops to be held on Sunday, Nov
 |8:45 AM - 9:30 AM|[Basics of R](lessons/basics.md)|
 |9:30 AM - 10:15 AM|[Data manipulation](lessons/data_manipulation.md)|
 |10:15 AM - 10:30 AM | BREAK |
-|10:30 AM - 11:30 AM|[Data visualization](lessons/data_viz.md)|
+|10:30 AM - 11:30 AM|[Data visualization](https://USEPA.github.com/cerf_r/lessons/data_viz.html)|
 |11:30 AM - 12:30 PM| LUNCH |
 |12:30 PM - 12:40 PM|Welcome and [Set-up](lessons/set_up.md)|
 |12:40 PM - 2:30 PM|[Spatial Analysis using R](lessons/spatial_analysis.md)|
 |2:30 PM - 2:45 PM| BREAK |
-|2:45 PM - 4:30 PM|[Analysis of Time Series data using R](lessons/time_series.md)|
+|2:45 PM - 4:30 PM|[Analysis of Time Series data using R](https://USEPA.github.com/cerf_r/lessons/time_series.html)|
 
 ## EPA Disclaimer
 
