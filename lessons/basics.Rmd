@@ -270,6 +270,6 @@ From here on out I hope to have the exercises will build on each other. For this
 
 1. We will be using a new script for the rest of our exercises.  Create this script in RStudio and name it "nca_analysis.R"
 2. As you write the script, comment as you go. Some good examples are what we used in the first script where we provided some details on each of the exercises. Remember comments are lines that begin with `#` and you can put whatever you like after that.
-3. Add a line to your script that creates two data frames. One named `nca_sites` and the other names `nca_wc`.  These are in the `data` folder you downloaded and we moved earlier.  The `read.csv` function is your friend here and the paths to the two files are `"data/nca_2010_siteinfo.csv"` and `"data/nca_2010_waterchem.csv"`.
+3. Add some lines to your script that creates two data frames. One named `nca_sites` and the other names `nca_wc`.  These are in the `data` folder you downloaded and we moved earlier.  The `read.csv` function is your friend here and the paths to the two files are `"data/nca_2010_siteinfo.csv"` and `"data/nca_2010_waterchem.csv"`.
 5. Now run your script and make sure it doesn't throw any errors and you do in fact get a data frame.
 6. Explore the data frame using some of the functions we covered above (e.g. `head()`,`summary()`, or `str()`).  This part does not need to be included in the script and can be done directly inthe console. It is just a quick QA step to be sure the data read in as expected.
