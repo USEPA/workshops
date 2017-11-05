@@ -58,7 +58,7 @@ Motivation
 * You can make some really cool graphs in R
 
 <div align='center'>
-<img src="data_viz-figure/cool2.jpg" alt="Drawing" style="width: 900px;"/>
+<img src="data_viz-figure/cool2.jpg" alt="Drawing" style="width: 800px;"/>
 </div>
 
 Motivation
@@ -66,7 +66,7 @@ Motivation
 * You can make some really cool graphs in R
 
 <div align='center'>
-<img src="data_viz-figure/cool3.jpg" alt="Drawing" style="width: 700px;"/>
+<img src="data_viz-figure/cool3.jpg" alt="Drawing" style="width: 600px;"/>
 </div>
 
 Motivation
@@ -109,34 +109,15 @@ head(iris)
 Simple plots with base R
 ========================================================
 * The scatterplot can be created with `plot`
-* It can be created with one line... `plot(y ~ x, data)`
-* This literally says... from the data object, plot the variables y (on the y-axis) against x (on the x-axis)
+* It can be created with one line... `plot(x, y)`
+* This literally says... from the data object, plot the variables x (on the x-axis) against y (on the y-axis)
 ```{r, fig.width = 6, fig.height = 4.5, eval = F}
-plot(Sepal.Length ~ Sepal.Width, data = iris)
+plot(iris$Sepal.Width, iris$Sepal.Length)
 ```
 
 Simple plots with base R
 ========================================================
 ```{r, fig.width = 5, fig.height = 4, small.mar = TRUE}
-plot(Sepal.Length ~ Sepal.Width, data = iris)
-```
-
-Simple plots with base R
-========================================================
-* We can also use alternative notation without using the data argument
-```{r, fig.width = 5, fig.height = 4, eval = F}
-plot(iris$Sepal.Width, iris$Sepal.Length)
-```
-* As compared to...
-```{r, fig.width = 6, fig.height = 4.5, eval = F}
-plot(Sepal.Length ~ Sepal.Width, data = iris)
-```
-* Note the arrangement of y/x variables in each
-
-Simple plots with base R
-========================================================
-* We can also use alternative notation without using the data argument
-```{r, fig.width = 5, fig.height = 4, eval = T, out.width = '600px', small.mar = T}
 plot(iris$Sepal.Width, iris$Sepal.Length)
 ```
 
@@ -163,31 +144,9 @@ plot(iris$Sepal.Width, iris$Sepal.Length, xlab = 'Width (cm)', ylab = 'Length (c
 
 Simple plots with base R
 ========================================================
-* The plot margins are too big, let's change that
-```{r, fig.width = 5, fig.height = 4, eval = T, out.width = '600px'}
-par(mar = c(4.5, 4.5, 1, 1))
-plot(iris$Sepal.Width, iris$Sepal.Length, xlab = 'Width (cm)', ylab = 'Length (cm)', main = 'Sepal dimensions')
-```
-
-Simple plots with base R
-========================================================
-* Other base plot functions - bar plots
-```{r, fig.width = 5, fig.height = 4, small.par = T}
-barplot(table(iris$Species))
-```
-
-Simple plots with base R
-========================================================
 * Other base plot functions - histogram
 ```{r, fig.width = 5, fig.height = 4, small.par = T}
 hist(iris$Sepal.Length)
-```
-
-Simple plots with base R
-========================================================
-* Other base plot functions - box plots
-```{r, fig.width = 5, fig.height = 4, small.par = T}
-boxplot(Sepal.Length ~ Species, data = iris)
 ```
 
 Simple plots with base R
@@ -201,7 +160,6 @@ Exercise 1
 ========================================================
 * Using the `iris` dataset, make a scatterplot of petal length (y axis) vs petal width (x-axis)
 * Give it appropriate axis labels and a title
-* Change the point type, size, and color (see `?plot` and `?par`)
 
 ggplot2: introduction
 ========================================================
@@ -216,9 +174,8 @@ ggplot2: introduction
 
 ggplot2: introduction
 ========================================================
-* We'll start by installing and loading [tidyverse](https://www.tidyverse.org/), which includes ggplot2 (you should have this from the earlier session)
+* We'll start by loading [tidyverse](https://www.tidyverse.org/), which includes ggplot2 (you should have this from the earlier session)
 ```{r, eval = F}
-install.packages('tidyverse')
 library(tidyverse)
 ```
 To verify it's loaded...
@@ -247,7 +204,7 @@ ggplot2: data, mapping, aesthetics, and layers
 ```{r, eval = F}
 ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length))
 ```
-* This says, make a `ggplot` object for the iris **data**, where the variables Sepal.Width and Sepal.Length are **mapped** to the **x** and **y** aesthetics
+* This says, make a `ggplot` object for the iris **data**, where the variables Sepal.Width and Sepal.Length are **mapped** to the x and y **aesthetics**
 
 ggplot2: data, mapping, aesthetics, and layers
 ========================================================
@@ -271,6 +228,10 @@ ggplot2: data, mapping, aesthetics, and layers
 ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length)) +
   geom_point()
 ```
+
+Exercise 2
+========================================================
+* Using the `iris` dataset, use ggplot to make a scatterplot of petal length (y axis) vs petal width (x-axis)
 
 ggplot2: data, mapping, aesthetics, and layers
 ========================================================
@@ -342,7 +303,7 @@ ggplot2: data, mapping, aesthetics, and layers
 ggplot2: data, mapping, aesthetics, and layers
 ========================================================
 * Let's add some more aesthetics
-```{r, fig.width = 5, fig.height = 3.5}
+```{r, fig.width = 5, fig.height = 3}
 ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length, 
                         colour = Species)) +
   geom_point()
@@ -351,7 +312,7 @@ ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length,
 ggplot2: data, mapping, aesthetics, and layers
 ========================================================
 * Let's add some more aesthetics
-```{r, fig.width = 5, fig.height = 3.5}
+```{r, fig.width = 5, fig.height = 3}
 ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length, 
                         colour = Species, size = Sepal.Width)) +
   geom_point()
@@ -360,7 +321,7 @@ ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length,
 ggplot2: data, mapping, aesthetics, and layers
 ========================================================
 * Let's add some more aesthetics, what's the difference?
-```{r, fig.width = 5, fig.height = 3.5}
+```{r, fig.width = 5, fig.height = 3}
 ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length, 
                         colour = Species, size = Species)) +
   geom_point()
@@ -426,7 +387,7 @@ ggplot2: themes
 ggplot2: themes
 ========================================================
 * Let's change the legend position
-```{r, fig.width = 5, fig.height = 3.5}
+```{r, fig.width = 5, fig.height = 3}
 p <- p + theme(legend.position = 'top')
 p
 ```
@@ -434,7 +395,7 @@ p
 ggplot2: themes
 ========================================================
 * Let's remove the grid lines
-```{r, fig.width = 5, fig.height = 3.5}
+```{r, fig.width = 5, fig.height = 3}
 p <- p + theme(
   panel.grid.major = element_blank(), 
   panel.grid.minor = element_blank()
@@ -445,7 +406,7 @@ p
 ggplot2: themes
 ========================================================
 * Let's change the plot background color
-```{r, fig.width = 5, fig.height = 3.5}
+```{r, fig.width = 5, fig.height = 3}
 p <- p + theme(panel.background = element_rect(fill = 'white'))
 p
 ```
@@ -475,7 +436,7 @@ ggplot2: themes
 ggplot2: themes
 ========================================================
 * Using `theme_bw()`
-```{r, fig.width = 5, fig.height = 3.5}
+```{r, fig.width = 5, fig.height = 3}
 p <- p + theme_bw()
 p
 ```
@@ -483,7 +444,7 @@ p
 ggplot2: themes
 ========================================================
 * Using `theme_bw()`
-```{r, fig.width = 5, fig.height = 3.5}
+```{r, fig.width = 5, fig.height = 3}
 p <- p + theme_bw(base_size = 10, base_family = 'serif')
 p
 ```
@@ -491,14 +452,14 @@ p
 ggplot2: themes
 ========================================================
 * Let's add some more layers - `geom_smooth()`
-```{r, fig.width = 5, fig.height = 3.5}
+```{r, fig.width = 5, fig.height = 3}
 p + geom_smooth()
 ```
 
 ggplot2: additional geoms
 ========================================================
 * Let's add some more layers - `geom_smooth()`
-```{r, fig.width = 5, fig.height = 3.5}
+```{r, fig.width = 5, fig.height = 3}
 p <- p + geom_smooth(method = 'lm')
 p
 ```
@@ -521,7 +482,7 @@ ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length,
 ggplot2: additional geoms
 ========================================================
 * Let's do a quick demo to understand mapping aesthetics:
-```{r, fig.width = 5, fig.height = 3.5}
+```{r, fig.width = 5, fig.height = 3}
 p <- ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length)
        ) +
   geom_point(aes(colour = Species)) +
@@ -535,14 +496,14 @@ p <- ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length)
 ggplot2: additional geoms
 ========================================================
 * What happened?
-```{r, fig.width = 5, fig.height = 3.5}
+```{r, fig.width = 5, fig.height = 3}
 p
 ```
 
 ggplot2: additional geoms
 ========================================================
 * What happened?
-```{r, fig.width = 5, fig.height = 3.5}
+```{r, fig.width = 5, fig.height = 3}
 p <- ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length)
        ) +
   geom_point(aes(colour = Species)) +
@@ -558,7 +519,7 @@ p <- ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length)
 ggplot2: additional geoms
 ========================================================
 * What would happen here?
-```{r, fig.width = 5, fig.height = 3.5}
+```{r, fig.width = 5, fig.height = 3}
 p <- ggplot(data = iris) +
   geom_point(aes(x = Sepal.Width, y = Sepal.Length, 
                  colour = Species)) +
@@ -569,20 +530,19 @@ p <- ggplot(data = iris) +
   geom_smooth(method = 'lm')
 ```
 
-Exercise 2
+Exercise 3
 ========================================================
 * Using the `iris` dataset, make a scatterplot of petal length (y axis) vs petal width (x-axis)
 * Give it appropriate axis labels and a title
 * Map point type to species
 * Give it a theme you like
-* Bonus: facet the plot by species (hint `?facet_wrap`)
 
 ggplot2: Summary
 ========================================================
 * Let's recap... `ggplot` is different from base
 * Requires mapping data using aesthetics for plot layers/geoms
 * Each plot layer has specific aesthetics
-* Order of aesthetics matter
+* Placement of aesthetics matters
 * `theme` and pre-packaged themes modify the format
 
 ggplot2: summary
@@ -623,7 +583,7 @@ ggplot2: Bonus exercise
 ========================================================
 * Let's plot the mean (+/- spread) of petal width by species
 * The hacker way (data wrangling):
-```{r, fig.width = 5, fig.height = 3.5}
+```{r, fig.width = 5, fig.height = 3}
 toplo <- group_by(iris, Species) %>% 
   summarise(
     ave = mean(Petal.Width), 
@@ -642,3 +602,15 @@ ggplot(toplo, aes(x = Species, y = ave)) +
   geom_errorbar(aes(ymin = ave - std, ymax = ave + std)) + 
   theme_bw()
 ```
+
+<!-- put this in the last slide -- use jquery to append page # to all sections -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+
+for(i=0;i<$("section").length;i++) {
+if(i==0) continue
+$("section").eq(i).append("<p style='font-size:medium;position:fixed;right:10px;top:10px;'>" + i + " / " + $("section").length + "</p>")
+}
+
+</script>

@@ -36,7 +36,7 @@ Motivation
 * You can make some really cool graphs in R
 
 <div align='center'>
-<img src="data_viz-figure/cool2.jpg" alt="Drawing" style="width: 900px;"/>
+<img src="data_viz-figure/cool2.jpg" alt="Drawing" style="width: 800px;"/>
 </div>
 
 Motivation
@@ -44,7 +44,7 @@ Motivation
 * You can make some really cool graphs in R
 
 <div align='center'>
-<img src="data_viz-figure/cool3.jpg" alt="Drawing" style="width: 700px;"/>
+<img src="data_viz-figure/cool3.jpg" alt="Drawing" style="width: 600px;"/>
 </div>
 
 Motivation
@@ -108,45 +108,21 @@ head(iris)
 Simple plots with base R
 ========================================================
 * The scatterplot can be created with `plot`
-* It can be created with one line... `plot(y ~ x, data)`
-* This literally says... from the data object, plot the variables y (on the y-axis) against x (on the x-axis)
+* It can be created with one line... `plot(x, y)`
+* This literally says... from the data object, plot the variables x (on the x-axis) against y (on the y-axis)
 
 ```r
-plot(Sepal.Length ~ Sepal.Width, data = iris)
+plot(iris$Sepal.Width, iris$Sepal.Length)
 ```
 
 Simple plots with base R
 ========================================================
 
 ```r
-plot(Sepal.Length ~ Sepal.Width, data = iris)
+plot(iris$Sepal.Width, iris$Sepal.Length)
 ```
 
 <img src="data_viz-figure/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="700px" style="display: block; margin: auto;" />
-
-Simple plots with base R
-========================================================
-* We can also use alternative notation without using the data argument
-
-```r
-plot(iris$Sepal.Width, iris$Sepal.Length)
-```
-* As compared to...
-
-```r
-plot(Sepal.Length ~ Sepal.Width, data = iris)
-```
-* Note the arrangement of y/x variables in each
-
-Simple plots with base R
-========================================================
-* We can also use alternative notation without using the data argument
-
-```r
-plot(iris$Sepal.Width, iris$Sepal.Length)
-```
-
-<img src="data_viz-figure/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" width="600px" style="display: block; margin: auto;" />
 
 Simple plots with base R
 ========================================================
@@ -156,7 +132,7 @@ Simple plots with base R
 plot(iris$Sepal.Width, iris$Sepal.Length)
 ```
 
-<img src="data_viz-figure/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" width="600px" style="display: block; margin: auto;" />
+<img src="data_viz-figure/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="600px" style="display: block; margin: auto;" />
 
 Simple plots with base R
 ========================================================
@@ -173,28 +149,7 @@ Simple plots with base R
 plot(iris$Sepal.Width, iris$Sepal.Length, xlab = 'Width (cm)', ylab = 'Length (cm)', main = 'Sepal dimensions')
 ```
 
-<img src="data_viz-figure/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" width="600px" style="display: block; margin: auto;" />
-
-Simple plots with base R
-========================================================
-* The plot margins are too big, let's change that
-
-```r
-par(mar = c(4.5, 4.5, 1, 1))
-plot(iris$Sepal.Width, iris$Sepal.Length, xlab = 'Width (cm)', ylab = 'Length (cm)', main = 'Sepal dimensions')
-```
-
-<img src="data_viz-figure/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="600px" style="display: block; margin: auto;" />
-
-Simple plots with base R
-========================================================
-* Other base plot functions - bar plots
-
-```r
-barplot(table(iris$Species))
-```
-
-<img src="data_viz-figure/unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="700px" style="display: block; margin: auto;" />
+<img src="data_viz-figure/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="600px" style="display: block; margin: auto;" />
 
 Simple plots with base R
 ========================================================
@@ -204,17 +159,7 @@ Simple plots with base R
 hist(iris$Sepal.Length)
 ```
 
-<img src="data_viz-figure/unnamed-chunk-13-1.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" width="700px" style="display: block; margin: auto;" />
-
-Simple plots with base R
-========================================================
-* Other base plot functions - box plots
-
-```r
-boxplot(Sepal.Length ~ Species, data = iris)
-```
-
-<img src="data_viz-figure/unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="700px" style="display: block; margin: auto;" />
+<img src="data_viz-figure/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" width="700px" style="display: block; margin: auto;" />
 
 Simple plots with base R
 ========================================================
@@ -224,13 +169,12 @@ Simple plots with base R
 pairs(iris)
 ```
 
-<img src="data_viz-figure/unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="700px" style="display: block; margin: auto;" />
+<img src="data_viz-figure/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" width="700px" style="display: block; margin: auto;" />
 
 Exercise 1
 ========================================================
 * Using the `iris` dataset, make a scatterplot of petal length (y axis) vs petal width (x-axis)
 * Give it appropriate axis labels and a title
-* Change the point type, size, and color (see `?plot` and `?par`)
 
 ggplot2: introduction
 ========================================================
@@ -245,10 +189,9 @@ ggplot2: introduction
 
 ggplot2: introduction
 ========================================================
-* We'll start by installing and loading [tidyverse](https://www.tidyverse.org/), which includes ggplot2 (you should have this from the earlier session)
+* We'll start by loading [tidyverse](https://www.tidyverse.org/), which includes ggplot2 (you should have this from the earlier session)
 
 ```r
-install.packages('tidyverse')
 library(tidyverse)
 ```
 To verify it's loaded...
@@ -305,7 +248,7 @@ ggplot2: data, mapping, aesthetics, and layers
 ```r
 ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length))
 ```
-* This says, make a `ggplot` object for the iris **data**, where the variables Sepal.Width and Sepal.Length are **mapped** to the **x** and **y** aesthetics
+* This says, make a `ggplot` object for the iris **data**, where the variables Sepal.Width and Sepal.Length are **mapped** to the x and y **aesthetics**
 
 ggplot2: data, mapping, aesthetics, and layers
 ========================================================
@@ -328,7 +271,7 @@ ggplot2: data, mapping, aesthetics, and layers
 ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length))
 ```
 
-<img src="data_viz-figure/unnamed-chunk-21-1.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="700px" style="display: block; margin: auto;" />
+<img src="data_viz-figure/unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="700px" style="display: block; margin: auto;" />
 * We get an empty plot - this is our foundation
 
 ggplot2: data, mapping, aesthetics, and layers
@@ -340,7 +283,11 @@ ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length)) +
   geom_point()
 ```
 
-<img src="data_viz-figure/unnamed-chunk-22-1.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="700px" style="display: block; margin: auto;" />
+<img src="data_viz-figure/unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" width="700px" style="display: block; margin: auto;" />
+
+Exercise 2
+========================================================
+* Using the `iris` dataset, use ggplot to make a scatterplot of petal length (y axis) vs petal width (x-axis)
 
 ggplot2: data, mapping, aesthetics, and layers
 ========================================================
@@ -362,7 +309,7 @@ ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length)) +
   geom_line()
 ```
 
-<img src="data_viz-figure/unnamed-chunk-24-1.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="700px" style="display: block; margin: auto;" />
+<img src="data_viz-figure/unnamed-chunk-18-1.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" width="700px" style="display: block; margin: auto;" />
 
 ggplot2: data, mapping, aesthetics, and layers
 ========================================================
@@ -373,7 +320,7 @@ ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length)) +
   geom_count()
 ```
 
-<img src="data_viz-figure/unnamed-chunk-25-1.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="700px" style="display: block; margin: auto;" />
+<img src="data_viz-figure/unnamed-chunk-19-1.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="700px" style="display: block; margin: auto;" />
 
 ggplot2: data, mapping, aesthetics, and layers
 ========================================================
@@ -384,7 +331,7 @@ ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length)) +
   geom_density_2d()
 ```
 
-<img src="data_viz-figure/unnamed-chunk-26-1.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="700px" style="display: block; margin: auto;" />
+<img src="data_viz-figure/unnamed-chunk-20-1.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" width="700px" style="display: block; margin: auto;" />
 
 ggplot2: data, mapping, aesthetics, and layers
 ========================================================
@@ -432,7 +379,7 @@ ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length,
   geom_point()
 ```
 
-<img src="data_viz-figure/unnamed-chunk-30-1.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="700px" style="display: block; margin: auto;" />
+<img src="data_viz-figure/unnamed-chunk-24-1.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="700px" style="display: block; margin: auto;" />
 
 ggplot2: data, mapping, aesthetics, and layers
 ========================================================
@@ -444,7 +391,7 @@ ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length,
   geom_point()
 ```
 
-<img src="data_viz-figure/unnamed-chunk-31-1.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="700px" style="display: block; margin: auto;" />
+<img src="data_viz-figure/unnamed-chunk-25-1.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="700px" style="display: block; margin: auto;" />
 
 ggplot2: data, mapping, aesthetics, and layers
 ========================================================
@@ -456,7 +403,7 @@ ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length,
   geom_point()
 ```
 
-<img src="data_viz-figure/unnamed-chunk-32-1.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="700px" style="display: block; margin: auto;" />
+<img src="data_viz-figure/unnamed-chunk-26-1.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="700px" style="display: block; margin: auto;" />
 
 ggplot2: data, mapping, aesthetics, and layers
 ========================================================
@@ -490,7 +437,7 @@ p <- p + xlab('Width (cm)') + ylab('Length (cm)') +
 p
 ```
 
-<img src="data_viz-figure/unnamed-chunk-35-1.png" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" width="700px" style="display: block; margin: auto;" />
+<img src="data_viz-figure/unnamed-chunk-29-1.png" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="700px" style="display: block; margin: auto;" />
 
 ggplot2: data, mapping, aesthetics, and layers
 ========================================================
@@ -501,7 +448,7 @@ p <- p + scale_colour_manual(values = c('red', 'blue', 'green'))
 p
 ```
 
-<img src="data_viz-figure/unnamed-chunk-36-1.png" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="700px" style="display: block; margin: auto;" />
+<img src="data_viz-figure/unnamed-chunk-30-1.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="700px" style="display: block; margin: auto;" />
 
 ggplot2: data, mapping, aesthetics, and layers
 ========================================================
@@ -537,7 +484,7 @@ p <- p + theme(legend.position = 'top')
 p
 ```
 
-<img src="data_viz-figure/unnamed-chunk-38-1.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="700px" style="display: block; margin: auto;" />
+<img src="data_viz-figure/unnamed-chunk-32-1.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="700px" style="display: block; margin: auto;" />
 
 ggplot2: themes
 ========================================================
@@ -551,7 +498,7 @@ p <- p + theme(
 p
 ```
 
-<img src="data_viz-figure/unnamed-chunk-39-1.png" title="plot of chunk unnamed-chunk-39" alt="plot of chunk unnamed-chunk-39" width="700px" style="display: block; margin: auto;" />
+<img src="data_viz-figure/unnamed-chunk-33-1.png" title="plot of chunk unnamed-chunk-33" alt="plot of chunk unnamed-chunk-33" width="700px" style="display: block; margin: auto;" />
 
 ggplot2: themes
 ========================================================
@@ -562,7 +509,7 @@ p <- p + theme(panel.background = element_rect(fill = 'white'))
 p
 ```
 
-<img src="data_viz-figure/unnamed-chunk-40-1.png" title="plot of chunk unnamed-chunk-40" alt="plot of chunk unnamed-chunk-40" width="700px" style="display: block; margin: auto;" />
+<img src="data_viz-figure/unnamed-chunk-34-1.png" title="plot of chunk unnamed-chunk-34" alt="plot of chunk unnamed-chunk-34" width="700px" style="display: block; margin: auto;" />
 
 ggplot2: themes
 ========================================================
@@ -596,7 +543,7 @@ p <- p + theme_bw()
 p
 ```
 
-<img src="data_viz-figure/unnamed-chunk-42-1.png" title="plot of chunk unnamed-chunk-42" alt="plot of chunk unnamed-chunk-42" width="700px" style="display: block; margin: auto;" />
+<img src="data_viz-figure/unnamed-chunk-36-1.png" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="700px" style="display: block; margin: auto;" />
 
 ggplot2: themes
 ========================================================
@@ -607,7 +554,7 @@ p <- p + theme_bw(base_size = 10, base_family = 'serif')
 p
 ```
 
-<img src="data_viz-figure/unnamed-chunk-43-1.png" title="plot of chunk unnamed-chunk-43" alt="plot of chunk unnamed-chunk-43" width="700px" style="display: block; margin: auto;" />
+<img src="data_viz-figure/unnamed-chunk-37-1.png" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="700px" style="display: block; margin: auto;" />
 
 ggplot2: themes
 ========================================================
@@ -617,7 +564,7 @@ ggplot2: themes
 p + geom_smooth()
 ```
 
-<img src="data_viz-figure/unnamed-chunk-44-1.png" title="plot of chunk unnamed-chunk-44" alt="plot of chunk unnamed-chunk-44" width="700px" style="display: block; margin: auto;" />
+<img src="data_viz-figure/unnamed-chunk-38-1.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="700px" style="display: block; margin: auto;" />
 
 ggplot2: additional geoms
 ========================================================
@@ -628,7 +575,7 @@ p <- p + geom_smooth(method = 'lm')
 p
 ```
 
-<img src="data_viz-figure/unnamed-chunk-45-1.png" title="plot of chunk unnamed-chunk-45" alt="plot of chunk unnamed-chunk-45" width="700px" style="display: block; margin: auto;" />
+<img src="data_viz-figure/unnamed-chunk-39-1.png" title="plot of chunk unnamed-chunk-39" alt="plot of chunk unnamed-chunk-39" width="700px" style="display: block; margin: auto;" />
 
 ggplot2: additional geoms
 ========================================================
@@ -669,7 +616,7 @@ ggplot2: additional geoms
 p
 ```
 
-<img src="data_viz-figure/unnamed-chunk-48-1.png" title="plot of chunk unnamed-chunk-48" alt="plot of chunk unnamed-chunk-48" width="700px" style="display: block; margin: auto;" />
+<img src="data_viz-figure/unnamed-chunk-42-1.png" title="plot of chunk unnamed-chunk-42" alt="plot of chunk unnamed-chunk-42" width="700px" style="display: block; margin: auto;" />
 
 ggplot2: additional geoms
 ========================================================
@@ -703,20 +650,19 @@ p <- ggplot(data = iris) +
   geom_smooth(method = 'lm')
 ```
 
-Exercise 2
+Exercise 3
 ========================================================
 * Using the `iris` dataset, make a scatterplot of petal length (y axis) vs petal width (x-axis)
 * Give it appropriate axis labels and a title
 * Map point type to species
 * Give it a theme you like
-* Bonus: facet the plot by species (hint `?facet_wrap`)
 
 ggplot2: Summary
 ========================================================
 * Let's recap... `ggplot` is different from base
 * Requires mapping data using aesthetics for plot layers/geoms
 * Each plot layer has specific aesthetics
-* Order of aesthetics matter
+* Placement of aesthetics matters
 * `theme` and pre-packaged themes modify the format
 
 ggplot2: summary
@@ -754,7 +700,7 @@ ggplot(data = iris, aes(x = Species, y = Petal.Width)) +
   theme_bw()
 ```
 
-<img src="data_viz-figure/unnamed-chunk-51-1.png" title="plot of chunk unnamed-chunk-51" alt="plot of chunk unnamed-chunk-51" width="700px" style="display: block; margin: auto;" />
+<img src="data_viz-figure/unnamed-chunk-45-1.png" title="plot of chunk unnamed-chunk-45" alt="plot of chunk unnamed-chunk-45" width="700px" style="display: block; margin: auto;" />
 
 ggplot2: Bonus exercise
 ========================================================
@@ -791,4 +737,16 @@ ggplot(toplo, aes(x = Species, y = ave)) +
   theme_bw()
 ```
 
-<img src="data_viz-figure/unnamed-chunk-53-1.png" title="plot of chunk unnamed-chunk-53" alt="plot of chunk unnamed-chunk-53" width="700px" style="display: block; margin: auto;" />
+<img src="data_viz-figure/unnamed-chunk-47-1.png" title="plot of chunk unnamed-chunk-47" alt="plot of chunk unnamed-chunk-47" width="700px" style="display: block; margin: auto;" />
+
+<!-- put this in the last slide -- use jquery to append page # to all sections -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+
+for(i=0;i<$("section").length;i++) {
+if(i==0) continue
+$("section").eq(i).append("<p style='font-size:medium;position:fixed;right:10px;top:10px;'>" + i + " / " + $("section").length + "</p>")
+}
+
+</script>

@@ -414,6 +414,7 @@ We'll start with **Date** conversions because they are simpler:
 
 Exercise 2: A less gentle introduction
 ========================================================
+incremental: true
 
 The [lubridate](https://github.com/tidyverse/lubridate) package is your friend
 
@@ -428,6 +429,7 @@ plot(chla ~ date, apacp)
 
 Exercise 2: A less gentle introduction
 ========================================================
+incremental: true
 
 **POSIX** objects are more complicated
 * Includes a date and time component
@@ -448,6 +450,7 @@ class(sapdc$DateTimeStamp)
 
 Exercise 2: A less gentle introduction
 ========================================================
+incremental: true
 
 The time zone must also be specified, otherwise it defaults to Zulu time or your computer's time
 ```{r}
@@ -460,6 +463,8 @@ tz(sapdc$DateTimeStamp)
 
 Exercise 2: A less gentle introduction
 ========================================================
+incremental: true
+
 * Sapelo Island is on the Atlantic Coast of Georgia
 * Time stamps in NERRS data do not observe DST
 ```{r}
@@ -567,47 +572,6 @@ ggplot(apacp, aes(x = date, y = chla)) +
 Exploratory analysis
 ========================================================
 
-* Exploratory plots are much easier with columns for each time component
-
-```{r eval = T, fig.width = 7, fig.height = 3, out.width = '800px'}
-ggplot(apacp, aes(x = factor(yr), y = chla)) + 
-  geom_boxplot()
-```
-
-Exploratory analysis
-========================================================
-
-* Exploratory plots are much easier with columns for each time component
-
-```{r eval = T, fig.width = 7, fig.height = 3, out.width = '800px'}
-ggplot(apacp, aes(x = molb, y = chla)) + 
-  geom_boxplot()
-```
-
-Exploratory analysis
-========================================================
-
-* Exploratory plots are much easier with separate columns for each time component
-
-```{r eval = T, fig.width = 7, fig.height = 3, out.width = '800px'}
-ggplot(apacp, aes(x = ydy, y = chla, colour = factor(yr))) + 
-  geom_line()
-```
-
-Exploratory analysis
-========================================================
-
-* Exploratory plots are much easier with separate columns for each time component
-
-```{r eval = T, fig.width = 9, fig.height = 3, out.width = '900px'}
-ggplot(sapdc, aes(x = factor(hr), y = DO_obs)) + 
-  geom_boxplot() +
-  facet_wrap(~ mo, ncol = 6)
-```
-
-Exploratory analysis
-========================================================
-
 * The date axis can be formatted with [scale_x_date ](http://ggplot2.tidyverse.org/reference/scale_date.html)
 
 ```{r fig.height = 3, fig.width = 7, out.width = '800px'}
@@ -662,6 +626,37 @@ ggplot(toplo, aes(x = DateTimeStamp, y = Temp)) +
   scale_x_datetime(date_labels = "%d %H", date_breaks = '36 hours')
 ```
 
+
+Exploratory analysis
+========================================================
+
+* Exploratory plots are much easier with columns for each time component
+
+```{r eval = T, fig.width = 7, fig.height = 3, out.width = '800px'}
+ggplot(apacp, aes(x = factor(yr), y = chla)) + 
+  geom_boxplot()
+```
+
+Exploratory analysis
+========================================================
+
+* Exploratory plots are much easier with columns for each time component
+
+```{r eval = T, fig.width = 7, fig.height = 3, out.width = '800px'}
+ggplot(apacp, aes(x = molb, y = chla)) + 
+  geom_boxplot()
+```
+
+Exploratory analysis
+========================================================
+
+* Exploratory plots are much easier with separate columns for each time component
+
+```{r eval = T, fig.width = 7, fig.height = 3, out.width = '800px'}
+ggplot(apacp, aes(x = ydy, y = chla, colour = factor(yr))) + 
+  geom_line()
+```
+
 Exploratory analysis
 ========================================================
 incremental: true
@@ -684,7 +679,7 @@ head(apacp_sum)
 Exercise 3
 ========================================================
 
-1) Summarize the dissolved oxygen data at sapdc by hour - find the mean and standard deviation
+1) Summarize the dissolved oxygen data at sapdc by hour - find the mean (mean function) and standard deviation (sd function)
 
 2) Plot the hourly averages 
 
@@ -731,12 +726,17 @@ QAQC screening
 
 * Simple cases can be dealt with using [dplyr](http://dplyr.tidyverse.org/)
 * Two different approaches:
+
+Substitute with NA...
 ```{r, eval = F}
 apacp_filt <- apacp %>% 
   mutate(
     chla = ifelse(chla > 19, NA, chla)
   )
+```
 
+...or remove data
+```{r}
 apacp_filt <- apacp %>% 
   filter(chla <= 19)
 ```
@@ -804,7 +804,6 @@ Kendall and Seasonal Kendall tests
 * We will use functions in the [EnvStats](https://cran.r-project.org/web/packages/EnvStats/index.html) package
 
 ```{r eval = F}
-install.packages('EnvStats')
 library(EnvStats)
 ```
 
@@ -852,18 +851,6 @@ Let's see if there's a change from 2002 to 2014:
 
 ```{r, fig.height = 3, fig.width = 7, small.mar = T}
 plot(chla ~ date, apacp, type = 'l')
-```
-
-Seasonal Kendall tests
-========================================================
-
-Let's see if there's a change from 2002 to 2014:
-
-```{r, fig.height = 3, fig.width = 7, out.width = '700px'}
-apacp$yr <- year(apacp$date)
-
-ggplot(apacp, aes(x = factor(yr), y = chla)) + 
-  geom_boxplot()
 ```
 
 Seasonal Kendall tests
