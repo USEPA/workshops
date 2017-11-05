@@ -251,23 +251,6 @@ head(dctm$dec_time)
 ggplot(apacp, aes(x = date, y = chla)) + 
   geom_line()
 
-## ----eval = T, fig.width = 7, fig.height = 3, out.width = '800px'--------
-ggplot(apacp, aes(x = factor(yr), y = chla)) + 
-  geom_boxplot()
-
-## ----eval = T, fig.width = 7, fig.height = 3, out.width = '800px'--------
-ggplot(apacp, aes(x = molb, y = chla)) + 
-  geom_boxplot()
-
-## ----eval = T, fig.width = 7, fig.height = 3, out.width = '800px'--------
-ggplot(apacp, aes(x = ydy, y = chla, colour = factor(yr))) + 
-  geom_line()
-
-## ----eval = T, fig.width = 9, fig.height = 3, out.width = '900px'--------
-ggplot(sapdc, aes(x = factor(hr), y = DO_obs)) + 
-  geom_boxplot() +
-  facet_wrap(~ mo, ncol = 6)
-
 ## ----fig.height = 3, fig.width = 7, out.width = '800px'------------------
 ggplot(apacp, aes(x = date, y = chla)) + 
   geom_line() + 
@@ -294,6 +277,18 @@ toplo <- sapdc[1:1000, ]
 ggplot(toplo, aes(x = DateTimeStamp, y = Temp)) + 
   geom_line() + 
   scale_x_datetime(date_labels = "%d %H", date_breaks = '36 hours')
+
+## ----eval = T, fig.width = 7, fig.height = 3, out.width = '800px'--------
+ggplot(apacp, aes(x = factor(yr), y = chla)) + 
+  geom_boxplot()
+
+## ----eval = T, fig.width = 7, fig.height = 3, out.width = '800px'--------
+ggplot(apacp, aes(x = molb, y = chla)) + 
+  geom_boxplot()
+
+## ----eval = T, fig.width = 7, fig.height = 3, out.width = '800px'--------
+ggplot(apacp, aes(x = ydy, y = chla, colour = factor(yr))) + 
+  geom_line()
 
 ## ------------------------------------------------------------------------
 apacp_sum <- apacp %>% 
@@ -323,9 +318,10 @@ ggplot(toplo, aes(x = hr, y = ave)) +
 ##   mutate(
 ##     chla = ifelse(chla > 19, NA, chla)
 ##   )
-## 
-## apacp_filt <- apacp %>%
-##   filter(chla <= 19)
+
+## ------------------------------------------------------------------------
+apacp_filt <- apacp %>% 
+  filter(chla <= 19)
 
 ## ------------------------------------------------------------------------
 head(apacp)
@@ -338,17 +334,10 @@ plot(chla ~ date, apacp, type = 'l')
 lines(dts, chla_int$y, col = 'blue')
 
 ## ----eval = F------------------------------------------------------------
-## install.packages('EnvStats')
 ## library(EnvStats)
 
 ## ---- fig.height = 3, fig.width = 7, small.mar = T-----------------------
 plot(chla ~ date, apacp, type = 'l')
-
-## ---- fig.height = 3, fig.width = 7, out.width = '700px'-----------------
-apacp$yr <- year(apacp$date)
-
-ggplot(apacp, aes(x = factor(yr), y = chla)) + 
-  geom_boxplot()
 
 ## ----echo = F------------------------------------------------------------
 library(EnvStats)

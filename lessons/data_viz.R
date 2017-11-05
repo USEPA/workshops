@@ -31,18 +31,9 @@ data(iris)
 head(iris)
 
 ## ---- fig.width = 6, fig.height = 4.5, eval = F--------------------------
-## plot(Sepal.Length ~ Sepal.Width, data = iris)
-
-## ---- fig.width = 5, fig.height = 4, small.mar = TRUE--------------------
-plot(Sepal.Length ~ Sepal.Width, data = iris)
-
-## ---- fig.width = 5, fig.height = 4, eval = F----------------------------
 ## plot(iris$Sepal.Width, iris$Sepal.Length)
 
-## ---- fig.width = 6, fig.height = 4.5, eval = F--------------------------
-## plot(Sepal.Length ~ Sepal.Width, data = iris)
-
-## ---- fig.width = 5, fig.height = 4, eval = T, out.width = '600px', small.mar = T----
+## ---- fig.width = 5, fig.height = 4, small.mar = TRUE--------------------
 plot(iris$Sepal.Width, iris$Sepal.Length)
 
 ## ---- fig.width = 5, fig.height = 4, eval = T, out.width = '600px', small.mar = T----
@@ -51,24 +42,13 @@ plot(iris$Sepal.Width, iris$Sepal.Length)
 ## ---- fig.width = 5, fig.height = 4, eval = T, out.width = '600px', def.mar = T----
 plot(iris$Sepal.Width, iris$Sepal.Length, xlab = 'Width (cm)', ylab = 'Length (cm)', main = 'Sepal dimensions')
 
-## ---- fig.width = 5, fig.height = 4, eval = T, out.width = '600px'-------
-par(mar = c(4.5, 4.5, 1, 1))
-plot(iris$Sepal.Width, iris$Sepal.Length, xlab = 'Width (cm)', ylab = 'Length (cm)', main = 'Sepal dimensions')
-
-## ---- fig.width = 5, fig.height = 4, small.par = T-----------------------
-barplot(table(iris$Species))
-
 ## ---- fig.width = 5, fig.height = 4, small.par = T-----------------------
 hist(iris$Sepal.Length)
-
-## ---- fig.width = 5, fig.height = 4, small.par = T-----------------------
-boxplot(Sepal.Length ~ Species, data = iris)
 
 ## ---- fig.width = 5, fig.height = 4, small.par = T-----------------------
 pairs(iris)
 
 ## ---- eval = F-----------------------------------------------------------
-## install.packages('tidyverse')
 ## library(tidyverse)
 
 ## ------------------------------------------------------------------------
@@ -116,17 +96,17 @@ ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length)) +
 ## ----eval = F------------------------------------------------------------
 ## ?geom_point
 
-## ---- fig.width = 5, fig.height = 3.5------------------------------------
+## ---- fig.width = 5, fig.height = 3--------------------------------------
 ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length, 
                         colour = Species)) +
   geom_point()
 
-## ---- fig.width = 5, fig.height = 3.5------------------------------------
+## ---- fig.width = 5, fig.height = 3--------------------------------------
 ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length, 
                         colour = Species, size = Sepal.Width)) +
   geom_point()
 
-## ---- fig.width = 5, fig.height = 3.5------------------------------------
+## ---- fig.width = 5, fig.height = 3--------------------------------------
 ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length, 
                         colour = Species, size = Species)) +
   geom_point()
@@ -160,36 +140,36 @@ p
 ##   ggtitle('Iris sepal dimensions') +
 ##   scale_colour_manual(values = c('red', 'blue', 'green'))
 
-## ---- fig.width = 5, fig.height = 3.5------------------------------------
+## ---- fig.width = 5, fig.height = 3--------------------------------------
 p <- p + theme(legend.position = 'top')
 p
 
-## ---- fig.width = 5, fig.height = 3.5------------------------------------
+## ---- fig.width = 5, fig.height = 3--------------------------------------
 p <- p + theme(
   panel.grid.major = element_blank(), 
   panel.grid.minor = element_blank()
 )
 p
 
-## ---- fig.width = 5, fig.height = 3.5------------------------------------
+## ---- fig.width = 5, fig.height = 3--------------------------------------
 p <- p + theme(panel.background = element_rect(fill = 'white'))
 p
 
 ## ---- eval = F-----------------------------------------------------------
 ## ?theme
 
-## ---- fig.width = 5, fig.height = 3.5------------------------------------
+## ---- fig.width = 5, fig.height = 3--------------------------------------
 p <- p + theme_bw()
 p
 
-## ---- fig.width = 5, fig.height = 3.5------------------------------------
+## ---- fig.width = 5, fig.height = 3--------------------------------------
 p <- p + theme_bw(base_size = 10, base_family = 'serif')
 p
 
-## ---- fig.width = 5, fig.height = 3.5------------------------------------
+## ---- fig.width = 5, fig.height = 3--------------------------------------
 p + geom_smooth()
 
-## ---- fig.width = 5, fig.height = 3.5------------------------------------
+## ---- fig.width = 5, fig.height = 3--------------------------------------
 p <- p + geom_smooth(method = 'lm')
 p
 
@@ -204,7 +184,7 @@ p
 ##   theme_bw(base_size = 10, base_family = 'serif') +
 ##   geom_smooth(method = 'lm')
 
-## ---- fig.width = 5, fig.height = 3.5------------------------------------
+## ---- fig.width = 5, fig.height = 3--------------------------------------
 p <- ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length)
        ) +
   geom_point(aes(colour = Species)) +
@@ -214,10 +194,10 @@ p <- ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length)
   theme_bw(base_size = 10, base_family = 'serif') + 
   geom_smooth(method = 'lm')
 
-## ---- fig.width = 5, fig.height = 3.5------------------------------------
+## ---- fig.width = 5, fig.height = 3--------------------------------------
 p
 
-## ---- fig.width = 5, fig.height = 3.5------------------------------------
+## ---- fig.width = 5, fig.height = 3--------------------------------------
 p <- ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length)
        ) +
   geom_point(aes(colour = Species)) +
@@ -227,7 +207,7 @@ p <- ggplot(data = iris, aes(x = Sepal.Width, y = Sepal.Length)
   theme_bw(base_size = 10, base_family = 'serif') + 
   geom_smooth(method = 'lm')
 
-## ---- fig.width = 5, fig.height = 3.5------------------------------------
+## ---- fig.width = 5, fig.height = 3--------------------------------------
 p <- ggplot(data = iris) +
   geom_point(aes(x = Sepal.Width, y = Sepal.Length, 
                  colour = Species)) +
@@ -242,7 +222,7 @@ ggplot(data = iris, aes(x = Species, y = Petal.Width)) +
   geom_boxplot() + 
   theme_bw()
 
-## ---- fig.width = 5, fig.height = 3.5------------------------------------
+## ---- fig.width = 5, fig.height = 3--------------------------------------
 toplo <- group_by(iris, Species) %>% 
   summarise(
     ave = mean(Petal.Width), 
