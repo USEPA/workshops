@@ -645,9 +645,9 @@ There's a lot more we can do with linear models including dummy variables (chara
 
 ## Random Forest
 
-Random forests were developed by Leo Breiman at UC-Berkely ([Breiman 2001](http://dx.doi.org/10.1023/A:1010933404324)).  At their simplest, a random forest is a collection (or ensemble) of classification (or regression) trees.  Each tree is developed based on a resampling of both the data and variables.  They have been shown to have superior predictive perfomance as well as to be robust to violation of the standard suite of assumptions that often plague other approaches.  In my opinion, if you want to learn one machine learning approach, this is it.  If you want to read more, a few good references are:
+Random forests were developed by Leo Breiman at UC-Berkely ([Breiman 2001](https://doi.org/10.1023/A:1010933404324)).  At their simplest, a random forest is a collection (or ensemble) of classification (or regression) trees.  Each tree is developed based on a resampling of both the data and variables.  They have been shown to have superior predictive perfomance as well as to be robust to violation of the standard suite of assumptions that often plague other approaches.  In my opinion, if you want to learn one machine learning approach, this is it.  If you want to read more, a few good references are:
 
-- [Cutler et. al. (2007):Random forests for classification in ecology](http://dx.doi.org/10.1890/07-0539.1)
+- [Cutler et. al. (2007):Random forests for classification in ecology](https://doi.org/10.1890/07-0539.1)
 - [Fern´andez-Delgado et al. 2014: Do we Need Hundreds of Classifiers to Solve Real World Classification Problems?](http://jmlr.org/papers/volume15/delgado14a/delgado14a.pdf) (HT:[Simply Statistics](http://simplystatistics.org/2014/12/17/a-non-comprehensive-list-of-awesome-things-other-people-did-in-2014/))
 
 The implementation in R is accessed through the `randomForest` package.  Let's install this, load it up and start to look around.
