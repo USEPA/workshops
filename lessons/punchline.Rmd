@@ -1,0 +1,43 @@
+```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
+library(knitr)
+options(repos="http://cran.rstudio.com/")
+opts_chunk$set(fig.path="figures/",R.options=list(max.print=100),message = FALSE,
+               warning = FALSE, error = FALSE)
+if(!require("ggplot2")){
+  install.packages("ggplot2")
+}
+if(!require("dplyr")){
+  install.packages("dplyr")
+}
+library("ggplot2")
+library("dplyr")
+```
+
+# The Punch Line First
+
+For this workshop we are starting at the end and working backwards.  As such this first lesson is going to be in a follow the leader mode.  This is a useful way to teach this as we get to see what is possible early on and then we can focus on the details of how we get there and you will have a working example of a markdown document, on github, that includes a full data analysis.  Let's get started:
+
+## Create a new project in RStudio
+
+We will use the RStudio New Project dialog to create a new project to house our work for this workhsop GitHub.  In RStudio you need to find the New Project menu.
+
+![rstudio_proj1](figures/rstudio_proj1.png)
+
+Then select "New Diectory"
+
+![new directory](figures/rstudio_project_new.jpg)
+
+
+Then select "New Project"
+
+![rstudio_proj1](figures/rstudio_project_new2.jpg)
+
+The select "Create Project."  At this point you should now have a new, empty project.  We need to download the R Markdown file we will be using for our workshop.  
+
+- [Region 2 R Markdown Analysis](https:)
+
+## Generate the html from your document
+
+And now we can generate our output html by clicking on the "knit" button
+
+![rstudio_knit](figures/rstudio_knit.png)

@@ -23,11 +23,11 @@ This workshop will be held on June 5-6, 2018.
 | ---------------------| ----------------------------------------- | 
 | Tuesday, June 5, 2018|                                           |
 | 12:30 PM - 1:15 AM   | Welcome, Introductions, and Motivation    |
-| 1:15 PM - 2:45 PM  | [R Basics](lessons/01_basics.md)([pdf](https://github.com/jhollist/region2_r/raw/master/lessons/01_basics.pdf))          | 
+| 1:15 PM - 2:45 PM  | [R Basics](lessons/01_basics.md)([pdf](https://github.com/jhollist/region2_r/raw/master/lessons/01_basics.pdf))| 
 | 2:45 PM - 3:00 PM | *BREAK*                                   |
-| 3:00 PM - 5:00 PM | [Data in R](lessons/02_data.md)([pdf](https://github.com/jhollist/region2_rraw/master/lessons/02_data.pdf))           |       
-| Wed, June 6, 2018  |                                   |
-| 8:30 AM - 10:00 AM   | [Data Viz](lessons/03_viz.md)([pdf](https://github.com/jhollist/region2_rraw/master/lessons/03_viz.pdf))             |
+| 3:00 PM - 5:00 PM | [Data in R](lessons/02_data.md)([pdf](https://github.com/jhollist/region2_rraw/master/lessons/02_data.pdf))|       
+| Wed, June 6, 2018  ||
+| 8:30 AM - 10:00 AM   | [Data Viz](lessons/03_viz.md)([pdf](https://github.com/jhollist/region2_rraw/master/lessons/03_viz.pdf))|
 | 10:00 AM - 10:15 AM | *BREAK* |
 | 10:15 AM - Noon | Ala Carte |
 
