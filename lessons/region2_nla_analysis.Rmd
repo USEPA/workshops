@@ -8,23 +8,7 @@ output:
     toc: yes
     toc_depth: 3
     toc_float: true
-editor_options: 
-  chunk_output_type: console
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-options(repos="http://cran.rstudio.com/")
-pkgs <- c("ggplot2", "googlesheets", "dplyr", "tidyr", "readr", "plotly", "DT")
-for(i in pkgs){
-  if(!i %in% installed.packages()){
-    install.packages(i)
-  }
-}
-x<-lapply(pkgs, library, character.only = TRUE)
-#install.packages("lubridate")
-#library(lubridate)
-```
 
 # Purpose
 
@@ -34,6 +18,32 @@ The purpose of this document is to serve as motivating example (i.e. R, Markdown
 
 We will be using data from the 2007 National Lakes Assessment data as it provides a nice water quality relevant example and I am quite familiar with it so I already know most of the issues we will run into with it! 
 
+## Load packages
+
+This chunk is fancier than it normally needs to be.  It checks to make sure that packages are installed and installs if they aren't then loads it up.
+
+```{r setup}
+knitr::opts_chunk$set(echo = TRUE)
+options(repos="http://cran.rstudio.com/")
+pkgs <- c("ggplot2", "dplyr", "readr", "plotly", "DT")
+for(i in pkgs){
+  if(!i %in% installed.packages()){
+    install.packages(i)
+  }
+}
+x<-lapply(pkgs, library, character.only = TRUE)
+```
+
+The chunk you use to load pacakges will usually be simpler and look something like the following:   
+
+```{r eval=FALSE}
+library(ggplot2)
+library(dplyr)
+library(readr)
+library(plotly)
+library(DT)
+```
+
 ## Get Data 
 
 The data we need is available from the National Aquatic Resource Survey's website
@@ -41,55 +51,39 @@ The data we need is available from the National Aquatic Resource Survey's websit
 First we can get the dataset that we have saved as a `.csv` in this repository.
 
 ```{r read_csv, message=FALSE, echo = FALSE}
-gap_gdp <- read_csv("gapminder_gdp.csv")
-```
-
-Second, let's the get CO~2~ emissions data straight from the Google Sheets in which it is stored.
-
-```{r gs_read, message=FALSE}
-gap_co2_url <- "https://docs.google.com/spreadsheets/d/1qJR55SL3lHcx1d3hMHJ1dMYqAog9sXofaPWjPkpO4QQ/pub"
-gap_co2 <- gs_read(gs_url(gap_co2_url))
+nla_wq_all <- read_csv("nla2007_chemical_conditionestimates_20091123.csv")
 ```
 
 ## Manipulate Data
 
-Let's tidy up these two datasets and join them together
+Let's tidy up this dataset by turning all column names to lower case (Jeff likes it that way), convert all text in the dataset to lower case (again Jeff likes it like that way and it is kind of a hot mess otherwise), filter out just the probability samples and the first visits, and select a subset of columns.
 
 ```{r tidy}
-gap_gdp_tidy <- gap_gdp %>%
-  gather("year","gdp",-1) %>%
-  select(country = `GDP (constant 2000 US$)`, everything())
+nla_wq <- nla_wq_all %>%
+  rename_all(tolower) %>% #making all names lower case beucase they are a mess!
+  mutate_if(is.character, tolower) %>%
+  filter(site_type == "prob_lake",
+         visit_no == 1) %>%
+  select(site_id, st, epa_reg, wsa_eco9, ptl, ntl, turb, chla, doc)
 
-gap_co2_tidy <- gap_co2 %>%
-  gather("year","co2_emiss", -1) %>%
-  select(country = `CO2 emission total`, everything())
-
-gap_data <- gap_gdp_tidy %>%
-  left_join(gap_co2_tidy, by = c("country", "year")) %>%
-  filter(complete.cases(gdp,co2_emiss))
-
-datatable(gap_data)
+datatable(nla_wq)
 ```
 
 ## Visualize Data
 
-Next step is to visualize the data.  Let's look at the association between average yearly emissions and average yearly gross domestic product since `r params$year` for the 10 countries with the highest GDP.
+Next step is to visualize the data.  Let's look at the association between total nitrogen, total phosphorus, and chlorophyll *a*.  
 
 ```{r plot_it, warning=FALSE, message=FALSE}
-emiss_gdp_gg <- gap_data %>%
-  filter(year >= params$year) %>%
-  group_by(country) %>%
-  summarize(mean_co2 = round(mean(co2_emiss),1),
-            mean_gdp = round(mean(gdp),1)) %>%
-  ungroup() %>%
-  ggplot(aes(x=mean_gdp,y=mean_co2)) +
-  geom_point(aes(group = country),size = 2) +
-  geom_smooth(method = "lm") +
+nla_tn_tp_chla_gg <- nla_wq %>%
+  ggplot(aes(x=log10(ntl),y=log10(ptl))) +
+  geom_point(aes(group = st, size=chla)) +
+  geom_smooth(method = "gam") +
   theme_classic() +
-  labs(title = paste("GDP and C02 since", params$year),
-       x = "Mean Gross Domestic Product",
-       y = "Mean Carbon Dioxide Emissions")
-ggplotly(emiss_gdp_gg)
+  labs(title = "Total Nitrogen, Total Phosphorus, and Chlorophyll Associations",
+       x = "Log 10 (Total Nitrogen)",
+       y = "Log 10 (Total Phosphorus)")
+  
+ggplotly(nla_tn_tp_chla_gg)
 ```
 
 

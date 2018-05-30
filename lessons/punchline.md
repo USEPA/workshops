@@ -22,7 +22,7 @@ Then select "New Project"
 The select "Create Project."  At this point you should now have a new, empty project.  We need to download the R Markdown file and some data that we will be using for our workshop.  
 
 - [Region 2 R Markdown Analysis](https://raw.githubusercontent.com/jhollist/region2_r/master/lessons/region2_nla_analysis.Rmd)
-- [2007 NLA Water Quality Data](https://www.epa.gov/sites/production/files/2013-09/nla2007_profile_20091008.csv)
+- [2007 NLA Water Quality Data](https://www.epa.gov/sites/production/files/2014-10/nla2007_chemical_conditionestimates_20091123.csv)
 
 ## Generate the html from your document
 
