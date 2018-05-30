@@ -46,21 +46,21 @@ rnorm(100,mean=10,sd=2)
 ```
 
 ```
-##   [1]  9.717444  8.348408  7.539230  6.070755  7.958949  7.288156  9.402205
-##   [8] 11.266090 11.953341  9.648350  9.004986 12.099378 10.022930  9.474523
-##  [15] 12.452272 11.618880  8.389708  6.890459  9.701894 10.375634  9.145820
-##  [22] 11.761109 12.228105  9.169444  9.871791  8.332912  8.224407  7.869887
-##  [29]  8.975617 10.563409 10.327561  9.148000 13.853563  6.492103 10.853508
-##  [36] 14.915571 10.416063 11.295682  8.136022  9.232378  6.157268 10.628724
-##  [43]  9.328260 11.901479 11.947537  7.697390 12.111993  7.362048 11.128075
-##  [50] 11.953884 11.314920 11.488771  7.634974 10.983618 12.085168  8.777237
-##  [57]  8.344897 12.059070 10.439627  8.547971 10.549497  9.591127 11.972365
-##  [64] 12.273964  9.261193 10.202717  7.823811 10.795466  9.434090 10.190482
-##  [71]  9.081897  7.047788  9.024771  9.977741 11.902243  8.754496 12.278873
-##  [78]  8.119709 13.425477  9.030494 11.492051  7.683723 11.211545  9.620776
-##  [85]  8.255348 10.556844 10.549594  8.530929  8.405278  9.846224  9.906270
-##  [92]  7.920800  9.126143 11.023682 10.055867 11.300674  7.019488 13.288448
-##  [99]  7.549809  8.452238
+##   [1] 11.052018  7.787801 10.314824  9.669512 10.657762  7.903322  6.759170
+##   [8]  9.193725 11.095045  7.370998  9.635415 10.906129 10.013600 15.397260
+##  [15] 10.733259  8.905484  8.461762  5.622316 11.196340  9.599580  9.785129
+##  [22]  9.360603  6.424309  9.462598 10.383608  7.290815  9.646192  8.745070
+##  [29]  9.596729 11.762381 10.867011  9.294538  9.957271 10.007144  9.447818
+##  [36]  7.844196  9.456462  8.467840  9.514852  9.851199  8.991341  9.883117
+##  [43]  6.305686 11.726716 10.904953 12.371301 14.350003 12.255706 13.334871
+##  [50] 10.350054 13.056353  7.529891  7.231468  9.680266 10.431761 11.310413
+##  [57]  9.119588  9.221868 10.060439 12.918454 12.732637  9.191495  8.266185
+##  [64]  9.213913  4.202474 12.258131  7.471560  9.816312  9.563520  6.624644
+##  [71]  9.010486  8.638373  9.008844 10.521149 11.336932  9.079192  9.916129
+##  [78]  9.753852 12.738684 10.313751 10.229635  9.274804  4.685691 10.264861
+##  [85]  9.350265  9.530100  9.953631 11.275249 10.442979 11.469559 10.556735
+##  [92]  9.455177 12.640490 10.637399  9.073748  7.369875 12.284535 12.207569
+##  [99] 10.969817  8.898815
 ```
 
 ```r
@@ -69,7 +69,7 @@ mean(rnorm(100))
 ```
 
 ```
-## [1] -0.05451624
+## [1] -0.01364789
 ```
 
 ```r
@@ -78,7 +78,7 @@ sum(rnorm(100))
 ```
 
 ```
-## [1] 16.1698
+## [1] 1.546796
 ```
 
 ### A few side notes 
@@ -102,7 +102,7 @@ The base install of R is quite powerful, but you will soon have a need or desire
 
 ### CRAN
 
-One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of 2018-05-29, there are 12580 on CRAN! 
+One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of 2018-05-30, there are 12596 on CRAN! 
 
 ### Installing packages
 
@@ -382,14 +382,12 @@ As I mention earlier, there are TOO many resources to mention and everyone has t
 
 ## Exercise 2.1
 
-We should still have our `yale_markdown.Rmd` file open.  We will be working with this as we go through the rest of the excercises.
+We should still have our `region2_nla_analysis.Rmd` file open.  We will be working with this as we go through the rest of the excercises.
 
 Take a look at this file and with the person sitting next to you find the following:
 
-1. Find the `options()` function.  What lines is it on?  What is the argument?
-2. Now find the lines on which you think we install packages and load libraries.  It is a bit fancier that a straight up `install.packages()` and `library()`.  Discuss what you think we are doing with these lines.
-3. What does line 16 accomplish?
-4. Now install the package `lubridate` and add a line after the `lapply()` line the loads lubridate.
+1. Find the `read_csv()` function.  What lines is it on?  What is the argument?
+2. Now find the lines on which you think we install packages and load libraries.  There is the fancy way and the straight up way with `install.packages()` and `library()`.  Discuss both of these.  Look at lines 28-33.  What you think we are doing with these lines?
+3. What do lines 40-44 accomplish?
+4. Add some code after line 44 to install the package `lubridate` and add a line after that to load `lubridate`.
 5. Bring up the package level help for the `lubridate` package.  What does this package do?
-
-

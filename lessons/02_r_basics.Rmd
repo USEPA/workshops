@@ -214,14 +214,12 @@ As I mention earlier, there are TOO many resources to mention and everyone has t
 
 ## Exercise 2.1
 
-We should still have our `yale_markdown.Rmd` file open.  We will be working with this as we go through the rest of the excercises.
+We should still have our `region2_nla_analysis.Rmd` file open.  We will be working with this as we go through the rest of the excercises.
 
 Take a look at this file and with the person sitting next to you find the following:
 
-1. Find the `options()` function.  What lines is it on?  What is the argument?
-2. Now find the lines on which you think we install packages and load libraries.  It is a bit fancier that a straight up `install.packages()` and `library()`.  Discuss what you think we are doing with these lines.
-3. What does line 16 accomplish?
-4. Now install the package `lubridate` and add a line after the `lapply()` line the loads lubridate.
+1. Find the `read_csv()` function.  What lines is it on?  What is the argument?
+2. Now find the lines on which you think we install packages and load libraries.  There is the fancy way and the straight up way with `install.packages()` and `library()`.  Discuss both of these.  Look at lines 28-33.  What you think we are doing with these lines?
+3. What do lines 40-44 accomplish?
+4. Add some code after line 44 to install the package `lubridate` and add a line after that to load `lubridate`.
 5. Bring up the package level help for the `lubridate` package.  What does this package do?
-
-
