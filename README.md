@@ -31,7 +31,7 @@ This workshop will be held on June 5-6, 2018.
 | Wed, June 6, 2018    |                                                    |
 | 8:30 AM - 10:00 AM   | [Tidy Data Continued](lessons/04_tidy_data_in_r.md)|
 | 10:00 AM - 10:15 AM  | *BREAK*                                            |
-| 10:15 AM - Noon      | [Data Viz](lessons/05_viz.md)                      |
+| 10:15 AM - Noon      | [Data Viz](lessons/05_data_viz_with_ggplot2.md)    |
 
 Thanks to Stephanie Wilson for the help in getting this set up.
 
