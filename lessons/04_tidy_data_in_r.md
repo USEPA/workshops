@@ -155,7 +155,6 @@ For this exercise, let's read in a new dataset but this time, directly from a UR
 1. Add a new code chunk, starting after the `read_csv` code chunk.  Name this code chunk `read_csv_url`.
 2. Use the `read_csv()` function to read in "https://www.epa.gov/sites/production/files/2014-01/nla2007_sampledlakeinformation_20091113.csv", and assign the output to a data frame named `nla_sites`.
 
-
 ## Tidy data
 
 We have learned about data frames, how to create them, and about several ways to read in external data into a data.frame.   At this point there have been only a few rules applied to our data frames (which already separates them from spreadsheets) and that is our datasets must by rectangular.  Beyond that we havent disscussed how best to organize that data so that subsequent analyses are easier to accomplish. This is, in my opinion, the biggest decision we make as data analysts and it takes a lot of time to think about how best to organize data and to actually re-organize that data.  Luckily, we can use an existing concept for this that will help guide our decisions and re-organization.  The best concept I know of to do this is the concept of [tidy data](http://r4ds.had.co.nz/tidy-data.html).  The essence of which can be summed up as:
@@ -460,7 +459,7 @@ For this exercise we will dig into our datasets and find ways to tidy them up an
   - make our columns names lower case
   - make all the character fields lower case
   - filter out just the first visits
-  - select site_id, state_name, cntyname, lakearea, lakeperim, and depthmax
+  - select site_id, state_name, and cntyname
 
 3. Add another code chunk and descriptive text after `tidy_sites` and name it `joining_data`.
 

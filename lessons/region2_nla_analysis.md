@@ -32,49 +32,7 @@ for(i in pkgs){
     install.packages(i)
   }
 }
-```
-
-```
-## also installing the dependency 'hexbin'
-```
-
-```
-## package 'hexbin' successfully unpacked and MD5 sums checked
-## package 'plotly' successfully unpacked and MD5 sums checked
-## 
-## The downloaded binary packages are in
-## 	C:\Users\JHollist\AppData\Local\Temp\RtmpgFnnCb\downloaded_packages
-## package 'DT' successfully unpacked and MD5 sums checked
-## 
-## The downloaded binary packages are in
-## 	C:\Users\JHollist\AppData\Local\Temp\RtmpgFnnCb\downloaded_packages
-```
-
-```r
 x<-lapply(pkgs, library, character.only = TRUE)
-```
-
-```
-## 
-## Attaching package: 'plotly'
-```
-
-```
-## The following object is masked from 'package:ggplot2':
-## 
-##     last_plot
-```
-
-```
-## The following object is masked from 'package:stats':
-## 
-##     filter
-```
-
-```
-## The following object is masked from 'package:graphics':
-## 
-##     layout
 ```
 
 The chunk you use to load pacakges will usually be simpler and look something like the following:   
@@ -121,9 +79,12 @@ Next step is to visualize the data.  Let's look at the association between total
 
 ```r
 nla_tn_tp_chla_gg <- nla_wq %>%
-  ggplot(aes(x=log10(ntl),y=log10(ptl))) +
-  geom_point(aes(group = st, size=chla)) +
-  geom_smooth(method = "gam") +
+  ggplot(aes(x=ntl,y=ptl)) +
+  geom_point(aes(group = st, size=chla, color=chla)) +
+  scale_x_log10() +
+  scale_y_log10() +
+  scale_color_continuous(low = "springgreen", high = "darkgreen") +
+  geom_smooth(method = "lm", color = "grey50") +
   theme_classic() +
   labs(title = "Total Nitrogen, Total Phosphorus, and Chlorophyll Associations",
        x = "Log 10 (Total Nitrogen)",

@@ -13,21 +13,6 @@ library("ggplot2")
 library("dplyr")
 library("googlesheets")
 library("tidyr")
-
-#gap_gdp <- read_csv("gapminder_gdp.csv")
-#gap_co2_url <- "https://docs.google.com/spreadsheets/d/1qJR55SL3lHcx1d3hMHJ1dMYqAog9sXofaPWjPkpO4QQ/pub"
-#gap_co2 <- gs_read(gs_url(gap_co2_url))
-#gap_gdp_tidy <- gap_gdp %>%
-#  gather("year","gdp",-1) %>%
-#  select(country = `GDP (constant 2000 US$)`, everything())
-
-#gap_co2_tidy <- gap_co2 %>%
-#  gather("year","co2_emiss", -1) %>%
-#  select(country = `CO2 emission total`, everything())
-
-#gap_data <- gap_gdp_tidy %>%
-#  left_join(gap_co2_tidy, by = c("country", "year")) %>%
-#  filter(complete.cases(gdp,co2_emiss))
 ```
 
 
@@ -66,9 +51,9 @@ This final figure from [Hollister et al. 2017](http://onlinelibrary.wiley.com/en
 
 (**ht to Anne Kuhn, my office mate, for the name**)
 
-Now that we are sufficiently motivated, lets take a step back to the very basics.
-
 A few other great links that I have recently found are also useful for inspiration.  First, is a repository on GitHub that has most (all?) of the currently available color palletes in R: <https://github.com/EmilHvitfeldt/r-color-palettes>.  Second, the [R graph gallery](https://www.r-graph-gallery.com/) is a fantastic resource for seeing all that is possible for visualization in R and the code on how to do it!!
+
+Now that we are sufficiently motivated, lets take a step back to the very basics.
 
 ## Introduction to `ggplot2`: scatterplot
 When you first get a dataset and are just starting to explore it, you want do be able to quickly visualize different bits and pieces about the data.  I tend to do this, initially, with base R. But since our time is short, we are going to focus our efforts just on `ggplot2` which is very powerful and widely used data visualization package and what I always use when I develop my final plots.
@@ -93,9 +78,9 @@ iris_gg <- ggplot(iris,aes(x=Petal.Length,y=Petal.Width))
 
 Great, nothing happened...  All we did at this point is create an object that contains our data and what we want on the x and y axes.  We haven't said anything about what type of plot we want to make.  That comes next with the use of geometries or `geom_`'s.  
 
-So if we want to simply plot points we can add that geometry to the ggplot object.  
+So if we want to simply plot points we can add that geometry to the ggplot object.
 
-A side note on syntax.  You will notice that we add new "things" to a ggplot object by adding new functions.  In concept this is very similar to the piping we talked about earlier.  Essentially it takes the output from the first function as the input to the second.  So to add points and create the plot, we would do:
+A side note on syntax.  You will notice that we add new "things" to a ggplot object by adding new functions.  In concept this is somewhat similar to the piping we talked about earlier.  Essentially it takes the output from the first function as the input to the second.  So to add points and create the plot, we would do:
 
 
 ```{r}
@@ -103,6 +88,8 @@ A side note on syntax.  You will notice that we add new "things" to a ggplot obj
 iris_gg + 
   geom_point()
 ```
+
+It is usually preferrable to save this to an object.
 
 ```{r}
 #This too can be saved to an object
@@ -115,7 +102,7 @@ iris_scatter
 
 Not appreciably better than base, in my opinion.  But what if we want to add some stuff...
 
-First a title and some axes labels.  These are part of `labs()`.
+First a title and some axis labels.  These are part of `labs()`.
 
 
 ```{r}
@@ -149,7 +136,7 @@ iris_scatter_loess
 
 Try that in `base` with so little code!
 
-Or we could add a simple linear regression line with:
+Or we could add a linear regression line with:
 
 
 ```{r}
@@ -159,7 +146,6 @@ iris_scatter_lm
 ```
 
 And if we are interested in the regressions by group we could do it this way.
-
 
 ```{r}
 iris_scatter_lm_group <- iris_scatter +
@@ -184,7 +170,12 @@ In short, some of the initial setup for ggplot is a bit more verbose than base R
 Before we get into another exercise, lets look at some of the other geometries.  In particular, boxplots and histograms.  If you want to see all that you can do, take a look at the list of `ggplot2` [geom functions](http://docs.ggplot2.org/current/).
 
 ## Example explained
-Now that we have the basics of `ggplot2` down, let's take a closer look at our example in `yale_markdown.Rmd`.  As we review this we will cover the fact that plotting is 90% data prep, see examples of the functions we talked about above, and use a cool trick to turn out nice `ggplot2` plot into an interactive plot!  
+Now that we have the basics of `ggplot2` down, let's take a closer look at our example in `region2_nla_analysis.Rmd`.
 
 ## Excercise 5.1
-For this exercise we will edit our code to produce the same plot that we have, but we now want the size of the dots to be representative of the countries population.  Work together with the person next to you on this for about 15 minutes.  We will then finish it up together.
+For this exercise we will work on creating a new plot from scratch.  One of the concepts I hope to get across is that creating a plot is as much knowing data manipulation as it is knowing the details of your plotting system (`ggplot2` in our case).
+
+1. Create a new code chunk at the end of our `.Rmd` and name it `best_nla_plot_ever`.  
+
+2. Let's see if plotting the state averages of total nitrogen, total phosphorus, and chlorophyll *a* changes anything.  You'll need to manipulate our data frame and summarize on the states.
+
