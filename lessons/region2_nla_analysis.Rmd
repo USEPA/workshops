@@ -36,7 +36,7 @@ x<-lapply(pkgs, library, character.only = TRUE)
 
 The chunk you use to load pacakges will usually be simpler and look something like the following:   
 
-```{r eval=FALSE}
+```{r load_packages, eval=FALSE}
 library(ggplot2)
 library(dplyr)
 library(readr)
