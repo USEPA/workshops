@@ -1,11 +1,12 @@
 # github_101
 
-This repository contains introductory presentation materials on Git and Github.  The two presentaitons provide a high level conceptual overview of version control with Git, basic concepts of Github, and a more hands-on example walking through the [CMAQ](https://github.com/USEPA/cmaq) repository and how Git and GitHub are used to manage open source development of the CMAQ models.
+This repository contains introductory materials on Git and Github.  The first is an introductory presentation on Git and Github with added focus on how these can be used at EPA.  Second, there are notes used for the presentation, and third is a short cheatsheet to help those wishing to get started with using Git and GitHub.   
 
 This README file will contain links to the presentations and additional materials.  
 
 - [Git, GitHub (and Cats)](http://usepa.github.io/github_101)
 - [Presentation Notes for Git, GitHub (and Cats)](git_github_cats_notes.md)
+- [Git and GitHub Cheatseets](github101_cheatsheets.pdf)
 
 # EPA Disclaimer
 
