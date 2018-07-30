@@ -1,19 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Git and Github (+ cats)</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Jeffrey Hollister" />
+    <meta name="date" content="2017-01-18" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Git and Github<br/>(+ cats)
+## (URL: <a href="https://github.com/usepa/github_101" class="uri">https://github.com/usepa/github_101</a>)
+### Jeffrey Hollister
+### 2017-01-18
+
 ---
-title: "Git and Github<br/>(+ cats)"
-subtitle: "(URL: https://github.com/usepa/github_101)"
-author: "Jeffrey Hollister"
-date: "2017-01-18"
-output:
-  xaringan::moon_reader:
-    css: ["default", "custom.css"]
-    lib_dir: libs
-    nature:
-      highlightStyle: github
-      highlightLines: true
----
-```{r setup, include=FALSE}
-options(htmltools.dir.version = FALSE)
-```
+
+
 class: center, top
 background-image: url(http://viral.dog/wp-content/uploads/2016/04/enhanced-buzz-11462-1356027602-1.jpg)
 background-size: cover
@@ -32,7 +38,7 @@ class: center, middle, inverse
 background-image: url(https://img.buzzfeed.com/buzzfeed-static/static/enhanced/webdr02/2012/12/20/14/enhanced-buzz-19085-1356032871-1.jpg?no-auto)
 background-size: cover
 
-# Who Created it <br/> and Why?
+# Who Created it &lt;br/&gt; and Why?
 
 ---
 class: center, top
@@ -67,14 +73,14 @@ class: center, middle, inverse
 background-image: url(https://ilovefunnyanimalpics.files.wordpress.com/2010/01/funny-pictures-your-lolcat-is-fresh-and-individually-packaged1.jpg)
 background-size: cover
 
-# git commit -m <br/> "because cat"
+# git commit -m &lt;br/&gt; "because cat"
 
 ---
 class: center, bottom
 background-image: url(https://img.buzzfeed.com/buzzfeed-static/static/enhanced/webdr01/2012/12/20/14/enhanced-buzz-32642-1356032263-3.jpg?no-auto)
 background-size: cover
 
-# git push origin <br/> gh-pages
+# git push origin &lt;br/&gt; gh-pages
 
 ---
 class: center, bottom, inverse
@@ -100,7 +106,7 @@ backgroun-position: 50% 50%
 
 ---
 class: center, top, inverse
-background-image: url(https://dpdesignphotography.files.wordpress.com/2014/07/138553187__460069b.jpg?w=780&h=500&crop=1)
+background-image: url(https://dpdesignphotography.files.wordpress.com/2014/07/138553187__460069b.jpg?w=780&amp;h=500&amp;crop=1)
 background-size: cover
 
 # Github != Git
@@ -193,5 +199,50 @@ class: center, middle
 # Thanks and Questions!
 
 Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
 
-
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
