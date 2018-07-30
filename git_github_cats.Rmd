@@ -150,7 +150,7 @@ background-size: cover
 - Bitbucket
 - Who really needs push access?
 - Workflow
-- Limits on repos (permission to change settings)
+- Limits on repos (permission to change settings, gh-pages (not really limited, but they dont know that))
 - Use of third party stuff (e.g. Travis)
 
 ---
