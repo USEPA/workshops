@@ -140,17 +140,29 @@ background-size: cover
 
 # EPA?
 
+--- 
+
+# Some EPA things to ponder
+
+- [US EPA GitHub Guidance](https://www.epa.gov/webguide/github-guidance)
+- [This talk and other materials](https://github.com/usepa/github_101)
+- Private vs. Public
+- Bitbucket
+- Who really needs push access?
+- Workflow
+- Limits on repos (permission to change settings)
+- Use of third party stuff (e.g. Travis)
+
 ---
 
-# Resources
+# Other Resources
 
 - [Git/GitHub Primer – Carly Strasser](http://datapub.cdlib.org/2014/05/05/github-a-primer-for-researchers/)
 - [Git and Version Control for Science – Karthik Ram](http://www.scfbm.org/content/8/1/7)
 - [Get Git – git-scm.com](http://git-scm.com/)
 - [GitHub](https://github.com/)
 - [Happy Git With R - Jenny Bryan and friends](http://happygitwithr.com/)
-- [US EPA GitHub Guidance](https://www.epa.gov/webguide/github-guidance)
-- [This talk and other materials](https://github.com/usepa/github_101)
+
 
 ---
 class: center, middle
