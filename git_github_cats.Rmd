@@ -145,36 +145,28 @@ class: center, middle
 background-image: url(http://images.cryhavok.org/d/5105-1/LOLcat+-+I+can+see+no+way.jpg)
 background-size: cover
 
-# EPA Considerations? 
+# EPA? 
 
 ---
 class: center, middle
-background-image: url(http://images.cryhavok.org/d/5105-1/LOLcat+-+I+can+see+no+way.jpg)
+background-image:
 background-size: cover
 
-# If it ain't broke, fix it until it is
+# Or, If it aint broke, fix it until it is
+
 
 --- 
-
-# Fix #1
+# Guidance
 
 - [US EPA GitHub Guidance](https://www.epa.gov/webguide/github-guidance)
-
---- 
-
-# Fix #2
-
-- Limits on repos (permission to change settings, gh-pages (not really limited, but they dont know that))
-- Use of third party stuff (e.g. Travis)
-
+- GitHub USEPA Organization
 ---
-# Fix #3
 
-- USEPA GitHub Organization
+# USEPA Repositories
+
 - Private vs. Public
-- Bitbucket
-- Who really needs push access?
-
+- Who needs access?
+- Limits on repositories
 ---
 
 # Other Resources
