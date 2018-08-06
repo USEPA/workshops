@@ -1,6 +1,6 @@
 ---
 title: "Git and Github<br/>(+ cats)"
-subtitle: "(URL: https://github.com/usepa/github_101)"
+subtitle: "URL: https://github.com/usepa/github_101"
 author: "Jeffrey Hollister"
 date: "2018-08-06"
 output:
@@ -77,8 +77,8 @@ background-size: cover
 # git push origin <br/> gh-pages
 
 ---
-class: center, bottom, inverse
-background-image: url(http://www.lolriot.com/wp-content/uploads/2012/12/Funny-cat-Long-story-just-pull.jpg)
+class: center, middle, inverse
+background-image: url(https://whycatsruletheworld.files.wordpress.com/2015/12/christmas-tree-cat-meme-031.jpg)
 background-size: cover
 
 # git pull origin master
@@ -127,8 +127,8 @@ background-size: cover
 # I've got issues
 
 ---
-class: center, middle
-background-image:
+class: center, middle, inverse
+background-image: url(https://memegenerator.net/img/instances/500x/71386721/i-can-has-workflow.jpg)
 background-size: cover
 
 # Workflow 
@@ -141,25 +141,26 @@ background-size: cover
 # Open Collaboration
 
 ---
-class: center, middle
+class: center, top
 background-image: url(http://images.cryhavok.org/d/5105-1/LOLcat+-+I+can+see+no+way.jpg)
 background-size: cover
 
 # EPA? 
 
 ---
-class: center, middle
-background-image:
+class: center, top
+background-image: url(http://images.cryhavok.org/d/5105-1/LOLcat+-+I+can+see+no+way.jpg)
 background-size: cover
 
-# Or, If it aint broke, fix it until it is
+# If it ain't broke, fix it until it is
 
+---
 
---- 
 # Guidance
 
-- [US EPA GitHub Guidance](https://www.epa.gov/webguide/github-guidance)
-- GitHub USEPA Organization
+- [US EPA Github Guidance]()
+- USEPA Organization
+
 ---
 
 # USEPA Repositories
