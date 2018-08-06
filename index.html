@@ -4,8 +4,8 @@
     <title>Git and Github (+ cats)</title>
     <meta charset="utf-8">
     <meta name="author" content="Jeffrey Hollister" />
-    <meta name="date" content="2017-01-18" />
-    <link href="libs/remark-css/example.css" rel="stylesheet" />
+    <meta name="date" content="2018-08-06" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="custom.css" type="text/css" />
   </head>
   <body>
@@ -13,9 +13,9 @@
 class: center, middle, inverse, title-slide
 
 # Git and Github<br/>(+ cats)
-## (URL: <a href="https://github.com/usepa/github_101" class="uri">https://github.com/usepa/github_101</a>)
+## URL: <a href="https://github.com/usepa/github_101" class="uri">https://github.com/usepa/github_101</a>
 ### Jeffrey Hollister
-### 2017-01-18
+### 2018-08-06
 
 ---
 
@@ -83,8 +83,8 @@ background-size: cover
 # git push origin &lt;br/&gt; gh-pages
 
 ---
-class: center, bottom, inverse
-background-image: url(http://www.lolriot.com/wp-content/uploads/2012/12/Funny-cat-Long-story-just-pull.jpg)
+class: center, middle, inverse
+background-image: url(https://whycatsruletheworld.files.wordpress.com/2015/12/christmas-tree-cat-meme-031.jpg)
 background-size: cover
 
 # git pull origin master
@@ -134,34 +134,62 @@ background-size: cover
 
 ---
 class: center, middle, inverse
+background-image: url(https://memegenerator.net/img/instances/500x/71386721/i-can-has-workflow.jpg)
+background-size: cover
+
+# Workflow 
+
+---
+class: center, middle, inverse
 background-image: url(https://iamkio.files.wordpress.com/2011/03/lolcat-dog-war.jpg?w=590)
 background-size: cover
 
 # Open Collaboration
 
 ---
-class: center, middle
+class: center, top
 background-image: url(http://images.cryhavok.org/d/5105-1/LOLcat+-+I+can+see+no+way.jpg)
 background-size: cover
 
-# EPA?
+# EPA? 
+
+---
+class: center, top
+background-image: url(http://images.cryhavok.org/d/5105-1/LOLcat+-+I+can+see+no+way.jpg)
+background-size: cover
+
+# If it ain't broke, fix it until it is
 
 ---
 
-# Resources
+# Guidance
+
+- [US EPA Github Guidance]()
+- USEPA Organization
+
+---
+
+# USEPA Repositories
+
+- Private vs. Public
+- Who needs access?
+- Limits on repositories
+---
+
+# Other Resources
 
 - [Git/GitHub Primer – Carly Strasser](http://datapub.cdlib.org/2014/05/05/github-a-primer-for-researchers/)
 - [Git and Version Control for Science – Karthik Ram](http://www.scfbm.org/content/8/1/7)
 - [Get Git – git-scm.com](http://git-scm.com/)
 - [GitHub](https://github.com/)
 - [Happy Git With R - Jenny Bryan and friends](http://happygitwithr.com/)
-- [US EPA GitHub Guidance](https://www.epa.gov/webguide/github-guidance)
 - [This talk and other materials](https://github.com/usepa/github_101)
+
 
 ---
 class: center, middle
 
-# Thanks!
+# Thanks and Questions!
 
 Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
     </textarea>
@@ -170,7 +198,44 @@ Slides created via the R package [**xaringan**](https://github.com/yihui/xaringa
 "highlightStyle": "github",
 "highlightLines": true
 });
-if (window.HTMLWidgets) slideshow.on('showSlide', function (slide) {setTimeout(function() {window.dispatchEvent(new Event('resize'));}, 100)});</script>
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
 
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
   </body>
 </html>
