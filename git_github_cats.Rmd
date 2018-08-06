@@ -2,7 +2,7 @@
 title: "Git and Github<br/>(+ cats)"
 subtitle: "(URL: https://github.com/usepa/github_101)"
 author: "Jeffrey Hollister"
-date: "2017-01-18"
+date: "2018-08-06"
 output:
   xaringan::moon_reader:
     css: ["default", "custom.css"]
