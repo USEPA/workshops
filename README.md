@@ -19,19 +19,16 @@ This workshop will be held on Tuesday, Sep 10, 2018 in Research Triangle Park, N
 
 # Workshop Schedule and Links to Materials
 
-| Time                 | Topic                                              | 
-| ---------------------| -------------------------------------------------- | 
-| Tuesday, June 5, 2018|                                                    |
-| 12:30 PM - 12:45 AM  | Welcome and Introductions                          |
-| 12:45 PM - 1:15 PM   | [RStudio and The Punchline](lessons/01_rstudio.md) | 
-| 1:15 PM - 2:45 PM    | [R Basics](lessons/02_r_basics.md)                 |
-| 2:45 PM - 3:00 PM    | *BREAK*                                            |
-| 3:00 PM - 3:30 PM    | [R Markdown](lessons/03_rmarkdown.md)              |
-| 3:30 PM - 5:00 PM    | [Tidy Data in R](lessons/04_tidy_data_in_r.md)     |
-| Wed, June 6, 2018    |                                                    |
-| 8:30 AM - 10:00 AM   | [Tidy Data Continued](lessons/04_tidy_data_in_r.md)|
-| 10:00 AM - 10:15 AM  | *BREAK*                                            |
-| 10:15 AM - Noon      | [Data Viz](lessons/05_data_viz_with_ggplot2.md)    |
+|Time                       |Topic                                             | 
+|---------------------------|--------------------------------------------------| 
+|Tuesday, September 10, 2018|                                                  |
+|8:00 PM - 8:15 AM        |Welcome and Introductions                         |
+|12:45 PM - 1:15 PM         |[RStudio and The Punchline](lessons/01_rstudio.md)| 
+|1:15 PM - 2:45 PM          |[R Basics](lessons/02_r_basics.md)                |
+|11:30 AM - 1:30 PM          |*LUNCH*                                           |
+|3:30 PM - 5:00 PM          |[Tidy Data in R](lessons/03_tidy_data_in_r.md)    |
+|10:00 AM - 10:15 AM        |*BREAK*                                           |
+|10:15 AM - Noon            |[Data Viz](lessons/04_data_viz_with_ggplot2.md)   |
 
 
 ## EPA Disclaimer
