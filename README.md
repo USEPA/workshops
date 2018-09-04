@@ -22,13 +22,14 @@ This workshop will be held on Tuesday, Sep 10, 2018 in Research Triangle Park, N
 |Time                       |Topic                                             | 
 |---------------------------|--------------------------------------------------| 
 |Tuesday, September 10, 2018|                                                  |
-|8:00 PM - 8:15 AM        |Welcome and Introductions                         |
-|12:45 PM - 1:15 PM         |[RStudio and The Punchline](lessons/01_rstudio.md)| 
-|1:15 PM - 2:45 PM          |[R Basics](lessons/02_r_basics.md)                |
-|11:30 AM - 1:30 PM          |*LUNCH*                                           |
-|3:30 PM - 5:00 PM          |[Tidy Data in R](lessons/03_tidy_data_in_r.md)    |
-|10:00 AM - 10:15 AM        |*BREAK*                                           |
-|10:15 AM - Noon            |[Data Viz](lessons/04_data_viz_with_ggplot2.md)   |
+|8:00 AM - 8:15 AM          |Welcome and Introductions                         |
+|8:15 AM - 9:15 AM          |[RStudio and The Punchline](lessons/01_rstudio.md)|
+|9:15 AM - 9:30 AM          |*BREAK*                                           |
+|9:00 AM - 11:30 PM         |[R Basics](lessons/02_r_basics.md)                |
+|11:30 AM - 1:30 PM         |*LUNCH*                                           |
+|1:30 PM - 3:00 PM          |[Tidy Data in R](lessons/03_tidy_data_in_r.md)    |
+|3:00 PM - 3:15 PM          |*BREAK*                                           |
+|3:00 PM - 5:00 PM          |[Data Viz](lessons/04_data_viz_with_ggplot2.md)   |
 
 
 ## EPA Disclaimer
