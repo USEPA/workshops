@@ -19,7 +19,7 @@ In this lesson we are going to go over the very basics of R, cover some basic te
 
 R is a functional programming language and as such, most everything you do uses a function.
 
-The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many (2892 functions, to be exact).  Some examples:
+The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many (2990 functions, to be exact).  Some examples:
 
 
 ```r
@@ -46,21 +46,21 @@ rnorm(100,mean=10,sd=2)
 ```
 
 ```
-##   [1] 11.052018  7.787801 10.314824  9.669512 10.657762  7.903322  6.759170
-##   [8]  9.193725 11.095045  7.370998  9.635415 10.906129 10.013600 15.397260
-##  [15] 10.733259  8.905484  8.461762  5.622316 11.196340  9.599580  9.785129
-##  [22]  9.360603  6.424309  9.462598 10.383608  7.290815  9.646192  8.745070
-##  [29]  9.596729 11.762381 10.867011  9.294538  9.957271 10.007144  9.447818
-##  [36]  7.844196  9.456462  8.467840  9.514852  9.851199  8.991341  9.883117
-##  [43]  6.305686 11.726716 10.904953 12.371301 14.350003 12.255706 13.334871
-##  [50] 10.350054 13.056353  7.529891  7.231468  9.680266 10.431761 11.310413
-##  [57]  9.119588  9.221868 10.060439 12.918454 12.732637  9.191495  8.266185
-##  [64]  9.213913  4.202474 12.258131  7.471560  9.816312  9.563520  6.624644
-##  [71]  9.010486  8.638373  9.008844 10.521149 11.336932  9.079192  9.916129
-##  [78]  9.753852 12.738684 10.313751 10.229635  9.274804  4.685691 10.264861
-##  [85]  9.350265  9.530100  9.953631 11.275249 10.442979 11.469559 10.556735
-##  [92]  9.455177 12.640490 10.637399  9.073748  7.369875 12.284535 12.207569
-##  [99] 10.969817  8.898815
+##   [1] 10.391215 10.841692  6.161875  9.218674  9.196072  9.974823  7.417049
+##   [8]  9.913053  9.106322  6.931043  8.294859 10.881624  7.923289 11.299838
+##  [15]  8.893035 10.569368  9.529773  9.215756 12.736659 11.242003 10.700450
+##  [22]  9.683010  9.883053  9.926537 11.164113 10.769545 10.098949  7.726807
+##  [29] 11.426956  8.225022  9.134533 10.883456 10.902513  8.788031 12.570529
+##  [36]  8.897696 10.180300  9.103949 11.904128 12.124444 13.054938 12.149116
+##  [43] 14.197274 10.240476  7.351398  5.493086  9.018260 12.255665 13.560861
+##  [50]  8.565596  9.925581  9.504538 14.391900  7.420511  6.941180 11.517019
+##  [57]  8.638058 10.106950 14.598322 11.901033  7.459391 12.325553  7.277264
+##  [64]  7.862937  7.255509 12.414340 12.558517  8.339001  7.751638  9.750364
+##  [71] 10.300119 12.513040 11.907653  9.684196  6.583479  8.167983 11.469818
+##  [78]  5.479279 11.635768 13.465854  6.543787 12.185406 10.758785  5.663642
+##  [85] 11.409628 12.343595  8.816838  9.899747 11.829165  9.815432 10.418635
+##  [92] 11.221925 11.095353 10.929100 11.585559 10.143204  7.639621  8.871733
+##  [99]  8.598971 12.643915
 ```
 
 ```r
@@ -69,7 +69,7 @@ mean(rnorm(100))
 ```
 
 ```
-## [1] -0.01364789
+## [1] -0.1297983
 ```
 
 ```r
@@ -78,20 +78,18 @@ sum(rnorm(100))
 ```
 
 ```
-## [1] 1.546796
+## [1] -14.31558
 ```
 
 ### A few side notes 
 
 There are several other characters that commonly show up in R code.  These are:
 
-
-```r
-# NOTES:
-#Comments
-#()
-#[]
-#{}
+```
+# - comments
+() - wraps function arguments and order of operations
+[] - indexing
+{} - grouping code
 ```
 
 The `#` indicates a comment.  You can put whatever else you'd like after this, but on the same line as the `#`.  R will not evaluate it. Multiple `#####`, are still just seen as a comment.  When commenting your code, err on the side of too much!  Also, you will see `()`, `[]`, and `{}` used in R code.  The `()` indicates a function (almost always), the `[]` indicates indexing (grabbing values by the location), and the `{}` groups code that is meant to be run together and is usually used when programming functions in R.
@@ -102,7 +100,7 @@ The base install of R is quite powerful, but you will soon have a need or desire
 
 ### CRAN
 
-One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of 2018-05-30, there are 12596 on CRAN! 
+One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of 2018-09-05, there are 12985 on CRAN! 
 
 ### Installing packages
 
@@ -119,6 +117,15 @@ install.packages("dplyr")
 #You can also put more than one in like
 install.packages(c("quickmapr","formatR"))
 ```
+
+Now a couple of words of warning for library locations on EPA windows machines.  If R was installed correctly, your library should reside in something like `C:/Program Files/R/R-3.5.1/library`.  If you type `.libPaths()` and get a vastly different result (e.g. `Blah\Blah\Net MyDocuments\BLah`), then you are going to have some problems.  We can fix this by adding a file, `Renviron.site` to `C:\Program Files\R\R-3.5.1\etc`.  That file should have the following lines in it
+
+```
+HOME=C:/Program Files/R/R-3.5.1
+R_USER=C:/Program Files/R/R-3.5.1
+```
+
+On your next start up of R, the library path should look better!
 
 ### Using packages
 
@@ -140,6 +147,7 @@ dplyr::mutate
 ## {
 ##     UseMethod("mutate")
 ## }
+## <bytecode: 0x000002215b979570>
 ## <environment: namespace:dplyr>
 ```
 
@@ -382,12 +390,11 @@ As I mention earlier, there are TOO many resources to mention and everyone has t
 
 ## Exercise 2.1
 
-We should still have our `region2_nla_analysis.Rmd` file open.  We will be working with this as we go through the rest of the excercises.
+We should still have our `nla_analysis.R` file open.  We will be working with this as we go through the rest of the excercises.
 
 Take a look at this file and with the person sitting next to you find the following:
 
 1. Find the `read_csv()` function.  What lines is it on?  What is the argument?
-2. Now find the lines on which you think we install packages and load libraries.  There is the fancy way and the straight up way with `install.packages()` and `library()`.  Discuss both of these.  Look at lines 28-33.  What you think we are doing with these lines?
-3. What do lines 40-44 accomplish?
-4. Add some code after line 44 to install the package `lubridate` and add a line after that to load `lubridate`.
+2. Now find the lines on which you think we install packages and load libraries.  There is the fancy way (lines 19-24) and a straight up way (lines 29-32).  Talk through in your own words what each of these is doing
+3. Add a line of code after line 24 to install the package `lubridate`.  Add a line after line 33 to load `lubridate`.
 5. Bring up the package level help for the `lubridate` package.  What does this package do?
