@@ -1,14 +1,4 @@
----
-title: "2007 NLA Analysis"
-editor_options:
-  chunk_output_type: console
-date: '2018-06-05'
-output:
-  html_document:
-    toc: yes
-    toc_depth: 3
-    toc_float: true
----
+# 2007 NLA Analysis
 
 # Purpose
 
