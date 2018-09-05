@@ -22,7 +22,6 @@ for(i in pkgs){
     install.packages(i)
   }
 }
-x<-lapply(pkgs, library, character.only = TRUE)
 
 ################################################################################
 # Load up packages in R session

@@ -51,12 +51,11 @@ sum(rnorm(100))
 
 There are several other characters that commonly show up in R code.  These are:
 
-```{r common}
-# NOTES:
-#Comments
-#()
-#[]
-#{}
+```
+# - comments
+() - wraps function arguments and order of operations
+[] - indexing
+{} - grouping code
 ```
 
 The `#` indicates a comment.  You can put whatever else you'd like after this, but on the same line as the `#`.  R will not evaluate it. Multiple `#####`, are still just seen as a comment.  When commenting your code, err on the side of too much!  Also, you will see `()`, `[]`, and `{}` used in R code.  The `()` indicates a function (almost always), the `[]` indicates indexing (grabbing values by the location), and the `{}` groups code that is meant to be run together and is usually used when programming functions in R.
@@ -83,6 +82,15 @@ install.packages("dplyr")
 #You can also put more than one in like
 install.packages(c("quickmapr","formatR"))
 ```
+
+Now a couple of words of warning for library locations on EPA windows machines.  If R was installed correctly, your library should reside in something like `C:/Program Files/R/R-3.5.1/library`.  If you type `.libPaths()` and get a vastly different result (e.g. `Blah\Blah\Net MyDocuments\BLah`), then you are going to have some problems.  We can fix this by adding a file, `Renviron.site` to `C:\Program Files\R\R-3.5.1\etc`.  That file should have the following lines in it
+
+```
+HOME=C:/Program Files/R/R-3.5.1
+R_USER=C:/Program Files/R/R-3.5.1
+```
+
+On your next start up of R, the library path should look better!
 
 ### Using packages
 
@@ -214,12 +222,11 @@ As I mention earlier, there are TOO many resources to mention and everyone has t
 
 ## Exercise 2.1
 
-We should still have our `region2_nla_analysis.Rmd` file open.  We will be working with this as we go through the rest of the excercises.
+We should still have our `nla_analysis.R` file open.  We will be working with this as we go through the rest of the excercises.
 
 Take a look at this file and with the person sitting next to you find the following:
 
 1. Find the `read_csv()` function.  What lines is it on?  What is the argument?
-2. Now find the lines on which you think we install packages and load libraries.  There is the fancy way and the straight up way with `install.packages()` and `library()`.  Discuss both of these.  Look at lines 28-33.  What you think we are doing with these lines?
-3. What do lines 40-44 accomplish?
-4. Add some code after line 44 to install the package `lubridate` and add a line after that to load `lubridate`.
+2. Now find the lines on which you think we install packages and load libraries.  There is the fancy way (lines 19-24) and a straight up way (lines 29-32).  Talk through in your own words what each of these is doing
+3. Add a line of code after line 24 to install the package `lubridate`.  Add a line after line 33 to load `lubridate`.
 5. Bring up the package level help for the `lubridate` package.  What does this package do?
