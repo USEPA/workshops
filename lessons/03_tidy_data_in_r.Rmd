@@ -139,7 +139,7 @@ Let's now see some of the basic tools for tidying data using the `tidyr` and `dp
 
 ### Data manipulation with `dplyr`
 
-There are a lot of different ways to manipulate data in R, but one that is a fairly recent addition and that is at the core of the Tidyverse is `dplyr`.  In particular, we are going to look at selecting columns, filtering data, adding new columns, grouping data, and summarizing data.  
+There are a lot of different ways to manipulate data in R, but one that is a fairly recent addition and that is part of the core of the Tidyverse is `dplyr`.  In particular, we are going to look at selecting columns, filtering data, adding new columns, grouping data, and summarizing data.  
 
 #### select
 
@@ -148,14 +148,14 @@ Often we get datasets that have many columns or we might what to re-order those 
 ```{r}
 iris_petals <- iris %>%
   select(Species, Petal.Width, Petal.Length)
-as_tibble(iris_petals)
+as_tibble(iris_petals) #the as_tibble function helps make the output cleaner looking
 ```
 
-The end result of this is a data frame, `iris_petals` that has three columns: Species, Petal.Width and Petal.Length in the order that we specified.  And the syntax we are now using is "piped" in that we use the `%>%` operator to send something from before the operator (a.k.a. "to the left") to the first argument of the function after the operator (a.k.a. "to the right").  This allows us to right our code in the same order as we think of it.  Again, the best description of this is from the [Piping chapter in R4DS](http://r4ds.had.co.nz/pipes.html).
+The end result of this is a data frame, `iris_petals` that has three columns: Species, Petal.Width and Petal.Length in the order that we specified.  And the syntax we are now using is "piped" in that we use the `%>%` operator to send something from before the operator (a.k.a. "to the left") to the first argument of the function after the operator (a.k.a. "to the right").  This allows us to write our code in the same order as we think of it.  The best explanation of this is (again) from R For Data Science in the [Piping chapter](http://r4ds.had.co.nz/pipes.html).
 
 #### filter
 
-The `filter()` function allows us to select out data that meets certain criteria.  For instance we might want to further manipulate our 3 column data frame with only one species of Iris and Petals greater than the .
+The `filter()` function allows us to fiter our data that meets certain criteria.  For instance, we might want to further manipulate our 3 column data frame with only one species of Iris and Petals greater than the median petal width.
 
 ```{r}
 iris_petals_virginica <- iris %>%
@@ -167,7 +167,7 @@ as_tibble(iris_petals_virginica)
 
 #### mutate
 
-Now say we have some research that suggest the ratio of the petal width and length is imporant.  We might want to add that as a new column in our data set, but we want to do this now for all or our species and all sizes.
+Now say we have some research that suggest the ratio of the petal width and length is imporant.  We might want to add that as a new column in our data set.
 
 ```{r}
 iris_petals_ratio <- iris %>%
@@ -178,7 +178,7 @@ as_tibble(iris_petals_ratio)
 
 #### group_by and summarize
 
-We might want to get some summary statistics of our important petal ratio metric for each of the species.
+What if we want to get some summary statistics of our important petal ratio metric for each of the species?  Grouping the data by species, and then summarizing those groupings will let us accomplish this.
 
 ```{r}
 iris_petal_ratio_species <- iris %>%
@@ -188,11 +188,12 @@ iris_petal_ratio_species <- iris %>%
   summarize(mean_petal_ratio = mean(petal_ratio),
             sd_petal_ratio = sd(petal_ratio),
             median_petal_ratio = median(petal_ratio))
+iris_petal_ratio_species
 ```
 
 #### left_join
 
-Lastly, we might also have information spread across multiple data frames.  This is the same concept as having multiple tables in a relational database.  There are MANY ways to combine tables like this and most of them have a `dplyr` verb implemented for them.  We are going to focus on one, the `left_join()`.
+Lastly, we might also have information spread across multiple data frames.  This is the same concept as having multiple tables in a relational database.  There are MANY ways to combine (aka. "join) tables like this and most of them have a `dplyr` verb implemented for them.  We are going to focus on one, the `left_join()`.
 
 Let's create some data frames to work with.
 
@@ -215,8 +216,7 @@ left_right_table
 ```
 
 ### Spread and Gather with `tidyr`
-
-Two of the function I use the most in `tidyr` are `spread()` and `gather()`.  They are somewhat similar to pivot tables in spreadsheets and allow us combine columns together or spread them back out.  I'll admit it still sometimes feels a bit like magic.  So, abracadabra!
+So far we have seen how to do some manipulation of the data, but we didn't really do too much with the structure of that data frame.  In some cases we might need to have data that are stored in rows, as columns or vice-versa.  Two of the function I use the most in `tidyr`, `spread()` and `gather()`, will accomplish this for us.  They are somewhat similar to pivot tables in spreadsheets and allow us combine columns together or spread them back out.  I'll admit it still sometimes feels a bit like magic.  So, abracadabra!
 
 Load up the library:
 
@@ -226,7 +226,7 @@ library(tidyr)
 
 #### gather
 
-Let's build an untidy data frame.  This is made up, but let's say we want to grab some monthly stats on some varaible (e.g., average number of Boston Red Sox Hats) per state...
+Let's build an untidy data frame.  This is made up, but let's say we want to grab some monthly stats on some varaible (e.g., average number of Boston Red Sox Hats, in thousands) per state...
 
 ```{r}
 dirty_df <- data_frame(state = c("CT","RI","MA"), jan = c(3.1,8.9,9.3), feb = c(1.0,4.2,8.6), march = c(2.9,3.1,12.5), april = c(4.4,5.6,14.2))
@@ -261,18 +261,22 @@ wide_df <- spread(long_df,parameter,value)
 wide_df
 ```
 
+While these two simple examples showcase the general ideas, deciding on a given tidy structure for your data will depend on many things and the result will difer based on your task (i.e. data entry, visualization, modelling, etc.).  A couple of nice reads about this are:
+
+- [Best Pracitces for Using Google Sheets in Your Data Project](https://matthewlincoln.net/2018/03/26/best-practices-for-using-google-sheets-in-your-data-project.html)
+- And again, R4DS [Tidy Data Chapter](http://r4ds.had.co.nz/tidy.html)
 
 ## Exercise 3.2
 
 For this exercise we will dig into our datasets and find ways to tidy them up and create a new data frame.  
 
-1. We first need to clean up our new data frame, `nla_sites` a bit.  Add a new code chunk after the `tidy` code chunk and name it `tidy_sites`.  And before this chunk add some text (and markdown if you need it) to describe what this chunk is doing.
-2. In this code chunk we want to:
+1. We first need to clean up our new data frame, `nla_sites` a bit.  Add new lines of code after the section of code that cleans up the `nla_wq` data frame. Add some comments to your script that describe what we are doing.  We want this code to:
   - make our columns names lower case
   - make all the character fields lower case
   - filter out just the first visits
   - select site_id, state_name, and cntyname
-3. Add another code chunk and descriptive text after `tidy_sites` and name it `joining_data`.
-4. In this code chunk use `left_join()` to combine `nla_wq` and `nla_sites` into a new data frame called `nla_2007`.
+  - hint: its the same stuff we did to `nla_wq`
+2. Add some more code (and descriptive comments) after the code where we cleaned up `nla_sites`.  We want this code to:
+  - use `left_join()` to combine `nla_wq` and `nla_sites` into a new data frame called `nla_2007`
 
   

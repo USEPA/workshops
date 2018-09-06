@@ -2,7 +2,7 @@
 
 # Tidy Data in R
 
-In this lesson we will cover the basics of data in R and will do so from a somewhat opinionated viewpoint of "Tidy Data".  There are other paradigms and other ways to work with data in R, but focusing on Tidy Data concepts and tools (a.k.a., The Tidyverse) gets people to a productive place the quickest.  For more on the data analysis using the Tidyverse, the best resource I know of is [R for Data Science](http://r4ds.had.co.nz).  The approaches we will cover are very much inspired by this book.
+In this lesson we will cover the basics of data in R and will do so from a somewhat opinionated viewpoint of "Tidy Data".  There are other paradigms and other ways to work with data in R, but focusing on Tidy Data concepts and tools (a.k.a., The Tidyverse) gets people to a productive place the quickest.  For more on data analysis using the Tidyverse, the best resource I know of is [R for Data Science](http://r4ds.had.co.nz).  The approaches we will cover are very much inspired by this book.
 
 ## Lesson Outline
 - [Data in R: The data frame](#data-in-r-the-data-frame)
@@ -10,14 +10,14 @@ In this lesson we will cover the basics of data in R and will do so from a somew
 - [Tidy data](#tidy-data)
 
 ## Exercises
-- [Excercise 4.1](#exercise-41)
-- [Excercise 4.2](#exercise-42)
+- [Excercise 3.1](#exercise-31)
+- [Excercise 3.2](#exercise-32)
 
 ## Data in R: The data frame
 
-Simply put, a data structure is a way for programming languages to handle storing information.  Like most languages, R has several structures (vectors, matrix, lists, etc.) but since R is built for data analysis the data frame, a spreadsheet like structure with rows and columns, is the most widely used and useful to learn first.  In addition, the data frame (or is it data.frame) is the basis for many modern R pacakges (e.g. the tidyverse) and getting used to it will allow you to quickly build your R skills.
+Simply put, a data structure is a way for programming languages to handle storing information.  Like most languages, R has several structures (vectors, matrix, lists, etc.).  But R was originally built for data analysis, so the data frame, a spreadsheet like structure with rows and columns, is the most widely used and useful to learn first.  In addition, the data frame (or is it data.frame) is the basis for many modern R pacakges (e.g. the tidyverse) and getting used to it will allow you to quickly build your R skills.
 
-*Note:* It is useful to know more about the different data structures such as vectors, lists, and factors (a weird one that is for catergorical data).  But that is beyond what we have time for.  You can look at some of our [old materials](data_in_r.md) or even better look at what I think is the best source on this information, Hadley Wickham's [Data Structures Chapter in Advanced R](http://adv-r.had.co.nz/Data-structures.html).
+*Note:* It is useful to know more about the different data structures such as vectors, lists, and factors (a weird one that is for catergorical data).  But that is beyond what we have time for.  The best source on this information, I think, is Hadley Wickham's [Data Structures Chapter in Advanced R](http://adv-r.had.co.nz/Data-structures.html).
 
 ### Build a data frame
 Best way to learn what a data frame is is to look at one.  Let's now build a simple data frame from scratch with the `data.frame()` function.  This is mostly a teaching excercise as we will use the function very little in the excercises to come.  
@@ -75,21 +75,20 @@ The purpose of all this was to introduce the concept of the data frame.  Moving 
 
 ## Reading in data
 
-Completely creating a data frame from scratch is useful (especially when you start writing your own functions), but more often than not data is stored in an external file that you need to read into R.  These may be delimited text files, spreadsheets, relational databases, SAS files ...  You get the idea.  Instead of treating this subject exhaustively, we will focus just on a single file type, `.csv` that is very commonly encountered and (usually) easy to create from other file types.  For this, we will use the Tidyverse way to do this and use  `read_csv()` from the `readr` pacakge.
+Completely creating a data frame from scratch is useful (especially when you start writing your own functions), but more often than not data is stored in an external file that you need to read into R.  These may be delimited text files, spreadsheets, relational databases, SAS files ...  You get the idea.  Instead of treating this subject exhaustively, we will focus just on a single file type, the `.csv` file, that is very commonly encountered and (usually) easy to create from other file types.  For this, we will use the Tidyverse way to do this and use  `read_csv()` from the `readr` pacakge.
 
-The `read_csv()` is a re-imagined version of the base R fucntion, `read.csv()`.  This command assumes a header row with column names and that the delimiter is a comma. The expected no data value is NA and by default, strings are NOT converted to factors.  This is a big benefit to using `read_csv()` as opposed to `read.csv()`.  Additionally, `read_csv()` has some performance enhancements that make it preferrable when working with larger data sets.  In my limited experience it is about 45% faster than the base R options.  For instance a ~200 MB file with hundreds of columns and a couple hundred thousand rows took ~14 seconds to read in with `read_csv()` and about 24 seconds with `read.csv()`.  As a comparison at 45 seconds Excel had only opened 25% of the file!
+The `read_csv()` function is a re-imagined version of the base R fucntion, `read.csv()`.  This command assumes a header row with column names and that the delimiter is a comma. The expected no data value is NA and by default, strings are NOT converted to factors.  This is a big benefit to using `read_csv()` as opposed to `read.csv()`.  Additionally, `read_csv()` has some performance enhancements that make it preferrable when working with larger data sets.  In my limited experience it is about 45% faster than the base R options.  For instance a ~200 MB file with hundreds of columns and a couple hundred thousand rows took ~14 seconds to read in with `read_csv()` and about 24 seconds with `read.csv()`.  As a comparison at 45 seconds Excel had only opened 25% of the file!
 
-Source files for `read_csv()` can either be on a local hard drive or, and this is pretty cool, on the web. We will be using the former for our examples and exercises. If you had a file available from a URL it would be accessed like `mydf <- read.csv("https://example.com/my_cool_file.csv")`. As an aside, paths and the use of forward vs back slash is important. R is looking for forward slashes ("/"), or unix-like paths. You can use these in place of the back slash and be fine. You can use a back slash but it needs to be a double back slash ("\"). This is becuase the single backslash in an escape character that is used to indicate things like newlines or tabs. 
+Source files for `read_csv()` can either be on a local hard drive or, and this is pretty cool, on the web. We will be using the former for our examples and exercises. If you had a file available from a URL it would be accessed like `mydf <- read.csv("https://example.com/my_cool_file.csv")`. As an aside, paths and the use of forward vs back slash is important. R is looking for forward slashes ("/"), or unix-like paths. You can use these in place of the back slash and be fine. You can use a back slash but it needs to be a double back slash ("\\\\"). This is becuase the single backslash in an escape character that is used to indicate things like newlines or tabs. 
 
-For today's workshop we will focus on both grabbing data from a local file and from a URL, we already have an example of this in our `region2_nla_analysis.Rmd`.  In that file look for the code chunk labeled "read_csv".
+For today's workshop we will focus on both grabbing data from a local file and from a URL, we already have an example of this in our `nla_analysis.R`.  In that file look for the line where we use `read_csv()`
 
 For your convenience, it looks like:
 
-<pre>```{r read_csv, message=FALSE, echo = FALSE}
+
+```r
 nla_wq_all <- read_csv("nla2007_chemical_conditionestimates_20091123.csv")
-<br>```</pre>
-
-
+```
 
 And now we can take a look at our data frame
 
@@ -127,9 +126,7 @@ nla_wq_all
 
 ### Other ways to read in data
 
-There are many ways to read in data with R.  If you have questions about this, please let Jeff know.  He's happy to chat more about it.  For this workhsop we will point out one other way we did it in the example R Markdown file and will show one last way to read in Excel files here.
-
-Lastly, since Excel spreadsheets are so ubiquitous we need a reliable way to read in data stored in an excel spreadsheet.  There are a variety of packages that provide this capability, but by far the best (IMHO) is `readxl` which is part of the Tidyverse.  This is how we read in an File:
+There are many ways to read in data with R.  If you have questions about this, please let Jeff know.  He's happy to chat more about it.  Before we move on though, I will show an example of one other way we can do this.   Since Excel spreadsheets are so ubiquitous we need a reliable way to read in data stored in an excel spreadsheet.  There are a variety of packages that provide this capability, but by far the best (IMHO) is `readxl` which is part of the Tidyverse.  This is how we read in an File:
 
 
 ```r
@@ -148,16 +145,18 @@ This is the simplest case, but lets dig into the options to see what's possible
 ## NULL
 ```
 
-## Exercise 4.1
+## Exercise 3.1
 
-For this exercise, let's read in a new dataset but this time, directly from a URL.  We are still working on the `region2_nla_analysis.Rmd`
+For this exercise, let's read in a new dataset but this time, directly from a URL.  We are still working on the `nla_analysis.R` Script
 
-1. Add a new code chunk, starting after the `read_csv` code chunk.  Name this code chunk `read_csv_url`.
+1. Add a new line of code, starting after the `read_csv` line we looked at above (on or around line 39).  
 2. Use the `read_csv()` function to read in "https://www.epa.gov/sites/production/files/2014-01/nla2007_sampledlakeinformation_20091113.csv", and assign the output to a data frame named `nla_sites`.
+3. How many rows and columns do we have in this data frame?  
+4. What is stored in the fourth column of this data frame?
 
 ## Tidy data
 
-We have learned about data frames, how to create them, and about several ways to read in external data into a data.frame.   At this point there have been only a few rules applied to our data frames (which already separates them from spreadsheets) and that is our datasets must by rectangular.  Beyond that we havent disscussed how best to organize that data so that subsequent analyses are easier to accomplish. This is, in my opinion, the biggest decision we make as data analysts and it takes a lot of time to think about how best to organize data and to actually re-organize that data.  Luckily, we can use an existing concept for this that will help guide our decisions and re-organization.  The best concept I know of to do this is the concept of [tidy data](http://r4ds.had.co.nz/tidy-data.html).  The essence of which can be summed up as:
+We have learned about data frames, how to create them, and about several ways to read in external data into a data.frame.   At this point there have been only a few rules applied to our data frames (which already separates them from spreadsheets) and that is our datasets must be rectangular.  Beyond that we haven't disscussed how best to organize that data so that subsequent analyses are easier to accomplish. This is, in my opinion, the biggest decision we make as data analysts and it takes a lot of time to think about how best to organize data and to actually re-organize that data.  Luckily, we can use an existing concept for this that will help guide our decisions and re-organization.  The best concept I know of to do this is the concept of [tidy data](http://r4ds.had.co.nz/tidy-data.html).  The essence of which can be summed up as:
 
 1. Each column is a variable
 2. Each row is an observation
@@ -170,22 +169,23 @@ Lastly, if you want to read more about this there are several good sources:
 - The [original paper by Hadley Wickham](https://www.jstatsoft.org/article/view/v059i10)
 - The [Tidy Data Vignette](http://tidyr.tidyverse.org/articles/tidy-data.html)
 - Really anything on the [Tidyverse page](https://www.tidyverse.org/)
+- A lot of what is the the [Data Carpentry Ecology Spreadsheet Lesson](https://datacarpentry.org/spreadsheet-ecology-lesson/) is also very relevant.
 
 Let's now see some of the basic tools for tidying data using the `tidyr` and `dplyr` packages.
 
 ### Data manipulation with `dplyr`
 
-There are a lot of different ways to manipulate data in R, but one that is a fairly recent addition and that is at the core of the Tidyverse is `dplyr`.  In particular, we are going to look at selecting columns, filtering data, adding new columns, grouping data, and summarizing data.  
+There are a lot of different ways to manipulate data in R, but one that is a fairly recent addition and that is part of the core of the Tidyverse is `dplyr`.  In particular, we are going to look at selecting columns, filtering data, adding new columns, grouping data, and summarizing data.  
 
 #### select
 
-Often we get datasets that have many columns or we might what to re-order those columns.  We can accomplish both of these with select.  Here's a quick example with the `iris` dataset.  We will also be introducing the concept of the pipe: `%>%` which we will be using going forward.
+Often we get datasets that have many columns or we might what to re-order those columns.  We can accomplish both of these with select.  Here's a quick example with the `iris` dataset.  We will also be introducing the concept of the pipe: `%>%` which we will be using going forward.  Let's look at some code that we can disect.
 
 
 ```r
 iris_petals <- iris %>%
   select(Species, Petal.Width, Petal.Length)
-as_tibble(iris_petals)
+as_tibble(iris_petals) #the as_tibble function helps make the output cleaner looking
 ```
 
 ```
@@ -205,11 +205,11 @@ as_tibble(iris_petals)
 ## # ... with 140 more rows
 ```
 
-The end result of this is a data frame, `iris_petals` that has three columns: Species, Petal.Width and Petal.Length in the order that we specified.
+The end result of this is a data frame, `iris_petals` that has three columns: Species, Petal.Width and Petal.Length in the order that we specified.  And the syntax we are now using is "piped" in that we use the `%>%` operator to send something from before the operator (a.k.a. "to the left") to the first argument of the function after the operator (a.k.a. "to the right").  This allows us to write our code in the same order as we think of it.  The best explanation of this is (again) from R For Data Science in the [Piping chapter](http://r4ds.had.co.nz/pipes.html).
 
 #### filter
 
-The `filter()` function allows us to select out data that meets certain criteria.  For instance we might want to further manipulate our 3 column data frame with only one species of Iris and Petals greater than the .
+The `filter()` function allows us to fiter our data that meets certain criteria.  For instance, we might want to further manipulate our 3 column data frame with only one species of Iris and Petals greater than the median petal width.
 
 
 ```r
@@ -239,7 +239,7 @@ as_tibble(iris_petals_virginica)
 
 #### mutate
 
-Now say we have some research that suggest the ratio of the petal width and length is imporant.  We might want to add that as a new column in our data set, but we want to do this now for all or our species and all sizes.
+Now say we have some research that suggest the ratio of the petal width and length is imporant.  We might want to add that as a new column in our data set.
 
 
 ```r
@@ -268,7 +268,7 @@ as_tibble(iris_petals_ratio)
 
 #### group_by and summarize
 
-We might want to get some summary statistics of our important petal ratio metric for each of the species.
+What if we want to get some summary statistics of our important petal ratio metric for each of the species?  Grouping the data by species, and then summarizing those groupings will let us accomplish this.
 
 
 ```r
@@ -279,11 +279,21 @@ iris_petal_ratio_species <- iris %>%
   summarize(mean_petal_ratio = mean(petal_ratio),
             sd_petal_ratio = sd(petal_ratio),
             median_petal_ratio = median(petal_ratio))
+iris_petal_ratio_species
+```
+
+```
+## # A tibble: 3 x 4
+##   species    mean_petal_ratio sd_petal_ratio median_petal_ratio
+##   <fct>                 <dbl>          <dbl>              <dbl>
+## 1 setosa                0.168         0.0658              0.143
+## 2 versicolor            0.311         0.0292              0.309
+## 3 virginica             0.367         0.0502              0.375
 ```
 
 #### left_join
 
-Lastly, we might also have information spread across multiple data frames.  This is the same concept as having multiple tables in a relational database.  There are MANY ways to combine tables like this and most of them have a `dplyr` verb implemented for them.  We are going to focus on one, the `left_join()`.
+Lastly, we might also have information spread across multiple data frames.  This is the same concept as having multiple tables in a relational database.  There are MANY ways to combine (aka. "join) tables like this and most of them have a `dplyr` verb implemented for them.  We are going to focus on one, the `left_join()`.
 
 Let's create some data frames to work with.
 
@@ -340,8 +350,7 @@ left_right_table
 ```
 
 ### Spread and Gather with `tidyr`
-
-Two of the function I use the most in `tidyr` are `spread()` and `gather()`.  They are somewhat similar to pivot tables in spreadsheets and allow us combine columns together or spread them back out.  I'll admit it still sometimes feels a bit like magic.  So, abracadabra!
+So far we have seen how to do some manipulation of the data, but we didn't really do too much with the structure of that data frame.  In some cases we might need to have data that are stored in rows, as columns or vice-versa.  Two of the function I use the most in `tidyr`, `spread()` and `gather()`, will accomplish this for us.  They are somewhat similar to pivot tables in spreadsheets and allow us combine columns together or spread them back out.  I'll admit it still sometimes feels a bit like magic.  So, abracadabra!
 
 Load up the library:
 
@@ -352,7 +361,7 @@ library(tidyr)
 
 #### gather
 
-Let's build an untidy data frame.  This is made up, but let's say we want to grab some monthly stats on some varaible (e.g., average number of Boston Red Sox Hats) per state...
+Let's build an untidy data frame.  This is made up, but let's say we want to grab some monthly stats on some varaible (e.g., average number of Boston Red Sox Hats, in thousands) per state...
 
 
 ```r
@@ -448,21 +457,22 @@ wide_df
 ## 6 B       june    3    22
 ```
 
+While these two simple examples showcase the general ideas, deciding on a given tidy structure for your data will depend on many things and the result will difer based on your task (i.e. data entry, visualization, modelling, etc.).  A couple of nice reads about this are:
 
-## Exercise 4.2
+- [Best Pracitces for Using Google Sheets in Your Data Project](https://matthewlincoln.net/2018/03/26/best-practices-for-using-google-sheets-in-your-data-project.html)
+- And again, R4DS [Tidy Data Chapter](http://r4ds.had.co.nz/tidy.html)
+
+## Exercise 3.2
 
 For this exercise we will dig into our datasets and find ways to tidy them up and create a new data frame.  
 
-1. We first need to clean up our new data frame, `nla_sites` a bit.  Add a new code chunk after the `tidy` code chunk and name it `tidy_sites`.  And before this chunk add some text (and markdown if you need it) to describe what this chunk is doing.
-
-2. In this code chunk we want to:
+1. We first need to clean up our new data frame, `nla_sites` a bit.  Add new lines of code after the section of code that cleans up the `nla_wq` data frame. Add some comments to your script that describe what we are doing.  We want this code to:
   - make our columns names lower case
   - make all the character fields lower case
   - filter out just the first visits
   - select site_id, state_name, and cntyname
-
-3. Add another code chunk and descriptive text after `tidy_sites` and name it `joining_data`.
-
-4. In this code chunk use `left_join()` to combine `nla_wq` and `nla_sites` into a new data frame called `nla_2007`.
+  - hint: its the same stuff we did to `nla_wq`
+2. Add some more code (and descriptive comments) after the code where we cleaned up `nla_sites`.  We want this code to:
+  - use `left_join()` to combine `nla_wq` and `nla_sites` into a new data frame called `nla_2007`
 
   
