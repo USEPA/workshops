@@ -28,10 +28,10 @@ Let's create a new repository using the command line with Git Bash.  This will b
 
 <details>
   <summary>Expand detailed Github Steps Here</summary>
-![](Git-GitHub_Workshop_2018/img/git_collab/gitCollab_NewFile.jpg)
-</details>
+![](img/git_collab/gitCollab_NewFile.png)
+
 4. Write a few lines in the file you just created.
-5. Convert the directory into a repository
+5. Convert the directory into a repository.
 6. Upload the directory into GitHub
 
 
