@@ -27,13 +27,16 @@ Let's create a new repository using the command line with Git Bash.  This will b
 3. Create the directory and a file within this directory.  This file can be a text file (i.e., .txt) or a file with code (e.g., .py, .R).
 
 <details>
-<summary>Expand for Image with Example Here</summary>
-![](img/github/01_github_signup.png)
+  <summary>Expand for Image with Example Here</summary>
+
+
+
 ![](https://github.com/USEPA/Git-GitHub_Workshop_2018/blob/master/img/git_collab/gitCollab_NewFile.png)
+</details>
 
-
-4. Write a few lines in the file you just created.
-5. Convert the directory into a repository.
+<br>
+4. Write a few lines in the file you just created
+5. Convert the directory into a repository
 6. Upload the directory into GitHub
 
 
@@ -61,5 +64,3 @@ Then the original repository owner:
 7. Merges the proposed changes into the main repo (or request changes, or discuss, or reject the request)
 
 TODO: add detailed steps to fork the presentation repo.
-
-</details>
