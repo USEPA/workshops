@@ -28,13 +28,14 @@ Let's create a new repository using the command line with Git Bash.  This will b
 
 <details>
   <summary>Expand detailed Github Steps Here</summary>
-![](img/git_collab/gitCollab_NewFile.png)
+  ![](img/git_collab/gitCollab_NewFile.png)
+  ![](img/github/01_github_signup.png)
 
 4. Write a few lines in the file you just created.
 5. Convert the directory into a repository.
 6. Upload the directory into GitHub
 
-
+</details>
 ### Steps adding neighbor as contributor
 
 1. Log into your GitHub account 
