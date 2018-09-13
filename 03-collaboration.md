@@ -29,7 +29,7 @@ Let's create a new repository using the command line with Git Bash.  This will b
 <details>
   <summary>Expand for Image with Example Here</summary>
   <br>
-    ![] (/img/git_collab/gitCollab_NewFile.png)
+    ![](https://github.com/USEPA/Git-GitHub_Workshop_2018/blob/master/img/git_collab/gitCollab_NewFile.png)
 
 
 4. Write a few lines in the file you just created.
