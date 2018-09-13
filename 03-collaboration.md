@@ -19,6 +19,26 @@ Add more -- dealing with merge conflicts.
 
 TODO: add detailed steps to add neighbor as contributor and try this out.
 
+### Create a new repository using git
+Let's create a new repository using the command line with Git Bash.  This will be the repository where you and your neighbor will contribute
+
+1. Open Git Bash
+2. Navigate to the directory where you would like to create a directory (a.k.a. folder) where your repository will reside.
+3. Create the directory and a file within this directory.  This file can be a text file (i.e., .txt) or a file with code (e.g., .py, .R).
+
+<details>
+  <summary>Expand detailed Github Steps Here</summary>
+  
+4. Write a few lines in the file you just created.
+5. Convert the directory into a repository
+6. Upload the directory into GitHub
+
+
+### Steps adding neighbor as contributor
+
+1. Log into your GitHub account 
+2. Click on the green “New” button to the left of the webpage.
+
 
 ## Fork and Pull Request
 
