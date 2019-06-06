@@ -27,7 +27,7 @@ Visualizing data is an area where R really shines.  There are many ways to plot 
 ## Exercise
 - [Exercise 4.1](#exercise-41)
 
-## Examples of greatness
+## Examples of what is possible
 Before we get started, I do like to show what is possible.  A couple of geospatial examples of maps created in R.
 
 A few examples of maps built with R show this:

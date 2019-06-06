@@ -46,7 +46,8 @@ Best way to learn what a data frame is is to look at one.  Let's now build a sim
 
 my_df <- data.frame(names = c("joe","jenny","bob","sue"), 
                     age = c(45, 27, 38,51), 
-                    knows_r = c(FALSE, TRUE, TRUE,FALSE))
+                    knows_r = c(FALSE, TRUE, TRUE,FALSE), 
+                    stringsAsFactors = FALSE)
 my_df
 ```
 
@@ -100,7 +101,7 @@ There are many ways to read in data with R.  If you have questions about this, p
 ```{r readxl}
 # You'll very likely need to install it first!!!  How'd we do that?
 library(readxl)
-gap_gdp_percap <- read_excel("nla2007_wq.xlsx")
+nla_wq_excel <- read_excel("nla2007_wq.xlsx")
 ```
 
 This is the simplest case, but lets dig into the options to see what's possible
@@ -133,17 +134,17 @@ Lastly, if you want to read more about this there are several good sources:
 - The [original paper by Hadley Wickham](https://www.jstatsoft.org/article/view/v059i10)
 - The [Tidy Data Vignette](http://tidyr.tidyverse.org/articles/tidy-data.html)
 - Really anything on the [Tidyverse page](https://www.tidyverse.org/)
-- A lot of what is the the [Data Carpentry Ecology Spreadsheet Lesson](https://datacarpentry.org/spreadsheet-ecology-lesson/) is also very relevant.
+- A lot of what is in the [Data Carpentry Ecology Spreadsheet Lesson](https://datacarpentry.org/spreadsheet-ecology-lesson/) is also very relevant.
 
 Let's now see some of the basic tools for tidying data using the `tidyr` and `dplyr` packages.
 
 ### Data manipulation with `dplyr`
 
-There are a lot of different ways to manipulate data in R, but one that is a fairly recent addition and that is part of the core of the Tidyverse is `dplyr`.  In particular, we are going to look at selecting columns, filtering data, adding new columns, grouping data, and summarizing data.  
+There are a lot of different ways to manipulate data in R, but one that is part of the core of the Tidyverse is `dplyr`.  In particular, we are going to look at selecting columns, filtering data, adding new columns, grouping data, and summarizing data.  
 
 #### select
 
-Often we get datasets that have many columns or we might what to re-order those columns.  We can accomplish both of these with select.  Here's a quick example with the `iris` dataset.  We will also be introducing the concept of the pipe: `%>%` which we will be using going forward.  Let's look at some code that we can disect.
+Often we get datasets that have many columns or columns that need to be re-ordered.  We can accomplish both of these with `select`.  Here's a quick example with the `iris` dataset.  We will also be introducing the concept of the pipe: `%>%` which we will be using going forward.  Let's look at some code that we can disect.
 
 ```{r}
 iris_petals <- iris %>%
@@ -167,7 +168,7 @@ as_tibble(iris_petals_virginica)
 
 #### mutate
 
-Now say we have some research that suggest the ratio of the petal width and length is imporant.  We might want to add that as a new column in our data set.
+Now say we have some research that suggest the ratio of the petal width and petal length is imporant.  We might want to add that as a new column in our data set.  The `mutate` function does this for us.
 
 ```{r}
 iris_petals_ratio <- iris %>%
@@ -195,7 +196,7 @@ iris_petal_ratio_species
 
 Lastly, we might also have information spread across multiple data frames.  This is the same concept as having multiple tables in a relational database.  There are MANY ways to combine (aka. "join) tables like this and most of them have a `dplyr` verb implemented for them.  We are going to focus on one, the `left_join()`.
 
-Let's create some data frames to work with.
+Instead of continuing with the `iris` data we will create some data frames to work with for these examples.
 
 ```{r join_data}
 left_table <- data.frame(left_id = 1:6, 
@@ -226,16 +227,16 @@ library(tidyr)
 
 #### gather
 
-Let's build an untidy data frame.  This is made up, but let's say we want to grab some monthly stats on some varaible (e.g., average number of Boston Red Sox Hats, in thousands) per state...
+Let's build an untidy data frame.  This is made up, but let's say we want to grab some monthly stats on some variable (e.g., average number of Boston Red Sox Hats, in thousands) per state. This time we will use the `tibble` function.  This is similar to `data.frame` but it makes good assumptions about the data and has some nice display options built in.  It comes from the `dplyr` package. 
 
 ```{r}
-dirty_df <- data_frame(state = c("CT","RI","MA"), jan = c(3.1,8.9,9.3), feb = c(1.0,4.2,8.6), march = c(2.9,3.1,12.5), april = c(4.4,5.6,14.2))
+dirty_df <- tibble(state = c("CT","RI","MA"), jan = c(3.1,8.9,9.3), feb = c(1.0,4.2,8.6), march = c(2.9,3.1,12.5), april = c(4.4,5.6,14.2))
 dirty_df
 ```
 
 What would be a tidy way to represent this same data set?
 
-They way I would do this is to gather the month columns into two new columns that reperesent month and number of vistors.
+They way I would do this is to gather the month columns into two new columns that represent month and number of visitors.
 
 ```{r}
 tidy_df <- gather(dirty_df, month, vistors, jan:april) 
@@ -261,7 +262,7 @@ wide_df <- spread(long_df,parameter,value)
 wide_df
 ```
 
-While these two simple examples showcase the general ideas, deciding on a given tidy structure for your data will depend on many things and the result will difer based on your task (i.e. data entry, visualization, modelling, etc.).  A couple of nice reads about this are:
+While these two simple examples showcase the general ideas, deciding on a given tidy structure for your data will depend on many things and the result will differ based on your task (i.e. data entry, visualization, modeling, etc.).  A couple of nice reads about this are:
 
 - [Best Pracitces for Using Google Sheets in Your Data Project](https://matthewlincoln.net/2018/03/26/best-practices-for-using-google-sheets-in-your-data-project.html)
 - And again, R4DS [Tidy Data Chapter](http://r4ds.had.co.nz/tidy.html)

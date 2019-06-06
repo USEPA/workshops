@@ -28,4 +28,4 @@ The select "Create Project."  Name this project "usepa_intro_r". At this point y
 
 And now we can run the script by selecting all lines (i.e. `ctrl-a`) and then clicking on the `Run` button
 
-![rstudio_knit](figures/rstudio_run.png)
+![rstudio_knit](figures/rstudio_run.jpg)

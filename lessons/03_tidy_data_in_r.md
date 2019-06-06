@@ -28,7 +28,8 @@ Best way to learn what a data frame is is to look at one.  Let's now build a sim
 
 my_df <- data.frame(names = c("joe","jenny","bob","sue"), 
                     age = c(45, 27, 38,51), 
-                    knows_r = c(FALSE, TRUE, TRUE,FALSE))
+                    knows_r = c(FALSE, TRUE, TRUE,FALSE), 
+                    stringsAsFactors = FALSE)
 my_df
 ```
 
@@ -100,7 +101,7 @@ nla_wq_all
 ```
 ## # A tibble: 1,252 x 51
 ##    SITE_ID VISIT_NO SITE_TYPE LAKE_SAMP TNT   LAT_DD LON_DD ST    EPA_REG
-##    <chr>      <int> <chr>     <chr>     <chr>  <dbl>  <dbl> <chr> <chr>  
+##    <chr>      <dbl> <chr>     <chr>     <chr>  <dbl>  <dbl> <chr> <chr>  
 ##  1 NLA066~        1 PROB_Lake Target_S~ Targ~   49.0 -114.  MT    Region~
 ##  2 NLA066~        1 PROB_Lake Target_S~ Targ~   33.0  -80.0 SC    Region~
 ##  3 NLA066~        2 PROB_Lake Target_S~ Targ~   33.0  -80.0 SC    Region~
@@ -114,12 +115,12 @@ nla_wq_all
 ## # ... with 1,242 more rows, and 42 more variables: AREA_CAT7 <chr>,
 ## #   NESLAKE <chr>, STRATUM <chr>, PANEL <chr>, DSGN_CAT <chr>,
 ## #   MDCATY <dbl>, WGT <dbl>, WGT_NLA <dbl>, ADJWGT_CAT <chr>, URBAN <chr>,
-## #   WSA_ECO3 <chr>, WSA_ECO9 <chr>, ECO_LEV_3 <int>, NUT_REG <chr>,
+## #   WSA_ECO3 <chr>, WSA_ECO9 <chr>, ECO_LEV_3 <dbl>, NUT_REG <chr>,
 ## #   NUTREG_NAME <chr>, ECO_NUTA <chr>, LAKE_ORIGIN <chr>,
-## #   ECO3_X_ORIGIN <chr>, REF_CLUSTER <chr>, RT_NLA <chr>, HUC_2 <int>,
-## #   HUC_8 <int>, FLAG_INFO <chr>, COMMENT_INFO <chr>, SAMPLED <chr>,
-## #   SAMPLED_CHEM <chr>, INDXSAMP_CHEM <chr>, PTL <int>, NTL <int>,
-## #   TURB <dbl>, ANC <dbl>, DOC <dbl>, COND <int>, SAMPLED_CHLA <chr>,
+## #   ECO3_X_ORIGIN <chr>, REF_CLUSTER <chr>, RT_NLA <chr>, HUC_2 <dbl>,
+## #   HUC_8 <dbl>, FLAG_INFO <chr>, COMMENT_INFO <chr>, SAMPLED <chr>,
+## #   SAMPLED_CHEM <chr>, INDXSAMP_CHEM <chr>, PTL <dbl>, NTL <dbl>,
+## #   TURB <dbl>, ANC <dbl>, DOC <dbl>, COND <dbl>, SAMPLED_CHLA <chr>,
 ## #   INDXSAMP_CHLA <chr>, CHLA <dbl>, PTL_COND <chr>, NTL_COND <chr>,
 ## #   CHLA_COND <chr>, TURB_COND <chr>, ANC_COND <chr>, SALINITY_COND <chr>
 ```
@@ -132,7 +133,7 @@ There are many ways to read in data with R.  If you have questions about this, p
 ```r
 # You'll very likely need to install it first!!!  How'd we do that?
 library(readxl)
-gap_gdp_percap <- read_excel("nla2007_wq.xlsx")
+nla_wq_excel <- read_excel("nla2007_wq.xlsx")
 ```
 
 This is the simplest case, but lets dig into the options to see what's possible
@@ -141,7 +142,8 @@ This is the simplest case, but lets dig into the options to see what's possible
 ```
 ## function (path, sheet = NULL, range = NULL, col_names = TRUE, 
 ##     col_types = NULL, na = "", trim_ws = TRUE, skip = 0, n_max = Inf, 
-##     guess_max = min(1000, n_max)) 
+##     guess_max = min(1000, n_max), progress = readxl_progress(), 
+##     .name_repair = "unique") 
 ## NULL
 ```
 
@@ -169,17 +171,17 @@ Lastly, if you want to read more about this there are several good sources:
 - The [original paper by Hadley Wickham](https://www.jstatsoft.org/article/view/v059i10)
 - The [Tidy Data Vignette](http://tidyr.tidyverse.org/articles/tidy-data.html)
 - Really anything on the [Tidyverse page](https://www.tidyverse.org/)
-- A lot of what is the the [Data Carpentry Ecology Spreadsheet Lesson](https://datacarpentry.org/spreadsheet-ecology-lesson/) is also very relevant.
+- A lot of what is in the [Data Carpentry Ecology Spreadsheet Lesson](https://datacarpentry.org/spreadsheet-ecology-lesson/) is also very relevant.
 
 Let's now see some of the basic tools for tidying data using the `tidyr` and `dplyr` packages.
 
 ### Data manipulation with `dplyr`
 
-There are a lot of different ways to manipulate data in R, but one that is a fairly recent addition and that is part of the core of the Tidyverse is `dplyr`.  In particular, we are going to look at selecting columns, filtering data, adding new columns, grouping data, and summarizing data.  
+There are a lot of different ways to manipulate data in R, but one that is part of the core of the Tidyverse is `dplyr`.  In particular, we are going to look at selecting columns, filtering data, adding new columns, grouping data, and summarizing data.  
 
 #### select
 
-Often we get datasets that have many columns or we might what to re-order those columns.  We can accomplish both of these with select.  Here's a quick example with the `iris` dataset.  We will also be introducing the concept of the pipe: `%>%` which we will be using going forward.  Let's look at some code that we can disect.
+Often we get datasets that have many columns or columns that need to be re-ordered.  We can accomplish both of these with `select`.  Here's a quick example with the `iris` dataset.  We will also be introducing the concept of the pipe: `%>%` which we will be using going forward.  Let's look at some code that we can disect.
 
 
 ```r
@@ -239,7 +241,7 @@ as_tibble(iris_petals_virginica)
 
 #### mutate
 
-Now say we have some research that suggest the ratio of the petal width and length is imporant.  We might want to add that as a new column in our data set.
+Now say we have some research that suggest the ratio of the petal width and petal length is imporant.  We might want to add that as a new column in our data set.  The `mutate` function does this for us.
 
 
 ```r
@@ -295,7 +297,7 @@ iris_petal_ratio_species
 
 Lastly, we might also have information spread across multiple data frames.  This is the same concept as having multiple tables in a relational database.  There are MANY ways to combine (aka. "join) tables like this and most of them have a `dplyr` verb implemented for them.  We are going to focus on one, the `left_join()`.
 
-Let's create some data frames to work with.
+Instead of continuing with the `iris` data we will create some data frames to work with for these examples.
 
 
 ```r
@@ -361,11 +363,11 @@ library(tidyr)
 
 #### gather
 
-Let's build an untidy data frame.  This is made up, but let's say we want to grab some monthly stats on some varaible (e.g., average number of Boston Red Sox Hats, in thousands) per state...
+Let's build an untidy data frame.  This is made up, but let's say we want to grab some monthly stats on some variable (e.g., average number of Boston Red Sox Hats, in thousands) per state. This time we will use the `tibble` function.  This is similar to `data.frame` but it makes good assumptions about the data and has some nice display options built in.  It comes from the `dplyr` package. 
 
 
 ```r
-dirty_df <- data_frame(state = c("CT","RI","MA"), jan = c(3.1,8.9,9.3), feb = c(1.0,4.2,8.6), march = c(2.9,3.1,12.5), april = c(4.4,5.6,14.2))
+dirty_df <- tibble(state = c("CT","RI","MA"), jan = c(3.1,8.9,9.3), feb = c(1.0,4.2,8.6), march = c(2.9,3.1,12.5), april = c(4.4,5.6,14.2))
 dirty_df
 ```
 
@@ -380,7 +382,7 @@ dirty_df
 
 What would be a tidy way to represent this same data set?
 
-They way I would do this is to gather the month columns into two new columns that reperesent month and number of vistors.
+They way I would do this is to gather the month columns into two new columns that represent month and number of visitors.
 
 
 ```r
@@ -457,7 +459,7 @@ wide_df
 ## 6 B       june    3    22
 ```
 
-While these two simple examples showcase the general ideas, deciding on a given tidy structure for your data will depend on many things and the result will difer based on your task (i.e. data entry, visualization, modelling, etc.).  A couple of nice reads about this are:
+While these two simple examples showcase the general ideas, deciding on a given tidy structure for your data will depend on many things and the result will differ based on your task (i.e. data entry, visualization, modeling, etc.).  A couple of nice reads about this are:
 
 - [Best Pracitces for Using Google Sheets in Your Data Project](https://matthewlincoln.net/2018/03/26/best-practices-for-using-google-sheets-in-your-data-project.html)
 - And again, R4DS [Tidy Data Chapter](http://r4ds.had.co.nz/tidy.html)
