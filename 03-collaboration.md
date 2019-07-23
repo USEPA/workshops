@@ -64,3 +64,7 @@ Then the original repository owner:
 7. Merges the proposed changes into the main repo (or request changes, or discuss, or reject the request)
 
 TODO: add detailed steps to fork the presentation repo.
+
+___
+[Return to Section 2 - Practice: pull, edit, commit, push (and repeat)](02-practice.md)
+[Proceed to Section 4 - Exporing repo history](04-history.md)
