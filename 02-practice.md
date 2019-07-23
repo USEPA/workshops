@@ -241,4 +241,7 @@ Then make some new files and put them in the folder. Add and commit them with Gi
     
 </details>
 
+___
+[Return to Section 1 - Pre-Workshop Setup and Installation](01-setup.md)
+[Proceed to Section 3 - Collaboration workflows](03-collaboration.md)
     
