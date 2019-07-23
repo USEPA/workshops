@@ -28,3 +28,6 @@ Git hooks allow scripts to be triggered by Git actions. For example, the way CI 
 * Jenny Bryan's recommendations [about making your repo browsable](http://happygitwithr.com/repo-browsability.html)
 * For R users, [pkgdown](http://pkgdown.r-lib.org/) is a reason you might use github-pages.
 * Also, Terry used it for [his presentation](https://github.com/tbnorth/GitRDDES)!
+
+___
+[Return to Section 4 -Exporing repo history](04-history.md)
