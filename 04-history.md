@@ -127,7 +127,9 @@ It is possible to explore diffs, blames, branches, commits, etc, all from the co
 This [article from Atlassian](https://www.atlassian.com/git/tutorials/inspecting-a-repository/git-blame) goes through some commands you can try.
 
 
-
+___
+[Return to Section 3 - Collaboration workflows](03-collaboration.md)
+[Proceed to Section 5 - Git automation](05-automation.md)
 
 
 
