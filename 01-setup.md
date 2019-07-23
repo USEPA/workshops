@@ -237,6 +237,7 @@ Once you have some cached credentials, they will show up as something like:
 [Approach here](http://happygitwithr.com/rstudio-git-github.html)
 
 QUESTION: are there other commonly used EPA IDE's or code editors that have Git integration to add here?
-
-
+   
+___
+[Proceed to Section 2 - Practice: pull, edit, commit, push (and repeat)](02-practice.md)
 
