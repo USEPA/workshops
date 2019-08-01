@@ -167,6 +167,8 @@ For this workshop, we will be using Git-GUI, which is a very basic graphical cli
 
 Github is a cloud service for sharing and collaborating on code. Basically: Sharepoint for code. It is based on Git, but just as Sharepoint is not Office, Github (the cloud service) is distinct from Git (the version control software). You can read EPA's current guidance for Github on the [EPA intranet](https://www.epa.gov/webguide/github-guidance).
 
+Bitbucket is a similar service to Github, also facilitating collaboration and sharing of code, and based on Git. EPA has a Bitbucket server within the EPA firewall that can be used for private collaboration inside EPA. Although these instructions are focused on Github, most features have similar alternatives on the [EPA Bitbucket server](https://bitbucket.epa.gov/). Some [supplementary materials focused on EPA Bitbucket here](https://bitbucket.epa.gov/projects/RDDES/repos/epa-bitbucket-intro/browse).
+
 You can register a Github account yourself at https://www.github.com. 
 
 <details>
