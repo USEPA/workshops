@@ -1,11 +1,11 @@
-# GitGithubWorkshop
+# Intro to Git-Github-Bitbucket Workshop
 
-Materials and links for hands-on portion of Git and Github Tutorial on September 12 at EPA R/DDES workshop.
+Materials and links for hands-on portion of Git/Github/Bitbucket Tutorial on August 14 at EPA R/DDES workshop.
 
 ## TODO List
 
-- [x] Get a Github account
 - [x] Install Git
+- [x] Get a Github account
 - [ ] Get off the beach!
 
 ![](https://www.historyonthenet.com/wp-content/uploads/2016/11/overlord.jpg)
@@ -14,12 +14,22 @@ Materials and links for hands-on portion of Git and Github Tutorial on September
 Git has myriad features which -- though extremely powerful -- can be very confusing (especially for those of us who last used a command line in the 1980s). The goal here is to give you just enough experience to start using Git day-to-day. Then you can explore more advanced corners of Git as you need them. We also tried to include enough here that if you have the basics down you may still find something to challenge yourself.
 
 
+## Git, Github, and Bitbucket at EPA
+
+Keeping the pieces straight, and how EPA uses them, can be confusing. Git is software that needs to be installed on your computer. Github and Bitbucket are remote locations that are used for collaboration. EPA has both a [Github account](https://github.com/USEPA) and a [Bitbucket server](https://bitbucket.epa.gov/) that you can use to collaborate on code. The general roles are:
+
+- Github: public repos and collaboration outside EPA
+- Bitbucket: private repos and collaboration inside EPA
+
+The instructions here are focused on using Github, but there are [supplementary materials focused on EPA Bitbucket here](https://bitbucket.epa.gov/projects/RDDES/repos/epa-bitbucket-intro/browse) 
+
+
 ## Pre-Workshop Setup
 
 **Please** take some time prior to the workshop to get some pre-requisites in place. It will be much more challenging to participate in the workshop if you don't have the necessary software. In particular, you need:
 
-1) A Github account
-2) Install Git
+1) Install Git (this may already have been pushed to your machine)
+2) A Github account
 3) Know where to find your command line
 
 Head on over to the [setup file](01-setup.md) to get the details.
