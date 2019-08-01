@@ -2,9 +2,9 @@
 
 Prior to the workshop, please try to get your machine set up with the following things:
 
-- [ ] Get a Github account
 - [ ] Install or update Git
 - [ ] Verify Git installation and introduce yourself to Git
+- [ ] Get a Github account
 - [ ] Prove Git can talk to Github
 - [ ] Cache your username and password
 - [ ] If you use RStudio (or other Git-aware IDE), check it can find Git
@@ -14,49 +14,11 @@ These steps are from the pre-workshop instructions from Jenny Bryan's [happy-git
 If you get stuck, you can contact Jameel (alsalam.jameel@epa.gov). He is happy to help troubleshoot. Another alternative is to try to arrive at the workshop session early.
 
 
-## Get a Github Account
-
-Github is a cloud service for sharing and collaborating on code. Basically: Sharepoint for code. It is based on Git, but just as Sharepoint is not Office, Github (the cloud service) is distinct from Git (the version control software). You can read EPA's current guidance for Github on the [EPA intranet](https://www.epa.gov/webguide/github-guidance).
-
-You can register a Github account yourself at https://www.github.com. 
-
-<details>
-  <summary>Expand detailed Github Steps Here</summary>
-  
-
-![](img/github/01_github_signup.png)
-
-You probably want to choose a generic username like `jameelalsalam` and associate your EPA email address with it.
-
-While most things about your account can be changed later, it is hard to change the username. Jenny Bryan has some [discussion  here](http://happygitwithr.com/github-acct.html#github-acct). 
-
-A Github account can be associated with multiple email addresses. The EPA Github Guidance states that EPA employees should [create a new account associated with their EPA email address](https://www.epa.gov/webguide/github-guidance#who) when contributing to a repository associated with the EPA organization. However, Github recommends that users have only [one account for both personal and professional repositories](https://help.github.com/articles/merging-multiple-user-accounts/). 
-
-![](img/github/02_signup.png)
-
-The page that opens next can be skipped, unless you want to provide Microsoft some information about yourself.
-
-![](img/github/03_signup.png)
-
-You are now inside Github. Click the button **"Start a Project"**
-
-![](img/github/04_start_proj.png)
-
-A page will open, where you will be asked to confirm your email.
-
-![](img/github/05_confirm_email.png)
-
-Log in to the email account you used to register and confirm your account registration. This concludes teh Github registration process.
-
-![](img/github/05_confirm_email2.png)
-
-</details>
-
 ## Install or Update Git
 
 Git is the version control software which underlies Github, and it needs to be installed for you to contribute to code repositories on Github or Bitbucket.
 
-For Windows machines, you can get the Git for Windows installer at either of the following pages:
+For Windows machines, the Git for Windows installer is available at either of the following pages:
 * https://gitforwindows.org/
 * https://git-scm.com/download/win
 
@@ -199,6 +161,45 @@ Git is a command-line program, but there are also various graphical tools which 
 Jenny Bryan recommends [installing a Git client](http://happygitwithr.com/git-client.html). 
 
 For this workshop, we will be using Git-GUI, which is a very basic graphical client that is included with Git for Windows. If you are an R user, RStudio can also serve as a Git client for some operations. Two popular modern Git clients are GitKraken and Sourcetree. The workshop organizers investigated the possibility of using one of these for the workshop, but due to the short time and consideration requirements for EPA software, were not able to standardize prior to the session.
+
+
+## Get a Github Account
+
+Github is a cloud service for sharing and collaborating on code. Basically: Sharepoint for code. It is based on Git, but just as Sharepoint is not Office, Github (the cloud service) is distinct from Git (the version control software). You can read EPA's current guidance for Github on the [EPA intranet](https://www.epa.gov/webguide/github-guidance).
+
+You can register a Github account yourself at https://www.github.com. 
+
+<details>
+  <summary>Expand detailed Github Steps Here</summary>
+  
+
+![](img/github/01_github_signup.png)
+
+You probably want to choose a generic username like `jameelalsalam` and associate your EPA email address with it.
+
+While most things about your account can be changed later, it is hard to change the username. Jenny Bryan has some [discussion  here](http://happygitwithr.com/github-acct.html#github-acct). 
+
+A Github account can be associated with multiple email addresses. The EPA Github Guidance states that EPA employees should [create a new account associated with their EPA email address](https://www.epa.gov/webguide/github-guidance#who) when contributing to a repository associated with the EPA organization. However, Github recommends that users have only [one account for both personal and professional repositories](https://help.github.com/articles/merging-multiple-user-accounts/). 
+
+![](img/github/02_signup.png)
+
+The page that opens next can be skipped, unless you want to provide Microsoft some information about yourself.
+
+![](img/github/03_signup.png)
+
+You are now inside Github. Click the button **"Start a Project"**
+
+![](img/github/04_start_proj.png)
+
+A page will open, where you will be asked to confirm your email.
+
+![](img/github/05_confirm_email.png)
+
+Log in to the email account you used to register and confirm your account registration. This concludes teh Github registration process.
+
+![](img/github/05_confirm_email2.png)
+
+</details>
 
 
 ## Prove Git can Talk to Github
