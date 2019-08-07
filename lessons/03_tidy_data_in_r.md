@@ -10,14 +10,21 @@ In this lesson we will cover the basics of data in R and will do so from a somew
 - [Tidy data](#tidy-data)
 
 ## Exercises
-- [Excercise 3.1](#exercise-31)
-- [Excercise 3.2](#exercise-32)
+- [Exercise 3.1](#exercise-31)
+- [Exercise 3.2](#exercise-32)
+- [Exercise 3.3](#exercise-33)
 
 ## Data in R: The data frame
 
 Simply put, a data structure is a way for programming languages to handle storing information.  Like most languages, R has several structures (vectors, matrix, lists, etc.).  But R was originally built for data analysis, so the data frame, a spreadsheet like structure with rows and columns, is the most widely used and useful to learn first.  In addition, the data frame (or is it data.frame) is the basis for many modern R pacakges (e.g. the tidyverse) and getting used to it will allow you to quickly build your R skills.
 
-*Note:* It is useful to know more about the different data structures such as vectors, lists, and factors (a weird one that is for catergorical data).  But that is beyond what we have time for.  The best source on this information, I think, is Hadley Wickham's [Data Structures Chapter in Advanced R](http://adv-r.had.co.nz/Data-structures.html).
+*Note:* It is useful to know more about the different data structures such as vectors, lists, and factors (a weird one that is for catergorical data).  But that is beyond what we have time for.  The best source on this information, I think, is Hadley Wickham's [Data Structures Chapter in Advanced R](http://adv-r.had.co.nz/Data-structures.html).  
+
+*Another note:* Data types (e.g. numeric, character, logcial, etc.) are important to know about too, but details are more than we have time for.  Take a look at the chapter on vectors in R for Data Science, in particular [Section 20.3](https://r4ds.had.co.nz/vectors.html#important-types-of-atomic-vector).  
+
+*And, yet another note:* Computers aren't very good at math.  Or at least they don't deal with floating point data they way many would think.  First, any value that is not an integer, is considered a "Double."  These are approximations, so if we are looking to compare to doubles, we might not always get the result we are expecting.   Again, R4DS is a great read on this: [Section on Numeric Vectors](https://r4ds.had.co.nz/vectors.html#numeric).  But also see [this take from Revolution Analytics](https://blog.revolutionanalytics.com/2009/11/floatingpoint-errors-explained.html) and [techradar](https://www.techradar.com/news/computing/why-computers-suck-at-maths-644771/2).
+
+*Last note, I promise:* Your elementary education was wrong. In other words rounding 2.5 is 2 and not 3, but rounding 3.5 is 4.  There are actually good reasons for this.  Read up on the IEEE 754 standard [rules on rounding](https://en.wikipedia.org/wiki/IEEE_754#Rounding_rules).  
 
 ### Build a data frame
 Best way to learn what a data frame is is to look at one.  Let's now build a simple data frame from scratch with the `data.frame()` function.  This is mostly a teaching excercise as we will use the function very little in the excercises to come.  
@@ -147,6 +154,11 @@ This is the simplest case, but lets dig into the options to see what's possible
 ## NULL
 ```
 
+### An aside on colum names
+
+If you are new to R and coming from mostly and Excel background, then you may want to think a bit more about column names than you usually might.  Excel is very flexible when it comes to naming columns and this certainly has its advantages when the end user of that data is a human.  However, humans don't do data analysis.  Computers do.  So at some point the data in that spreadsheet will likely need to be read into software that can do this analysis.  To ease this process it is best to keep column names simple, without spaces, and without special characters (e.g. !, @, &, $, etc.).  While it is possible to deal with these cases, it is not straightforward, especially for new users.  So, when working with your data (or other people's data) take a close look at the column names if you are running into problems reading that data into R.  I suggest using all lower case with separate words indicated by and underscore.  Things like "chlorophyll_a" or "total_nitrogen" are good examples of decent column names.
+
+
 ## Exercise 3.1
 
 For this exercise, let's read in a new dataset but this time, directly from a URL.  We are still working on the `nla_analysis.R` Script
@@ -186,8 +198,9 @@ Often we get datasets that have many columns or columns that need to be re-order
 
 ```r
 iris_petals <- iris %>%
-  select(Species, Petal.Width, Petal.Length)
-as_tibble(iris_petals) #the as_tibble function helps make the output cleaner looking
+  select(Species, Petal.Width, Petal.Length) %>%
+  as_tibble() #the as_tibble function helps make the output look nice
+iris_petals
 ```
 
 ```
@@ -218,8 +231,9 @@ The `filter()` function allows us to fiter our data that meets certain criteria.
 iris_petals_virginica <- iris %>%
   select(species = Species, petal_width = Petal.Width, petal_length = Petal.Length) %>%
   filter(species == "virginica") %>%
-  filter(petal_width >= median(petal_width))
-as_tibble(iris_petals_virginica)  
+  filter(petal_width >= median(petal_width)) %>%
+  as_tibble()
+iris_petals_virginica  
 ```
 
 ```
@@ -247,8 +261,9 @@ Now say we have some research that suggest the ratio of the petal width and peta
 ```r
 iris_petals_ratio <- iris %>%
   select(species = Species, petal_width = Petal.Width, petal_length = Petal.Length) %>%
-  mutate(petal_ratio = petal_width/petal_length)
-as_tibble(iris_petals_ratio)
+  mutate(petal_ratio = petal_width/petal_length) %>%
+  as_tibble()
+iris_petals_ratio
 ```
 
 ```
@@ -268,9 +283,19 @@ as_tibble(iris_petals_ratio)
 ## # ... with 140 more rows
 ```
 
+## Exercise 3.2
+
+For this exercise we will dig into our datasets and find ways to tidy them up.  We first need to clean up the new data frame,`nla_sites`, that we loaded up in Exercise 3.1.  Add new lines of code after the section of code that cleans up the `nla_wq` data frame. Add some comments to your script that describe what we are doing.  
+
+1. Filter out just the first visits (e.g. VISIT_NO equal to 1)
+2. Select the following columns: SITE_ID, STATE_NAME, and CNTYNAME
+3. Make all of our columns names lower case (Hint: Take a look at the code in nla_analysis.R where we manipulate our data)
+4. Make all the character fields lower case (Hint: Take a look at the code in nla_analysis.R where we manipulate our data)
+5. Keep all these changes in the `nla_sites` data frame.
+
 #### group_by and summarize
 
-What if we want to get some summary statistics of our important petal ratio metric for each of the species?  Grouping the data by species, and then summarizing those groupings will let us accomplish this.
+Now back to iris.  What if we want to get some summary statistics of our important petal ratio metric for each of the species?  Grouping the data by species, and then summarizing those groupings will let us accomplish this.
 
 
 ```r
@@ -351,130 +376,14 @@ left_right_table
 ## 6       6 Betty        4  32
 ```
 
-### Spread and Gather with `tidyr`
-So far we have seen how to do some manipulation of the data, but we didn't really do too much with the structure of that data frame.  In some cases we might need to have data that are stored in rows, as columns or vice-versa.  Two of the function I use the most in `tidyr`, `spread()` and `gather()`, will accomplish this for us.  They are somewhat similar to pivot tables in spreadsheets and allow us combine columns together or spread them back out.  I'll admit it still sometimes feels a bit like magic.  So, abracadabra!
-
-Load up the library:
 
 
-```r
-library(tidyr)
-```
+## Exercise 3.3
 
-#### gather
+Let's now practice combining two data frames and summarizing some information in that combine data frame. We are still working on the `nla_analysis.R` script and you can add this code after that section we just completed on `nla_sites`.  Don't forget your comments!
 
-Let's build an untidy data frame.  This is made up, but let's say we want to grab some monthly stats on some variable (e.g., average number of Boston Red Sox Hats, in thousands) per state. This time we will use the `tibble` function.  This is similar to `data.frame` but it makes good assumptions about the data and has some nice display options built in.  It comes from the `dplyr` package. 
-
-
-```r
-dirty_df <- tibble(state = c("CT","RI","MA"), jan = c(3.1,8.9,9.3), feb = c(1.0,4.2,8.6), march = c(2.9,3.1,12.5), april = c(4.4,5.6,14.2))
-dirty_df
-```
-
-```
-## # A tibble: 3 x 5
-##   state   jan   feb march april
-##   <chr> <dbl> <dbl> <dbl> <dbl>
-## 1 CT      3.1   1     2.9   4.4
-## 2 RI      8.9   4.2   3.1   5.6
-## 3 MA      9.3   8.6  12.5  14.2
-```
-
-What would be a tidy way to represent this same data set?
-
-They way I would do this is to gather the month columns into two new columns that represent month and number of visitors.
-
-
-```r
-tidy_df <- gather(dirty_df, month, vistors, jan:april) 
-tidy_df
-```
-
-```
-## # A tibble: 12 x 3
-##    state month vistors
-##    <chr> <chr>   <dbl>
-##  1 CT    jan       3.1
-##  2 RI    jan       8.9
-##  3 MA    jan       9.3
-##  4 CT    feb       1  
-##  5 RI    feb       4.2
-##  6 MA    feb       8.6
-##  7 CT    march     2.9
-##  8 RI    march     3.1
-##  9 MA    march    12.5
-## 10 CT    april     4.4
-## 11 RI    april     5.6
-## 12 MA    april    14.2
-```
-
-#### spread
-
-Here's another possibility from a water quality example.  We have data collected at multiple sampling locations and we are measuring multiple water quality parameters.
-
-
-```r
-long_df <- data_frame(station = rep(c("A","A","B","B"),3), 
-                      month = c(rep("june",4),rep("july",4),rep("aug", 4)), 
-                      parameter = rep(c("chla","temp"), 6),
-                      value = c(18,23,3,22,19.5,24,3.5,22.25,32,26.7,4.2,23))
-long_df
-```
-
-```
-## # A tibble: 12 x 4
-##    station month parameter value
-##    <chr>   <chr> <chr>     <dbl>
-##  1 A       june  chla       18  
-##  2 A       june  temp       23  
-##  3 B       june  chla        3  
-##  4 B       june  temp       22  
-##  5 A       july  chla       19.5
-##  6 A       july  temp       24  
-##  7 B       july  chla        3.5
-##  8 B       july  temp       22.2
-##  9 A       aug   chla       32  
-## 10 A       aug   temp       26.7
-## 11 B       aug   chla        4.2
-## 12 B       aug   temp       23
-```
-
-We might want to have this in a wide as opposed to long format.  That can be accomplished with `spread()`
-
-
-```r
-wide_df <- spread(long_df,parameter,value)
-wide_df
-```
-
-```
-## # A tibble: 6 x 4
-##   station month  chla  temp
-##   <chr>   <chr> <dbl> <dbl>
-## 1 A       aug    32    26.7
-## 2 A       july   19.5  24  
-## 3 A       june   18    23  
-## 4 B       aug     4.2  23  
-## 5 B       july    3.5  22.2
-## 6 B       june    3    22
-```
-
-While these two simple examples showcase the general ideas, deciding on a given tidy structure for your data will depend on many things and the result will differ based on your task (i.e. data entry, visualization, modeling, etc.).  A couple of nice reads about this are:
-
-- [Best Pracitces for Using Google Sheets in Your Data Project](https://matthewlincoln.net/2018/03/26/best-practices-for-using-google-sheets-in-your-data-project.html)
-- And again, R4DS [Tidy Data Chapter](http://r4ds.had.co.nz/tidy.html)
-
-## Exercise 3.2
-
-For this exercise we will dig into our datasets and find ways to tidy them up and create a new data frame.  
-
-1. We first need to clean up our new data frame, `nla_sites` a bit.  Add new lines of code after the section of code that cleans up the `nla_wq` data frame. Add some comments to your script that describe what we are doing.  We want this code to:
-  - make our columns names lower case
-  - make all the character fields lower case
-  - filter out just the first visits
-  - select site_id, state_name, and cntyname
-  - hint: its the same stuff we did to `nla_wq`
-2. Add some more code (and descriptive comments) after the code where we cleaned up `nla_sites`.  We want this code to:
-  - use `left_join()` to combine `nla_wq` and `nla_sites` into a new data frame called `nla_2007`
-
+1. Use `left_join()` to combine `nla_wq` and `nla_sites` into a new data frame called `nla_2007`
+2. Using `group_by()` and `summarize`, let's look at median chlorophyll per EPA Region. (Hint: There are some NA's that we will need to deal with.  Use `?median` and try to figure out how to remove those when doing this calculation)
+3. Re-do the above and include the minimum and maximum values.
+4. Bonus: Use `arrange() to order the output by mean chlorophyll.
   

@@ -42,13 +42,23 @@ And some fairly complicated figures:
 
 ![psych_repro](https://d2ufo47lrtsv5s.cloudfront.net/content/sci/349/6251/aac4716/F1.large.jpg?width=800&height=600&carousel=1)
 
+More examples from Jeff's work
+
+![histos](https://dfzljdn9uc3pi.cloudfront.net/2018/4876/1/fig-2-full.png)
+from: Raposa et al. (2018). Top-down and bottom-up controls on overabundant New England salt marsh crab populations. PeerJ. https://doi.org/10.7717/peerj.4876
+
+![heatmaps](https://www.mdpi.com/water/water-10-00604/article_deploy/html/images/water-10-00604-g006.png)
+from: Kuhn et al. (2018) Performance of national maps of watershed integrity at watershed scales. Water. https://doi.org/10.3390/w10050604
+
 And some cool examples using `ggplot2` with `plotly`.
 
 <http://blog.revolutionanalytics.com/2014/11/3-d-plots-with-plotly.html>
 
 Lastly, so that you know that there are many (often cool) mistakes that lead up to a final visualization there is [Accidental aRt](http://accidental-art.tumblr.com/).  And for a specific example ...
 
-This final figure from [Hollister et al. 2017](http://onlinelibrary.wiley.com/enhanced/figures/doi/10.1002/ecs2.1321#figure-viewer-ecs21321-fig-0011) had as one of its early iterations this ["psychadelic doughnut"](http://accidental-art.tumblr.com/post/96720455195/was-trying-to-mess-with-projections-in-ggplot)
+And the map I showed earlier of the trophic state probability had as one of its early iterations this ["psychadelic doughnut"](http://accidental-art.tumblr.com/post/96720455195/was-trying-to-mess-with-projections-in-ggplot)
+
+![pd](https://66.media.tumblr.com/59e8a02164a8399f875394cca300b23f/tumblr_nbfye5hrjR1smu039o1_500.jpg)
 
 (**ht to Anne Kuhn, my office mate, for the name**)
 
@@ -173,12 +183,12 @@ Before we get into another exercise, lets look at some of the other geometries. 
 Now that we have the basics of `ggplot2` down, let's take a closer look at our example in `nla_analysis.R`.
 
 ## Excercise 4.1
-For this exercise we will work on creating a new plot from scratch.  One of the concepts I hope to get across is that creating a plot is as much knowing data manipulation as it is knowing the details of your plotting system (`ggplot2` in our case).
+For this exercise we will work on creating a new plot from scratch.  One of the concepts I hope to get across is that creating a plot is as much knowing data manipulation as it is knowing the details of your plotting system (`ggplot2` in our case). Add some new code at the end of our `nla_anlaysis.R` that does the following
 
-1. Add some new code at the end of our `nla_anlaysis.R`.  The goal of these lines of code is to:
-  - calculate the state by state average of total nitrogen, total phosphorus, and chlorophyll *a*
-  - create a scatter plot of these newly created values.
-  - comment your code
+1. Create a new data frame with the state by state average of total nitrogen, total phosphorus, and chlorophyll *a*
+2. Using this newly created data frame, plot mean total nitrogen on the x-axis, mean total phosphorus on the y-axis, and size and color the points based on the chlorophyll (extra credit if you log transform these data)
+3. Try to use `ggplotly` from the `plotly` package to create an interactive version of this plot.
+4. Don't forget to comment your code
 
-You'll need to manipulate our data frame, summarize on the states and plot the newly created variables.  This will be a challenging excercise as it includes nearly all of the tidyverse components we have talked about.
+This will be a challenging excercise as it includes nearly all of the tidyverse components we have talked about.
 

@@ -19,7 +19,7 @@ In this lesson we are going to go over the very basics of R, cover some basic te
 
 R is a functional programming language and as such, most everything you do uses a function.
 
-The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many (2990 functions, to be exact).  Some examples:
+The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many (3299 functions, to be exact).  Some examples:
 
 
 ```r
@@ -42,25 +42,25 @@ seq(1,10)
 
 ```r
 #Random normal numbers
-rnorm(100,mean=10,sd=2)
+rnorm(100, mean = 10, sd = 2)
 ```
 
 ```
-##   [1] 10.391215 10.841692  6.161875  9.218674  9.196072  9.974823  7.417049
-##   [8]  9.913053  9.106322  6.931043  8.294859 10.881624  7.923289 11.299838
-##  [15]  8.893035 10.569368  9.529773  9.215756 12.736659 11.242003 10.700450
-##  [22]  9.683010  9.883053  9.926537 11.164113 10.769545 10.098949  7.726807
-##  [29] 11.426956  8.225022  9.134533 10.883456 10.902513  8.788031 12.570529
-##  [36]  8.897696 10.180300  9.103949 11.904128 12.124444 13.054938 12.149116
-##  [43] 14.197274 10.240476  7.351398  5.493086  9.018260 12.255665 13.560861
-##  [50]  8.565596  9.925581  9.504538 14.391900  7.420511  6.941180 11.517019
-##  [57]  8.638058 10.106950 14.598322 11.901033  7.459391 12.325553  7.277264
-##  [64]  7.862937  7.255509 12.414340 12.558517  8.339001  7.751638  9.750364
-##  [71] 10.300119 12.513040 11.907653  9.684196  6.583479  8.167983 11.469818
-##  [78]  5.479279 11.635768 13.465854  6.543787 12.185406 10.758785  5.663642
-##  [85] 11.409628 12.343595  8.816838  9.899747 11.829165  9.815432 10.418635
-##  [92] 11.221925 11.095353 10.929100 11.585559 10.143204  7.639621  8.871733
-##  [99]  8.598971 12.643915
+##   [1]  8.487502 10.712458  8.820445  7.406490  8.368734 10.417372  9.655438
+##   [8] 11.510031  7.557873  9.776833  8.370873 11.236482  6.017476 10.267355
+##  [15] 12.306736 10.750636  8.519619 10.938943 11.526680  6.740132  8.975220
+##  [22]  8.303528  9.412133  3.823699  6.877231  8.870304  5.816687 10.824824
+##  [29] 10.657182 14.799981 12.303952  9.689811  9.329205 11.246298 10.166836
+##  [36] 17.155340 11.608109 11.613824 12.212161  8.464250 10.997839  6.287053
+##  [43] 12.573247 10.039129  6.957588  8.940572 11.740459  8.744024 12.017572
+##  [50]  7.252212 11.463012 11.391829  6.968210  8.956868 11.045952  9.193753
+##  [57]  6.443722  7.701376 14.101077  8.309383  8.272706 10.023799  7.230410
+##  [64]  8.805379  6.383588  9.279344 13.541074  8.362466  8.651802 12.098376
+##  [71] 11.945007 10.253925 10.099018  9.705112  7.994793 10.002079 10.181522
+##  [78]  9.794573  9.616976 10.984189 15.034279 10.614188  8.795692 11.660117
+##  [85] 10.240480 10.369211  7.951964 14.055420  9.830401  9.615526 10.718870
+##  [92]  7.730005 13.664531 10.179331 10.608938 11.264292  8.599188 11.958106
+##  [99] 10.148290 12.096342
 ```
 
 ```r
@@ -69,7 +69,7 @@ mean(rnorm(100))
 ```
 
 ```
-## [1] -0.1297983
+## [1] 0.2322181
 ```
 
 ```r
@@ -78,7 +78,7 @@ sum(rnorm(100))
 ```
 
 ```
-## [1] -14.31558
+## [1] 8.540261
 ```
 
 ### A few side notes 
@@ -100,7 +100,7 @@ The base install of R is quite powerful, but you will soon have a need or desire
 
 ### CRAN
 
-One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of 2018-09-05, there are 12985 on CRAN! 
+One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of 2019-08-07, there are 14710 packages on CRAN! 
 
 ### Installing packages
 
@@ -115,10 +115,10 @@ install.packages("ggplot2")
 install.packages("dplyr")
 
 #You can also put more than one in like
-install.packages(c("quickmapr","formatR"))
+install.packages(c("quickmapr", "formatR"))
 ```
 
-Now a couple of words of warning for library locations on EPA windows machines.  If R was installed correctly, your library should reside in something like `C:/Program Files/R/R-3.5.1/library`.  If you type `.libPaths()` and get a vastly different result (e.g. `Blah\Blah\Net MyDocuments\BLah`), then you are going to have some problems.  We can fix this by adding a file, `Renviron.site` to `C:\Program Files\R\R-3.5.1\etc`.  That file should have the following lines in it
+Now a couple of words of warning for library locations on EPA windows machines.  If R was installed correctly, your library should reside in something like `C:/Program Files/R/R-3.6.1/library`.  If you type `.libPaths()` and get a vastly different result (e.g. `Blah\Blah\Net MyDocuments\Blah`), then you are going to have some problems.  We can fix this by adding a file, `Renviron.site` to `C:\Program Files\R\R-3.6.1\etc`.  That file should have the following lines in it
 
 ```
 HOME=C:/Program Files/R/R-3.5.1
@@ -147,13 +147,13 @@ dplyr::mutate
 ## {
 ##     UseMethod("mutate")
 ## }
-## <bytecode: 0x000002215b979570>
+## <bytecode: 0x000001e27a822930>
 ## <environment: namespace:dplyr>
 ```
 
 You will often see people use `require()` to load a package. It is better form to not do this. For a more detailed explanation of why `library()` and not `require()` see [Yihui Xie's post on the subject](http://yihui.name/en/2014/07/library-vs-require/.)
 
-And now for a little pedantry.  You will often hear people use the terms "library" and "package" interchangeably.  This is not correct.  A package is what is submitted to CRAN, it is what contains a group of functions that address a common problem, and it is what has allowed R to expand.  A library is, more or less, where you packages are stored.  You have a path to that library and this is where R puts new packages that you install (e.g. via `install.packages()`).  These two terms are related, but most certainly different.  Apologies up front if I slip and use one when I actually mean the other...
+And now for a little pedantry.  You will often hear people use the terms "library" and "package" interchangeably.  This is not correct.  A package is what is submitted to CRAN, it is what contains a group of functions that address a common problem, and it is what has allowed R to expand.  A library is, more or less, where your packages are stored.  You have a path to that library and this is where R puts new packages that you install (e.g. via `install.packages()`).  These two terms are related, but most certainly different.  Apologies up front if I slip and use one when I actually mean the other...
 
 
 ## Operators and objects
@@ -164,7 +164,7 @@ R can be used as a calculator and a way to compare values.  Some examples of the
 
 ```r
 #A really powerful calculator!
-1+1 #Add
+1 + 1 #Add
 ```
 
 ```
@@ -172,7 +172,7 @@ R can be used as a calculator and a way to compare values.  Some examples of the
 ```
 
 ```r
-10-4 #Subtract
+10 - 4 #Subtract
 ```
 
 ```
@@ -180,7 +180,7 @@ R can be used as a calculator and a way to compare values.  Some examples of the
 ```
 
 ```r
-3*2 #Multiply
+3 * 2 #Multiply
 ```
 
 ```
@@ -188,7 +188,7 @@ R can be used as a calculator and a way to compare values.  Some examples of the
 ```
 
 ```r
-3^3 #Exponents
+3 ^ 3 #Exponents
 ```
 
 ```
@@ -196,7 +196,7 @@ R can be used as a calculator and a way to compare values.  Some examples of the
 ```
 
 ```r
-100/10 #Divide
+100 / 10 #Divide
 ```
 
 ```
@@ -204,7 +204,7 @@ R can be used as a calculator and a way to compare values.  Some examples of the
 ```
 
 ```r
-5%%2 #Modulus
+5 %% 2 #Modulus
 ```
 
 ```
@@ -212,7 +212,7 @@ R can be used as a calculator and a way to compare values.  Some examples of the
 ```
 
 ```r
-5>2 #Greater than
+5 > 2 #Greater than
 ```
 
 ```
@@ -220,7 +220,7 @@ R can be used as a calculator and a way to compare values.  Some examples of the
 ```
 
 ```r
-4<5 #Less than
+4 < 5 #Less than
 ```
 
 ```
@@ -228,7 +228,7 @@ R can be used as a calculator and a way to compare values.  Some examples of the
 ```
 
 ```r
-5<=5 #Less than or equal
+5 <= 5 #Less than or equal
 ```
 
 ```
@@ -236,7 +236,7 @@ R can be used as a calculator and a way to compare values.  Some examples of the
 ```
 
 ```r
-8>=2 #Greater than or equal
+8 >= 2 #Greater than or equal
 ```
 
 ```
@@ -244,7 +244,7 @@ R can be used as a calculator and a way to compare values.  Some examples of the
 ```
 
 ```r
-2==2 #Equality: notice that it is TWO equal signs!
+2 == 2 #Equality: notice that it is TWO equal signs!
 ```
 
 ```
@@ -252,7 +252,7 @@ R can be used as a calculator and a way to compare values.  Some examples of the
 ```
 
 ```r
-5!=7 #Not Equals
+5 != 7 #Not Equals
 ```
 
 ```
@@ -268,7 +268,7 @@ Well, it could be interesting to do something with those values and save them fo
 
 ```r
 #Numeric assignment
-x<-5
+x <- 5
 x
 ```
 
@@ -277,7 +277,7 @@ x
 ```
 
 ```r
-y<-x+1
+y <- x + 1
 y
 ```
 
@@ -286,7 +286,7 @@ y
 ```
 
 ```r
-z<-x+y
+z <- x + y
 z
 ```
 
@@ -296,7 +296,7 @@ z
 
 ```r
 #Character
-a<-"Bob"
+a <- "Bob"
 a
 ```
 
@@ -305,7 +305,7 @@ a
 ```
 
 ```r
-b<-"Sue"
+b <- "Sue"
 b
 ```
 
@@ -314,7 +314,7 @@ b
 ```
 
 ```r
-a2<-"Larry"
+a2 <- "Larry"
 a2
 ```
 
@@ -328,7 +328,7 @@ Now that we have a little experience working in the console and creating objects
 ```r
 #List all objects in current workspace
 ls() 
-ls(pattern="a")
+ls(pattern = "a")
 
 #Remove an object
 rm(x)
@@ -337,12 +337,14 @@ rm(x)
 #Saves the whole thing to a file called lesson2.RData
 save.image("lesson2.RData") 
 #Saves just the a and y objects to a file called lesson2_ay.RData
-save(a,y,file="lesson2_ay.RData")
+save(a, y, file = "lesson2_ay.RData")
 ```
 
-This is probably a good spot to bring up quotes vs no quotes around arguments in a function.  This is a very common stumbling block.  The general rule is that no quotes are used only when referring to an object that currently exists.  Quotes are used in all other cases.  For instance in `save(a,y,file="lesson2_ay.RData")` the objects `a` and `y` are not quoted because they are objects in the workspace.  `file` is an argument of save and argument names are never quoted.  We quote the name of the file "lesson2_ay.RData" because it is not an R object but the name of a file to be created.  You will likely still have some issues with this.  My recommendation is to think about if it is an object in your R workspace or not.  If so, no quotes! This isn't foolproof, but works well most of the time.
+This is probably a good spot to bring up quotes vs no quotes around arguments in a function.  This is a very common stumbling block.  The general rule is that no quotes are used only when referring to an object that currently exists.  Quotes are used in all other cases.  For instance in `save(a, y, file = "lesson2_ay.RData")` the objects `a` and `y` are not quoted because they are objects in the workspace.  `file` is an argument of save and argument names are never quoted.  We quote the name of the file "lesson2_ay.RData" because it is not an R object but the name of a file to be created.  You will likely still have some issues with this.  My recommendation is to think about if it is an object in your R workspace or not.  If so, no quotes! This isn't foolproof, but works well most of the time.
 
 Next thing you might want to do is navigate around your files and directories. While you can do this directly from the console, it is going to be better practice to mostly use RStudio projects to manage your folders, working directory etc.  You can also navigate using the Files, etc. pane. 
+### A quick word about assignment
+We have now seen how to assign object in R using the assignment operator, `<-`.  Assignment can also be done with `=`.  I suggest that you don't use this, not for "correct" syntax reasons, but for readability and code style reasons.  Use `<-` for assignment (fun note, `->` also works but the object it is assigned to lives on the right side of the operator).  Reserve `=` for assigning arguments inside of functions (e.g. `rnorm(10, mean = 5)`).
 
 ## Getting help
 Being able to find help and interpret that help is probably one of the most important skills for learning a new language.  R is no different. Help on functions and packages can be accessed directly from R, can be found on CRAN and other official R resources, searched on Google, found on StackOverflow, or from any number of fantastic online resources. I will cover a few of these here. 

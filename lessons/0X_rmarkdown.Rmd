@@ -205,6 +205,8 @@ Alternatively, we can use the console to do this.
 rmarkdown::render("my_rmd.Rmd")
 ``` 
 
+note: File extensions are imporatant here.  For RStudio to recognize the file as something that needs to be rendered and run through R, you will need to have you file names with a ".Rmd" extension.  A ".md" extension is simple markdown and RStudio won't process that file as expected if you've include code chunks to be run.
+
 ## Exercise 3.1 
 
 We now have some tools at our disposal that we can use to start to add information to our `region2_nla_analysis.Rmd` document.  For this exercise add the following at the bottom:

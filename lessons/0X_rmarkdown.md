@@ -146,16 +146,16 @@ knitr::kable(iris[sample(nrow(iris),10),],row.names = FALSE)
 
 | Sepal.Length| Sepal.Width| Petal.Length| Petal.Width|Species    |
 |------------:|-----------:|------------:|-----------:|:----------|
-|          6.7|         3.0|          5.2|         2.3|virginica  |
-|          6.5|         3.2|          5.1|         2.0|virginica  |
-|          5.8|         2.7|          4.1|         1.0|versicolor |
-|          7.7|         3.8|          6.7|         2.2|virginica  |
-|          5.1|         3.3|          1.7|         0.5|setosa     |
-|          6.1|         2.9|          4.7|         1.4|versicolor |
-|          5.5|         2.6|          4.4|         1.2|versicolor |
-|          5.0|         2.3|          3.3|         1.0|versicolor |
-|          5.1|         2.5|          3.0|         1.1|versicolor |
-|          5.0|         3.5|          1.3|         0.3|setosa     |
+|          5.4|         3.9|          1.3|         0.4|setosa     |
+|          5.8|         2.7|          3.9|         1.2|versicolor |
+|          6.9|         3.2|          5.7|         2.3|virginica  |
+|          6.2|         2.9|          4.3|         1.3|versicolor |
+|          7.3|         2.9|          6.3|         1.8|virginica  |
+|          6.1|         2.8|          4.7|         1.2|versicolor |
+|          4.8|         3.4|          1.9|         0.2|setosa     |
+|          6.2|         3.4|          5.4|         2.3|virginica  |
+|          6.4|         2.7|          5.3|         1.9|virginica  |
+|          5.5|         2.4|          3.7|         1.0|versicolor |
 
 Once we cover data frames, the utility of doing this will hopefully become more clear.
 
@@ -204,6 +204,8 @@ Alternatively, we can use the console to do this.
 ```r
 rmarkdown::render("my_rmd.Rmd")
 ```
+
+note: File extensions are imporatant here.  For RStudio to recognize the file as something that needs to be rendered and run through R, you will need to have you file names with a ".Rmd" extension.  A ".md" extension is simple markdown and RStudio won't process that file as expected if you've include code chunks to be run.
 
 ## Exercise 3.1 
 
