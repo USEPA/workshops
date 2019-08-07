@@ -1,9 +1,3 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
-
 # Introduction to R: USEPA Annual R Users Meeting
 
 This repository contains materials for an R workshop for the US EPA Annual R Users Meeting.  The workshop will provide attendees with an introduction to the R Language for statistical computing and will cover the folling topics:
