@@ -86,8 +86,8 @@ install.packages(c("quickmapr", "formatR"))
 Now a couple of words of warning for library locations on EPA windows machines.  If R was installed correctly, your library should reside in something like `C:/Program Files/R/R-3.6.1/library`.  If you type `.libPaths()` and get a vastly different result (e.g. `Blah\Blah\Net MyDocuments\Blah`), then you are going to have some problems.  We can fix this by adding a file, `Renviron.site` to `C:\Program Files\R\R-3.6.1\etc`.  That file should have the following lines in it
 
 ```
-HOME=C:/Program Files/R/R-3.5.1
-R_USER=C:/Program Files/R/R-3.5.1
+HOME=C:/Program Files/R/R-3.6.1
+R_USER=C:/Program Files/R/R-3.6.1
 ```
 
 On your next start up of R, the library path should look better!

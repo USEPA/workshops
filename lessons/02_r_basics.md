@@ -19,7 +19,7 @@ In this lesson we are going to go over the very basics of R, cover some basic te
 
 R is a functional programming language and as such, most everything you do uses a function.
 
-The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many (3299 functions, to be exact).  Some examples:
+The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many (3034 functions, to be exact).  Some examples:
 
 
 ```r
@@ -46,21 +46,21 @@ rnorm(100, mean = 10, sd = 2)
 ```
 
 ```
-##   [1]  8.487502 10.712458  8.820445  7.406490  8.368734 10.417372  9.655438
-##   [8] 11.510031  7.557873  9.776833  8.370873 11.236482  6.017476 10.267355
-##  [15] 12.306736 10.750636  8.519619 10.938943 11.526680  6.740132  8.975220
-##  [22]  8.303528  9.412133  3.823699  6.877231  8.870304  5.816687 10.824824
-##  [29] 10.657182 14.799981 12.303952  9.689811  9.329205 11.246298 10.166836
-##  [36] 17.155340 11.608109 11.613824 12.212161  8.464250 10.997839  6.287053
-##  [43] 12.573247 10.039129  6.957588  8.940572 11.740459  8.744024 12.017572
-##  [50]  7.252212 11.463012 11.391829  6.968210  8.956868 11.045952  9.193753
-##  [57]  6.443722  7.701376 14.101077  8.309383  8.272706 10.023799  7.230410
-##  [64]  8.805379  6.383588  9.279344 13.541074  8.362466  8.651802 12.098376
-##  [71] 11.945007 10.253925 10.099018  9.705112  7.994793 10.002079 10.181522
-##  [78]  9.794573  9.616976 10.984189 15.034279 10.614188  8.795692 11.660117
-##  [85] 10.240480 10.369211  7.951964 14.055420  9.830401  9.615526 10.718870
-##  [92]  7.730005 13.664531 10.179331 10.608938 11.264292  8.599188 11.958106
-##  [99] 10.148290 12.096342
+##   [1]  7.984837  9.662246  8.548069 12.846114  8.471922 10.543114 10.666517
+##   [8] 10.952335  9.722487 13.377832 10.932028 12.276489 15.323929 10.726303
+##  [15] 10.556552  9.585695 12.065732  8.097869 10.549750  9.965589  7.948236
+##  [22] 11.698192 11.095679 11.047743 13.391152 11.256898 11.449961  8.868757
+##  [29] 10.107853 11.265520  5.116543  8.533005  9.172841 10.479853  4.883735
+##  [36]  9.238202  5.973205 11.075636 10.908058  4.405295  7.398416 11.218449
+##  [43] 10.973392 10.881485 12.519882  8.015779  8.598504  7.448599  9.384838
+##  [50] 12.032296  9.416971 10.593296  6.175169  9.888070  9.259158  4.702173
+##  [57]  8.828359  7.200228 11.579544 10.081442 11.802479  8.761988  8.514316
+##  [64]  6.367517 10.996422 12.190250  9.743874  7.709479 11.007555 13.152544
+##  [71] 11.332731 11.263587 12.105846  9.691538 10.968855 10.354793 13.031089
+##  [78] 10.881075 11.533709 13.391848  7.834136 10.504535  8.737933  8.160290
+##  [85]  8.703046 11.521698  8.583809 10.117008  8.024406  8.386036  9.600785
+##  [92] 10.086182 12.098201  9.782963  7.657290 12.392768  5.898889  9.641216
+##  [99] 12.921931 10.257947
 ```
 
 ```r
@@ -69,7 +69,7 @@ mean(rnorm(100))
 ```
 
 ```
-## [1] 0.2322181
+## [1] -0.03495178
 ```
 
 ```r
@@ -78,7 +78,7 @@ sum(rnorm(100))
 ```
 
 ```
-## [1] 8.540261
+## [1] 4.585261
 ```
 
 ### A few side notes 
@@ -100,7 +100,7 @@ The base install of R is quite powerful, but you will soon have a need or desire
 
 ### CRAN
 
-One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of 2019-08-07, there are 14710 packages on CRAN! 
+One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of 2019-08-08, there are 14717 packages on CRAN! 
 
 ### Installing packages
 
@@ -121,8 +121,8 @@ install.packages(c("quickmapr", "formatR"))
 Now a couple of words of warning for library locations on EPA windows machines.  If R was installed correctly, your library should reside in something like `C:/Program Files/R/R-3.6.1/library`.  If you type `.libPaths()` and get a vastly different result (e.g. `Blah\Blah\Net MyDocuments\Blah`), then you are going to have some problems.  We can fix this by adding a file, `Renviron.site` to `C:\Program Files\R\R-3.6.1\etc`.  That file should have the following lines in it
 
 ```
-HOME=C:/Program Files/R/R-3.5.1
-R_USER=C:/Program Files/R/R-3.5.1
+HOME=C:/Program Files/R/R-3.6.1
+R_USER=C:/Program Files/R/R-3.6.1
 ```
 
 On your next start up of R, the library path should look better!
@@ -147,7 +147,7 @@ dplyr::mutate
 ## {
 ##     UseMethod("mutate")
 ## }
-## <bytecode: 0x000001e27a822930>
+## <bytecode: 0x0000015c59c6c5a0>
 ## <environment: namespace:dplyr>
 ```
 
