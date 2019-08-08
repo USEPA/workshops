@@ -1,6 +1,6 @@
 # Git(Hub) and<br/>data science
 
-https://github.com/USEPA/epa_r_workshop_2019/pres
+https://github.com/USEPA/Git-GitHub-Bitbucket_Workshop_2019/tree/master/pres
 
 Brown.TerryN@epa.gov
 
@@ -494,7 +494,7 @@ Would ignore all `.Rdata` files and stop reporting the folder `safe_backup` in `
 
 ## Resources
 
- - This presentation https://github.com/USEPA/epa_r_workshop_2019/pres
+ - This presentation https://github.com/USEPA/Git-GitHub-Bitbucket_Workshop_2019/tree/master/pres
  - [Git intro.](http://swcarpentry.github.io/git-novice/) from
    [Software Carpentry](http://software-carpentry.org/)
  - [Jeff Hollister's intro.](https://github.com/jhollist/github_101), with cats
