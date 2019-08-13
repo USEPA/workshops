@@ -15,35 +15,27 @@ For this workflow, you use a single repo on Github and have multiple contributor
 3. Both of you follow the pull-edit-commit-push workflow
 4. Occassionally you will get a merge conflict!
 
-Add more -- dealing with merge conflicts.
-
 TODO: add detailed steps to add neighbor as contributor and try this out.
 
-### Create a new repository using git
-Let's create a new repository using the command line with Git Bash.  This will be the repository where you and your neighbor will contribute
-
-1. Open Git Bash
-2. Navigate to the directory where you would like to create a directory (a.k.a. folder) where your repository will reside.
-3. Create the directory and a file within this directory.  This file can be a text file (i.e., .txt) or a file with code (e.g., .py, .R).
-
-<details>
-  <summary>Expand for Image with Example Here</summary>
-
-
-
-![](https://github.com/USEPA/Git-GitHub_Workshop_2018/blob/master/img/git_collab/gitCollab_NewFile.png)
-</details>
-
-<br>
-4. Write a few lines in the file you just created
-5. Convert the directory into a repository
-6. Upload the directory into GitHub
-
+### Make a new repository on Github, and clone it
+Follow the instructions from [the previous section](02-practice.md) or just use the test repo you already created.
 
 ### Steps adding neighbor as contributor
 
-1. Log into your GitHub account 
-2. Click on the green “New” button to the left of the webpage.
+1. Log into your GitHub account, to the repository you want to share
+2. Go to "Settings", then "Collaborators" and add based on Github usernames
+
+![](img/git_hub_collab/new_contrib.png)
+
+3. Your collaborator will need to "accept" the invitation to collaborate. Depending on notification settings, they may see the invitation in their email, or in their Github home screen.
+
+From here, you both should follow the pull-edit-commit-push cycle. At what point can your collaborator see the changes that you are making? What happens if your collaborator pushed changes since you last pulled? What happens if you both edit the same file simultaneously?
+
+Here's a [guide on resolving merge conflicts from Github](https://help.github.com/en/articles/resolving-a-merge-conflict-using-the-command-line)
+
+
+
+
 
 
 ## Fork and Pull Request
@@ -63,7 +55,17 @@ Then the original repository owner:
 6. Inspects the proposed changes
 7. Merges the proposed changes into the main repo (or request changes, or discuss, or reject the request)
 
-TODO: add detailed steps to fork the presentation repo.
+Try forking the repo of materials for this workshop. If you are signed into Github, then there should be a "fork" icon in the upper right corner.
+
+![](img/git_hub_collab/fork.png)
+
+This will give you a whole new copy of the repo on **your** Github account.
+
+From here, you make changes to your copied version, and then send a "pull request" to the maintainers of the main version of the repo, saying essentially, "Hey, I made some improvements to your code, I think you might want to incorporate them into your version."
+
+Here's a guide from Github on [Forking a repo](https://help.github.com/en/articles/fork-a-repo)
+
+And another on [creating a pull request from a fork](https://help.github.com/en/articles/creating-a-pull-request-from-a-fork)
 
 ___
 [Return to Section 2 - Practice: pull, edit, commit, push (and repeat)](02-practice.md)

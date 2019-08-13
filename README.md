@@ -43,6 +43,8 @@ We are particularly indebted to Jenny Bryan's [Happy-Git-with-R](http://happygit
     
 For more advanced tasks the [Pro Git](https://git-scm.com/book/en/v2) book, by Scott Chacon and Ben Straub is a good source.
 
+Another great resource is the video series [Learn Git with GitKraken](https://www.youtube.com/watch?v=A-4WltCTVms&list=PLe6EXFvnTV7-_41SpakZoTIYCgX4aMTdU) on Youtube.
+
 
 ## Outline
 

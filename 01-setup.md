@@ -160,7 +160,7 @@ Git is a command-line program, but there are also various graphical tools which 
 
 Jenny Bryan recommends [installing a Git client](http://happygitwithr.com/git-client.html). 
 
-For this workshop, we will be using Git-GUI, which is a very basic graphical client that is included with Git for Windows. If you are an R user, RStudio can also serve as a Git client for some operations. Two popular modern Git clients are GitKraken and Sourcetree. The workshop organizers investigated the possibility of using one of these for the workshop, but due to the short time and consideration requirements for EPA software, were not able to standardize prior to the session.
+For this workshop, we will be using Git-GUI, which is a very basic graphical client that is included with Git for Windows. If you are an R user, RStudio can also serve as a Git client for some operations. Two popular modern Git clients are GitKraken and Sourcetree. The workshop organizers investigated the possibility of using one of these for the workshop, but due to time constraints and consideration requirements for EPA software, were not able to standardize prior to the session.
 
 
 ## Get a Github Account
