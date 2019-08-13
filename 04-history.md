@@ -11,7 +11,7 @@ One benefit of version control is the ability to trace back the history of chang
 
 ## Expore Repo History on Github
 
-Choose an existing repo with some history. It could be [this repository](https://github.com/jameelalsalam/GitGithubWorkshop) or maybe the Github repository for a Python or R package that you have used in the past. Maybe: 
+Choose an existing repo with some history. It could be [this repository](https://github.com/USEPA/Git-GitHub-Bitbucket_Workshop_2019) or maybe the Github repository for a Python or R package that you have used in the past. Maybe: 
 
 * [dplyr](https://github.com/tidyverse/dplyr) or 
 * [pandas](https://github.com/pandas-dev/pandas)
@@ -126,6 +126,7 @@ It is possible to explore diffs, blames, branches, commits, etc, all from the co
 
 This [article from Atlassian](https://www.atlassian.com/git/tutorials/inspecting-a-repository/git-blame) goes through some commands you can try.
 
+This is an area where a GUI really shines. 
 
 ___
 [Return to Section 3 - Collaboration workflows](03-collaboration.md)
