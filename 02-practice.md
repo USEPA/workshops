@@ -83,7 +83,7 @@ The basic series of steps you will be following day-in, day-out will be:
 3) commit changes using Git
 4) push your changes back to Github so your collaborators can see them
 
-![](img/git-cycle.png)
+![](img/practice/git-cycle.png)
 
 We are going to go through these steps using the Bash command line, the Git-GUI, and RStudio (for the R users).
 
