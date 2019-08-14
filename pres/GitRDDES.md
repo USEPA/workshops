@@ -67,6 +67,13 @@ Brown.TerryN@epa.gov
    ⭐ Reproducible results
 
 
+## Resolving conflicts
+
+ - When git can't resolve overlapping edits these notes:
+   https://gist.github.com/tbnorth/2f85cc1fbe0d1b8635a1030407b0695f
+   may help
+
+
 ## Version Control cont.
 
  - Pushing (syncing) to a remote repository enables:
