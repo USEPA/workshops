@@ -21,7 +21,7 @@ University of Kansas Edwards Campus
 - Jeff Hollister
 - Steve Krabbe
 - Dane Boring
-- Sean Henderson
+- Shawn Henderson
 
 # Workshop Schedule
 
