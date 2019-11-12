@@ -14,3 +14,16 @@ Attendees: Liz Smith, Dane Boring, Steve Krabbe, Steve Wang, and Jeff Hollister
     - Dane one lesson on second day AM 
   - All instrucotrs/helpers
     - Jeff Hollister, Dane Boring, Steve Krabbe, Sean Henderson, Steven Wang
+
+# Notes from KDHE R Training Teaching Responsibilites Call: 2019-11-12
+
+Attendees: Steve Krabbe, Dane Boring, Jeff Hollister
+
+1. What lesson for Steve on Day 1?
+  - Steve will do R Basics
+2. Details for KDHE data lesson on day 2?
+  - KDHE oracle database (probably a dump)
+  - Work with hydrology data
+  - some basic analysis of the data.
+3. Details for shiny lesson on day 2?
+  - On his own.
