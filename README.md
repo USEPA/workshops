@@ -25,14 +25,22 @@ University of Kansas Edwards Campus
 
 # Workshop Schedule
 
-|Time                       |Topic                                             | 
-|---------------------------|--------------------------------------------------| 
-|Thursday, December 5, 2019 |                                                  |
-|9:00 AM - 4:00 PM          |Introduction to R Workshop                        |
-|Friday, December 6, 2019   |                                                  |
-|9:00 AM - Noon             |Using R with KDHE Data                            |
-|1:00 PM - 2:00 PM          |Brief Introduction to Shiny                       |
-|2:00 PM - 3:00 PM          |R Markdown and Reproducible Research/Reporting    |
+|Time             |Topic                                          |Instructor| 
+|-----------------|-----------------------------------------------|----------|
+|Thursday, Dec. 5 |                                               |          |
+|9:00AM - 9:05AM  |Welcome and Introductions                      | Jeff     |
+|9:05AM - 10:00AM |[RStudio Basics](lessons/01_rstudio.md)        | Jeff     |
+|10:00AM - 10:30AM|[The Punchline](lessons/01_rstudio.md)         | Jeff     |
+|10:30AM - 10:40AM|*BREAK*                                        |          |
+|10:40AM - 12:00PM|[R Basics](lessons/02_r_basics.md)             | Steve    |
+|12:00PM - 1:00PM |*LUNCH*                                        |          |
+|1:00PM - 2:30PM  |[Tidy Data in R](lessons/03_tidy_data_in_r.md) | Jeff     |
+|2:30PM - 2:40PM  |*BREAK*                                        |          |
+|2:40PM - 4:45PM  |[Data Viz](lessons/04_data_viz_with_ggplot2.md)| Jeff     |
+|Friday, Dec. 6   |                                               |          |
+|9:00AM - Noon    |Using R with KDHE Data                         | Dane     |
+|1:00PM - 2:00PM  |Brief Introduction to Shiny                    | Steve    |
+|2:00PM - 3:00PM  |R Markdown and Reproducible Research/Reporting | Jeff     |
 
 ## EPA Disclaimer
 
