@@ -18,29 +18,29 @@ University of Kansas Edwards Campus
 
 # Instructors and helpers
 
-- Jeff Hollister
-- Steve Krabbe
-- Dane Boring
-- Shawn Henderson
+- Jeff Hollister, USEPA, Office of Research and Development
+- Steve Krabbe, USEPA, Region 7
+- Dane Boring, KDHE
+- Shawn Henderson, USEPA, Region 7
 
 # Workshop Schedule
 
 |Time             |Topic                                          |Instructor| 
 |-----------------|-----------------------------------------------|----------|
 |Thursday, Dec. 5 |                                               |          |
-|9:00AM - 9:05AM  |Welcome and Introductions                      | Jeff     |
-|9:05AM - 10:00AM |[RStudio Basics](lessons/01_rstudio.md)        | Jeff     |
-|10:00AM - 10:30AM|[The Punchline](lessons/01_rstudio.md)         | Jeff     |
-|10:30AM - 10:40AM|*BREAK*                                        |          |
-|10:40AM - 12:00PM|[R Basics](lessons/02_r_basics.md)             | Steve    |
+|8:30AM - 8:40AM  |Welcome and Introductions                      | Jeff     |
+|8:40AM - 9:45AM  |[RStudio Basics](lessons/01_rstudio.md)        | Jeff     |
+|9:45AM - 10:15AM |[The Punchline](lessons/01_rstudio.md)         | Jeff     |
+|10:15AM - 10:30AM|*BREAK*                                        |          |
+|10:30AM - 12:00PM|[R Basics](lessons/02_r_basics.md)             | Steve    |
 |12:00PM - 1:00PM |*LUNCH*                                        |          |
 |1:00PM - 2:30PM  |[Tidy Data in R](lessons/03_tidy_data_in_r.md) | Jeff     |
-|2:30PM - 2:40PM  |*BREAK*                                        |          |
-|2:40PM - 4:45PM  |[Data Viz](lessons/04_data_viz_with_ggplot2.md)| Jeff     |
+|2:30PM - 2:45PM  |*BREAK*                                        |          |
+|2:45PM - 4:30PM  |[Data Viz](lessons/04_data_viz_with_ggplot2.md)| Jeff     |
 |Friday, Dec. 6   |                                               |          |
-|9:00AM - Noon    |Using R with KDHE Data                         | Dane     |
+|8:30AM - Noon    |Using R with KDHE Data                         | Dane     |
 |1:00PM - 2:00PM  |Brief Introduction to Shiny                    | Steve    |
-|2:00PM - 3:00PM  |[Reproducible Reporting](lessons/rmd_and_rr.md)| Jeff     |
+|2:00PM - 4:00PM  |[Reproducible Reporting](lessons/rmd_and_rr.md)| Jeff     |
 
 ## EPA Disclaimer
 
