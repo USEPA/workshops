@@ -38,9 +38,9 @@ After this lesson, you will:
 
 For this workshop we will be working through an existing R Markdown document, `kdhe_markdown.Rmd`.  Let's download these now.
 
-- [`kdhe_markdown.Rmd`](https://raw.githubusercontent.com/jhollist/kdhe_region7_r/master/lessons/kdhe_markdown.Rmd)
-- [`nla_2007_wq.csv`]()
-- [`nla_2012_wq.csv`]()
+- [`kdhe_markdown.Rmd`](https://raw.githubusercontent.com/USEPA/kdhe_region7_r/master/lessons/kdhe_markdown.Rmd)
+- [`nla_2007_wq.csv`](https://raw.githubusercontent.com/USEPA/kdhe_region7_r/master/data/nla_2007.csv)
+- [`nla_2012_wq.csv`](https://raw.githubusercontent.com/USEPA/kdhe_region7_r/master/data/nla_2012.csv)
 
 ## Reproducible Documents
 
@@ -70,11 +70,11 @@ In our document, `kdhe_markdown.Rmd` we can see a couple of things.  In particul
     ---
     title: "My First Reproducible Document"
     author: "Jeff W. Hollister"
-    date: "1/6/2015"
+    date: "12/6/2019"
     output: pdf_document
     ---
 
-This is the YAML(YAML Ain't Markup Language) header or front-matter.  It is metadata about the document that can be very useful.  There is a lot more we can do with the YAML.  There are additional fields available for us to you, or we can even create our own.  For our purposes these basic ones are good, but we can also look at the additional built in ones.  The [`rmarkdown` cheatsheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf) is a good place to look as is the [online documentation for `rmarkdown`](http://rmarkdown.rstudio.com/lesson-1.html).  A lot of the optional ones I use are part of the [output format](http://rmarkdown.rstudio.com/lesson-9.html) 
+This is the YAML(YAML Ain't Markup Language) header (a.k.a front-matter).  It is metadata about the document that can be very useful.  There is a lot more we can do with the YAML.  There are additional fields available for us to you, or we can even create our own.  For our purposes these basic ones are good, but we can also look at the additional built in ones.  The [`rmarkdown` cheatsheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf) is a good place to look as is the [online documentation for `rmarkdown`](http://rmarkdown.rstudio.com/lesson-1.html).  A lot of the optional ones I use are part of the [output format](http://rmarkdown.rstudio.com/lesson-9.html) 
 
 ## Markdown
 Markdown isn't R, but it has become an important tool in the R ecosystem as it can be used to create package vignettes, can be used on [GitHub](http://github.com), and forms the basis for several reproducible research tools in RStudio.  Markdown is a tool that allows you to write simply formatted text that is converted to HTML/XHTML.  The primary goal of markdown is readibility of the raw file.  Over the last couple of years, Markdown has emerged as a key way to write up reproducible documents, create websites, write documentation (all of these lessons are written in Markdown), and make presentations.  For the basics of markdown and general information look at [Daring Fireball](http://daringfireball.net/projects/markdown/basics).
@@ -139,10 +139,10 @@ Last type of formatting that you will likely want to accomplish with R markdown 
 So, to create a link you would use the following:
 
 ```
-[Yale Center for Industrial Ecology](https://cie.research.yale.edu/)
+[Kansas Department of Health and Environment](http://www.kdheks.gov/)
 ```
 
-Which looks like: [Yale Center for Industrial Ecology](https://cie.research.yale.edu/).
+Which looks like: [Kansas Department of Health and Environment](http://www.kdheks.gov/).
 
 The text you want linked goes in the `[]` and the link itself goes in the `()`.  That's it! Now to show an image, you do this:
 
