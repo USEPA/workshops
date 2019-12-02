@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 
 
 
@@ -18,22 +23,21 @@ Before we get started, I do like to show what is possible.  A couple of geospati
 
 A few examples of maps built with R show this:
 
-![Trophic State Modeling Results](https://wol-prod-cdn.literatumonline.com/cms/attachment/02405da6-dcc0-438e-93fb-36e6c36f190a/ecs21321-fig-0011-m.jpg)
+![Trophic State Modeling Results](figures/ecs21321-fig-0011-m.jpg)
 
-![London Bike Hires](http://spatialanalysis.co.uk/wp-content/uploads/2012/02/bike_ggplot.png)
+![London Bike Hires](figures/bike_ggplot.png)
 
-![Facebook Users](http://media.economist.com/sites/default/files/imagecache/original-size/FbMap.jpg)
+![Facebook Users](figures/FbMap.jpg)
 
-And some fairly complicated figures:
-
-![psych_repro](https://d2ufo47lrtsv5s.cloudfront.net/content/sci/349/6251/aac4716/F1.large.jpg?width=800&height=600&carousel=1)
 
 More examples from Jeff's work
 
-![histos](https://dfzljdn9uc3pi.cloudfront.net/2018/4876/1/fig-2-full.png)
+![histos](figures/fig-2-full.png)
 from: Raposa et al. (2018). Top-down and bottom-up controls on overabundant New England salt marsh crab populations. PeerJ. https://doi.org/10.7717/peerj.4876
 
-![heatmaps](https://www.mdpi.com/water/water-10-00604/article_deploy/html/images/water-10-00604-g006.png)
+![heatmaps](figures/water-10-00604-g006.jpg)
+
+
 from: Kuhn et al. (2018) Performance of national maps of watershed integrity at watershed scales. Water. https://doi.org/10.3390/w10050604
 
 And some cool examples using `ggplot2` with `plotly`.
@@ -44,7 +48,7 @@ Lastly, so that you know that there are many (often cool) mistakes that lead up 
 
 And the map I showed earlier of the trophic state probability had as one of its early iterations this ["psychadelic doughnut"](http://accidental-art.tumblr.com/post/96720455195/was-trying-to-mess-with-projections-in-ggplot)
 
-![pd](https://66.media.tumblr.com/59e8a02164a8399f875394cca300b23f/tumblr_nbfye5hrjR1smu039o1_500.jpg)
+![pd](figures/tumblr_nbfye5hrjR1smu039o1_500.jpg)
 
 (**ht to Anne Kuhn, my office mate, for the name**)
 
