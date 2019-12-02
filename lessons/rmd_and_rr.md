@@ -21,13 +21,7 @@ After this lesson, you will:
 ## Exercises
 - [Exercise 3.1](#exercise-31)
 
-## Get Data
 
-For this workshop we will be working through an existing R Markdown document, `kdhe_markdown.Rmd`.  Let's download these now.
-
-- [`kdhe_markdown.Rmd`](https://raw.githubusercontent.com/USEPA/kdhe_region7_r/master/lessons/kdhe_markdown.Rmd)
-- [`nla_2007_wq.csv`](https://raw.githubusercontent.com/USEPA/kdhe_region7_r/master/data/nla_2007.csv)
-- [`nla_2012_wq.csv`](https://raw.githubusercontent.com/USEPA/kdhe_region7_r/master/data/nla_2012.csv)
 
 ## Reproducible Documents
 
@@ -167,29 +161,31 @@ We use Markdown that looks like this:
 |Elmo      |Monster  |Red           |
 </pre>
 
-Coding these tables up by hand only makes sense for the simplest cases, but luckily we have many options for generating tables with R functions.  In our example `kdhe_markdown.Rmd` we've seen the use of the `DT` package, although since this uses the [DataTables `javascript` library](https://datatables.net/) it will only work for documents with HTML as the output type.  For static non interactive tables there is the `kable()` function from the `knitr` package, there's the [`kableExtra` package](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html) which provides tools for enhanced tables.  There are others as well and a good overview can be seen in [this rOpenSci discussion](https://github.com/ropensci/unconf17/issues/69).  
+Coding these tables up by hand only makes sense for the simplest cases, but luckily we have many options for generating tables with R functions.  For static non interactive tables there is the `kable()` function from the `knitr` package and there's the [`kableExtra` package](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html) which provides tools for enhanced tables.  There are others as well and a good overview can be seen in [this rOpenSci discussion](https://github.com/ropensci/unconf17/issues/69).  If you prefer interactive tables and your output type is going to be HTML, the `DT` package, which uses the [DataTables `javascript` library](https://datatables.net/) is a nice option.
 
-The nice thing about using R functions to create these is that all of the data we have in R can be output as a table.  For instance:
+With these functions, we can now use any data frames we have in R and create an output table.  For instance:
 
 
 ```r
-knitr::kable(iris[sample(nrow(iris),10),],row.names = FALSE)
+knitr::kable(rbind(head(iris),tail(iris)),row.names = FALSE)
 ```
 
 
 
-| Sepal.Length| Sepal.Width| Petal.Length| Petal.Width|Species    |
-|------------:|-----------:|------------:|-----------:|:----------|
-|          5.9|         3.0|          4.2|         1.5|versicolor |
-|          4.5|         2.3|          1.3|         0.3|setosa     |
-|          5.6|         3.0|          4.1|         1.3|versicolor |
-|          5.2|         4.1|          1.5|         0.1|setosa     |
-|          5.4|         3.9|          1.3|         0.4|setosa     |
-|          5.0|         3.0|          1.6|         0.2|setosa     |
-|          6.3|         2.3|          4.4|         1.3|versicolor |
-|          6.1|         2.6|          5.6|         1.4|virginica  |
-|          6.4|         3.1|          5.5|         1.8|virginica  |
-|          7.1|         3.0|          5.9|         2.1|virginica  |
+| Sepal.Length| Sepal.Width| Petal.Length| Petal.Width|Species   |
+|------------:|-----------:|------------:|-----------:|:---------|
+|          5.1|         3.5|          1.4|         0.2|setosa    |
+|          4.9|         3.0|          1.4|         0.2|setosa    |
+|          4.7|         3.2|          1.3|         0.2|setosa    |
+|          4.6|         3.1|          1.5|         0.2|setosa    |
+|          5.0|         3.6|          1.4|         0.2|setosa    |
+|          5.4|         3.9|          1.7|         0.4|setosa    |
+|          6.7|         3.3|          5.7|         2.5|virginica |
+|          6.7|         3.0|          5.2|         2.3|virginica |
+|          6.3|         2.5|          5.0|         1.9|virginica |
+|          6.5|         3.0|          5.2|         2.0|virginica |
+|          6.2|         3.4|          5.4|         2.3|virginica |
+|          5.9|         3.0|          5.1|         1.8|virginica |
 
 ## Code Chunks
 
@@ -269,11 +265,30 @@ Like all of the topic we've covered, there are many additional options. For more
 
 ## Exercise 3.1 
 
-We now have some tools at our disposal that we can use to start to add information to our `kdhe_markdown.Rmd` document.  For this exercise add the following at the bottom:
+We now have some tools at our disposal that we can use to start to work with and add information to an R Markdown document.  There is a LOT here, but I wanted to include this all here so those that want to can work through many of the different topics.
 
-1. Add a new first level header with "Playing around with Markdown" as the text
-2. Add three second level headers underneath with the following text: "A bulleted list", "A link", "An animated GIF"
-3. Underneath "A bulleted list", add a bulleted list with three items that have your three favorite foods/
-4. Underneath "A link" add in a link to the website of your choosing. 
-5. Underneath "An animated GIF" add an image using the URL of an animated GIF of your choosing.  You can search for "Animated GIF" at <https://images.google.com>.
-6. If you have time, add in a small markdown table.
+1. Create a new RStudio project and name it `rmarkdown_workshop`.
+2. Download the R Markdown file and save in this new project at the root of the project (Bonus: Who can describe what "root of the project" means?):
+- [`kdhe_markdown.Rmd`](https://raw.githubusercontent.com/USEPA/kdhe_region7_r/master/lessons/kdhe_markdown.Rmd)
+3. Create a folder at the root of your project named `data`.
+4. Download the following two data files into this new `data` folder:
+- [`nla_2007_wq.csv`](https://raw.githubusercontent.com/USEPA/kdhe_region7_r/master/data/nla_2007.csv)
+- [`nla_2012_wq.csv`](https://raw.githubusercontent.com/USEPA/kdhe_region7_r/master/data/nla_2012.csv)
+5. Open up the `kdhe_markdown.Rmd` file.
+6. With the person(s) next to you take a look at the file and answer the following questions:
+- What is the name of the second code chunk, and  what does it do?
+- Look at the YAML header.  What type of output will this R Markdown file produce?
+- How many output tables do you expect to see in the final ouput document?
+- What year of NLA data did this summarize?  How can you tell that from the information in the R Markdown document?
+7. Now that you've looked around the file a bit, let's create the output by clicking on the `Knit` button at the top of the window.
+9. Change the title of the document to include the year.
+10. Now open the word template, `hab_report_template.docx` in Word.  Edit this document to remove the line numbers.  Save this to the same file name.
+10. Render this again with the `Knit` button.
+12. Now, lets just play around with Markdown in general.  Try some of the following and then re-render your document to see the results:
+- Add a new first level header with "Playing around with Markdown" as the text
+- Add three second level headers underneath with the following text: "A bulleted list", "A link", "An animated GIF"
+- Underneath "A bulleted list", add a bulleted list with three items that have your three favorite foods/
+- Underneath "A link" add in a link to the website of your choosing. 
+- Underneath "An animated GIF" add an image using the URL of an animated GIF of your choosing.  You can search for "Animated GIF" at <https://images.google.com>.
+11. Now render this document a third time, but use the `Knit:Knit with parameters` option from the `Knit` drop down menu and choose the 2012 NLA data for this one. 
+
