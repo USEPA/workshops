@@ -39,7 +39,7 @@ University of Kansas Edwards Campus
 |2:45PM - 4:30PM  |[Data Viz](lessons/04_data_viz_with_ggplot2.md)| Jeff     |
 |Friday, Dec. 6   |                                               |          |
 |8:30AM - Noon    |Using R with KDHE Data                         | Dane     |
-|1:00PM - 2:00PM  |Brief Introduction to Shiny                    | Steve    |
+|1:00PM - 2:00PM  |[Brief Introduction to Shiny](lessons/06_r_shiny_intro_onserver.md)                    | Steve    |
 |2:00PM - 4:00PM  |[Reproducible Reporting](lessons/rmd_and_rr.md)| Jeff     |
 
 ## EPA Disclaimer
