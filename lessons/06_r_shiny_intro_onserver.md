@@ -1,11 +1,3 @@
----
-title: "Shiny Intro"
-author: "Stephen Krabbe"
-date: "11/27/2019"
-output:
-  pdf_document: default
-  html_document: default
----
 
 
 
