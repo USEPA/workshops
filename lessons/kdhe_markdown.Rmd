@@ -1,9 +1,7 @@
 ---
 title: "National Harmful Algal Bloom Report"
 author: "Jeffrey W. Hollister"
-editor_options:
-  chunk_output_type: console
-date: '2018-03-09'
+date: '2019-12-06'
 params:
   data:
     label: "Input dataset:"
@@ -24,8 +22,6 @@ for(i in pkgs){
   }
 }
 x<-lapply(pkgs, library, character.only = TRUE)
-#install.packages("lubridate")
-#library(lubridate)
 ```
 
 # Purpose
@@ -67,25 +63,23 @@ Now that we have the data read in, let's figure out how many of our chlorophyll 
 ```{r count, results="asis"}
 nla %>%
   group_by(st) %>% 
-  summarize(childepa_habs = sum(chla>=23),
-            adultwho_habs = sum(chla>=68),
-            adultepa_habs = sum(chla>=84),
-            whorec_habs = sum(chla>=104)) %>%
+  summarize(childepa_habs = sum(chla >= 23),
+            adultwho_habs = sum(chla >= 68),
+            adultepa_habs = sum(chla >= 84),
+            whorec_habs = sum(chla >= 104)) %>%
   ungroup() %>%
-  rbind(c("Total", sum(childepa_habs), sum(adultwho_habs), sum(adultepa_habs), 
-          sum(whorec_habs))) %>%
   kable()
 ```
 
 And maybe we want to see how these numbers might relate to average state nutrient levels, so lets build that dataset for some visualization.
 
-```{r plot_data, results="asis"}
+```{r plot_data}
 nla_hab_counts <- nla %>%
   group_by(st) %>% 
-  summarize(childepa_habs = sum(chla>=23),
-            adultwho_habs = sum(chla>=68),
-            adultepa_habs = sum(chla>=84),
-            whorec_habs = sum(chla>=104),
+  summarize(childepa_habs = sum(chla >= 23),
+            adultwho_habs = sum(chla >= 68),
+            adultepa_habs = sum(chla >= 84),
+            whorec_habs = sum(chla >= 104),
             avg_tn = mean(ntl),
             avg_tp = mean(ptl)) %>%
   ungroup() 
@@ -97,7 +91,7 @@ Next step is to visualize the data.  Let's look at the association between state
 
 ```{r plot_it, warning=FALSE, message=FALSE}
 nutrient_habs_gg <- nla_hab_counts %>%
-  ggplot(aes(x=log10(avg_tn),y=log10(avg_tp))) +
+  ggplot(aes(x = log10(avg_tn), y = log10(avg_tp))) +
   geom_point(aes(color = childepa_habs, size = childepa_habs)) +
   geom_smooth(method = "lm") +
   theme_classic() +
