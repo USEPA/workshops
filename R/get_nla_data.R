@@ -40,3 +40,4 @@ nla_2012 <- nla_2012_site %>%
   mutate(date_col = mdy(date_col))
 
 write_csv(nla_2012, "data/nla_2012.csv")
+

@@ -269,26 +269,25 @@ We now have some tools at our disposal that we can use to start to work with and
 
 1. Create a new RStudio project and name it `rmarkdown_workshop`.
 2. Download the R Markdown file and save in this new project at the root of the project (Bonus: Who can describe what "root of the project" means?):
-- [`kdhe_markdown.Rmd`](https://raw.githubusercontent.com/USEPA/kdhe_region7_r/master/lessons/kdhe_markdown.Rmd)
+  - [`kdhe_markdown.Rmd`](https://raw.githubusercontent.com/USEPA/kdhe_region7_r/master/lessons/kdhe_markdown.Rmd)
 3. Create a folder at the root of your project named `data`.
-4. Download the following two data files into this new `data` folder:
-- [`nla_2007_wq.csv`](https://raw.githubusercontent.com/USEPA/kdhe_region7_r/master/data/nla_2007.csv)
-- [`nla_2012_wq.csv`](https://raw.githubusercontent.com/USEPA/kdhe_region7_r/master/data/nla_2012.csv)
+4. Download the following two data files into this new `data` folder: (Note: Chrome does a very awful thing with these files.  Even though they are `.csv`, if you try to `Save link as...` it wants to save them as `.txt` files.  Make sure you replace `.txt` with `.csv` in the file dialog)
+  - [`nla_2007.csv`](https://raw.githubusercontent.com/USEPA/kdhe_region7_r/master/data/nla_2007.csv)
+  - [`nla_2012.csv`](https://raw.githubusercontent.com/USEPA/kdhe_region7_r/master/data/nla_2012.csv)
 5. Open up the `kdhe_markdown.Rmd` file.
 6. With the person(s) next to you take a look at the file and answer the following questions:
-- What is the name of the second code chunk, and  what does it do?
-- Look at the YAML header.  What type of output will this R Markdown file produce?
-- How many output tables do you expect to see in the final ouput document?
-- What year of NLA data did this summarize?  How can you tell that from the information in the R Markdown document?
+  - What is the name of the second code chunk, and  what does it do?
+  - Look at the YAML header.  What type of output will this R Markdown file produce?
+  - How many output tables do you expect to see in the final ouput document?
+  - What year of NLA data did this summarize?  How can you tell that from the information in the R Markdown document?
 7. Now that you've looked around the file a bit, let's create the output by clicking on the `Knit` button at the top of the window.
 9. Change the title of the document to include the year.
-10. Now open the word template, `hab_report_template.docx` in Word.  Edit this document to remove the line numbers.  Save this to the same file name.
 10. Render this again with the `Knit` button.
 12. Now, lets just play around with Markdown in general.  Try some of the following and then re-render your document to see the results:
-- Add a new first level header with "Playing around with Markdown" as the text
-- Add three second level headers underneath with the following text: "A bulleted list", "A link", "An animated GIF"
-- Underneath "A bulleted list", add a bulleted list with three items that have your three favorite foods/
-- Underneath "A link" add in a link to the website of your choosing. 
-- Underneath "An animated GIF" add an image using the URL of an animated GIF of your choosing.  You can search for "Animated GIF" at <https://images.google.com>.
+  - Add a new first level header with "Playing around with Markdown" as the text
+  - Add three second level headers underneath with the following text: "A bulleted list", "A link", "An animated GIF"
+  - Underneath "A bulleted list", add a bulleted list with three items that have your three favorite foods/
+  - Underneath "A link" add in a link to the website of your choosing. 
+  - Underneath "An animated GIF" add an image using the URL of an animated GIF of your choosing.  You can search for "Animated GIF" at <https://images.google.com>.
 11. Now render this document a third time, but use the `Knit:Knit with parameters` option from the `Knit` drop down menu and choose the 2012 NLA data for this one. 
 

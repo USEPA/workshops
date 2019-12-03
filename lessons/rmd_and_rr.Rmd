@@ -266,8 +266,8 @@ We now have some tools at our disposal that we can use to start to work with and
   - [`kdhe_markdown.Rmd`](https://raw.githubusercontent.com/USEPA/kdhe_region7_r/master/lessons/kdhe_markdown.Rmd)
 3. Create a folder at the root of your project named `data`.
 4. Download the following two data files into this new `data` folder: (Note: Chrome does a very awful thing with these files.  Even though they are `.csv`, if you try to `Save link as...` it wants to save them as `.txt` files.  Make sure you replace `.txt` with `.csv` in the file dialog)
-  - [`nla_2007_wq.csv`](https://raw.githubusercontent.com/USEPA/kdhe_region7_r/master/data/nla_2007.csv)
-  - [`nla_2012_wq.csv`](https://raw.githubusercontent.com/USEPA/kdhe_region7_r/master/data/nla_2012.csv)
+  - [`nla_2007.csv`](https://raw.githubusercontent.com/USEPA/kdhe_region7_r/master/data/nla_2007.csv)
+  - [`nla_2012.csv`](https://raw.githubusercontent.com/USEPA/kdhe_region7_r/master/data/nla_2012.csv)
 5. Open up the `kdhe_markdown.Rmd` file.
 6. With the person(s) next to you take a look at the file and answer the following questions:
   - What is the name of the second code chunk, and  what does it do?
