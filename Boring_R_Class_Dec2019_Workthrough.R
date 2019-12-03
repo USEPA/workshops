@@ -260,4 +260,37 @@ rmchem<- basechem[basechem$ALKALINTYR!="<", ]
 #If you Google those counties, you can see a geographic proclivity towards west-central Kansas. 
 #We're still missing county data for most of the points we used for the linear model, but that's a dataset refinement for another day.
 
+#I'm going to change gears on us one final time. The last big tool I'd like you all to see is looping plot production.
+#A loop is what the name implies; going around in a circle.
+#Imagine I want a plot for each and every single lake's data that has had a violation of the Cl criteria.
+#This could take a looooong time to make.
+#However, coding can do this for us.
+#There are several things we'll need to set up, and these we'll do together:
+#First, let's get a list of Site Names to work with
+
+violakes<- chemreg[chemreg$DS=="X" & !is.na(chemreg$DS) & chemreg$Cl>250,]
+violakes<- unique(violakes$SiteName, na.rm=T)
+violakes<- violakes[!is.na(violakes)]
+violakes
+
+#Next, we're going to build a for() loop:
+#For that, we need to define how many times it will run and where to initialize
+
+howlong<-7
+i<-1
+
+#Next, we'll build the loop together:
+
+howlong<-7
+i<-1
+for(i in 1:howlong){
+  loopname<- violakes[i]
+  loopname
+  
+  loopdata<- chemreg[chemreg$SiteName==loopname,]
+  head(loopdata)
+  
+  print(     ggplot(loopdata, aes(x=Date, y=Cl)) + geom_point() +geom_hline(yintercept=250) + ggtitle(loopname) + scale_y_continuous(limits=c(0,NA))     )
+}
+
 #For now, pat yourselves on the back; we've made it to the end of this lecture!
