@@ -5,11 +5,9 @@ date: '2019-12-06'
 params:
   data:
     label: "Input dataset:"
-    value: ../data/nla_2007.csv
+    value: data/nla_2007.csv
     input: file
-output:
-  word_document:
-    reference_docx: hab_report_template.docx
+output: word_document
 ---
 
 ```{r setup, include=FALSE}

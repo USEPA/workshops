@@ -1,4 +1,4 @@
-site_id,visit_no,date_col,lon_dd,lat_dd,state,cntyname,ptl,ntl,chla,secchi
+site_id,visit_no,date_col,lon_dd,lat_dd,st,cntyname,ptl,ntl,chla,secchi
 NLA12_AL-101,1,2012-05-24,-87.3913824,33.29204144,AL,TUSCALOOSA,30,0.505,18,2.55
 NLA12_AL-101,2,2012-07-21,-87.3913824,33.29204144,AL,TUSCALOOSA,25,0.376,17.52,1.3
 NLA12_AL-102,1,2012-07-17,-86.84344912,34.22781586,AL,CULLMAN,12,0.389,10,0.675

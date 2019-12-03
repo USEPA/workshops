@@ -34,7 +34,7 @@ nla_2012 <- nla_2012_site %>%
   left_join(nla_2012_secchi, by = c("SITE_ID", "VISIT_NO", "DATE_COL")) %>%
   rename_all(tolower) %>%
   select(site_id, visit_no, date_col,lon_dd = lon_dd83, lat_dd = lat_dd83, 
-         state, cntyname, ptl = ptl_result, ntl = ntl_result, 
+         st = state, cntyname, ptl = ptl_result, ntl = ntl_result, 
          chla = chlx_result, secchi) %>%
   filter(!is.na(chla)) %>%
   mutate(date_col = mdy(date_col))
