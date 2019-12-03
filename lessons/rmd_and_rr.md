@@ -27,7 +27,7 @@ After this lesson, you will:
 
 Reproducible documents, are documents that mix text and code and allow others (or you!) to re-run your analysis.  They are inspired by Donald Knuth's ideas on [literate programming](http://www-cs-faculty.stanford.edu/~knuth/lp.html).  Specific to the R world we build reproducible documents with Markdown, `rmarkdown`, `knitr`, and an external tool called [pandoc](https://pandoc.org/). In short, these tools allow us to write up documents, embed code via "code chunks", run that code and render the final document with nicely formatted text, results, figures etc into a final format of our choosing.  We can create `.html`, `.docx`, `.pdf`, ...  The benefit of doing this is that all of our data and code are a part of the document.  We can share our source document, then anyone can reproduce all of our calculations.  For instance, we can make a manuscript that looks like this:
 
-![Rendered Manuscript](figures/rendered.jpg)
+[![Rendered Manuscript](figures/rendered.jpg)](https://github.com/USEPA/LakeTrophicModelling/raw/master/vignettes/manuscript.pdf)
 
 from a source markdown document that looks like:
 
