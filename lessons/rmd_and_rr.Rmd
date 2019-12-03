@@ -44,7 +44,7 @@ Reproducible documents, are documents that mix text and code and allow others (o
 
 from a source markdown document that looks like:
 
-![Raw RMarkdown](figures/source.jpg)
+[![Raw RMarkdown](figures/source.jpg)](https://github.com/USEPA/LakeTrophicModelling/raw/master/vignettes/manuscript.Rmd)
 
 While we can't get to this level of detail with just the stock RStudio tools (i.e. in requires a bit of LaTeX shenanigans), we can still do some pretty cool stuff. For instance, we can see how this could be used to write the text describing an analysis, embed the analysis and figure creation directly in the document, and render a final document.  You share the source and rendered document and anyone has access to your full record of that analysis!  Additionally, maybe you have a standard set of analyses to run on a dataset that is evolving or updated on a regular basis.  We can build an R Markdown document that reads in a dataset, runs analysis and updates the output.  
 
