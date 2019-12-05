@@ -4,8 +4,7 @@
 
 #First thing first, find the "OracleExport_BasicChem.xlsx" document and load it into R as object "basechem"
 
-library(readxl)
-OracleExport_BasicChem <- read_excel("C:/Users/ecguest/Downloads/OracleExport_BasicChem.xlsx")
+
 
 #What is that dataset? It's the format our data at KDHE comes in from an Oracle query and these include samples from the Stream Probabilistic (SP) monitoring program, Stream Chemistry (SC) monitoring program, and Lake Monitoring (LM) program
 #Take a look at what you've got using View(), summary(), str(), and head()
