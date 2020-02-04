@@ -156,7 +156,7 @@ git push -u origin master
 6.) Repeat!  If after a push you shut down for the day, but then start up again on a new machine, you'll start over again at the `git pull` step.
 
 ## Git and GitHub with RStudio
-The following assumes Git is alredy installed on your machine.  With Git installed, we just need to make sure that RStudio knows where to find it.  On windows that is most likely going to be in `C:/Program Files (x86)/Git/bin/git.exe`.  In RStudio, go to Tools:Global Options from the menu bar.  Click on Git/SVN down at the bottom left.  The window you get should look like:
+The following assumes Git is alredy installed on your machine.  With Git installed, we just need to make sure that RStudio knows where to find it.  On windows that is most likely going to be in `C:/Program Files (x86)/Git/bin/git.exe` or 'C:\Users\<username>/AppData/Local/Programs/Git/bin/get.exe'.  In RStudio, go to Tools:Global Options from the menu bar.  Click on Git/SVN down at the bottom left.  The window you get should look like:
 
 ![rstudio options](figure/rstudio_options.png)
 
