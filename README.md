@@ -25,9 +25,9 @@ We've been using #eparstats for EPA related R events.  Feel free to live tweet, 
 
 Session 2 will be split into 3 parallel sessions, all taking place from 1pm-5pm:
 
-|Track  |Title                         |Speaker                    |
+|Track  |Title                         |Lead                       |
 |-------|------------------------------|---------------------------|
-|1|Intro to R (Part 1)|*TBD*|
+|1|Intro to R (Part 1)|Nichole Kulikowski|
 |2|Intro to tidy models|R Studio|
 |3|Building R packages / Reproducible Research|Michael Dumelle|
 
@@ -35,9 +35,9 @@ Session 2 will be split into 3 parallel sessions, all taking place from 1pm-5pm:
 
 Session 3 will be split into 3 parallel sessions, all taking place from 1pm-5pm:
 
-|Track  |Title                         |Speaker                    |
+|Track  |Title                         |Lead                       |
 |-------|------------------------------|---------------------------|
-|1|Intro to R (Part 2)|*TBD*|
+|1|Intro to R (Part 2)|Nichole Kulikowski|
 |2|Big Data with R|R Studio|
 |3|Spatial Data in R|Marc Weber|
 
