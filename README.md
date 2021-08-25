@@ -18,7 +18,7 @@ We've been using #eparstats for EPA related R events.  Feel free to live tweet, 
 |2:15pm - 2:30pm|TBD|Colleen Nell, USGS|
 |2:35pm - 2:50pm|Introducing the River Basin Export Reduction Optimization Support Tool (RBEROST)|Catherine Chamberlain, ORISE/USEPA/CEMM|
 |2:55pm - 3:10pm|TBD|Thomas Barnum, USEPA/ORD/CPHEA|
-|3:10pm - 3:20pm|**BREAK**||
+|3:10pm - 3:20pm|**Break**||
 |3:20pm - 3:35pm|TBD|???, RStudio|
 |3:40pm - 3:55pm|Creating Automated, Custom Fact Sheets in R Markdown|Marschall Furman, ORISE/USEPA/CPHEA and Nichole Kulikowski, USEPA/CPHEA|
 |4:00pm - 4:15pm|Logistic Regression in R: An application to unregulated drinking water contaminants|Brynne Storsved, USEPA/OW/OGWDW|
