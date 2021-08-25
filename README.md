@@ -24,7 +24,7 @@ We've been using #eparstats for EPA related R events.  Feel free to live tweet, 
 |4:00pm - 4:15pm|Logistic Regression in R: An application to unregulated drinking water contaminants|Brynne Storsved, USEPA/OW/OGWDW|
 |4:20pm - 4:35pm|Downloadable Shiny Apps|Steven Pfeiffer, USEPA/ORD/OSIM|
 |4:40pm - 4:55pm|TBD|Jeff Hollister, USEPA/ORD/CEMM|
-|**Evening Activities**|||
+||**Evening Activities**||
 |5:00pm - 6:00pm|Virtual Happy Hour|All!|
 
 ## Wed, September 22
