@@ -11,15 +11,21 @@ We've been using #eparstats for EPA related R events.  Feel free to live tweet, 
 
 ## Tue, September 21
 
-|Time   |Title                         |Speaker                    |
-|-------|------------------------------|---------------------------|
-|1:00 PM - 1:15 PM|Introduction/Welcome|*TBD*|
-|1:15 PM - 2:25 PM|Plenary|*TBD*|
-|2:15 PM - 3:00 PM|Presentations|*TBD*|
-|3:00 PM - 3:15 PM|**Break**||
-|3:15 PM - 5:00 PM|Presentations|*TBD*|
+|Time           |Title                    |Speaker                  |
+|---------------|-------------------------|-------------------------|
+|1:00pm - 1:10pm|Welcome and Introductions|Jeff Hollister/Anne Vega|
+|1:15pm - 2:10pm|TBD|Jenny Bryan, RStudio|
+|2:15pm - 2:30pm|TBD|Colleen Nell, USGS|
+|2:35pm - 2:50pm|Introducing the River Basin Export Reduction Optimization Support Tool (RBEROST)|Catherine Chamberlain, ORISE/USEPA/CEMM|
+|2:55pm - 3:10pm|TBD|Thomas Barnum, USEPA/ORD/CPHEA|
+|3:10pm - 3:20pm|**BREAK**||
+|3:20pm - 3:35pm|TBD|???, RStudio|
+|3:40pm - 3:55pm|Creating Automated, Custom Fact Sheets in R Markdown|Marschall Furman, ORISE/USEPA/CPHEA and Nichole Kulikowski, USEPA/CPHEA|
+|4:00pm - 4:15pm|Logistic Regression in R: An application to unregulated drinking water contaminants|Brynne Storsved, USEPA/OW/OGWDW|
+|4:20pm - 4:35pm|Downloadable Shiny Apps|Steven Pfeiffer, USEPA/ORD/OSIM|
+|4:40pm - 4:55pm|TBD|Jeff Hollister, USEPA/ORD/CEMM|
 |**Evening Activities**|||
-|5:00 PM - 6:00 PM|Virtual Happy Hour|All!|
+|5:00pm - 6:00pm|Virtual Happy Hour|All!|
 
 ## Wed, September 22
 
