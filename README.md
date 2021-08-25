@@ -5,17 +5,13 @@
 
 This year's workshop will be fully virtual, held on the afternoons (1-5pm eastern) of Sept 21st, 22nd, and 23rd, 2021.  Details on remote participation option for the presentations and workshops will be sent to participants closer to the workshop dates.  The agenda below is preliminary and may change before the workshop.
 
-<!--
-To Register for this event, sign up on our [Eventbrite page](https://www.eventbrite.com/e/r-user-group-workshop-2021-september-21-23-registration-166503443281)
--->
-
 #### Twitter (not officially sanctioned)
 
 We've been using #eparstats for EPA related R events.  Feel free to live tweet, unless otherwise directed!
 
 ## Tue, September 21
 
-|Time           |Title                    |Speaker                  |
+|Time (EDT)     |Title                    |Speaker                  |
 |---------------|-------------------------|-------------------------|
 |1:00pm - 1:10pm|Welcome and Introductions|Jeff Hollister/Anne Vega|
 |1:15pm - 2:10pm|TBD|Jenny Bryan, RStudio|
@@ -23,11 +19,11 @@ We've been using #eparstats for EPA related R events.  Feel free to live tweet, 
 |2:35pm - 2:50pm|Introducing the River Basin Export Reduction Optimization Support Tool (RBEROST)|Catherine Chamberlain, ORISE/USEPA/CEMM|
 |2:55pm - 3:10pm|TBD|Thomas Barnum, USEPA/ORD/CPHEA|
 |3:10pm - 3:20pm|**Break**||
-|3:20pm - 3:35pm|TBD|???, RStudio|
+|3:20pm - 3:35pm|TBD|TBD, RStudio|
 |3:40pm - 3:55pm|Creating Automated, Custom Fact Sheets in R Markdown|Marschall Furman, ORISE/USEPA/CPHEA and Nichole Kulikowski, USEPA/CPHEA|
 |4:00pm - 4:15pm|Logistic Regression in R: An application to unregulated drinking water contaminants|Brynne Storsved, USEPA/OW/OGWDW|
 |4:20pm - 4:35pm|Downloadable Shiny Apps|Steven Pfeiffer, USEPA/ORD/OSIM|
-|4:40pm - 4:55pm|TBD|TBD|
+|4:40pm - 4:55pm|Overview of the Pugent Sound Air Sensor Dashboard|Graeme Carlvin, Puget Sound Clean Air Agency|
 ||**Evening Activities**||
 |5:00pm - 6:00pm|Virtual Happy Hour|All!|
 
