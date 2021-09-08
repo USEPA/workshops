@@ -22,7 +22,7 @@ We've been using #eparstats for EPA related R events.  Feel free to live tweet, 
 |3:20pm - 3:35pm|Statistical Measures of Inequality in Disadvantaged Communities to Underground Storage Tanks + Decision Applications with Shiny|Andrew Murray, ORISE/USEPA/CESER|
 |3:40pm - 3:55pm|Creating Automated, Custom Fact Sheets in R Markdown|Marschall Furman, ORISE/USEPA/CPHEA and Nichole Kulikowski, USEPA/CPHEA|
 |4:00pm - 4:15pm|Logistic Regression in R: An application to unregulated drinking water contaminants|Brynne Storsved, USEPA/OW/OGWDW|
-|4:20pm - 4:35pm|Downloadable Shiny Apps|Steven Pfeiffer, USEPA/ORD/OSIM|
+|4:20pm - 4:35pm|Deployment Options for EPA Shiny Apps|Steven Pfeiffer, USEPA/ORD/OSIM|
 |4:40pm - 4:55pm|Overview of the Puget Sound Air Sensor Dashboard|Graeme Carlvin, Puget Sound Clean Air Agency|
 ||**Evening Activities**||
 |5:00pm - 6:00pm|Virtual Happy Hour|All!|
