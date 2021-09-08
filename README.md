@@ -15,7 +15,7 @@ We've been using #eparstats for EPA related R events.  Feel free to live tweet, 
 |---------------|-------------------------|-------------------------|
 |1:00pm - 1:10pm|Welcome and Introductions|Jeff Hollister/Anne Vega|
 |1:15pm - 2:10pm|TBD|Jenny Bryan, RStudio|
-|2:15pm - 2:30pm|TBD|Colleen Nell, USGS|
+|2:15pm - 2:30pm|Rivers & gages & forecasts, oh my! Visualizing water data in R with the USGS Vizlab|Colleen Nell, USGS|
 |2:35pm - 2:50pm|Introducing the River Basin Export Reduction Optimization Support Tool (RBEROST)|Catherine Chamberlain, ORISE/USEPA/CEMM|
 |2:55pm - 3:10pm|TBD|Thomas Barnum, USEPA/ORD/CPHEA|
 |3:10pm - 3:20pm|**Break**||
