@@ -17,7 +17,7 @@ We've been using #eparstats for EPA related R events.  Feel free to live tweet, 
 |1:15pm - 2:10pm|TBD|Jenny Bryan, RStudio|
 |2:15pm - 2:30pm|Rivers & gages & forecasts, oh my! Visualizing water data in R with the USGS Vizlab|Colleen Nell, USGS|
 |2:35pm - 2:50pm|Introducing the River Basin Export Reduction Optimization Support Tool (RBEROST)|Catherine Chamberlain, ORISE/USEPA/CEMM|
-|2:55pm - 3:10pm|TBD|Thomas Barnum, USEPA/ORD/CPHEA|
+|2:55pm - 3:10pm|Automating Spatial Data Extraction|Thomas Barnum, USEPA/ORD/CPHEA|
 |3:10pm - 3:20pm|**Break**||
 |3:20pm - 3:35pm|Statistical Measures of Inequality in Disadvantaged Communities to Underground Storage Tanks + Decision Applications with Shiny|Andrew Murray, ORISE/USEPA/CESER|
 |3:40pm - 3:55pm|Creating Automated, Custom Fact Sheets in R Markdown|Marschall Furman, ORISE/USEPA/CPHEA and Nichole Kulikowski, USEPA/CPHEA|
