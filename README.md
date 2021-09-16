@@ -13,13 +13,13 @@ We've been using #eparstats for EPA related R events.  Feel free to live tweet, 
 
 |Time (EDT)     |Title                    |Speaker                  |
 |---------------|-------------------------|-------------------------|
-|*Introduction and Welcome*||
+||**Introduction and Welcome**||
 |1:00pm - 1:10pm||Jeff Hollister, USEPA/ORD/CEMM and Anne Vega, USEPA/ORD/OSIM|
 |1:10pm - 1:20pm||Vince Allen, USEPA Chief IT Architect, USEPA/OMS/ODSTA|
-|*Keynote*|||
+||**Keynote**||
 |1:20pm - 2:20pm|Object of type 'closure' is not subsettable|Jenny Bryan, RStudio|
 |2:20pm - 2:30pm|**Break**||
-|*Invited Talks*|||
+||**Invited Talks**||
 |2:30pm - 2:50pm|Rivers & gages & forecasts, oh my! Visualizing water data in R with the USGS Vizlab|Colleen Nell, USGS|
 |2:50pm - 3:10pm|Introducing the River Basin Export Reduction Optimization Support Tool (RBEROST)|Catherine Chamberlain, ORISE/USEPA/CEMM|
 |3:10pm - 3:30pm|Automating Spatial Data Extraction|Thomas Barnum, USEPA/ORD/CPHEA|
