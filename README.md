@@ -27,7 +27,7 @@ We've been using #eparstats for EPA related R events.  Feel free to live tweet, 
 |3:50pm - 4:00pm|**Break**||
 |4:00pm - 4:20pm|Creating Automated, Custom Fact Sheets in R Markdown|Marschall Furman, ORISE/USEPA/CPHEA and Nichole Kulikowski, USEPA/CPHEA|
 |4:20pm - 4:40pm|Deployment Options for EPA Shiny Apps|Steven Pfeiffer, USEPA/ORD/OSIM|
-|4:40pm - 5:00pm|Overview of the Puget Sound Air Sensor Dashboard|Graeme Carlvin, Puget Sound Clean Air Agency|
+|4:40pm - 5:00pm|Overview of the Puget Sound Air Sensor Dashboard|Graeme Carvlin, Puget Sound Clean Air Agency|
 ||**Evening Activities**||
 |5:00pm - 6:00pm|Virtual Happy Hour|All!|
 
