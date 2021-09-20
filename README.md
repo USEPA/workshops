@@ -14,7 +14,7 @@ We've been using #eparstats for EPA related R events.  Feel free to live tweet, 
 |Time (EDT)     |Title                    |Speaker                  |
 |---------------|-------------------------|-------------------------|
 ||**Introduction and Welcome**||
-|1:00pm - 1:10pm|Welcome, logistics, and introductions|Jeff Hollister, USEPA/ORD/CEMM and Anne Vega, USEPA/ORD/OSIM|
+|1:00pm - 1:10pm|Welcome and logistics|Jeff Hollister, USEPA/ORD/CEMM and Anne Vega, USEPA/ORD/OSIM|
 |1:10pm - 1:20pm|A few words from USEPA's Chief IT Architect|Vince Allen, USEPA/OMS/ODSTA|
 ||**Keynote**||
 |1:20pm - 2:20pm|Object of type 'closure' is not subsettable|Jenny Bryan, RStudio|
