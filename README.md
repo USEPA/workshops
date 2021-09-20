@@ -20,7 +20,7 @@ We've been using #eparstats for EPA related R events.  Feel free to live tweet, 
 |1:20pm - 2:20pm|Object of type 'closure' is not subsettable|Jenny Bryan, RStudio|
 |2:20pm - 2:30pm|**Break**||
 ||**Invited Talks**||
-|2:30pm - 2:50pm|Rivers & gages & forecasts, oh my! Visualizing water data in R with the USGS Vizlab|Colleen Nell, USGS|
+|2:30pm - 2:50pm|Gages & hurricanes & forecasts, oh my! Reproducible data visualization at USGS|Cee Nell, USGS|
 |2:50pm - 3:10pm|Introducing the River Basin Export Reduction Optimization Support Tool (RBEROST)|Catherine Chamberlin, ORISE/USEPA/CEMM|
 |3:10pm - 3:30pm|Automating Spatial Data Extraction|Thomas Barnum, USEPA/ORD/CPHEA|
 |3:30pm - 3:50pm|Statistical Measures of Inequality in Disadvantaged Communities to Underground Storage Tanks + Decision Applications with Shiny|Andrew Murray, ORISE/USEPA/CESER|
