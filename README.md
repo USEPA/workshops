@@ -14,18 +14,18 @@ We've been using #eparstats for EPA related R events.  Feel free to live tweet, 
 |Time (EDT)     |Title                    |Speaker                  |
 |---------------|-------------------------|-------------------------|
 ||**Introduction and Welcome**||
-|1:00pm - 1:10pm|Welcome and logistics|Jeff Hollister, USEPA/ORD/CEMM and Anne Vega, USEPA/ORD/OSIM|
+|1:00pm - 1:10pm|Welcome and logistics|[Jeff Hollister](https://twitter.com/jhollist), USEPA/ORD/CEMM and Anne Vega, USEPA/ORD/OSIM|
 |1:10pm - 1:20pm|A few words from USEPA's Chief IT Architect|Vince Allen, USEPA/OMS/ODSTA|
 ||**Keynote**||
-|1:20pm - 2:20pm|Object of type 'closure' is not subsettable|Jenny Bryan, RStudio|
+|1:20pm - 2:20pm|Object of type 'closure' is not subsettable|[Jenny Bryan](https://twitter.com/JennyBryan), RStudio|
 |2:20pm - 2:30pm|**Break**||
 ||**Invited Talks**||
-|2:30pm - 2:50pm|Gages & hurricanes & forecasts, oh my! Reproducible data visualization at USGS|Cee Nell, USGS|
+|2:30pm - 2:50pm|Gages & hurricanes & forecasts, oh my! Reproducible data visualization at USGS|[Cee Nell](https://twitter.com/collnell), USGS|
 |2:50pm - 3:10pm|Introducing the River Basin Export Reduction Optimization Support Tool (RBEROST)|Catherine Chamberlin, ORISE/USEPA/CEMM|
 |3:10pm - 3:30pm|Automating Spatial Data Extraction|Thomas Barnum, USEPA/ORD/CPHEA|
 |3:30pm - 3:50pm|Statistical Measures of Inequality in Disadvantaged Communities to Underground Storage Tanks + Decision Applications with Shiny|Andrew Murray, ORISE/USEPA/CESER|
 |3:50pm - 4:00pm|**Break**||
-|4:00pm - 4:20pm|Creating Automated, Custom Fact Sheets in R Markdown|Marschall Furman, ORISE/USEPA/CPHEA and Nichole Kulikowski, USEPA/CPHEA|
+|4:00pm - 4:20pm|Creating Customized Fact Sheets with Patchwork and R Markdown|[Marschall Furman](https://twitter.com/mlfurman3), ORISE/USEPA/CPHEA and [Nichole Kulikowski](https://twitter.com/nkulikow), USEPA/CPHEA|
 |4:20pm - 4:40pm|Deployment Options for EPA Shiny Apps|Steven Pfeiffer, USEPA/ORD/OSIM|
 |4:40pm - 5:00pm|Overview of the Puget Sound Air Sensor Dashboard|Graeme Carvlin, Puget Sound Clean Air Agency|
 ||**Evening Activities**||
