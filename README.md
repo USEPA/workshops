@@ -39,7 +39,7 @@ Session 2 will be split into 3 parallel sessions, all taking place from 1pm-5pm:
 |-------|------------------------------|---------------------------|
 |1|Intro to R (Part 1)|Nichole Kulikowski|
 |2|Intro to tidy models|R Studio|
-|3|Using R Packages for Reproducible Workflows|Michael Dumelle|
+|3|[Using R Packages for Reproducible Workflows](https://michaeldumelle.github.io/R-Packages-Reproducible-Workflows-Book/)|[Michael Dumelle](https://michaeldumelle.github.io/)|
 
 ## Thu, September 23
 
