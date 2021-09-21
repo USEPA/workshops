@@ -39,7 +39,7 @@ Session 2 will be split into 3 parallel sessions, all taking place from 1pm-5pm:
 |-------|------------------------------|---------------------------|
 |1|Intro to R (Part 1)|Nichole Kulikowski|
 |2|Intro to tidy models|R Studio|
-|3|Using R Packages for Reproducible Workflows|Michael Dumelle|
+|3|[Using R Packages for Reproducible Workflows](https://michaeldumelle.github.io/R-Packages-Reproducible-Workflows-Book/)|[Michael Dumelle](https://michaeldumelle.github.io/)|
 
 ## Thu, September 23
 
@@ -49,7 +49,7 @@ Session 3 will be split into 3 parallel sessions, all taking place from 1pm-5pm:
 |-------|------------------------------|---------------------------|
 |1|Intro to R (Part 2)|Nichole Kulikowski|
 |2|Big Data with R|R Studio|
-|3|Spatial Data and Analysis in R|Marc Weber|
+|3|[Spatial Data and Analysis in R](https://mhweber.github.io/R-User-Group-Spatial-Workshop-2021/)|[Marc Weber](https://mhweber.github.io/)|
 
 
 
