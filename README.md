@@ -21,11 +21,11 @@ We've been using #eparstats for EPA related R events.  Feel free to live tweet, 
 |2:20pm - 2:30pm|**Break**||
 ||**Invited Talks**||
 |2:30pm - 2:50pm|Gages & hurricanes & forecasts, oh my! Reproducible data visualization at USGS|[Cee Nell](https://twitter.com/collnell), USGS|
-|2:50pm - 3:10pm|Introducing the River Basin Export Reduction Optimization Support Tool (RBEROST)|Catherine Chamberlin, ORISE/USEPA/CEMM|
+|2:50pm - 3:10pm|[Introducing the River Basin Export Reduction Optimization Support Tool (RBEROST)](presentations/RUserGroupWorkshoppresentation_2021-09-21.pptx)|[Catherine Chamberlin](https://twitter.com/atimeforecology), ORISE/USEPA/CEMM|
 |3:10pm - 3:30pm|Automating Spatial Data Extraction|Thomas Barnum, USEPA/ORD/CPHEA|
-|3:30pm - 3:50pm|Statistical Measures of Inequality in Disadvantaged Communities to Underground Storage Tanks + Decision Applications with Shiny|Andrew Murray, ORISE/USEPA/CESER|
+|3:30pm - 3:50pm|[Statistical Measures of Inequality in Disadvantaged Communities to Underground Storage Tanks + Decision Applications with Shiny](presentations/EPA_R_User_2021.html)|[Andrew Murray](https://twitter.com/A_MURRAY89), ORISE/USEPA/CESER|
 |3:50pm - 4:00pm|**Break**||
-|4:00pm - 4:20pm|Creating Customized Fact Sheets with Patchwork and R Markdown|[Marschall Furman](https://twitter.com/mlfurman3), ORISE/USEPA/CPHEA and [Nichole Kulikowski](https://twitter.com/nkulikow), USEPA/CPHEA|
+|4:00pm - 4:20pm|[Creating Customized Fact Sheets with Patchwork and R Markdown](presentations/factsheet_talk_9_21_2021.pptx)|[Marschall Furman](https://twitter.com/mlfurman3), ORISE/USEPA/CPHEA and [Nichole Kulikowski](https://twitter.com/nkulikow), USEPA/CPHEA|
 |4:20pm - 4:40pm|Deployment Options for EPA Shiny Apps|Steven Pfeiffer, USEPA/ORD/OSIM|
 |4:40pm - 5:00pm|Overview of the Puget Sound Air Sensor Dashboard|Graeme Carvlin, Puget Sound Clean Air Agency|
 ||**Evening Activities**||

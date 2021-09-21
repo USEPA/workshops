@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>EPA ORD Presentation</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Andrew Murray" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <script src="libs/pymjs/pym.v1.js"></script>
+    <script src="libs/widgetframe-binding/widgetframe.js"></script>
+    <link rel="stylesheet" href="my_styles.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: middle center
+
+background-image: url(img/ord_basic_16_9.jpg)
+
+
+
+
+
+.epablue[
+
+## EPA R User Group 2021
+
+### Statistical Measures of Inequality in Disadvantaged Communities to Underground Storage Tanks + Decision Applications with Shiny
+
+Andrew Murray - ORAU, ORD / CESER
+
+Alex Hall - ORD / CESER
+
+
+(updated: 2021-09-21)
+
+
+]
+
+???
+
+This presentation will focus on how we are looking at environmental justice issues related to underground storage tanks. I'll walk through some of the methods we are using, how we execute them in R, and how we contextualize the results. I'll finish with a brief demonstration of a shiny application which helps to identify EJ areas with high levels of potential exposure to tanks and releases. While I'll be using underground storage tanks as my example, the methods here are applicable to just about any point source contamination.
+---
+class: inverse
+background-image: url(img/National_LUSTs.png)
+background-size: cover
+
+
+
+
+.pull-left[
+.center[
+## Scope of Active &amp; Historic Tanks Universe
+]
+.txt.inverse[
+- 2.2 million underground storage tanks
+- 800,000 facilities
+- 550,000 leaking underground storage tanks
+- Up to 6 Billion gallons of fuel is stored in USTs daily
+
+## Potential Impacts
+- Ground water contamination principal concern, also petroleum vapor intrusion
+- Extreme weather conditions can increase the extent of contamination, spatially and temporally
+ 
+]
+]
+
+
+
+???
+For those who are unfamiliar, when we're talking about underground storage tanks we're basically referring to anywhere where petroleum products are stored in tanks underground, so most of these facilities are gas stations, however they may also include industrial facilities, private businesses, government facilities, airports and others. Since 1989, there have been about 2.2 million underground storage tanks located at about 550,000 facilities in the U.S. On average, for every 8 underground storage tanks, 1 will report some sort of release, whether that is a leak in the tank itself, the piping, an overfill spill or something else. Among the principal concerns of leaking tanks are groundwater contamination and petroleum vapor intrusion. Benzene, for example can travel around 1,500 feet in groundwater and can persist in the environment for more than 30 years after a leak.
+
+---
+
+background-image: url(img/ord_title_16_9.jpg)
+.center[
+# &amp;emsp; Environmental Justice
+]
+.pull-left[
+## EJ and USTs
+.text[
+- Are USTs an EJ Issue?
+  - Are tanks / releases disproportionately in minority / low-income communities?
+  
+  - Do releases occur in these communities more often?
+  
+  - If so, is there something we could be doing to offset the imbalance?
+  
+  - What sort of data driven information can we provide to help target inspections and cleanups in the pursuit of EJ?
+
+]
+
+]
+
+.pull-right[
+![](img/justice.jpg)
+source: [MobilizeGreen.org](https://www.mobilizegreen.org/blog/2018/9/30/environmental-equity-vs-environmental-justice-whats-the-difference)
+]
+
+???
+One of the very important topics we are researching right now is how underground storage tanks relate to EJ.
+The current definition of EJ per the EPA is as follows: 
+
+"Environmental justice is the fair treatment and meaningful
+involvement of all people regardless of race, color,
+national origin, or income, with respect to the development,
+implementation, and enforcement of environmental
+laws, regulations, and policies."
+
+A recent article written by Charles Lee, the current Senior Policy Advisor for Environmental Justice at EPA reflected on this definition and presented his thoughts on what should be incorporated in the future. One important point that he made was that "equity should be an important goal within the definition of EJ. This involves the provision of greater attention and resources to areas of EJ concern."
+
+What this means to me is that in order to work towards environmental justice, we need to focus on equity which is giving more attention to those who are more disadvantaged. We want to not only determine if there are disproportionate exposures or potential exposures to contamination, but also to create a framework for identifying communities that are most vulnerable, so that they can be targeted for more inspections of existing tanks, as well as prioritized for cleanups in the event that a release is reported.
+
+
+---
+6background-image: url(img/ord_title_16_9.jpg)
+.center[
+# &amp;emsp;&amp;emsp;Quantifying EJ - EJSCREEN
+]
+
+.left-column[.epablue[
+
+New EJScreen Metric for Underground Storage Tanks
+(To be Released with EJScreen 2021)
+
+- Weights releases higher than tanks
+
+- Calculated average ratio of open releases to active tanks
+
+- Needs to be integrated with socio-demographic variables seperately
+
+]]
+
+.right-column[
+.center[
+&lt;img src="img/CleanupRatio.jpg" width="80%" /&gt;
+
+]]
+
+???
+
+One of the things we have been working on is a new metric, which will be added to EJSCREEN in the upcoming 2021 release. This metric is essentially a measure of risk, without the inclusion of socio-demographics that can be readily combined with the existing products in EJSCREEN. We needed to weight releases higher than tanks because, of course, a leaking tank poses a greater risk than a non-leaking tank. This method, created by my colleague, Alex Hall, looks at the rates at which releases occur accross the United States. As you can see in this table, the ratios of releases to tanks vary by state, which is likely do to the fact that every state runs their own enforcement program, and may define releases differently. The national is 7.77, so for about every 8 tanks, one will report a release.
+
+---
+background-image: url(img/ord_title_16_9.jpg)
+
+.center[
+# &amp;emsp;&amp;emsp;Quantifying EJ - EJSCREEN
+]
+
+.left-column[.epablue[
+
+
+
+- ΣUST=sum of active underground storage tanks
+
+- bbg = buffered block group (1,500 ft)
+
+- ΣLUST=sum of active leaking underground storage tanks (2018-2021)
+
+[EJ Mapper Application](https://epa.maps.arcgis.com/apps/webappviewer/index.html?id=969d846274c2497a99b833183860ec34)
+]]
+
+.right-column[
+&lt;img src="img/EJScreen.png" width="60%" /&gt;
+
+
+*Block Group EJSCREEN Metric* = .big[(]&amp;#8721; **UST**&lt;sub&gt;bbg&lt;/sub&gt;+&amp;#8721; **LUST**&lt;sub&gt;bbg&lt;/sub&gt;(7.77).big[)]/Area
+]
+
+???
+
+THE EJSCREEN formula looks at tank density, so the formula is the number of tanks in a block group plus the number of releases * 7.77 divided by the area of the block group. The results are shown as percentiles in this map. What this formula does not do is include any socio-demographic indicators, which was done on purpose. This allows an end-user in EJSCREEN to combine the tanks metric with any of the other products available in EJSCREEN, such as minority and low-income populations, or other EJ indicators like PM 2.5, direct water discharge and others. We wanted to take this a few steps further though, so we began digging deeper into the tank data to determine what sort of relationships we could find between tanks, releases, minority and low-income populations.
+
+---
+background-image: url(img/ord_title_16_9.jpg)
+
+.center[
+# &amp;emsp;&amp;emsp;Quantifying EJ - Mann-Kendall
+]
+.pull-left[
+
+<div id="htmlwidget-004ee438ec099f554a6a" style="width:100%;height:120%;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-004ee438ec099f554a6a">{"x":{"url":"EPA_R_User_2021_files/figure-html//widgets/widget_boxPlot.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+]
+
+.pull-right[
+&lt;style type="text/css"&gt;
+.panelset {
+  --panel-tab-foreground: currentColor;
+  --panel-tab-active-foreground: #61AD40;
+  --panel-tab-hover-foreground: #07648d;
+  --panel-tabs-border-bottom: #ddd;
+  --panel-tab-inactive-opacity: 0.5;
+  --panel-tab-font-family: Roboto, Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;\
+}
+&lt;/style&gt;
+.panelset[
+
+.panel[.panel-name[Mann-Kendall]
+
+
+```
+##     Bin        X_Var    Y_Var   Q1 Median    Q3   IQR
+## 1  0-10 N_P_MINORPCT Tanks_km 0.12   0.73  7.28  7.17
+## 2 10-20 N_P_MINORPCT Tanks_km 0.23   1.98 14.03 13.80
+## 3 20-30 N_P_MINORPCT Tanks_km 0.51   4.56 22.85 22.34
+## 4 30-40 N_P_MINORPCT Tanks_km 0.86   7.04 29.66 28.80
+```
+
+
+<div id="htmlwidget-6978221f86c719aa71e5" style="width:100%;height:250px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6978221f86c719aa71e5">{"x":{"url":"EPA_R_User_2021_files/figure-html//widgets/widget_MkPrep.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+
+
+]
+
+.panel[.panel-name[Code]
+
+
+```r
+# Import Data
+us &lt;- read.csv(here("data/National_Density_EJ_Stats.csv"))%&gt;%
+  filter(X_Var == "N_P_MINORPCT" &amp; Y_Var == "Tanks_km")%&gt;%
+  arrange(Bin)
+# Convert data to time series
+ts &lt;- ts(us$Median, start=1, end=10, frequency=1)
+
+mk &lt;- mk.test(ts) # Run Mann-Kendall
+ss &lt;- sens.slope(ts) # Calculate Sens-Slope
+
+# Create output with relevant stats
+output &lt;- data.frame("p_val" = mk$p.value,
+                     "z_val" = as.numeric(mk$statistic),
+                     "s" = as.numeric(mk$estimates[1]),
+                     "vars" = as.numeric(mk$estimates[2]),
+                     "tau" = as.numeric(mk$estimates[3]),
+                     "Sens_Slope" = as.numeric(ss$estimates))
+```
+
+]
+
+.panel[.panel-name[Results]
+
+
+```r
+output
+```
+
+```
+##         p_val   z_val  s vars tau Sens_Slope
+## 1 8.30307e-05 3.93548 45  125   1   3.254183
+```
+
+
+]
+]
+
+]
+
+???
+
+To stick to my time limit, here I will focus on tanks and minority populations. The first thing we did was simply look at the density of tanks related to minority populations. EJSCREEN includes a measure of percentile minority for Census block groups which is shown here in the lefthand plot after we binned them into 10 groups. The y-axis is simply the tanks per square kilometer in the block group. So these boxes are composed of about 220,000 individual block groups with about 22,000 in each bin. Immediately we can see that as percentile minority increases, so to does tank density. The median tank density in the 90-100th percentile minority block groups is 62 times higher than in the 0-10th percentile. To test this relationship, we applied a mann-kendall test, which uses the median values accross bins. You can see the top 4 rows of the dataset here and the medians plotted in this bottom right plot. You can see the code here, along with the results. These slides, by the way, will be available and the data and code to run these are embeded. We found this to be highly statistically significant and find a slope pf 3.25.
+
+---
+background-image: url(img/ord_title_16_9.jpg)
+
+.center[
+# &amp;emsp;&amp;emsp;&amp;emsp;Quantifying EJ - Pairwise Wilcox
+]
+
+.pull-left[
+.panelset[
+
+.panel[.panel-name[Pairwise-Wilcox]
+
+- Non-Parametric paired sample test
+
+- For use with data that is not normally distributed
+
+- Used to compare one group to another group
+
+  - In this case, one bin to another bin based on minority or low-income percentiles
+  
+- 'rstatix' package
+
+]
+
+.panel[.panel-name[Code]
+
+
+```r
+# Run pairwise wilcox
+pw &lt;- bins%&gt;%
+      wilcox_test(Tanks_km ~ N_P_MINORPCT_BIN,
+                  p.adjust.method = "bonferroni")%&gt;%
+      as.data.frame()
+
+# Calculate effect sizes
+pw.effect &lt;- bins%&gt;%
+  wilcox_effsize(Tanks_km ~ N_P_MINORPCT_BIN)%&gt;%
+  as.data.frame()%&gt;%
+  select(effsize,magnitude)
+
+# Bind results
+pwOut &lt;- cbind(pw,pw.effect)
+
+write.csv(pwOut, here("data/Pairwise_Wilcox.csv"))
+```
+
+]
+
+]
+]
+
+.pull-right[
+<div id="htmlwidget-3971dec870c1ac4036d0" style="width:100%;height:80%;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3971dec870c1ac4036d0">{"x":{"url":"EPA_R_User_2021_files/figure-html//widgets/widget_pwPlot.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+
+
+]
+
+???
+The next test we applied is called the pairwise wilcox, which is a non-parametric test used to compare different groups of data. In this case we compared every bin to every other bin to see if the groups were significantly different from eachother and what the effect size is. You can think of the effect size as sort of an R^2 value where 1 is completely different and 0 is the same. This is just another way of looking at how different tank densities are between different bins of minority percentiles, so in the top left corner of the plot, we see that there is a strong difference between the 0-10 and 90-100th percentiles.
+
+---
+
+background-image: url(img/ord_title_16_9.jpg)
+
+.center[
+# &amp;emsp;&amp;emsp;&amp;emsp;Quantifying EJ - Exposure Ratio
+]
+
+.pull-left[
+
+.panelset[
+
+.panel[.panel-name[Formula]
+
+`$$EXPOSURE_{j}=\frac{\sum_{i=1}^{n}(EXPOSURE_{i}*TOTALPOP_{i}*X_{ij})}{\sum_{i=1}^{n}(TOTALPOP_{i}*X_{ij})}$$`
+“Where subscript j indexes the population group: and X&lt;sub&gt;ij&lt;/sub&gt; is the share of group j in the population of [area] i.” 
+
+- EXPOSURE&lt;sub&gt;i&lt;/sub&gt; is derived from UST Finder data, producing variables for tanks / km2, and releases / km2.
+
+- X&lt;sub&gt;ij&lt;/sub&gt; is derived from the percentile minority and percentile low-income EJSCREEN demographic indicators.
+
+
+[Measuring Environmental Inequality (Boyce et al., 2016)](https://www.sciencedirect.com/science/article/pii/S0921800916301264?casa_token=W9by4DPbgYgAAAAA:zV-2ZmtALwVUy-OjTwHCZIz_X-9tn4eyHnVFvDnZqJmt4CbYBOnXvriRTGrgx-grndQ7FTUl0Q)
+]
+
+.panel[.panel-name[Code]
+
+
+```r
+df &lt;- read.csv(here("data/BGs_All_Attributes.csv"))%&gt;%
+  mutate(GIS_County = substr(GISJOIN,1,8))%&gt;%
+  select(GIS_County,Population,MINORPCT,Tanks_km)
+
+
+exposure &lt;- df%&gt;%
+      mutate(NW_Left = Tanks_km * Population * MINORPCT,
+             NW_Right = Population * (1-MINORPCT),
+             W_Left = Tanks_km * Population * (1-MINORPCT),
+             W_Right = Population * MINORPCT)%&gt;%
+      group_by(GIS_County)%&gt;%
+      mutate(exposureRatio = round((median(NW_Left, na.rm = TRUE)/median(NW_Right, na.rm = TRUE))/(median(W_Left, na.rm = TRUE)/median(W_Right, na.rm = TRUE)),4))%&gt;%
+      ungroup()%&gt;%
+      select(GIS_County,exposureRatio)%&gt;%
+      distinct()
+```
+![](README_files/figure-gfm/panel-chunk-1.png)
+]
+
+.panel[.panel-name[Results]
+<div id="htmlwidget-320df2ea2756ae4a59e2" style="width:100%;height:400px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-320df2ea2756ae4a59e2">{"x":{"url":"EPA_R_User_2021_files/figure-html//widgets/widget_panel-chunk2.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+]
+]
+]
+
+.pull-right[
+<div id="htmlwidget-6b1fb0a0f344aacb546f" style="width:100%;height:400px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6b1fb0a0f344aacb546f">{"x":{"url":"EPA_R_User_2021_files/figure-html//widgets/widget_BoyceMap.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+
+]
+
+???
+
+The last test we did is called the exposure ratio. This is a method proposed by Boyce et al in a 2016 paper, which they refer to as the white to non-white exposure ratio. Essentially how it works is you take a group of areas, in our case census block groups, and you aggregate them up to another administrative level, in our case the county level, and determine the imbalance of potential exposure between minorities and non-minorities. So in one county, we would look at every block group and ask, what percent of the population is minority and what is the tank density in that block group. The formula is executed twice, once using white population, and once using minority population and then they are divided to yield a ratio. A ratio of 1 means that minorities and non-minorities are equally exposed to tanks. A ratio of zero means that only non-minorites are exposed to tanks and a ratio of infinity means that only minorities are exposed to tanks. You can view the code here, where we use total population, percent minority and tanks / km2 to calculate the exposure ratio. We can take a look at the nationwide results here. The majority of counties have exposure ratios of less than .5 but many have exposure ratios well above 1. For example, we see here that there are 186 counties with ratios greater than 9.5. In the map on the right, we can look at where the counties with exposure ratios greater than 1 are located.
+
+---
+background-image: url(img/ord_title_16_9.jpg)
+
+.center[
+# &amp;emsp;&amp;emsp;&amp;emsp;A Deeper Look with Shiny
+]
+
+
+.center[
+![](img/shiny.png)
+]
+
+
+???
+Finally, I want to give a brief demo of a shiny application which allows us to investigate specific communities based on a range of indicators from tanks and EJSCREEN. This is an internal application that allows us to just take a deeper dive into communities that may have compounding environmental exposures, and to frame them through socio-demographic information.
+
+---
+background-image: url(img/ord_title_16_9.jpg)
+
+.center[
+# Thanks!
+]
+
+# &lt;br&gt;&lt;br&gt;
+
+.pull-left[
+.epablue[
+.center[
+Andrew Murray
+
+ORAU/USEPA/ORD/CESER
+
+Murray.AndrewR@epa.gov
+]
+]
+]
+
+.pull-right[
+.text[
+Slides created with: Xaringan &amp; xaringanthemer
+
+Plots created with: Plotly
+
+Maps created with: Leaflet
+]
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
