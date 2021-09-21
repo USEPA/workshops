@@ -17,7 +17,7 @@ We've been using #eparstats for EPA related R events.  Feel free to live tweet, 
 |1:00pm - 1:10pm|Welcome and logistics|[Jeff Hollister](https://twitter.com/jhollist), USEPA/ORD/CEMM and Anne Vega, USEPA/ORD/OSIM|
 |1:10pm - 1:20pm|A few words from USEPA's Chief IT Architect|Vince Allen, USEPA/OMS/ODSTA|
 ||**Keynote**||
-|1:20pm - 2:20pm|Object of type 'closure' is not subsettable|[Jenny Bryan](https://twitter.com/JennyBryan), RStudio|
+|1:20pm - 2:20pm|[Object of type 'closure' is not subsettable](https://github.com/jennybc/debugging/blob/master/debugging-jenny-bryan.pdf) [GitHub](https://github.com/jennybc/debugging)|[Jenny Bryan](https://twitter.com/JennyBryan), RStudio|
 |2:20pm - 2:30pm|**Break**||
 ||**Invited Talks**||
 |2:30pm - 2:50pm|Gages & hurricanes & forecasts, oh my! Reproducible data visualization at USGS|[Cee Nell](https://twitter.com/collnell), USGS|
@@ -25,7 +25,7 @@ We've been using #eparstats for EPA related R events.  Feel free to live tweet, 
 |3:10pm - 3:30pm|Automating Spatial Data Extraction|Thomas Barnum, USEPA/ORD/CPHEA|
 |3:30pm - 3:50pm|[Statistical Measures of Inequality in Disadvantaged Communities to Underground Storage Tanks + Decision Applications with Shiny](presentations/EPA_R_User_2021.html)|[Andrew Murray](https://twitter.com/A_MURRAY89), ORISE/USEPA/CESER|
 |3:50pm - 4:00pm|**Break**||
-|4:00pm - 4:20pm|[Creating Customized Fact Sheets with Patchwork and R Markdown](presentations/factsheet_talk_9_21_2021.pptx)|[Marschall Furman](https://twitter.com/mlfurman3), ORISE/USEPA/CPHEA and [Nichole Kulikowski](https://twitter.com/nkulikow), USEPA/CPHEA|
+|4:00pm - 4:20pm|[Creating Customized Fact Sheets with Patchwork and R Markdown](presentations/factsheet_talk_9_21_2021.pptx) [GitHub](https://github.com/nicholekulikowski/r_workshop_factsheet)|[Marschall Furman](https://twitter.com/mlfurman3), ORISE/USEPA/CPHEA and [Nichole Kulikowski](https://twitter.com/nkulikow), USEPA/CPHEA|
 |4:20pm - 4:40pm|Deployment Options for EPA Shiny Apps|Steven Pfeiffer, USEPA/ORD/OSIM|
 |4:40pm - 5:00pm|Overview of the Puget Sound Air Sensor Dashboard|Graeme Carvlin, Puget Sound Clean Air Agency|
 ||**Evening Activities**||
