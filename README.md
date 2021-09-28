@@ -48,7 +48,7 @@ Session 3 will be split into 3 parallel sessions, all taking place from 1pm-5pm:
 |Track  |Title                         |Lead                       |
 |-------|------------------------------|---------------------------|
 |1|[Intro to R (Part 1)](https://github.com/nicholekulikowski/intro_to_R_2021)|Nichole Kulikowski|
-|2|Big Data with R|R Studio|
+|2|[Big Data with R](https://github.com/philbowsher/big-data)|R Studio|
 |3|[Spatial Data and Analysis in R](https://mhweber.github.io/R-User-Group-Spatial-Workshop-2021/)|[Marc Weber](https://mhweber.github.io/)|
 
 
