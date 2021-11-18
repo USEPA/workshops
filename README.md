@@ -26,7 +26,7 @@ We've been using #eparstats for EPA related R events.  Feel free to live tweet, 
 |3:30pm - 3:50pm|[Statistical Measures of Inequality in Disadvantaged Communities to Underground Storage Tanks + Decision Applications with Shiny](presentations/USTs_EJ_Slides/EPA_R_User_2021.html)|[Andrew Murray](https://twitter.com/A_MURRAY89), ORISE/USEPA/CESER|
 |3:50pm - 4:00pm|**Break**||
 |4:00pm - 4:20pm|[Creating Customized Fact Sheets with Patchwork and R Markdown](presentations/factsheet_talk_9_21_2021.pptx) [(GitHub repo)](https://github.com/nicholekulikowski/r_workshop_factsheet)|[Marschall Furman](https://twitter.com/mlfurman3), ORISE/USEPA/CPHEA and [Nichole Kulikowski](https://twitter.com/nkulikow), USEPA/CPHEA|
-|4:20pm - 4:40pm|Deployment Options for EPA Shiny Apps|Steven Pfeiffer, USEPA/ORD/OSIM|
+|4:20pm - 4:40pm|[Deployment Options for EPA Shiny Apps](presentations/Deployment_Options_for_EPA_Shiny_Apps.pptx)|Steven Pfeiffer, USEPA/ORD/OSIM|
 |4:40pm - 5:00pm|Overview of the Puget Sound Air Sensor Dashboard|Graeme Carvlin, Puget Sound Clean Air Agency|
 ||**Evening Activities**||
 |5:00pm - 6:00pm|Virtual Happy Hour|All!|
