@@ -1,0 +1,964 @@
+```{r setup, echo = FALSE, message = F, warning = F}
+library(tidyverse)
+library(WRTDStidal)
+library(gridExtra)
+library(grid)
+library(SWMPr)
+library(GGally)
+library(lubridate)
+
+# chunk options
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dpi = 300, fig.align = 'center', out.width = '900px', fig.width = 8, fig.height = 4.5)
+
+# chunk hook
+knitr::knit_hooks$set(
+  small.mar = function(before = FALSE, options, envir) {
+    if (before) par(mar = c(4, 4, 1, 1))  # smaller margin on top and right
+    }, 
+  def.mar = function(before, options, envir) {
+    if (before) par(mar = c(5, 4, 4, 2))
+    }
+  )
+```
+<insertHTML:[columns.html]
+
+Analysis of Time Series Data Using R
+========================================================
+date: November 5, 2017
+author: Marcus W Beck
+autosize: true
+css: frm.css
+transition: none
+width: 960
+height: 700
+
+```{r fig.width = 8, fig.height = 4.5, out.width = '800px', echo = F}
+p1 <- prdnrmplot(tidfit, annuals = F) +
+  theme(legend.position = 'none', , axis.title.y = element_blank())
+p2 <- prdnrmplot(tidfit) +
+  theme(legend.position = 'none', axis.title.y = element_blank())
+grid.arrange(p1, p2, ncol = 1, left = textGrob(chllab(), rot = 90))
+```
+
+========================================================
+<div align='center'>
+<img src="time_series-figure/harry.jpg" alt="Drawing" style="width: 800px;"/>
+</div>
+
+========================================================
+<div align='center'>
+<img src="time_series-figure/onedoesnot.jpg" alt="Drawing" style="width: 600px;"/>
+</div>
+
+========================================================
+<div align='center'>
+<img src="time_series-figure/aliens.jpg" alt="Drawing" style="width: 600px;"/>
+</div>
+
+Lesson outline
+========================================================
+* Properties of time series
+* Types of WQ/estuarine time series
+* Exploratory analysis
+* Quick QAQC 
+* Formal trend tests
+
+<img src="time_series-figure/aliens.jpg" alt="Drawing" style="width: 250px;"/>
+
+What is a time series
+========================================================
+* As Hagrid says, anything with a time stamp
+* Otherwise, it's a steady state dataset
+* In theory, all data sets are time series
+* Time series analysis considers observation **order** as a defining factor
+
+What is a time series
+========================================================
+**Observations indexed and ordered by a time stamp**, they come in many shapes and sizes
+
+```{r echo = F}
+data(austres)
+data(nottem)
+
+n <- 100
+smp <- rnorm(n)
+nrm <- smp %>% 
+  data.frame(
+    dts = 1:n, 
+    val = .,
+    lab = 'Value'
+  )
+
+walk <- nrm %>% 
+  mutate(val = cumsum(val))
+
+aust <- data.frame(
+  dts = as.numeric(time(austres)),
+  val = as.numeric(austres)/ 1000,
+  lab = 'Pop. (1e3)'
+  )
+
+nott <- data.frame(
+  dts = as.numeric(time(nottem)),
+  val = as.numeric(nottem),
+  lab = 'Temp (F)'
+  )
+
+dats <- list(
+  nrm = nrm, 
+  walk = walk,
+  austres = aust, 
+  nottem = nott
+  ) %>% 
+  enframe
+
+tsplo <- pmap(dats, function(name, value){
+  
+  lab <- unique(value$lab)
+  ggplot(value, aes(x = dts, y = val)) +
+    geom_line() + 
+    geom_point(size = 0.8) + 
+    scale_y_continuous(lab) +
+    theme_bw() +
+    theme(
+      panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(),
+      axis.title.x = element_blank()
+    ) + 
+    ggtitle(name)
+  
+  })
+
+grid.arrange(
+  tsplo[[1]], tsplo[[2]], tsplo[[3]], tsplo[[4]],
+  bottom = 'Time',
+  ncol = 2
+)
+```
+
+What is a time series
+========================================================
+**Observations indexed and ordered by a time stamp**, they can be composed of parts (real or artificial)
+```{r, echo = F}
+## subset for daily decomposition
+dat <- subset(apadbwq, subset = c('2013-07-01 00:00', '2013-07-31 00:00'))
+
+## decomposition and plot
+test <- decomp(dat, param = 'do_mgl', frequency = 'daily')
+plot(test)
+```
+
+What is a time series
+========================================================
+**Observations indexed and ordered by a time stamp**, they can be multivariate
+```{r, echo = F}
+dat <- apacpnut %>% 
+  qaqc(qaqc_keep = NULL) %>% 
+  select(-no2f, -no3f) %>% 
+  rename(
+    Orthophosphate = po4f, 
+    Ammonium= nh4f, 
+    `Nitrite/Nitrate` = no23f,
+    Chlorophyll = chla_n
+  )
+
+ggpairs(dat[, -1]) +
+  theme_bw()
+```
+
+What is a time series
+========================================================
+**Observations indexed and ordered by a time stamp**, they can be multivariate
+```{r, echo = F}
+dat <- dat %>%
+  gather('var', 'val', -datetimestamp)
+ggplot(dat, aes(x = datetimestamp)) +
+  geom_ribbon(aes(ymax = val), ymin = 0, fill = 'blue', alpha = 0.6) + 
+  geom_line(aes(y = val)) +
+  geom_line(aes(y = val)) +
+  facet_wrap(~var, ncol = 1, scale = 'free_y') +
+  theme_bw() + 
+  theme(axis.title.x = element_blank()) +
+  ylab('Concentration (mg/L, ug/L)') +
+  scale_x_datetime(expand = c(0, 0))
+```
+
+Properties of time series
+========================================================
+incremental: true
+
+Assumptions for basic parametric models:
+* Residuals are individually normally distributed
+* Constant variance or homogeneity (i.e., even spread of residuals)
+* Explanatory variables are deterministic
+* Independence of observations or no pattern in residuals
+
+Properties of time series
+========================================================
+Assumptions for basic parametric models:
+```{r, echo = T, fig.height = 3, fig.width = 9, small.mar = T}
+x <- rnorm(100)
+y <- x + rnorm(100)
+par(mfrow = c(1, 3))
+plot(x); plot(y)
+plot(y ~ x)
+abline(reg = lm(y ~ x))
+```
+
+Properties of time series
+========================================================
+Assumptions for basic parametric models:
+```{r, echo = T, small.mar = T}
+par(mfrow = c(2, 2))
+mod1 <- lm(y ~ x)
+plot(mod1)
+```
+
+Properties of time series
+========================================================
+Assumptions for basic parametric models:
+```{r, echo = T, fig.height = 3, fig.width = 9, small.mar = T}
+x <- cumsum(x)
+y <- cumsum(y)
+par(mfrow = c(1, 3))
+plot(x); plot(y)
+plot(y ~ x)
+abline(reg = lm(y ~ x))
+```
+
+Properties of time series
+========================================================
+Assumptions for basic parametric models:
+```{r, echo = T, small.mar = T}
+mod2 <- lm(y ~ x)
+par(mfrow = c(2, 2))
+plot(mod2)
+```
+
+Properties of time series
+========================================================
+Assumptions for basic parametric models:
+```{r, echo = T, fig.height = 3, fig.width = 9, small.mar = T}
+par(mfrow = c(1, 2))
+acf(resid(mod1))
+acf(resid(mod2))
+```
+
+Properties of time series
+========================================================
+incremental: true
+
+* Time series violate the common assumption that observations are independent
+* Time is a 'nuisance' variable that must be accounted for
+* Time has interesting properties that can be leveraged for analysis
+* The structure of time series also represents analysis overhead
+
+Exercise 1: A gentle introduction
+========================================================
+incremental: true
+
+1) Load the datasets `sapdc` and `apacp`
+
+2) What are the variables?
+
+3) What is the time range?
+
+4) What is the time step?
+
+5) Bonus: plot a time series
+
+Exercise 1: A gentle introduction
+========================================================
+1) Load the datasets `sapdc` and `apacp`
+
+https://USEPA.github.io/cerf_r/lessons/data/sapdc.RData
+
+https://USEPA.github.io/cerf_r/lessons/data/apacp.RData
+```{r}
+load('data/sapdc.RData')
+load('data/apacp.RData')
+```
+2) what are the variables?
+
+3) What is the time range?
+
+4) What is the time step?
+
+5) Bonus: plot a time series
+
+Exercise 1: A gentle introduction
+========================================================
+```{r}
+head(sapdc)
+head(apacp)
+```
+
+Exercise 1: A gentle introduction
+========================================================
+
+https://beckmw.shinyapps.io/swmp_comp/
+
+<div align='center'>
+<img src="time_series-figure/swmp_comp.png" alt="Drawing" style="width: 800px;"/>
+</div>
+
+Types of WQ/estuarine time series
+========================================================
+* discrete monitoring data (e.g., nutrient data)
+  * Many large systems have these data
+  * Good for trend analysis
+  * Typically a monthly time step
+  * Detection limits can be an issue
+  
+  ***
+<div align='center'>
+<img src="time_series-figure/tb_map.png" alt="Drawing" style="width: 600px;"/>
+</div>
+
+Types of WQ/estuarine time series
+========================================================
+* continuous sonde data (e.g., dissolved oxygen, tidal height)
+  * More common for site-level analysis
+  * Time steps can be 'continuous'
+  * Good for signal processing
+  * Observations are more correlated
+  
+```{r echo = F, fig.height = 3, fig.width = 7, out.width = '600px'}
+toplo <- sapdc %>% 
+  select(DateTimeStamp, DO_obs, Tide) %>% 
+  gather('var', 'val', DO_obs:Tide) %>% 
+  mutate(
+    mo = month(DateTimeStamp)
+  ) %>% 
+  filter(mo %in% 7)
+
+ggplot(toplo, aes(x = DateTimeStamp, y = val)) + 
+  geom_line() +
+  facet_wrap(~var, ncol = 1, scales = 'free_y') + 
+  theme_bw() + 
+  theme(axis.title.x = element_blank(), axis.title.y = element_blank())
+```
+
+Exercise 2: A less gentle introduction
+========================================================
+Now we will import the raw data for apacp, sapdc and format for time series analysis
+
+1) Load the datasets in R
+
+https://usepa.github.io/cerf_r/lessons/data/apacp.txt
+https://usepa.github.io/cerf_r/lessons/data/sapdc.txt
+
+2) Format the time series column
+
+Exercise 2: A less gentle introduction
+========================================================
+
+1) Load the datasets in R
+
+```{r}
+apacp <- read.table('https://usepa.github.io/cerf_r/lessons/data/apacp.txt', 
+                    header = T, sep = ',')
+sapdc <- read.table('https://usepa.github.io/cerf_r/lessons/data/sapdc.txt', 
+                    header = T, sep = ',')
+str(apacp)
+```
+
+Exercise 2: A less gentle introduction
+========================================================
+incremental: true
+
+2) Format the time series column
+
+Let's step back a second...
+
+* R recognizes two types of time objects
+* The time column must be one of these types (in most cases)
+  * **Date** for dates, and **POSIX** for date/time
+* Converting the time column to one of these two objects is half the battle  
+
+Exercise 2: A less gentle introduction
+========================================================
+Why can't we use the text format of the date?
+
+```{r fig.height = 3, fig.width = 9, small.mar = T}
+plot(chla ~ date, apacp)
+```
+
+Many analyses require a formatted date or date/time object, much easier to manipulate
+
+Exercise 2: A less gentle introduction
+========================================================
+Time can be specified many different ways:
+
+11/5/17
+
+5/11/17
+
+Nov. 5, 2017
+
+11-5-2017
+
+11/5/17 1:30
+
+11-5-2017 01:30:00
+
+The [lubridate](https://github.com/tidyverse/lubridate) package is your friend
+
+Exercise 2: A less gentle introduction
+========================================================
+
+The [lubridate](https://github.com/tidyverse/lubridate) package is your friend
+
+We'll start with **Date** conversions because they are simpler:
+* ymd, ydm, mdy, myd, dmy, dym, yq
+
+Exercise 2: A less gentle introduction
+========================================================
+incremental: true
+
+The [lubridate](https://github.com/tidyverse/lubridate) package is your friend
+
+We'll start with date conversions because they are simpler:
+
+```{r fig.height = 3, fig.width = 9, small.mar = T}
+library(lubridate)
+apacp$date <- ymd(apacp$date)
+class(apacp$date)
+plot(chla ~ date, apacp)
+```
+
+Exercise 2: A less gentle introduction
+========================================================
+incremental: true
+
+**POSIX** objects are more complicated
+* Includes a date and time component
+* Usually have to consider the timezone
+
+Any of these functions will work:
+* ymd_hms, ymd_hm, ymd_h, dmy_hms, dmy_hm, dmy_h, mdy_hms, mdy_hm, mdy_h, ydm_hms, ydm_hm, ydm_h
+
+Exercise 2: A less gentle introduction
+========================================================
+incremental: true
+
+```{r}
+head(sapdc)
+sapdc$DateTimeStamp <- ymd_hms(sapdc$DateTimeStamp)
+class(sapdc$DateTimeStamp)
+```
+
+Exercise 2: A less gentle introduction
+========================================================
+incremental: true
+
+The time zone must also be specified, otherwise it defaults to Zulu time or your computer's time
+```{r}
+tz(sapdc$DateTimeStamp)
+```
+* R does not have a predefined list of time zones
+* R uses the operating system's time zones
+* Most computers recognize [Olson names](http://en.wikipedia.org/wiki/List_of_tz_database_time_zones), "Country/City" format
+* Important for comparing data, may shift sooner/later if not specified
+
+Exercise 2: A less gentle introduction
+========================================================
+incremental: true
+
+* Sapelo Island is on the Atlantic Coast of Georgia
+* Time stamps in NERRS data do not observe DST
+```{r}
+sapdc$DateTimeStamp <- ymd_hms(sapdc$DateTimeStamp, tz = 'America/Jamaica')
+class(sapdc$DateTimeStamp)
+tz(sapdc$DateTimeStamp)
+head(sapdc)
+```
+
+A final note about time zones
+========================================================
+What happens when we work with data from two different time zones?
+
+```{r}
+toplo1 <- sapdc[1:100, ]
+toplo2 <- toplo1 
+toplo2$DateTimeStamp <- ymd_hms(toplo2$DateTimeStamp, tz = 'America/Regina')
+head(toplo1$DateTimeStamp)
+head(toplo2$DateTimeStamp)
+```
+
+A final note about time zones
+========================================================
+incremental: true
+
+What happens when we work with data from two different time zones?
+```{r fig.height = 3, fig.width = 8, small.mar = T}
+plot(toplo1$DateTimeStamp, toplo1$Tide, type = 'l')
+lines(toplo2$DateTimeStamp, toplo2$Tide, col = 'red')
+```
+
+**POSIX** objects are always referenced by the time zone
+
+Exploratory analysis
+========================================================
+incremental: true
+
+* Now that the **Date** (apadb) and **POSIX** objects (sapdc) are formatted, exploratory analysis is much easier
+* We can leverage the full power of [lubridate](https://github.com/tidyverse/lubridate)
+* Several functions are available to extract components of **Date** and **POSIX** objects
+  * year, month, day, mday, wday, qday, yday, dec_time, hour, minute, second
+
+Exploratory analysis
+========================================================
+incremental: true
+
+* **Date** objects
+
+```{r}
+apacp <- apacp %>% 
+  mutate(
+    yr = year(date), 
+    mo = month(date), 
+    molb = month(date, label = TRUE),
+    mdy = mday(date),
+    wdy = wday(date), 
+    qdy = qday(date),
+    ydy = yday(date)
+  )
+head(apacp, 4)
+```
+
+Exploratory analysis
+========================================================
+incremental: true
+
+* The same functions work for **POSIX** objects, plus those that work on time (hour, minute, second)
+
+```{r}
+sapdc <- sapdc %>% 
+  mutate(
+    mo = month(DateTimeStamp, label = TRUE),
+    dy = mday(DateTimeStamp),
+    hr = hour(DateTimeStamp),
+    mn = minute(DateTimeStamp), 
+    sc = second(DateTimeStamp)
+  )
+head(sapdc)
+```
+
+Exploratory analysis
+========================================================
+incremental: true
+
+* Some analyses will require time as a numeric value, use the decimal time function
+
+```{r}
+dctm <- dec_time(apacp$date)
+names(dctm)
+head(dctm$day_num)
+head(dctm$year)
+head(dctm$dec_time)
+```
+
+Exploratory analysis
+========================================================
+
+* Exploratory plots are much easier with columns for each time component
+
+```{r eval = T, fig.width = 7, fig.height = 3, out.width = '800px'}
+ggplot(apacp, aes(x = date, y = chla)) + 
+  geom_line()
+```
+
+Exploratory analysis
+========================================================
+
+* The date axis can be formatted with [scale_x_date ](http://ggplot2.tidyverse.org/reference/scale_date.html)
+
+```{r fig.height = 3, fig.width = 7, out.width = '800px'}
+ggplot(apacp, aes(x = date, y = chla)) + 
+  geom_line() + 
+  scale_x_date(date_labels = "%Y - %m")
+```
+
+Exploratory analysis
+========================================================
+
+* The date axis can be formatted with [scale_x_date ](http://ggplot2.tidyverse.org/reference/scale_date.html)
+
+```{r fig.height = 3, fig.width = 7, out.width = '800px'}
+ggplot(apacp, aes(x = date, y = chla)) + 
+  geom_line() + 
+  scale_x_date(date_labels = "%Y - %m", date_breaks = '2 years')
+```
+
+Exploratory analysis
+========================================================
+
+* Similarly, a **POSIX** date/time axis can be formatted with [scale_x_datetime](http://ggplot2.tidyverse.org/reference/scale_x_datetime.html)
+
+```{r fig.height = 3, fig.width = 7, out.width = '800px'}
+toplo <- sapdc[1:1000, ]
+ggplot(toplo, aes(x = DateTimeStamp, y = Temp)) + 
+  geom_line()
+```
+
+Exploratory analysis
+========================================================
+
+* Similarly, a **POSIX** date/time axis can be formatted with [scale_x_datetime](http://ggplot2.tidyverse.org/reference/scale_x_datetime.html)
+
+```{r fig.height = 3, fig.width = 7, out.width = '800px'}
+toplo <- sapdc[1:1000, ]
+ggplot(toplo, aes(x = DateTimeStamp, y = Temp)) + 
+  geom_line() + 
+  scale_x_datetime(date_labels = "%d %H")
+```
+
+Exploratory analysis
+========================================================
+
+* Similarly, a **POSIX** date/time axis can be formatted with [scale_x_datetime](http://ggplot2.tidyverse.org/reference/scale_x_datetime.html)
+
+```{r fig.height = 3, fig.width = 7, out.width = '800px'}
+toplo <- sapdc[1:1000, ]
+ggplot(toplo, aes(x = DateTimeStamp, y = Temp)) + 
+  geom_line() + 
+  scale_x_datetime(date_labels = "%d %H", date_breaks = '36 hours')
+```
+
+
+Exploratory analysis
+========================================================
+
+* Exploratory plots are much easier with columns for each time component
+
+```{r eval = T, fig.width = 7, fig.height = 3, out.width = '800px'}
+ggplot(apacp, aes(x = factor(yr), y = chla)) + 
+  geom_boxplot()
+```
+
+Exploratory analysis
+========================================================
+
+* Exploratory plots are much easier with columns for each time component
+
+```{r eval = T, fig.width = 7, fig.height = 3, out.width = '800px'}
+ggplot(apacp, aes(x = molb, y = chla)) + 
+  geom_boxplot()
+```
+
+Exploratory analysis
+========================================================
+
+* Exploratory plots are much easier with separate columns for each time component
+
+```{r eval = T, fig.width = 7, fig.height = 3, out.width = '800px'}
+ggplot(apacp, aes(x = ydy, y = chla, colour = factor(yr))) + 
+  geom_line()
+```
+
+Exploratory analysis
+========================================================
+incremental: true
+
+* We can easily summarize the data with [dplyr](http://dplyr.tidyverse.org/)
+* Get average, median, variance, max/min, etc. by a grouping variable
+
+```{r}
+apacp_sum <- apacp %>% 
+  group_by(yr) %>% 
+  summarise(
+    med = median(chla, na.rm = T), 
+    sd = sd(chla, na.rm = T), 
+    min = min(chla, na.rm = T),
+    max = max(chla, na.rm = T)
+  )
+head(apacp_sum)
+```
+
+Exercise 3
+========================================================
+
+1) Summarize the dissolved oxygen data at sapdc by hour - find the mean (mean function) and standard deviation (sd function)
+
+2) Plot the hourly averages 
+
+3) Bonus: Plot the hourly averages +/- standard deviation (hint: geom_ribbon)
+
+
+Exercise 3
+========================================================
+
+```{r, fig.height = 3, fig.width = 7, out.width = '700px'}
+toplo <- sapdc %>% 
+  mutate(hr = hour(DateTimeStamp)) %>% 
+  group_by(hr) %>% 
+  summarise(
+    ave = mean(DO_obs, na.rm = T), 
+    std = sd(DO_obs, na.rm = T)
+  )
+ggplot(toplo, aes(x = hr, y = ave)) +
+  geom_ribbon(aes(ymax = ave + std, ymin = ave - std)) +
+  geom_line()
+```
+
+QAQC screening
+========================================================
+
+* The raw data will probably need pre-processing depending on the analysis
+* Issues can be simple to complex
+  * complete cases? 
+  * regular or irregular time step?
+  * censored data?
+  * bogus data?
+  * missing observations (omit? impute?)
+* For all cases, plot the data first!
+
+QAQC screening
+========================================================
+
+* If you are lucky, your data will have QAQC flags
+* If not, ask yourself what are aceptable characteristics of your data?
+* How will you deal with unacceptable characteristics? 
+
+QAQC screening
+========================================================
+
+* Simple cases can be dealt with using [dplyr](http://dplyr.tidyverse.org/)
+* Two different approaches:
+
+Substitute with NA...
+```{r, eval = F}
+apacp_filt <- apacp %>% 
+  mutate(
+    chla = ifelse(chla > 19, NA, chla)
+  )
+```
+
+...or remove data
+```{r}
+apacp_filt <- apacp %>% 
+  filter(chla <= 19)
+```
+
+QAQC screening
+========================================================
+
+* A common requirement for analysis is a regular time step with no missing values
+```{r}
+head(apacp)
+sum(is.na(apacp$chla))
+```
+
+QAQC screening
+========================================================
+incremental: true
+
+* A common analysis requirement is a regular time step with no missing values
+* This is a pain to deal with, interpolation from a new date (or datetimestamp) vector is needed
+```{r, fig.height = 3, fig.width = 8, small.mar = T}
+dts <- seq.Date(min(apacp$date), max(apacp$date), by = 'month')
+chla_int <- approx(x = apacp$date, y = apacp$chla, xout = dts)
+plot(chla ~ date, apacp, type = 'l')
+lines(dts, chla_int$y, col = 'blue')
+```
+
+QAQC screening
+========================================================
+incremental: true
+
+* Missing values are also tricky, two scenarios:
+  * Simply remove the missing data
+  * Impute (or predict) the missing data
+* For imputation, what's the best way to predict?
+  * Replace with overall or seasonal mean
+  * Linear interpolation
+  * Last observation carried forward
+* Check out the [imputeTS](https://cran.r-project.org/web/packages/imputeTS/index.html) and [imputeTestbench](https://cran.r-project.org/web/packages/imputeTestbench/index.html) packages
+
+Kendall and Seasonal Kendall tests
+========================================================
+incremental: true
+
+* Trend analysis can mean several things
+  * What is the change over time?
+  * In what time periods have the changes occurred?
+  * What is the magnitude and direction of change?
+  * Is this change significant?
+  * Is this change significant relative to natural variation?
+* Kendall tests let you answer these questions
+
+Kendall and Seasonal Kendall tests
+========================================================
+incremental: true
+
+* But remember, these tests:
+  * Only give you a direction, magnitude, and significance value
+  * Depend entirely on the time interval you choose
+  * They only evaluate monotonic changes
+  * They are not descriptive
+
+Kendall and Seasonal Kendall tests
+========================================================
+
+* We will use functions in the [EnvStats](https://cran.r-project.org/web/packages/EnvStats/index.html) package
+
+```{r eval = F}
+library(EnvStats)
+```
+
+Kendall tests
+========================================================
+
+The **Kendall test** for time series:
+
+$$S = \sum_{i = 1}^{n - 1}\sum_{j = i + 1}^{n} sign\left[\left(X_j - X_i\right)\left(Y_j - Y_i\right)\right]$$
+
+$$\hat{\tau} = \frac{2S}{n\left(n - 1\right)}$$
+
+$\hat{\tau}$ will vary from -1 to 1 similar to a correlation coefficient, follows an approximate normal-distribution for hypothesis-testing
+
+Kendall tests
+========================================================
+
+The **Kendall test** for time series:
+
+$$\hat{\beta}_1 = Median\left(\frac{Y_j - Y_i}{X_j - X_i}\right), i < j$$
+
+$\hat{\beta}_1$ is the Theil (Sen) non-parametric estimate of slope or the rate of change in the interval
+
+All you need to know:
+
+* $\hat{\tau}$ is direction and magnitude of trend 
+* $\hat{\beta}_1$ is the linear rate of change
+
+Seasonal Kendall tests
+========================================================
+
+The **Seasonal Kendall test** is exactly the same... 
+
+...except separate tests by month across years (January 1981, 1982, ..., February 1981, 1982, ...), results are pooled.
+
+* Overall $\hat{\tau}$ is the weighted average of the seasonal estimates
+* Overall $\hat{\beta_1}$ is the median of all two-point slope estimates within each season 
+
+Use the seasonal Kendall test if you expect **normal** seasonal variation as a confounding effect, this assumes **no heterogeneity** between seasons
+
+Seasonal Kendall tests
+========================================================
+
+Let's see if there's a change from 2002 to 2014:
+
+```{r, fig.height = 3, fig.width = 7, small.mar = T}
+plot(chla ~ date, apacp, type = 'l')
+```
+
+Seasonal Kendall tests
+========================================================
+incremental: true
+
+Run the test, requires month and decimal time:
+
+```{r echo = F}
+library(EnvStats)
+```
+```{r eval = T}
+# add decimal date, month
+apacp$dec_time <- decimal_date(apacp$date) 
+apacp$mo <- month(apacp$date)
+
+# run test
+trnd <- kendallSeasonalTrendTest(chla ~ mo + dec_time, apacp)
+trnd$estimate
+trnd$p.value
+```
+
+Seasonal Kendall tests
+========================================================
+incremental: true
+
+What do these results mean?
+
+```{r eval = T}
+trnd$estimate
+trnd$p.value
+```
+
+* There is a **significant** (p < 0.05), **positive** trend from 2002 to 2014
+* The estimated rate of increase is ~ 0.40 ug/L per year of chlorophyll
+* There is no heterogeneity between seasons (p > 0.05)
+
+Exercise 4
+========================================================
+
+1) Filter the nutrient data to test a different pair of years
+
+2) Run the Seasonal Kendall test on a different nutrient parameter
+
+3) Evaluate the results - what is the trend? Is it significant? Do you satisfy heterogeneity assumption?
+
+Exercise 4
+========================================================
+
+* Ammonium trends from 2005 to 2008
+
+```{r, fig.height = 3, fig.width = 7, out.width = '700px'}
+ggplot(apacp, aes(x = factor(yr), y = nh4)) + 
+  geom_boxplot()
+```
+
+Exercise 4
+========================================================
+
+```{r, out.width = '700px'}
+# subset
+totst <- apacp %>% 
+  filter(yr > 2004 & yr < 2009)
+
+# run test
+trnd <- kendallSeasonalTrendTest(nh4 ~ mo + dec_time, totst)
+trnd$estimate
+trnd$p.value
+```
+
+Seasonal Kendall tests
+========================================================
+incremental: true
+
+* Use it if you want to detect trend independent of seasonal variation
+* No heterogeneity between seasons
+* If violated, aggregate by years and use regular Kendall
+* Both methods are simple - monotonic trend only
+
+Summary
+========================================================
+incremental: true
+
+* We have just scratched the surface, time series analysis is wide and deep
+  * Spectral analysis
+  * Forecasting and prediction
+  * Auto-regressive and moving average modelling
+  * Descriptive trend analysis
+* In all cases, time is a variable that is controlled or leveraged, it cannot be ignored!
+
+Summary
+========================================================
+
+Additional resources:
+
+* [CRAN Time Series task view](https://cran.r-project.org/web/views/TimeSeries.html)
+* [Statistical Methods in Water Resources ](https://pubs.usgs.gov/twri/twri4a3/pdf/twri4a3-new.pdf), Helsel and Hirsch 2002
+* [Time Series Analysis: With Applications in R](https://www.amazon.com/Time-Analysis-Applications-Springer-Statistics/dp/0387759581/ref=pd_sim_14_1?_encoding=UTF8&pd_rd_i=0387759581&pd_rd_r=XDPZ0G6AX33V554GH5A9&pd_rd_w=AuOkZ&pd_rd_wg=cuVAc&psc=1&refRID=XDPZ0G6AX33V554GH5A9), Cryer and Chan 2010
+* [Time Series Analysis and Its Applications](https://www.amazon.com/Time-Analysis-Its-Applications-Statistics/dp/144197864X/ref=pd_sim_14_7?_encoding=UTF8&pd_rd_i=144197864X&pd_rd_r=XDPZ0G6AX33V554GH5A9&pd_rd_w=AuOkZ&pd_rd_wg=cuVAc&psc=1&refRID=XDPZ0G6AX33V554GH5A9), Shumway and Stoffer 2011
+
+<!-- put this in the last slide -- use jquery to append page # to all sections -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+
+for(i=0;i<$("section").length;i++) {
+if(i==0) continue
+$("section").eq(i).append("<p style='font-size:medium;position:fixed;right:10px;top:10px;'>" + i + " / " + $("section").length + "</p>")
+}
+
+</script>

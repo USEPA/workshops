@@ -1,0 +1,272 @@
+Identification_Information:
+  Citation:
+    Citation_Information:
+      Originator: University of Rhode Island Environmental Data Center
+      Publication_Date: 20170620
+      Title: 2016 Submerged Aquatic Vegetation Mapping for Rhode Island Coastal Waters; SAV16
+      Geospatial_Data_Presentation_Form: vector digital data
+      Publication_Information:
+        Publication_Place: Kingston, RI
+        Publisher: University of Rhode Island Environmental Data Center
+      Other_Citation_Details: Suggested bibliographic reference: RIGIS, 2017. Submerged Aquatic Vegetation (2012); SAV16. Rhode Island Geographic Information System (RIGIS) Data Distribution System, URL: http://www.rigis.org, Environmental Data Center, University of Rhode Island, Kingston, Rhode Island (last date accessed:30 June 2017).
+      Online_Linkage: http://www.edc.uri.edu
+  Description:
+    Abstract: Aerial imagery was collected for all of Rhode Island coastal areas over two days in June (15th and 26th) during the low tides of the month. Aerial photo collection followed protocals from Finkbeiner et al. (2001). Based on these guidelines, photos were taken at a low sun angle, two hours withing low tide, when wind and atmospheric haze were minimal, and when water clarity was high. Altitude of the aircraft during photo aquisition was about 16,000ft (Quantum Spatial, 2016). Water clarity was measured by volunteers using secchi disks as target dates for acquisition of aerial photography approached. Aerial imagery was turned into an orthophotographic basemap by the photogrammetric vendor (Quantum Spatial). Photo signatures of SAV were delineated on the orthophotography and taken into the field for verification. Field verification was done using GPS and underwater video. Final delineations of SAV polygons included field verification of the deep water edge and other GPS points collected on the water.
+    Purpose: Submerged aquatic vegetation beds (SAV) are a critical estuarine habitat.  In Rhode Island, the main species of SAV is eelgrass (Zostera marina).  Mapping the extent and quantifying the acreage of eelgrass is a critical first step toward understanding, managing, and protecting these vital habitats.  SAV has been identified as a critical marine resource and is currently protected by both Federal and state legislation. As such the Atlantic States Marine Fisheries Commission has a stated policy on the assessment, protection, and study of SAV as a recommendation for all member states.
+  Time_Period_of_Content:
+    Time_Period_Information:
+      Single_Date/Time:
+        Calendar_Date: 20160615
+      Single_Date/Time:
+        Calendar_Date: 20160626
+    Currentness_Reference: ground condition
+  Status:
+    Progress: Complete
+    Maintenance_and_Update_Frequency: None planned
+  Spatial_Domain:
+    Bounding_Coordinates:
+      West_Bounding_Coordinate: -71.896844
+      East_Bounding_Coordinate: -71.179956
+      North_Bounding_Coordinate: 41.700261
+      South_Bounding_Coordinate: 41.162938
+  Keywords:
+    Theme:
+      Theme_Keyword_Thesaurus: None
+      Theme_Keyword: SAV
+      Theme_Keyword: eelgrass
+      Theme_Keyword: 2016
+      Theme_Keyword: widgeon grass
+    Theme:
+      Theme_Keyword_Thesaurus: ISO 19115 Topic Categories
+      Theme_Keyword: biota
+      Theme_Keyword: environment
+    Place:
+      Place_Keyword_Thesaurus: None
+      Place_Keyword: Rhode Island
+      Place_Keyword: coastal
+      Place_Keyword: coastal ponds
+      Place_Keyword: Narragansett Bay
+      Place_Keyword: Block Island
+  Access_Constraints: None
+  Use_Constraints:
+    These data are presented as is and it is up to the user of these data to understand the accuracy and associated error included herein. Additionally, these data should NOT replace field surveys of SAV especially for permitting and compliance. Please see accompanying report for details.
+    This dataset is provided 'as is.’  The producer(s) of this dataset, contributors to this dataset, the Rhode Island Geographic Information System (RIGIS) consortium, the State of Rhode Island, and the University of Rhode Island do not make any warranties of any kind for this dataset, and are not liable for any loss or damage however and whenever caused by any use of this dataset.  Please acknowledge both RIGIS and the primary producer(s) of this dataset in any derived products.  Versions of the RIGIS logo suitable for both printed and web-based products are available at http://www.rigis.org/logos.
+  Point_of_Contact:
+    Contact_Information:
+      Contact_Organization_Primary:
+        Contact_Organization: University of Rhode Island - Environmental Data Center
+        Contact_Person: Michael Bradley
+      Contact_Position: Research Associate
+      Contact_Address:
+        Address_Type: mailing and physical
+        Address: 103 Coastal Institute Kingston
+        City: Kingston
+        State_or_Province: RI
+        Postal_Code: 02881
+        Country: US
+      Contact_Voice_Telephone: 401-874-5054
+      Contact_Electronic_Mail_Address: mike@edc.uri.edu
+  Data_Set_Credit:
+    Rhode Island Eelgrass Mapping Taskforce.  Including:  Michael Bradley, URI-EDC; Caitlin Chaffee, RI CRMC; Kenny Raposa, NBNERR.
+    Funding for this work is from RI Coastal Resources Management Council. 
+    Collection and production of 2016 orthophotograpy was made possible thanks to the USGS Geospatial Product and Service Contract.
+  Native_Data_Set_Environment: Version 6.2 (Build 9200) ; Esri ArcGIS 10.5.0.6491
+Data_Quality_Information:
+  Attribute_Accuracy:
+    Attribute_Accuracy_Report: All attributes tested against a master set of valid attributes.
+    Quantitative_Attribute_Accuracy_Assessment:
+      Attribute_Accuracy_Explanation: All attributes tested against a master set of valid attributes.
+  Logical_Consistency_Report: Tests of logical consistency were done using vendor software.  All polygons were tested for internal closure with vendor software.
+  Completeness_Report: No data has been omitted or generalized; all data were manually reviewed and determined to be complete.
+  Positional_Accuracy:
+    Horizontal_Positional_Accuracy:
+      Horizontal_Positional_Accuracy_Report: Conforms to NMAS for 1:1200 scale data.
+  Lineage:
+    Source_Information:
+      Source_Citation:
+        Citation_Information:
+          Title: 2016 SAV polygons for all coastal Rhode Island waters
+      Type_of_Source_Media: onLine
+      Source_Citation_Abbreviation: 2016 SAV polygons for all coastal Rhode Island waters
+      Source_Contribution: 2016 SAV polygons for all coastal Rhode Island waters.
+    Process_Step:
+      Process_Description: Polygons of SAV were heads-up digitized on the orthophotography collected during June of 2016.  Historical datasets from 2012 and 2006 were also used to zero-in on potential areas of SAV.   Polygons were loaded onto a GPS enabled tablet with ArcPad and taken out on a boat for field investigations.  We used an underwater video camera to verify presence of eelgrass.  We collected GPS points in the field and coded them as having eelgrass or not.  We focused on the center of the polygon and the deepwater edge of the eelgrass beds.  Final delineations of eelgrass were adjusted to include the GPS field data.  Not all polygons were field visited.  As such we included a field (ground-truth year) in the attribute table.
+      Process_Date: 20160915
+      Process_Contact:
+        Contact_Information:
+          Contact_Organization_Primary:
+            Contact_Organization: University of Rhode Island - Environmental Data Center
+            Contact_Person: Michael Bradley
+          Contact_Position: Research Associate
+          Contact_Address:
+            Address_Type: mailing and physical
+            Address: 103 Coastal Institute Kingston
+            City: Kingston
+            State_or_Province: RI
+            Postal_Code: 02881
+            Country: US
+          Contact_Voice_Telephone: 401-874-5054
+          Contact_Electronic_Mail_Address: mike@edc.uri.edu
+    Process_Step:
+      Process_Description: Data contributed to RIGIS by the University of Rhode Island Environmental Data Center.  Metadata were reviewed, minor updates made to its content, RIGIS distribution information added.
+      Process_Date: 20170630
+      Process_Contact:
+        Contact_Information:
+          Contact_Organization_Primary:
+            Contact_Organization: University of Rhode Island Environmental Data Center
+            Contact_Person: Greg Bonynge
+          Contact_Address:
+            Address_Type: mailing and physical
+            Address: 1 Greenhouse Road
+            City: Kingston
+            State_or_Province: RI
+            Postal_Code: 02881
+          Contact_Voice_Telephone: 401-874-2180
+          Contact_Electronic_Mail_Address: greg@edc.uri.edu
+          Contact_Instructions: email preferred
+Spatial_Data_Organization_Information:
+  Direct_Spatial_Reference_Method: Vector
+  Point_and_Vector_Object_Information:
+    SDTS_Terms_Description:
+      SDTS_Point_and_Vector_Object_Type: GT-polygon composed of chains
+      Point_and_Vector_Object_Count: 187
+Spatial_Reference_Information:
+  Horizontal_Coordinate_System_Definition:
+    Planar:
+      Grid_Coordinate_System:
+        Grid_Coordinate_System_Name: State Plane Coordinate System 1983
+        State_Plane_Coordinate_System:
+          SPCS_Zone_Identifier: 3800
+          Transverse_Mercator:
+            Scale_Factor_at_Central_Meridian: 0.99999375
+            Longitude_of_Central_Meridian: -71.50000000
+            Latitude_of_Projection_Origin: 41.08333333
+            False_Easting: 328083.33333333
+            False_Northing: 0
+      Planar_Coordinate_Information:
+        Planar_Coordinate_Encoding_Method: coordinate pair
+        Coordinate_Representation:
+          Abscissa_Resolution: 1.64042
+          Ordinate_Resolution: 1.64042
+        Planar_Distance_Units: feet
+    Geodetic_Model:
+      Horizontal_Datum_Name: D_North_American_1983
+      Ellipsoid_Name: GRS_1980
+      Semi-major_Axis: 6378137.000000
+      Denominator_of_Flattening_Ratio: 298.257
+Entity_and_Attribute_Information:
+  Detailed_Description:
+    Entity_Type:
+      Entity_Type_Label: SAV16
+      Entity_Type_Definition: polygons of SAV for 2016
+      Entity_Type_Definition_Source: dataset owner
+    Attribute:
+      Attribute_Label: FID
+      Attribute_Definition: Internal feature number.
+      Attribute_Definition_Source: Esri
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Sequential unique whole numbers that are automatically generated.
+    Attribute:
+      Attribute_Label: Shape
+      Attribute_Definition: Feature geometry.
+      Attribute_Definition_Source: Esri
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Coordinates defining the features.
+    Attribute:
+      Attribute_Label: hectares
+      Attribute_Definition: area of the polygon in hectares.
+      Attribute_Definition_Source: dataset owner
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: hectares
+      Attribute_Measurement_Frequency: 011
+    Attribute:
+      Attribute_Label: acres
+      Attribute_Definition: area of the polygon in acres
+      Attribute_Definition_Source: dataset owner
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: acres
+    Attribute:
+      Attribute_Label: habitat
+      Attribute_Definition: the photointerpreted habitat (main SAV species) of the polygon
+      Attribute_Definition_Source: dataset owner
+      Attribute_Domain_Values:
+        Unrepresentable_Domain:
+          eelgrass = Zostera marina
+          widgeon grass = Ruppia spp
+    Attribute:
+      Attribute_Label: g_truth_me
+      Attribute_Definition: Ground Truth Method.  The field method used to identify the habitat.  Boat observation means no underwater video was done.
+      Attribute_Definition_Source: dataset owner
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: self explanatory
+    Attribute:
+      Attribute_Label: site
+      Attribute_Definition: geographic site name associated with the habitat
+      Attribute_Definition_Source: dataset owner
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: site name
+    Attribute:
+      Attribute_Label: g_truth
+      Attribute_Definition: The most recent year the polygon was field visited.  N/A :  not available
+      Attribute_Definition_Source: dataset owner
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: The year of the most recent ground truth
+    Attribute:
+      Attribute_Label: Shape_Leng
+    Attribute:
+      Attribute_Label: Shape_Area
+      Attribute_Definition: Area of feature in internal units squared.
+      Attribute_Definition_Source: Esri
+      Attribute_Domain_Values:
+        Unrepresentable_Domain: Positive real numbers that are automatically generated.
+  Overview_Description:
+    Entity_and_Attribute_Overview: Polygons and field survey information for 2016 SAV in Rhode Island.
+Distribution_Information:
+  Distributor:
+    Contact_Information:
+      Contact_Organization_Primary:
+        Contact_Organization: University of Rhode Island Environmental Data Center
+        Contact_Person: Greg Bonynge
+      Contact_Address:
+        Address_Type: mailing and physical
+        Address: 1 Greenhouse Road
+        City: Kingston
+        State_or_Province: RI
+        Postal_Code: 02881
+      Contact_Voice_Telephone: 401-874-2180
+      Contact_Electronic_Mail_Address: greg@edc.uri.edu
+      Contact_Instructions: email preferred
+  Distribution_Liability: This dataset is provided 'as is.'  The producer(s) of this dataset, contributors to this dataset, the Rhode Island Geographic Information System (RIGIS) consortium, the State of Rhode Island, and the University of Rhode Island do not make any warranties of any kind for this dataset, and are not liable for any loss or damage however and whenever caused by any use of this dataset.
+  Standard_Order_Process:
+    Digital_Form:
+      Digital_Transfer_Information:
+        Format_Name: Esri shapefile
+        File_Decompression_Technique: ZIP
+      Digital_Transfer_Option:
+        Online_Option:
+          Computer_Contact_Information:
+            Network_Address:
+              Network_Resource_Name: http://www.rigis.org
+    Fees: No fee for downloading directly from the RIGIS Data Distribution System located at http://www.rigis.org.
+Metadata_Reference_Information:
+  Metadata_Date: 20170620
+  Metadata_Review_Date: 20170630
+  Metadata_Contact:
+    Contact_Information:
+      Contact_Organization_Primary:
+        Contact_Organization: University of Rhode Island - Environmental Data Center
+        Contact_Person: Michael Bradley
+      Contact_Position: Research Associate
+      Contact_Address:
+        Address_Type: mailing and physical
+        Address: 103 Coastal Institute Kingston
+        City: Kingston
+        State_or_Province: RI
+        Postal_Code: 02881
+        Country: US
+      Contact_Voice_Telephone: 401-874-5054
+      Contact_Electronic_Mail_Address: mike@edc.uri.edu
+  Metadata_Standard_Name: FGDC Content Standard for Digital Geospatial Metadata
+  Metadata_Standard_Version: FGDC-STD-001-1998
+  Metadata_Time_Convention: local time
+  Metadata_Use_Constraints: These data are presented as is and it is up to the user of these data to understand the accuracy and associated error included herein. Additionally, these data should not replace field verification of SAV especially in permitting and complaince.
