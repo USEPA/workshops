@@ -1,0 +1,223 @@
+
+
+
+# Reproducible Research Documents
+
+Reproducibility and the ["reproducibility crisis"](http://www.bbc.com/news/science-environment-39054778) in science have received quite a bit of attention over the last several years. As such, interest in making our work more reproducible has also increased.  The focus of this workshop is on a small, but very important part, of reproducibility, computational reproducibility.  In particular, we will focus on what Victoria Stodden has described as "Open or Reproducible Research" in which code, data, and descriptions are all freely available (for more on this see <http://stodden.net/icerm_report.pdf>).  An exhaustive review of all things reproducible is beyond the scope of this workshop, so I will point you to the best general resource I know of on this, the [rOpenSci Reproducibility Guide](http://ropensci.github.io/reproducibility-guide) and in particular the [Introduction](http://ropensci.github.io/reproducibility-guide/sections/introduction/).
+
+After taking this workshop, you will:
+
+- Understand the value of reproducible documents
+- Gain familiarity with Markdown, `rmarkdown` and `knitr`
+- Create a reproducible document and presentation
+
+## Lesson Outline
+- [Introduction to Reproducible Documents](#reproducible-documents)
+- [Create a document](#create-a-document)
+- [YAML](#yaml)
+- [Markdown](#markdown)
+- [Code chunks](#code-chunks)
+- [Rendering](#rendering)
+- [Reproducible Presentations](#reproducible-presentations)
+
+## Exercises
+- [Exercise 1](#exercise-1)
+- [Exercise 2](#exercise-2)
+
+
+## Reproducible Documents
+
+Reproducible documents, are documents that mix text and code and allow others to re-run your analysis.  They are inspired by Donald Knuth's ideas on [literate programming](http://www-cs-faculty.stanford.edu/~knuth/lp.html).  Specific to the R world we build reproducible documents with Markdown, `rmarkdown`, `knitr`, and an external tool called [pandoc](https://pandoc.org/). In short, these tools allow us to write up documents, embed code via "code chunks", run that code and render the final document with nicely formatted text, results, figures etc into a final format of our choosing.  We can create `.html`, `.docx`, `.pdf`, ...  The benefit of doing this is that all of our data and code are a part of the document.  We can share our source document, then anyone can reproduce all of our calculations.  For instance, we can make a manuscript that looks like this:
+
+![Rendered Manuscript](figures/rendered.jpg)
+
+from a source markdown document that looks like:
+
+![Raw RMarkdown](figures/source.jpg)
+
+While we can't get to this level of detail with just the stock RStudio tools (i.e. in requires a bit of LaTeX shenanigans), we can still do some pretty cool stuff. For instance, we can see how this could be used to write the text describing an analysis, embed the analysis and figure creation directly in the document, and render a final document.  You share the source and rendered document and anyone has access to your full record of that analysis!  Additionally, maybe you have a standard set of analyses to run on a dataset that is evolving or updated on a regular basis.  We can build an R Markdown document that reads in a dataset, runs analysis and updates the output.  
+
+With all of this in mind, let's jump into working with some R Markdown document and learn about the basic building blocks: YAML, Markdown, and Code Chunks.
+
+## Create a Document
+To create your document, go to File: New File : R Markdown.  You should get a window that looks something like:
+
+![New RMarkdown](figures/newrmarkdown.jpg)
+
+Add title and author, select "HTML" as the output and click "OK".  RStudio will open a new tab in the editor and in it will be your new document, with some very useful examples.
+
+In this document we can see a couple of things.  In particular we see `YAML`, `Markdown`, and code chunks.
+
+## YAML
+
+    ---
+    title: "My First Reproducible Document"
+    author: "Jeff W. Hollister"
+    date: "1/6/2015"
+    output: pdf_document
+    ---
+
+This is the YAML(YAML Ain't Markup Language) header or front-matter.  It is metadata about the document that can be very useful.  There is a lot more we can do with the YAML.  There are additional fields available for us to you, or we can even create our own.  For our purposes these basic ones are good, but we can also look at the additional built in ones.  The [`rmarkdown` cheatsheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf) is a good place to look as is the [online documentation for `rmarkdown`](http://rmarkdown.rstudio.com/lesson-1.html).  A lot of the optional ones I use are part of the [output format](http://rmarkdown.rstudio.com/lesson-9.html) 
+
+## Markdown
+Markdown isn't R, but it has become an important tool in the R ecosystem as it can be used to create package vignettes, can be used on [GitHub](http://github.com), and forms the basis for several reproducible research tools in RStudio.  Markdown is a tool that allows you to write simply formatted text that is converted to HTML/XHTML.  The primary goal of markdown is readibility of the raw file.  Over the last couple of years, Markdown has emerged as a key way to write up reproducible documents, create websites, write documentation (all of these lessons are written in Markdown), and make presentations.  For the basics of markdown and general information look at [Daring Fireball](http://daringfireball.net/projects/markdown/basics).
+
+*note: this text borrowed liberally from another class [SciComp2014](http://scicomp2014.edc.uri.edu)*
+
+To get you started, here is some of that same information on the most common markdown you will use in your posts: Text, Headers, Lists, Links, and Images.
+
+### Text
+
+So, for basic text... Just type it!
+
+### Headers
+
+In pure markdown, there are two ways to do headers but for most of what you need, you can use the following for headers:
+
+
+    # Header 1
+    ## Header 2
+    ...
+    ###### Header 6
+  
+
+### List
+
+Lists can be done many ways in markdown. An unordered list is simply done with a `-`, `+`, or `*`.  For example
+
+- this list
+- is produced with
+- the following 
+- markdown.
+    - nested
+
+<pre>    
+- this list
+- is produced with
+- the following 
+- markdown
+    - nested
+</pre> 
+    
+Notice the space after the `-`.  
+
+To create an ordered list, simply use numbers.  So to produce:
+
+1. this list
+2. is produced with
+3. the following
+4. markdown.
+    - nested
+
+<pre>
+1. this list
+2. is produced with
+3. the following
+4. markdown.
+    - nested
+</pre>
+
+### Links and Images
+
+Last type of formatting that you will likely want to accomplish with R markdown is including links and images.  While these two might seem dissimilar, I am including them together as their syntax is nearly identical.
+
+So, to create a link you would use the following:
+
+```
+[US EPA](https://19january2017snapshot.epa.gov/)
+```
+
+Which looks like: [US EPA](https://19january2017snapshot.epa.gov/).
+
+The text you want linked goes in the `[]` and the link itself goes in the `()`.  That's it! Now to show an image, you do this:
+
+```
+![EPA Seal](https://www.epa.gov/sites/production/files/2013-06/epa_seal_verysmall_trim.gif)
+```
+
+And renders like: ![EPA Seal](https://www.epa.gov/sites/production/files/2013-06/epa_seal_verysmall_trim.gif)
+
+The only difference is the use of the `!` at the beginning.  When parsed, the image itself will be included, and not linked text.  As these will be on the web, the images need to also be available via the web.  You can link to local files, but will need to use a path relative to the root of the document you are working on.  Let's not worry about that as it is a bit beyond the scope of this tutorial.
+
+And with this, we can have some real fun.  
+
+![matt foley](https://media.giphy.com/media/n7Nwr10hWzROE/giphy.gif)
+
+Now we know that YAML controls the document build process, and we can structure our text with Markdown, we need to add the last step: incorportaing code.
+
+## Code Chunks
+
+As we have mentioned, our documents will all be R Markdown documents (i.e. .Rmd).  To include R Code in your `.Rmd` you would do something like:
+
+<pre>```{r}
+x<-rnorm(100)
+x<br>```</pre>
+
+This identifies what is known as a code chunk.  When written like it is above, it will echo the code to your final document, evalute the code with R and echo the results to the final document.  There are some cases where you might not want all of this to happen.  You may want just the code returned and not have it evalutated by R.  This is accomplished with:
+
+<pre>```{r eval=FALSE}
+x<-rnorm(100)<br>```</pre>
+
+Alternatively, you might just want the output returned, as would be the case when using R Markdown to produce a figure in a presentation or paper:
+
+
+<pre>```{r echo=FALSE}
+x<-rnorm(100)
+y<-jitter(x,1000)
+plot(x,y)<br>```</pre>
+    
+Lastly, each of your code chunks can have a label.  That would be accomplished with something like:
+ 
+    
+<pre>```{r myFigure, echo=FALSE}
+x<-rnorm(100)
+y<-jitter(x,1000)
+plot(x,y)<br>```</pre>
+
+## Rendering
+
+If you look near the top of the editor window you will see:
+
+![knit it](figures/knit.jpg)
+
+Click this and behold the magic!
+
+Alternatively, we can use the console to do this.
+
+
+```r
+rmarkdown::render("my_rmd.Rmd")
+```
+
+## Exercise 1 
+
+Our first exercise is going to be creating a reproducible research document from scratch.  We will start on this together and will create a new `.Rmd` that will read in a data file (for reference: <https://raw.githubusercontent.com/USEPA/region7_r/master/lessons/data/fake_nla_1.csv>).  From there you will build a document that describes an analysis (your choice), runs the analysis, and creates a figure.  Save the `.Rmd`  as well as the rendered output.  This is intentionally open.  If you get stuck, let me know.
+
+If you have time, update your document with new data (another fake NLA dataset (I modified it a bit) is at <https://raw.githubusercontent.com/USEPA/region7_r/master/lessons/data/fake_nla_2.csv>).  You can either replace the data you have or you can add this dataset to the original (look at `rbind()`).
+
+## Reproducible Presentations
+
+Now that we have created and rendered our first reproducible document, we can move on to a presenatation.  Presentations are not much different.  We just need a way to specify different slides.
+
+Repeat the steps from above that show us how to start a new document, but this time instead of selecting "Document", select "Presentation".  
+
+![present](figures/present.jpg)
+
+Let's stick with the defualt, ioslides, on this.  Slidy and isoslides are different javascript frameworks for html slides.  There are some slight differences between them, but the basics are the same.  Beamer is a LaTeX method for slides, and since not everyone has LaTeX installed we can't demo that.
+
+This should look pretty similar to our documents.  Only difference is that `## Slide Title` is what `rmarkdown` and `knitr` is looking for to differentiate the slides. 
+
+Let's work together to add some new slides.
+
+I know you will probably wonder can you change the look and feel of this presentation, and the answer is yes.  I have done that, but using a different method for creating slides by using the `xaringan` package.  An example of that presentation is the talk I am giving this afternoon on our [cyanobacteria research efforts](http://jwhollister.com/cyano_open_sci).  It does take a bit more work to set this up and it is admittedly a bit more fiddly than using something like Power Point, but if you have data analysis and results or the talk will need to be updated with new results, then a reproducible presentation begins to make a lot more sense.
+
+Let's take some time and create a new presentation for out final exercise
+
+## Exercise 2
+
+1. Create a new presentation
+2. Using the example from our .Rmd document, read in your data file.
+3. Add four slides: one that describes your analysis, one that shows results, one that shows a figure, and the last one will includes animated gif (hint: `![image](url)`).  Go to <https://giphy.com> and search for some good (and appropriate for work) ones.  For instance, <https://giphy.com/search/happy-dance> has some nice ones.
+
+If there is time, we can present these for everyone.
+
