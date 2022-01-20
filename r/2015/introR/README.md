@@ -1,6 +1,5 @@
 introR
-======
-
+====
 Introductory R Training materials for workshop given Jan 14-15,2015 at USEPA Gulf Ecology Division and Jan 7-8, 2015 and Jan 22-23, 2105 at USEPA Atlantic Ecology Division.
 
 Author: Jeffrey W. Hollister
