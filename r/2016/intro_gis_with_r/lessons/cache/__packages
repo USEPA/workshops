@@ -1,0 +1,8 @@
+base
+sp
+rgdal
+rgeos
+raster
+knitr
+quickmapr
+leaflet
