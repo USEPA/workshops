@@ -1,0 +1,788 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{}
+    \pretitle{\vspace{\droptitle}}
+  \posttitle{}
+    \author{}
+    \preauthor{}\postauthor{}
+    \date{}
+    \predate{}\postdate{}
+  
+
+\begin{document}
+
+\hypertarget{tidy-data-in-r}{%
+\section{Tidy Data in R}\label{tidy-data-in-r}}
+
+In this lesson we will cover the basics of data in R and will do so from
+a somewhat opinionated viewpoint of ``Tidy Data''. There are other
+paradigms and other ways to work with data in R, but focusing on Tidy
+Data concepts and tools (a.k.a., The Tidyverse) gets people to a
+productive place the quickest. For more on data analysis using the
+Tidyverse, the best resource I know of is \href{http://r4ds.had.co.nz}{R
+for Data Science}. The approaches we will cover are very much inspired
+by this book.
+
+\hypertarget{lesson-outline}{%
+\subsection{Lesson Outline}\label{lesson-outline}}
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{data-in-r-the-data-frame}{Data in R: The data
+  frame}
+\item
+  \protect\hyperlink{reading-in-data}{Reading in data}
+\item
+  \protect\hyperlink{tidy-data}{Tidy data}
+\end{itemize}
+
+\hypertarget{exercises}{%
+\subsection{Exercises}\label{exercises}}
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{exercise-31}{Exercise 3.1}
+\item
+  \protect\hyperlink{exercise-32}{Exercise 3.2}
+\item
+  \protect\hyperlink{exercise-33}{Exercise 3.3}
+\end{itemize}
+
+\hypertarget{data-in-r-the-data-frame}{%
+\subsection{Data in R: The data frame}\label{data-in-r-the-data-frame}}
+
+Simply put, a data structure is a way for programming languages to
+handle storing information. Like most languages, R has several
+structures (vectors, matrix, lists, etc.). But R was originally built
+for data analysis, so the data frame, a spreadsheet like structure with
+rows and columns, is the most widely used and useful to learn first. In
+addition, the data frame (or is it data.frame) is the basis for many
+modern R pacakges (e.g.~the tidyverse) and getting used to it will allow
+you to quickly build your R skills.
+
+\emph{Note:} It is useful to know more about the different data
+structures such as vectors, lists, and factors (a weird one that is for
+catergorical data). But that is beyond what we have time for. The best
+source on this information, I think, is Hadley Wickham's
+\href{http://adv-r.had.co.nz/Data-structures.html}{Data Structures
+Chapter in Advanced R}.
+
+\emph{Another note:} Data types (e.g.~numeric, character, logcial, etc.)
+are important to know about too, but details are more than we have time
+for. Take a look at the chapter on vectors in R for Data Science, in
+particular
+\href{https://r4ds.had.co.nz/vectors.html\#important-types-of-atomic-vector}{Section
+20.3}.
+
+\emph{And, yet another note:} Computers aren't very good at math. Or at
+least they don't deal with floating point data they way many would
+think. First, any value that is not an integer, is considered a
+``Double.'' These are approximations, so if we are looking to compare to
+doubles, we might not always get the result we are expecting. Again,
+R4DS is a great read on this:
+\href{https://r4ds.had.co.nz/vectors.html\#numeric}{Section on Numeric
+Vectors}. But also see
+\href{https://blog.revolutionanalytics.com/2009/11/floatingpoint-errors-explained.html}{this
+take from Revolution Analytics} and
+\href{https://www.techradar.com/news/computing/why-computers-suck-at-maths-644771/2}{techradar}.
+
+\emph{Last note, I promise:} Your elementary education was wrong. In
+other words rounding 2.5 is 2 and not 3, but rounding 3.5 is 4. There
+are actually good reasons for this. Read up on the IEEE 754 standard
+\href{https://en.wikipedia.org/wiki/IEEE_754\#Rounding_rules}{rules on
+rounding}.
+
+\hypertarget{build-a-data-frame}{%
+\subsubsection{Build a data frame}\label{build-a-data-frame}}
+
+Best way to learn what a data frame is is to look at one. Let's now
+build a simple data frame from scratch with the \texttt{data.frame()}
+function. This is mostly a teaching excercise as we will use the
+function very little in the excercises to come.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Our first data frame}
+
+\NormalTok{my_df <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{names =} \KeywordTok{c}\NormalTok{(}\StringTok{"joe"}\NormalTok{,}\StringTok{"jenny"}\NormalTok{,}\StringTok{"bob"}\NormalTok{,}\StringTok{"sue"}\NormalTok{), }
+                    \DataTypeTok{age =} \KeywordTok{c}\NormalTok{(}\DecValTok{45}\NormalTok{, }\DecValTok{27}\NormalTok{, }\DecValTok{38}\NormalTok{,}\DecValTok{51}\NormalTok{), }
+                    \DataTypeTok{knows_r =} \KeywordTok{c}\NormalTok{(}\OtherTok{FALSE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{,}\OtherTok{FALSE}\NormalTok{), }
+                    \DataTypeTok{stringsAsFactors =} \OtherTok{FALSE}\NormalTok{)}
+\NormalTok{my_df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   names age knows_r
+## 1   joe  45   FALSE
+## 2 jenny  27    TRUE
+## 3   bob  38    TRUE
+## 4   sue  51   FALSE
+\end{verbatim}
+
+That created a data frame with 3 columns (names, age, knows\_r) and four
+rows. For each row we have some information on the name of an individual
+(stored as a character/string), their age (stored as a numeric value),
+and a column indicating if they know R or not (stored as a
+boolean/logical).
+
+If you've worked with data before in a spreadsheet or from a table in a
+database, this rectangular structure should look somewhat familiar. One
+way (there are many!) we can access the different parts of the data
+frame is like:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Use the dollar sign to get a column}
+\NormalTok{my_df}\OperatorTok{$}\NormalTok{age}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 45 27 38 51
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Grab a row with indexing}
+\NormalTok{my_df[}\DecValTok{2}\NormalTok{,]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   names age knows_r
+## 2 jenny  27    TRUE
+\end{verbatim}
+
+At this point, we have:
+
+\begin{itemize}
+\tightlist
+\item
+  built a data frame from scratch
+\item
+  seen rows and columns
+\item
+  heard about ``rectangular'' structure
+\item
+  seen how to get a row and a column
+\end{itemize}
+
+The purpose of all this was to introduce the concept of the data frame.
+Moving forward we will use other tools to read in data, but the end
+result will be the same: a data frame with rows (i.e.~observations) and
+columns (i.e.~variables).
+
+\hypertarget{reading-in-data}{%
+\subsection{Reading in data}\label{reading-in-data}}
+
+Completely creating a data frame from scratch is useful (especially when
+you start writing your own functions), but more often than not data is
+stored in an external file that you need to read into R. These may be
+delimited text files, spreadsheets, relational databases, SAS files
+\ldots{} You get the idea. Instead of treating this subject
+exhaustively, we will focus just on a single file type, the
+\texttt{.csv} file, that is very commonly encountered and (usually) easy
+to create from other file types. For this, we will use the Tidyverse way
+to do this and use \texttt{read\_csv()} from the \texttt{readr} pacakge.
+
+The \texttt{read\_csv()} function is a re-imagined version of the base R
+fucntion, \texttt{read.csv()}. This command assumes a header row with
+column names and that the delimiter is a comma. The expected no data
+value is NA and by default, strings are NOT converted to factors. This
+is a big benefit to using \texttt{read\_csv()} as opposed to
+\texttt{read.csv()}. Additionally, \texttt{read\_csv()} has some
+performance enhancements that make it preferrable when working with
+larger data sets. In my limited experience it is about 45\% faster than
+the base R options. For instance a \textasciitilde200 MB file with
+hundreds of columns and a couple hundred thousand rows took
+\textasciitilde14 seconds to read in with \texttt{read\_csv()} and about
+24 seconds with \texttt{read.csv()}. As a comparison at 45 seconds Excel
+had only opened 25\% of the file!
+
+Source files for \texttt{read\_csv()} can either be on a local hard
+drive or, and this is pretty cool, on the web. We will be using the
+former for our examples and exercises. If you had a file available from
+a URL it would be accessed like
+\texttt{mydf\ \textless{}-\ read.csv("https://example.com/my\_cool\_file.csv")}.
+As an aside, paths and the use of forward vs back slash is important. R
+is looking for forward slashes (``/''), or unix-like paths. You can use
+these in place of the back slash and be fine. You can use a back slash
+but it needs to be a double back slash
+(``\textbackslash\textbackslash{}''). This is becuase the single
+backslash in an escape character that is used to indicate things like
+newlines or tabs.
+
+For today's workshop we will focus on both grabbing data from a local
+file and from a URL, we already have an example of this in our
+\texttt{nla\_analysis.R}. In that file look for the line where we use
+\texttt{read\_csv()}
+
+For your convenience, it looks like:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nla_wq_all <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"nla2007_chemical_conditionestimates_20091123.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+And now we can take a look at our data frame
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nla_wq_all}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1,252 x 51
+##    SITE_ID VISIT_NO SITE_TYPE LAKE_SAMP TNT   LAT_DD LON_DD ST    EPA_REG
+##    <chr>      <dbl> <chr>     <chr>     <chr>  <dbl>  <dbl> <chr> <chr>  
+##  1 NLA066~        1 PROB_Lake Target_S~ Targ~   49.0 -114.  MT    Region~
+##  2 NLA066~        1 PROB_Lake Target_S~ Targ~   33.0  -80.0 SC    Region~
+##  3 NLA066~        2 PROB_Lake Target_S~ Targ~   33.0  -80.0 SC    Region~
+##  4 NLA066~        1 PROB_Lake Target_S~ Targ~   28.0  -97.9 TX    Region~
+##  5 NLA066~        2 PROB_Lake Target_S~ Targ~   28.0  -97.9 TX    Region~
+##  6 NLA066~        1 PROB_Lake Target_S~ Targ~   37.4 -108.  CO    Region~
+##  7 NLA066~        2 PROB_Lake Target_S~ Targ~   37.4 -108.  CO    Region~
+##  8 NLA066~        1 PROB_Lake Target_S~ Targ~   43.9 -115.  ID    Region~
+##  9 NLA066~        2 PROB_Lake Target_S~ Targ~   43.9 -115.  ID    Region~
+## 10 NLA066~        1 PROB_Lake Target_S~ Targ~   41.7  -73.1 CT    Region~
+## # ... with 1,242 more rows, and 42 more variables: AREA_CAT7 <chr>,
+## #   NESLAKE <chr>, STRATUM <chr>, PANEL <chr>, DSGN_CAT <chr>,
+## #   MDCATY <dbl>, WGT <dbl>, WGT_NLA <dbl>, ADJWGT_CAT <chr>, URBAN <chr>,
+## #   WSA_ECO3 <chr>, WSA_ECO9 <chr>, ECO_LEV_3 <dbl>, NUT_REG <chr>,
+## #   NUTREG_NAME <chr>, ECO_NUTA <chr>, LAKE_ORIGIN <chr>,
+## #   ECO3_X_ORIGIN <chr>, REF_CLUSTER <chr>, RT_NLA <chr>, HUC_2 <dbl>,
+## #   HUC_8 <dbl>, FLAG_INFO <chr>, COMMENT_INFO <chr>, SAMPLED <chr>,
+## #   SAMPLED_CHEM <chr>, INDXSAMP_CHEM <chr>, PTL <dbl>, NTL <dbl>,
+## #   TURB <dbl>, ANC <dbl>, DOC <dbl>, COND <dbl>, SAMPLED_CHLA <chr>,
+## #   INDXSAMP_CHLA <chr>, CHLA <dbl>, PTL_COND <chr>, NTL_COND <chr>,
+## #   CHLA_COND <chr>, TURB_COND <chr>, ANC_COND <chr>, SALINITY_COND <chr>
+\end{verbatim}
+
+\hypertarget{other-ways-to-read-in-data}{%
+\subsubsection{Other ways to read in
+data}\label{other-ways-to-read-in-data}}
+
+There are many ways to read in data with R. If you have questions about
+this, please let Jeff know. He's happy to chat more about it. Before we
+move on though, I will show an example of one other way we can do this.
+Since Excel spreadsheets are so ubiquitous we need a reliable way to
+read in data stored in an excel spreadsheet. There are a variety of
+packages that provide this capability, but by far the best (IMHO) is
+\texttt{readxl} which is part of the Tidyverse. This is how we read in
+an File:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# You'll very likely need to install it first!!!  How'd we do that?}
+\KeywordTok{library}\NormalTok{(readxl)}
+\NormalTok{nla_wq_excel <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\StringTok{"nla2007_wq.xlsx"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+This is the simplest case, but lets dig into the options to see what's
+possible
+
+\begin{verbatim}
+## function (path, sheet = NULL, range = NULL, col_names = TRUE, 
+##     col_types = NULL, na = "", trim_ws = TRUE, skip = 0, n_max = Inf, 
+##     guess_max = min(1000, n_max), progress = readxl_progress(), 
+##     .name_repair = "unique") 
+## NULL
+\end{verbatim}
+
+\hypertarget{an-aside-on-colum-names}{%
+\subsubsection{An aside on colum names}\label{an-aside-on-colum-names}}
+
+If you are new to R and coming from mostly and Excel background, then
+you may want to think a bit more about column names than you usually
+might. Excel is very flexible when it comes to naming columns and this
+certainly has its advantages when the end user of that data is a human.
+However, humans don't do data analysis. Computers do. So at some point
+the data in that spreadsheet will likely need to be read into software
+that can do this analysis. To ease this process it is best to keep
+column names simple, without spaces, and without special characters
+(e.g.~!, @, \&, \$, etc.). While it is possible to deal with these
+cases, it is not straightforward, especially for new users. So, when
+working with your data (or other people's data) take a close look at the
+column names if you are running into problems reading that data into R.
+I suggest using all lower case with separate words indicated by and
+underscore. Things like ``chlorophyll\_a'' or ``total\_nitrogen'' are
+good examples of decent column names.
+
+\hypertarget{exercise-3.1}{%
+\subsection{Exercise 3.1}\label{exercise-3.1}}
+
+For this exercise, let's read in a new dataset but this time, directly
+from a URL. We are still working on the \texttt{nla\_analysis.R} Script
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Add a new line of code, starting after the \texttt{read\_csv} line we
+  looked at above (on or around line 39).\\
+\item
+  Use the \texttt{read\_csv()} function to read in
+  ``\url{https://www.epa.gov/sites/production/files/2014-01/nla2007_sampledlakeinformation_20091113.csv}'',
+  and assign the output to a data frame named \texttt{nla\_sites}.
+\item
+  How many rows and columns do we have in this data frame?\\
+\item
+  What is stored in the fourth column of this data frame?
+\end{enumerate}
+
+\hypertarget{tidy-data}{%
+\subsection{Tidy data}\label{tidy-data}}
+
+We have learned about data frames, how to create them, and about several
+ways to read in external data into a data.frame. At this point there
+have been only a few rules applied to our data frames (which already
+separates them from spreadsheets) and that is our datasets must be
+rectangular. Beyond that we haven't disscussed how best to organize that
+data so that subsequent analyses are easier to accomplish. This is, in
+my opinion, the biggest decision we make as data analysts and it takes a
+lot of time to think about how best to organize data and to actually
+re-organize that data. Luckily, we can use an existing concept for this
+that will help guide our decisions and re-organization. The best concept
+I know of to do this is the concept of
+\href{http://r4ds.had.co.nz/tidy-data.html}{tidy data}. The essence of
+which can be summed up as:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Each column is a variable
+\item
+  Each row is an observation
+\item
+  Each cell has a single value
+\item
+  The data must be rectangular
+\end{enumerate}
+
+Lastly, if you want to read more about this there are several good
+sources:
+
+\begin{itemize}
+\tightlist
+\item
+  The previously linked R4DS Chapter on
+  \href{http://r4ds.had.co.nz/tidy-data.html}{tidy data}
+\item
+  The \href{https://www.jstatsoft.org/article/view/v059i10}{original
+  paper by Hadley Wickham}
+\item
+  The \href{http://tidyr.tidyverse.org/articles/tidy-data.html}{Tidy
+  Data Vignette}
+\item
+  Really anything on the \href{https://www.tidyverse.org/}{Tidyverse
+  page}
+\item
+  A lot of what is in the
+  \href{https://datacarpentry.org/spreadsheet-ecology-lesson/}{Data
+  Carpentry Ecology Spreadsheet Lesson} is also very relevant.
+\end{itemize}
+
+Let's now see some of the basic tools for tidying data using the
+\texttt{tidyr} and \texttt{dplyr} packages.
+
+\hypertarget{data-manipulation-with-dplyr}{%
+\subsubsection{\texorpdfstring{Data manipulation with
+\texttt{dplyr}}{Data manipulation with dplyr}}\label{data-manipulation-with-dplyr}}
+
+There are a lot of different ways to manipulate data in R, but one that
+is part of the core of the Tidyverse is \texttt{dplyr}. In particular,
+we are going to look at selecting columns, filtering data, adding new
+columns, grouping data, and summarizing data.
+
+\hypertarget{select}{%
+\paragraph{select}\label{select}}
+
+Often we get datasets that have many columns or columns that need to be
+re-ordered. We can accomplish both of these with \texttt{select}. Here's
+a quick example with the \texttt{iris} dataset. We will also be
+introducing the concept of the pipe: \texttt{\%\textgreater{}\%} which
+we will be using going forward. Let's look at some code that we can
+disect.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris_petals <-}\StringTok{ }\NormalTok{iris }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(Species, Petal.Width, Petal.Length) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{as_tibble}\NormalTok{() }\CommentTok{#the as_tibble function helps make the output look nice}
+\NormalTok{iris_petals}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 150 x 3
+##    Species Petal.Width Petal.Length
+##    <fct>         <dbl>        <dbl>
+##  1 setosa          0.2          1.4
+##  2 setosa          0.2          1.4
+##  3 setosa          0.2          1.3
+##  4 setosa          0.2          1.5
+##  5 setosa          0.2          1.4
+##  6 setosa          0.4          1.7
+##  7 setosa          0.3          1.4
+##  8 setosa          0.2          1.5
+##  9 setosa          0.2          1.4
+## 10 setosa          0.1          1.5
+## # ... with 140 more rows
+\end{verbatim}
+
+The end result of this is a data frame, \texttt{iris\_petals} that has
+three columns: Species, Petal.Width and Petal.Length in the order that
+we specified. And the syntax we are now using is ``piped'' in that we
+use the \texttt{\%\textgreater{}\%} operator to send something from
+before the operator (a.k.a. ``to the left'') to the first argument of
+the function after the operator (a.k.a. ``to the right''). This allows
+us to write our code in the same order as we think of it. The best
+explanation of this is (again) from R For Data Science in the
+\href{http://r4ds.had.co.nz/pipes.html}{Piping chapter}.
+
+\hypertarget{filter}{%
+\paragraph{filter}\label{filter}}
+
+The \texttt{filter()} function allows us to fiter our data that meets
+certain criteria. For instance, we might want to further manipulate our
+3 column data frame with only one species of Iris and Petals greater
+than the median petal width.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris_petals_virginica <-}\StringTok{ }\NormalTok{iris }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\DataTypeTok{species =}\NormalTok{ Species, }\DataTypeTok{petal_width =}\NormalTok{ Petal.Width, }\DataTypeTok{petal_length =}\NormalTok{ Petal.Length) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(species }\OperatorTok{==}\StringTok{ "virginica"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(petal_width }\OperatorTok{>=}\StringTok{ }\KeywordTok{median}\NormalTok{(petal_width)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{as_tibble}\NormalTok{()}
+\NormalTok{iris_petals_virginica  }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 29 x 3
+##    species   petal_width petal_length
+##    <fct>           <dbl>        <dbl>
+##  1 virginica         2.5          6  
+##  2 virginica         2.1          5.9
+##  3 virginica         2.2          5.8
+##  4 virginica         2.1          6.6
+##  5 virginica         2.5          6.1
+##  6 virginica         2            5.1
+##  7 virginica         2.1          5.5
+##  8 virginica         2            5  
+##  9 virginica         2.4          5.1
+## 10 virginica         2.3          5.3
+## # ... with 19 more rows
+\end{verbatim}
+
+\hypertarget{mutate}{%
+\paragraph{mutate}\label{mutate}}
+
+Now say we have some research that suggest the ratio of the petal width
+and petal length is imporant. We might want to add that as a new column
+in our data set. The \texttt{mutate} function does this for us.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris_petals_ratio <-}\StringTok{ }\NormalTok{iris }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\DataTypeTok{species =}\NormalTok{ Species, }\DataTypeTok{petal_width =}\NormalTok{ Petal.Width, }\DataTypeTok{petal_length =}\NormalTok{ Petal.Length) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{petal_ratio =}\NormalTok{ petal_width}\OperatorTok{/}\NormalTok{petal_length) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{as_tibble}\NormalTok{()}
+\NormalTok{iris_petals_ratio}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 150 x 4
+##    species petal_width petal_length petal_ratio
+##    <fct>         <dbl>        <dbl>       <dbl>
+##  1 setosa          0.2          1.4      0.143 
+##  2 setosa          0.2          1.4      0.143 
+##  3 setosa          0.2          1.3      0.154 
+##  4 setosa          0.2          1.5      0.133 
+##  5 setosa          0.2          1.4      0.143 
+##  6 setosa          0.4          1.7      0.235 
+##  7 setosa          0.3          1.4      0.214 
+##  8 setosa          0.2          1.5      0.133 
+##  9 setosa          0.2          1.4      0.143 
+## 10 setosa          0.1          1.5      0.0667
+## # ... with 140 more rows
+\end{verbatim}
+
+\hypertarget{exercise-3.2}{%
+\subsection{Exercise 3.2}\label{exercise-3.2}}
+
+For this exercise we will dig into our datasets and find ways to tidy
+them up. We first need to clean up the new data
+frame,\texttt{nla\_sites}, that we loaded up in Exercise 3.1. Add new
+lines of code after the section of code that cleans up the
+\texttt{nla\_wq} data frame. Add some comments to your script that
+describe what we are doing.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Filter out just the first visits (e.g.~VISIT\_NO equal to 1)
+\item
+  Select the following columns: SITE\_ID, STATE\_NAME, and CNTYNAME
+\item
+  Make all of our columns names lower case (Hint: Take a look at the
+  code in nla\_analysis.R where we manipulate our data)
+\item
+  Make all the character fields lower case (Hint: Take a look at the
+  code in nla\_analysis.R where we manipulate our data)
+\item
+  Keep all these changes in the \texttt{nla\_sites} data frame.
+\end{enumerate}
+
+\hypertarget{group_by-and-summarize}{%
+\paragraph{group\_by and summarize}\label{group_by-and-summarize}}
+
+Now back to iris. What if we want to get some summary statistics of our
+important petal ratio metric for each of the species? Grouping the data
+by species, and then summarizing those groupings will let us accomplish
+this.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris_petal_ratio_species <-}\StringTok{ }\NormalTok{iris }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\DataTypeTok{species =}\NormalTok{ Species, }\DataTypeTok{petal_width =}\NormalTok{ Petal.Width, }\DataTypeTok{petal_length =}\NormalTok{ Petal.Length) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{petal_ratio =}\NormalTok{ petal_width}\OperatorTok{/}\NormalTok{petal_length) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(species) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{mean_petal_ratio =} \KeywordTok{mean}\NormalTok{(petal_ratio),}
+            \DataTypeTok{sd_petal_ratio =} \KeywordTok{sd}\NormalTok{(petal_ratio),}
+            \DataTypeTok{median_petal_ratio =} \KeywordTok{median}\NormalTok{(petal_ratio))}
+\NormalTok{iris_petal_ratio_species}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 4
+##   species    mean_petal_ratio sd_petal_ratio median_petal_ratio
+##   <fct>                 <dbl>          <dbl>              <dbl>
+## 1 setosa                0.168         0.0658              0.143
+## 2 versicolor            0.311         0.0292              0.309
+## 3 virginica             0.367         0.0502              0.375
+\end{verbatim}
+
+\hypertarget{left_join}{%
+\paragraph{left\_join}\label{left_join}}
+
+Lastly, we might also have information spread across multiple data
+frames. This is the same concept as having multiple tables in a
+relational database. There are MANY ways to combine (aka. "join) tables
+like this and most of them have a \texttt{dplyr} verb implemented for
+them. We are going to focus on one, the \texttt{left\_join()}.
+
+Instead of continuing with the \texttt{iris} data we will create some
+data frames to work with for these examples.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{left_table <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{left_id =} \DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{, }
+                         \DataTypeTok{names =} \KeywordTok{c}\NormalTok{(}\StringTok{"Bob"}\NormalTok{, }\StringTok{"Sue"}\NormalTok{, }\StringTok{"Jeff"}\NormalTok{, }\StringTok{"Alice"}\NormalTok{, }\StringTok{"Joe"}\NormalTok{, }\StringTok{"Betty"}\NormalTok{))}
+\NormalTok{right_table <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{right_id =} \DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{, }
+                          \DataTypeTok{left_id =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{), }
+                          \DataTypeTok{age =} \KeywordTok{c}\NormalTok{(}\DecValTok{17}\NormalTok{,}\DecValTok{26}\NormalTok{,}\DecValTok{45}\NormalTok{,}\DecValTok{32}\NormalTok{,}\DecValTok{6}\NormalTok{)) }
+\NormalTok{left_table}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   left_id names
+## 1       1   Bob
+## 2       2   Sue
+## 3       3  Jeff
+## 4       4 Alice
+## 5       5   Joe
+## 6       6 Betty
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{right_table}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   right_id left_id age
+## 1        1       2  17
+## 2        2       1  26
+## 3        3       3  45
+## 4        4       6  32
+## 5        5       7   6
+\end{verbatim}
+
+To combine these two tables into one we can \texttt{join} them. In
+particular we will use a \texttt{left\_join()} which keeps all records
+from the first table (i.e the ``left'' table) and adds only the matching
+records in the second table (i.e.~the ``right'' table). This is easier
+to grok by looking at the results.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{left_right_table <-}\StringTok{ }\NormalTok{left_table }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(right_table, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"left_id"}\NormalTok{ =}\StringTok{ "left_id"}\NormalTok{))}
+\NormalTok{left_right_table}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   left_id names right_id age
+## 1       1   Bob        2  26
+## 2       2   Sue        1  17
+## 3       3  Jeff        3  45
+## 4       4 Alice       NA  NA
+## 5       5   Joe       NA  NA
+## 6       6 Betty        4  32
+\end{verbatim}
+
+\hypertarget{exercise-3.3}{%
+\subsection{Exercise 3.3}\label{exercise-3.3}}
+
+Let's now practice combining two data frames and summarizing some
+information in that combine data frame. We are still working on the
+\texttt{nla\_analysis.R} script and you can add this code after that
+section we just completed on \texttt{nla\_sites}. Don't forget your
+comments!
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Use \texttt{left\_join()} to combine \texttt{nla\_wq} and
+  \texttt{nla\_sites} into a new data frame called \texttt{nla\_2007}
+\item
+  Using \texttt{group\_by()} and \texttt{summarize}, let's look at
+  median chlorophyll per EPA Region. (Hint: There are some NA's that we
+  will need to deal with. Use \texttt{?median} and try to figure out how
+  to remove those when doing this calculation)
+\item
+  Re-do the above and include the minimum and maximum values.
+\item
+  Bonus: Use `arrange() to order the output by mean chlorophyll.
+\end{enumerate}
+
+
+\end{document}

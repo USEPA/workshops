@@ -1,0 +1,766 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{}
+    \pretitle{\vspace{\droptitle}}
+  \posttitle{}
+    \author{}
+    \preauthor{}\postauthor{}
+    \date{}
+    \predate{}\postdate{}
+  
+
+\begin{document}
+
+\hypertarget{r-basics}{%
+\section{R Basics}\label{r-basics}}
+
+In this lesson we are going to go over the very basics of R, cover some
+basic terminology, talk a little about syntax and point you to resources
+for getting help.
+
+\hypertarget{lesson-outline}{%
+\subsection{Lesson Outline:}\label{lesson-outline}}
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{functions-and-basic-syntax}{Functions and basic
+  syntax}
+\item
+  \protect\hyperlink{packages}{Packages}
+\item
+  \protect\hyperlink{operators-and-objects}{Operators and objects}
+\item
+  \protect\hyperlink{getting-help}{Getting help}
+\end{itemize}
+
+\hypertarget{lesson-exercises}{%
+\subsection{Lesson Exercises:}\label{lesson-exercises}}
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{exercise-21}{Exercise 2.1}
+\end{itemize}
+
+\hypertarget{functions-and-basic-syntax}{%
+\subsection{Functions and basic
+syntax}\label{functions-and-basic-syntax}}
+
+R is a functional programming language and as such, most everything you
+do uses a function.
+
+The basic syntax of function follows the form:
+\texttt{function\_name(arg1,\ arg2,\ ...)}. With the base install, you
+will gain access to many (3034 functions, to be exact). Some examples:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Print}
+\KeywordTok{print}\NormalTok{(}\StringTok{"hello world!"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "hello world!"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#A sequence}
+\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  1  2  3  4  5  6  7  8  9 10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Random normal numbers}
+\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{10}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1] 10.920410  9.513012 11.861086 14.863490  8.379840 13.141891  9.446537
+##   [8]  8.022032  9.465661  8.772420 13.344523  9.118743 11.891361  9.612997
+##  [15]  9.017080 10.226274  8.486031  6.841061 10.848418  8.932206  5.553944
+##  [22]  8.752397  9.736154 13.455697  5.119204  9.982638  9.059941  8.795523
+##  [29]  6.981665  8.044743  9.222369  9.401621  5.781320 10.480465 11.466891
+##  [36]  6.971664  7.482965  8.127270  9.443446  8.659414  6.650244  8.101129
+##  [43] 12.354610 12.422165 11.299381  8.624484 10.071697 11.545935  8.203265
+##  [50]  9.284808  9.324787 11.729616  9.393644  9.497394 11.158317 10.074143
+##  [57]  8.745845  8.455896 11.689187  9.739108  8.052527  7.124063  6.310835
+##  [64] 10.877433 13.526127  9.810944  6.981618  7.402550  9.043106  8.284713
+##  [71] 13.555172  9.792659 10.878405  7.276007 10.122262 12.079535  7.506201
+##  [78] 11.190019 10.375745 11.711439  8.880767 11.818784 10.420440 10.057292
+##  [85] 10.314723  8.253971 10.394187  8.835908  7.187634 10.845006 11.841143
+##  [92]  9.217214 10.086156  6.801660 12.951945 10.548676  8.985280 11.155482
+##  [99] 11.262077 13.060215
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Mean}
+\KeywordTok{mean}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.01657787
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Sum}
+\KeywordTok{sum}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.3787673
+\end{verbatim}
+
+\hypertarget{a-few-side-notes}{%
+\subsubsection{A few side notes}\label{a-few-side-notes}}
+
+There are several other characters that commonly show up in R code.
+These are:
+
+\begin{verbatim}
+# - comments
+() - wraps function arguments and order of operations
+[] - indexing
+{} - grouping code
+\end{verbatim}
+
+The \texttt{\#} indicates a comment. You can put whatever else you'd
+like after this, but on the same line as the \texttt{\#}. R will not
+evaluate it. Multiple \texttt{\#\#\#\#\#}, are still just seen as a
+comment. When commenting your code, err on the side of too much! Also,
+you will see \texttt{()}, \texttt{{[}{]}}, and \texttt{\{\}} used in R
+code. The \texttt{()} indicates a function (almost always), the
+\texttt{{[}{]}} indicates indexing (grabbing values by the location),
+and the \texttt{\{\}} groups code that is meant to be run together and
+is usually used when programming functions in R.
+
+\hypertarget{packages}{%
+\subsection{Packages}\label{packages}}
+
+The base install of R is quite powerful, but you will soon have a need
+or desire to go beyond this. Packages provide this ability. They are a
+standardized method for extending R with new methods, techniques, and
+programming functionality. There is a lot to say about packages
+regarding finding them, using them, etc., but for now let's focus just
+on the basics.
+
+\hypertarget{cran}{%
+\subsubsection{CRAN}\label{cran}}
+
+One of the reasons for R's popularity is CRAN,
+\href{http://cran.r-project.org/}{The Comprehensive R Archive Network}.
+This is where you download R and also where most will gain access to
+packages (there are other places, but that is for later). Not much else
+to say about this now other than to be aware of it. As of 2019-11-26,
+there are 15242 packages on CRAN!
+
+\hypertarget{installing-packages}{%
+\subsubsection{Installing packages}\label{installing-packages}}
+
+When a package gets installed, that means the source is downloaded and
+put into your library. A default library location is set for you so no
+need to worry about that. In fact on Windows most of this is pretty
+automatic. Let's give it a shot.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Installing Packages from CRAN}
+\CommentTok{#Install dplyr and ggplot2}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"dplyr"}\NormalTok{)}
+
+\CommentTok{#You can also put more than one in like}
+\KeywordTok{install.packages}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"quickmapr"}\NormalTok{, }\StringTok{"formatR"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Now a couple of words of warning for library locations on EPA windows
+machines. If R was installed correctly, your library should reside in
+something like \texttt{C:/Program\ Files/R/R-3.6.1/library}. If you type
+\texttt{.libPaths()} and get a vastly different result
+(e.g.~\texttt{Blah\textbackslash{}Blah\textbackslash{}Net\ MyDocuments\textbackslash{}Blah}),
+then you are going to have some problems. We can fix this by adding a
+file, \texttt{Renviron.site} to
+\texttt{C:\textbackslash{}Program\ Files\textbackslash{}R\textbackslash{}R-3.6.1\textbackslash{}etc}.
+That file should have the following lines in it
+
+\begin{verbatim}
+HOME=C:/Program Files/R/R-3.6.1
+R_USER=C:/Program Files/R/R-3.6.1
+\end{verbatim}
+
+On your next start up of R, the library path should look better!
+
+\hypertarget{using-packages}{%
+\subsubsection{Using packages}\label{using-packages}}
+
+One source of confusion that many have is when they cannot access a
+package that they just installed. This is because getting to this point
+requires an extra step, loading (or attaching) the package.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Loading packages into your library}
+\CommentTok{#Add libraries to your R Session}
+\KeywordTok{library}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{)}
+\KeywordTok{library}\NormalTok{(}\StringTok{"dplyr"}\NormalTok{)}
+
+\CommentTok{#You can also access functions without loading by using package::function}
+\NormalTok{dplyr}\OperatorTok{::}\NormalTok{mutate}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## function (.data, ...) 
+## {
+##     UseMethod("mutate")
+## }
+## <bytecode: 0x00000233bbc3ea98>
+## <environment: namespace:dplyr>
+\end{verbatim}
+
+You will often see people use \texttt{require()} to load a package. It
+is better form to not do this. For a more detailed explanation of why
+\texttt{library()} and not \texttt{require()} see
+\href{http://yihui.name/en/2014/07/library-vs-require/.}{Yihui Xie's
+post on the subject}
+
+And now for a little pedantry. You will often hear people use the terms
+``library'' and ``package'' interchangeably. This is not correct. A
+package is what is submitted to CRAN, it is what contains a group of
+functions that address a common problem, and it is what has allowed R to
+expand. A library is, more or less, where your packages are stored. You
+have a path to that library and this is where R puts new packages that
+you install (e.g.~via \texttt{install.packages()}). These two terms are
+related, but most certainly different. Apologies up front if I slip and
+use one when I actually mean the other\ldots{}
+
+\hypertarget{operators-and-objects}{%
+\subsection{Operators and objects}\label{operators-and-objects}}
+
+As I mentioned above, the console and using R interactively is very
+powerful. We will do this quite a bit. Let's spend a little time playing
+around in the console and learn a few new functions.
+
+R can be used as a calculator and a way to compare values. Some examples
+of the basic operators:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#A really powerful calculator!}
+\DecValTok{1} \OperatorTok{+}\StringTok{ }\DecValTok{1} \CommentTok{#Add}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{10} \OperatorTok{-}\StringTok{ }\DecValTok{4} \CommentTok{#Subtract}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{3} \OperatorTok{*}\StringTok{ }\DecValTok{2} \CommentTok{#Multiply}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{3} \OperatorTok{^}\StringTok{ }\DecValTok{3} \CommentTok{#Exponents}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 27
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{100} \OperatorTok{/}\StringTok{ }\DecValTok{10} \CommentTok{#Divide}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{5} \OperatorTok{%%}\StringTok{ }\DecValTok{2} \CommentTok{#Modulus}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{5} \OperatorTok{>}\StringTok{ }\DecValTok{2} \CommentTok{#Greater than}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{4} \OperatorTok{<}\StringTok{ }\DecValTok{5} \CommentTok{#Less than}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{5} \OperatorTok{<=}\StringTok{ }\DecValTok{5} \CommentTok{#Less than or equal}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{8} \OperatorTok{>=}\StringTok{ }\DecValTok{2} \CommentTok{#Greater than or equal}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2} \OperatorTok{==}\StringTok{ }\DecValTok{2} \CommentTok{#Equality: notice that it is TWO equal signs!}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{5} \OperatorTok{!=}\StringTok{ }\DecValTok{7} \CommentTok{#Not Equals}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+That's neat, but so what\ldots{}
+
+Well, it could be interesting to do something with those values and save
+them for re-use. We can do that with objects (everything in R is an
+object) and use the assignment operator, \texttt{\textless{}-}. Know
+that object names cannot start with a number, contain spaces, or (most)
+special characters. Underscores and periods are allowed.
+
+\textbf{NOTE:} If you have experience with other, object-oriented
+languages, then just be aware that R objects, at least the general use
+of the term, are different.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Numeric assignment}
+\NormalTok{x <-}\StringTok{ }\DecValTok{5}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y <-}\StringTok{ }\NormalTok{x }\OperatorTok{+}\StringTok{ }\DecValTok{1}
+\NormalTok{y}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{z <-}\StringTok{ }\NormalTok{x }\OperatorTok{+}\StringTok{ }\NormalTok{y}
+\NormalTok{z}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 11
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Character}
+\NormalTok{a <-}\StringTok{ "Bob"}
+\NormalTok{a}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Bob"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b <-}\StringTok{ "Sue"}
+\NormalTok{b}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Sue"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a2 <-}\StringTok{ "Larry"}
+\NormalTok{a2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Larry"
+\end{verbatim}
+
+Now that we have a little experience working in the console and creating
+objects with \texttt{\textless{}-}, we might want to be able to do some
+additional things to navigate around, look at these objects etc. You can
+do a lot of this directly in RStudio in the Environment, History pane
+which is likely in the upper right corner of the window. Alternatively,
+you can explore your current environment via the console. Some functions
+that you might find useful for working with your R workspace:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#List all objects in current workspace}
+\KeywordTok{ls}\NormalTok{() }
+\KeywordTok{ls}\NormalTok{(}\DataTypeTok{pattern =} \StringTok{"a"}\NormalTok{)}
+
+\CommentTok{#Remove an object}
+\KeywordTok{rm}\NormalTok{(x)}
+
+\CommentTok{#Save your workspace}
+\CommentTok{#Saves the whole thing to a file called lesson2.RData}
+\KeywordTok{save.image}\NormalTok{(}\StringTok{"lesson2.RData"}\NormalTok{) }
+\CommentTok{#Saves just the a and y objects to a file called lesson2_ay.RData}
+\KeywordTok{save}\NormalTok{(a, y, }\DataTypeTok{file =} \StringTok{"lesson2_ay.RData"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+This is probably a good spot to bring up quotes vs no quotes around
+arguments in a function. This is a very common stumbling block. The
+general rule is that no quotes are used only when referring to an object
+that currently exists. Quotes are used in all other cases. For instance
+in \texttt{save(a,\ y,\ file\ =\ "lesson2\_ay.RData")} the objects
+\texttt{a} and \texttt{y} are not quoted because they are objects in the
+workspace. \texttt{file} is an argument of save and argument names are
+never quoted. We quote the name of the file ``lesson2\_ay.RData''
+because it is not an R object but the name of a file to be created. You
+will likely still have some issues with this. My recommendation is to
+think about if it is an object in your R workspace or not. If so, no
+quotes! This isn't foolproof, but works well most of the time.
+
+Next thing you might want to do is navigate around your files and
+directories. While you can do this directly from the console, it is
+going to be better practice to mostly use RStudio projects to manage
+your folders, working directory etc. You can also navigate using the
+Files, etc. pane. \#\#\# A quick word about assignment We have now seen
+how to assign object in R using the assignment operator,
+\texttt{\textless{}-}. Assignment can also be done with \texttt{=}. I
+suggest that you don't use this, not for ``correct'' syntax reasons, but
+for readability and code style reasons. Use \texttt{\textless{}-} for
+assignment (fun note, \texttt{-\textgreater{}} also works but the object
+it is assigned to lives on the right side of the operator). Reserve
+\texttt{=} for assigning arguments inside of functions
+(e.g.~\texttt{rnorm(10,\ mean\ =\ 5)}).
+
+\hypertarget{getting-help}{%
+\subsection{Getting help}\label{getting-help}}
+
+Being able to find help and interpret that help is probably one of the
+most important skills for learning a new language. R is no different.
+Help on functions and packages can be accessed directly from R, can be
+found on CRAN and other official R resources, searched on Google, found
+on StackOverflow, or from any number of fantastic online resources. I
+will cover a few of these here.
+
+\hypertarget{help-from-the-console}{%
+\subsubsection{Help from the console}\label{help-from-the-console}}
+
+Getting help from the console is straightforward and can be done
+numerous ways.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Using the help command/shortcut}
+\CommentTok{#When you know the name of a function}
+\KeywordTok{help}\NormalTok{(}\StringTok{"print"}\NormalTok{) }\CommentTok{#Help on the print command}
+\NormalTok{?print }\CommentTok{#Help on the print command using the `?` shortcut}
+
+\CommentTok{#When you know the name of the package}
+\KeywordTok{help}\NormalTok{(}\DataTypeTok{package=}\StringTok{"dplyr"}\NormalTok{) }\CommentTok{#Help on the package `dplyr`}
+
+\CommentTok{#Don't know the exact name or just part of it}
+\KeywordTok{apropos}\NormalTok{(}\StringTok{"print"}\NormalTok{) }\CommentTok{#Returns all available functions with "print" in the name}
+\NormalTok{??print }\CommentTok{#Shortcut, but also searches demos and vignettes in a formatted page}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{official-r-resources}{%
+\subsubsection{Official R Resources}\label{official-r-resources}}
+
+In addition to help from within R itself, CRAN and the R-Project have
+many resources available for support. Two of the most notable are the
+mailing lists and the \href{http://cran.r-project.org/web/views/}{task
+views}.
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://stat.ethz.ch/mailman/listinfo/r-help}{R Help Mailing
+  List}: The main mailing list for R help. Can be a bit daunting and
+  some (although not most) senior folks can be, um, curmudgeonly\ldots{}
+\item
+  \href{https://stat.ethz.ch/mailman/listinfo/r-sig-ecology}{R-sig-ecology}:
+  A special interest group for use of R in ecology. Less daunting the
+  the main help with participation from some big names in ecological
+  modelling and statistics (e.g., Ben Bolker, Gavin Simpson, and Phil
+  Dixon). One of the moderators is great, the other is a bit of a jerk
+  (it's me).
+\item
+  \href{http://cran.r-project.org/web/views/Environmetrics.html}{Environmetrics
+  Task View}: Task views are great in that they provide an annotated
+  list of packages relevant to a particular field. This one is
+  maintained by Gavin Simpson and has great info on packages relevant to
+  much of the work at EPA.
+\item
+  \href{http://cran.r-project.org/web/views/Spatial.html}{Spatial
+  Analysis Task View}: One I use a lot that lists all the relevant
+  packages for spatial analysis, GIS, and Remote Sensing in R.
+\end{itemize}
+
+\hypertarget{google-and-stackoverflow}{%
+\subsubsection{Google and
+StackOverflow}\label{google-and-stackoverflow}}
+
+While the resources already mentioned are useful, often the quickest way
+is to just turn to Google. However, a search for ``R'' is a bit
+challenging. A few ways around this. Google works great if you search
+for a given package or function name. You can search for mailing lists
+directly (i.e.~``R-sig-geo''). An R specific search tool,
+\href{http://www.rseek.org/}{RSeek.org}, has been created to facilitate
+this.
+
+One specific resource that I use quite a bit is
+\href{http://stackoverflow.com/questions/tagged/r}{StackOverflow with
+the `r' tag}. StackOverflow is a discussion forum for all things related
+to programming. You can then use this tag and the search functions in
+StackOverflow and find answers to almost anything you can think of.
+
+\hypertarget{other-resources}{%
+\subsubsection{Other Resources}\label{other-resources}}
+
+As I mention earlier, there are TOO many resources to mention and
+everyone has their favorites. Below are just a few that I like.
+
+\begin{itemize}
+\tightlist
+\item
+  \href{http://r4ds.had.co.nz/}{R For Data Science}: Another book by
+  Hadley and Garrett Grolemund. First reference I suggest for new (and
+  experienced) R Learners, especially for all things Tidy.
+\item
+  \href{http://adv-r.had.co.nz/}{Advanced R}: Web home of Hadley
+  Wickham's new book. Gets into more advanced topics, but also covers
+  the basics in a great way.
+\item
+  \href{http://rforcats.net/}{R For Cats}: Basic introduction site,
+  meant to be a gentle and light-hearted introduction.
+\item
+  \href{http://cran.r-project.org/doc/contrib/Short-refcard.pdf}{CRAN
+  Cheatsheets}: A good cheat sheet from the official source
+\item
+  \href{http://www.rstudio.com/resources/cheatsheets/}{RStudio
+  Cheatsheets}: Additional cheat sheets from RStudio. I am especially
+  fond of the data wrangling one.
+\end{itemize}
+
+\hypertarget{exercise-2.1}{%
+\subsection{Exercise 2.1}\label{exercise-2.1}}
+
+We should still have our \texttt{nla\_analysis.R} file open. We will be
+working with this as we go through the rest of the excercises.
+
+Take a look at this file and with the person sitting next to you find
+the following:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Find the \texttt{read\_csv()} function. What lines is it on? What is
+  the argument?
+\item
+  Now find the lines on which you think we install packages and load
+  libraries. There is the fancy way (lines 19-24) and a straight up way
+  (lines 29-32). Talk through in your own words what each of these is
+  doing
+\item
+  Add a line of code after line 24 to install the package
+  \texttt{lubridate}. Add a line after line 33 to load
+  \texttt{lubridate}.
+\item
+  Bring up the package level help for the \texttt{lubridate} package.
+  What does this package do?
+\end{enumerate}
+
+
+\end{document}
