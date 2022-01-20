@@ -1,0 +1,558 @@
+---
+title: "EPA ORD Presentation"
+subtitle: "Xaringan Template"
+author: "Andrew Murray"
+institute: "ORAU, EPA ORD CESER"
+date: "(updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: ["default", "my_styles.css"]
+    lib_dir: libs
+    seal: false
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+      beforeInit: "macros.js"
+---
+class: middle center
+
+background-image: url(img/ord_basic_16_9.jpg)
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+options(htmltools.dir.version = FALSE)
+library(tidyverse)
+library(xaringanthemer)
+library(plotly)
+library(trend)
+library(rstatix)
+library(aod)
+library(here)
+library(widgetframe)
+library(sf)
+library(leaflet)
+library(htmltools)
+
+style_duo_accent(
+  primary_color = "#61AD40",  # Green from ORD Template
+  secondary_color = "#1a4480", # EPA Blue Dark
+  inverse_header_color = "#FFFFFF",
+  inverse_text_shadow = TRUE,
+  inverse_background_color = "",
+)
+xaringanExtra::use_tile_view()
+xaringanExtra::use_panelset()
+```
+
+
+
+
+.epablue[
+
+## EPA R User Group 2021
+
+### Statistical Measures of Inequality in Disadvantaged Communities to Underground Storage Tanks + Decision Applications with Shiny
+
+Andrew Murray - ORAU, ORD / CESER
+
+Alex Hall - ORD / CESER
+
+
+(updated: `r Sys.Date()`)
+
+
+]
+
+???
+
+This presentation will focus on how we are looking at environmental justice issues related to underground storage tanks. I'll walk through some of the methods we are using, how we execute them in R, and how we contextualize the results. I'll finish with a brief demonstration of a shiny application which helps to identify EJ areas with high levels of potential exposure to tanks and releases. While I'll be using underground storage tanks as my example, the methods here are applicable to just about any point source contamination.
+---
+class: inverse
+background-image: url(img/National_LUSTs.png)
+background-size: cover
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+
+.pull-left[
+.center[
+## Scope of Active & Historic Tanks Universe
+]
+.txt.inverse[
+- 2.2 million underground storage tanks
+- 800,000 facilities
+- 550,000 leaking underground storage tanks
+- Up to 6 Billion gallons of fuel is stored in USTs daily
+
+## Potential Impacts
+- Ground water contamination principal concern, also petroleum vapor intrusion
+- Extreme weather conditions can increase the extent of contamination, spatially and temporally
+ 
+]
+]
+
+
+
+???
+For those who are unfamiliar, when we're talking about underground storage tanks we're basically referring to anywhere where petroleum products are stored in tanks underground, so most of these facilities are gas stations, however they may also include industrial facilities, private businesses, government facilities, airports and others. Since 1989, there have been about 2.2 million underground storage tanks located at about 550,000 facilities in the U.S. On average, for every 8 underground storage tanks, 1 will report some sort of release, whether that is a leak in the tank itself, the piping, an overfill spill or something else. Among the principal concerns of leaking tanks are groundwater contamination and petroleum vapor intrusion. Benzene, for example can travel around 1,500 feet in groundwater and can persist in the environment for more than 30 years after a leak.
+
+---
+
+background-image: url(img/ord_title_16_9.jpg)
+.center[
+# &emsp; Environmental Justice
+]
+.pull-left[
+## EJ and USTs
+.text[
+- Are USTs an EJ Issue?
+  - Are tanks / releases disproportionately in minority / low-income communities?
+  
+  - Do releases occur in these communities more often?
+  
+  - If so, is there something we could be doing to offset the imbalance?
+  
+  - What sort of data driven information can we provide to help target inspections and cleanups in the pursuit of EJ?
+
+]
+
+]
+
+.pull-right[
+![](img/justice.jpg)
+source: [MobilizeGreen.org](https://www.mobilizegreen.org/blog/2018/9/30/environmental-equity-vs-environmental-justice-whats-the-difference)
+]
+
+???
+One of the very important topics we are researching right now is how underground storage tanks relate to EJ.
+The current definition of EJ per the EPA is as follows: 
+
+"Environmental justice is the fair treatment and meaningful
+involvement of all people regardless of race, color,
+national origin, or income, with respect to the development,
+implementation, and enforcement of environmental
+laws, regulations, and policies."
+
+A recent article written by Charles Lee, the current Senior Policy Advisor for Environmental Justice at EPA reflected on this definition and presented his thoughts on what should be incorporated in the future. One important point that he made was that "equity should be an important goal within the definition of EJ. This involves the provision of greater attention and resources to areas of EJ concern."
+
+What this means to me is that in order to work towards environmental justice, we need to focus on equity which is giving more attention to those who are more disadvantaged. We want to not only determine if there are disproportionate exposures or potential exposures to contamination, but also to create a framework for identifying communities that are most vulnerable, so that they can be targeted for more inspections of existing tanks, as well as prioritized for cleanups in the event that a release is reported.
+
+
+---
+6background-image: url(img/ord_title_16_9.jpg)
+.center[
+# &emsp;&emsp;Quantifying EJ - EJSCREEN
+]
+
+.left-column[.epablue[
+
+New EJScreen Metric for Underground Storage Tanks
+(To be Released with EJScreen 2021)
+
+- Weights releases higher than tanks
+
+- Calculated average ratio of open releases to active tanks
+
+- Needs to be integrated with socio-demographic variables seperately
+
+]]
+
+.right-column[
+.center[
+```{r CleanupIMG, out.width="80%", echo = FALSE}
+knitr::include_graphics("img/CleanupRatio.jpg")
+```
+
+]]
+
+???
+
+One of the things we have been working on is a new metric, which will be added to EJSCREEN in the upcoming 2021 release. This metric is essentially a measure of risk, without the inclusion of socio-demographics that can be readily combined with the existing products in EJSCREEN. We needed to weight releases higher than tanks because, of course, a leaking tank poses a greater risk than a non-leaking tank. This method, created by my colleague, Alex Hall, looks at the rates at which releases occur accross the United States. As you can see in this table, the ratios of releases to tanks vary by state, which is likely do to the fact that every state runs their own enforcement program, and may define releases differently. The national is 7.77, so for about every 8 tanks, one will report a release.
+
+---
+background-image: url(img/ord_title_16_9.jpg)
+
+.center[
+# &emsp;&emsp;Quantifying EJ - EJSCREEN
+]
+
+.left-column[.epablue[
+
+
+
+- ΣUST=sum of active underground storage tanks
+
+- bbg = buffered block group (1,500 ft)
+
+- ΣLUST=sum of active leaking underground storage tanks (2018-2021)
+
+[EJ Mapper Application](https://epa.maps.arcgis.com/apps/webappviewer/index.html?id=969d846274c2497a99b833183860ec34)
+]]
+
+.right-column[
+```{r EJScreenIMG, out.width="60%", echo = FALSE}
+knitr::include_graphics("img/EJScreen.png")
+```
+
+
+*Block Group EJSCREEN Metric* = .big[(]&#8721; **UST**<sub>bbg</sub>+&#8721; **LUST**<sub>bbg</sub>(7.77).big[)]/Area
+]
+
+???
+
+THE EJSCREEN formula looks at tank density, so the formula is the number of tanks in a block group plus the number of releases * 7.77 divided by the area of the block group. The results are shown as percentiles in this map. What this formula does not do is include any socio-demographic indicators, which was done on purpose. This allows an end-user in EJSCREEN to combine the tanks metric with any of the other products available in EJSCREEN, such as minority and low-income populations, or other EJ indicators like PM 2.5, direct water discharge and others. We wanted to take this a few steps further though, so we began digging deeper into the tank data to determine what sort of relationships we could find between tanks, releases, minority and low-income populations.
+
+---
+background-image: url(img/ord_title_16_9.jpg)
+
+.center[
+# &emsp;&emsp;Quantifying EJ - Mann-Kendall
+]
+.pull-left[
+
+```{r boxPlot, out.height = 500, echo = FALSE, warning = FALSE}
+bins <- read.csv(here("data/Bins_ex.csv"))
+
+p <- plot_ly(bins)%>%
+       add_boxplot(x = ~N_P_MINORPCT_BIN, y = ~Tanks_km, marker = list(opacity=0), line = list(color = 'black'), fillcolor = '#a3a3a3')%>%
+       layout(title = list(text = "Tank Density & Percentile Minority", font = list(family = "sans serif", size = 24, color = 'black'), y = 0.9),
+              yaxis = list(title = "Tanks  [km<sup>2</sup>]" ,range = c(0, 300),
+                           font = list(family = "sans serif", size = 18, color = 'black')),
+              xaxis = list(title = "Percentile Bin", tickangle = 315),
+              font = list(family = "sans serif", size = 18, color = 'black'))
+
+frameWidget(p, height = "120%")
+```
+]
+
+.pull-right[
+```{css echo=FALSE}
+.panelset {
+  --panel-tab-foreground: currentColor;
+  --panel-tab-active-foreground: #61AD40;
+  --panel-tab-hover-foreground: #07648d;
+  --panel-tabs-border-bottom: #ddd;
+  --panel-tab-inactive-opacity: 0.5;
+  --panel-tab-font-family: Roboto, Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;\
+}
+```
+.panelset[
+
+.panel[.panel-name[Mann-Kendall]
+
+```{r mkHead, echo = FALSE}
+us <- read.csv(here("data/National_Density_EJ_Stats.csv"))%>%
+  filter(X_Var == "N_P_MINORPCT" & Y_Var == "Tanks_km")%>%
+  arrange(Bin)%>%
+  select(-X)%>%
+  mutate(Q1 = round(Q1,2),
+         Median = round(Median,2),
+         Q3 = round(Q3,2),
+         IQR = round(IQR,2))
+
+us[1:4,]
+```
+
+
+```{r MkPrep, echo = FALSE}
+us <- read.csv(here("data/National_Density_EJ_Stats.csv"))%>%
+  filter(X_Var == "N_P_MINORPCT" & Y_Var == "Tanks_km")
+
+p2 <- plot_ly(us)%>%
+  add_markers(x = ~Bin, y = ~Median, marker = list(size = 10, color = '#61AD40',
+                                                   line = list(color = "#1a4480", width = 2)))%>%
+  layout(xaxis = list(title = "Percentile Minority (EJScreen)"),
+         yaxis = list(title = "Median Tanks / km<sup>2</sup>"))
+
+frameWidget(p2, height = 250)
+```
+
+
+]
+
+.panel[.panel-name[Code]
+
+```{r mkcODE, eval=TRUE}
+# Import Data
+us <- read.csv(here("data/National_Density_EJ_Stats.csv"))%>%
+  filter(X_Var == "N_P_MINORPCT" & Y_Var == "Tanks_km")%>%
+  arrange(Bin)
+# Convert data to time series
+ts <- ts(us$Median, start=1, end=10, frequency=1)
+
+mk <- mk.test(ts) # Run Mann-Kendall
+ss <- sens.slope(ts) # Calculate Sens-Slope
+
+# Create output with relevant stats
+output <- data.frame("p_val" = mk$p.value,
+                     "z_val" = as.numeric(mk$statistic),
+                     "s" = as.numeric(mk$estimates[1]),
+                     "vars" = as.numeric(mk$estimates[2]),
+                     "tau" = as.numeric(mk$estimates[3]),
+                     "Sens_Slope" = as.numeric(ss$estimates))
+```
+
+]
+
+.panel[.panel-name[Results]
+
+```{r mkResults}
+output
+```
+
+
+]
+]
+
+]
+
+???
+
+To stick to my time limit, here I will focus on tanks and minority populations. The first thing we did was simply look at the density of tanks related to minority populations. EJSCREEN includes a measure of percentile minority for Census block groups which is shown here in the lefthand plot after we binned them into 10 groups. The y-axis is simply the tanks per square kilometer in the block group. So these boxes are composed of about 220,000 individual block groups with about 22,000 in each bin. Immediately we can see that as percentile minority increases, so to does tank density. The median tank density in the 90-100th percentile minority block groups is 62 times higher than in the 0-10th percentile. To test this relationship, we applied a mann-kendall test, which uses the median values accross bins. You can see the top 4 rows of the dataset here and the medians plotted in this bottom right plot. You can see the code here, along with the results. These slides, by the way, will be available and the data and code to run these are embeded. We found this to be highly statistically significant and find a slope pf 3.25.
+
+---
+background-image: url(img/ord_title_16_9.jpg)
+
+.center[
+# &emsp;&emsp;&emsp;Quantifying EJ - Pairwise Wilcox
+]
+
+.pull-left[
+.panelset[
+
+.panel[.panel-name[Pairwise-Wilcox]
+
+- Non-Parametric paired sample test
+
+- For use with data that is not normally distributed
+
+- Used to compare one group to another group
+
+  - In this case, one bin to another bin based on minority or low-income percentiles
+  
+- 'rstatix' package
+
+]
+
+.panel[.panel-name[Code]
+
+```{r PWpanel, fig.show='hide', eval=FALSE}
+# Run pairwise wilcox
+pw <- bins%>%
+      wilcox_test(Tanks_km ~ N_P_MINORPCT_BIN,
+                  p.adjust.method = "bonferroni")%>%
+      as.data.frame()
+
+# Calculate effect sizes
+pw.effect <- bins%>%
+  wilcox_effsize(Tanks_km ~ N_P_MINORPCT_BIN)%>%
+  as.data.frame()%>%
+  select(effsize,magnitude)
+
+# Bind results
+pwOut <- cbind(pw,pw.effect)
+
+write.csv(pwOut, here("data/Pairwise_Wilcox.csv"))
+```
+
+]
+
+]
+]
+
+.pull-right[
+```{r pwPlot, echo = FALSE, warning = FALSE}
+pwOut <- read.csv(here("data/Pairwise_Wilcox.csv"))
+
+pwPlot <- plot_ly(pwOut)%>%
+  add_heatmap(x = ~group1, y = ~group2, z = ~effsize,
+              colors = colorRamp(c("#61AD40","yellow", "red")),
+              hoverinfo="none",
+              name = "",
+              showscale = F)%>%
+  add_text(x = ~group1, y = ~group2,text = ~p.adj.signif,
+           hoverinfo="none",
+           showlegend = FALSE)%>%
+  add_markers(x = ~group1, y = ~group2, size = 20,opacity = 0,color = ~effsize,
+              colors = colorRamp(c("#61AD40","yellow", "red")),
+              text = ~paste("<b>Comparing: </b>",group1," & ",group2,"<br>",
+                            "<b>P-Value: </b>",round(p,4),"<br>",
+                            "<b>Effect: </b>",round(effsize,4),"<br>",
+                            "<b>Effect Magnitude: </b>", magnitude),
+              hoverinfo = "text",
+              showlegend = FALSE)%>%
+  layout(title = "Pairwise Wilcox Results (Tank Density)",
+         xaxis = list(title = "Percentile Minority"),
+         yaxis = list(title = "Percentile Minority"),
+         margin = list(t = 50))
+  
+
+frameWidget(pwPlot, height = "80%")
+
+```
+
+
+]
+
+???
+The next test we applied is called the pairwise wilcox, which is a non-parametric test used to compare different groups of data. In this case we compared every bin to every other bin to see if the groups were significantly different from eachother and what the effect size is. You can think of the effect size as sort of an R^2 value where 1 is completely different and 0 is the same. This is just another way of looking at how different tank densities are between different bins of minority percentiles, so in the top left corner of the plot, we see that there is a strong difference between the 0-10 and 90-100th percentiles.
+
+---
+
+background-image: url(img/ord_title_16_9.jpg)
+
+.center[
+# &emsp;&emsp;&emsp;Quantifying EJ - Exposure Ratio
+]
+
+.pull-left[
+
+.panelset[
+
+.panel[.panel-name[Formula]
+
+$$EXPOSURE_{j}=\frac{\sum_{i=1}^{n}(EXPOSURE_{i}*TOTALPOP_{i}*X_{ij})}{\sum_{i=1}^{n}(TOTALPOP_{i}*X_{ij})}$$
+“Where subscript j indexes the population group: and X<sub>ij</sub> is the share of group j in the population of [area] i.” 
+
+- EXPOSURE<sub>i</sub> is derived from UST Finder data, producing variables for tanks / km2, and releases / km2.
+
+- X<sub>ij</sub> is derived from the percentile minority and percentile low-income EJSCREEN demographic indicators.
+
+
+[Measuring Environmental Inequality (Boyce et al., 2016)](https://www.sciencedirect.com/science/article/pii/S0921800916301264?casa_token=W9by4DPbgYgAAAAA:zV-2ZmtALwVUy-OjTwHCZIz_X-9tn4eyHnVFvDnZqJmt4CbYBOnXvriRTGrgx-grndQ7FTUl0Q)
+]
+
+.panel[.panel-name[Code]
+
+```{r panel-Exposure}
+df <- read.csv(here("data/BGs_All_Attributes.csv"))%>%
+  mutate(GIS_County = substr(GISJOIN,1,8))%>%
+  select(GIS_County,Population,MINORPCT,Tanks_km)
+
+
+exposure <- df%>%
+      mutate(NW_Left = Tanks_km * Population * MINORPCT,
+             NW_Right = Population * (1-MINORPCT),
+             W_Left = Tanks_km * Population * (1-MINORPCT),
+             W_Right = Population * MINORPCT)%>%
+      group_by(GIS_County)%>%
+      mutate(exposureRatio = round((median(NW_Left, na.rm = TRUE)/median(NW_Right, na.rm = TRUE))/(median(W_Left, na.rm = TRUE)/median(W_Right, na.rm = TRUE)),4))%>%
+      ungroup()%>%
+      select(GIS_County,exposureRatio)%>%
+      distinct()
+```
+![](README_files/figure-gfm/panel-chunk-1.png)
+]
+
+.panel[.panel-name[Results]
+```{r panel-chunk2, echo = FALSE, warning = FALSE}
+exposure <- exposure%>%
+  mutate(exposureRound = ifelse(exposureRatio > 10,10,exposureRatio))
+
+hist <- plot_ly(exposure)%>%
+  add_histogram(x = ~exposureRound, nbinsx = 20,
+                marker = list(color = "#61AD40",
+                            line = list(color = "#1a4480",
+                                        width = 2)))%>%
+  layout(title = "U.S. Counties Exposure Ratio <br> (Minority : Tanks)",
+    xaxis = list(title = "Exposure Ratio",
+      ticktext = list("0","1", "2", "3", "4", "5", "6","7","8","9",">= 9.5"), 
+      tickvals = list(0,1,2,3,4,5,6,7,8,9,10),
+      tickmode = "array"),
+    yaxis = list(title = "Count of Counties"))
+
+frameWidget(hist, height = 400)
+```
+]
+]
+]
+
+.pull-right[
+```{r BoyceMap, echo = FALSE, out.height = 400}
+
+counties <- USAboundaries::us_counties()
+
+exposure <- read.csv(here("data/Exposure.csv"))%>%
+  filter(Boyce_Tanks_Minority>1)
+
+
+bins <- c(1,5,10,Inf)
+pal <- colorBin("YlOrRd", domain = exposure$Boyce_Tanks_Minority, bins = bins)
+
+exposureMap <- leaflet()%>%
+  addTiles()%>%
+  addPolygons(data = counties,
+              weight = .5,
+              color = "black",
+              fillOpacity = 0,
+              opacity = .5)%>%
+  addCircleMarkers(exposure$X,exposure$Y,
+    color = pal(exposure$Boyce_Tanks_Minority),
+    stroke = FALSE, fillOpacity = 0.8, radius = 5,
+    popup = paste("<b>",exposure$County,"</b><br>",
+                   "% Minority: ",exposure$Percent_Minority,"<br>",
+                   "Exposure Ratio: ",exposure$Boyce_Tanks_Minority))%>%
+  setView( -98.57947969999626,39.82831294243659, zoom = 3)%>%
+  addLegend("bottomright", pal = pal, values = exposure$Boyce_Tanks_Minority,
+    title = "Exposure Ratio",
+    opacity = 1
+  )
+
+frameWidget(exposureMap, height = 400)
+
+```
+
+]
+
+???
+
+The last test we did is called the exposure ratio. This is a method proposed by Boyce et al in a 2016 paper, which they refer to as the white to non-white exposure ratio. Essentially how it works is you take a group of areas, in our case census block groups, and you aggregate them up to another administrative level, in our case the county level, and determine the imbalance of potential exposure between minorities and non-minorities. So in one county, we would look at every block group and ask, what percent of the population is minority and what is the tank density in that block group. The formula is executed twice, once using white population, and once using minority population and then they are divided to yield a ratio. A ratio of 1 means that minorities and non-minorities are equally exposed to tanks. A ratio of zero means that only non-minorites are exposed to tanks and a ratio of infinity means that only minorities are exposed to tanks. You can view the code here, where we use total population, percent minority and tanks / km2 to calculate the exposure ratio. We can take a look at the nationwide results here. The majority of counties have exposure ratios of less than .5 but many have exposure ratios well above 1. For example, we see here that there are 186 counties with ratios greater than 9.5. In the map on the right, we can look at where the counties with exposure ratios greater than 1 are located.
+
+---
+background-image: url(img/ord_title_16_9.jpg)
+
+.center[
+# &emsp;&emsp;&emsp;A Deeper Look with Shiny
+]
+
+
+.center[
+![](img/shiny.png)
+]
+
+
+???
+Finally, I want to give a brief demo of a shiny application which allows us to investigate specific communities based on a range of indicators from tanks and EJSCREEN. This is an internal application that allows us to just take a deeper dive into communities that may have compounding environmental exposures, and to frame them through socio-demographic information.
+
+---
+background-image: url(img/ord_title_16_9.jpg)
+
+.center[
+# Thanks!
+]
+
+# <br><br>
+
+.pull-left[
+.epablue[
+.center[
+Andrew Murray
+
+ORAU/USEPA/ORD/CESER
+
+Murray.AndrewR@epa.gov
+]
+]
+]
+
+.pull-right[
+.text[
+Slides created with: Xaringan & xaringanthemer
+
+Plots created with: Plotly
+
+Maps created with: Leaflet
+]
+]

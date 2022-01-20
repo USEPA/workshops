@@ -1,0 +1,68 @@
+.txt {
+  font-family: Source-Sans-Pro;
+  font-weight: normal;
+  color: var(--text-color);
+  font-size: 2rem;
+}
+
+.remark-slide-content {
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+}
+.remark-slide-content > h1:first-of-type {
+  margin-top: 0px;
+}
+
+.epagreen {color: #61AD40;}
+
+.red {color:red; }
+
+.bigred {color:red; font-size:42px;}
+
+.big {color:black; font-size:42px;}
+
+.med {color:black; font-size:24px;}
+
+.little {color:black; font-size:14px;}
+
+.reallittle {color:black; font-size:4px;}
+
+h1 {
+  color:#1a4480;
+  font-family: Source-Sans-Pro;
+  font-weight: 600;
+}
+
+h2 {
+  color:#61AD40;
+  font-family: Source-Sans-Pro;
+  font-weight: 600;
+}
+
+.epabluetitle {
+  color:#1a4480;
+  font-size:53px;
+  font-family: Source-Sans-Pro;
+  font-weight: 600;
+}
+
+.epabluecontent {
+  color:#1a4480;
+  font-size:30px;
+  font-family: Calibri;
+  font-weight: bold;
+}
+
+.epablue {
+  color:#1a4480;
+  font-family: Calibri;
+  font-weight: bold;
+}
+
+.inverse {
+  color: white;
+  background-color: transparent;
+  text-shadow: 0 0 0.2em #080808, 0 0 0.2em #080808;
+}
