@@ -44,7 +44,7 @@ Day 3 will be split into 3 parallel sessions, all taking place from 1pm-5pm:
 |Track  |Title                   |Topics                  |Lead                    |
 |-------|------------------------|------------------------|------------------------|
 |1|[Intro to R (Part 2)](https://github.com/nicholekulikowski/intro_to_R_2021)|R fundamentals, overview of RStudio IDE, importing and visualizing data|Nichole Kulikowski|
-|2|Quarto||Posit|
+|2|Quarto|Hands on building manuscripts, reports, presentations, websites, and more in Quarto|Jeremy Allen (Posit)|
 |3|Shiny|A hands-on course of building Shiny projects and the use of Shiny|Andrew R. Murray|
 
 
@@ -66,6 +66,6 @@ Day 3 will be split into 3 parallel sessions, all taking place from 1pm-5pm:
 - **Introduction to R (2 days):** Participants in this workshop will be introduced to R through the lense of the "Tidyverse" as well as learn basics of the R Language for statistical computing.  In particular we will: 1) learn the fundamentals of R including syntax, functions, and packages; 2) spend quality time with the core R data structure, the data frame; 3) learn how to manipulate our data with the `dplyr` and `tidyr` packages; and 4) gain expereince creating data visualizations with `ggplot2`.  Our goal is to set learners up with a foundation for future exploration of R.
 - **EPA Infrastructure/DMAP (1 day):** Participants in this workshop will be introduced to EPA-managed infrastructure for developing R projects, including the Data Management and Analytics Platform (DMAP), Cloud.gov, R Connect, and GitHub Enterprise.
 - **Spatial Data and Analysis in R (1 day):** This workshop will provide an introduction to the current GIS ecosystem in R.  We’ll demonstrate use of packages such as sf, raster, terra, stars, tmap, mapview and others.  The workshop will provide an overview of both vector and raster I/O in R, vector geocomputation operations such as spatial subsetting, spatial joins, spatial aggregation, and distance operations as well as raster operations such as map algebra  We’ll cover coordinate reference systems and projections in R as well as mapping in R.  We’ll also look at examples of exploratory spatial data analysis (ESDA) in R, data transformation and processing, data visualization, and spatial analysis in R in the context of reproducible research.
-- **Quarto (1 day):** Staff from Posit (formerly RStudio) will be giving an introduction to Quarto, which is a new alternative to R Markdown for creating interactive notebooks and reports.
+- **Quarto (1 day):** Staff from Posit (formerly RStudio) will be giving an introduction to Quarto, which is a new alternative to R Markdown for creating interactive notebooks and reports. This workship will cover hands on building manuscripts, reports, presentations, websites, and more in Quarto.
 - **Shiny (1 day):** A hands-on course of building Shiny projects and the use of Shiny.
 
