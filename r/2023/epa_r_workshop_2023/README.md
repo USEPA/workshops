@@ -17,7 +17,7 @@ We've been using #eparstats for EPA related R events.  Feel free to live tweet, 
 |Time (EDT)     |Title                    |Speaker                  |
 |---------------|-------------------------|-------------------------|
 |1:00pm - 1:15pm|Welcome and Introduction |*TBD*                    |
-|1:15pm - 2:15pm|Plenary Keynote          |[Julia Stewart-Lawndes](https://jules32.github.io/) and [Ileana Fenwick](https://aces.kenaninstitute.unc.edu/people/ileana-fenwick/)|
+|1:15pm - 2:15pm|Plenary Keynote          |[Julia Stewart Lowndes](https://jules32.github.io/) and [Ileana Fenwick](https://aces.kenaninstitute.unc.edu/people/ileana-fenwick/)|
 |2:15pm - 3:00pm|Lightning Talks          |Kelsey Hensley, Yana Genchanok, Thomas Barnum, William Wheeler, and Cristina Mullin|
 |3:00pm - 3:15pm|**Break**                |                         |
 |               |Invited Talks *(See below for details)*|           |
