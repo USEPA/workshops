@@ -8,16 +8,12 @@ The agenda below is preliminary and may change before the workshop.
 
 Sign-up to participate via [EventBrite](https://www.eventbrite.com/e/r-user-group-workshop-2023-october-17th-19th-registration-611092212257).
 
-#### Twitter (not officially sanctioned)
-
-We've been using #eparstats for EPA related R events.  Feel free to live tweet, unless otherwise directed!
-
 ## Tue, October 17
 
 |Time (EDT)     |Title                    |Speaker                  |
 |---------------|-------------------------|-------------------------|
 |1:00pm - 1:15pm|Welcome and Introduction |*TBD*                    |
-|1:15pm - 2:15pm|Plenary Keynote          |[Julia Stewart-Lawndes](https://jules32.github.io/) and [Ileana Fenwick](https://aces.kenaninstitute.unc.edu/people/ileana-fenwick/)|
+|1:15pm - 2:15pm|Plenary Keynote          |[Julia Stewart-Lowndes](https://jules32.github.io/) and [Ileana Fenwick](https://aces.kenaninstitute.unc.edu/people/ileana-fenwick/)|
 |2:15pm - 3:00pm|Lightning Talks          |Kelsey Hensley, Yana Genchanok, Thomas Barnum, William Wheeler, and Cristina Mullin|
 |3:00pm - 3:15pm|**Break**                |                         |
 |               |Invited Talks *(See below for details)*|           |
@@ -33,7 +29,7 @@ Day 2 will be split into 3 parallel sessions, all taking place from 1pm-5pm:
 
 |Track  |Title                   |Topics                  |Lead                    |
 |-------|------------------------|------------------------|------------------------|
-|1|[Intro to R (Part 1)](https://github.com/nicholekulikowski/intro_to_R_2021)|R fundamentals, overview of RStudio IDE, importing and visualizing data|Nichole Kulikowski|
+|1|[Intro to R (Part 1)](https://github.com/nicholekulikowski/intro-to-R-2023)|R fundamentals, overview of RStudio IDE, importing and visualizing data|Nichole Kulikowski|
 |2|EPA Infrastructure/DMAP|GitHub Enterprise, Cloud.gov, R Connect|Dave Smith|
 |3|[Spatial Data and Analysis in R](https://mhweber.github.io/R-User-Group-Spatial-Workshop-2021/)|Reading and writing spatial data, spatial data operations, spatial mapping|[Marc Weber](https://mhweber.github.io/) and [Michael Dumelle](https://michaeldumelle.github.io/)|
 
@@ -43,7 +39,7 @@ Day 3 will be split into 3 parallel sessions, all taking place from 1pm-5pm:
 
 |Track  |Title                   |Topics                  |Lead                    |
 |-------|------------------------|------------------------|------------------------|
-|1|[Intro to R (Part 2)](https://github.com/nicholekulikowski/intro_to_R_2021)|R fundamentals, overview of RStudio IDE, importing and visualizing data|Nichole Kulikowski|
+|1|[Intro to R (Part 2)](https://github.com/nicholekulikowski/intro-to-R-2023)|R fundamentals, overview of RStudio IDE, importing and visualizing data|Nichole Kulikowski|
 |2|Quarto|Hands on building manuscripts, reports, presentations, websites, and more in Quarto|Jeremy Allen (Posit)|
 |3|Shiny|A hands-on course of building Shiny projects and the use of Shiny|Andrew R. Murray|
 
