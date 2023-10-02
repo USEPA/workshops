@@ -2,7 +2,11 @@
 
 This repository contains materials for workshops that have been held at EPA or ran by EPA staff.
 
-## Consolidated workshop materials
+## 2023 Workshops
+
+- [USEPA R User Group Workshop](https://github.com/USEPA/workshops/tree/main/r/2023/epa_r_workshop_2023)
+
+## Archived workshop materials
 
 This repository contains some old workshop materials that have been consolidated. If you were looking for one of the following urls, click the link below to go to the new location
 
