@@ -12,7 +12,7 @@ Sign-up to participate via [EventBrite](https://www.eventbrite.com/e/r-user-grou
 
 |Time (EDT)     |Title                    |Speaker                  |
 |---------------|-------------------------|-------------------------|
-|1:00pm - 1:15pm|Welcome and Introduction |*TBD*                    |
+|1:00pm - 1:15pm|Welcome and Introduction |John Sykes, Deputy Director of OSIM|
 |1:15pm - 2:15pm|Plenary Keynote          |[Julia Stewart-Lowndes](https://jules32.github.io/) and [Ileana Fenwick](https://aces.kenaninstitute.unc.edu/people/ileana-fenwick/)|
 |2:15pm - 3:00pm|Lightning Talks          |Kelsey Hensley, Yana Genchanok, Thomas Barnum, William Wheeler, and Cristina Mullin|
 |3:00pm - 3:15pm|**Break**                |                         |
