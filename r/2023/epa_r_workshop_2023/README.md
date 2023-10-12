@@ -49,11 +49,11 @@ Day 3 will be split into 3 parallel sessions, all taking place from 1pm-5pm:
 
 - **Plenary Keynote: Julia Stewart-Lowndes and Ileana Fenwick.** Julia founded [Openscapes](https://openscapes.org/) and will tell her story of using R to promote open science, see [her website](https://jules32.github.io/) for more. Ileana is a [PhD student at UNC](https://aces.kenaninstitute.unc.edu/people/ileana-fenwick/) and has done a lot of work on open science, particularly for Black Women in Ecology, Evolution, and Marine Sciences. She leads up the [OpenScapes Pathways to Open Science Program](https://openscapes.org/initiatives.html#pathways-to-open-science-program).
 - **Lightning Talks:** This session will consist of quick (9-minute) presentations on applications of R and related tools in EPA research and applications:
-  - Kelsey Hensley (2:15-2:24): *Topic TBA*
-  - Yana Genchanok (2:24-2:33): *Topic TBA*
+  - Kelsey Hensley (2:15-2:24): *Iterating R markdown reports at various geographic scales*
+  - Bryan Groza (2:24-2:33): *Formatting and interacting with Excel workbooks using R*
   - Thomas Barnum (2:33-2:42): *Topic TBA*
-  - William Wheeler (2:42-2:51): *Topic TBA*
-  - Cristina Mullin (2:51-3:00): *Topic TBA*
+  - William Wheeler (2:42-2:51): *The Taxonomy of purrr::map and walk functions*
+  - Cristina Mullin (2:51-3:00): *R Package – Shiny App*
 - **Mark Corrales:** *EJAM (Environmental Justice Analysis Multisite tool)* is in development as a Shiny webapp in R
 - **Sean Thimons:** *Implementation of CompTox and GenRA APIs for rapid chemical risk characterization*
 - **Carrie Cummings:** *Building Qlik dashboards with R* - There are many options for building a dashboard. This presentation will walk through why a R developer may want to consider using Qlik as the front end for their application. We’ll show a real-life project example, walk through how to connect Qlik and R, and discuss some pros/cons of using Qlik vs R-Shiny.
