@@ -49,7 +49,7 @@ Day 3 will be split into 3 parallel sessions, all taking place from 1pm-5pm:
 
 - **Plenary Keynote: Julia Stewart-Lowndes and Ileana Fenwick.** Julia founded [Openscapes](https://openscapes.org/) and will tell her story of using R to promote open science, see [her website](https://jules32.github.io/) for more. Ileana is a [PhD student at UNC](https://aces.kenaninstitute.unc.edu/people/ileana-fenwick/) and has done a lot of work on open science, particularly for Black Women in Ecology, Evolution, and Marine Sciences. She leads up the [OpenScapes Pathways to Open Science Program](https://openscapes.org/initiatives.html#pathways-to-open-science-program).
 - **Lightning Talks:** This session will consist of quick (9-minute) presentations on applications of R and related tools in EPA research and applications:
-  - Kelsey Hensley (2:15-2:24): *Iterating R markdown reports at various geographic scales*
+  - Kelsey Hensley (2:15-2:24): *Automating Reports for Multiple Geographic Scales Using R Markdown *
   - Bryan Groza (2:24-2:33): *Formatting and interacting with Excel workbooks using R*
   - Thomas Barnum (2:33-2:42): *Topic TBA*
   - William Wheeler (2:42-2:51): *The Taxonomy of purrr::map and walk functions*
