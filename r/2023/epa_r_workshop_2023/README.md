@@ -13,7 +13,7 @@ Sign-up to participate via [EventBrite](https://www.eventbrite.com/e/r-user-grou
 |Time (EDT)     |Title                    |Speaker                  |
 |---------------|-------------------------|-------------------------|
 |1:00pm - 1:15pm|Welcome and Introduction |John Sykes, Deputy Director of OSIM|
-|1:15pm - 2:15pm|Keynote: Supporting Kinder Science for Future Us          |[Julia Stewart-Lowndes](https://jules32.github.io/) and [Ileana Fenwick](https://aces.kenaninstitute.unc.edu/people/ileana-fenwick/)|
+|1:15pm - 2:15pm|Keynote: Supporting Kinder Science for Future Us          |[Ileana Fenwick](https://www.linkedin.com/in/ileana-fenwick-0238ba132/) and [Julia Stewart Lowndes](https://jules32.github.io/)|
 |2:15pm - 3:00pm|Lightning Talks          |Kelsey Hensley, Yana Genchanok, Thomas Barnum, William Wheeler, and Cristina Mullin|
 |3:00pm - 3:15pm|**Break**                |                         |
 |               |Invited Talks *(See below for details)*|           |
@@ -47,7 +47,7 @@ Day 3 will be split into 3 parallel sessions, all taking place from 1pm-5pm:
 
 #### Invited Talks (Tues, October 17):
 
-- **Plenary Keynote: Julia Stewart-Lowndes and Ileana Fenwick.** Julia founded [Openscapes](https://openscapes.org/) and will tell her story of using R to promote open science, see [her website](https://jules32.github.io/) for more. Ileana is a [PhD student at UNC](https://aces.kenaninstitute.unc.edu/people/ileana-fenwick/) and has done a lot of work on open science, particularly for Black Women in Ecology, Evolution, and Marine Sciences. She leads up the [OpenScapes Pathways to Open Science Program](https://openscapes.org/initiatives.html#pathways-to-open-science-program).
+- **Plenary Keynote: Ileana Fenwick and Julia Stewart Lowndes.** Julia founded [Openscapes](https://openscapes.org/) and will tell her story of using R to promote open science, see [her website](https://jules32.github.io/) for more. Ileana is a [PhD Candidate at UNC](https://www.linkedin.com/in/ileana-fenwick-0238ba132/) and has done a lot of work on open science, particularly for Black Women in Ecology, Evolution, and Marine Sciences. She leads up the [OpenScapes Pathways to Open Science Program](https://openscapes.org/initiatives.html#pathways-to-open-science-program).
 - **Lightning Talks:** This session will consist of quick (9-minute) presentations on applications of R and related tools in EPA research and applications:
   - Kelsey Hensley (2:15-2:24): *Automating Reports for Multiple Geographic Scales Using R Markdown *
   - Bryan Groza (2:24-2:33): *Formatting and interacting with Excel workbooks using R*
