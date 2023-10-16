@@ -51,7 +51,7 @@ Day 3 will be split into 3 parallel sessions, all taking place from 1pm-5pm:
 - **Lightning Talks:** This session will consist of quick (9-minute) presentations on applications of R and related tools in EPA research and applications:
   - Kelsey Hensley (2:15-2:24): *Automating Reports for Multiple Geographic Scales Using R Markdown*
   - Bryan Groza (2:24-2:33): *Formatting and interacting with Excel workbooks using R*
-  - Thomas Barnum (2:33-2:42): *Topic TBA*
+  - Thomas Barnum (2:33-2:42): *Layering the cake: mapping multiple objects with ggplot*
   - William Wheeler (2:42-2:51): *The Taxonomy of purrr::map and walk functions*
   - Cristina Mullin (2:51-3:00): *R Package – Shiny App*
 - **Mark Corrales:** *EJAM (Environmental Justice Analysis Multisite tool)* is in development as a Shiny webapp in R
