@@ -14,7 +14,7 @@ Sign-up to participate via [EventBrite](https://www.eventbrite.com/e/r-user-grou
 |---------------|-------------------------|-------------------------|
 |1:00pm - 1:15pm|Welcome and Introduction |John Sykes, Deputy Director of OSIM|
 |1:15pm - 2:15pm|Keynote: Supporting Kinder Science for Future Us          |[Ileana Fenwick](https://www.linkedin.com/in/ileana-fenwick-0238ba132/) and [Julia Stewart Lowndes](https://jules32.github.io/)|
-|2:15pm - 3:00pm|Lightning Talks          |Kelsey Hensley, Yana Genchanok, Thomas Barnum, William Wheeler, and Cristina Mullin|
+|2:15pm - 3:00pm|Lightning Talks          |Kelsey Hensley, Bryan Groza, Thomas Barnum, William Wheeler, and Cristina Mullin|
 |3:00pm - 3:15pm|**Break**                |                         |
 |               |Invited Talks *(See below for details)*|           |
 |3:15pm - 3:40pm|Environmental Justice Analysis Multisite tool|Mark Corrales|
