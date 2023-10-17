@@ -20,7 +20,7 @@ Sign-up to participate via [EventBrite](https://www.eventbrite.com/e/r-user-grou
 |3:15pm - 3:40pm|Environmental Justice Analysis Multisite tool|Mark Corrales|
 |3:40pm - 4:05pm|Implementation of CompTox and GenRA APIs for rapid chemical risk characterization|Sean Thimons|
 |4:05pm - 4:30pm|Building Qlik dashboards with R|Carrie Cummings    |
-|4:30pm - 4:55pm|Shrimp and Grits: Enhancing Grants Results and Tracking System (GRTS) Data Analytics Using R and Friends|Eric Beck|
+|4:30pm - 4:55pm|[Shrimp and Grits: Enhancing Grants Results and Tracking System (GRTS) Data Analytics Using R and Friends](https://github.com/R1EHB/RworkshopPresentation-17Oct2023)|Erik Beck|
 |5:00pm - 6:00pm|Virtual Happy Hour       |All!                     |
 
 ## Wed, October 18
